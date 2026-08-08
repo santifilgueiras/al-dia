@@ -1,0 +1,31 @@
+{
+  "skill_name": "plan-estudio-espaciado",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Tengo que organizar el estudio de Clínica Médica, el parcial es el 20 de agosto de 2026 y hoy es 5 de agosto. Los temas que me faltan son: fibrilación auricular, insuficiencia cardíaca, neumonía, TEP, cirrosis, hipotiroidismo, ERC y HTA severa. Puedo estudiar todos los días, más o menos 2 horas. Armame un cronograma porque tengo demasiados temas encima y no sé por dónde arrancar.",
+      "expected_output": "Debe crear un archivo de seguimiento (JSON) con los 8 temas en estado 'nuevo', correr/usar la lógica del script para armar un cronograma día por día desde el 5 hasta el 20 de agosto, presentar el plan en texto claro (no el JSON crudo), no agendar nada después del 20/8, e incluir un resumen de cuántos temas hay en cada estado.",
+      "files": [],
+      "expectations": [
+        "cubre_los_8_temas: el plan menciona/agenda los 8 temas dados por su nombre",
+        "no_agenda_despues_del_examen: ninguna fecha de estudio/repaso cae después del 20/8/2026",
+        "no_pega_json_crudo: la respuesta al usuario es texto legible, no un volcado de JSON",
+        "reconoce_el_agobio: la respuesta responde directamente a la sensación de tener demasiados temas / no saber por dónde arrancar",
+        "guarda_estado_persistente: se crea un archivo estructurado (no solo prosa) que se pueda releer en una conversación futura para saber en qué está cada tema"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Ya vengo usando esto para Clínica Médica, te paso el archivo de seguimiento que tengo. Hoy repasé insuficiencia cardíaca y la verdad me costó horrible, sentí que no me acordaba de nada. En cambio fibrilación auricular ya la tengo re firme, la expliqué sin mirar nada. Actualizame el plan para lo que queda hasta el examen.",
+      "expected_output": "Debe actualizar el archivo de seguimiento: insuficiencia cardíaca pasa a 'flojo' con last_reviewed de hoy, fibrilación auricular pasa a 'firme'. Los demás temas quedan igual. Debe recalcular el cronograma restante con esos cambios (insuficiencia cardíaca vuelve pronto, fibrilación auricular se espacia más) y mostrar un resumen de estado, sin pedirle al usuario que calcule nada a mano.",
+      "files": ["evals/seguimiento-clinica-medica-existente.json"],
+      "expectations": [
+        "actualiza_insuficiencia_cardiaca: pasa a estado 'flojo' con last_reviewed = hoy (2026-08-05)",
+        "actualiza_fibrilacion_auricular: pasa a estado 'firme'",
+        "no_modifica_temas_no_mencionados: Neumonía, TEP, Cirrosis e Hipotiroidismo mantienen el status que tenían antes",
+        "no_avanza_racha_de_temas_no_repasados_hoy: la racha/streak de Neumonía (no repasada hoy) no se incrementa solo por regenerar el plan",
+        "resumen_de_conteo: la respuesta incluye cuántos temas quedaron firme/flojo/nuevo en total"
+      ]
+    }
+  ]
+}

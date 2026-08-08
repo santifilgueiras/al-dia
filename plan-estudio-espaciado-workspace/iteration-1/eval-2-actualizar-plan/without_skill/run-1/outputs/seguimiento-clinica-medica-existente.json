@@ -1,0 +1,12 @@
+{
+  "materia": "Clinica Medica",
+  "exam_date": "2026-08-25",
+  "topics": [
+    {"name": "Fibrilacion auricular", "status": "firme", "last_reviewed": "2026-08-05", "next_review": "2026-08-10", "streak": 1},
+    {"name": "Insuficiencia cardiaca", "status": "flojo", "last_reviewed": "2026-08-05", "next_review": "2026-08-07", "streak": 0},
+    {"name": "Neumonia", "status": "firme", "last_reviewed": "2026-08-02", "next_review": "2026-08-07", "streak": 1},
+    {"name": "TEP", "status": "nuevo", "last_reviewed": null, "next_review": "2026-08-06", "streak": 0},
+    {"name": "Cirrosis", "status": "nuevo", "last_reviewed": null, "next_review": "2026-08-08", "streak": 0},
+    {"name": "Hipotiroidismo", "status": "nuevo", "last_reviewed": null, "next_review": "2026-08-09", "streak": 0}
+  ]
+}

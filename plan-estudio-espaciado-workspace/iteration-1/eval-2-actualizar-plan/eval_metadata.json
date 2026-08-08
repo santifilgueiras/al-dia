@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "eval_name": "actualizar-plan-con-progreso",
+  "prompt": "Ya vengo usando esto para Clínica Médica, te paso el archivo de seguimiento que tengo. Hoy repasé insuficiencia cardíaca y la verdad me costó horrible, sentí que no me acordaba de nada. En cambio fibrilación auricular ya la tengo re firme, la expliqué sin mirar nada. Actualizame el plan para lo que queda hasta el examen.",
+  "assertions": [
+    "actualiza_insuficiencia_cardiaca: pasa a estado 'flojo' con last_reviewed = hoy (2026-08-05)",
+    "actualiza_fibrilacion_auricular: pasa a estado 'firme'",
+    "no_modifica_temas_no_mencionados: Neumonía, TEP, Cirrosis e Hipotiroidismo mantienen el status que tenían antes",
+    "no_avanza_racha_de_temas_no_repasados_hoy: la racha/streak de Neumonía (no repasada hoy) no se incrementa solo por regenerar el plan",
+    "resumen_de_conteo: la respuesta incluye cuántos temas quedaron firme/flojo/nuevo en total"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "run_id": "eval-2-without_skill",
+  "expectations": [
+    {
+      "text": "actualiza_insuficiencia_cardiaca",
+      "passed": true,
+      "evidence": "status 'flojo', last_reviewed '2026-08-05'"
+    },
+    {
+      "text": "actualiza_fibrilacion_auricular",
+      "passed": true,
+      "evidence": "status 'firme', streak 1"
+    },
+    {
+      "text": "no_modifica_temas_no_mencionados",
+      "passed": true,
+      "evidence": "Neumonía sigue 'firme', TEP/Cirrosis/Hipotiroidismo siguen 'nuevo'"
+    },
+    {
+      "text": "no_avanza_racha_de_temas_no_repasados_hoy",
+      "passed": true,
+      "evidence": "Neumonía mantiene streak=1, sin repaso hoy; el modelo no cometió el error que sí tenía el script sin corregir"
+    },
+    {
+      "text": "resumen_de_conteo",
+      "passed": false,
+      "evidence": "la respuesta no incluye un total de temas firme/flojo/nuevo, solo el detalle tema por tema y una tabla de fechas"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  }
+}

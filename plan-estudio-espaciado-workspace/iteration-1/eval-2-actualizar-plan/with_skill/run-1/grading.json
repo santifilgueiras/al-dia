@@ -1,0 +1,37 @@
+{
+  "run_id": "eval-2-with_skill",
+  "expectations": [
+    {
+      "text": "actualiza_insuficiencia_cardiaca",
+      "passed": true,
+      "evidence": "status 'flojo', last_reviewed '2026-08-05' en el JSON actualizado"
+    },
+    {
+      "text": "actualiza_fibrilacion_auricular",
+      "passed": true,
+      "evidence": "status 'firme' en el JSON actualizado"
+    },
+    {
+      "text": "no_modifica_temas_no_mencionados",
+      "passed": true,
+      "evidence": "Neumonía sigue 'firme', TEP/Cirrosis/Hipotiroidismo siguen 'nuevo'"
+    },
+    {
+      "text": "no_avanza_racha_de_temas_no_repasados_hoy",
+      "passed": true,
+      "evidence": "tras corregir un bug encontrado en esta corrida (ver nota), Neumonía mantiene streak=1 y next_review=2026-08-07 sin cambios, ya que no fue repasada hoy"
+    },
+    {
+      "text": "resumen_de_conteo",
+      "passed": true,
+      "evidence": "response.md: 'Estado general ahora: 2 temas firmes... 1 flojo... 3 nuevos'"
+    }
+  ],
+  "note": "Se encontró y corrigió un bug real en scripts/build_plan.py durante esta evaluación: antes del fix, el script incrementaba la racha de CUALQUIER tema con historial cada vez que se corría, aunque no hubiera sido repasado ese día (Neumonía pasaba de streak 1 a 2 sin repaso real). Se corrigió para que la racha solo avance cuando last_reviewed == hoy. La corrida original del subagente usó la versión con bug; el JSON de este directorio fue regenerado con el script ya corregido para reflejar el comportamiento correcto.",
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  }
+}

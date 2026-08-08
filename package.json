@@ -1,0 +1,19 @@
+{
+  "name": "al-dia-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Server local para el mockup de Al Día: sirve el HTML y expone endpoints que llaman a la API de Claude.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.112.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mammoth": "^1.12.0",
+    "multer": "^2.2.0",
+    "pdf-parse": "^2.4.5",
+    "pdfkit": "^0.19.1",
+    "sharp": "^0.35.3"
+  }
+}

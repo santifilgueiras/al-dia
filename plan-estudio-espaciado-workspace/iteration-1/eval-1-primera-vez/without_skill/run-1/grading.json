@@ -1,0 +1,36 @@
+{
+  "run_id": "eval-1-without_skill",
+  "expectations": [
+    {
+      "text": "cubre_los_8_temas",
+      "passed": true,
+      "evidence": "tabla de 15 días cubre los 8 temas por nombre"
+    },
+    {
+      "text": "no_agenda_despues_del_examen",
+      "passed": true,
+      "evidence": "día del examen (20/8) queda sin contenido nuevo"
+    },
+    {
+      "text": "no_pega_json_crudo",
+      "passed": true,
+      "evidence": "respuesta en markdown/tabla, sin JSON"
+    },
+    {
+      "text": "reconoce_el_agobio",
+      "passed": true,
+      "evidence": "abre con 'Te entiendo, 8 temas grandes en 15 días... no es imposible'"
+    },
+    {
+      "text": "guarda_estado_persistente",
+      "passed": false,
+      "evidence": "solo se guardó response.md; no se creó ningún archivo estructurado para retomar el estado en otra conversación"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  }
+}

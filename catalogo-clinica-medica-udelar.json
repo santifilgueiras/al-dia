@@ -1,0 +1,149 @@
+{
+  "universidad": "UDELAR",
+  "carrera": "Doctor en Medicina",
+  "ciclo": "Ciclo Clínico General Integral - 5to año",
+  "materia": "Clínica Médica (UC 19)",
+  "fuente": "Programa oficial UC 19, 2022, Facultad de Medicina UDELAR (Anexo 2: Objetivos y competencias por módulo)",
+  "nota": "Los temas de este catálogo son una destilación de los objetivos oficiales (que son ~500 y demasiado granulares para armar un calendario de estudio) agrupados en unidades del tamaño en que un estudiante normalmente estudia un tema.",
+  "modulos": [
+    {
+      "modulo": "Cardiovascular",
+      "temas": [
+        "Insuficiencia cardíaca",
+        "Dolor torácico y cardiopatía isquémica",
+        "Arritmias cardíacas y fibrilación auricular",
+        "Hipertensión arterial y riesgo cardiovascular",
+        "Lectura sistemática de ECG",
+        "Estudios complementarios en cardiología (PEG, Holter, ecocardiograma, angiografía)",
+        "Farmacología cardiovascular",
+        "Paro cardiorrespiratorio"
+      ]
+    },
+    {
+      "modulo": "Respiratorio",
+      "temas": [
+        "Estudios de imagen y función respiratoria (RxTx, TC Tx, gasometría, espirometría)",
+        "Tromboembolismo pulmonar (TEP)",
+        "Neumonía aguda comunitaria y nosocomial",
+        "Asma",
+        "EPOC",
+        "Tabaquismo",
+        "Derrame pleural",
+        "Cáncer de pulmón (CBP)",
+        "Tuberculosis (TBC)",
+        "Enfermedad intersticial difusa pulmonar (EPID)",
+        "Insuficiencia respiratoria aguda y crónica"
+      ]
+    },
+    {
+      "modulo": "Nefrourología",
+      "temas": [
+        "Enfermedad renal crónica",
+        "Falla renal aguda",
+        "Estudio del paciente con nefropatía (orina, imagen, laboratorio)",
+        "Tratamientos sustitutivos y trasplante renal"
+      ]
+    },
+    {
+      "modulo": "Gastroenterología",
+      "temas": [
+        "Dolor abdominal, dispepsia y reflujo gastroesofágico",
+        "Síndrome ictérico e insuficiencia hepatocelular",
+        "Ascitis e hipertensión portal",
+        "Síndromes disabsortivos y enfermedad celíaca",
+        "Colopatías inflamatorias"
+      ]
+    },
+    {
+      "modulo": "Endocrinología",
+      "temas": [
+        "Diabetes mellitus: diagnóstico y control",
+        "Complicaciones agudas de la diabetes (cetoacidosis, hipoglicemia)",
+        "Tratamiento de la diabetes (hipoglucemiantes, insulina)",
+        "Dislipemias",
+        "Hipotiroidismo",
+        "Hipertiroidismo"
+      ]
+    },
+    {
+      "modulo": "Hematología",
+      "temas": [
+        "Interpretación del hemograma",
+        "Trastornos de la coagulación",
+        "Anemias",
+        "Pancitopenia y síndromes poliadenomegálicos",
+        "Gammapatías monoclonales (proteinograma)",
+        "Terapia tromboprofiláctica y manejo del paciente hipocoagulado"
+      ]
+    },
+    {
+      "modulo": "Infectología",
+      "temas": [
+        "Técnicas de estudio bacteriológico (urocultivo, hemocultivo, etc.)",
+        "Fiebre prolongada",
+        "Infección por VIH",
+        "COVID-19 (SARS-CoV-2)"
+      ]
+    },
+    {
+      "modulo": "Neurología",
+      "temas": [
+        "Examen físico neurológico",
+        "Síndrome meníngeo y punción lumbar",
+        "Imagenología neurológica (TAC/RNM): patología vascular y tumoral",
+        "Cefaleas",
+        "Enfermedad cerebrovascular (AIT, infarto, hemorragia)",
+        "Patologías neurológicas prevalentes (Parkinson, demencias, epilepsia)"
+      ]
+    },
+    {
+      "modulo": "Enfermedades autoinmunes",
+      "temas": [
+        "Enfermedades autoinmunes sistémicas (EAS): diagnóstico",
+        "Tratamiento inmunomodulador en EAS",
+        "Vasculitis"
+      ]
+    },
+    {
+      "modulo": "Reumatología",
+      "temas": [
+        "Semiología del aparato locomotor",
+        "Enfermedades reumatológicas prevalentes: diagnóstico y tratamiento"
+      ]
+    },
+    {
+      "modulo": "Oncología",
+      "temas": [
+        "Síndrome mediastinal e hipertensión endocraneana",
+        "Compresión medular oncológica",
+        "Estudio de metástasis de primitivo desconocido",
+        "Cuidados paliativos y tratamiento analgésico",
+        "Screening y detección precoz del cáncer"
+      ]
+    },
+    {
+      "modulo": "Psiquiatría",
+      "temas": [
+        "Patologías psiquiátricas prevalentes en medicina general"
+      ]
+    },
+    {
+      "modulo": "Psicología médica",
+      "temas": [
+        "Comunicación médico-paciente y aspectos psicosociales"
+      ]
+    },
+    {
+      "modulo": "Medicina legal",
+      "temas": [
+        "Ética y legislación sanitaria: consentimiento informado, confidencialidad, responsabilidad médica"
+      ]
+    },
+    {
+      "modulo": "Bioética",
+      "temas": [
+        "Bioética clínica y toma de decisiones"
+      ]
+    }
+  ]
+}

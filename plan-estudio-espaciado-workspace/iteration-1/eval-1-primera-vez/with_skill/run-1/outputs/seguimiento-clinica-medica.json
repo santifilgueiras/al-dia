@@ -1,0 +1,62 @@
+{
+  "materia": "Clínica Médica",
+  "exam_date": "2026-08-20",
+  "topics": [
+    {
+      "name": "Fibrilación auricular",
+      "status": "nuevo",
+      "last_reviewed": null,
+      "next_review": "2026-08-05",
+      "streak": 0
+    },
+    {
+      "name": "Insuficiencia cardíaca",
+      "status": "nuevo",
+      "last_reviewed": null,
+      "next_review": "2026-08-05",
+      "streak": 0
+    },
+    {
+      "name": "Neumonía",
+      "status": "nuevo",
+      "last_reviewed": null,
+      "next_review": "2026-08-05",
+      "streak": 0
+    },
+    {
+      "name": "TEP",
+      "status": "nuevo",
+      "last_reviewed": null,
+      "next_review": "2026-08-06",
+      "streak": 0
+    },
+    {
+      "name": "Cirrosis",
+      "status": "nuevo",
+      "last_reviewed": null,
+      "next_review": "2026-08-06",
+      "streak": 0
+    },
+    {
+      "name": "Hipotiroidismo",
+      "status": "nuevo",
+      "last_reviewed": null,
+      "next_review": "2026-08-06",
+      "streak": 0
+    },
+    {
+      "name": "ERC",
+      "status": "nuevo",
+      "last_reviewed": null,
+      "next_review": "2026-08-07",
+      "streak": 0
+    },
+    {
+      "name": "HTA severa",
+      "status": "nuevo",
+      "last_reviewed": null,
+      "next_review": "2026-08-07",
+      "streak": 0
+    }
+  ]
+}

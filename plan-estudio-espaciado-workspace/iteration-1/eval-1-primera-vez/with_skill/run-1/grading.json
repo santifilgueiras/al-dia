@@ -1,0 +1,36 @@
+{
+  "run_id": "eval-1-with_skill",
+  "expectations": [
+    {
+      "text": "cubre_los_8_temas",
+      "passed": true,
+      "evidence": "seguimiento-clinica-medica.json lista los 8 temas; response.md los distribuye en 5,6,7 de agosto"
+    },
+    {
+      "text": "no_agenda_despues_del_examen",
+      "passed": true,
+      "evidence": "última fecha mencionada es 19/8 (repaso final), examen es 20/8"
+    },
+    {
+      "text": "no_pega_json_crudo",
+      "passed": true,
+      "evidence": "response.md es texto en prosa con encabezados por día"
+    },
+    {
+      "text": "reconoce_el_agobio",
+      "passed": true,
+      "evidence": "primer párrafo: 'tener 8 temas sin repasar... y sentir que no sabés nada es esperable'"
+    },
+    {
+      "text": "guarda_estado_persistente",
+      "passed": true,
+      "evidence": "crea seguimiento-clinica-medica.json con next_review por tema, reutilizable en otra conversación"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  }
+}

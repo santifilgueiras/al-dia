@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "primera-vez-armar-plan",
+  "prompt": "Tengo que organizar el estudio de Clínica Médica, el parcial es el 20 de agosto de 2026 y hoy es 5 de agosto. Los temas que me faltan son: fibrilación auricular, insuficiencia cardíaca, neumonía, TEP, cirrosis, hipotiroidismo, ERC y HTA severa. Puedo estudiar todos los días, más o menos 2 horas. Armame un cronograma porque tengo demasiados temas encima y no sé por dónde arrancar.",
+  "assertions": [
+    "cubre_los_8_temas: el plan menciona/agenda los 8 temas dados por su nombre",
+    "no_agenda_despues_del_examen: ninguna fecha de estudio/repaso cae después del 20/8/2026",
+    "no_pega_json_crudo: la respuesta al usuario es texto legible, no un volcado de JSON",
+    "reconoce_el_agobio: la respuesta responde directamente a la sensación de tener demasiados temas / no saber por dónde arrancar",
+    "guarda_estado_persistente: se crea un archivo estructurado (no solo prosa) que se pueda releer en una conversación futura para saber en qué está cada tema"
+  ]
+}
