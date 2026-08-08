@@ -102,6 +102,12 @@
   }
   .btn:disabled { background: #c3d3da; cursor: default; box-shadow: none; }
   .btn.secondary { background: var(--accent-soft); color: var(--accent); box-shadow: none; }
+  .btn.danger { background: var(--flojo); box-shadow: 0 8px 18px rgba(226,147,79,.3); }
+  .card-delete-btn {
+    position: absolute; top: 8px; right: 8px; background: none; border: none;
+    font-size: 15px; opacity: .5; cursor: pointer; padding: 6px; line-height: 1;
+  }
+  .card-delete-btn:hover { opacity: .9; }
   .btn-row { margin-top: 16px; }
   .spacer { flex: 1; }
   .nav-overlay {
@@ -476,6 +482,19 @@
       <div class="checkin-btns">
         <button class="btn" onclick="resolverCheckin('seguir')">Seguir con este tema</button>
         <button class="btn secondary" onclick="resolverCheckin('pasar')">Pasar a lo nuevo y repasar esto después</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay: confirmar borrado de una materia rendida -->
+  <div class="checkin-overlay" id="confirmDeleteOverlay">
+    <div class="checkin-card">
+      <div class="checkin-icon">🗑️</div>
+      <h3 id="confirmDeleteTitle"></h3>
+      <p id="confirmDeleteBody"></p>
+      <div class="checkin-btns">
+        <button class="btn danger" onclick="confirmarBorrarMateria()">Borrar</button>
+        <button class="btn secondary" onclick="cancelarBorrarMateria()">Cancelar</button>
       </div>
     </div>
   </div>
@@ -2028,17 +2047,12 @@ let cameFromRepaso = false;
 // pueden tener un tema con el mismo nombre y progreso independiente).
 // `prioridad` marca cuál es la materia más importante ahora mismo, para que
 // el armado del calendario le dé el primer lugar (ver generarCalendarioGlobal).
-// Arranca con dos ejemplos de mentira en "Rendidas" (marcados con
-// ejemplo:true) solo para mostrar el diseño de esa pantalla -- no
-// representan datos reales de nadie. Un usuario real nuevo arranca sin
-// exámenes en curso (antes había 3 exámenes demo precargados -- eran solo
-// para probar el mockup sin cuentas; con login real cada uno arma los suyos
-// desde cero, ver examenesBaseVacio()).
+// Un usuario real nuevo arranca sin exámenes en curso ni rendidos -- antes
+// había datos de mentira precargados (3 exámenes demo, después 2 ejemplos
+// cosméticos en "Rendidas") solo para probar el mockup sin cuentas; con
+// login real cada uno arma los suyos desde cero.
 function examenesBaseVacio() {
-  return [
-    { id: -1, materiaNombre: "Semiología Médica", fecha: "2026-03-10", ejemplo: true, firmesEjemplo: 22, totalEjemplo: 25 },
-    { id: -2, materiaNombre: "Farmacología I", fecha: "2025-12-02", ejemplo: true, firmesEjemplo: 18, totalEjemplo: 20 },
-  ];
+  return [];
 }
 
 let examenes = examenesBaseVacio();
@@ -3910,6 +3924,38 @@ function marcarRendidaDesdeHub(id) {
   showToast(`${nombreCorto(e.materiaNombre)} agregada a tus materias rendidas`);
 }
 
+// Borrar una materia de "Rendidas" -- por si se marcó rendida sin querer
+// (mal toque, o probando algo) y no tiene sentido dejarla ahí para siempre.
+// Pide confirmación con el mismo overlay visual del check-in adaptativo,
+// nunca un confirm() nativo del navegador (bloquea la UI y no combina con
+// el diseño de la app).
+let materiaABorrarId = null;
+
+function pedirBorrarMateriaRendida(id) {
+  const e = examenes.find(x => x.id === id);
+  if (!e) return;
+  materiaABorrarId = id;
+  document.getElementById('confirmDeleteTitle').textContent = `¿Borrar "${e.materiaNombre}"?`;
+  document.getElementById('confirmDeleteBody').textContent = 'Se va a sacar de tus materias rendidas junto con su progreso guardado. No se puede deshacer.';
+  document.getElementById('confirmDeleteOverlay').classList.add('show');
+}
+
+function cancelarBorrarMateria() {
+  materiaABorrarId = null;
+  document.getElementById('confirmDeleteOverlay').classList.remove('show');
+}
+
+function confirmarBorrarMateria() {
+  if (materiaABorrarId === null) return;
+  const e = examenes.find(x => x.id === materiaABorrarId);
+  examenes = examenes.filter(x => x.id !== materiaABorrarId);
+  materiaABorrarId = null;
+  document.getElementById('confirmDeleteOverlay').classList.remove('show');
+  renderExamenes();
+  updateBadges();
+  if (e) showToast(`${nombreCorto(e.materiaNombre)} borrada`);
+}
+
 // Exámenes (S8): "En curso" muestra cada examen con fecha y progreso, y deja
 // agregar uno nuevo, marcarlo prioritario o darlo por rendido sin entrar.
 // "Rendidas" se completa solo -- ni bien pasa la fecha del examen, esa
@@ -3944,8 +3990,9 @@ function renderExamenes() {
         const firmes = e.ejemplo ? e.firmesEjemplo : (e.firmesFinal || 0);
         const total = e.ejemplo ? e.totalEjemplo : (e.selected ? e.selected.length : 0);
         return `
-        <div class="card">
-          <div style="font-weight:800; font-size:14.5px;">${e.materiaNombre}</div>
+        <div class="card" style="position:relative;">
+          <button class="card-delete-btn" title="Borrar" onclick="pedirBorrarMateriaRendida(${e.id})">🗑️</button>
+          <div style="font-weight:800; font-size:14.5px; padding-right:22px;">${e.materiaNombre}</div>
           <div style="color:var(--muted); font-size:12.5px; margin-top:3px;">
             Rendida el ${fmtFecha(e.fecha)} · ${firmes}/${total} firmes${e.ejemplo ? ' <span style="opacity:.7;">(ejemplo)</span>' : ''}
           </div>
@@ -4617,7 +4664,16 @@ function marcarEstadoSucio() {
 }
 
 function hidratarEstado(estado) {
-  examenes = (estado.examenes && estado.examenes.length) ? estado.examenes : examenesBaseVacio();
+  const cargados = (estado.examenes && estado.examenes.length) ? estado.examenes : examenesBaseVacio();
+  // Cuentas viejas pueden tener guardados los 2 ejemplos cosméticos de
+  // "Rendidas" (de antes de sacarlos de examenesBaseVacio()) -- se filtran
+  // acá siempre, y si había alguno se fuerza un guardado para que no
+  // vuelvan a aparecer en el próximo login. estadoSucio se pisa directo
+  // (no marcarEstadoSucio()) porque durante la hidratación estadoCargando
+  // todavía es true y ese guard lo ignoraría.
+  const sinEjemplos = cargados.filter(e => !e.ejemplo);
+  if (sinEjemplos.length !== cargados.length) estadoSucio = true;
+  examenes = sinEjemplos;
   nextExamenId = estado.nextExamenId || 1;
   racha = estado.racha || 0;
   ultimoDiaActivo = estado.ultimoDiaActivo || '';
