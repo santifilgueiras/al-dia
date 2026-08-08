@@ -4,6 +4,5 @@
       <stop offset="100%" stop-color="#58c896"/>
     </linearGradient></defs>
   <rect width="512" height="512" rx="115" fill="url(#grad)"/>
-  <rect x="216" y="120" width="80" height="272" rx="26" fill="#ffffff"/>
-  <rect x="120" y="216" width="272" height="80" rx="26" fill="#ffffff"/>
+  <path d="M256 178 C 214 152 152 148 108 170 L 108 344 C 152 322 214 326 256 352 C 298 326 360 322 404 344 L 404 170 C 360 148 298 152 256 178 Z" fill="#ffffff"/>
 </svg>

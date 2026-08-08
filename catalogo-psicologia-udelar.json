@@ -1,0 +1,761 @@
+{
+  "universidad": "UDELAR",
+  "facultad": "Facultad de Psicología",
+  "carrera": "Licenciatura en Psicología",
+  "plan": "Plan 2013",
+  "fuente": "https://psico.edu.uy/ensenanza/grado/licenciatura/plan/malla-curricular (verificado 2026-08-08)",
+  "nota_general": "Actualizado 2026-08-08: las 34 unidades curriculares de tipo 'contenido' (1º a 6º semestre) ya tienen temas reales, sacados de la guía oficial de cada unidad curricular en el Sistema de Información de la Facultad (sifp.psico.edu.uy/guias/{id}/view, vigencia 2024-2026 según la más reciente disponible al momento de la digitalización) -- ver HANDOFF-psicologia.md sección 4 para el proceso. A diferencia del PDF de objetivos que se usó para destilar Clínica Médica (Medicina), las guías de SIFP tienen 'ejes temáticos' más generales (sin el nivel de ~500 objetivos puntuales), pero es contenido real y verificable, con bibliografía obligatoria por eje en la gran mayoría de los casos. Método para repetirlo con una materia nueva o para profundizar una ya cargada: buscar 'site:sifp.psico.edu.uy guias \"<nombre de la materia>\"', preferir la guía de vigencia más reciente y el curso central/genérico (no seminarios optativos con nombre parecido). Dos unidades curriculares (Dispositivos Psicoterapéuticos y Diálogos y Ámbitos Interdisciplinarios VI) son cursos de seminario a elección con ~10 y ~3 orientaciones paralelas respectivamente -- se cargó el módulo común más una selección representativa de orientaciones, no el listado completo. 7º y 8º semestre siguen sin materias 'contenido' (son 100% transversales en el plan real). Las unidades 'transversal' (Idiomas, Cooperación Institucional, Proyectos, Optativas, etc.) siguen con 'temas: []' a propósito -- no tienen programa de contenidos fijo para destilar.",
+  "tipos_de_unidad": {
+    "contenido": "Tiene un cuerpo de conocimiento propio para armar un catálogo de temas de estudio (igual que las UC de Medicina).",
+    "transversal": "Idiomas, Cooperación Institucional, Proyectos, Prácticas, Optativas/Electivas, Referencial de Egreso, Trabajo Final de Grado -- son categorías curriculares/de créditos, no tienen un programa de contenidos fijo para destilar en 'temas'. Recomendación: NO mostrarlas en el selector de materias con catálogo; si se listan en algún lado, que sea solo informativo."
+  },
+  "semestres": [
+    {
+      "semestre": 1,
+      "ciclo": "Ciclo Inicial",
+      "materias": [
+        {
+          "nombre": "Fundamentos de la Psicología",
+          "tipo": "contenido",
+          "creditos": 5,
+          "temas": [
+            "Definiciones y conceptos introductorios: ciencia, disciplina y profesión en Psicología",
+            "Antecedentes filosóficos de la Psicología",
+            "La pluralidad psicológica a partir del siglo XIX",
+            "Ámbitos de la psicología: básica, aplicada y campo de intervención actual"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Historia de la Psicología",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Historia, historicidad y las historias de la psicología",
+            "Gobernar: uso de los saberes y procesos de subjetivación",
+            "Los saberes psicológicos, el Estado y la producción subjetiva",
+            "Formación y disciplinarización de la psicología en Uruguay",
+            "Psicologización: multiplicidad y heterogeneidad de los saberes psi"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Herramientas para el trabajo intelectual",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Trabajo intelectual en la Universidad",
+            "Técnicas de estudio y aprendizaje efectivas",
+            "Confiabilidad de la información y posverdad",
+            "Lógica: enunciados, conectivas y cuantificadores",
+            "Información académica: fuentes, revisión por pares y búsqueda bibliográfica",
+            "Escritura de textos académicos",
+            "Tratamiento básico y representación de la información"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Epistemología",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Introducción a los problemas epistemológicos",
+            "Racionalismo de Descartes, empirismo de Hume e idealismo trascendental de Kant",
+            "De la concepción heredada al racionalismo crítico de Popper",
+            "El giro historicista de Kuhn y el anarquismo epistemológico de Feyerabend",
+            "Ciencia, Tecnología y Sociedad (CTS)",
+            "Epistemologías feministas y estudios postcoloniales"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Condiciones sociales de producción del sujeto (Art. I)",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Crítica de la idea de individuo y el dualismo individuo-sociedad",
+            "Un sujeto desustancializado: subjetividad desde el psicoanálisis, Marx, Nietzsche y Foucault",
+            "Problemas actuales en torno a la subjetividad: capitalismo, consumo y nuevas tecnologías"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Inicio a la formación en Psicología",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "El derecho a la Educación Superior y la elección de la formación en Psicología",
+            "Diversidad de prácticas y desempeño profesional en Psicología"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Neurobiología de la Mente",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "La neurona: estructura, potenciales y sinapsis",
+            "Desarrollo y plasticidad del sistema nervioso",
+            "Organización anatómica y funcional del sistema nervioso central y periférico",
+            "Cerebro y corteza cerebral",
+            "Sistemas y vías sensoriales",
+            "Sistema nervioso autónomo: simpático, parasimpático y entérico",
+            "Hipotálamo y respuesta al estrés",
+            "Control nervioso del movimiento voluntario",
+            "Aprendizaje, memoria y plasticidad neuronal",
+            "Neurobiología de las emociones",
+            "Sueño"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Cooperación Institucional",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        }
+      ]
+    },
+    {
+      "semestre": 2,
+      "ciclo": "Ciclo Inicial",
+      "materias": [
+        {
+          "nombre": "Teorías Psicológicas",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Del conductismo a la corriente cognitivo-conductual",
+            "El descubrimiento del inconsciente: el psicoanálisis freudiano",
+            "Psicología Social: desarrollo en el Río de la Plata",
+            "De la Teoría Sistémica a la Terapia Familiar Sistémica"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Psicología del Desarrollo",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Encuadre conceptual: delimitación de la Psicología del Desarrollo",
+            "Modelos relacionales: enfoque bioecológico y psicología histórico-cultural",
+            "Métodos de investigación en Psicología del Desarrollo",
+            "Desarrollo cognitivo según Piaget",
+            "Desarrollo desde la teoría psicoanalítica: sexualidad infantil",
+            "Momentos evolutivos: de la primera infancia a la vejez"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Procesos Cognitivos",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Historia de la Psicología Cognitiva",
+            "Percepción",
+            "Atención",
+            "Memoria",
+            "Motivación",
+            "Toma de decisiones",
+            "Lenguaje y lectura",
+            "Emoción"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Metodología General de la Investigación",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Introducción al pensamiento metodológico: método científico y diseño de investigación",
+            "Perspectivas cuantitativas: muestreo, diseño experimental y medición",
+            "Perspectivas cualitativas: diseño y técnicas de investigación cualitativa",
+            "Fundamentos de las metodologías mixtas"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Métodos y Herramientas orientadas a la Extensión",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Historia de la extensión universitaria",
+            "Psicología y extensión universitaria en la Facultad",
+            "Herramientas metodológicas para la extensión: IAP, observación participante, taller"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Psicología, Género y Derechos Humanos (Art. II)",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Psicología y Derechos Humanos: fundamentos y clasificación",
+            "Paradigmas e instrumentos de derechos humanos",
+            "Psicología y género: sistema sexo-género y crítica al androcentrismo",
+            "Derechos civiles y políticos desde un enfoque de género: terrorismo de Estado y memoria",
+            "Derechos económicos, sociales, culturales y ambientales desde un enfoque de género",
+            "Derechos colectivos y de los pueblos desde un enfoque de género",
+            "Incorporación de género y derechos humanos en la práctica de la Psicología"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Entrevista Psicológica",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Definición de entrevista psicológica y sus elementos constitutivos",
+            "Componentes éticos de la entrevista psicológica",
+            "Características, particularidades y objetivos de la entrevista",
+            "Aproximación al análisis de las entrevistas",
+            "Entrevista en diversos ámbitos y campos: clínico, educativo, social y de la salud"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Formación Integral",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "EFI (Espacios de Formación Integral)",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Cooperación Institucional",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        }
+      ]
+    },
+    {
+      "semestre": 3,
+      "ciclo": "Ciclo de Formación Integral",
+      "materias": [
+        {
+          "nombre": "Psicología Social",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "De la tensión individuo-sociedad a la producción social e histórica de la subjetividad",
+            "Las disciplinas psi, la gubernamentalidad y el abordaje de grupos humanos",
+            "El debate sobre las masas como mente colectiva",
+            "Interaccionismo simbólico, representaciones sociales y crisis de la psicología social",
+            "Psicología Comunitaria Latinoamericana y Psicología Social del Río de la Plata",
+            "Análisis institucional y postestructuralismo",
+            "La Psicología Social como campo de conocimientos"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Psicología, Sujeto y Aprendizaje",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Perspectivas psicológicas del aprendizaje y la relación sujeto-saber",
+            "Formación y subjetivación en instituciones educativas",
+            "Aprendizajes y vínculos en edades tempranas",
+            "Cambios en la estructura de la actividad infantil: de inicial a primaria",
+            "El aprendizaje situado en los tránsitos hacia educación media y terciaria"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Métodos y Técnicas Cualitativas",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Metodología cualitativa: diseño, validación y reflexividad",
+            "Estudio de caso",
+            "Etnografía y observación participante",
+            "Cartografía como investigación/intervención",
+            "Investigación Acción Participativa",
+            "Entrevista en profundidad y grupo de discusión",
+            "Investigación narrativa y biográfica",
+            "Estrategias documentales"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Ética y Deontología",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Surgimiento de la ética en Grecia",
+            "Ética eudemonista (Aristóteles) y ética kantiana",
+            "Perspectivas éticas contemporáneas",
+            "Surgimiento y campos de la Bioética",
+            "Ética de la investigación con seres humanos: historia y normativa",
+            "Consentimiento informado y protección de grupos vulnerables",
+            "Ética en la clínica psicológica y el Código de Ética del Psicólogo",
+            "Dilemas éticos en la intervención psicológica y comunitaria"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Clínica y Subjetividad (Art. III)",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Concepción psicoanalítica de sujeto: del racionalismo cartesiano al descubrimiento del inconsciente",
+            "Sujeto, subjetividad y lazo social",
+            "Fundamentos de la clínica psicoanalítica: recordar, repetir y reelaborar",
+            "Clínica psicoanalítica y subjetividades contemporáneas"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Idiomas",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Cooperación Institucional",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        }
+      ]
+    },
+    {
+      "semestre": 4,
+      "ciclo": "Ciclo de Formación Integral",
+      "materias": [
+        {
+          "nombre": "Fundamentos Psicoanalíticos",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "La especificidad del psicoanálisis: contexto de surgimiento y método",
+            "Sexualidad, cuerpo erógeno y avatares de las pulsiones",
+            "Del síntoma al método: formaciones del inconsciente",
+            "Inconsciente y subjetividad: clínica y metapsicología",
+            "El malestar en la cultura: relación entre pulsión y cultura"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Psicología y Salud",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "La Psicología de la Salud: antecedentes y vertientes actuales",
+            "Evolución histórica de las concepciones salud-enfermedad-atención",
+            "Determinantes sociales y equidad en salud",
+            "Modelos de atención en salud",
+            "Aportes de la Epidemiología",
+            "Atención Primaria en Salud, niveles de atención y prevención",
+            "Accesibilidad, usuarios y derechos en el Sistema Nacional Integrado de Salud",
+            "Evaluación de resultados de la atención en salud",
+            "Aspectos psicológicos del proceso salud-enfermedad y relación asistencial",
+            "Intervenciones psicológicas por nivel de atención"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Herramientas de la Psicología Social",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "La construcción del campo de intervención",
+            "Dispositivo: aportes a la construcción de un campo de intervención",
+            "Perspectivas desde el Análisis Institucional",
+            "Implicación y sobre-implicación",
+            "Abordajes clínicos de la Psicología Social del Río de la Plata",
+            "Estrategias desde la Psicología Social Comunitaria",
+            "Abordajes cartográficos y redes sociales"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Estado, Sociedad y Políticas Públicas (Art. IV)",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Estado, ciudadanía y derechos: nociones básicas",
+            "Introducción a las políticas públicas: ciclo y paradigmas",
+            "Políticas públicas con enfoques transversales: derechos humanos, género y diversidad",
+            "Las políticas públicas de salud, incluida la salud mental",
+            "Políticas públicas y participación social",
+            "Psicología y políticas públicas"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Métodos y Técnicas Cuantitativas",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Introducción a la estadística y la medición en psicología",
+            "Visualización de datos, distribución y tendencia central",
+            "Dispersión, varianza, cuantiles y puntuación Z",
+            "Tablas de frecuencia y de prevalencia",
+            "Correlación y regresión lineal",
+            "Muestreo e intervalos de confianza",
+            "Estadística inferencial: pruebas t, Chi cuadrado y ANOVA"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Herramientas de la Psicología Clínica",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Psicodiagnóstico y evaluación psicológica: conceptos y encuadre",
+            "Tests de maduración y exploración intelectual",
+            "Técnicas proyectivas e inventarios de personalidad",
+            "Análisis e interpretación: convergencias y divergencias entre técnicas"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Diseño de Proyectos",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Idiomas",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Cooperación Institucional",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        }
+      ]
+    },
+    {
+      "semestre": 5,
+      "ciclo": "Ciclo de Formación Integral",
+      "materias": [
+        {
+          "nombre": "Neuropsicología",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Ubicación conceptual e histórica de la neuropsicología",
+            "Principios generales de organización y desarrollo cerebral",
+            "Causas de lesión cerebral",
+            "Atención y sus trastornos, síndrome confusional y heminegligencias",
+            "Memorias y síndromes amnésicos",
+            "Lóbulos frontales, funciones ejecutivas y cognición social",
+            "Lenguaje, cerebro y afasias",
+            "Habilidades visuoconstructivas y apraxias"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy/guias/381/view (vigencia 2022)"
+        },
+        {
+          "nombre": "Teorías y Técnicas de las Intervenciones",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "El rol del psicólogo clínico y el método clínico",
+            "Mirada y escucha clínica: aptitud y actitud clínica",
+            "Recepción, entrevista inicial y niveles de diagnóstico",
+            "Formulación psicodinámica de caso y alianza de trabajo",
+            "Intervenciones psicológicas a distancia",
+            "Historia clínica, informe psicológico y devolución"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Psicopatología Clínica de Adultos",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Concepto de psicopatología: lo normal y lo patológico, aspectos históricos",
+            "Semiología del funcionamiento mental: áreas semiológicas, entrevista, agudeza y cronicidad",
+            "Espectro de la esquizofrenia y otros trastornos psicóticos",
+            "Trastorno bipolar y trastornos depresivos",
+            "Las neurosis",
+            "Trastornos de ansiedad, TOC y trastornos relacionados con trauma y estrés",
+            "Trastornos de la personalidad",
+            "Trastornos relacionados con sustancias y trastornos adictivos"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy/guias/614/view (vigencia 2026)",
+          "nota": "Sucesora (desde 2018) de 'Psicopatología Clínica'."
+        },
+        {
+          "nombre": "Psicopatología de la Infancia y la Adolescencia",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Marco conceptual: infancias y adolescencia en el contexto actual",
+            "Modelos diagnósticos, sufrimiento psíquico y patologización",
+            "Aprendizaje y sus dificultades",
+            "Inquietud y dificultades en la atención (TDAH)",
+            "Problemáticas clínicas de las neurosis en la infancia",
+            "Problemáticas graves en la constitución subjetiva: autismo y psicosis infantil",
+            "Depresión en la infancia",
+            "Problemáticas infantiles centradas en el cuerpo",
+            "Problemáticas actuales en adolescentes: el cuerpo como escenario",
+            "Violencia y maltrato infantil: identificación y abordaje protocolar",
+            "El suicidio como máxima expresión del sufrimiento adolescente"
+          ],
+          "nota": "Sucesora (desde 2018) de 'Psicopatología Clínica'.",
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "La Psicología Social y el Problema de lo Colectivo (Art. V)",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "El problema de lo común: dimensiones ontológicas y epistemológicas",
+            "La producción de la vida en común: comunidad y diferencia",
+            "Lo común y el carácter colectivo de la subjetividad",
+            "La producción y reproducción colectiva de la vida: cuidado y ecosofía",
+            "La producción del espacio: de lo público a los territorios comunes",
+            "La dimensión política más allá de lo público y lo privado"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Construcción de Itinerario",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Diseño de Proyectos",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Proyectos",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Prácticas Integral",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Idiomas",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Cooperación Institucional",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        }
+      ]
+    },
+    {
+      "semestre": 6,
+      "ciclo": "Ciclo de Formación Integral",
+      "materias": [
+        {
+          "nombre": "Psicología y Educación",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Discusión epistemológica: Psicología y/en/de la Educación, derecho a la Educación",
+            "Instituciones educativas: producción de subjetividad y desigualdad",
+            "Psicología, educación y TIC",
+            "Prácticas profesionales en ecosistemas educativos",
+            "Problemáticas y políticas educativas contextualizadas"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Dispositivos Psicoterapéuticos",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Enfoque histórico de las psicoterapias: de las prácticas de cura a las corrientes de 1900-1960",
+            "Psicoanálisis: el sujeto del inconsciente como efecto del lenguaje",
+            "Terapias Cognitivo-Conductuales: de la terapia conductual a la tercera ola",
+            "Psicoterapia Corporal Bioenergética",
+            "Neurociencias y Psicoterapias"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Problemáticas Contemporáneas de la Psicología Social",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Problematización: ejercicio de sospecha epistémica en psicología social",
+            "Vida, política y gobierno",
+            "Sesgos en las prospectivas psicosociales"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Diálogos y Ámbitos Interdisciplinarios (Art. VI)",
+          "tipo": "contenido",
+          "creditos": null,
+          "temas": [
+            "Las problemáticas y las disciplinas: enfoques multi, inter y transdisciplinarios",
+            "Equipos de trabajo y la inclusión de la psicología en equipos interdisciplinarios",
+            "Ciencias Cognitivas y del Comportamiento: definición y métodos",
+            "Lazo sociopsíquico e interculturalidad",
+            "Diálogos interdisciplinarios en entornos educativos"
+          ],
+          "fuente_temas": "sifp.psico.edu.uy (guía oficial vigente, digitalizado 2026-08-08)"
+        },
+        {
+          "nombre": "Construcción de Itinerario",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Proyectos",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Prácticas Integral",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Idiomas",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Cooperación Institucional",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        }
+      ]
+    },
+    {
+      "semestre": 7,
+      "ciclo": "Ciclo de Graduación",
+      "materias": [
+        {
+          "nombre": "Referencial de Egreso",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Optativas/Electivas (Módulo Metodológico)",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Optativas/Electivas (Módulo Prácticas y Proyectos)",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Optativas/Electivas (Módulo Articulación de Saberes)",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Prácticas Graduación",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Proyectos",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Idiomas",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Cooperación Institucional",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        }
+      ]
+    },
+    {
+      "semestre": 8,
+      "ciclo": "Ciclo de Graduación",
+      "materias": [
+        {
+          "nombre": "Referencial de Egreso",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Optativas/Electivas (Módulo Prácticas y Proyectos)",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Optativas/Electivas (Módulo Articulación de Saberes)",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Optativas/Electivas (Módulo Metodológico)",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Prácticas Graduación",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Proyectos",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Idiomas",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Cooperación Institucional",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        },
+        {
+          "nombre": "Trabajo Final de Grado",
+          "tipo": "transversal",
+          "creditos": null,
+          "temas": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "name": "Al Día — Estudio con repaso espaciado",
   "short_name": "Al Día",
-  "description": "Organizá tu estudio de medicina con un calendario de repaso espaciado.",
+  "description": "Organizá tu estudio con un calendario de repaso espaciado.",
   "start_url": "/mockup-firme.html",
   "scope": "/",
   "display": "standalone",

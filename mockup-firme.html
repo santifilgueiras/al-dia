@@ -414,7 +414,7 @@
   <!-- Se ve mientras se chequea si hay sesión activa -- así nadie ve un
        flash de la app o del login de más, ni de menos. -->
   <div class="auth-loading" id="authLoading">
-    <div class="logo" style="width:64px; height:64px; font-size:28px; margin:0 auto 14px;">🩺</div>
+    <div class="logo" style="width:64px; height:64px; font-size:28px; margin:0 auto 14px;">📚</div>
     <div style="color:var(--muted); font-size:13px;">Cargando...</div>
   </div>
 
@@ -424,19 +424,19 @@
       <button class="hamburger" onclick="toggleMenu(true)" aria-label="Menú">☰</button>
     </div>
     <div class="brand">
-      <div class="logo">🩺</div>
+      <div class="logo">📚</div>
       <h1>Al Día</h1>
       <p>Organizá lo que tenés que estudiar y decile para cuándo es el examen. Armamos un calendario día por día que programa cuándo repasar cada tema, para que no se te olvide.</p>
-      <div class="deco-icons">🩺 💊 🫀 🫁 🧬</div>
+      <div class="deco-icons">📚 🧠 🎓 ✏️ 📝</div>
     </div>
-    <button class="btn" id="homeCta" style="margin-top:28px;" onclick="irACalendarioDesdeHome()">💊 Empezar</button>
+    <button class="btn" id="homeCta" style="margin-top:28px;" onclick="irACalendarioDesdeHome()">📚 Empezar</button>
     <div class="spacer"></div>
   </div>
 
   <!-- S11 Login / registro -->
   <div class="screen" data-screen="11">
     <div class="brand" style="margin-top:26px;">
-      <div class="logo">🩺</div>
+      <div class="logo">📚</div>
       <h1>Al Día</h1>
       <p id="authSub">Iniciá sesión para ver tu calendario, sincronizado en todos tus dispositivos.</p>
     </div>
@@ -499,11 +499,20 @@
     </div>
   </div>
 
-  <!-- S1 Elegir año -->
-  <div class="screen" data-screen="1">
+  <!-- S12 Elegir facultad -->
+  <div class="screen" data-screen="12">
     <div class="topbar"><button class="back" onclick="go(8)">←</button></div>
-    <h1>¿En qué año estás?</h1>
-    <p class="sub">Elegí el año de la carrera para ver qué materias tenemos cargadas.</p>
+    <h1>¿Qué carrera estás estudiando?</h1>
+    <p class="sub">Elegí tu facultad para ver qué materias tenemos cargadas.</p>
+    <div id="facultadesList"></div>
+    <div class="spacer"></div>
+  </div>
+
+  <!-- S1 Elegir año/semestre -->
+  <div class="screen" data-screen="1">
+    <div class="topbar"><button class="back" onclick="go(12)">←</button></div>
+    <h1 id="anioTitle">¿En qué año estás?</h1>
+    <p class="sub" id="anioSub">Elegí el año de la carrera para ver qué materias tenemos cargadas.</p>
     <div id="aniosList" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
     <div class="spacer"></div>
   </div>
@@ -570,7 +579,7 @@
       <div id="tiempoEstimado" style="font-size:12px; color:var(--muted); margin-top:10px;"></div>
     </div>
     <div class="spacer"></div>
-    <button class="btn" id="btnGenerar" onclick="generarCalendario()" disabled>💊 Generar calendario</button>
+    <button class="btn" id="btnGenerar" onclick="generarCalendario()" disabled>📚 Generar calendario</button>
   </div>
 
   <!-- S4 Calendario -->
@@ -707,6 +716,14 @@
       <h2 style="margin-top:0;">Métodos de estudio</h2>
       <button class="btn secondary" id="sonidoAmbienteBtn" onclick="toggleSonidoAmbiente()" style="margin-top:0; width:auto; padding:8px 14px; font-size:12px;">🔇 Sonido</button>
     </div>
+    <div id="sonidoAmbienteControles" style="display:none; align-items:center; gap:8px; margin:-4px 0 10px;">
+      <span style="font-size:11px; color:var(--muted);">🔈</span>
+      <input type="range" id="sonidoVolumen" min="0" max="100" value="35" oninput="cambiarVolumenSonido(this.value)" style="flex:1;">
+      <span style="font-size:11px; color:var(--muted);">🔊</span>
+    </div>
+    <div style="margin:-6px 0 10px;">
+      <a class="ref-link" href="https://www.youtube.com/results?search_query=musica+relajante+para+estudiar+lofi" target="_blank" style="font-size:11.5px; padding:6px 10px;">🎵 Prefiero música real -- buscar en YouTube</a>
+    </div>
     <div class="tabs" id="timerMetodoTabs">
       <div class="tab" data-metodo="pomodoro" onclick="seleccionarMetodoTimer('pomodoro')">🍅 Pomodoro</div>
       <div class="tab" data-metodo="52-17" onclick="seleccionarMetodoTimer('52-17')">⚡ 52/17</div>
@@ -725,7 +742,10 @@
     </div>
 
     <h2>Fichas de repaso</h2>
-    <p class="sub" style="margin-top:-10px;">Elegí año, materia y tema -- la IA te arma preguntas y respuestas para autoevaluarte.</p>
+    <p class="sub" style="margin-top:-10px;">Elegí facultad, año/semestre, materia y tema -- la IA te arma preguntas y respuestas para autoevaluarte.</p>
+    <div class="field">
+      <select id="fichasFacultadSelect" onchange="onFichasFacultadChange()"></select>
+    </div>
     <div class="field">
       <select id="fichasAnioSelect" onchange="onFichasAnioChange()"></select>
     </div>
@@ -787,10 +807,6 @@
 // (Clínica Médica) -- a medida que se digitalicen más programas oficiales,
 // se agregan más materias acá (por año), sin tocar el resto de la app.
 const ANIOS = [1, 2, 3, 4, 5, 6, 7];
-function anioLabel(n) {
-  const map = { 1: '1º', 2: '2º', 3: '3º', 4: '4º', 5: '5º', 6: '6º', 7: '7º' };
-  return n === 7 ? '7º año (Internado)' : `${map[n] || n} año`;
-}
 
 // Catálogo destilado de las 25 Unidades Curriculares del Plan de Estudios
 // 2008 de la Carrera de Doctor en Medicina (UDELAR), a partir de los
@@ -1120,6 +1136,496 @@ const CATALOGO_POR_ANIO = {
   ]
 };
 
+// Catálogo de materias de la Licenciatura en Psicología (UDELAR, Plan
+// 2013), por semestre -- fuente: psico.edu.uy/ensenanza/grado/licenciatura/
+// plan/malla-curricular (ver catalogo-psicologia-udelar.json). A diferencia
+// de Medicina, acá los temas de cada materia TODAVÍA NO están digitalizados
+// -- psico.edu.uy no publica el nivel de detalle de contenidos que sí
+// publicó Medicina en su PDF de objetivos. Por eso cada materia queda con
+// modulos:[] a propósito: la app la trata igual que una materia sin
+// catálogo (el estudiante carga sus propios temas) hasta que se digitalice
+// el programa real, materia por materia. Solo se listan acá las unidades
+// curriculares de tipo "contenido" (con cuerpo de conocimiento propio) --
+// las "transversales" (Idiomas, Proyectos, Optativas, Cooperación
+// Institucional, Prácticas, Referencial de Egreso, etc.) no tienen un
+// programa fijo para destilar en temas y se excluyen del selector.
+const CATALOGO_POR_CICLO_PSICOLOGIA = {
+  // Catálogo digitalizado completo (agregado 2026-08-08) a partir de las
+  // guías oficiales de cada unidad curricular en el Sistema de Información
+  // de la Facultad de Psicología (sifp.psico.edu.uy/guias/{id}/view,
+  // vigencia 2024-2026 según la más reciente publicada al momento) -- mismo
+  // tipo de fuente oficial que ya se usaba para Medicina, aunque acá los
+  // "ejes temáticos" son más generales (sin el nivel de ~500 objetivos
+  // puntuales que tenía el PDF de Medicina). Dos materias (Dispositivos
+  // Psicoterapéuticos y Diálogos y Ámbitos Interdisciplinarios) son cursos
+  // de seminario a elección con varias orientaciones paralelas -- se cargó
+  // el módulo común más una selección representativa de orientaciones, no
+  // el listado completo de todas las variantes posibles. Ver
+  // HANDOFF-psicologia.md para el proceso.
+  1: [
+    { nombre: "Fundamentos de la Psicología", modulos: [
+      { modulo: "Historia y fundamentos conceptuales", temas: [
+        "Definiciones y conceptos introductorios: ciencia, disciplina y profesión en Psicología",
+        "Antecedentes filosóficos de la Psicología",
+        "La pluralidad psicológica a partir del siglo XIX",
+        "Ámbitos de la psicología: básica, aplicada y campo de intervención actual",
+      ] },
+    ] },
+    { nombre: "Historia de la Psicología", modulos: [
+      { modulo: "Historia, gobierno y psicología", temas: [
+        "Historia, historicidad y las historias de la psicología",
+        "Gobernar: uso de los saberes y procesos de subjetivación",
+      ] },
+      { modulo: "Gubernamentalización y profesionalización de la psicología", temas: [
+        "Los saberes psicológicos, el Estado y la producción subjetiva",
+        "Formación y disciplinarización de la psicología en Uruguay",
+        "Psicologización: multiplicidad y heterogeneidad de los saberes psi",
+      ] },
+    ] },
+    { nombre: "Herramientas para el trabajo intelectual", modulos: [
+      { modulo: "Trabajo académico universitario", temas: [
+        "Trabajo intelectual en la Universidad",
+        "Técnicas de estudio y aprendizaje efectivas",
+        "Confiabilidad de la información y posverdad",
+      ] },
+      { modulo: "Herramientas de investigación y comunicación", temas: [
+        "Lógica: enunciados, conectivas y cuantificadores",
+        "Información académica: fuentes, revisión por pares y búsqueda bibliográfica",
+        "Escritura de textos académicos",
+        "Tratamiento básico y representación de la información",
+      ] },
+    ] },
+    { nombre: "Epistemología", modulos: [
+      { modulo: "Teorías modernas del conocimiento", temas: [
+        "Introducción a los problemas epistemológicos",
+        "Racionalismo de Descartes, empirismo de Hume e idealismo trascendental de Kant",
+      ] },
+      { modulo: "Epistemologías del siglo XX y debates contemporáneos", temas: [
+        "De la concepción heredada al racionalismo crítico de Popper",
+        "El giro historicista de Kuhn y el anarquismo epistemológico de Feyerabend",
+        "Ciencia, Tecnología y Sociedad (CTS)",
+        "Epistemologías feministas y estudios postcoloniales",
+      ] },
+    ] },
+    { nombre: "Condiciones sociales de producción del sujeto (Art. I)", modulos: [
+      { modulo: "Condiciones sociales de producción del sujeto", temas: [
+        "Crítica de la idea de individuo y el dualismo individuo-sociedad",
+        "Un sujeto desustancializado: subjetividad desde el psicoanálisis, Marx, Nietzsche y Foucault",
+        "Problemas actuales en torno a la subjetividad: capitalismo, consumo y nuevas tecnologías",
+      ] },
+    ] },
+    { nombre: "Inicio a la formación en Psicología", modulos: [
+      { modulo: "Formación universitaria en Psicología", temas: [
+        "El derecho a la Educación Superior y la elección de la formación en Psicología",
+        "Diversidad de prácticas y desempeño profesional en Psicología",
+      ] },
+    ] },
+    { nombre: "Neurobiología de la Mente", modulos: [
+      { modulo: "Bases celulares y organización del sistema nervioso", temas: [
+        "La neurona: estructura, potenciales y sinapsis",
+        "Desarrollo y plasticidad del sistema nervioso",
+        "Organización anatómica y funcional del sistema nervioso central y periférico",
+        "Cerebro y corteza cerebral",
+      ] },
+      { modulo: "Sistemas funcionales y neurobiología de la conducta", temas: [
+        "Sistemas y vías sensoriales",
+        "Sistema nervioso autónomo: simpático, parasimpático y entérico",
+        "Hipotálamo y respuesta al estrés",
+        "Control nervioso del movimiento voluntario",
+        "Aprendizaje, memoria y plasticidad neuronal",
+        "Neurobiología de las emociones",
+        "Sueño",
+      ] },
+    ] },
+  ],
+  2: [
+    { nombre: "Teorías Psicológicas", modulos: [
+      { modulo: "Corrientes psicológicas fundamentales", temas: [
+        "Del conductismo a la corriente cognitivo-conductual",
+        "El descubrimiento del inconsciente: el psicoanálisis freudiano",
+        "Psicología Social: desarrollo en el Río de la Plata",
+        "De la Teoría Sistémica a la Terapia Familiar Sistémica",
+      ] },
+    ] },
+    { nombre: "Psicología del Desarrollo", modulos: [
+      { modulo: "Marco teórico del desarrollo", temas: [
+        "Encuadre conceptual: delimitación de la Psicología del Desarrollo",
+        "Modelos relacionales: enfoque bioecológico y psicología histórico-cultural",
+        "Métodos de investigación en Psicología del Desarrollo",
+      ] },
+      { modulo: "Teorías y momentos del desarrollo", temas: [
+        "Desarrollo cognitivo según Piaget",
+        "Desarrollo desde la teoría psicoanalítica: sexualidad infantil",
+        "Momentos evolutivos: de la primera infancia a la vejez",
+      ] },
+    ] },
+    { nombre: "Procesos Cognitivos", modulos: [
+      { modulo: "Procesos cognitivos básicos", temas: [
+        "Historia de la Psicología Cognitiva",
+        "Percepción",
+        "Atención",
+        "Memoria",
+      ] },
+      { modulo: "Procesos cognitivos superiores", temas: [
+        "Motivación",
+        "Toma de decisiones",
+        "Lenguaje y lectura",
+        "Emoción",
+      ] },
+    ] },
+    { nombre: "Metodología General de la Investigación", modulos: [
+      { modulo: "Fundamentos de la investigación científica", temas: [
+        "Introducción al pensamiento metodológico: método científico y diseño de investigación",
+      ] },
+      { modulo: "Estrategias de investigación", temas: [
+        "Perspectivas cuantitativas: muestreo, diseño experimental y medición",
+        "Perspectivas cualitativas: diseño y técnicas de investigación cualitativa",
+        "Fundamentos de las metodologías mixtas",
+      ] },
+    ] },
+    { nombre: "Métodos y Herramientas orientadas a la Extensión", modulos: [
+      { modulo: "Extensión universitaria en Psicología", temas: [
+        "Historia de la extensión universitaria",
+        "Psicología y extensión universitaria en la Facultad",
+        "Herramientas metodológicas para la extensión: IAP, observación participante, taller",
+      ] },
+    ] },
+    { nombre: "Psicología, Género y Derechos Humanos (Art. II)", modulos: [
+      { modulo: "Fundamentos de derechos humanos y género", temas: [
+        "Psicología y Derechos Humanos: fundamentos y clasificación",
+        "Paradigmas e instrumentos de derechos humanos",
+        "Psicología y género: sistema sexo-género y crítica al androcentrismo",
+      ] },
+      { modulo: "Derechos humanos con enfoque de género aplicados", temas: [
+        "Derechos civiles y políticos desde un enfoque de género: terrorismo de Estado y memoria",
+        "Derechos económicos, sociales, culturales y ambientales desde un enfoque de género",
+        "Derechos colectivos y de los pueblos desde un enfoque de género",
+        "Incorporación de género y derechos humanos en la práctica de la Psicología",
+      ] },
+    ] },
+    { nombre: "Entrevista Psicológica", modulos: [
+      { modulo: "Fundamentos de la entrevista psicológica", temas: [
+        "Definición de entrevista psicológica y sus elementos constitutivos",
+        "Componentes éticos de la entrevista psicológica",
+        "Características, particularidades y objetivos de la entrevista",
+      ] },
+      { modulo: "Práctica de la entrevista", temas: [
+        "Aproximación al análisis de las entrevistas",
+        "Entrevista en diversos ámbitos y campos: clínico, educativo, social y de la salud",
+      ] },
+    ] },
+  ],
+  3: [
+    { nombre: "Psicología Social", modulos: [
+      { modulo: "Fundamentos de la psicología social", temas: [
+        "De la tensión individuo-sociedad a la producción social e histórica de la subjetividad",
+        "Las disciplinas psi, la gubernamentalidad y el abordaje de grupos humanos",
+        "El debate sobre las masas como mente colectiva",
+      ] },
+      { modulo: "Corrientes y campo de la psicología social", temas: [
+        "Interaccionismo simbólico, representaciones sociales y crisis de la psicología social",
+        "Psicología Comunitaria Latinoamericana y Psicología Social del Río de la Plata",
+        "Análisis institucional y postestructuralismo",
+        "La Psicología Social como campo de conocimientos",
+      ] },
+    ] },
+    { nombre: "Psicología, Sujeto y Aprendizaje", modulos: [
+      { modulo: "Relación sujeto-saber", temas: [
+        "Perspectivas psicológicas del aprendizaje y la relación sujeto-saber",
+        "Formación y subjetivación en instituciones educativas",
+      ] },
+      { modulo: "Aprendizaje en las trayectorias educativas", temas: [
+        "Aprendizajes y vínculos en edades tempranas",
+        "Cambios en la estructura de la actividad infantil: de inicial a primaria",
+        "El aprendizaje situado en los tránsitos hacia educación media y terciaria",
+      ] },
+    ] },
+    { nombre: "Métodos y Técnicas Cualitativas", modulos: [
+      { modulo: "Fundamentos de la investigación cualitativa", temas: [
+        "Metodología cualitativa: diseño, validación y reflexividad",
+        "Estudio de caso",
+      ] },
+      { modulo: "Técnicas de investigación cualitativa", temas: [
+        "Etnografía y observación participante",
+        "Cartografía como investigación/intervención",
+        "Investigación Acción Participativa",
+        "Entrevista en profundidad y grupo de discusión",
+        "Investigación narrativa y biográfica",
+        "Estrategias documentales",
+      ] },
+    ] },
+    { nombre: "Ética y Deontología", modulos: [
+      { modulo: "Bases filosóficas de las teorías éticas", temas: [
+        "Surgimiento de la ética en Grecia",
+        "Ética eudemonista (Aristóteles) y ética kantiana",
+        "Perspectivas éticas contemporáneas",
+      ] },
+      { modulo: "Bioética, investigación y práctica clínica", temas: [
+        "Surgimiento y campos de la Bioética",
+        "Ética de la investigación con seres humanos: historia y normativa",
+        "Consentimiento informado y protección de grupos vulnerables",
+        "Ética en la clínica psicológica y el Código de Ética del Psicólogo",
+        "Dilemas éticos en la intervención psicológica y comunitaria",
+      ] },
+    ] },
+    { nombre: "Clínica y Subjetividad (Art. III)", modulos: [
+      { modulo: "El sujeto y el inconsciente", temas: [
+        "Concepción psicoanalítica de sujeto: del racionalismo cartesiano al descubrimiento del inconsciente",
+        "Sujeto, subjetividad y lazo social",
+      ] },
+      { modulo: "Clínica psicoanalítica", temas: [
+        "Fundamentos de la clínica psicoanalítica: recordar, repetir y reelaborar",
+        "Clínica psicoanalítica y subjetividades contemporáneas",
+      ] },
+    ] },
+  ],
+  4: [
+    { nombre: "Fundamentos Psicoanalíticos", modulos: [
+      { modulo: "El método psicoanalítico y la sexualidad", temas: [
+        "La especificidad del psicoanálisis: contexto de surgimiento y método",
+        "Sexualidad, cuerpo erógeno y avatares de las pulsiones",
+      ] },
+      { modulo: "Inconsciente, síntoma y cultura", temas: [
+        "Del síntoma al método: formaciones del inconsciente",
+        "Inconsciente y subjetividad: clínica y metapsicología",
+        "El malestar en la cultura: relación entre pulsión y cultura",
+      ] },
+    ] },
+    { nombre: "Psicología y Salud", modulos: [
+      { modulo: "Fundamentos de la Psicología de la Salud", temas: [
+        "La Psicología de la Salud: antecedentes y vertientes actuales",
+        "Evolución histórica de las concepciones salud-enfermedad-atención",
+        "Determinantes sociales y equidad en salud",
+      ] },
+      { modulo: "Sistema de salud y práctica profesional", temas: [
+        "Modelos de atención en salud",
+        "Aportes de la Epidemiología",
+        "Atención Primaria en Salud, niveles de atención y prevención",
+        "Accesibilidad, usuarios y derechos en el Sistema Nacional Integrado de Salud",
+        "Evaluación de resultados de la atención en salud",
+        "Aspectos psicológicos del proceso salud-enfermedad y relación asistencial",
+        "Intervenciones psicológicas por nivel de atención",
+      ] },
+    ] },
+    { nombre: "Herramientas de la Psicología Social", modulos: [
+      { modulo: "Construcción del campo de intervención", temas: [
+        "La construcción del campo de intervención",
+        "Dispositivo: aportes a la construcción de un campo de intervención",
+        "Perspectivas desde el Análisis Institucional",
+        "Implicación y sobre-implicación",
+      ] },
+      { modulo: "Estrategias de intervención en psicología social", temas: [
+        "Abordajes clínicos de la Psicología Social del Río de la Plata",
+        "Estrategias desde la Psicología Social Comunitaria",
+        "Abordajes cartográficos y redes sociales",
+      ] },
+    ] },
+    { nombre: "Estado, Sociedad y Políticas Públicas (Art. IV)", modulos: [
+      { modulo: "Estado y políticas públicas", temas: [
+        "Estado, ciudadanía y derechos: nociones básicas",
+        "Introducción a las políticas públicas: ciclo y paradigmas",
+      ] },
+      { modulo: "Políticas públicas aplicadas", temas: [
+        "Políticas públicas con enfoques transversales: derechos humanos, género y diversidad",
+        "Las políticas públicas de salud, incluida la salud mental",
+        "Políticas públicas y participación social",
+        "Psicología y políticas públicas",
+      ] },
+    ] },
+    { nombre: "Métodos y Técnicas Cuantitativas", modulos: [
+      { modulo: "Estadística descriptiva aplicada a psicología", temas: [
+        "Introducción a la estadística y la medición en psicología",
+        "Visualización de datos, distribución y tendencia central",
+        "Dispersión, varianza, cuantiles y puntuación Z",
+        "Tablas de frecuencia y de prevalencia",
+      ] },
+      { modulo: "Estadística inferencial y correlacional", temas: [
+        "Correlación y regresión lineal",
+        "Muestreo e intervalos de confianza",
+        "Estadística inferencial: pruebas t, Chi cuadrado y ANOVA",
+      ] },
+    ] },
+    { nombre: "Herramientas de la Psicología Clínica", modulos: [
+      { modulo: "Evaluación psicológica", temas: [
+        "Psicodiagnóstico y evaluación psicológica: conceptos y encuadre",
+        "Tests de maduración y exploración intelectual",
+      ] },
+      { modulo: "Técnicas proyectivas y análisis diagnóstico", temas: [
+        "Técnicas proyectivas e inventarios de personalidad",
+        "Análisis e interpretación: convergencias y divergencias entre técnicas",
+      ] },
+    ] },
+  ],
+  5: [
+    { nombre: "Neuropsicología", modulos: [
+      { modulo: "Fundamentos y bases neurobiológicas", temas: [
+        "Ubicación conceptual e histórica de la neuropsicología",
+        "Principios generales de organización y desarrollo cerebral",
+        "Causas de lesión cerebral",
+      ] },
+      { modulo: "Síndromes neuropsicológicos por función", temas: [
+        "Atención y sus trastornos, síndrome confusional y heminegligencias",
+        "Memorias y síndromes amnésicos",
+        "Lóbulos frontales, funciones ejecutivas y cognición social",
+        "Lenguaje, cerebro y afasias",
+        "Habilidades visuoconstructivas y apraxias",
+      ] },
+    ] },
+    { nombre: "Teorías y Técnicas de las Intervenciones", modulos: [
+      { modulo: "Fundamentos de la intervención clínica", temas: [
+        "El rol del psicólogo clínico y el método clínico",
+        "Mirada y escucha clínica: aptitud y actitud clínica",
+      ] },
+      { modulo: "Modalidades y proceso de la intervención clínica", temas: [
+        "Recepción, entrevista inicial y niveles de diagnóstico",
+        "Formulación psicodinámica de caso y alianza de trabajo",
+        "Intervenciones psicológicas a distancia",
+        "Historia clínica, informe psicológico y devolución",
+      ] },
+    ] },
+    { nombre: "Psicopatología Clínica de Adultos", modulos: [
+      { modulo: "Fundamentos de la psicopatología", temas: [
+        "Concepto de psicopatología: lo normal y lo patológico, aspectos históricos",
+        "Semiología del funcionamiento mental: áreas semiológicas, entrevista, agudeza y cronicidad",
+      ] },
+      { modulo: "Cuadros psicopatológicos del adulto", temas: [
+        "Espectro de la esquizofrenia y otros trastornos psicóticos",
+        "Trastorno bipolar y trastornos depresivos",
+        "Las neurosis",
+        "Trastornos de ansiedad, TOC y trastornos relacionados con trauma y estrés",
+        "Trastornos de la personalidad",
+        "Trastornos relacionados con sustancias y trastornos adictivos",
+      ] },
+    ] },
+    { nombre: "Psicopatología de la Infancia y la Adolescencia", modulos: [
+      { modulo: "Marco conceptual de la psicopatología infantil", temas: [
+        "Marco conceptual: infancias y adolescencia en el contexto actual",
+        "Modelos diagnósticos, sufrimiento psíquico y patologización",
+      ] },
+      { modulo: "Cuadros clínicos en la infancia", temas: [
+        "Aprendizaje y sus dificultades",
+        "Inquietud y dificultades en la atención (TDAH)",
+        "Problemáticas clínicas de las neurosis en la infancia",
+        "Problemáticas graves en la constitución subjetiva: autismo y psicosis infantil",
+        "Depresión en la infancia",
+        "Problemáticas infantiles centradas en el cuerpo",
+      ] },
+      { modulo: "Adolescencia y entorno", temas: [
+        "Problemáticas actuales en adolescentes: el cuerpo como escenario",
+        "Violencia y maltrato infantil: identificación y abordaje protocolar",
+        "El suicidio como máxima expresión del sufrimiento adolescente",
+      ] },
+    ] },
+    { nombre: "La Psicología Social y el Problema de lo Colectivo (Art. V)", modulos: [
+      { modulo: "El problema de lo común", temas: [
+        "El problema de lo común: dimensiones ontológicas y epistemológicas",
+        "La producción de la vida en común: comunidad y diferencia",
+        "Lo común y el carácter colectivo de la subjetividad",
+      ] },
+      { modulo: "Producción colectiva de la vida y espacio público", temas: [
+        "La producción y reproducción colectiva de la vida: cuidado y ecosofía",
+        "La producción del espacio: de lo público a los territorios comunes",
+        "La dimensión política más allá de lo público y lo privado",
+      ] },
+    ] },
+  ],
+  6: [
+    { nombre: "Psicología y Educación", modulos: [
+      { modulo: "Psicología y educación: marco conceptual", temas: [
+        "Discusión epistemológica: Psicología y/en/de la Educación, derecho a la Educación",
+        "Instituciones educativas: producción de subjetividad y desigualdad",
+        "Psicología, educación y TIC",
+      ] },
+      { modulo: "Práctica profesional en contextos educativos", temas: [
+        "Prácticas profesionales en ecosistemas educativos",
+        "Problemáticas y políticas educativas contextualizadas",
+      ] },
+    ] },
+    // Curso de seminario a elección (~10 orientaciones paralelas, un
+    // docente distinto por orientación) -- se cargó el módulo histórico
+    // común más 4 orientaciones representativas, no las ~10 completas.
+    { nombre: "Dispositivos Psicoterapéuticos", modulos: [
+      { modulo: "Fundamentos históricos de las psicoterapias", temas: [
+        "Enfoque histórico de las psicoterapias: de las prácticas de cura a las corrientes de 1900-1960",
+      ] },
+      { modulo: "Orientaciones psicoterapéuticas (seminario a elección)", temas: [
+        "Psicoanálisis: el sujeto del inconsciente como efecto del lenguaje",
+        "Terapias Cognitivo-Conductuales: de la terapia conductual a la tercera ola",
+        "Psicoterapia Corporal Bioenergética",
+        "Neurociencias y Psicoterapias",
+      ] },
+    ] },
+    { nombre: "Problemáticas Contemporáneas de la Psicología Social", modulos: [
+      { modulo: "Problematización en la psicología social contemporánea", temas: [
+        "Problematización: ejercicio de sospecha epistémica en psicología social",
+        "Vida, política y gobierno",
+        "Sesgos en las prospectivas psicosociales",
+      ] },
+    ] },
+    // Igual que Dispositivos Psicoterapéuticos: módulo común + una
+    // orientación variable según la sección (acá, Ciencias Cognitivas,
+    // Interculturalidad y Educación como muestra de las orientaciones reales).
+    { nombre: "Diálogos y Ámbitos Interdisciplinarios (Art. VI)", modulos: [
+      { modulo: "Interdisciplina y equipos de trabajo", temas: [
+        "Las problemáticas y las disciplinas: enfoques multi, inter y transdisciplinarios",
+        "Equipos de trabajo y la inclusión de la psicología en equipos interdisciplinarios",
+      ] },
+      { modulo: "Aplicaciones interdisciplinarias (orientación a elección)", temas: [
+        "Ciencias Cognitivas y del Comportamiento: definición y métodos",
+        "Lazo sociopsíquico e interculturalidad",
+        "Diálogos interdisciplinarios en entornos educativos",
+      ] },
+    ] },
+  ],
+  // 7º y 8º semestre (Ciclo de Graduación) son, en el plan real, 100%
+  // unidades transversales (Optativas, Prácticas, Proyectos, Referencial de
+  // Egreso, Trabajo Final de Grado) -- sin ninguna materia de tipo
+  // "contenido", quedan vacíos a propósito. El flujo ya sabe mostrar "no
+  // tenemos materias cargadas -- agregá la tuya" cuando la lista es [].
+  7: [],
+  8: [],
+};
+
+// Multi-facultad: cada facultad define su propio catálogo (por año o por
+// semestre, según cómo organice sus ciclos) y cómo nombrar/etiquetar ese
+// ciclo -- el resto de la app (S1/S9/S10) lee de acá en vez de asumir
+// "año de Medicina" como hacía antes. Agregar una facultad nueva es sumar
+// una entrada acá + su propio catálogo, sin tocar el resto del código.
+const FACULTADES = {
+  medicina: {
+    key: 'medicina',
+    label: 'Facultad de Medicina',
+    carrera: 'Doctor en Medicina',
+    universidad: 'UDELAR',
+    cicloNombre: 'año',
+    ciclos: ANIOS,
+    catalogoPorCiclo: CATALOGO_POR_ANIO,
+    cicloLabel: (n) => n === 7 ? '7º año (Internado)' : `${n}º año`,
+    iconoMateria: '🩺',
+  },
+  psicologia: {
+    key: 'psicologia',
+    label: 'Facultad de Psicología',
+    carrera: 'Licenciatura en Psicología',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_PSICOLOGIA,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '🧠',
+  },
+};
+const FACULTADES_ORDEN = ['medicina', 'psicologia'];
+
+// Exámenes guardados antes de este cambio no tienen `facultad` -- todos
+// eran de Medicina (la única que existía), así que ese es el default.
+function facultadDe(key) { return FACULTADES[key] || FACULTADES.medicina; }
+
+function contextoFor(facKey, ciclo) {
+  const f = facultadDe(facKey);
+  return `${f.universidad} · ${f.label.replace('Facultad de ', '')} · ${f.cicloLabel(ciclo)}`;
+}
+
 // Ícono por módulo -- solo decorativo, para que el catálogo se sienta
 // ilustrado y "de medicina" en vez de una lista de texto plana. Cubre los
 // ~141 módulos de las 25 materias; varios íconos se repiten a propósito
@@ -1274,6 +1780,75 @@ const MODULO_ICONS = {
   "Reanimación Cardiopulmonar Avanzada (RCA) de adultos": "❤️‍🩹",
   "Reanimación Cardiopulmonar Pediátrica (RCP)": "👶",
   "Profesionalismo, comunicación y gestión clínica (transversal a las rotaciones)": "🗣️",
+  // Psicología -- 1er semestre
+  "Historia y fundamentos conceptuales": "📜",
+  "Historia, gobierno y psicología": "🏛️",
+  "Gubernamentalización y profesionalización de la psicología": "🏛️",
+  "Trabajo académico universitario": "🎓",
+  "Herramientas de investigación y comunicación": "🔎",
+  "Teorías modernas del conocimiento": "💭",
+  "Epistemologías del siglo XX y debates contemporáneos": "💭",
+  "Condiciones sociales de producción del sujeto": "🧩",
+  "Formación universitaria en Psicología": "🎓",
+  "Bases celulares y organización del sistema nervioso": "🧠",
+  "Sistemas funcionales y neurobiología de la conducta": "🧠",
+  // Psicología -- 2do semestre
+  "Corrientes psicológicas fundamentales": "🧭",
+  "Marco teórico del desarrollo": "🌱",
+  "Teorías y momentos del desarrollo": "🌱",
+  "Procesos cognitivos básicos": "🧩",
+  "Procesos cognitivos superiores": "🧩",
+  "Fundamentos de la investigación científica": "🔬",
+  "Estrategias de investigación": "🔬",
+  "Extensión universitaria en Psicología": "🤝",
+  "Fundamentos de derechos humanos y género": "⚖️",
+  "Derechos humanos con enfoque de género aplicados": "⚖️",
+  "Fundamentos de la entrevista psicológica": "🗣️",
+  "Práctica de la entrevista": "🗣️",
+  // Psicología -- 3er semestre
+  "Fundamentos de la psicología social": "👥",
+  "Corrientes y campo de la psicología social": "👥",
+  "Relación sujeto-saber": "🎒",
+  "Aprendizaje en las trayectorias educativas": "🎒",
+  "Fundamentos de la investigación cualitativa": "🔍",
+  "Técnicas de investigación cualitativa": "🔍",
+  "Bases filosóficas de las teorías éticas": "⚖️",
+  "Bioética, investigación y práctica clínica": "⚖️",
+  "El sujeto y el inconsciente": "🌀",
+  "Clínica psicoanalítica": "🌀",
+  // Psicología -- 4to semestre
+  "El método psicoanalítico y la sexualidad": "🛋️",
+  "Inconsciente, síntoma y cultura": "🛋️",
+  "Fundamentos de la Psicología de la Salud": "⚕️",
+  "Sistema de salud y práctica profesional": "⚕️",
+  "Construcción del campo de intervención": "👥",
+  "Estrategias de intervención en psicología social": "👥",
+  "Estado y políticas públicas": "🏛️",
+  "Políticas públicas aplicadas": "🏛️",
+  "Estadística descriptiva aplicada a psicología": "📊",
+  "Estadística inferencial y correlacional": "📊",
+  "Evaluación psicológica": "🧾",
+  "Técnicas proyectivas y análisis diagnóstico": "🧾",
+  // Psicología -- 5º semestre
+  "Fundamentos y bases neurobiológicas": "🧠",
+  "Síndromes neuropsicológicos por función": "🧩",
+  "Fundamentos de la psicopatología": "📖",
+  "Cuadros psicopatológicos del adulto": "🗂️",
+  "Fundamentos de la intervención clínica": "🩹",
+  "Modalidades y proceso de la intervención clínica": "🩹",
+  "Marco conceptual de la psicopatología infantil": "🧸",
+  "Cuadros clínicos en la infancia": "🧸",
+  "Adolescencia y entorno": "🧸",
+  "El problema de lo común": "🌐",
+  "Producción colectiva de la vida y espacio público": "🌐",
+  // Psicología -- 6to semestre
+  "Psicología y educación: marco conceptual": "🏫",
+  "Práctica profesional en contextos educativos": "🏫",
+  "Fundamentos históricos de las psicoterapias": "🛋️",
+  "Orientaciones psicoterapéuticas (seminario a elección)": "🛋️",
+  "Problematización en la psicología social contemporánea": "💭",
+  "Interdisciplina y equipos de trabajo": "🧩",
+  "Aplicaciones interdisciplinarias (orientación a elección)": "🧩",
 };
 
 // Bibliografía real de la cátedra. Por tema: qué libro cubre mejor el
@@ -2024,6 +2599,224 @@ const TEXTOS = {
   "Consentimiento informado y confidencialidad de la información del paciente": { libro: "Apuntes de cátedra", seccion: "Consentimiento informado y confidencialidad" },
   "Ética médica, profesionalismo y trabajo en equipo interdisciplinario": { libro: "Apuntes de cátedra", seccion: "Ética médica, profesionalismo y trabajo interdisciplinario" },
   "Gestión racional de recursos y legislación sanitaria nacional vinculada al ejercicio profesional": { libro: "Apuntes de cátedra", seccion: "Gestión racional de recursos y legislación sanitaria" },
+  // Psicología -- Neuropsicología (5º semestre), bibliografía de la guía
+  // real de la UC (sifp.psico.edu.uy/guias/381/view, vigencia 2022).
+  "Ubicación conceptual e histórica de la neuropsicología": { libro: "Ardila & Rosselli - Neuropsicología Clínica", seccion: "capítulo 1: ubicación conceptual e histórica de la neuropsicología" },
+  "Principios generales de organización y desarrollo cerebral": { libro: "Kolb & Whishaw - Neuropsicología Humana", seccion: "capítulo 3: organización y desarrollo cerebral" },
+  "Causas de lesión cerebral": { libro: "Ardila & Rosselli - Neuropsicología Clínica", seccion: "capítulo 4: causas de lesión cerebral" },
+  "Atención y sus trastornos, síndrome confusional y heminegligencias": { libro: "Lorenzo & Fontán - Neurología", seccion: "atención, síndrome confusional y heminegligencias" },
+  "Memorias y síndromes amnésicos": { libro: "Ardila & Rosselli - Neuropsicología Clínica", seccion: "capítulo 8: memoria y síndromes amnésicos" },
+  "Lóbulos frontales, funciones ejecutivas y cognición social": { libro: "Labos, Slachevsky, Fuentes & Manes - Tratado de Neuropsicología Clínica", seccion: "capítulo 22: lóbulos frontales, funciones ejecutivas y cognición social" },
+  "Lenguaje, cerebro y afasias": { libro: "Cuetos, González & de Vega - Psicología del Lenguaje", seccion: "capítulo 12: lenguaje, cerebro y afasias" },
+  "Habilidades visuoconstructivas y apraxias": { libro: "Lorenzo & Fontán - Neurología", seccion: "habilidades visuoconstructivas y apraxias" },
+  // Psicología -- Psicopatología Clínica de Adultos (5º semestre),
+  // bibliografía de la guía real de la UC (sifp.psico.edu.uy/guias/614/view,
+  // vigencia 2026).
+  "Concepto de psicopatología: lo normal y lo patológico, aspectos históricos": { libro: "Bercherie - Los fundamentos de la clínica", seccion: "concepto de psicopatología: lo normal y lo patológico, aspectos históricos" },
+  "Semiología del funcionamiento mental: áreas semiológicas, entrevista, agudeza y cronicidad": { libro: "Ey, Bernard & Brisset - Tratado de Psiquiatría", seccion: "semiología del funcionamiento mental" },
+  "Espectro de la esquizofrenia y otros trastornos psicóticos": { libro: "DSM-5", seccion: "capítulo Espectro de la Esquizofrenia y otros Trastornos Psicóticos" },
+  "Trastorno bipolar y trastornos depresivos": { libro: "DSM-5", seccion: "capítulos Trastorno Bipolar y Trastornos Depresivos" },
+  "Las neurosis": { libro: "Ey, Bernard & Brisset - Tratado de Psiquiatría", seccion: "capítulo de las neurosis" },
+  "Trastornos de ansiedad, TOC y trastornos relacionados con trauma y estrés": { libro: "DSM-5", seccion: "capítulos Trastornos de Ansiedad, TOC y Trastornos relacionados con Trauma y Estrés" },
+  "Trastornos de la personalidad": { libro: "DSM-5", seccion: "capítulo Trastornos de la Personalidad" },
+  "Trastornos relacionados con sustancias y trastornos adictivos": { libro: "DSM-5", seccion: "capítulo Trastornos relacionados con Sustancias y Trastornos Adictivos" },
+  // Psicología -- Teorías y Técnicas de las Intervenciones, Psicopatología
+  // de la Infancia y la Adolescencia, La Psicología Social y el Problema de
+  // lo Colectivo (5º semestre)
+  "El rol del psicólogo clínico y el método clínico": { libro: "Antar & Gurman - El texto en un contexto. La clínica situacional", seccion: "método y enfoque clínico" },
+  "Mirada y escucha clínica: aptitud y actitud clínica": { libro: "Ulloa - Psicología clínica de adultos", seccion: "mirada y escucha clínica" },
+  "Recepción, entrevista inicial y niveles de diagnóstico": { libro: "Cristóforo - La noción de intervención en el marco de la consulta psicológica", seccion: "niveles de diagnóstico situacional, dinámico y estructural" },
+  "Formulación psicodinámica de caso y alianza de trabajo": { libro: "Fiorini - Teoría y técnica de psicoterapias", seccion: "el concepto de foco" },
+  "Intervenciones psicológicas a distancia": { libro: "Vainer (comp.) - Contigo a la distancia. La clínica psi en tiempos de pandemia", seccion: "intervenciones a distancia" },
+  "Historia clínica, informe psicológico y devolución": { libro: "Frank De Verthelyi - Temas en evaluación psicológica", seccion: "historia clínica e informe psicológico" },
+  "Marco conceptual: infancias y adolescencia en el contexto actual": { libro: "Moreno - La infancia y sus bordes", seccion: "algunas notas sobre la neurosis infantil" },
+  "Modelos diagnósticos, sufrimiento psíquico y patologización": { libro: "Janin - El sufrimiento psíquico en los niños", seccion: "capítulos 1 y 2" },
+  "Aprendizaje y sus dificultades": { libro: "Fernández - La inteligencia atrapada", seccion: "capítulos 2 y 4-8" },
+  "Inquietud y dificultades en la atención (TDAH)": { libro: "Tallis - Niños desatentos e hiperactivos", seccion: "neurología y TDAH: mitos y realidades" },
+  "Problemáticas clínicas de las neurosis en la infancia": { libro: "Janin - El sufrimiento psíquico en los niños", seccion: "capítulos 6 y 7, fobias y terrores" },
+  "Problemáticas graves en la constitución subjetiva: autismo y psicosis infantil": { libro: "Marcelli & De Ajuriaguerra - Psicopatología del niño", seccion: "psicosis infantiles" },
+  "Depresión en la infancia": { libro: "Marcelli & De Ajuriaguerra - Psicopatología del niño", seccion: "capítulo 18, la depresión en el niño" },
+  "Problemáticas infantiles centradas en el cuerpo": { libro: "Marcelli & De Ajuriaguerra - Psicopatología del niño", seccion: "capítulos 4, 7, 8 y 19" },
+  "Problemáticas actuales en adolescentes: el cuerpo como escenario": { libro: "Marcelli, Braconnier & De Ajuriaguerra - Psicopatología del adolescente", seccion: "clínica de la adolescencia" },
+  "Violencia y maltrato infantil: identificación y abordaje protocolar": { libro: "MSP/SIPIAV/UNICEF - Protocolo para el abordaje de situaciones de maltrato", seccion: "maltrato, abuso y explotación sexual infantil" },
+  "El suicidio como máxima expresión del sufrimiento adolescente": { libro: "Casullo - Ideaciones y comportamientos suicidas en adolescentes", seccion: "suicidio adolescente" },
+  "El problema de lo común: dimensiones ontológicas y epistemológicas": { libro: "Alvaro - El problema de la comunidad. Marx, Tönnies y Weber", seccion: "capítulo 1" },
+  "La producción de la vida en común: comunidad y diferencia": { libro: "Fernández - Las diferencias desigualadas (Nómadas)", seccion: "comunidad y diferencia" },
+  "Lo común y el carácter colectivo de la subjetividad": { libro: "Guattari - El devenir de la subjetividad", seccion: "producción de subjetividad en el capitalismo mundial integrado" },
+  "La producción y reproducción colectiva de la vida: cuidado y ecosofía": { libro: "Federici - Reencantar el mundo", seccion: "de la crisis de los comunes" },
+  "La producción del espacio: de lo público a los territorios comunes": { libro: "Di Masso, Berroeta & Vidal - El espacio público en conflicto (Athenea Digital)", seccion: "espacio público y territorios comunes" },
+  "La dimensión política más allá de lo público y lo privado": { libro: "Butler - Vulnerabilidad corporal, coalición y la política de la calle (Nómadas)", seccion: "dimensión política de lo común" },
+  // Psicología -- Psicología y Educación, Dispositivos Psicoterapéuticos,
+  // Problemáticas Contemporáneas de la Psicología Social, Diálogos y
+  // Ámbitos Interdisciplinarios (6to semestre)
+  "Discusión epistemológica: Psicología y/en/de la Educación, derecho a la Educación": { libro: "Rigo, Díaz Barriga y Hernández Rojas - entrevista a César Coll", seccion: "psicología de la educación como disciplina" },
+  "Instituciones educativas: producción de subjetividad y desigualdad": { libro: "Fernández, L. - dinámicas institucionales en situaciones críticas", seccion: "capítulos 1-2" },
+  "Psicología, educación y TIC": { libro: "Coll, C. - aprender y enseñar con TIC", seccion: "psicología, educación y TIC" },
+  "Prácticas profesionales en ecosistemas educativos": { libro: "Barraza López - el rol del psicólogo educacional", seccion: "prácticas y haceres profesionales" },
+  "Problemáticas y políticas educativas contextualizadas": { libro: "Terigi - trayectorias escolares", seccion: "capítulo 1" },
+  "Enfoque histórico de las psicoterapias: de las prácticas de cura a las corrientes de 1900-1960": { libro: "Ellenberger - El descubrimiento del inconsciente", seccion: "historia de las psicoterapias" },
+  "Psicoanálisis: el sujeto del inconsciente como efecto del lenguaje": { libro: "Lacan - Seminario, Libro 1 y Libro 11", seccion: "el sujeto del inconsciente" },
+  "Terapias Cognitivo-Conductuales: de la terapia conductual a la tercera ola": { libro: "Beck, J. - Terapia Cognitiva", seccion: "capítulos 1-12 y 16" },
+  "Psicoterapia Corporal Bioenergética": { libro: "Gonçalvez Boggio - El cuerpo en la psicoterapia", seccion: "coraza caracterial y lectura corporal" },
+  "Neurociencias y Psicoterapias": { libro: "Solms & Turnbull - El Cerebro y el Mundo Interior", seccion: "neuropsicoanálisis y sistemas emocionales" },
+  "Problematización: ejercicio de sospecha epistémica en psicología social": { libro: "Foucault - ¿Qué es la Ilustración? / ¿Qué es la crítica?", seccion: "problematización y sospecha epistémica" },
+  "Vida, política y gobierno": { libro: "Boldizzoni - Imaginando el final del capitalismo", seccion: "vida, política y gobierno" },
+  "Sesgos en las prospectivas psicosociales": { libro: "Yuk Hui - ¿Qué comienza después del final de la Ilustración?", seccion: "sesgos en las prospectivas psicosociales" },
+  "Las problemáticas y las disciplinas: enfoques multi, inter y transdisciplinarios": { libro: "Bianchi - Los equipos, las disciplinas y las concepciones de salud y enfermedad", seccion: "enfoques multi, inter y transdisciplinarios" },
+  "Equipos de trabajo y la inclusión de la psicología en equipos interdisciplinarios": { libro: "Stolkiner - Interdisciplina y salud mental", seccion: "equipos de trabajo interdisciplinarios" },
+  "Ciencias Cognitivas y del Comportamiento: definición y métodos": { libro: "Vásquez Echeverría - Manual de Introducción a la Psicología Cognitiva", seccion: "definición y orígenes de las ciencias cognitivas" },
+  "Lazo sociopsíquico e interculturalidad": { libro: "Berenstein - Devenir otro con otro(s)", seccion: "construcción de la otredad" },
+  "Diálogos interdisciplinarios en entornos educativos": { libro: "Albónico - Otra voz en la educación", seccion: "rol de la psicología en educación" },
+  // Psicología -- 1er semestre
+  "Definiciones y conceptos introductorios: ciencia, disciplina y profesión en Psicología": { libro: "Bleger - Psicología de la conducta", seccion: "capítulos 1-2, definiciones introductorias" },
+  "Antecedentes filosóficos de la Psicología": { libro: "Santamaría - Historia de la Psicología", seccion: "capítulo 1, antecedentes filosóficos" },
+  "La pluralidad psicológica a partir del siglo XIX": { libro: "Santamaría - Historia de la Psicología", seccion: "capítulos 2-6, corrientes desde el siglo XIX" },
+  "Ámbitos de la psicología: básica, aplicada y campo de intervención actual": { libro: "Giménez - Psicólogos en Uruguay", seccion: "ámbitos y campo de intervención actual" },
+  "Historia, historicidad y las historias de la psicología": { libro: "Rose - Inventing our Selves", seccion: "una historia crítica de la psicología" },
+  "Gobernar: uso de los saberes y procesos de subjetivación": { libro: "Foucault - Defender la sociedad", seccion: "clase del 17/3/1976" },
+  "Los saberes psicológicos, el Estado y la producción subjetiva": { libro: "Apuntes de cátedra", seccion: "dossier: saberes psi, Estado y producción subjetiva" },
+  "Formación y disciplinarización de la psicología en Uruguay": { libro: "Apuntes de cátedra", seccion: "formación universitaria 1940-1973, dictadura e intervención universitaria" },
+  "Psicologización: multiplicidad y heterogeneidad de los saberes psi": { libro: "Apuntes de cátedra", seccion: "psicologización y heterogeneidad de los saberes psi" },
+  "Trabajo intelectual en la Universidad": { libro: "Randall & Sutz - Investigación para la inclusión social", seccion: "el trabajo intelectual en la universidad" },
+  "Técnicas de estudio y aprendizaje efectivas": { libro: "Dunlosky et al. - Psychological Science in the Public Interest", seccion: "técnicas de aprendizaje efectivas según evidencia" },
+  "Confiabilidad de la información y posverdad": { libro: "Nogués - Pensar con otros", seccion: "capítulo 1, posverdad y evaluación de creencias" },
+  "Lógica: enunciados, conectivas y cuantificadores": { libro: "Apuntes de cátedra", seccion: "lógica: enunciados, conectivas y teoría de conjuntos" },
+  "Información académica: fuentes, revisión por pares y búsqueda bibliográfica": { libro: "López Regalado - Fuentes de información", seccion: "fuentes primarias, secundarias y terciarias" },
+  "Escritura de textos académicos": { libro: "Day - Cómo escribir y publicar trabajos científicos", seccion: "prefacio y capítulos I-III" },
+  "Tratamiento básico y representación de la información": { libro: "Pardo, Ruiz & San Martín - Análisis de datos en ciencias sociales y de la salud", seccion: "capítulos 2-4, gráficas y medidas de tendencia central" },
+  "Introducción a los problemas epistemológicos": { libro: "Apuntes de cátedra", seccion: "introducción a los problemas epistemológicos" },
+  "Racionalismo de Descartes, empirismo de Hume e idealismo trascendental de Kant": { libro: "Descartes - Discurso del método / Kant - Crítica de la razón pura", seccion: "racionalismo, empirismo e idealismo trascendental" },
+  "De la concepción heredada al racionalismo crítico de Popper": { libro: "Popper - La lógica de la investigación científica", seccion: "racionalismo crítico" },
+  "El giro historicista de Kuhn y el anarquismo epistemológico de Feyerabend": { libro: "Kuhn - La estructura de las revoluciones científicas", seccion: "giro historicista; Feyerabend, Tratado contra el método" },
+  "Ciencia, Tecnología y Sociedad (CTS)": { libro: "Latour - Políticas de la naturaleza", seccion: "ciencia, tecnología y sociedad" },
+  "Epistemologías feministas y estudios postcoloniales": { libro: "Haraway - Ciencia, cyborgs y mujeres", seccion: "conocimientos situados; Mignolo, La idea de América Latina" },
+  "Crítica de la idea de individuo y el dualismo individuo-sociedad": { libro: "Fernández - El campo grupal", seccion: "crítica del dualismo individuo-sociedad" },
+  "Un sujeto desustancializado: subjetividad desde el psicoanálisis, Marx, Nietzsche y Foucault": { libro: "Foucault - Nietzsche, Freud, Marx", seccion: "un sujeto desustancializado" },
+  "Problemas actuales en torno a la subjetividad: capitalismo, consumo y nuevas tecnologías": { libro: "Berardi - La fábrica de la infelicidad", seccion: "subjetividad, capitalismo y nuevas tecnologías" },
+  "El derecho a la Educación Superior y la elección de la formación en Psicología": { libro: "Dubet - Los estudiantes", seccion: "elección formativa e ingreso universitario" },
+  "Diversidad de prácticas y desempeño profesional en Psicología": { libro: "Ardoino - Complejidad y formación", seccion: "heterogeneidad de prácticas entre institutos" },
+  "La neurona: estructura, potenciales y sinapsis": { libro: "Campbell & Reece - Biología", seccion: "capítulo del sistema nervioso: la neurona" },
+  "Desarrollo y plasticidad del sistema nervioso": { libro: "Pinel - Biopsicología", seccion: "desarrollo del sistema nervioso" },
+  "Organización anatómica y funcional del sistema nervioso central y periférico": { libro: "Amaral - Principios de Neurociencia (Kandel)", seccion: "organización anatómica del SNC" },
+  "Cerebro y corteza cerebral": { libro: "Amaral - Principios de Neurociencia (Kandel)", seccion: "anatomía externa e interna del cerebro" },
+  "Sistemas y vías sensoriales": { libro: "Aivar et al. - sistemas sensoriales y motores", seccion: "visión, audición y somestesia" },
+  "Sistema nervioso autónomo: simpático, parasimpático y entérico": { libro: "Iversen, Iversen & Saper - Principios de Neurociencia (Kandel)", seccion: "sistema nervioso autónomo" },
+  "Hipotálamo y respuesta al estrés": { libro: "Iversen, Iversen & Saper - Principios de Neurociencia (Kandel)", seccion: "hipotálamo y respuesta al estrés" },
+  "Control nervioso del movimiento voluntario": { libro: "Carlson - Fisiología de la conducta", seccion: "cortezas motoras, ganglios basales y cerebelo" },
+  "Aprendizaje, memoria y plasticidad neuronal": { libro: "Kandel, Kupfermann & Iversen - Principios de Neurociencia", seccion: "aprendizaje y memoria" },
+  "Neurobiología de las emociones": { libro: "Carlson - Fisiología de la conducta", seccion: "neurobiología de la emoción: miedo, ira y agresión" },
+  "Sueño": { libro: "Rechtschaffen & Siegel - Principios de Neurociencia (Kandel)", seccion: "sueño y ensoñación" },
+  // Psicología -- 2do semestre
+  "Del conductismo a la corriente cognitivo-conductual": { libro: "Caro - Manual Teórico-Práctico de Psicoterapias Cognitivas", seccion: "prólogo, introducción y capítulo 1" },
+  "El descubrimiento del inconsciente: el psicoanálisis freudiano": { libro: "Freud - Obras Completas (Tomos I, XI y XII)", seccion: "tratamiento psíquico y descubrimiento del inconsciente" },
+  "Psicología Social: desarrollo en el Río de la Plata": { libro: "Pichon-Rivière - El proceso grupal", seccion: "grupos operativos y psicología social rioplatense" },
+  "De la Teoría Sistémica a la Terapia Familiar Sistémica": { libro: "Vidal - Conflicto Psíquico y estructura familiar", seccion: "la familia como sistema abierto" },
+  "Encuadre conceptual: delimitación de la Psicología del Desarrollo": { libro: "Enesco - Psicología del Desarrollo", seccion: "delimitación conceptual del campo" },
+  "Modelos relacionales: enfoque bioecológico y psicología histórico-cultural": { libro: "Bronfenbrenner - Ecología del desarrollo humano", seccion: "modelo bioecológico; Vygotsky, funciones psíquicas superiores" },
+  "Métodos de investigación en Psicología del Desarrollo": { libro: "Apuntes de cátedra", seccion: "diseños transversales, longitudinales y microgenéticos" },
+  "Desarrollo cognitivo según Piaget": { libro: "Piaget - Psicogénesis de los conocimientos", seccion: "epistemología genética y estadios" },
+  "Desarrollo desde la teoría psicoanalítica: sexualidad infantil": { libro: "Freud - Obras Completas / Bleichmar", seccion: "sexualidad infantil y desarrollo libidinal" },
+  "Momentos evolutivos: de la primera infancia a la vejez": { libro: "Bowlby - El apego / Erikson, Iacub y Salvarezza", seccion: "prenatal a vejez: desarrollo cognitivo y afectivo" },
+  "Historia de la Psicología Cognitiva": { libro: "Vásquez Echeverría - Manual de Introducción a la Psicología Cognitiva", seccion: "historia de la psicología cognitiva" },
+  "Percepción": { libro: "Maiche et al. en Vásquez Echeverría - Manual de Psicología Cognitiva", seccion: "capítulo de percepción" },
+  "Atención": { libro: "Carboni y Barg en Vásquez Echeverría - Manual de Psicología Cognitiva", seccion: "capítulo de atención" },
+  "Memoria": { libro: "Vásquez y Martin en Vásquez Echeverría - Manual de Psicología Cognitiva", seccion: "capítulo de memoria" },
+  "Motivación": { libro: "Curione y Huertas en Vásquez Echeverría - Manual de Psicología Cognitiva", seccion: "capítulo de motivación" },
+  "Toma de decisiones": { libro: "Gradin et al. - Toma de decisiones", seccion: "heurísticos, aversión a la pérdida y framing" },
+  "Lenguaje y lectura": { libro: "Aportes de las Ciencias Cognitivas a la Educación (CSIC)", seccion: "adquisición, decodificación y comprensión lectora" },
+  "Emoción": { libro: "Aportes de las Ciencias Cognitivas a la Educación (CSIC)", seccion: "componentes y funciones de la emoción" },
+  "Introducción al pensamiento metodológico: método científico y diseño de investigación": { libro: "Marradi, Archenti & Piovani - Metodología de las Ciencias Sociales", seccion: "capítulos 1-3 y 5" },
+  "Perspectivas cuantitativas: muestreo, diseño experimental y medición": { libro: "Hernández Sampieri et al. - Metodología de la Investigación", seccion: "capítulos 3-9" },
+  "Perspectivas cualitativas: diseño y técnicas de investigación cualitativa": { libro: "Hernández Sampieri et al. - Metodología de la Investigación", seccion: "capítulos 12-14" },
+  "Fundamentos de las metodologías mixtas": { libro: "Hernández Sampieri et al. - Metodología de la Investigación", seccion: "capítulo 17" },
+  "Historia de la extensión universitaria": { libro: "Cano y Tommasino - Los caminos de la extensión en la Universidad de la República", seccion: "historia y marco institucional" },
+  "Psicología y extensión universitaria en la Facultad": { libro: "Etchebehere - Devenires de la extensión", seccion: "experiencias de extensión en la Facultad de Psicología" },
+  "Herramientas metodológicas para la extensión: IAP, observación participante, taller": { libro: "Jara - Orientaciones teórico-prácticas para la sistematización de experiencias", seccion: "investigación-acción participativa, entrevista, taller" },
+  "Psicología y Derechos Humanos: fundamentos y clasificación": { libro: "Martínez Salgueiro - Nociones Básicas sobre Derechos Humanos", seccion: "pp. 5-26" },
+  "Paradigmas e instrumentos de derechos humanos": { libro: "Declaración Universal de los Derechos Humanos", seccion: "paradigmas e instrumentos internacionales" },
+  "Psicología y género: sistema sexo-género y crítica al androcentrismo": { libro: "Bonilla Campos - Psicología y Género: La significación de las diferencias", seccion: "sistema sexo-género" },
+  "Derechos civiles y políticos desde un enfoque de género: terrorismo de Estado y memoria": { libro: "Jelin - Las tramas del tiempo", seccion: "el género en las memorias" },
+  "Derechos económicos, sociales, culturales y ambientales desde un enfoque de género": { libro: "Castro - Problemas conceptuales en el estudio de la violencia de género", seccion: "DESC+A e interseccionalidad" },
+  "Derechos colectivos y de los pueblos desde un enfoque de género": { libro: "Apuntes de cátedra", seccion: "multiculturalismo, ecofeminismo y nuevas tecnologías" },
+  "Incorporación de género y derechos humanos en la práctica de la Psicología": { libro: "Cala Carrillo y Barberá - Evolución de la perspectiva de género en psicología", seccion: "aplicación profesional" },
+  "Definición de entrevista psicológica y sus elementos constitutivos": { libro: "Bleger - Temas de psicología: entrevista y grupos", seccion: "definición y encuadre de la entrevista" },
+  "Componentes éticos de la entrevista psicológica": { libro: "Berenstein - El sujeto y el otro", seccion: "ética del encuentro" },
+  "Características, particularidades y objetivos de la entrevista": { libro: "Mannoni - La primera entrevista con el psicoanalista", seccion: "apertura, cierre y tipos de entrevista" },
+  "Aproximación al análisis de las entrevistas": { libro: "Tabó (comp.) - Entrevista. Devenires de la Clínica", seccion: "observación, escucha y registro" },
+  "Entrevista en diversos ámbitos y campos: clínico, educativo, social y de la salud": { libro: "Protesoni - La primera entrevista clínica psicológica en servicios de salud", seccion: "entrevista según ámbito y edad" },
+  // Psicología -- 3er semestre
+  "De la tensión individuo-sociedad a la producción social e histórica de la subjetividad": { libro: "Guattari & Rolnik - Micropolítica. Cartografías del deseo", seccion: "apartados 1-3" },
+  "Las disciplinas psi, la gubernamentalidad y el abordaje de grupos humanos": { libro: "Fernández - El campo grupal", seccion: "la demanda por los grupos" },
+  "El debate sobre las masas como mente colectiva": { libro: "Freud - Psicología de las masas y análisis del yo", seccion: "capítulos 1, 2, 5 y 7" },
+  "Interaccionismo simbólico, representaciones sociales y crisis de la psicología social": { libro: "Iñiguez - Nuevos debates (Athenea Digital)", seccion: "crisis y socioconstruccionismo" },
+  "Psicología Comunitaria Latinoamericana y Psicología Social del Río de la Plata": { libro: "Montero - Introducción a la Psicología Comunitaria", seccion: "capítulos 1 y 3" },
+  "Análisis institucional y postestructuralismo": { libro: "Deleuze & Foucault - Un diálogo sobre el poder", seccion: "poder y subjetivación" },
+  "La Psicología Social como campo de conocimientos": { libro: "Fernández - Haciendo met-odhos", seccion: "intervención como campo de problemas" },
+  "Perspectivas psicológicas del aprendizaje y la relación sujeto-saber": { libro: "Charlot - La relación con el saber", seccion: "marco teórico de la relación sujeto-aprendizaje" },
+  "Formación y subjetivación en instituciones educativas": { libro: "Corea - Subjetividad pedagógica y subjetividad mediática", seccion: "formación y subjetivación institucional" },
+  "Aprendizajes y vínculos en edades tempranas": { libro: "Calmels - Juegos de crianza", seccion: "apego y desarrollo sociocognitivo" },
+  "Cambios en la estructura de la actividad infantil: de inicial a primaria": { libro: "Riviere - ¿Por qué fracasan tan poco los niños?", seccion: "motivación y transiciones escolares" },
+  "El aprendizaje situado en los tránsitos hacia educación media y terciaria": { libro: "Duschatzky y Sztulwark - Imágenes de lo no escolar en la escuela", seccion: "capítulos 2 y 3" },
+  "Metodología cualitativa: diseño, validación y reflexividad": { libro: "Ruiz Olabuénaga - Metodología de la investigación cualitativa", seccion: "capítulo 1" },
+  "Estudio de caso": { libro: "Stake - Investigación con estudio de casos", seccion: "identificación y descripción del caso" },
+  "Etnografía y observación participante": { libro: "Guber - La etnografía. Método, campo y reflexividad", seccion: "trabajo de campo y registro" },
+  "Cartografía como investigación/intervención": { libro: "Passos, Kastrup y da Escóssia - Pistas do método da cartografia", seccion: "método cartográfico" },
+  "Investigación Acción Participativa": { libro: "Montero - La investigación-acción-participativa", seccion: "fundamentos de la IAP" },
+  "Entrevista en profundidad y grupo de discusión": { libro: "Taylor y Bogdan - Introducción a los métodos cualitativos", seccion: "entrevista en profundidad" },
+  "Investigación narrativa y biográfica": { libro: "Bassi - Hacer una Historia de Vida", seccion: "historia de vida y método biográfico" },
+  "Estrategias documentales": { libro: "Valles - Técnicas Cualitativas de Investigación Social", seccion: "investigación documental" },
+  "Surgimiento de la ética en Grecia": { libro: "Jaeger - Paideia", seccion: "libro III, surgimiento de la ética en Grecia" },
+  "Ética eudemonista (Aristóteles) y ética kantiana": { libro: "Aristóteles - Ética a Nicómaco / Kant - Fundamentación de la metafísica de las costumbres", seccion: "libros I-IV y X" },
+  "Perspectivas éticas contemporáneas": { libro: "Agamben - Homo Sacer", seccion: "introducción" },
+  "Surgimiento y campos de la Bioética": { libro: "Escobar Triana y Aristizábal - Los principios en la bioética", seccion: "principios y declaraciones internacionales" },
+  "Ética de la investigación con seres humanos: historia y normativa": { libro: "Informe Belmont", seccion: "historia y normativa de la investigación con humanos" },
+  "Consentimiento informado y protección de grupos vulnerables": { libro: "Cano Valle - El consentimiento bajo información", seccion: "consentimiento informado y autonomía" },
+  "Ética en la clínica psicológica y el Código de Ética del Psicólogo": { libro: "Código de Ética de los Psicólogos del Uruguay (CPU)", seccion: "deontología y práctica profesional" },
+  "Dilemas éticos en la intervención psicológica y comunitaria": { libro: "Rebellato y Giménez - Ética de la Autonomía", seccion: "ética en psicología comunitaria" },
+  "Concepción psicoanalítica de sujeto: del racionalismo cartesiano al descubrimiento del inconsciente": { libro: "Freud - Psicopatología de la vida cotidiana", seccion: "capítulos 1-3; Lo inconsciente" },
+  "Sujeto, subjetividad y lazo social": { libro: "Freud - El malestar en la cultura", seccion: "lazo social y subjetivación" },
+  "Fundamentos de la clínica psicoanalítica: recordar, repetir y reelaborar": { libro: "Freud - Recordar, repetir y reelaborar", seccion: "el caso Hombre de las Ratas" },
+  "Clínica psicoanalítica y subjetividades contemporáneas": { libro: "Viñar - Experiencias psicoanalíticas en la actualidad sociocultural", seccion: "clínica contemporánea" },
+  // Psicología -- 4to semestre
+  "La especificidad del psicoanálisis: contexto de surgimiento y método": { libro: "Freud - Estudios sobre la histeria", seccion: "capítulo 4, surgimiento del método" },
+  "Sexualidad, cuerpo erógeno y avatares de las pulsiones": { libro: "Freud - Tres ensayos de teoría sexual", seccion: "apartados II-III; Pulsiones y sus destinos" },
+  "Del síntoma al método: formaciones del inconsciente": { libro: "Freud - La interpretación de los sueños", seccion: "capítulos VI-VII" },
+  "Inconsciente y subjetividad: clínica y metapsicología": { libro: "Freud - El Yo y el Ello", seccion: "Lo inconsciente; Inhibición, síntoma y angustia" },
+  "El malestar en la cultura: relación entre pulsión y cultura": { libro: "Freud - El malestar en la cultura", seccion: "obra completa de 1930" },
+  "La Psicología de la Salud: antecedentes y vertientes actuales": { libro: "Morales Calatayud - Introducción a la psicología de la salud", seccion: "pp. 47-84" },
+  "Evolución histórica de las concepciones salud-enfermedad-atención": { libro: "Morales Calatayud - Introducción a la psicología de la salud", seccion: "pp. 17-46" },
+  "Determinantes sociales y equidad en salud": { libro: "De Lellis, Interlandi y Martino - Perspectivas en salud pública y salud mental", seccion: "capítulo introductorio, pp. 11-42" },
+  "Modelos de atención en salud": { libro: "De Lellis, Saforcada y Mozobancyk - Psicología y salud pública", seccion: "pp. 19-42" },
+  "Aportes de la Epidemiología": { libro: "Benia et al. - Temas de Salud Pública, Tomo I", seccion: "epidemiología: concepto, usos y perspectivas" },
+  "Atención Primaria en Salud, niveles de atención y prevención": { libro: "Benia, Macri y Berhier - Temas de Salud Pública, Tomo I", seccion: "pp. 119-147" },
+  "Accesibilidad, usuarios y derechos en el Sistema Nacional Integrado de Salud": { libro: "Arias, Ramos y Suárez - La accesibilidad en tiempos de Reforma", seccion: "accesibilidad y derechos en el SNIS" },
+  "Evaluación de resultados de la atención en salud": { libro: "Llinás Delgado - Evaluación de la calidad de la atención en salud", seccion: "evaluación de resultados" },
+  "Aspectos psicológicos del proceso salud-enfermedad y relación asistencial": { libro: "Nieto-Munuera et al. - Psicología para ciencias de la salud", seccion: "capítulos 5 y 7" },
+  "Intervenciones psicológicas por nivel de atención": { libro: "Morales Calatayud - Introducción a la psicología de la salud", seccion: "pp. 97-132" },
+  "La construcción del campo de intervención": { libro: "Raggio - Intervención y campo de intervención", seccion: "construcción del campo de intervención" },
+  "Dispositivo: aportes a la construcción de un campo de intervención": { libro: "Deleuze - ¿Qué es un dispositivo?", seccion: "noción de dispositivo" },
+  "Perspectivas desde el Análisis Institucional": { libro: "Kaminsky - Dispositivos institucionales", seccion: "democracia y autoritarismo en los problemas institucionales" },
+  "Implicación y sobre-implicación": { libro: "Acevedo - La implicación: luces y sombras del concepto lourauniano", seccion: "implicación y sobre-implicación" },
+  "Abordajes clínicos de la Psicología Social del Río de la Plata": { libro: "Pichon-Rivière - Estructura de una escuela destinada a la formación de psicólogos sociales", seccion: "escuela rioplatense" },
+  "Estrategias desde la Psicología Social Comunitaria": { libro: "Montero - Procesos psicosociales comunitarios", seccion: "estrategias comunitarias" },
+  "Abordajes cartográficos y redes sociales": { libro: "Dabas - Redes sociales, niveles de abordaje en la intervención", seccion: "organización en red" },
+  "Estado, ciudadanía y derechos: nociones básicas": { libro: "Fleury - Políticas sociales y ciudadanía", seccion: "nociones básicas de Estado y ciudadanía" },
+  "Introducción a las políticas públicas: ciclo y paradigmas": { libro: "Subirats et al. - Análisis y gestión de políticas públicas", seccion: "capítulos 1-2" },
+  "Políticas públicas con enfoques transversales: derechos humanos, género y diversidad": { libro: "García Prince - Políticas de Igualdad, Equidad y Gender Mainstreaming", seccion: "enfoques transversales" },
+  "Las políticas públicas de salud, incluida la salud mental": { libro: "Fernández Castrillo - Innovaciones en política de Salud Mental en Uruguay progresista", seccion: "políticas de salud mental" },
+  "Políticas públicas y participación social": { libro: "Anzalone - Participación social dentro del SNIS en Uruguay", seccion: "participación social" },
+  "Psicología y políticas públicas": { libro: "Stolkiner - Interdisciplina y Salud Mental", seccion: "psicología y políticas públicas" },
+  "Introducción a la estadística y la medición en psicología": { libro: "Crump, Navarro & Suzuki - Answering Questions with Data", seccion: "introducción a la estadística y la medición" },
+  "Visualización de datos, distribución y tendencia central": { libro: "Crump, Navarro & Suzuki - Answering Questions with Data", seccion: "visualización de datos y tendencia central" },
+  "Dispersión, varianza, cuantiles y puntuación Z": { libro: "Crump, Navarro & Suzuki - Answering Questions with Data", seccion: "dispersión, varianza y puntuación Z" },
+  "Tablas de frecuencia y de prevalencia": { libro: "Crump, Navarro & Suzuki - Answering Questions with Data", seccion: "tablas de frecuencia univariada y bivariada" },
+  "Correlación y regresión lineal": { libro: "Crump, Navarro & Suzuki - Answering Questions with Data", seccion: "correlación y regresión lineal" },
+  "Muestreo e intervalos de confianza": { libro: "Crump, Navarro & Suzuki - Answering Questions with Data", seccion: "muestreo e intervalos de confianza" },
+  "Estadística inferencial: pruebas t, Chi cuadrado y ANOVA": { libro: "Crump, Navarro & Suzuki - Answering Questions with Data", seccion: "pruebas t, Chi cuadrado y análisis de varianza" },
+  "Psicodiagnóstico y evaluación psicológica: conceptos y encuadre": { libro: "Fernández Ballesteros - Evaluación psicológica. Conceptos, métodos y estudio de caso", seccion: "introducción y capítulo 1" },
+  "Tests de maduración y exploración intelectual": { libro: "Wechsler - WISC-V, Manual de aplicación y corrección", seccion: "capítulos 1 y 3" },
+  "Técnicas proyectivas e inventarios de personalidad": { libro: "Muniz (comp.) - Intervenciones en psicología clínica", seccion: "técnicas proyectivas gráficas y temáticas" },
+  "Análisis e interpretación: convergencias y divergencias entre técnicas": { libro: "Borelle y Russo - El psicodiagnóstico de niños", seccion: "capítulos 2-4" },
 };
 
 // ---- Estado de la materia/examen que se está EDITANDO (pantallas 1-3: elegir
@@ -2162,7 +2955,7 @@ function renderCatalogo() {
   modulos.forEach((mod, mi) => {
     const div = document.createElement('div');
     div.className = 'modulo';
-    const icon = MODULO_ICONS[mod.modulo] || '🩺';
+    const icon = MODULO_ICONS[mod.modulo] || '📘';
     div.innerHTML = `
       <div class="modulo-head" onclick="this.parentElement.classList.toggle('open')">
         <span>${icon} ${mod.modulo} <span class="count">(${mod.temas.length})</span></span>
@@ -2225,8 +3018,8 @@ function renderOwnList() {
 
 // Busca el tema en Google Books: previews legítimas de los libros de la
 // bibliografía, no copias piratas. Si el tema está en el catálogo, la
-// búsqueda se arma con el libro que mejor lo cubre; si es un tema propio,
-// busca en libros de medicina en general.
+// búsqueda se arma con el libro que mejor lo cubre; si es un tema propio o
+// sin bibliografía cargada, cae a buscar apuntes/resúmenes en Studocu.
 function buscarReferencia(tema) {
   const t = TEXTOS[tema];
   if (t && !esFuenteGenerica(t.libro)) {
@@ -3045,6 +3838,214 @@ const DURACIONES = {
   "Consentimiento informado y confidencialidad de la información del paciente": 1,
   "Ética médica, profesionalismo y trabajo en equipo interdisciplinario": 1,
   "Gestión racional de recursos y legislación sanitaria nacional vinculada al ejercicio profesional": 1,
+
+  // Psicología -- Neuropsicología y Psicopatología Clínica de Adultos (5º semestre)
+  "Ubicación conceptual e histórica de la neuropsicología": 1,
+  "Principios generales de organización y desarrollo cerebral": 1,
+  "Causas de lesión cerebral": 1,
+  "Atención y sus trastornos, síndrome confusional y heminegligencias": 2,
+  "Memorias y síndromes amnésicos": 2,
+  "Lóbulos frontales, funciones ejecutivas y cognición social": 2,
+  "Lenguaje, cerebro y afasias": 2,
+  "Habilidades visuoconstructivas y apraxias": 1,
+  "Concepto de psicopatología: lo normal y lo patológico, aspectos históricos": 1,
+  "Semiología del funcionamiento mental: áreas semiológicas, entrevista, agudeza y cronicidad": 2,
+  "Espectro de la esquizofrenia y otros trastornos psicóticos": 2,
+  "Trastorno bipolar y trastornos depresivos": 2,
+  "Las neurosis": 1,
+  "Trastornos de ansiedad, TOC y trastornos relacionados con trauma y estrés": 2,
+  "Trastornos de la personalidad": 2,
+  "Trastornos relacionados con sustancias y trastornos adictivos": 1,
+
+  // Resto del catálogo de Psicología (1er a 6to semestre), mismo criterio
+  // de densidad/dificultad del tema que en Medicina (agregado 2026-08-08).
+  "Definiciones y conceptos introductorios: ciencia, disciplina y profesión en Psicología": 1,
+  "Antecedentes filosóficos de la Psicología": 1,
+  "La pluralidad psicológica a partir del siglo XIX": 2,
+  "Ámbitos de la psicología: básica, aplicada y campo de intervención actual": 1,
+  "Historia, historicidad y las historias de la psicología": 1,
+  "Gobernar: uso de los saberes y procesos de subjetivación": 1,
+  "Los saberes psicológicos, el Estado y la producción subjetiva": 1,
+  "Formación y disciplinarización de la psicología en Uruguay": 2,
+  "Psicologización: multiplicidad y heterogeneidad de los saberes psi": 1,
+  "Trabajo intelectual en la Universidad": 1,
+  "Técnicas de estudio y aprendizaje efectivas": 2,
+  "Confiabilidad de la información y posverdad": 1,
+  "Lógica: enunciados, conectivas y cuantificadores": 1,
+  "Información académica: fuentes, revisión por pares y búsqueda bibliográfica": 1,
+  "Escritura de textos académicos": 2,
+  "Tratamiento básico y representación de la información": 2,
+  "Introducción a los problemas epistemológicos": 1,
+  "Racionalismo de Descartes, empirismo de Hume e idealismo trascendental de Kant": 2,
+  "De la concepción heredada al racionalismo crítico de Popper": 2,
+  "El giro historicista de Kuhn y el anarquismo epistemológico de Feyerabend": 2,
+  "Ciencia, Tecnología y Sociedad (CTS)": 1,
+  "Epistemologías feministas y estudios postcoloniales": 2,
+  "Crítica de la idea de individuo y el dualismo individuo-sociedad": 1,
+  "Un sujeto desustancializado: subjetividad desde el psicoanálisis, Marx, Nietzsche y Foucault": 2,
+  "Problemas actuales en torno a la subjetividad: capitalismo, consumo y nuevas tecnologías": 2,
+  "El derecho a la Educación Superior y la elección de la formación en Psicología": 1,
+  "Diversidad de prácticas y desempeño profesional en Psicología": 1,
+  "La neurona: estructura, potenciales y sinapsis": 1,
+  "Desarrollo y plasticidad del sistema nervioso": 2,
+  "Organización anatómica y funcional del sistema nervioso central y periférico": 2,
+  "Cerebro y corteza cerebral": 2,
+  "Sistemas y vías sensoriales": 2,
+  "Sistema nervioso autónomo: simpático, parasimpático y entérico": 1,
+  "Hipotálamo y respuesta al estrés": 1,
+  "Control nervioso del movimiento voluntario": 2,
+  "Aprendizaje, memoria y plasticidad neuronal": 2,
+  "Neurobiología de las emociones": 2,
+  "Sueño": 1,
+  "Del conductismo a la corriente cognitivo-conductual": 2,
+  "El descubrimiento del inconsciente: el psicoanálisis freudiano": 2,
+  "Psicología Social: desarrollo en el Río de la Plata": 1,
+  "De la Teoría Sistémica a la Terapia Familiar Sistémica": 2,
+  "Encuadre conceptual: delimitación de la Psicología del Desarrollo": 1,
+  "Modelos relacionales: enfoque bioecológico y psicología histórico-cultural": 2,
+  "Métodos de investigación en Psicología del Desarrollo": 1,
+  "Desarrollo cognitivo según Piaget": 2,
+  "Desarrollo desde la teoría psicoanalítica: sexualidad infantil": 2,
+  "Momentos evolutivos: de la primera infancia a la vejez": 2,
+  "Historia de la Psicología Cognitiva": 1,
+  "Percepción": 2,
+  "Atención": 2,
+  "Memoria": 2,
+  "Motivación": 1,
+  "Toma de decisiones": 2,
+  "Lenguaje y lectura": 2,
+  "Emoción": 1,
+  "Introducción al pensamiento metodológico: método científico y diseño de investigación": 1,
+  "Perspectivas cuantitativas: muestreo, diseño experimental y medición": 2,
+  "Perspectivas cualitativas: diseño y técnicas de investigación cualitativa": 2,
+  "Fundamentos de las metodologías mixtas": 1,
+  "Historia de la extensión universitaria": 1,
+  "Psicología y extensión universitaria en la Facultad": 1,
+  "Herramientas metodológicas para la extensión: IAP, observación participante, taller": 2,
+  "Psicología y Derechos Humanos: fundamentos y clasificación": 1,
+  "Paradigmas e instrumentos de derechos humanos": 1,
+  "Psicología y género: sistema sexo-género y crítica al androcentrismo": 2,
+  "Derechos civiles y políticos desde un enfoque de género: terrorismo de Estado y memoria": 2,
+  "Derechos económicos, sociales, culturales y ambientales desde un enfoque de género": 2,
+  "Derechos colectivos y de los pueblos desde un enfoque de género": 1,
+  "Incorporación de género y derechos humanos en la práctica de la Psicología": 1,
+  "Definición de entrevista psicológica y sus elementos constitutivos": 1,
+  "Componentes éticos de la entrevista psicológica": 1,
+  "Características, particularidades y objetivos de la entrevista": 1,
+  "Aproximación al análisis de las entrevistas": 2,
+  "Entrevista en diversos ámbitos y campos: clínico, educativo, social y de la salud": 2,
+  "De la tensión individuo-sociedad a la producción social e histórica de la subjetividad": 2,
+  "Las disciplinas psi, la gubernamentalidad y el abordaje de grupos humanos": 2,
+  "El debate sobre las masas como mente colectiva": 1,
+  "Interaccionismo simbólico, representaciones sociales y crisis de la psicología social": 2,
+  "Psicología Comunitaria Latinoamericana y Psicología Social del Río de la Plata": 2,
+  "Análisis institucional y postestructuralismo": 2,
+  "La Psicología Social como campo de conocimientos": 1,
+  "Perspectivas psicológicas del aprendizaje y la relación sujeto-saber": 1,
+  "Formación y subjetivación en instituciones educativas": 1,
+  "Aprendizajes y vínculos en edades tempranas": 1,
+  "Cambios en la estructura de la actividad infantil: de inicial a primaria": 2,
+  "El aprendizaje situado en los tránsitos hacia educación media y terciaria": 2,
+  "Metodología cualitativa: diseño, validación y reflexividad": 1,
+  "Estudio de caso": 2,
+  "Etnografía y observación participante": 2,
+  "Cartografía como investigación/intervención": 2,
+  "Investigación Acción Participativa": 2,
+  "Entrevista en profundidad y grupo de discusión": 2,
+  "Investigación narrativa y biográfica": 2,
+  "Estrategias documentales": 1,
+  "Surgimiento de la ética en Grecia": 1,
+  "Ética eudemonista (Aristóteles) y ética kantiana": 2,
+  "Perspectivas éticas contemporáneas": 1,
+  "Surgimiento y campos de la Bioética": 1,
+  "Ética de la investigación con seres humanos: historia y normativa": 1,
+  "Consentimiento informado y protección de grupos vulnerables": 1,
+  "Ética en la clínica psicológica y el Código de Ética del Psicólogo": 1,
+  "Dilemas éticos en la intervención psicológica y comunitaria": 2,
+  "Concepción psicoanalítica de sujeto: del racionalismo cartesiano al descubrimiento del inconsciente": 2,
+  "Sujeto, subjetividad y lazo social": 2,
+  "Fundamentos de la clínica psicoanalítica: recordar, repetir y reelaborar": 2,
+  "Clínica psicoanalítica y subjetividades contemporáneas": 2,
+  "La especificidad del psicoanálisis: contexto de surgimiento y método": 2,
+  "Sexualidad, cuerpo erógeno y avatares de las pulsiones": 2,
+  "Del síntoma al método: formaciones del inconsciente": 2,
+  "Inconsciente y subjetividad: clínica y metapsicología": 2,
+  "El malestar en la cultura: relación entre pulsión y cultura": 2,
+  "La Psicología de la Salud: antecedentes y vertientes actuales": 1,
+  "Evolución histórica de las concepciones salud-enfermedad-atención": 1,
+  "Determinantes sociales y equidad en salud": 2,
+  "Modelos de atención en salud": 2,
+  "Aportes de la Epidemiología": 1,
+  "Atención Primaria en Salud, niveles de atención y prevención": 2,
+  "Accesibilidad, usuarios y derechos en el Sistema Nacional Integrado de Salud": 1,
+  "Evaluación de resultados de la atención en salud": 1,
+  "Aspectos psicológicos del proceso salud-enfermedad y relación asistencial": 2,
+  "Intervenciones psicológicas por nivel de atención": 2,
+  "La construcción del campo de intervención": 1,
+  "Dispositivo: aportes a la construcción de un campo de intervención": 2,
+  "Perspectivas desde el Análisis Institucional": 2,
+  "Implicación y sobre-implicación": 1,
+  "Abordajes clínicos de la Psicología Social del Río de la Plata": 1,
+  "Estrategias desde la Psicología Social Comunitaria": 2,
+  "Abordajes cartográficos y redes sociales": 2,
+  "Estado, ciudadanía y derechos: nociones básicas": 1,
+  "Introducción a las políticas públicas: ciclo y paradigmas": 2,
+  "Políticas públicas con enfoques transversales: derechos humanos, género y diversidad": 2,
+  "Las políticas públicas de salud, incluida la salud mental": 2,
+  "Políticas públicas y participación social": 1,
+  "Psicología y políticas públicas": 1,
+  "Introducción a la estadística y la medición en psicología": 1,
+  "Visualización de datos, distribución y tendencia central": 1,
+  "Dispersión, varianza, cuantiles y puntuación Z": 2,
+  "Tablas de frecuencia y de prevalencia": 1,
+  "Correlación y regresión lineal": 2,
+  "Muestreo e intervalos de confianza": 2,
+  "Estadística inferencial: pruebas t, Chi cuadrado y ANOVA": 2,
+  "Psicodiagnóstico y evaluación psicológica: conceptos y encuadre": 2,
+  "Tests de maduración y exploración intelectual": 2,
+  "Técnicas proyectivas e inventarios de personalidad": 2,
+  "Análisis e interpretación: convergencias y divergencias entre técnicas": 2,
+  "El rol del psicólogo clínico y el método clínico": 1,
+  "Mirada y escucha clínica: aptitud y actitud clínica": 1,
+  "Recepción, entrevista inicial y niveles de diagnóstico": 2,
+  "Formulación psicodinámica de caso y alianza de trabajo": 2,
+  "Intervenciones psicológicas a distancia": 1,
+  "Historia clínica, informe psicológico y devolución": 2,
+  "Marco conceptual: infancias y adolescencia en el contexto actual": 1,
+  "Modelos diagnósticos, sufrimiento psíquico y patologización": 2,
+  "Aprendizaje y sus dificultades": 2,
+  "Inquietud y dificultades en la atención (TDAH)": 2,
+  "Problemáticas clínicas de las neurosis en la infancia": 2,
+  "Problemáticas graves en la constitución subjetiva: autismo y psicosis infantil": 2,
+  "Depresión en la infancia": 2,
+  "Problemáticas infantiles centradas en el cuerpo": 2,
+  "Problemáticas actuales en adolescentes: el cuerpo como escenario": 2,
+  "Violencia y maltrato infantil: identificación y abordaje protocolar": 2,
+  "El suicidio como máxima expresión del sufrimiento adolescente": 2,
+  "El problema de lo común: dimensiones ontológicas y epistemológicas": 2,
+  "La producción de la vida en común: comunidad y diferencia": 2,
+  "Lo común y el carácter colectivo de la subjetividad": 2,
+  "La producción y reproducción colectiva de la vida: cuidado y ecosofía": 2,
+  "La producción del espacio: de lo público a los territorios comunes": 2,
+  "La dimensión política más allá de lo público y lo privado": 2,
+  "Discusión epistemológica: Psicología y/en/de la Educación, derecho a la Educación": 2,
+  "Instituciones educativas: producción de subjetividad y desigualdad": 2,
+  "Psicología, educación y TIC": 1,
+  "Prácticas profesionales en ecosistemas educativos": 2,
+  "Problemáticas y políticas educativas contextualizadas": 2,
+  "Enfoque histórico de las psicoterapias: de las prácticas de cura a las corrientes de 1900-1960": 2,
+  "Psicoanálisis: el sujeto del inconsciente como efecto del lenguaje": 2,
+  "Terapias Cognitivo-Conductuales: de la terapia conductual a la tercera ola": 2,
+  "Psicoterapia Corporal Bioenergética": 2,
+  "Neurociencias y Psicoterapias": 2,
+  "Problematización: ejercicio de sospecha epistémica en psicología social": 1,
+  "Vida, política y gobierno": 1,
+  "Sesgos en las prospectivas psicosociales": 1,
+  "Las problemáticas y las disciplinas: enfoques multi, inter y transdisciplinarios": 1,
+  "Equipos de trabajo y la inclusión de la psicología en equipos interdisciplinarios": 2,
+  "Ciencias Cognitivas y del Comportamiento: definición y métodos": 2,
+  "Lazo sociopsíquico e interculturalidad": 2,
+  "Diálogos interdisciplinarios en entornos educativos": 2,
 };
 // e permite sumar los días extra que el estudiante pidió vía el check-in
 // adaptativo ("seguir con este tema") -- ver resolverCheckin().
@@ -3099,7 +4100,7 @@ function validarFechaExamen() {
 function renderRitmo() {
   renderOrden();
   const eActual = examActual();
-  document.getElementById('btnGenerar').textContent = (eActual && eActual.selectedPace) ? '💊 Actualizar calendario' : '💊 Generar calendario';
+  document.getElementById('btnGenerar').textContent = (eActual && eActual.selectedPace) ? '📚 Actualizar calendario' : '📚 Generar calendario';
   if (!validarFechaExamen()) {
     document.getElementById('btnGenerar').disabled = true;
     document.getElementById('ritmoTexto').innerHTML = '';
@@ -3541,7 +4542,7 @@ function abrirDetalle(examId, name, fromRepaso) {
   document.getElementById('btnFlojo').classList.toggle('picked', e.states[name] === 'flojo');
   document.getElementById('btnFirme').classList.toggle('picked', e.states[name] === 'firme');
   document.getElementById('volverBtn').textContent = cameFromRepaso ? 'Volver al repaso' : 'Volver al calendario';
-  renderReferencia(name);
+  renderReferencia(name, e.materiaNombre);
   go(5);
 }
 
@@ -3554,11 +4555,12 @@ function esFuenteGenerica(libro) {
   return /^Apuntes de c[aá]tedra|^Repaso de Unidades Curriculares|^Gu[ií]as AHA/i.test(libro || '');
 }
 
-function renderReferencia(name) {
+function renderReferencia(name, materiaNombre) {
   const t = TEXTOS[name];
   const box = document.getElementById('referenciaBox');
   const linkResumen = `<a class="ref-link" href="https://www.studocu.com/latam/search/${encodeURIComponent(name)}" target="_blank">📝 Buscar un resumen o apunte en Studocu</a>`;
-  const linkVideo = `<a class="ref-link" href="https://www.youtube.com/results?search_query=${encodeURIComponent(name + ' medicina')}" target="_blank">🎥 Buscar un video explicativo</a>`;
+  const queryVideo = materiaNombre ? `${name} ${nombreCorto(materiaNombre)}` : name;
+  const linkVideo = `<a class="ref-link" href="https://www.youtube.com/results?search_query=${encodeURIComponent(queryVideo)}" target="_blank">🎥 Buscar un video explicativo</a>`;
 
   if (t && !esFuenteGenerica(t.libro)) {
     const q = encodeURIComponent(`${t.libro} ${name}`);
@@ -3807,7 +4809,7 @@ function irACalendarioDesdeHome() {
 
 function renderHome() {
   const enCurso = examenesEnCurso();
-  document.getElementById('homeCta').textContent = enCurso.length ? '💊 Continuar' : '💊 Empezar';
+  document.getElementById('homeCta').textContent = enCurso.length ? '📚 Continuar' : '📚 Empezar';
   document.getElementById('homeCalSub').textContent = enCurso.length
     ? `${enCurso.length} examen${enCurso.length > 1 ? 'es' : ''} en curso`
     : 'Armá tu plan de estudio';
@@ -3818,11 +4820,28 @@ function renderHome() {
 // dejar una entrada vacía en la lista de exámenes.
 function agregarExamen() {
   guardarExamenActual();
-  borradorExamen = { selected: [], ownTemas: [], states: {}, touched: {}, proximoRepaso: {}, intervaloIdx: {}, selectedPace: null, prioridad: false, rendidaManual: false, fechaRendidaLabel: '', materiaNombre: '', fecha: '', usaCatalogo: true, anio: null, modulos: [] };
+  borradorExamen = { selected: [], ownTemas: [], states: {}, touched: {}, proximoRepaso: {}, intervaloIdx: {}, selectedPace: null, prioridad: false, rendidaManual: false, fechaRendidaLabel: '', materiaNombre: '', fecha: '', usaCatalogo: true, facultad: null, anio: null, modulos: [] };
   examenActualId = null;
   selected = borradorExamen.selected;
   ownTemas = borradorExamen.ownTemas;
   selectedPace = null;
+  go(12);
+}
+
+function renderFacultades() {
+  const box = document.getElementById('facultadesList');
+  box.innerHTML = FACULTADES_ORDEN.map(key => {
+    const f = FACULTADES[key];
+    return `<div class="card" style="border-color:var(--accent); background:var(--accent-soft); cursor:pointer;" onclick="elegirFacultad('${key}')">
+      <div style="font-weight:800; font-size:16px;">${f.iconoMateria} ${f.label}</div>
+      <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${f.universidad} · ${f.carrera}</div>
+    </div>`;
+  }).join('');
+}
+
+function elegirFacultad(key) {
+  if (!borradorExamen) return;
+  borradorExamen.facultad = key;
   go(1);
 }
 
@@ -3835,10 +4854,13 @@ function commitBorrador() {
 }
 
 function renderAnios() {
+  const f = facultadDe(borradorExamen ? borradorExamen.facultad : null);
+  document.getElementById('anioTitle').textContent = `¿En qué ${f.cicloNombre} estás?`;
+  document.getElementById('anioSub').textContent = `Elegí el ${f.cicloNombre} de ${f.carrera} para ver qué materias tenemos cargadas.`;
   const box = document.getElementById('aniosList');
-  box.innerHTML = ANIOS.map(a => {
-    const disponible = !!CATALOGO_POR_ANIO[a];
-    return `<div class="pace-pill" style="flex:0 0 30%;" onclick="elegirAnio(${a})">${anioLabel(a)}${disponible ? '' : '<small style="display:block; font-weight:400; opacity:.6;">agregá tus temas</small>'}</div>`;
+  box.innerHTML = f.ciclos.map(a => {
+    const disponible = !!(f.catalogoPorCiclo[a] && f.catalogoPorCiclo[a].length);
+    return `<div class="pace-pill" style="flex:0 0 30%;" onclick="elegirAnio(${a})">${f.cicloLabel(a)}${disponible ? '' : '<small style="display:block; font-weight:400; opacity:.6;">agregá tus temas</small>'}</div>`;
   }).join('');
 }
 
@@ -3849,21 +4871,23 @@ function elegirAnio(anio) {
 }
 
 function renderMateriasDelAnio() {
+  const f = facultadDe(borradorExamen ? borradorExamen.facultad : null);
   const anio = borradorExamen ? borradorExamen.anio : null;
-  document.getElementById('materiaAnioTitle').textContent = anio ? `Materias de ${anioLabel(anio)}` : 'Materias';
-  const materias = CATALOGO_POR_ANIO[anio] || [];
+  document.getElementById('materiaAnioTitle').textContent = anio ? `Materias de ${f.cicloLabel(anio)}` : 'Materias';
+  const materias = (anio && f.catalogoPorCiclo[anio]) || [];
   const box = document.getElementById('materiasDelAnio');
   box.innerHTML = materias.length ? materias.map((m, i) => `
     <div class="card" style="border-color:var(--accent); background:var(--accent-soft); cursor:pointer;" onclick="elegirMateriaCatalogo(${i})">
-      <span class="pill">${m.contexto}</span>
-      <div style="font-weight:800; font-size:16px; margin-top:8px;">🫀 ${m.nombre}</div>
+      <span class="pill">${contextoFor(f.key, anio)}</span>
+      <div style="font-weight:800; font-size:16px; margin-top:8px;">${f.iconoMateria} ${m.nombre}</div>
       <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${m.modulos.length} módulos · ${m.modulos.reduce((s,mo)=>s+mo.temas.length,0)} temas en el catálogo</div>
-    </div>`).join('') : '<div class="empty-state">Todavía no tenemos materias cargadas para este año -- agregá la tuya abajo con tus propios temas.</div>';
+    </div>`).join('') : '<div class="empty-state">Todavía no tenemos materias cargadas para este ' + f.cicloNombre + ' -- agregá la tuya abajo con tus propios temas.</div>';
 }
 
 function elegirMateriaCatalogo(idx) {
   if (!borradorExamen) return;
-  const materias = CATALOGO_POR_ANIO[borradorExamen.anio] || [];
+  const f = facultadDe(borradorExamen.facultad);
+  const materias = f.catalogoPorCiclo[borradorExamen.anio] || [];
   const m = materias[idx];
   if (!m) return;
   borradorExamen.materiaNombre = m.nombre;
@@ -3924,19 +4948,19 @@ function marcarRendidaDesdeHub(id) {
   showToast(`${nombreCorto(e.materiaNombre)} agregada a tus materias rendidas`);
 }
 
-// Borrar una materia de "Rendidas" -- por si se marcó rendida sin querer
-// (mal toque, o probando algo) y no tiene sentido dejarla ahí para siempre.
-// Pide confirmación con el mismo overlay visual del check-in adaptativo,
-// nunca un confirm() nativo del navegador (bloquea la UI y no combina con
-// el diseño de la app).
+// Borrar una materia -- de "En curso" (por si quedó un examen de prueba, o
+// se agregó sin querer) o de "Rendidas" (por si se marcó rendida sin
+// querer). Pide confirmación con el mismo overlay visual del check-in
+// adaptativo, nunca un confirm() nativo del navegador (bloquea la UI y no
+// combina con el diseño de la app).
 let materiaABorrarId = null;
 
-function pedirBorrarMateriaRendida(id) {
+function pedirBorrarMateria(id) {
   const e = examenes.find(x => x.id === id);
   if (!e) return;
   materiaABorrarId = id;
   document.getElementById('confirmDeleteTitle').textContent = `¿Borrar "${e.materiaNombre}"?`;
-  document.getElementById('confirmDeleteBody').textContent = 'Se va a sacar de tus materias rendidas junto con su progreso guardado. No se puede deshacer.';
+  document.getElementById('confirmDeleteBody').textContent = 'Se va a borrar junto con todo su progreso guardado (calendario, temas marcados). No se puede deshacer.';
   document.getElementById('confirmDeleteOverlay').classList.add('show');
 }
 
@@ -3970,10 +4994,11 @@ function renderExamenes() {
     const faltaConfig = !e.selectedPace;
     const c = !faltaConfig ? contarEstados(e.states) : null;
     return `
-    <div class="card" style="border-color:var(--accent); background:var(--accent-soft);">
+    <div class="card" style="border-color:var(--accent); background:var(--accent-soft); position:relative;">
+      <button class="card-delete-btn" title="Borrar" onclick="event.stopPropagation(); pedirBorrarMateria(${e.id})">🗑️</button>
       <div style="cursor:pointer;" onclick="abrirExamen(${e.id})">
         <span class="pill">📅 ${fmtFecha(e.fecha)}</span>
-        <div style="font-weight:800; font-size:16px; margin-top:8px;">${e.prioridad ? '⭐ ' : ''}${e.materiaNombre || 'Sin nombre'}</div>
+        <div style="font-weight:800; font-size:16px; margin-top:8px; padding-right:22px;">${e.prioridad ? '⭐ ' : ''}${e.materiaNombre || 'Sin nombre'}</div>
         <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${faltaConfig ? 'Todavía no armaste el calendario' : `${c.firme} firmes · ${c.flojo} flojos · ${c.nuevo} nuevos`}</div>
       </div>
       <div style="display:flex; gap:8px; margin-top:10px;">
@@ -3991,7 +5016,7 @@ function renderExamenes() {
         const total = e.ejemplo ? e.totalEjemplo : (e.selected ? e.selected.length : 0);
         return `
         <div class="card" style="position:relative;">
-          <button class="card-delete-btn" title="Borrar" onclick="pedirBorrarMateriaRendida(${e.id})">🗑️</button>
+          <button class="card-delete-btn" title="Borrar" onclick="pedirBorrarMateria(${e.id})">🗑️</button>
           <div style="font-weight:800; font-size:14.5px; padding-right:22px;">${e.materiaNombre}</div>
           <div style="color:var(--muted); font-size:12.5px; margin-top:3px;">
             Rendida el ${fmtFecha(e.fecha)} · ${firmes}/${total} firmes${e.ejemplo ? ' <span style="opacity:.7;">(ejemplo)</span>' : ''}
@@ -4121,7 +5146,7 @@ function renderRecordatorioPreview() {
   const mensaje = n > 0
     ? `Te quedan ${n} tema${n > 1 ? 's' : ''} para repasar hoy. No dejes que se acumulen.`
     : 'Estás al día con todo. ¡Seguí así!';
-  box.innerHTML = `<div class="notif-title">🩺 Al Día · ${hora}</div>${mensaje}`;
+  box.innerHTML = `<div class="notif-title">📚 Al Día · ${hora}</div>${mensaje}`;
 }
 
 async function renderRecordatorio() {
@@ -4255,29 +5280,41 @@ function seleccionarTipoFicha(tipo) {
 }
 
 function renderFichasSelect() {
+  const facSel = document.getElementById('fichasFacultadSelect');
+  if (!facSel) return;
+  facSel.innerHTML = FACULTADES_ORDEN.map(key => `<option value="${key}">${FACULTADES[key].label}</option>`).join('');
+  onFichasFacultadChange();
+}
+
+function onFichasFacultadChange() {
+  const f = facultadDe(document.getElementById('fichasFacultadSelect').value);
   const anioSel = document.getElementById('fichasAnioSelect');
-  if (!anioSel) return;
-  anioSel.innerHTML = ANIOS.map(a => `<option value="${a}">${anioLabel(a)}</option>`).join('');
+  anioSel.innerHTML = f.ciclos.map(a => `<option value="${a}">${f.cicloLabel(a)}</option>`).join('');
   onFichasAnioChange();
 }
 
 function onFichasAnioChange() {
+  const f = facultadDe(document.getElementById('fichasFacultadSelect').value);
   const anio = +document.getElementById('fichasAnioSelect').value;
-  const materias = CATALOGO_POR_ANIO[anio] || [];
+  const materias = f.catalogoPorCiclo[anio] || [];
   const materiaSel = document.getElementById('fichasMateriaSelect');
   materiaSel.innerHTML = materias.length
     ? materias.map((m, i) => `<option value="${i}">${m.nombre}</option>`).join('')
-    : '<option value="">Sin materias cargadas para este año</option>';
+    : `<option value="">Sin materias cargadas para este ${f.cicloNombre}</option>`;
   onFichasMateriaChange();
 }
 
 function onFichasMateriaChange() {
+  const f = facultadDe(document.getElementById('fichasFacultadSelect').value);
   const anio = +document.getElementById('fichasAnioSelect').value;
   const materiaIdx = document.getElementById('fichasMateriaSelect').value;
-  const materia = (CATALOGO_POR_ANIO[anio] || [])[materiaIdx];
+  const materia = (f.catalogoPorCiclo[anio] || [])[materiaIdx];
   const temaSel = document.getElementById('fichasTemaSelect');
   fichasTemasDisponibles = [];
-  if (!materia) { temaSel.innerHTML = ''; return; }
+  if (!materia || !materia.modulos.length) {
+    temaSel.innerHTML = '<option value="">Sin temas digitalizados todavía para esta materia</option>';
+    return;
+  }
   materia.modulos.forEach(mod => mod.temas.forEach(t => fichasTemasDisponibles.push({ tema: t, materiaNombre: materia.nombre })));
   temaSel.innerHTML = fichasTemasDisponibles.map((it, i) => `<option value="${i}">${it.tema}</option>`).join('');
 }
@@ -4288,6 +5325,7 @@ async function generarFichas() {
   const item = fichasTemasDisponibles[sel.value];
   const t = TEXTOS[item.tema];
   const cantidad = +document.getElementById('fichasCantidadSelect').value;
+  const carrera = facultadDe(document.getElementById('fichasFacultadSelect').value).carrera;
   const btn = document.getElementById('fichasGenerarBtn');
   const box = document.getElementById('fichasBox');
   btn.disabled = true;
@@ -4297,7 +5335,7 @@ async function generarFichas() {
     const r = await fetch('/api/fichas', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ tema: item.tema, materiaNombre: item.materiaNombre, libro: t && t.libro, seccion: t && t.seccion, tipo: fichasTipo, cantidad }),
+      body: JSON.stringify({ tema: item.tema, materiaNombre: item.materiaNombre, carrera, libro: t && t.libro, seccion: t && t.seccion, tipo: fichasTipo, cantidad }),
     });
     const data = await r.json();
     if (!r.ok) throw new Error(data.error || 'Error generando las fichas');
@@ -4421,15 +5459,30 @@ async function generarResumen() {
 // Generado en el momento con Web Audio API, no es una pista real -- evita
 // cualquier problema de copyright (misma política que ya usamos con la
 // bibliografía: nunca alojar/linkear contenido con derechos de autor de
-// otro). Es un pad suave de 3 tonos + una capa de "brown noise" filtrado,
-// el tipo de sonido ambiente más típico para estudiar/concentrarse. El
-// AudioContext se crea recién al primer click (los navegadores, sobre
-// todo iOS Safari, bloquean audio que no arranque de un gesto real del
-// usuario), y el grafo de nodos se arma una sola vez -- después solo se
-// sube/baja el volumen general, no se recrea nada.
+// otro; si alguien quiere música real, el link "Buscar en YouTube" de al
+// lado abre una búsqueda para que la escuche en su propia cuenta, en vez de
+// que la app aloje o rehostee un mp3/pista ajena). Es un pad suave de 3
+// tonos + una capa de ruido tipo "brown noise" filtrado, pensado como
+// textura de fondo, no protagonista -- si sonaba "a ruido feo" en una
+// versión anterior, era un problema de mezcla (ruido demasiado fuerte y
+// poco filtrado tapando el pad), no del enfoque en sí: se corrigió bajando
+// el volumen general por defecto, suavizando el ruido con doble filtro, y
+// agregando un slider para que cada quien lo ajuste a su gusto en vez de
+// un volumen fijo. El AudioContext se crea recién al primer click (los
+// navegadores, sobre todo iOS Safari, bloquean audio que no arranque de un
+// gesto real del usuario), y el grafo de nodos se arma una sola vez --
+// después solo se sube/baja el volumen general, no se recrea nada.
+//
+// Nota para probar en iPhone/iPad: si no se escucha nada, lo primero a
+// revisar es que el interruptor físico de silencio (a un costado del
+// celular) no esté activado -- iOS silencia el audio generado por Web
+// Audio (no así, en general, videos/música con controles nativos) cuando
+// el celular está en modo silencioso. Es una limitación del sistema, no
+// algo que se pueda forzar desde la página.
 let audioCtx = null;
 let sonidoNodos = null;
 let sonidoActivo = false;
+let sonidoVolumen = 0.35; // 0-1, controlado por el slider (arranca en 35%, no al máximo)
 
 function crearSonidoAmbiente() {
   const ctx = audioCtx;
@@ -4442,14 +5495,14 @@ function crearSonidoAmbiente() {
   filtro.frequency.value = 700;
   filtro.connect(master);
 
-  // Acorde simple y consonante (A2/E3/A3), muy bajo de volumen -- un
-  // fondo, no una melodía.
+  // Acorde simple y consonante (A2/E3/A3) -- el fondo musical, más
+  // presente que antes para que no quede tapado por el ruido.
   [110, 164.81, 220].forEach(freq => {
     const osc = ctx.createOscillator();
     osc.type = 'sine';
     osc.frequency.value = freq;
     const g = ctx.createGain();
-    g.gain.value = 0.045;
+    g.gain.value = 0.06;
     osc.connect(g);
     g.connect(filtro);
     osc.start();
@@ -4464,8 +5517,11 @@ function crearSonidoAmbiente() {
   lfoGain.connect(filtro.frequency);
   lfo.start();
 
-  // Brown noise filtrado -- el "ruido de estudio" más común (tipo lluvia
-  // suave), generado con un buffer de ruido en vez de un archivo.
+  // Brown noise -- pensado como una textura suave de fondo (tipo lluvia
+  // lejana), no como protagonista. Doble filtro pasa-bajos en cascada (en
+  // vez de uno solo) para que sea un "shhh" redondeado, sin el filo áspero
+  // de un solo filtro suave; un pasa-altos saca el retumbe grave que se
+  // sentía más a "ruido de motor" que a ambiente relajante.
   const bufferSize = 2 * ctx.sampleRate;
   const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
   const data = noiseBuffer.getChannelData(0);
@@ -4474,36 +5530,59 @@ function crearSonidoAmbiente() {
     const blanco = Math.random() * 2 - 1;
     data[i] = (ultimo + 0.02 * blanco) / 1.02;
     ultimo = data[i];
-    data[i] *= 3.5;
+    data[i] *= 2.2;
   }
   const noise = ctx.createBufferSource();
   noise.buffer = noiseBuffer;
   noise.loop = true;
-  const noiseFiltro = ctx.createBiquadFilter();
-  noiseFiltro.type = 'lowpass';
-  noiseFiltro.frequency.value = 500;
+  const noiseAltos = ctx.createBiquadFilter();
+  noiseAltos.type = 'highpass';
+  noiseAltos.frequency.value = 90;
+  const noiseFiltro1 = ctx.createBiquadFilter();
+  noiseFiltro1.type = 'lowpass';
+  noiseFiltro1.frequency.value = 450;
+  const noiseFiltro2 = ctx.createBiquadFilter();
+  noiseFiltro2.type = 'lowpass';
+  noiseFiltro2.frequency.value = 320;
   const noiseGain = ctx.createGain();
-  noiseGain.gain.value = 0.06;
-  noise.connect(noiseFiltro);
-  noiseFiltro.connect(noiseGain);
+  noiseGain.gain.value = 0.035;
+  noise.connect(noiseAltos);
+  noiseAltos.connect(noiseFiltro1);
+  noiseFiltro1.connect(noiseFiltro2);
+  noiseFiltro2.connect(noiseGain);
   noiseGain.connect(master);
   noise.start();
 
   return { master };
 }
 
-function toggleSonidoAmbiente() {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  if (audioCtx.state === 'suspended') audioCtx.resume();
-  if (!sonidoNodos) sonidoNodos = crearSonidoAmbiente();
-
-  sonidoActivo = !sonidoActivo;
-  sonidoNodos.master.gain.cancelScheduledValues(audioCtx.currentTime);
-  sonidoNodos.master.gain.linearRampToValueAtTime(sonidoActivo ? 0.9 : 0, audioCtx.currentTime + 1.2);
-
+async function toggleSonidoAmbiente() {
   const btn = document.getElementById('sonidoAmbienteBtn');
-  btn.textContent = sonidoActivo ? '🔊 Sonido' : '🔇 Sonido';
-  btn.classList.toggle('picked-on', sonidoActivo);
+  const controles = document.getElementById('sonidoAmbienteControles');
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') await audioCtx.resume();
+    if (audioCtx.state !== 'running') throw new Error('audio-bloqueado');
+    if (!sonidoNodos) sonidoNodos = crearSonidoAmbiente();
+
+    sonidoActivo = !sonidoActivo;
+    sonidoNodos.master.gain.cancelScheduledValues(audioCtx.currentTime);
+    sonidoNodos.master.gain.linearRampToValueAtTime(sonidoActivo ? sonidoVolumen : 0, audioCtx.currentTime + 1.2);
+
+    btn.textContent = sonidoActivo ? '🔊 Sonido' : '🔇 Sonido';
+    btn.classList.toggle('picked-on', sonidoActivo);
+    controles.style.display = sonidoActivo ? 'flex' : 'none';
+  } catch (e) {
+    showToast('No se pudo activar el sonido -- en iPhone/iPad revisá que el celular no esté en modo silencioso.');
+  }
+}
+
+function cambiarVolumenSonido(valor) {
+  sonidoVolumen = Math.max(0, Math.min(100, +valor)) / 100;
+  if (sonidoActivo && sonidoNodos && audioCtx) {
+    sonidoNodos.master.gain.cancelScheduledValues(audioCtx.currentTime);
+    sonidoNodos.master.gain.linearRampToValueAtTime(sonidoVolumen, audioCtx.currentTime + 0.1);
+  }
 }
 
 function renderEstudiar() {
@@ -4556,6 +5635,7 @@ go = function(n) {
   guardarExamenActual();
   origGo(n);
   if (n === 0) renderHome();
+  if (n === 12) renderFacultades();
   if (n === 1) renderAnios();
   if (n === 9) renderMateriasDelAnio();
   if (n === 2) renderCatalogo();

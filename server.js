@@ -105,7 +105,7 @@ app.post('/api/fichas', async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
   }
-  const { tema, materiaNombre, libro, seccion, tipo, cantidad } = req.body || {};
+  const { tema, materiaNombre, carrera, libro, seccion, tipo, cantidad } = req.body || {};
   if (!tema) return res.status(400).json({ error: 'Falta el tema.' });
 
   const esMultiple = tipo === 'multiple';
@@ -121,12 +121,12 @@ app.post('/api/fichas', async (req, res) => {
 Respondé ÚNICAMENTE con un JSON válido, sin texto antes ni después, con este formato exacto:
 [{"pregunta": "...", "opciones": ["...", "...", "...", "..."], "correcta": 0}, ...]
 Donde "correcta" es el índice (0 a 3, como NÚMERO, nunca como string entre comillas) de la opción correcta dentro de "opciones".`
-    : `Generá ${n} fichas de estudio (pregunta y respuesta) tipo flashcard sobre este tema, de nivel de examen de grado -- ni trivial ni de sub-especialidad. Las respuestas deben ser concisas (2-4 líneas), precisas y clínicamente correctas. No repitas la misma pregunta de dos formas distintas.
+    : `Generá ${n} fichas de estudio (pregunta y respuesta) tipo flashcard sobre este tema, de nivel de examen de grado -- ni trivial ni de sub-especialidad. Las respuestas deben ser concisas (2-4 líneas) y precisas. No repitas la misma pregunta de dos formas distintas.
 
 Respondé ÚNICAMENTE con un JSON válido, sin texto antes ni después, con este formato exacto:
 [{"pregunta": "...", "respuesta": "..."}, ...]`;
 
-  const prompt = `Sos un tutor de medicina para un estudiante de la carrera de Doctor en Medicina (UDELAR) que está repasando el tema "${tema}" de la materia "${materiaNombre || ''}".
+  const prompt = `Sos un tutor para un estudiante de la carrera de ${carrera || 'grado'} (UDELAR) que está repasando el tema "${tema}" de la materia "${materiaNombre || ''}".
 ${contextoBiblio}
 
 ${consigna}`;
@@ -181,7 +181,7 @@ app.post('/api/resumen', upload.single('archivo'), async (req, res) => {
   }
   texto = texto.slice(0, MAX_CHARS_APUNTE);
 
-  const prompt = `Sos un tutor de medicina para un estudiante de la carrera de Doctor en Medicina (UDELAR). Te paso el contenido de un apunte para que se lo resuma para estudiar.
+  const prompt = `Sos un tutor universitario para un estudiante de grado (UDELAR). Te paso el contenido de un apunte para que se lo resuma para estudiar.
 
 Armá un resumen de estudio organizado en secciones cortas (una línea "## Título de la sección" por cada una, sin usar "#" simple) con los puntos clave en viñetas (líneas que empiecen con "- "). Priorizá definiciones, mecanismos, clasificaciones y datos que suelen tomarse en un examen de grado. Sintetizá, no copies el texto textual. No uses negrita con asteriscos ni ningún otro formato markdown más allá de "##" y "-".
 
@@ -309,7 +309,7 @@ app.post('/api/push/send-reminders', async (req, res) => {
         ? `Te quedan ${n} tema${n > 1 ? 's' : ''} para repasar hoy. No dejes que se acumulen.`
         : 'Estás al día con todo. ¡Seguí así!';
       try {
-        await webpush.sendNotification(sub.subscription, JSON.stringify({ titulo: '🩺 Al Día', mensaje }));
+        await webpush.sendNotification(sub.subscription, JSON.stringify({ titulo: '📚 Al Día', mensaje }));
         enviados++;
         await supabaseAdmin.from('push_subscriptions').update({ ultimo_envio: hoy }).eq('id', sub.id);
       } catch (e) {
