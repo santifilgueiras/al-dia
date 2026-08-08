@@ -5,6 +5,8 @@ const multer = require('multer');
 const { PDFParse } = require('pdf-parse');
 const mammoth = require('mammoth');
 const PDFDocument = require('pdfkit');
+const webpush = require('web-push');
+const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
 const PORT = process.env.PORT || 5173;
@@ -12,6 +14,25 @@ const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-5';
 const SUPABASE_URL = process.env.SUPABASE_URL || '';
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || '';
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+const VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY || '';
+const VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY || '';
+const VAPID_SUBJECT = process.env.VAPID_SUBJECT || '';
+const PUSH_CRON_SECRET = process.env.PUSH_CRON_SECRET || '';
+
+if (VAPID_PUBLIC_KEY && VAPID_PRIVATE_KEY) {
+  webpush.setVapidDetails(VAPID_SUBJECT || 'mailto:sin-configurar@example.com', VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
+}
+
+// Cliente con la service role key -- SOLO se usa acá, del lado del server,
+// para el cron de recordatorios: necesita leer push_subscriptions y
+// app_state de TODOS los usuarios (bypassea RLS a propósito). Nunca se
+// manda al navegador -- el cliente sigue usando la anon key + RLS como
+// siempre, tanto para app_state como para su propia fila de
+// push_subscriptions.
+const supabaseAdmin = SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY
+  ? createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
+  : null;
 // En memoria, nunca se escribe a disco -- el archivo solo vive lo que dura
 // el request.
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 15 * 1024 * 1024 } });
@@ -40,7 +61,7 @@ app.use('/vendor/supabase.js', express.static(
 // todo en un solo lugar, pero se sirven así en vez de hardcodearlas en el
 // HTML para no tener que editar el HTML cada vez que cambian.
 app.get('/api/config', (req, res) => {
-  res.json({ supabaseUrl: SUPABASE_URL, supabaseAnonKey: SUPABASE_ANON_KEY });
+  res.json({ supabaseUrl: SUPABASE_URL, supabaseAnonKey: SUPABASE_ANON_KEY, vapidPublicKey: VAPID_PUBLIC_KEY });
 });
 
 async function llamarClaude(prompt, maxTokens) {
@@ -202,6 +223,111 @@ ${texto}
     }
   });
   doc.end();
+});
+
+// ---- Recordatorio diario (push real) ----
+// El cliente gestiona su PROPIA suscripción directo contra Supabase (anon
+// key + RLS, misma fila que auth.uid()) -- no hace falta un endpoint acá
+// para eso. Lo único que necesita el server es: 1) publicar la clave
+// pública VAPID (ya en /api/config) y 2) este endpoint, que un cron EXTERNO
+// dispara cada 15 min para mandar los push reales -- necesita leer
+// push_subscriptions y app_state de TODOS los usuarios, por eso usa
+// supabaseAdmin (service role) en vez del cliente normal.
+
+function fechaHoyMontevideo() {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Montevideo', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+}
+
+function horaAhoraMontevideo() {
+  return new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Montevideo', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date());
+}
+
+// Redondea "HH:MM" hacia abajo al escalón de 15 min más cercano, para
+// comparar la hora elegida por el usuario contra la hora actual sin
+// depender de que el cron externo pegue justo al minuto exacto.
+function bucket15(hhmm) {
+  const [h, m] = String(hhmm || '00:00').split(':').map(Number);
+  const flooredM = m - (m % 15);
+  return `${String(h).padStart(2, '0')}:${String(flooredM).padStart(2, '0')}`;
+}
+
+// Reimplementación server-side de pendingCountGlobal() del front (mismo
+// criterio: temas de exámenes en curso con calendario armado que no están
+// "firme"). Vive acá porque el server no tiene acceso al estado en memoria
+// del navegador -- solo a la foto guardada en app_state.
+function pendingCountFromEstado(estado) {
+  const examenes = (estado && estado.examenes) || [];
+  const hoy = fechaHoyMontevideo();
+  let n = 0;
+  examenes.forEach((e) => {
+    const rendido = e.ejemplo || e.rendidaManual || (e.fecha && e.fecha < hoy);
+    if (rendido) return;
+    if (!(e.selected && e.selected.length && e.selectedPace)) return;
+    const states = e.states || {};
+    n += e.selected.filter((t) => states[t] !== 'firme').length;
+  });
+  return n;
+}
+
+app.post('/api/push/send-reminders', async (req, res) => {
+  if (!PUSH_CRON_SECRET) return res.status(500).json({ error: 'Falta configurar PUSH_CRON_SECRET en el .env del server.' });
+  const secret = req.get('x-cron-secret') || req.query.secret;
+  if (secret !== PUSH_CRON_SECRET) return res.status(401).json({ error: 'No autorizado.' });
+  if (!supabaseAdmin) return res.status(500).json({ error: 'Falta configurar SUPABASE_SERVICE_ROLE_KEY en el .env del server.' });
+  if (!VAPID_PUBLIC_KEY || !VAPID_PRIVATE_KEY) return res.status(500).json({ error: 'Faltan las claves VAPID en el .env del server.' });
+
+  const hoy = fechaHoyMontevideo();
+  const bucketAhora = bucket15(horaAhoraMontevideo());
+  // ?forzar=1 -- para probar a mano con curl sin esperar el bucket de 15
+  // min ni el límite de "una vez por día". Igual exige el secreto del cron.
+  const forzar = req.query.forzar === '1';
+
+  try {
+    let query = supabaseAdmin.from('push_subscriptions').select('*').eq('activo', true);
+    if (!forzar) query = query.or(`ultimo_envio.is.null,ultimo_envio.neq.${hoy}`);
+    const { data: subs, error } = await query;
+    if (error) throw error;
+
+    const candidatas = forzar ? (subs || []) : (subs || []).filter((s) => bucket15(s.hora) === bucketAhora);
+    if (!candidatas.length) return res.json({ enviados: 0, revisadas: 0 });
+
+    // Una sola consulta de app_state por usuario único entre las candidatas
+    // -- evita pedir el mismo estado varias veces si alguien tiene la app
+    // instalada en más de un dispositivo.
+    const userIds = [...new Set(candidatas.map((s) => s.user_id))];
+    const { data: estados, error: errEstados } = await supabaseAdmin
+      .from('app_state')
+      .select('user_id, estado')
+      .in('user_id', userIds);
+    if (errEstados) throw errEstados;
+    const estadoPorUsuario = new Map((estados || []).map((r) => [r.user_id, r.estado]));
+
+    let enviados = 0;
+    for (const sub of candidatas) {
+      const n = pendingCountFromEstado(estadoPorUsuario.get(sub.user_id));
+      const mensaje = n > 0
+        ? `Te quedan ${n} tema${n > 1 ? 's' : ''} para repasar hoy. No dejes que se acumulen.`
+        : 'Estás al día con todo. ¡Seguí así!';
+      try {
+        await webpush.sendNotification(sub.subscription, JSON.stringify({ titulo: '🩺 Al Día', mensaje }));
+        enviados++;
+        await supabaseAdmin.from('push_subscriptions').update({ ultimo_envio: hoy }).eq('id', sub.id);
+      } catch (e) {
+        if (e.statusCode === 404 || e.statusCode === 410) {
+          // Suscripción vencida/inválida (el usuario desinstaló, borró
+          // datos del navegador, etc.) -- se limpia sola en vez de
+          // reintentar para siempre.
+          await supabaseAdmin.from('push_subscriptions').delete().eq('id', sub.id);
+        } else {
+          console.error('Error mandando push', sub.id, e.statusCode, e.body);
+        }
+      }
+    }
+    res.json({ enviados, revisadas: candidatas.length });
+  } catch (e) {
+    console.error('Error en send-reminders', e);
+    res.status(500).json({ error: 'Error inesperado disparando recordatorios.' });
+  }
 });
 
 // Multer tira sus propios errores (ej. archivo muy pesado) antes de llegar

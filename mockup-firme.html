@@ -625,9 +625,9 @@
       </div>
       <div id="recordatorioConfig" style="display:none; margin-top:12px;">
         <label style="display:block; font-size:12px; color:var(--muted); font-weight:700; margin-bottom:6px;">Hora del recordatorio</label>
-        <input type="time" id="recordatorioHora" value="20:00" onchange="renderRecordatorioPreview()" style="padding:9px 12px; border:1px solid var(--line); border-radius:10px; font-family:inherit; font-size:13.5px;">
+        <input type="time" id="recordatorioHora" value="20:00" onchange="onCambiaHoraRecordatorio()" style="padding:9px 12px; border:1px solid var(--line); border-radius:10px; font-family:inherit; font-size:13.5px;">
         <div class="notif-preview" id="recordatorioPreview"></div>
-        <div style="color:var(--muted); font-size:10.5px; margin-top:8px;">Vista previa del flujo -- este mockup no manda notificaciones de verdad.</div>
+        <div style="color:var(--muted); font-size:10.5px; margin-top:8px;">Notificación real -- necesita que le des permiso al navegador. En iPhone/iPad solo funciona si instalaste la app a la pantalla de inicio.</div>
       </div>
     </div>
     <div class="spacer"></div>
@@ -761,7 +761,6 @@
   <div class="toast" id="toast"></div>
 </div>
 </div>
-<div class="caption">Mockup clickeable — no guarda datos reales, es para validar el flujo.</div>
 
 <script>
 // Catálogo organizado por año de la carrera -> materias de ese año -> módulos
@@ -3974,17 +3973,97 @@ function renderRacha() {
   el.textContent = `${racha} día${racha === 1 ? '' : 's'} seguido${racha === 1 ? '' : 's'}`;
 }
 
-// ---- Recordatorio diario (S6) ----
-// Es un mockup sin backend, así que esto no manda ninguna notificación de
-// verdad -- solo simula el FLUJO (hora + mensaje) para poder mostrarlo y
-// discutirlo, como pedía la revisión. El mensaje de la vista previa se arma
-// con datos reales (pendingCountGlobal()), no un texto fijo, para que se
-// sienta como lo que realmente diría un día cualquiera.
+// ---- Recordatorio diario (S6) -- push real ----
+// El estado real de si el push está activo vive en el NAVEGADOR (la
+// suscripción de PushManager), no se puede sincronizar entre dispositivos
+// -- cada uno necesita su propio permiso/suscripción. Por eso
+// renderRecordatorio() chequea la suscripción real cada vez que se abre
+// esta pantalla en vez de confiar en un flag guardado. `recordatorioActivo`
+// se sigue guardando en app_state solo como dato informativo (compatibilidad
+// con el estado ya guardado), no define el comportamiento.
 let recordatorioActivo = false;
+let vapidPublicKey = '';
 
-function toggleRecordatorio() {
-  recordatorioActivo = !recordatorioActivo;
-  renderRecordatorio();
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+  const rawData = atob(base64);
+  return Uint8Array.from([...rawData].map((c) => c.charCodeAt(0)));
+}
+
+async function hayPushActivo() {
+  if (!('serviceWorker' in navigator) || !('PushManager' in window)) return false;
+  try {
+    const reg = await navigator.serviceWorker.ready;
+    const sub = await reg.pushManager.getSubscription();
+    return !!sub;
+  } catch (e) {
+    return false;
+  }
+}
+
+async function activarRecordatorio() {
+  if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+    throw new Error('Este navegador no soporta notificaciones push.');
+  }
+  if (!vapidPublicKey) throw new Error('Falta configurar las notificaciones en el server.');
+  const permiso = await Notification.requestPermission();
+  if (permiso !== 'granted') throw new Error('Necesitás dar permiso de notificaciones para activar el recordatorio.');
+
+  const reg = await navigator.serviceWorker.ready;
+  let sub = await reg.pushManager.getSubscription();
+  if (!sub) {
+    sub = await reg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(vapidPublicKey),
+    });
+  }
+  const hora = document.getElementById('recordatorioHora').value || '20:00';
+  const { error } = await supabaseClient.from('push_subscriptions').upsert(
+    { user_id: sesionUsuario.id, endpoint: sub.endpoint, subscription: sub.toJSON(), hora, activo: true, ultimo_envio: null },
+    { onConflict: 'endpoint' }
+  );
+  if (error) throw error;
+  showToast('Recordatorio activado');
+}
+
+async function desactivarRecordatorio() {
+  const reg = await navigator.serviceWorker.ready;
+  const sub = await reg.pushManager.getSubscription();
+  if (sub) {
+    await supabaseClient.from('push_subscriptions').delete().eq('endpoint', sub.endpoint);
+    await sub.unsubscribe();
+  }
+  showToast('Recordatorio desactivado');
+}
+
+async function toggleRecordatorio() {
+  const btn = document.getElementById('recordatorioToggle');
+  btn.disabled = true;
+  try {
+    const activarloAhora = !(await hayPushActivo());
+    if (activarloAhora) await activarRecordatorio();
+    else await desactivarRecordatorio();
+    marcarEstadoSucio();
+  } catch (e) {
+    console.error('Error con el recordatorio', e);
+    showToast(e.message || 'No se pudo cambiar el recordatorio.');
+  } finally {
+    btn.disabled = false;
+    await renderRecordatorio();
+  }
+}
+
+// Si cambia la hora mientras el recordatorio ya está activo, actualiza la
+// fila directamente -- no hace falta desactivar/reactivar.
+async function onCambiaHoraRecordatorio() {
+  renderRecordatorioPreview();
+  if (!(await hayPushActivo())) return;
+  const reg = await navigator.serviceWorker.ready;
+  const sub = await reg.pushManager.getSubscription();
+  if (!sub) return;
+  const hora = document.getElementById('recordatorioHora').value || '20:00';
+  await supabaseClient.from('push_subscriptions').update({ hora }).eq('endpoint', sub.endpoint);
 }
 
 function renderRecordatorioPreview() {
@@ -3998,10 +4077,11 @@ function renderRecordatorioPreview() {
   box.innerHTML = `<div class="notif-title">🩺 Al Día · ${hora}</div>${mensaje}`;
 }
 
-function renderRecordatorio() {
+async function renderRecordatorio() {
   const toggle = document.getElementById('recordatorioToggle');
   const config = document.getElementById('recordatorioConfig');
   if (!toggle) return;
+  recordatorioActivo = await hayPushActivo();
   toggle.textContent = recordatorioActivo ? 'Activado' : 'Desactivado';
   toggle.classList.toggle('picked-on', recordatorioActivo);
   config.style.display = recordatorioActivo ? 'block' : 'none';
@@ -4639,6 +4719,7 @@ async function iniciarApp() {
       return;
     }
     supabaseClient = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
+    vapidPublicKey = cfg.vapidPublicKey || '';
 
     const { data: { session } } = await supabaseClient.auth.getSession();
     if (session) {

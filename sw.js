@@ -67,3 +67,40 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
+
+// Recordatorio diario: el server manda el payload ya armado (título +
+// mensaje con el conteo real de temas pendientes) -- el service worker solo
+// lo muestra. Si el payload no es JSON válido (no debería pasar) cae a un
+// mensaje genérico en vez de romper.
+self.addEventListener('push', (event) => {
+  let data = { titulo: '🩺 Al Día', mensaje: 'Tenés temas pendientes para repasar hoy.' };
+  try {
+    if (event.data) data = { ...data, ...event.data.json() };
+  } catch (e) { /* usa el default de arriba */ }
+
+  event.waitUntil(
+    self.registration.showNotification(data.titulo, {
+      body: data.mensaje,
+      icon: '/icons/icon-192.png',
+      badge: '/icons/icon-192.png',
+      tag: 'recordatorio-diario',
+      renotify: true,
+      data: { url: '/mockup-firme.html' },
+    })
+  );
+});
+
+// Al tocar la notificación: si ya hay una pestaña de la app abierta, la
+// enfoca en vez de abrir una nueva.
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const url = (event.notification.data && event.notification.data.url) || '/mockup-firme.html';
+  event.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
+      for (const client of clientList) {
+        if (client.url.includes('mockup-firme.html') && 'focus' in client) return client.focus();
+      }
+      if (self.clients.openWindow) return self.clients.openWindow(url);
+    })
+  );
+});
