@@ -379,10 +379,13 @@
     .cal-cell .cal-daynum { font-size: 12.5px; }
     /* En vez de aspect-ratio (que en compu, con celdas anchas, las hacía
        igual de altas -> 6 filas se iban de la pantalla y había que hacer
-       scroll) se calcula la altura para que el mes ENTERO (hasta 6 filas)
-       entre en la altura visible, restando lo que ya ocupan el título, las
-       estadísticas y el header de días. */
-    .cal-cell { aspect-ratio: unset; height: calc((100vh - 330px) / 6); min-height: 56px; }
+       scroll) la altura la calcula ajustarAlturaCalendario() en JS a partir
+       de lo que mide REALMENTE lo que hay arriba y abajo del calendario (no
+       un número fijo adivinado -- eso fue justo lo que se rompía en iPad
+       horizontal, donde el calendario no entraba entero, y en compu, donde
+       tapaba la agenda del día seleccionado). --cal-cell-h la pone esa
+       función; el calc de acá es solo el fallback antes de que corra JS. */
+    .cal-cell { aspect-ratio: unset; height: var(--cal-cell-h, calc((100vh - 330px) / 6)); min-height: 44px; }
   }
   .detail-title { font-size: 19px; font-weight: 800; margin: 10px 0 2px; }
   .detail-sub { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
@@ -4769,7 +4772,59 @@ function renderCalendario() {
     : 'Agregá un examen y elegí sus temas para armar el calendario.';
   renderCalGrid();
   renderCalAgenda();
+  ajustarAlturaCalendario();
 }
+
+// Calcula la altura real de cada celda del calendario a partir de lo que
+// mide de verdad la pantalla (no un número fijo adivinado -- ver comentario
+// en el CSS de .cal-cell). Deja lugar reservado abajo para que el cartel de
+// próximos exámenes, el título del día Y el primer tema de la agenda asomen
+// sin scroll. Solo aplica en el layout ancho (>=860px, que incluye compu Y
+// iPad horizontal); en celular angosto las celdas siguen usando aspect-ratio.
+function ajustarAlturaCalendario() {
+  const screenEl = document.querySelector('.screen[data-screen="4"]');
+  if (!screenEl || !screenEl.classList.contains('active')) return;
+  if (!window.matchMedia('(min-width: 860px)').matches) {
+    screenEl.style.removeProperty('--cal-cell-h');
+    return;
+  }
+  requestAnimationFrame(() => {
+    const grid = document.getElementById('calGrid');
+    if (!grid) return;
+    const screenRect = screenEl.getBoundingClientRect();
+    const gridRect = grid.getBoundingClientRect();
+    const gridTop = gridRect.top - screenRect.top;
+    const numRows = Math.max(1, Math.ceil(grid.children.length / 7));
+    const rowGaps = (numRows - 1) * 4; // el mismo gap:4px de .cal-grid en CSS
+    // Todo lo que va DESPUÉS de la grilla (cartel de exámenes, título del
+    // día, primer tema de la agenda) se mide directo de su posición real en
+    // el DOM en vez de sumar paddings/márgenes a mano -- así no hace falta
+    // perseguir cada margen nuevo si el diseño de esa zona cambia. Esta
+    // distancia no depende de la altura de la celda (son bloques debajo de
+    // la grilla), así que es válido medirla aunque la grilla todavía tenga
+    // el alto de un render anterior.
+    const box = document.getElementById('calAgenda');
+    const bottomAnchor = (box && box.firstElementChild)
+      || document.getElementById('calAgendaHead')
+      || document.getElementById('calExamCaption');
+    const belowGridHeight = bottomAnchor
+      ? Math.max(0, bottomAnchor.getBoundingClientRect().bottom - gridRect.bottom)
+      : 90;
+    const bottomNav = screenEl.querySelector('.bottom-nav');
+    const bottomNavVisible = bottomNav && getComputedStyle(bottomNav).display !== 'none';
+    const reservedBelow = belowGridHeight + (bottomNavVisible ? bottomNav.offsetHeight : 0) + 16;
+    const available = screenEl.clientHeight - gridTop - reservedBelow - rowGaps;
+    const cellHeight = Math.max(44, Math.min(92, Math.floor(available / numRows)));
+    screenEl.style.setProperty('--cal-cell-h', cellHeight + 'px');
+  });
+}
+
+let _resizeCalTimeout = null;
+window.addEventListener('resize', () => {
+  clearTimeout(_resizeCalTimeout);
+  _resizeCalTimeout = setTimeout(ajustarAlturaCalendario, 120);
+});
+window.addEventListener('orientationchange', () => setTimeout(ajustarAlturaCalendario, 200));
 
 // El estado real del tema (firme/flojo/nuevo) pesa más que el tipo de
 // acción agendada para decidir el color de la celda -- así un día que ya
