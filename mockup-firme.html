@@ -399,6 +399,12 @@
   .state-btn.firme-btn:hover, .state-btn.firme-btn.picked { border-color: var(--firme); background: var(--firme-soft); }
   .bottom-nav {
     display: flex; border-top: 1px solid var(--line); background: #fff;
+    /* Pegado siempre abajo del área visible, aunque el contenido de arriba
+       (ej. el calendario + la agenda del día) sea más alto que la pantalla
+       -- así nunca hay que bajar para llegar a Repaso/Estudiar/Resumen.
+       margin-top:auto además lo manda al fondo cuando el contenido es corto
+       (junto con .spacer, que ya hacía ese trabajo antes de este fix). */
+    position: sticky; bottom: 0; margin-top: auto; flex-shrink: 0; z-index: 1;
   }
   .nav-item { flex: 1; text-align: center; padding: 10px 0 12px; font-size: 10.5px; color: var(--muted); cursor: pointer; }
   .nav-item .ic { display: block; font-size: 16px; margin-bottom: 2px; }
