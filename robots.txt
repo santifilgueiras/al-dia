@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /mockup-firme.html
+Disallow: /api/
+
+Sitemap: https://al-dia-03ew.onrender.com/sitemap.xml

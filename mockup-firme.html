@@ -240,6 +240,34 @@
   .checkin-card h3 { margin: 0 0 8px; font-size: 16.5px; font-weight: 800; color: var(--ink); }
   .checkin-card p { color: var(--muted); font-size: 13px; line-height: 1.45; margin: 0 0 18px; }
   .checkin-btns { display: flex; flex-direction: column; gap: 8px; }
+  .install-banner {
+    background: #fff; border: 1.5px solid var(--accent-soft); border-radius: 16px; padding: 14px 16px;
+    margin: 4px 0 4px; text-align: left; display: none;
+  }
+  .install-banner.show { display: block; }
+  .install-banner-row { display: flex; align-items: flex-start; gap: 10px; }
+  .install-banner-icon { font-size: 22px; line-height: 1; }
+  .install-banner-text { flex: 1; font-size: 12.5px; color: var(--ink); line-height: 1.4; }
+  .install-banner-text b { display: block; font-size: 13.5px; margin-bottom: 2px; }
+  .install-banner button { margin-top: 10px; width: auto; padding: 8px 14px; font-size: 12.5px; }
+  .install-guide-overlay {
+    position: absolute; inset: 0; background: rgba(30,55,68,.55);
+    display: none; align-items: center; justify-content: center; z-index: 65; padding: 20px;
+  }
+  .install-guide-overlay.show { display: flex; }
+  .install-guide-card {
+    background: #fff; border-radius: 20px; padding: 22px 20px; width: 100%;
+    max-height: 85%; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,.22);
+  }
+  .install-guide-card h3 { margin: 0 0 4px; font-size: 16.5px; font-weight: 800; color: var(--ink); }
+  .install-guide-card .sub { margin: 0 0 18px; }
+  .install-step { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
+  .install-step-icon {
+    flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px; background: var(--nuevo-soft);
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .install-step-text { font-size: 13px; color: var(--ink); line-height: 1.45; padding-top: 5px; }
+  .install-step-text b { color: var(--accent); }
   .auth-loading {
     position: absolute; inset: 0; background: var(--frame); z-index: 70;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -430,6 +458,16 @@
       <div class="deco-icons">📚 🧠 🎓 ✏️ 📝</div>
     </div>
     <button class="btn" id="homeCta" style="margin-top:28px;" onclick="irACalendarioDesdeHome()">📚 Empezar</button>
+    <div class="install-banner" id="installBanner" style="margin-top:14px;">
+      <div class="install-banner-row">
+        <div class="install-banner-icon">📲</div>
+        <div class="install-banner-text">
+          <b>Instalá Al Día en tu celular</b>
+          <span id="installBannerTexto"></span>
+        </div>
+      </div>
+      <button class="btn secondary" id="installBannerBtn" onclick="accionInstalar()"></button>
+    </div>
     <div class="spacer"></div>
   </div>
 
@@ -496,6 +534,27 @@
         <button class="btn danger" onclick="confirmarBorrarMateria()">Borrar</button>
         <button class="btn secondary" onclick="cancelarBorrarMateria()">Cancelar</button>
       </div>
+    </div>
+  </div>
+
+  <!-- Overlay: guía visual para instalar en iPhone/iPad (Safari no tiene botón nativo de instalar) -->
+  <div class="install-guide-overlay" id="installGuideOverlay" onclick="if(event.target===this) cerrarGuiaInstalar()">
+    <div class="install-guide-card">
+      <h3>📲 Instalar Al Día</h3>
+      <p class="sub" style="margin-bottom:18px;">En 3 pasos, sin usar espacio de más -- queda como cualquier otra app en tu pantalla de inicio.</p>
+      <div class="install-step">
+        <div class="install-step-icon">⬆️</div>
+        <div class="install-step-text">Tocá el ícono <b>Compartir</b> de Safari (la flechita hacia arriba en un cuadrado) -- está abajo del todo si estás en el iPhone, o arriba a la derecha si estás en el iPad.</div>
+      </div>
+      <div class="install-step">
+        <div class="install-step-icon">📃</div>
+        <div class="install-step-text">Deslizá hacia abajo en la lista de opciones y elegí <b>"Agregar a inicio"</b>.</div>
+      </div>
+      <div class="install-step">
+        <div class="install-step-icon">✅</div>
+        <div class="install-step-text">Tocá <b>"Agregar"</b> arriba a la derecha -- listo, ya te queda el ícono de Al Día en tu pantalla de inicio.</div>
+      </div>
+      <button class="btn" onclick="cerrarGuiaInstalar()">Entendido</button>
     </div>
   </div>
 
@@ -755,9 +814,21 @@
     <div class="field">
       <select id="fichasTemaSelect"></select>
     </div>
+    <div class="field">
+      <label>📎 Opcional: subí tu propio apunte (en vez de la bibliografía general)</label>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <input type="file" id="fichasArchivoInput" accept=".pdf,.doc,.docx" onchange="actualizarBotonBorrarArchivo('fichasArchivoInput','fichasArchivoBorrarBtn')" style="flex:1;">
+        <button type="button" id="fichasArchivoBorrarBtn" class="btn secondary" style="display:none; margin-top:0; width:auto; padding:8px 12px;" onclick="borrarArchivo('fichasArchivoInput','fichasArchivoBorrarBtn')" title="Sacar el archivo y usar la bibliografía general">🗑️</button>
+      </div>
+      <p class="sub" style="margin:4px 0 0;">Si subís un PDF o Word, las fichas se basan en TU apunte en vez del libro de cátedra.</p>
+    </div>
     <div class="tabs" id="fichasTipoTabs">
       <div class="tab active" data-tipo="normal" onclick="seleccionarTipoFicha('normal')">📝 Normal</div>
       <div class="tab" data-tipo="multiple" onclick="seleccionarTipoFicha('multiple')">☑️ Opción múltiple</div>
+    </div>
+    <div class="field" style="display:flex; align-items:center; gap:8px;">
+      <input type="checkbox" id="fichasBusquedaCheckbox" style="width:auto;">
+      <label for="fichasBusquedaCheckbox" style="margin:0; font-weight:normal;">🔎 Buscar parciales/exámenes anteriores para calibrar el estilo (más lento)</label>
     </div>
     <div class="field">
       <label>Cantidad de fichas</label>
@@ -775,7 +846,10 @@
     <h2>Resúmenes de apuntes</h2>
     <p class="sub" style="margin-top:-10px;">Subí un PDF o Word (.docx) y la IA te descarga un PDF con el resumen para repasar.</p>
     <div class="field">
-      <input type="file" id="resumenFileInput" accept=".pdf,.doc,.docx">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <input type="file" id="resumenFileInput" accept=".pdf,.doc,.docx" onchange="actualizarBotonBorrarArchivo('resumenFileInput','resumenArchivoBorrarBtn')" style="flex:1;">
+        <button type="button" id="resumenArchivoBorrarBtn" class="btn secondary" style="display:none; margin-top:0; width:auto; padding:8px 12px;" onclick="borrarArchivo('resumenFileInput','resumenArchivoBorrarBtn')" title="Sacar el archivo">🗑️</button>
+      </div>
     </div>
     <button class="btn" id="resumenGenerarBtn" onclick="generarResumen()">📄 Resumir y descargar PDF</button>
     <div id="resumenBox"></div>
@@ -4978,6 +5052,9 @@ function confirmarBorrarMateria() {
   renderExamenes();
   updateBadges();
   if (e) showToast(`${nombreCorto(e.materiaNombre)} borrada`);
+  // Un borrado es destructivo -- no vale la pena esperar el guardado
+  // periódico de 15s ni a que la app pase a segundo plano, se guarda ya.
+  guardarEstadoSiHaceFalta();
 }
 
 // Exámenes (S8): "En curso" muestra cada examen con fecha y progreso, y deja
@@ -5256,6 +5333,19 @@ function renderTimer() {
   document.getElementById('timerStartBtn').textContent = timerCorriendo ? '⏸️ Pausar' : '▶️ Empezar';
 }
 
+// Compartido por los inputs de archivo de fichas y resúmenes -- muestra/
+// oculta la basurita para poder sacar el archivo elegido y volver a usar la
+// bibliografía general (fichas) o simplemente cancelar la subida (resumen).
+function actualizarBotonBorrarArchivo(inputId, btnId) {
+  const input = document.getElementById(inputId);
+  document.getElementById(btnId).style.display = input.files.length ? 'inline-block' : 'none';
+}
+
+function borrarArchivo(inputId, btnId) {
+  document.getElementById(inputId).value = '';
+  document.getElementById(btnId).style.display = 'none';
+}
+
 // ---- Fichas de repaso generadas por IA ----
 // Llama al server local (server.js), que a su vez llama a la API de Claude
 // -- la API key nunca viaja al navegador, se queda en el server. Reutiliza
@@ -5326,17 +5416,29 @@ async function generarFichas() {
   const t = TEXTOS[item.tema];
   const cantidad = +document.getElementById('fichasCantidadSelect').value;
   const carrera = facultadDe(document.getElementById('fichasFacultadSelect').value).carrera;
+  const archivo = document.getElementById('fichasArchivoInput').files[0];
+  if (archivo) {
+    const ext = archivo.name.split('.').pop().toLowerCase();
+    if (!['pdf', 'doc', 'docx'].includes(ext)) { showToast('El apunte debe ser PDF o Word (.doc/.docx)'); return; }
+  }
+  const conBusqueda = document.getElementById('fichasBusquedaCheckbox').checked;
   const btn = document.getElementById('fichasGenerarBtn');
   const box = document.getElementById('fichasBox');
   btn.disabled = true;
-  btn.textContent = '⏳ Generando...';
+  btn.textContent = archivo ? '⏳ Leyendo tu apunte...' : (conBusqueda ? '⏳ Buscando parciales y generando...' : '⏳ Generando...');
   box.innerHTML = '';
   try {
-    const r = await fetch('/api/fichas', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ tema: item.tema, materiaNombre: item.materiaNombre, carrera, libro: t && t.libro, seccion: t && t.seccion, tipo: fichasTipo, cantidad }),
-    });
+    const form = new FormData();
+    form.append('tema', item.tema);
+    form.append('materiaNombre', item.materiaNombre);
+    form.append('carrera', carrera);
+    if (t && t.libro) form.append('libro', t.libro);
+    if (t && t.seccion) form.append('seccion', t.seccion);
+    form.append('tipo', fichasTipo);
+    form.append('cantidad', cantidad);
+    form.append('conBusqueda', conBusqueda);
+    if (archivo) form.append('archivo', archivo);
+    const r = await fetch('/api/fichas', { method: 'POST', body: form });
     const data = await r.json();
     if (!r.ok) throw new Error(data.error || 'Error generando las fichas');
     // Number(...) porque la IA a veces manda "correcta" como string ("0")
@@ -5845,6 +5947,64 @@ function mostrarPantallaAuth() {
   document.getElementById('authLoading').style.display = 'none';
   go(11);
 }
+
+// ---- Instalación de la PWA ----
+// Android/Chrome expone un evento para disparar el prompt nativo de instalar
+// con un solo toque. Safari en iOS/iPadOS NO tiene esa API -- ahí no hay
+// forma de saltarse "Compartir -> Agregar a inicio", así que se muestra una
+// guía visual en vez de un botón que no puede existir.
+let deferredInstallPrompt = null;
+const esIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+function appYaInstalada() {
+  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+}
+
+function renderInstallBanner() {
+  const banner = document.getElementById('installBanner');
+  if (!banner) return;
+  if (appYaInstalada()) { banner.classList.remove('show'); return; }
+  const texto = document.getElementById('installBannerTexto');
+  const btn = document.getElementById('installBannerBtn');
+  if (esIOS) {
+    texto.textContent = 'En Safari hay que hacerlo a mano en 3 pasos -- te mostramos cómo.';
+    btn.textContent = 'Ver cómo instalarla';
+    banner.classList.add('show');
+  } else if (deferredInstallPrompt) {
+    texto.textContent = 'Un toque y queda como cualquier app en tu celular.';
+    btn.textContent = '📲 Instalar ahora';
+    banner.classList.add('show');
+  } else {
+    banner.classList.remove('show'); // Android sin prompt disponible todavía, o desktop -- no molestamos
+  }
+}
+
+async function accionInstalar() {
+  if (esIOS) { abrirGuiaInstalar(); return; }
+  if (!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  const { outcome } = await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  if (outcome === 'accepted') document.getElementById('installBanner').classList.remove('show');
+}
+
+function abrirGuiaInstalar() {
+  document.getElementById('installGuideOverlay').classList.add('show');
+}
+function cerrarGuiaInstalar() {
+  document.getElementById('installGuideOverlay').classList.remove('show');
+}
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  renderInstallBanner();
+});
+window.addEventListener('appinstalled', () => {
+  deferredInstallPrompt = null;
+  renderInstallBanner();
+});
+renderInstallBanner();
 
 async function iniciarApp() {
   try {

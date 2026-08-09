@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Al Día — estudio con repaso espaciado</title>
+<meta name="description" content="App gratis de estudio con calendario de repaso espaciado para estudiantes de Medicina y Psicología de la UDELAR. Fichas generadas por IA, seguimiento de progreso por tema y recordatorios -- se instala directo desde el navegador.">
+<meta name="google-site-verification" content="0Wb6FI3aq5ix_NZnd7XXWyGXdfVEd47w6R9y61L20x8" />
+<link rel="canonical" href="https://al-dia-03ew.onrender.com/">
+
+<!-- Open Graph -- para que se vea bien al compartir el link por WhatsApp/redes -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Al Día — estudio con repaso espaciado">
+<meta property="og:description" content="Calendario de repaso espaciado y fichas generadas por IA para estudiantes de Medicina y Psicología de la UDELAR. Gratis, se instala desde el navegador.">
+<meta property="og:url" content="https://al-dia-03ew.onrender.com/">
+<meta property="og:image" content="https://al-dia-03ew.onrender.com/icons/icon-512.png">
+<meta property="og:locale" content="es_UY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Al Día — estudio con repaso espaciado">
+<meta name="twitter:description" content="Calendario de repaso espaciado y fichas generadas por IA para estudiantes de Medicina y Psicología de la UDELAR.">
+<meta name="twitter:image" content="https://al-dia-03ew.onrender.com/icons/icon-512.png">
+
+<meta name="theme-color" content="#4f9dd6">
+<link rel="icon" href="/icons/icon-512.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-1: #eaf6fb;
+    --bg-2: #eafaf1;
+    --ink: #2b4152;
+    --muted: #74909f;
+    --accent: #4f9dd6;
+    --accent-soft: #e6f3fb;
+    --line: #dfeaee;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: 'Nunito', sans-serif; color: var(--ink);
+    background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
+    min-height: 100dvh;
+  }
+  .wrap { max-width: 480px; margin: 0 auto; padding: 40px 22px 60px; }
+  .logo {
+    width: 76px; height: 76px; border-radius: 22px; margin: 0 auto 18px;
+    background: linear-gradient(135deg, #6fc3e0, #58c896);
+    display: flex; align-items: center; justify-content: center; font-size: 38px;
+    box-shadow: 0 12px 24px rgba(79,157,214,.28);
+  }
+  h1 { text-align: center; font-size: 30px; font-weight: 800; margin: 0 0 8px; }
+  .tagline { text-align: center; color: var(--muted); font-size: 15px; line-height: 1.5; margin: 0 0 30px; }
+  .deco-icons { text-align: center; font-size: 22px; letter-spacing: 8px; margin-bottom: 34px; opacity: .85; }
+  .cta {
+    display: block; width: 100%; text-align: center; text-decoration: none;
+    background: linear-gradient(135deg, #6fc3e0, #58c896); color: #fff;
+    font-weight: 800; font-size: 16px; padding: 16px; border-radius: 16px;
+    box-shadow: 0 10px 22px rgba(88,200,150,.32);
+  }
+  .install-note {
+    text-align: center; font-size: 12px; color: var(--muted); margin: 12px 0 40px;
+  }
+  .features { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+  .feature {
+    display: flex; gap: 14px; align-items: flex-start; background: #fff;
+    border-radius: 16px; padding: 16px; border: 1px solid var(--line);
+  }
+  .feature-icon {
+    flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft);
+    display: flex; align-items: center; justify-content: center; font-size: 21px;
+  }
+  .feature-text b { display: block; font-size: 14.5px; margin-bottom: 2px; }
+  .feature-text span { font-size: 13px; color: var(--muted); line-height: 1.4; }
+  .carreras {
+    background: #fff; border-radius: 16px; padding: 18px; border: 1px solid var(--line);
+    text-align: center; margin-bottom: 30px;
+  }
+  .carreras b { display: block; font-size: 14.5px; margin-bottom: 6px; }
+  .carreras span { font-size: 13px; color: var(--muted); }
+  footer { text-align: center; font-size: 11.5px; color: var(--muted); margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">📚</div>
+  <h1>Al Día</h1>
+  <p class="tagline">Organizá lo que tenés que estudiar y decile para cuándo es el examen. Armamos un calendario día por día que programa cuándo repasar cada tema, para que no se te olvide nada.</p>
+  <div class="deco-icons">📚 🧠 🎓 ✏️ 📝</div>
+
+  <a class="cta" href="/mockup-firme.html">Empezar →</a>
+  <p class="install-note">Se instala directo desde el navegador -- en Android es un toque, en iPhone/iPad te guiamos paso a paso una vez adentro.</p>
+
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">📅</div>
+      <div class="feature-text"><b>Calendario de repaso espaciado</b><span>No es "leer una vez" -- programa cuándo volver a cada tema según cómo te fue la última vez.</span></div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🧠</div>
+      <div class="feature-text"><b>Fichas generadas por IA</b><span>Preguntas y respuestas (o de opción múltiple) para autoevaluarte, ancladas a la bibliografía real de cada tema.</span></div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📊</div>
+      <div class="feature-text"><b>Seguimiento objetivo</b><span>Marcá cada tema como firme, flojo o nuevo -- el sistema te dice qué falta, no vos a ojo.</span></div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🔔</div>
+      <div class="feature-text"><b>Recordatorios reales</b><span>Notificaciones push para que no se te acumulen los temas sin repasar.</span></div>
+    </div>
+  </div>
+
+  <div class="carreras">
+    <b>Catálogo completo</b>
+    <span>25 Unidades Curriculares de Medicina y todas las materias de Psicología (UDELAR), con bibliografía real por tema.</span>
+  </div>
+
+  <footer>Hecho para estudiantes de la UDELAR, por un estudiante.</footer>
+</div>
+</body>
+</html>

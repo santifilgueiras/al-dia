@@ -88,3 +88,30 @@ drop policy if exists "delete propia" on public.push_subscriptions;
 create policy "delete propia"
   on public.push_subscriptions for delete
   using (auth.uid() = user_id);
+
+-- Cache COMPARTIDA de fichas generadas por IA (agregado para bajar el costo
+-- de la API key de Santiago). La primera vez que se pide un tema/tipo/
+-- cantidad/con-búsqueda, se guarda acá; la próxima persona que pida
+-- exactamente lo mismo recibe la copia guardada sin volver a llamar a
+-- Claude. Los nombres de tema son globales y únicos en el catálogo (ya
+-- verificado sin duplicados entre Medicina y Psicología), así que alcanza
+-- como clave junto con tipo/cantidad/con_busqueda. Nunca se cachean fichas
+-- generadas a partir de un apunte propio subido por un estudiante (ese
+-- contenido es único de esa persona, no tiene sentido compartirlo).
+create table if not exists public.fichas_cache (
+  id uuid primary key default gen_random_uuid(),
+  tema text not null,
+  materia_nombre text,
+  tipo text not null default 'normal',
+  cantidad int not null,
+  con_busqueda boolean not null default false,
+  fichas jsonb not null,
+  created_at timestamptz not null default now(),
+  unique (tema, tipo, cantidad, con_busqueda)
+);
+
+-- RLS activado pero SIN políticas: nadie con la anon key (pública, vive en
+-- el navegador) puede leer ni escribir esta tabla directo. Solo el server
+-- accede, con SUPABASE_SERVICE_ROLE_KEY (bypassea RLS a propósito), igual
+-- que con el cron de push.
+alter table public.fichas_cache enable row level security;

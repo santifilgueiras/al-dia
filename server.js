@@ -12,6 +12,10 @@ const app = express();
 const PORT = process.env.PORT || 5173;
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-5';
+// Modelo aparte para fichas -- mucho más barato que Sonnet, calidad
+// suficiente para preguntas de repaso. Configurable por separado del modelo
+// de /api/resumen (que se queda en MODEL) para no atarlos entre sí.
+const FICHAS_MODEL = process.env.ANTHROPIC_FICHAS_MODEL || 'claude-haiku-4-5';
 const SUPABASE_URL = process.env.SUPABASE_URL || '';
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || '';
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
@@ -44,10 +48,13 @@ app.use(express.json());
 // HANDOFF.md, scripts de build, package.json...) por HTTP. Una vez
 // desplegado en un dominio real eso queda accesible para cualquiera, así
 // que se restringe a una lista explícita de archivos/carpetas públicas.
-app.get('/', (req, res) => res.redirect('/mockup-firme.html'));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'landing.html')));
+app.get('/landing.html', (req, res) => res.sendFile(path.join(__dirname, 'landing.html')));
 app.get('/mockup-firme.html', (req, res) => res.sendFile(path.join(__dirname, 'mockup-firme.html')));
 app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, 'manifest.json')));
 app.get('/sw.js', (req, res) => res.sendFile(path.join(__dirname, 'sw.js')));
+app.get('/robots.txt', (req, res) => res.sendFile(path.join(__dirname, 'robots.txt')));
+app.get('/sitemap.xml', (req, res) => res.sendFile(path.join(__dirname, 'sitemap.xml')));
 app.use('/icons', express.static(path.join(__dirname, 'icons')));
 // El paquete de supabase-js (cliente para el navegador) servido por
 // nosotros mismos, para no depender de un CDN externo.
@@ -64,7 +71,21 @@ app.get('/api/config', (req, res) => {
   res.json({ supabaseUrl: SUPABASE_URL, supabaseAnonKey: SUPABASE_ANON_KEY, vapidPublicKey: VAPID_PUBLIC_KEY });
 });
 
-async function llamarClaude(prompt, maxTokens) {
+// Modelos que soportan la variante 20260209 de la tool de búsqueda web (con
+// filtrado dinámico). Los demás -- incluido Haiku -- necesitan la variante
+// básica 20250305; pedirles la nueva devuelve error.
+const MODELOS_BUSQUEDA_DINAMICA = new Set([
+  'claude-opus-5', 'claude-opus-4-8', 'claude-opus-4-7', 'claude-opus-4-6',
+  'claude-sonnet-5', 'claude-sonnet-4-6',
+]);
+function toolBusquedaWebPara(modelo) {
+  const tipo = MODELOS_BUSQUEDA_DINAMICA.has(modelo) ? 'web_search_20260209' : 'web_search_20250305';
+  return { type: tipo, name: 'web_search', max_uses: 3 };
+}
+
+async function llamarClaude(prompt, maxTokens, tools, modelo) {
+  const body = { model: modelo || MODEL, max_tokens: maxTokens, messages: [{ role: 'user', content: prompt }] };
+  if (tools) body.tools = tools;
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
@@ -72,11 +93,7 @@ async function llamarClaude(prompt, maxTokens) {
       'x-api-key': ANTHROPIC_API_KEY,
       'anthropic-version': '2023-06-01',
     },
-    body: JSON.stringify({
-      model: MODEL,
-      max_tokens: maxTokens,
-      messages: [{ role: 'user', content: prompt }],
-    }),
+    body: JSON.stringify(body),
   });
   if (!r.ok) {
     const errBody = await r.text();
@@ -86,7 +103,58 @@ async function llamarClaude(prompt, maxTokens) {
     throw err;
   }
   const data = await r.json();
-  return (data.content || []).map(b => b.text || '').join('');
+  const bloquesTexto = (data.content || []).filter(b => b.type === 'text');
+  if (!tools) return bloquesTexto.map(b => b.text || '').join('');
+  // Con la tool de búsqueda web, Claude puede escribir comentarios de texto
+  // ENTRE rondas de búsqueda (ej. "voy a buscar..."), no solo al final -- si
+  // concatenáramos todos los bloques de texto, esos comentarios podrían
+  // confundir la extracción del JSON final. La respuesta real (con el JSON)
+  // es el ÚLTIMO bloque de texto, así que solo se usa ese.
+  return bloquesTexto.length ? (bloquesTexto[bloquesTexto.length - 1].text || '') : '';
+}
+
+const MAX_CHARS_APUNTE = 18000; // recorte para no mandar prompts gigantes -- alcanza sobra para un apunte de una clase/capítulo
+
+// Extrae el texto de un archivo subido (PDF o .docx) para usarlo como
+// contenido base de un prompt. Compartida entre /api/fichas (apunte propio
+// del estudiante) y /api/resumen.
+async function extraerTextoArchivo(file) {
+  const nombre = file.originalname || '';
+  const ext = nombre.split('.').pop().toLowerCase();
+  if (ext === 'doc') {
+    const err = new Error('El formato .doc (Word viejo) no está soportado -- guardalo como .docx o PDF y volvé a subirlo.');
+    err.status = 400;
+    throw err;
+  }
+  if (ext !== 'pdf' && ext !== 'docx') {
+    const err = new Error('Formato no soportado. Subí un PDF o un Word (.docx).');
+    err.status = 400;
+    throw err;
+  }
+  let texto = '';
+  try {
+    if (ext === 'pdf') {
+      const parser = new PDFParse({ data: file.buffer });
+      const data = await parser.getText();
+      await parser.destroy();
+      texto = data.text;
+    } else {
+      const result = await mammoth.extractRawText({ buffer: file.buffer });
+      texto = result.value;
+    }
+  } catch (e) {
+    console.error('Error extrayendo texto', e);
+    const err = new Error('No se pudo leer el archivo -- ¿está corrupto o protegido con contraseña?');
+    err.status = 400;
+    throw err;
+  }
+  texto = (texto || '').trim();
+  if (!texto) {
+    const err = new Error('No encontramos texto en el archivo (¿es un escaneo/imagen sin texto seleccionable?).');
+    err.status = 400;
+    throw err;
+  }
+  return texto.slice(0, MAX_CHARS_APUNTE);
 }
 
 // Extrae el primer bloque JSON válido de la respuesta -- Claude a veces
@@ -101,19 +169,57 @@ function extraerJSON(texto) {
   }
 }
 
-app.post('/api/fichas', async (req, res) => {
+app.post('/api/fichas', upload.single('archivo'), async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
   }
   const { tema, materiaNombre, carrera, libro, seccion, tipo, cantidad } = req.body || {};
   if (!tema) return res.status(400).json({ error: 'Falta el tema.' });
+  const conBusqueda = req.body.conBusqueda === 'true';
+
+  let apuntePropio = '';
+  if (req.file) {
+    try {
+      apuntePropio = await extraerTextoArchivo(req.file);
+    } catch (e) {
+      return res.status(e.status || 400).json({ error: e.message });
+    }
+  }
 
   const esMultiple = tipo === 'multiple';
   const n = Math.max(4, Math.min(30, parseInt(cantidad, 10) || 15)); // clamp defensivo -- el front ya limita a 6-30
+  const tipoCache = esMultiple ? 'multiple' : 'normal';
 
-  const contextoBiblio = libro
-    ? `La referencia de cátedra para este tema es "${libro}"${seccion ? `, sección "${seccion}"` : ''}. Basate en el contenido estándar de esa fuente.`
-    : 'No hay una referencia bibliográfica específica cargada -- usá el contenido estándar de la materia.';
+  // Cache compartida entre TODOS los estudiantes -- si alguien ya pidió
+  // exactamente este tema/tipo/cantidad/con-búsqueda, se sirve esa copia sin
+  // gastar un solo token de la API key. Nunca se cachea (ni se lee la cache)
+  // cuando hay un apunte propio subido, porque ese contenido es único de esa
+  // persona.
+  if (!apuntePropio && supabaseAdmin) {
+    try {
+      const { data: cacheada, error: errCache } = await supabaseAdmin
+        .from('fichas_cache')
+        .select('fichas')
+        .eq('tema', tema)
+        .eq('tipo', tipoCache)
+        .eq('cantidad', n)
+        .eq('con_busqueda', conBusqueda)
+        .maybeSingle();
+      if (errCache) console.error('Error leyendo fichas_cache (sigue sin cache)', errCache);
+      if (cacheada) return res.json({ fichas: cacheada.fichas, cache: true });
+    } catch (e) {
+      console.error('Error leyendo fichas_cache (sigue sin cache)', e);
+    }
+  }
+
+  // Si el estudiante subió su propio apunte, las fichas se anclan a ESE
+  // contenido en vez de la bibliografía genérica de cátedra -- así quedan
+  // fieles a lo que está estudiando de verdad.
+  const contextoBiblio = apuntePropio
+    ? `El estudiante subió su propio apunte sobre este tema -- basate PRINCIPALMENTE en el contenido de ese apunte (no en un libro genérico) para armar las preguntas y respuestas. Apunte del estudiante:\n"""\n${apuntePropio}\n"""`
+    : libro
+      ? `La referencia de cátedra para este tema es "${libro}"${seccion ? `, sección "${seccion}"` : ''}. Basate en el contenido estándar de esa fuente.`
+      : 'No hay una referencia bibliográfica específica cargada -- usá el contenido estándar de la materia.';
 
   const consigna = esMultiple
     ? `Generá ${n} preguntas de opción múltiple sobre este tema, de nivel de examen de grado -- ni trivial ni de sub-especialidad. Cada una con 4 opciones (una correcta, tres distractores plausibles pero incorrectos, no absurdos). No repitas la misma pregunta de dos formas distintas.
@@ -126,25 +232,42 @@ Donde "correcta" es el índice (0 a 3, como NÚMERO, nunca como string entre com
 Respondé ÚNICAMENTE con un JSON válido, sin texto antes ni después, con este formato exacto:
 [{"pregunta": "...", "respuesta": "..."}, ...]`;
 
+  const busquedaParciales = conBusqueda
+    ? `\n\nAntes de armar las fichas, buscá en internet parciales o exámenes anteriores reales de "${materiaNombre || tema}" (o de la materia equivalente) en la Universidad de la República (UDELAR). Usalos SOLO para calibrar el estilo, el nivel de dificultad y el tipo de pregunta que se toma habitualmente en esta materia -- nunca para copiar textualmente una pregunta de un examen real.`
+    : '';
+
   const prompt = `Sos un tutor para un estudiante de la carrera de ${carrera || 'grado'} (UDELAR) que está repasando el tema "${tema}" de la materia "${materiaNombre || ''}".
-${contextoBiblio}
+${contextoBiblio}${busquedaParciales}
 
 ${consigna}`;
 
   try {
-    const texto = await llamarClaude(prompt, Math.max(1500, n * 220));
+    const texto = await llamarClaude(
+      prompt,
+      Math.max(3000, n * 220 + 1500),
+      conBusqueda ? [toolBusquedaWebPara(FICHAS_MODEL)] : undefined,
+      FICHAS_MODEL,
+    );
     const fichas = extraerJSON(texto);
     if (!fichas) {
       console.error('Respuesta sin JSON reconocible:', texto);
       return res.status(502).json({ error: 'No se pudo interpretar la respuesta de la IA. Probá de nuevo.' });
     }
     res.json({ fichas });
+    // Guardar en la cache DESPUÉS de responder -- el estudiante no tiene que
+    // esperar a que termine de escribirse. Igual que la lectura, nunca se
+    // guarda contenido generado a partir de un apunte propio.
+    if (!apuntePropio && supabaseAdmin) {
+      supabaseAdmin.from('fichas_cache').upsert({
+        tema, materia_nombre: materiaNombre || null, tipo: tipoCache, cantidad: n, con_busqueda: conBusqueda, fichas,
+      }, { onConflict: 'tema,tipo,cantidad,con_busqueda' }).then(({ error }) => {
+        if (error) console.error('Error guardando fichas_cache', error);
+      }).catch(e => console.error('Error guardando fichas_cache', e));
+    }
   } catch (e) {
     res.status(e.status || 500).json({ error: e.message || 'Error de conexión con la API de Claude.' });
   }
 });
-
-const MAX_CHARS_APUNTE = 18000; // recorte para no mandar prompts gigantes -- alcanza sobra para un apunte de una clase/capítulo
 
 app.post('/api/resumen', upload.single('archivo'), async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
@@ -152,34 +275,12 @@ app.post('/api/resumen', upload.single('archivo'), async (req, res) => {
   }
   if (!req.file) return res.status(400).json({ error: 'Falta el archivo.' });
 
-  const nombre = req.file.originalname || '';
-  const ext = nombre.split('.').pop().toLowerCase();
-
-  let texto = '';
+  let texto;
   try {
-    if (ext === 'pdf') {
-      const parser = new PDFParse({ data: req.file.buffer });
-      const data = await parser.getText();
-      await parser.destroy();
-      texto = data.text;
-    } else if (ext === 'docx') {
-      const result = await mammoth.extractRawText({ buffer: req.file.buffer });
-      texto = result.value;
-    } else if (ext === 'doc') {
-      return res.status(400).json({ error: 'El formato .doc (Word viejo) no está soportado -- guardalo como .docx o PDF y volvé a subirlo.' });
-    } else {
-      return res.status(400).json({ error: 'Formato no soportado. Subí un PDF o un Word (.docx).' });
-    }
+    texto = await extraerTextoArchivo(req.file);
   } catch (e) {
-    console.error('Error extrayendo texto', e);
-    return res.status(400).json({ error: 'No se pudo leer el archivo -- ¿está corrupto o protegido con contraseña?' });
+    return res.status(e.status || 400).json({ error: e.message });
   }
-
-  texto = (texto || '').trim();
-  if (!texto) {
-    return res.status(400).json({ error: 'No encontramos texto en el archivo (¿es un escaneo/imagen sin texto seleccionable?).' });
-  }
-  texto = texto.slice(0, MAX_CHARS_APUNTE);
 
   const prompt = `Sos un tutor universitario para un estudiante de grado (UDELAR). Te paso el contenido de un apunte para que se lo resuma para estudiar.
 
