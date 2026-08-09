@@ -7841,7 +7841,11 @@ function seleccionarTipoFicha(tipo) {
 function renderFichasSelect() {
   const facSel = document.getElementById('fichasFacultadSelect');
   if (!facSel) return;
-  facSel.innerHTML = FACULTADES_ORDEN.map(key => `<option value="${key}">${FACULTADES[key].label}</option>`).join('');
+  // Muestra la carrera, no el label de la facultad -- Facultad de Ingeniería
+  // tiene dos carreras (Computación y Civil) que comparten el mismo label,
+  // así que listarlas por label las mostraría duplicadas y sin forma de
+  // distinguirlas.
+  facSel.innerHTML = FACULTADES_ORDEN.map(key => `<option value="${key}">${FACULTADES[key].carrera}</option>`).join('');
   onFichasFacultadChange();
 }
 
