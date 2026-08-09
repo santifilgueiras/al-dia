@@ -2601,6 +2601,246 @@ const CATALOGO_POR_CICLO_INGENIERIA = {
   ],
 };
 
+// Catálogo de Ingeniería Civil (misma facultad que Ingeniería en
+// Computación, carrera distinta -- ver FACULTADES.ingenieria_civil). 22
+// materias en 8 semestres (núcleo común de una carrera de Ing. Civil
+// estándar: matemática/física básica -> mecánica de materiales/estática ->
+// estructuras/geotecnia/hidráulica -> construcción y gestión de obra),
+// armado con currícula internacional y bibliografía clásica reconocida
+// (Hibbeler, Das, McCormac, Chow, White, etc.) -- mismo criterio que se usó
+// para las materias de Ingeniería en Computación sin programa oficial
+// público. "Proyecto Final de Ingeniería Civil" queda con modulos:[] a
+// propósito, mismo criterio que los demás proyectos/tesis finales.
+const CATALOGO_POR_CICLO_INGENIERIA_CIVIL = {
+  1: [
+    { nombre: "Cálculo 1", modulos: [
+      { modulo: "Límites y derivadas", temas: [
+        "Límites, continuidad y asíntotas de funciones reales",
+        "Derivada: definición, reglas y aplicaciones a razones de cambio",
+      ] },
+      { modulo: "Integrales de una variable", temas: [
+        "Integral definida e indefinida, teorema fundamental del cálculo",
+        "Técnicas de integración y aplicaciones a áreas y volúmenes",
+      ] },
+    ] },
+    { nombre: "Álgebra Lineal y Geometría", modulos: [
+      { modulo: "Vectores y matrices", temas: [
+        "Vectores en el plano y el espacio, producto escalar y vectorial",
+        "Matrices, sistemas de ecuaciones lineales y eliminación gaussiana",
+      ] },
+      { modulo: "Geometría analítica aplicada", temas: [
+        "Rectas, planos y cónicas en el espacio",
+        "Transformaciones lineales y cambio de coordenadas",
+      ] },
+    ] },
+    { nombre: "Física 1 (Mecánica)", modulos: [
+      { modulo: "Cinemática y dinámica de partículas", temas: [
+        "Cinemática: posición, velocidad y aceleración",
+        "Leyes de Newton y diagramas de cuerpo libre",
+      ] },
+      { modulo: "Trabajo, energía y sistemas de partículas", temas: [
+        "Trabajo, energía cinética y potencial, conservación de energía",
+        "Momento lineal, impulso y colisiones",
+      ] },
+    ] },
+  ],
+  2: [
+    { nombre: "Cálculo 2", modulos: [
+      { modulo: "Series y ecuaciones diferenciales", temas: [
+        "Sucesiones y series numéricas, criterios de convergencia",
+        "Ecuaciones diferenciales ordinarias de primer y segundo orden",
+      ] },
+      { modulo: "Cálculo en varias variables", temas: [
+        "Derivadas parciales y optimización de funciones de varias variables",
+        "Integrales dobles y triples aplicadas al cálculo de volúmenes y masas",
+      ] },
+    ] },
+    { nombre: "Estática", modulos: [
+      { modulo: "Equilibrio de cuerpos rígidos", temas: [
+        "Momento de una fuerza y equilibrio de cuerpos rígidos",
+        "Reacciones de apoyo y diagramas de cuerpo libre en estructuras",
+      ] },
+      { modulo: "Análisis de estructuras simples", temas: [
+        "Armaduras planas: método de nudos y de secciones",
+        "Centroides, centros de gravedad y momentos de inercia de áreas",
+      ] },
+    ] },
+    { nombre: "Química Aplicada a la Construcción", modulos: [
+      { modulo: "Fundamentos químicos de materiales", temas: [
+        "Estructura atómica y enlaces químicos en materiales de construcción",
+        "Reacciones químicas del cemento y del hormigón (hidratación)",
+      ] },
+      { modulo: "Corrosión y durabilidad", temas: [
+        "Corrosión de armaduras metálicas en el hormigón",
+        "Química del agua y su efecto sobre estructuras y suelos",
+      ] },
+    ] },
+  ],
+  3: [
+    { nombre: "Mecánica de Materiales", modulos: [
+      { modulo: "Esfuerzo y deformación", temas: [
+        "Esfuerzo axial, deformación y la ley de Hooke",
+        "Esfuerzo cortante y torsión en elementos estructurales",
+      ] },
+      { modulo: "Flexión y pandeo", temas: [
+        "Flexión de vigas: esfuerzos normales y diagramas de momento",
+        "Pandeo de columnas y carga crítica de Euler",
+      ] },
+    ] },
+    { nombre: "Topografía", modulos: [
+      { modulo: "Medición y nivelación", temas: [
+        "Métodos de medición de distancias y ángulos en el terreno",
+        "Nivelación geométrica y trigonométrica",
+      ] },
+      { modulo: "Levantamientos y sistemas de posicionamiento", temas: [
+        "Levantamientos topográficos y cálculo de superficies",
+        "Sistemas de posicionamiento global (GPS/GNSS) aplicados a obra",
+      ] },
+    ] },
+    { nombre: "Probabilidad y Estadística (Civil)", modulos: [
+      { modulo: "Probabilidad aplicada a la ingeniería civil", temas: [
+        "Variables aleatorias y distribuciones de probabilidad en fenómenos de carga",
+        "Confiabilidad estructural y análisis de riesgo",
+      ] },
+      { modulo: "Estadística aplicada", temas: [
+        "Estimación y contraste de hipótesis en datos de ensayos de materiales",
+        "Regresión lineal aplicada a hidrología y geotecnia",
+      ] },
+    ] },
+  ],
+  4: [
+    { nombre: "Análisis Estructural", modulos: [
+      { modulo: "Estructuras isostáticas", temas: [
+        "Vigas y pórticos isostáticos: diagramas de esfuerzos",
+        "Líneas de influencia para cargas móviles",
+      ] },
+      { modulo: "Estructuras hiperestáticas", temas: [
+        "Método de las fuerzas para estructuras hiperestáticas",
+        "Método de la rigidez y análisis matricial de estructuras",
+      ] },
+    ] },
+    { nombre: "Mecánica de Fluidos", modulos: [
+      { modulo: "Fluidos en reposo y en movimiento", temas: [
+        "Hidrostática: presión, empuje y estabilidad de cuerpos flotantes",
+        "Ecuación de Bernoulli y conservación de la energía en flujos",
+      ] },
+      { modulo: "Flujo en conductos", temas: [
+        "Flujo laminar y turbulento, número de Reynolds",
+        "Pérdidas de carga en tuberías y redes de conductos",
+      ] },
+    ] },
+    { nombre: "Mecánica de Suelos", modulos: [
+      { modulo: "Propiedades index y clasificación", temas: [
+        "Origen de los suelos y propiedades índice (granulometría, límites de Atterberg)",
+        "Clasificación de suelos (SUCS) y compactación",
+      ] },
+      { modulo: "Comportamiento mecánico del suelo", temas: [
+        "Esfuerzos efectivos y presión de poros",
+        "Consolidación y asentamientos en suelos finos",
+      ] },
+    ] },
+  ],
+  5: [
+    { nombre: "Hormigón Armado", modulos: [
+      { modulo: "Fundamentos del hormigón armado", temas: [
+        "Propiedades mecánicas del hormigón y del acero de refuerzo",
+        "Diseño a flexión de vigas de hormigón armado",
+      ] },
+      { modulo: "Diseño de elementos de hormigón armado", temas: [
+        "Diseño a corte y anclaje de armaduras",
+        "Diseño de columnas y losas de hormigón armado",
+      ] },
+    ] },
+    { nombre: "Hidráulica Aplicada", modulos: [
+      { modulo: "Hidráulica de canales", temas: [
+        "Flujo uniforme y gradualmente variado en canales abiertos",
+        "Resaltos hidráulicos y estructuras de control",
+      ] },
+      { modulo: "Obras hidráulicas", temas: [
+        "Diseño de vertederos y obras de toma",
+        "Redes de distribución de agua potable",
+      ] },
+    ] },
+    { nombre: "Materiales de Construcción", modulos: [
+      { modulo: "Materiales pétreos y aglomerantes", temas: [
+        "Áridos y agregados: propiedades y ensayos",
+        "Cementos y cales: propiedades y tipos",
+      ] },
+      { modulo: "Materiales industrializados", temas: [
+        "Aceros estructurales: propiedades y ensayos mecánicos",
+        "Maderas y materiales compuestos en la construcción",
+      ] },
+    ] },
+  ],
+  6: [
+    { nombre: "Estructuras Metálicas y de Madera", modulos: [
+      { modulo: "Diseño en acero", temas: [
+        "Diseño de elementos a tracción y compresión en acero",
+        "Conexiones soldadas y apernadas en estructuras metálicas",
+      ] },
+      { modulo: "Diseño en madera", temas: [
+        "Propiedades estructurales de la madera",
+        "Diseño de elementos y uniones en estructuras de madera",
+      ] },
+    ] },
+    { nombre: "Geotecnia y Cimentaciones", modulos: [
+      { modulo: "Capacidad portante", temas: [
+        "Capacidad de carga de fundaciones superficiales",
+        "Empuje de tierras y estabilidad de muros de contención",
+      ] },
+      { modulo: "Fundaciones profundas", temas: [
+        "Diseño de pilotes y fundaciones profundas",
+        "Estabilidad de taludes y análisis de deslizamientos",
+      ] },
+    ] },
+    { nombre: "Vías de Comunicación", modulos: [
+      { modulo: "Diseño geométrico de carreteras", temas: [
+        "Diseño geométrico en planta y perfil de carreteras",
+        "Curvas horizontales y verticales, peraltes",
+      ] },
+      { modulo: "Pavimentos", temas: [
+        "Diseño de pavimentos flexibles y rígidos",
+        "Materiales y capas de la estructura de pavimento",
+      ] },
+    ] },
+  ],
+  7: [
+    { nombre: "Construcción y Gestión de Obras", modulos: [
+      { modulo: "Procedimientos constructivos", temas: [
+        "Procesos constructivos de estructuras de hormigón y encofrados",
+        "Seguridad e higiene en obras de construcción",
+      ] },
+      { modulo: "Gestión de proyectos de construcción", temas: [
+        "Planificación de obra: cronogramas y ruta crítica (CPM/PERT)",
+        "Presupuesto, cómputo métrico y control de costos de obra",
+      ] },
+    ] },
+    { nombre: "Ingeniería Sanitaria y Ambiental", modulos: [
+      { modulo: "Saneamiento", temas: [
+        "Redes de saneamiento y alcantarillado",
+        "Tratamiento de aguas residuales",
+      ] },
+      { modulo: "Impacto ambiental", temas: [
+        "Evaluación de impacto ambiental de obras civiles",
+        "Gestión de residuos de construcción y demolición",
+      ] },
+    ] },
+    { nombre: "Hidrología", modulos: [
+      { modulo: "Ciclo hidrológico y cuencas", temas: [
+        "Ciclo hidrológico, precipitación y escorrentía",
+        "Análisis de cuencas hidrográficas y caudales de diseño",
+      ] },
+      { modulo: "Hidrología aplicada al diseño", temas: [
+        "Hidrogramas unitarios y tránsito de crecidas",
+        "Diseño hidrológico de obras de drenaje pluvial",
+      ] },
+    ] },
+  ],
+  8: [
+    { nombre: "Proyecto Final de Ingeniería Civil", modulos: [] },
+  ],
+};
+
 // Multi-facultad: cada facultad define su propio catálogo (por año o por
 // semestre, según cómo organice sus ciclos) y cómo nombrar/etiquetar ese
 // ciclo -- el resto de la app (S1/S9/S10) lee de acá en vez de asumir
@@ -2610,6 +2850,7 @@ const FACULTADES = {
   medicina: {
     key: 'medicina',
     label: 'Facultad de Medicina',
+    nombreCorto: 'Medicina',
     carrera: 'Doctor en Medicina',
     universidad: 'UDELAR',
     cicloNombre: 'año',
@@ -2621,6 +2862,7 @@ const FACULTADES = {
   psicologia: {
     key: 'psicologia',
     label: 'Facultad de Psicología',
+    nombreCorto: 'Psicología',
     carrera: 'Licenciatura en Psicología',
     universidad: 'UDELAR',
     cicloNombre: 'semestre',
@@ -2629,9 +2871,17 @@ const FACULTADES = {
     cicloLabel: (n) => `${n}º semestre`,
     iconoMateria: '🧠',
   },
+  // Facultad de Ingeniería tiene MÁS DE UNA carrera cargada (a diferencia de
+  // Medicina/Psicología, que son 1 a 1 con su facultad) -- por eso estas dos
+  // entradas comparten `grupo`. renderFacultades() (pantalla S12) agrupa por
+  // ese campo: si un grupo tiene una sola carrera se comporta como siempre
+  // (toca y entra), si tiene más de una arma un acordeón que se despliega
+  // mostrando cada carrera como opción aparte.
   ingenieria: {
     key: 'ingenieria',
     label: 'Facultad de Ingeniería',
+    nombreCorto: 'Ing. Computación',
+    grupo: 'Facultad de Ingeniería',
     carrera: 'Ingeniería en Computación',
     universidad: 'UDELAR',
     cicloNombre: 'semestre',
@@ -2640,8 +2890,21 @@ const FACULTADES = {
     cicloLabel: (n) => `${n}º semestre`,
     iconoMateria: '💻',
   },
+  ingenieria_civil: {
+    key: 'ingenieria_civil',
+    label: 'Facultad de Ingeniería',
+    nombreCorto: 'Ing. Civil',
+    grupo: 'Facultad de Ingeniería',
+    carrera: 'Ingeniería Civil',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_INGENIERIA_CIVIL,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '🏗️',
+  },
 };
-const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria'];
+const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil'];
 
 // Exámenes guardados antes de este cambio no tienen `facultad` -- todos
 // eran de Medicina (la única que existía), así que ese es el default.
@@ -2649,7 +2912,7 @@ function facultadDe(key) { return FACULTADES[key] || FACULTADES.medicina; }
 
 function contextoFor(facKey, ciclo) {
   const f = facultadDe(facKey);
-  return `${f.universidad} · ${f.label.replace('Facultad de ', '')} · ${f.cicloLabel(ciclo)}`;
+  return `${f.universidad} · ${f.nombreCorto} · ${f.cicloLabel(ciclo)}`;
 }
 
 // Ícono por módulo -- solo decorativo, para que el catálogo se sienta
@@ -2991,6 +3254,50 @@ const MODULO_ICONS = {
   "Diseño y refactorización avanzados": "🔧",
   "Calidad y pruebas de software a gran escala": "✅",
   "Procesos ágiles y DevOps avanzados": "🚀",
+
+  // ---- Ingeniería Civil ----
+  "Límites y derivadas": "📉",
+  "Integrales de una variable": "➗",
+  "Vectores y matrices": "🧮",
+  "Geometría analítica aplicada": "📐",
+  "Cinemática y dinámica de partículas": "🏃",
+  "Trabajo, energía y sistemas de partículas": "⚡",
+  "Series y ecuaciones diferenciales": "➕",
+  "Cálculo en varias variables": "🧊",
+  "Equilibrio de cuerpos rígidos": "⚖️",
+  "Análisis de estructuras simples": "🔺",
+  "Fundamentos químicos de materiales": "⚗️",
+  "Corrosión y durabilidad": "🧪",
+  "Esfuerzo y deformación": "🔧",
+  "Flexión y pandeo": "📏",
+  "Medición y nivelación": "📍",
+  "Levantamientos y sistemas de posicionamiento": "🛰️",
+  "Probabilidad aplicada a la ingeniería civil": "🎲",
+  "Estadística aplicada": "📊",
+  "Estructuras isostáticas": "🏗️",
+  "Estructuras hiperestáticas": "🧱",
+  "Fluidos en reposo y en movimiento": "💧",
+  "Flujo en conductos": "🚰",
+  "Propiedades index y clasificación": "🪨",
+  "Comportamiento mecánico del suelo": "⛰️",
+  "Fundamentos del hormigón armado": "🏢",
+  "Diseño de elementos de hormigón armado": "🏛️",
+  "Hidráulica de canales": "🌊",
+  "Obras hidráulicas": "🚧",
+  "Materiales pétreos y aglomerantes": "🧱",
+  "Materiales industrializados": "🔩",
+  "Diseño en acero": "🏭",
+  "Diseño en madera": "🪵",
+  "Capacidad portante": "🏔️",
+  "Fundaciones profundas": "⛏️",
+  "Diseño geométrico de carreteras": "🛣️",
+  "Pavimentos": "🚗",
+  "Procedimientos constructivos": "👷",
+  "Gestión de proyectos de construcción": "📋",
+  "Saneamiento": "🚿",
+  "Impacto ambiental": "🌱",
+  "Ciclo hidrológico y cuencas": "☔",
+  "Hidrología aplicada al diseño": "🗺️",
 };
 
 // Bibliografía real de la cátedra. Por tema: qué libro cubre mejor el
@@ -4342,6 +4649,92 @@ const TEXTOS = {
   "Metodologías ágiles avanzadas (Scrum, Kanban a escala)": { libro: "Sommerville -- Software Engineering", seccion: "capítulo de desarrollo ágil de software" },
   "Integración y entrega continua (CI/CD) a escala": { libro: "Humble & Farley -- Continuous Delivery", seccion: "capítulos de integración y despliegue continuo" },
   "Gestión de la configuración y despliegue de software": { libro: "Sommerville -- Software Engineering", seccion: "capítulo de gestión de configuración del software" },
+
+  // ---- Ingeniería Civil ----
+  "Límites, continuidad y asíntotas de funciones reales": { libro: "Stewart -- Cálculo de una variable", seccion: "capítulo de límites y continuidad" },
+  "Derivada: definición, reglas y aplicaciones a razones de cambio": { libro: "Stewart -- Cálculo de una variable", seccion: "capítulo de la derivada" },
+  "Integral definida e indefinida, teorema fundamental del cálculo": { libro: "Stewart -- Cálculo de una variable", seccion: "capítulo de integrales" },
+  "Técnicas de integración y aplicaciones a áreas y volúmenes": { libro: "Stewart -- Cálculo de una variable", seccion: "capítulo de técnicas de integración" },
+  "Vectores en el plano y el espacio, producto escalar y vectorial": { libro: "Grossman -- Álgebra Lineal", seccion: "capítulo de vectores" },
+  "Matrices, sistemas de ecuaciones lineales y eliminación gaussiana": { libro: "Grossman -- Álgebra Lineal", seccion: "capítulo de sistemas de ecuaciones lineales" },
+  "Rectas, planos y cónicas en el espacio": { libro: "Grossman -- Álgebra Lineal", seccion: "capítulo de geometría vectorial" },
+  "Transformaciones lineales y cambio de coordenadas": { libro: "Grossman -- Álgebra Lineal", seccion: "capítulo de transformaciones lineales" },
+  "Cinemática: posición, velocidad y aceleración": { libro: "Hibbeler -- Ingeniería Mecánica: Dinámica", seccion: "capítulo de cinemática de la partícula" },
+  "Leyes de Newton y diagramas de cuerpo libre": { libro: "Hibbeler -- Ingeniería Mecánica: Dinámica", seccion: "capítulo de cinética de la partícula" },
+  "Trabajo, energía cinética y potencial, conservación de energía": { libro: "Hibbeler -- Ingeniería Mecánica: Dinámica", seccion: "capítulo de trabajo y energía" },
+  "Momento lineal, impulso y colisiones": { libro: "Hibbeler -- Ingeniería Mecánica: Dinámica", seccion: "capítulo de impulso y cantidad de movimiento" },
+  "Sucesiones y series numéricas, criterios de convergencia": { libro: "Stewart -- Cálculo de una variable", seccion: "capítulo de series" },
+  "Ecuaciones diferenciales ordinarias de primer y segundo orden": { libro: "Boyce, DiPrima -- Ecuaciones Diferenciales y Problemas con Valores en la Frontera", seccion: "capítulos de ecuaciones de primer y segundo orden" },
+  "Derivadas parciales y optimización de funciones de varias variables": { libro: "Stewart -- Cálculo de varias variables", seccion: "capítulo de derivadas parciales" },
+  "Integrales dobles y triples aplicadas al cálculo de volúmenes y masas": { libro: "Stewart -- Cálculo de varias variables", seccion: "capítulo de integrales múltiples" },
+  "Momento de una fuerza y equilibrio de cuerpos rígidos": { libro: "Hibbeler -- Ingeniería Mecánica: Estática", seccion: "capítulo de equilibrio del cuerpo rígido" },
+  "Reacciones de apoyo y diagramas de cuerpo libre en estructuras": { libro: "Hibbeler -- Ingeniería Mecánica: Estática", seccion: "capítulo de equilibrio del cuerpo rígido" },
+  "Armaduras planas: método de nudos y de secciones": { libro: "Hibbeler -- Ingeniería Mecánica: Estática", seccion: "capítulo de análisis estructural, armaduras" },
+  "Centroides, centros de gravedad y momentos de inercia de áreas": { libro: "Hibbeler -- Ingeniería Mecánica: Estática", seccion: "capítulo de centro de gravedad y centroide" },
+  "Estructura atómica y enlaces químicos en materiales de construcción": { libro: "Chang -- Química General", seccion: "capítulo de enlace químico" },
+  "Reacciones químicas del cemento y del hormigón (hidratación)": { libro: "Neville -- Tecnología del Concreto", seccion: "capítulo de hidratación del cemento" },
+  "Corrosión de armaduras metálicas en el hormigón": { libro: "Neville -- Tecnología del Concreto", seccion: "capítulo de durabilidad del concreto" },
+  "Química del agua y su efecto sobre estructuras y suelos": { libro: "Chang -- Química General", seccion: "capítulo de propiedades de disoluciones acuosas" },
+  "Esfuerzo axial, deformación y la ley de Hooke": { libro: "Hibbeler -- Mecánica de Materiales", seccion: "capítulo de esfuerzo y deformación" },
+  "Esfuerzo cortante y torsión en elementos estructurales": { libro: "Hibbeler -- Mecánica de Materiales", seccion: "capítulo de torsión" },
+  "Flexión de vigas: esfuerzos normales y diagramas de momento": { libro: "Hibbeler -- Mecánica de Materiales", seccion: "capítulo de flexión" },
+  "Pandeo de columnas y carga crítica de Euler": { libro: "Hibbeler -- Mecánica de Materiales", seccion: "capítulo de pandeo de columnas" },
+  "Métodos de medición de distancias y ángulos en el terreno": { libro: "Ghilani, Wolf -- Topografía", seccion: "capítulo de medición de distancias y ángulos" },
+  "Nivelación geométrica y trigonométrica": { libro: "Ghilani, Wolf -- Topografía", seccion: "capítulo de nivelación" },
+  "Levantamientos topográficos y cálculo de superficies": { libro: "Ghilani, Wolf -- Topografía", seccion: "capítulo de levantamientos topográficos" },
+  "Sistemas de posicionamiento global (GPS/GNSS) aplicados a obra": { libro: "Ghilani, Wolf -- Topografía", seccion: "capítulo de posicionamiento satelital" },
+  "Variables aleatorias y distribuciones de probabilidad en fenómenos de carga": { libro: "Ang, Tang -- Probability Concepts in Engineering", seccion: "capítulo de variables aleatorias" },
+  "Confiabilidad estructural y análisis de riesgo": { libro: "Ang, Tang -- Probability Concepts in Engineering", seccion: "capítulo de confiabilidad estructural" },
+  "Estimación y contraste de hipótesis en datos de ensayos de materiales": { libro: "Walpole, Myers, Myers, Ye -- Probability and Statistics for Engineers and Scientists", seccion: "capítulo de estimación e hipótesis" },
+  "Regresión lineal aplicada a hidrología y geotecnia": { libro: "Walpole, Myers, Myers, Ye -- Probability and Statistics for Engineers and Scientists", seccion: "capítulo de regresión lineal" },
+  "Vigas y pórticos isostáticos: diagramas de esfuerzos": { libro: "Hibbeler -- Análisis Estructural", seccion: "capítulo de estructuras isostáticas" },
+  "Líneas de influencia para cargas móviles": { libro: "Hibbeler -- Análisis Estructural", seccion: "capítulo de líneas de influencia" },
+  "Método de las fuerzas para estructuras hiperestáticas": { libro: "Hibbeler -- Análisis Estructural", seccion: "capítulo del método de las fuerzas" },
+  "Método de la rigidez y análisis matricial de estructuras": { libro: "Hibbeler -- Análisis Estructural", seccion: "capítulo del método de la rigidez" },
+  "Hidrostática: presión, empuje y estabilidad de cuerpos flotantes": { libro: "White -- Mecánica de Fluidos", seccion: "capítulo de hidrostática" },
+  "Ecuación de Bernoulli y conservación de la energía en flujos": { libro: "White -- Mecánica de Fluidos", seccion: "capítulo de la ecuación de Bernoulli" },
+  "Flujo laminar y turbulento, número de Reynolds": { libro: "White -- Mecánica de Fluidos", seccion: "capítulo de flujo viscoso interno" },
+  "Pérdidas de carga en tuberías y redes de conductos": { libro: "White -- Mecánica de Fluidos", seccion: "capítulo de flujo en tuberías" },
+  "Origen de los suelos y propiedades índice (granulometría, límites de Atterberg)": { libro: "Das -- Fundamentos de Ingeniería Geotécnica", seccion: "capítulo de propiedades índice del suelo" },
+  "Clasificación de suelos (SUCS) y compactación": { libro: "Das -- Fundamentos de Ingeniería Geotécnica", seccion: "capítulo de clasificación de suelos y compactación" },
+  "Esfuerzos efectivos y presión de poros": { libro: "Das -- Fundamentos de Ingeniería Geotécnica", seccion: "capítulo de esfuerzos efectivos" },
+  "Consolidación y asentamientos en suelos finos": { libro: "Das -- Fundamentos de Ingeniería Geotécnica", seccion: "capítulo de consolidación" },
+  "Propiedades mecánicas del hormigón y del acero de refuerzo": { libro: "McCormac, Brown -- Diseño de Concreto Reforzado", seccion: "capítulo de propiedades de materiales" },
+  "Diseño a flexión de vigas de hormigón armado": { libro: "McCormac, Brown -- Diseño de Concreto Reforzado", seccion: "capítulo de diseño a flexión" },
+  "Diseño a corte y anclaje de armaduras": { libro: "McCormac, Brown -- Diseño de Concreto Reforzado", seccion: "capítulo de diseño a corte" },
+  "Diseño de columnas y losas de hormigón armado": { libro: "McCormac, Brown -- Diseño de Concreto Reforzado", seccion: "capítulos de columnas y losas" },
+  "Flujo uniforme y gradualmente variado en canales abiertos": { libro: "Chow -- Hidráulica de Canales Abiertos", seccion: "capítulo de flujo uniforme" },
+  "Resaltos hidráulicos y estructuras de control": { libro: "Chow -- Hidráulica de Canales Abiertos", seccion: "capítulo de resalto hidráulico" },
+  "Diseño de vertederos y obras de toma": { libro: "Chow -- Hidráulica de Canales Abiertos", seccion: "capítulo de vertederos" },
+  "Redes de distribución de agua potable": { libro: "Sotelo -- Hidráulica General", seccion: "capítulo de redes de distribución" },
+  "Áridos y agregados: propiedades y ensayos": { libro: "Neville -- Tecnología del Concreto", seccion: "capítulo de agregados" },
+  "Cementos y cales: propiedades y tipos": { libro: "Neville -- Tecnología del Concreto", seccion: "capítulo de cementos" },
+  "Aceros estructurales: propiedades y ensayos mecánicos": { libro: "McCormac -- Diseño de Estructuras de Acero", seccion: "capítulo de propiedades del acero" },
+  "Maderas y materiales compuestos en la construcción": { libro: "Breyer -- Design of Wood Structures", seccion: "capítulo de propiedades de la madera" },
+  "Diseño de elementos a tracción y compresión en acero": { libro: "McCormac -- Diseño de Estructuras de Acero", seccion: "capítulos de miembros a tracción y compresión" },
+  "Conexiones soldadas y apernadas en estructuras metálicas": { libro: "McCormac -- Diseño de Estructuras de Acero", seccion: "capítulo de conexiones" },
+  "Propiedades estructurales de la madera": { libro: "Breyer -- Design of Wood Structures", seccion: "capítulo de propiedades mecánicas de la madera" },
+  "Diseño de elementos y uniones en estructuras de madera": { libro: "Breyer -- Design of Wood Structures", seccion: "capítulo de diseño de elementos de madera" },
+  "Capacidad de carga de fundaciones superficiales": { libro: "Das -- Principios de Ingeniería de Cimentaciones", seccion: "capítulo de capacidad de carga" },
+  "Empuje de tierras y estabilidad de muros de contención": { libro: "Das -- Principios de Ingeniería de Cimentaciones", seccion: "capítulo de empuje de tierras" },
+  "Diseño de pilotes y fundaciones profundas": { libro: "Das -- Principios de Ingeniería de Cimentaciones", seccion: "capítulo de fundaciones con pilotes" },
+  "Estabilidad de taludes y análisis de deslizamientos": { libro: "Das -- Fundamentos de Ingeniería Geotécnica", seccion: "capítulo de estabilidad de taludes" },
+  "Diseño geométrico en planta y perfil de carreteras": { libro: "Cárdenas -- Ingeniería de Tránsito y Carreteras", seccion: "capítulo de diseño geométrico" },
+  "Curvas horizontales y verticales, peraltes": { libro: "Cárdenas -- Ingeniería de Tránsito y Carreteras", seccion: "capítulo de curvas horizontales y verticales" },
+  "Diseño de pavimentos flexibles y rígidos": { libro: "Garber, Hoel -- Ingeniería de Tránsito y Carreteras", seccion: "capítulo de diseño de pavimentos" },
+  "Materiales y capas de la estructura de pavimento": { libro: "Garber, Hoel -- Ingeniería de Tránsito y Carreteras", seccion: "capítulo de materiales para pavimentos" },
+  "Procesos constructivos de estructuras de hormigón y encofrados": { libro: "Peurifoy -- Formwork for Concrete Structures", seccion: "capítulo de encofrados" },
+  "Seguridad e higiene en obras de construcción": { libro: "Hinze -- Construction Safety", seccion: "capítulo de gestión de la seguridad en obra" },
+  "Planificación de obra: cronogramas y ruta crítica (CPM/PERT)": { libro: "Mubarak -- Construction Project Scheduling and Control", seccion: "capítulo de método de la ruta crítica" },
+  "Presupuesto, cómputo métrico y control de costos de obra": { libro: "Mubarak -- Construction Project Scheduling and Control", seccion: "capítulo de estimación de costos" },
+  "Redes de saneamiento y alcantarillado": { libro: "Metcalf & Eddy -- Ingeniería de Aguas Residuales", seccion: "capítulo de recolección de aguas residuales" },
+  "Tratamiento de aguas residuales": { libro: "Metcalf & Eddy -- Ingeniería de Aguas Residuales", seccion: "capítulo de tratamiento" },
+  "Evaluación de impacto ambiental de obras civiles": { libro: "Canter -- Environmental Impact Assessment", seccion: "capítulo de metodologías de evaluación" },
+  "Gestión de residuos de construcción y demolición": { libro: "Canter -- Environmental Impact Assessment", seccion: "capítulo de gestión de residuos" },
+  "Ciclo hidrológico, precipitación y escorrentía": { libro: "Chow, Maidment, Mays -- Hidrología Aplicada", seccion: "capítulo del ciclo hidrológico" },
+  "Análisis de cuencas hidrográficas y caudales de diseño": { libro: "Chow, Maidment, Mays -- Hidrología Aplicada", seccion: "capítulo de análisis de cuencas" },
+  "Hidrogramas unitarios y tránsito de crecidas": { libro: "Chow, Maidment, Mays -- Hidrología Aplicada", seccion: "capítulo del hidrograma unitario" },
+  "Diseño hidrológico de obras de drenaje pluvial": { libro: "Chow, Maidment, Mays -- Hidrología Aplicada", seccion: "capítulo de diseño de drenaje" },
 };
 
 // ---- Estado de la materia/examen que se está EDITANDO (pantallas 1-3: elegir
@@ -6016,6 +6409,92 @@ const DURACIONES = {
   "Metodologías ágiles avanzadas (Scrum, Kanban a escala)": 2,
   "Integración y entrega continua (CI/CD) a escala": 2,
   "Gestión de la configuración y despliegue de software": 1,
+
+  // ---- Ingeniería Civil ----
+  "Límites, continuidad y asíntotas de funciones reales": 2,
+  "Derivada: definición, reglas y aplicaciones a razones de cambio": 2,
+  "Integral definida e indefinida, teorema fundamental del cálculo": 2,
+  "Técnicas de integración y aplicaciones a áreas y volúmenes": 2,
+  "Vectores en el plano y el espacio, producto escalar y vectorial": 1,
+  "Matrices, sistemas de ecuaciones lineales y eliminación gaussiana": 2,
+  "Rectas, planos y cónicas en el espacio": 2,
+  "Transformaciones lineales y cambio de coordenadas": 2,
+  "Cinemática: posición, velocidad y aceleración": 2,
+  "Leyes de Newton y diagramas de cuerpo libre": 2,
+  "Trabajo, energía cinética y potencial, conservación de energía": 2,
+  "Momento lineal, impulso y colisiones": 2,
+  "Sucesiones y series numéricas, criterios de convergencia": 2,
+  "Ecuaciones diferenciales ordinarias de primer y segundo orden": 3,
+  "Derivadas parciales y optimización de funciones de varias variables": 2,
+  "Integrales dobles y triples aplicadas al cálculo de volúmenes y masas": 2,
+  "Momento de una fuerza y equilibrio de cuerpos rígidos": 2,
+  "Reacciones de apoyo y diagramas de cuerpo libre en estructuras": 1,
+  "Armaduras planas: método de nudos y de secciones": 2,
+  "Centroides, centros de gravedad y momentos de inercia de áreas": 2,
+  "Estructura atómica y enlaces químicos en materiales de construcción": 1,
+  "Reacciones químicas del cemento y del hormigón (hidratación)": 2,
+  "Corrosión de armaduras metálicas en el hormigón": 1,
+  "Química del agua y su efecto sobre estructuras y suelos": 1,
+  "Esfuerzo axial, deformación y la ley de Hooke": 2,
+  "Esfuerzo cortante y torsión en elementos estructurales": 2,
+  "Flexión de vigas: esfuerzos normales y diagramas de momento": 2,
+  "Pandeo de columnas y carga crítica de Euler": 2,
+  "Métodos de medición de distancias y ángulos en el terreno": 1,
+  "Nivelación geométrica y trigonométrica": 1,
+  "Levantamientos topográficos y cálculo de superficies": 2,
+  "Sistemas de posicionamiento global (GPS/GNSS) aplicados a obra": 1,
+  "Variables aleatorias y distribuciones de probabilidad en fenómenos de carga": 2,
+  "Confiabilidad estructural y análisis de riesgo": 2,
+  "Estimación y contraste de hipótesis en datos de ensayos de materiales": 2,
+  "Regresión lineal aplicada a hidrología y geotecnia": 1,
+  "Vigas y pórticos isostáticos: diagramas de esfuerzos": 2,
+  "Líneas de influencia para cargas móviles": 2,
+  "Método de las fuerzas para estructuras hiperestáticas": 3,
+  "Método de la rigidez y análisis matricial de estructuras": 3,
+  "Hidrostática: presión, empuje y estabilidad de cuerpos flotantes": 1,
+  "Ecuación de Bernoulli y conservación de la energía en flujos": 2,
+  "Flujo laminar y turbulento, número de Reynolds": 1,
+  "Pérdidas de carga en tuberías y redes de conductos": 2,
+  "Origen de los suelos y propiedades índice (granulometría, límites de Atterberg)": 2,
+  "Clasificación de suelos (SUCS) y compactación": 1,
+  "Esfuerzos efectivos y presión de poros": 2,
+  "Consolidación y asentamientos en suelos finos": 2,
+  "Propiedades mecánicas del hormigón y del acero de refuerzo": 1,
+  "Diseño a flexión de vigas de hormigón armado": 3,
+  "Diseño a corte y anclaje de armaduras": 2,
+  "Diseño de columnas y losas de hormigón armado": 3,
+  "Flujo uniforme y gradualmente variado en canales abiertos": 2,
+  "Resaltos hidráulicos y estructuras de control": 1,
+  "Diseño de vertederos y obras de toma": 1,
+  "Redes de distribución de agua potable": 2,
+  "Áridos y agregados: propiedades y ensayos": 1,
+  "Cementos y cales: propiedades y tipos": 1,
+  "Aceros estructurales: propiedades y ensayos mecánicos": 1,
+  "Maderas y materiales compuestos en la construcción": 1,
+  "Diseño de elementos a tracción y compresión en acero": 2,
+  "Conexiones soldadas y apernadas en estructuras metálicas": 2,
+  "Propiedades estructurales de la madera": 1,
+  "Diseño de elementos y uniones en estructuras de madera": 2,
+  "Capacidad de carga de fundaciones superficiales": 2,
+  "Empuje de tierras y estabilidad de muros de contención": 2,
+  "Diseño de pilotes y fundaciones profundas": 2,
+  "Estabilidad de taludes y análisis de deslizamientos": 2,
+  "Diseño geométrico en planta y perfil de carreteras": 2,
+  "Curvas horizontales y verticales, peraltes": 1,
+  "Diseño de pavimentos flexibles y rígidos": 2,
+  "Materiales y capas de la estructura de pavimento": 1,
+  "Procesos constructivos de estructuras de hormigón y encofrados": 1,
+  "Seguridad e higiene en obras de construcción": 1,
+  "Planificación de obra: cronogramas y ruta crítica (CPM/PERT)": 2,
+  "Presupuesto, cómputo métrico y control de costos de obra": 2,
+  "Redes de saneamiento y alcantarillado": 2,
+  "Tratamiento de aguas residuales": 2,
+  "Evaluación de impacto ambiental de obras civiles": 1,
+  "Gestión de residuos de construcción y demolición": 1,
+  "Ciclo hidrológico, precipitación y escorrentía": 1,
+  "Análisis de cuencas hidrográficas y caudales de diseño": 2,
+  "Hidrogramas unitarios y tránsito de crecidas": 2,
+  "Diseño hidrológico de obras de drenaje pluvial": 2,
 };
 // e permite sumar los días extra que el estudiante pidió vía el check-in
 // adaptativo ("seguir con este tema") -- ver resolverCheckin().
@@ -6854,13 +7333,52 @@ function agregarExamen() {
 
 function renderFacultades() {
   const box = document.getElementById('facultadesList');
-  box.innerHTML = FACULTADES_ORDEN.map(key => {
+  // Agrupa las carreras por `grupo` (o por su propio label si no tiene
+  // grupo, ej. Medicina/Psicología) -- un grupo de 1 sola carrera se ve y
+  // se comporta como antes; un grupo con más de una arma un acordeón.
+  const gruposVistos = [];
+  FACULTADES_ORDEN.forEach(key => {
     const f = FACULTADES[key];
-    return `<div class="card" style="border-color:var(--accent); background:var(--accent-soft); cursor:pointer;" onclick="elegirFacultad('${key}')">
-      <div style="font-weight:800; font-size:16px;">${f.iconoMateria} ${f.label}</div>
-      <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${f.universidad} · ${f.carrera}</div>
+    const nombreGrupo = f.grupo || f.label;
+    let g = gruposVistos.find(x => x.nombreGrupo === nombreGrupo);
+    if (!g) { g = { nombreGrupo, miembros: [] }; gruposVistos.push(g); }
+    g.miembros.push(key);
+  });
+  box.innerHTML = gruposVistos.map(g => {
+    if (g.miembros.length === 1) {
+      const f = FACULTADES[g.miembros[0]];
+      return `<div class="card" style="border-color:var(--accent); background:var(--accent-soft); cursor:pointer;" onclick="elegirFacultad('${g.miembros[0]}')">
+        <div style="font-weight:800; font-size:16px;">${f.iconoMateria} ${f.label}</div>
+        <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${f.universidad} · ${f.carrera}</div>
+      </div>`;
+    }
+    const primero = FACULTADES[g.miembros[0]];
+    return `<div class="card" style="border-color:var(--accent); padding:0; overflow:hidden;">
+      <div style="padding:14px; background:var(--accent-soft); cursor:pointer; display:flex; justify-content:space-between; align-items:center;" onclick="toggleGrupoFacultad(this)">
+        <div>
+          <div style="font-weight:800; font-size:16px;">${primero.iconoMateria} ${g.nombreGrupo}</div>
+          <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${primero.universidad} · elegí tu carrera</div>
+        </div>
+        <span class="study-section-chevron">▸</span>
+      </div>
+      <div style="display:none;">
+        ${g.miembros.map(k => {
+          const f = FACULTADES[k];
+          return `<div style="padding:13px 14px; border-top:1px solid var(--line); cursor:pointer;" onclick="elegirFacultad('${k}')">
+            <div style="font-weight:700; font-size:14.5px;">${f.iconoMateria} ${f.carrera}</div>
+          </div>`;
+        }).join('')}
+      </div>
     </div>`;
   }).join('');
+}
+
+function toggleGrupoFacultad(headEl) {
+  const sub = headEl.nextElementSibling;
+  const chevron = headEl.querySelector('.study-section-chevron');
+  const abierto = sub.style.display !== 'none';
+  sub.style.display = abierto ? 'none' : 'block';
+  if (chevron) chevron.classList.toggle('open', !abierto);
 }
 
 function elegirFacultad(key) {
