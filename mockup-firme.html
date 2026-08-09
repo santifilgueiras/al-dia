@@ -497,8 +497,19 @@
   /* En pantallas de compu, esto deja de verse como un teléfono flotando y
      pasa a verse como una página web normal, a pantalla completa: el
      bottom-nav se reemplaza por el menú lateral fijo de arriba (solo en las
-     pantallas donde corresponde -- body.has-nav lo controla desde el JS). */
-  @media (min-width: 860px) {
+     pantallas donde corresponde -- body.has-nav lo controla desde el JS).
+     "and (display-mode: browser)" -- SIN esto, un iPad en horizontal
+     instalado como PWA (misma app, pero display-mode:standalone) también
+     cruza los 860px y termina agarrando este layout de compu por completo:
+     "body.has-nav .side-nav{display:flex}" (0,2,0) le gana en especificidad
+     a ".side-nav{display:none}" del bloque de standalone de más abajo (0,1,0)
+     sin importar el orden -- y encima "display:none !important" en
+     .bottom-nav le gana a cualquier intento de standalone de reactivarlo. El
+     resultado es el menú lateral de compu apareciendo en el iPad/iPhone
+     instalado en vez del menú de abajo. "browser" es el display-mode normal
+     de una pestaña sin instalar -- así este bloque entero queda anulado en
+     cuanto la app corre instalada, sea cual sea el ancho. */
+  @media (min-width: 860px) and (display-mode: browser) {
     body { align-items: stretch; justify-content: stretch; padding: 0; }
     /* .app-shell ahora ocupa el 100% real de la ventana (alto y ancho), no
        solo lo que su contenido pida -- así .phone y .side-nav, con flex/
