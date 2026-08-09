@@ -22,7 +22,10 @@
 
 <meta name="theme-color" content="#4f9dd6">
 <link rel="icon" href="/icons/icon-512.png">
+<link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Al Día">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,34 +38,80 @@
     --muted: #74909f;
     --accent: #4f9dd6;
     --accent-soft: #e6f3fb;
+    --firme: #3fac83;
+    --firme-soft: #e3f7ee;
     --line: #dfeaee;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0; font-family: 'Nunito', sans-serif; color: var(--ink);
     background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
-    min-height: 100dvh;
+    min-height: 100dvh; position: relative; overflow-x: hidden;
   }
-  .wrap { max-width: 480px; margin: 0 auto; padding: 40px 22px 60px; }
+  .landing-shell { position: relative; z-index: 1; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 56px 24px 70px; position: relative; overflow: hidden; }
+  /* Logo grande, transparentado, de fondo -- le da aire de página web de
+     verdad en vez de una tarjeta angosta flotando en el medio. Cuelga del
+     área de contenido (.wrap), no de toda la ventana, para no superponerse
+     con el sidebar oscuro en pantallas de compu. */
+  .wrap::before {
+    content: '📚'; position: absolute; top: -100px; right: -80px; font-size: 420px;
+    opacity: .06; pointer-events: none; z-index: 0; transform: rotate(-8deg);
+  }
+  .wrap::after {
+    content: '🧠'; position: absolute; bottom: -120px; left: -100px; font-size: 380px;
+    opacity: .05; pointer-events: none; z-index: 0; transform: rotate(10deg);
+  }
+  .wrap > * { position: relative; z-index: 1; }
+  /* Menú lateral persistente para pantallas de compu -- mismo estilo que el
+     de adentro de la app, para que el landing se sienta parte de la MISMA
+     página web en vez de una tarjeta de marketing aparte. Antes de loguearte
+     no hay Exámenes/Repaso/etc todavía (no existen sin cuenta), así que acá
+     tiene sus propios accesos: secciones de esta página + instalar +
+     iniciar sesión/registrarme. En celular se esconde -- ahí ya andaba bien
+     como scroll simple, sin necesidad de un menú fijo. */
+  .landing-sidebar { display: none; }
+  .hero { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 40px; }
   .logo {
-    width: 76px; height: 76px; border-radius: 22px; margin: 0 auto 18px;
+    width: 84px; height: 84px; border-radius: 24px; margin: 0 auto 18px;
     background: linear-gradient(135deg, #6fc3e0, #58c896);
-    display: flex; align-items: center; justify-content: center; font-size: 38px;
-    box-shadow: 0 12px 24px rgba(79,157,214,.28);
+    display: flex; align-items: center; justify-content: center; font-size: 42px;
+    box-shadow: 0 14px 28px rgba(79,157,214,.3);
   }
-  h1 { text-align: center; font-size: 30px; font-weight: 800; margin: 0 0 8px; }
-  .tagline { text-align: center; color: var(--muted); font-size: 15px; line-height: 1.5; margin: 0 0 30px; }
-  .deco-icons { text-align: center; font-size: 22px; letter-spacing: 8px; margin-bottom: 34px; opacity: .85; }
+  h1 { font-size: 34px; font-weight: 800; margin: 0 0 10px; }
+  .tagline { color: var(--muted); font-size: 15.5px; line-height: 1.55; margin: 0 0 20px; max-width: 520px; }
+  .deco-icons { font-size: 24px; letter-spacing: 10px; margin-bottom: 8px; opacity: .85; }
+
+  .actions { max-width: 480px; margin: 0 auto; }
+
+  .install-link {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: #fff; border: 1px solid var(--line); color: var(--ink); text-decoration: none;
+    font-weight: 700; font-size: 14.5px; padding: 15px; border-radius: 14px; margin-bottom: 22px;
+    box-shadow: 0 8px 20px rgba(70,120,150,.1);
+  }
+  .install-link:hover { border-color: var(--accent); }
+  .install-link .chev { color: var(--muted); margin-left: auto; }
+
+  .auth-box {
+    background: #fff; border: 1.5px solid var(--line); border-radius: 18px;
+    padding: 20px; text-align: center; margin-bottom: 14px;
+  }
+  .auth-box.primary { border-color: var(--firme); background: var(--firme-soft); }
+  .auth-box-label { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; line-height: 1.4; }
+  .auth-box.primary .auth-box-label { color: var(--ink); font-weight: 700; }
   .cta {
-    display: block; width: 100%; text-align: center; text-decoration: none;
-    background: linear-gradient(135deg, #6fc3e0, #58c896); color: #fff;
-    font-weight: 800; font-size: 16px; padding: 16px; border-radius: 16px;
-    box-shadow: 0 10px 22px rgba(88,200,150,.32);
+    display: block; width: 100%; text-align: center; text-decoration: none; border: none; cursor: pointer;
+    font-family: inherit; font-weight: 800; font-size: 15px; padding: 14px; border-radius: 12px;
   }
-  .install-note {
-    text-align: center; font-size: 12px; color: var(--muted); margin: 12px 0 40px;
+  .cta.primary { background: linear-gradient(135deg, #6fc3e0, #58c896); color: #fff; box-shadow: 0 10px 22px rgba(88,200,150,.3); }
+  .cta.secondary { background: var(--accent-soft); color: var(--accent); }
+
+  .features {
+    display: grid; grid-template-columns: 1fr; gap: 14px;
+    margin: 46px 0 30px;
   }
-  .features { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
   .feature {
     display: flex; gap: 14px; align-items: flex-start; background: #fff;
     border-radius: 16px; padding: 16px; border: 1px solid var(--line);
@@ -74,25 +123,80 @@
   .feature-text b { display: block; font-size: 14.5px; margin-bottom: 2px; }
   .feature-text span { font-size: 13px; color: var(--muted); line-height: 1.4; }
   .carreras {
-    background: #fff; border-radius: 16px; padding: 18px; border: 1px solid var(--line);
+    background: #fff; border-radius: 16px; padding: 20px; border: 1px solid var(--line);
     text-align: center; margin-bottom: 30px;
   }
   .carreras b { display: block; font-size: 14.5px; margin-bottom: 6px; }
   .carreras span { font-size: 13px; color: var(--muted); }
   footer { text-align: center; font-size: 11.5px; color: var(--muted); margin-top: 10px; }
+
+  @media (min-width: 720px) {
+    .features { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (min-width: 860px) {
+    html, body { height: 100%; }
+    body { display: flex; }
+    /* Sidebar oscuro pegado al borde, sin tarjeta/sombra -- mismo tratamiento
+       full-bleed que el resto de la app (no una tarjeta de marketing flotando
+       en el medio de la pantalla). */
+    .landing-shell { display: flex; align-items: stretch; width: 100%; min-height: 100vh; }
+    .landing-sidebar {
+      display: flex; flex-direction: column; gap: 2px; width: 230px; flex-shrink: 0;
+      background: var(--ink); padding: 20px 12px; position: sticky; top: 0;
+    }
+    .landing-sidebar-logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 15px; color: #fff; padding: 4px 10px 22px; }
+    .landing-sidebar-logo .ic { font-size: 20px; }
+    .landing-sidebar a.side-item {
+      display: flex; align-items: center; gap: 12px; padding: 12px 10px; border-radius: 10px;
+      cursor: pointer; font-size: 14px; font-weight: 700; color: rgba(255,255,255,.6); text-decoration: none;
+    }
+    .landing-sidebar a.side-item:hover { background: rgba(255,255,255,.07); color: #fff; }
+    .landing-sidebar a.side-item .ic { font-size: 18px; }
+    .landing-sidebar hr { border: none; border-top: 1px solid rgba(255,255,255,.12); margin: 10px 6px; width: calc(100% - 12px); }
+    .landing-sidebar .cta { margin: 4px 0; }
+    .wrap {
+      flex: 1; min-width: 0; max-width: none; margin: 0; padding: 64px 40px; position: relative;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .hero, .actions, .features, .carreras, footer { width: 100%; max-width: 720px; margin-left: auto; margin-right: auto; }
+  }
 </style>
 </head>
 <body>
+<div class="landing-shell">
+<nav class="landing-sidebar">
+  <div class="landing-sidebar-logo"><span class="ic">📚</span>Al Día</div>
+  <a class="side-item" href="#funciones"><span class="ic">✨</span>Funciones</a>
+  <a class="side-item" href="#carreras"><span class="ic">🎓</span>Carreras</a>
+  <a class="side-item" href="/instalar.html" target="_blank" rel="noopener"><span class="ic">📲</span>Instalar</a>
+  <hr>
+  <a class="cta secondary" href="/mockup-firme.html?auth=login">Iniciar sesión</a>
+  <a class="cta primary" href="/mockup-firme.html?auth=registro">Registrarme</a>
+</nav>
 <div class="wrap">
-  <div class="logo">📚</div>
-  <h1>Al Día</h1>
-  <p class="tagline">Organizá lo que tenés que estudiar y decile para cuándo es el examen. Armamos un calendario día por día que programa cuándo repasar cada tema, para que no se te olvide nada.</p>
-  <div class="deco-icons">📚 🧠 🎓 ✏️ 📝</div>
+  <div class="hero">
+    <div class="logo">📚</div>
+    <h1>Al Día</h1>
+    <p class="tagline">Organizá lo que tenés que estudiar y decile para cuándo es el examen. Armamos un calendario día por día que programa cuándo repasar cada tema, para que no se te olvide nada.</p>
+    <div class="deco-icons">📚 🧠 🎓 ✏️ 📝</div>
+  </div>
 
-  <a class="cta" href="/mockup-firme.html">Empezar →</a>
-  <p class="install-note">Se instala directo desde el navegador -- en Android es un toque, en iPhone/iPad te guiamos paso a paso una vez adentro.</p>
+  <div class="actions">
+    <a class="install-link" href="/instalar.html" target="_blank" rel="noopener">📲 <span>¿Cómo instalo Al Día en mi celular?</span> <span class="chev">›</span></a>
 
-  <div class="features">
+    <div class="auth-box primary">
+      <div class="auth-box-label">Para usar Al Día necesitás una cuenta -- es gratis y tu progreso queda guardado.</div>
+      <a class="cta primary" href="/mockup-firme.html?auth=registro">Registrarme →</a>
+    </div>
+
+    <div class="auth-box">
+      <div class="auth-box-label">¿Ya tenés cuenta?</div>
+      <a class="cta secondary" href="/mockup-firme.html?auth=login">Iniciar sesión</a>
+    </div>
+  </div>
+
+  <div class="features" id="funciones">
     <div class="feature">
       <div class="feature-icon">📅</div>
       <div class="feature-text"><b>Calendario de repaso espaciado</b><span>No es "leer una vez" -- programa cuándo volver a cada tema según cómo te fue la última vez.</span></div>
@@ -111,12 +215,21 @@
     </div>
   </div>
 
-  <div class="carreras">
+  <div class="carreras" id="carreras">
     <b>Catálogo completo</b>
     <span>25 Unidades Curriculares de Medicina y todas las materias de Psicología (UDELAR), con bibliografía real por tema.</span>
   </div>
 
   <footer>Hecho para estudiantes de la UDELAR, por un estudiante.</footer>
 </div>
+</div>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(err => console.error('SW register falló:', err));
+  });
+}
+</script>
 </body>
 </html>

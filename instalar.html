@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Cómo instalar Al Día</title>
+<meta name="description" content="Guía paso a paso para instalar Al Día en tu iPhone, Android o computadora.">
+<meta name="theme-color" content="#4f9dd6">
+<link rel="icon" href="/icons/icon-512.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Al Día">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-1: #eaf6fb;
+    --bg-2: #eafaf1;
+    --ink: #2b4152;
+    --muted: #74909f;
+    --accent: #4f9dd6;
+    --accent-soft: #e6f3fb;
+    --line: #dfeaee;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: 'Nunito', sans-serif; color: var(--ink);
+    background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
+    min-height: 100dvh; position: relative; overflow-x: hidden;
+  }
+  body::before {
+    content: '📚'; position: fixed; top: -80px; right: -60px; font-size: 340px;
+    opacity: .07; pointer-events: none; z-index: 0; transform: rotate(12deg);
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 32px 22px 60px; position: relative; z-index: 1; }
+  .back { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); text-decoration: none; font-weight: 700; font-size: 13.5px; margin-bottom: 26px; }
+  .logo {
+    width: 60px; height: 60px; border-radius: 18px; margin: 0 auto 14px;
+    background: linear-gradient(135deg, #6fc3e0, #58c896);
+    display: flex; align-items: center; justify-content: center; font-size: 30px;
+    box-shadow: 0 10px 20px rgba(79,157,214,.28);
+  }
+  h1 { text-align: center; font-size: 24px; font-weight: 800; margin: 0 0 8px; }
+  .sub { text-align: center; color: var(--muted); font-size: 14px; margin: 0 0 32px; line-height: 1.5; }
+  .tabs { display: flex; gap: 6px; background: #fff; border: 1px solid var(--line); padding: 4px; border-radius: 14px; margin-bottom: 26px; }
+  .tab { flex: 1; text-align: center; padding: 10px 6px; border-radius: 10px; font-size: 13px; font-weight: 700; color: var(--muted); cursor: pointer; }
+  .tab.active { background: var(--accent-soft); color: var(--accent); }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .step { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px; margin-bottom: 12px; }
+  .step-icon {
+    flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft);
+    display: flex; align-items: center; justify-content: center; font-size: 21px;
+  }
+  .step-text { font-size: 13.5px; line-height: 1.5; padding-top: 6px; }
+  .step-text b { color: var(--accent); }
+  .cta {
+    display: block; width: 100%; text-align: center; text-decoration: none; border: none; cursor: pointer;
+    background: linear-gradient(135deg, #6fc3e0, #58c896); color: #fff; font-family: inherit;
+    font-weight: 800; font-size: 15.5px; padding: 15px; border-radius: 14px; margin-top: 10px;
+    box-shadow: 0 10px 22px rgba(88,200,150,.32);
+  }
+  .note { text-align: center; font-size: 12px; color: var(--muted); margin-top: 14px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/">← Volver</a>
+  <div class="logo">📚</div>
+  <h1>Cómo instalar Al Día</h1>
+  <p class="sub">Elegí tu dispositivo -- en dos minutos la tenés como cualquier otra app.</p>
+
+  <div class="tabs">
+    <div class="tab" data-tab="ios" onclick="mostrarTab('ios')">📱 iPhone/iPad</div>
+    <div class="tab" data-tab="android" onclick="mostrarTab('android')">🤖 Android</div>
+    <div class="tab" data-tab="compu" onclick="mostrarTab('compu')">💻 Compu</div>
+  </div>
+
+  <div class="panel" id="panel-ios">
+    <div class="step">
+      <div class="step-icon">⬆️</div>
+      <div class="step-text">Abrí <b>al-dia-03ew.onrender.com</b> en <b>Safari</b> (tiene que ser Safari, no Chrome) y tocá el ícono <b>Compartir</b> -- la flechita hacia arriba en un cuadrado. Está abajo del todo en el iPhone, o arriba a la derecha en el iPad.</div>
+    </div>
+    <div class="step">
+      <div class="step-icon">📃</div>
+      <div class="step-text">Deslizá hacia abajo en la lista de opciones y elegí <b>"Agregar a inicio"</b>.</div>
+    </div>
+    <div class="step">
+      <div class="step-icon">✅</div>
+      <div class="step-text">Tocá <b>"Agregar"</b> arriba a la derecha -- listo, ya te queda el ícono de Al Día en tu pantalla de inicio, igual que cualquier otra app.</div>
+    </div>
+    <a class="cta" href="/mockup-firme.html">Entendido, abrir Al Día →</a>
+  </div>
+
+  <div class="panel" id="panel-android">
+    <div class="step">
+      <div class="step-icon">📲</div>
+      <div class="step-text">Abrí <b>al-dia-03ew.onrender.com</b> en <b>Chrome</b> y tocá el botón de acá abajo -- se instala con un solo toque, sin pasar por ninguna tienda de apps.</div>
+    </div>
+    <button class="cta" id="androidBtn" onclick="accionInstalarAndroid()">Instalar ahora</button>
+    <p class="note" id="androidNote">Si no ves el botón activarse, abrí este link directo desde tu celular en Chrome (no funciona si ya la tenés instalada, o desde un navegador distinto a Chrome).</p>
+  </div>
+
+  <div class="panel" id="panel-compu">
+    <div class="step">
+      <div class="step-icon">💻</div>
+      <div class="step-text">En la computadora no hace falta instalar nada -- <b>Al Día funciona directo en el navegador</b>, con todas las funciones.</div>
+    </div>
+    <div class="step">
+      <div class="step-icon">⭐</div>
+      <div class="step-text">Si igual la querés instalar como una ventana aparte (Chrome o Edge): mirá la barra de direcciones, arriba a la derecha del todo -- hay un ícono de instalar (una pantalla con una flechita). Tocalo y confirmá.</div>
+    </div>
+    <a class="cta" href="/mockup-firme.html">Continuar en el navegador →</a>
+  </div>
+</div>
+
+<script>
+let deferredInstallPrompt = null;
+const esIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+const esMobil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+const esAndroid = /Android/i.test(navigator.userAgent);
+
+function mostrarTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === `panel-${tab}`));
+}
+
+// Arranca en la pestaña que corresponde al dispositivo real, no siempre en iOS.
+mostrarTab(esIOS ? 'ios' : esAndroid ? 'android' : 'compu');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  document.getElementById('androidNote').textContent = 'Un toque y queda como cualquier otra app en tu celular.';
+});
+
+async function accionInstalarAndroid() {
+  if (!deferredInstallPrompt) {
+    document.getElementById('androidNote').textContent = 'Tu navegador no ofreció el instalador automático todavía -- probá recargar esta página, o buscá "Instalar app" en el menú (⋮) de Chrome.';
+    return;
+  }
+  deferredInstallPrompt.prompt();
+  const { outcome } = await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  if (outcome === 'accepted') window.location.href = '/mockup-firme.html';
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(err => console.error('SW register falló:', err));
+  });
+}
+</script>
+</body>
+</html>

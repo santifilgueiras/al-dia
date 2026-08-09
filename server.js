@@ -50,6 +50,7 @@ app.use(express.json());
 // que se restringe a una lista explícita de archivos/carpetas públicas.
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'landing.html')));
 app.get('/landing.html', (req, res) => res.sendFile(path.join(__dirname, 'landing.html')));
+app.get('/instalar.html', (req, res) => res.sendFile(path.join(__dirname, 'instalar.html')));
 app.get('/mockup-firme.html', (req, res) => res.sendFile(path.join(__dirname, 'mockup-firme.html')));
 app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, 'manifest.json')));
 app.get('/sw.js', (req, res) => res.sendFile(path.join(__dirname, 'sw.js')));
