@@ -170,6 +170,28 @@ function extraerJSON(texto) {
   }
 }
 
+// La IA, al armar el JSON de opción múltiple, tiende a poner la respuesta
+// correcta casi siempre en las primeras posiciones (el propio ejemplo del
+// prompt muestra "correcta": 0, y eso la ancla) -- nunca o casi nunca en la
+// última opción. Un estudiante que se da cuenta puede usar ese patrón para
+// descartar la última opción sin saber la respuesta real. En vez de confiar
+// en que la IA randomice bien (los LLM son malos para eso), mezclamos las
+// opciones acá con Fisher-Yates cada vez que se sirven fichas -- tanto recién
+// generadas como desde la cache compartida -- así la posición de la correcta
+// queda uniformemente distribuida sin importar el sesgo del modelo.
+function mezclarOpcionesMultiple(fichas) {
+  return fichas.map(f => {
+    if (!Array.isArray(f.opciones)) return f;
+    const correctaValor = f.opciones[Number(f.correcta)];
+    const opciones = [...f.opciones];
+    for (let i = opciones.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [opciones[i], opciones[j]] = [opciones[j], opciones[i]];
+    }
+    return { ...f, opciones, correcta: opciones.indexOf(correctaValor) };
+  });
+}
+
 app.post('/api/fichas', upload.single('archivo'), async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
@@ -207,7 +229,10 @@ app.post('/api/fichas', upload.single('archivo'), async (req, res) => {
         .eq('con_busqueda', conBusqueda)
         .maybeSingle();
       if (errCache) console.error('Error leyendo fichas_cache (sigue sin cache)', errCache);
-      if (cacheada) return res.json({ fichas: cacheada.fichas, cache: true });
+      if (cacheada) {
+        const fichasServidas = esMultiple ? mezclarOpcionesMultiple(cacheada.fichas) : cacheada.fichas;
+        return res.json({ fichas: fichasServidas, cache: true });
+      }
     } catch (e) {
       console.error('Error leyendo fichas_cache (sigue sin cache)', e);
     }
@@ -254,10 +279,12 @@ ${consigna}`;
       console.error('Respuesta sin JSON reconocible:', texto);
       return res.status(502).json({ error: 'No se pudo interpretar la respuesta de la IA. Probá de nuevo.' });
     }
-    res.json({ fichas });
+    res.json({ fichas: esMultiple ? mezclarOpcionesMultiple(fichas) : fichas });
     // Guardar en la cache DESPUÉS de responder -- el estudiante no tiene que
-    // esperar a que termine de escribirse. Igual que la lectura, nunca se
-    // guarda contenido generado a partir de un apunte propio.
+    // esperar a que termine de escribirse. Se guarda el original SIN mezclar
+    // (mezclarOpcionesMultiple ya corre de nuevo en cada lectura de la cache,
+    // así cada estudiante ve un orden distinto). Igual que la lectura, nunca
+    // se guarda contenido generado a partir de un apunte propio.
     if (!apuntePropio && supabaseAdmin) {
       supabaseAdmin.from('fichas_cache').upsert({
         tema, materia_nombre: materiaNombre || null, tipo: tipoCache, cantidad: n, con_busqueda: conBusqueda, fichas,
