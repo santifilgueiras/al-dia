@@ -546,6 +546,13 @@
     body.has-nav .side-nav { display: flex; }
     body.has-nav .info-rail { display: flex; }
     .caption { max-width: 640px; }
+  }
+
+  /* Ajustes de contenido para pantalla ancha que valen SIEMPRE (compu Y
+     app instalada) -- a diferencia del bloque de arriba, acá no importa si
+     es navegador o standalone: es aprovechar el ancho de sobra, no decidir
+     qué menú mostrar. Sin "and (display-mode: browser)" a propósito. */
+  @media (min-width: 860px) {
     /* Listas de tarjetas (exámenes en curso/rendidas, materias en Resumen)
        -- en celular son una columna porque no hay lugar para otra cosa; acá
        hay ancho de sobra, así que se acomodan solas en grilla en vez de
@@ -555,6 +562,17 @@
     }
     #examenesEnCurso .empty-state, #examenesRendidos .empty-state, #resumenMaterias .empty-state {
       grid-column: 1 / -1;
+    }
+    /* Las 3 opciones de "Estudiar" (Tiempo/Fichas/Resumen) son un acordeón
+       de a una -- apiladas y cerradas, en pantalla ancha quedan como una
+       lista angosta con un montón de aire vacío al costado. Mientras ninguna
+       está abierta se acomodan una al lado de la otra; en cuanto se abre
+       una, vuelve a apilarse para que esa sección tenga todo el ancho. */
+    .study-grid:not(:has(.study-section.open)) {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start;
+    }
+    .study-grid:not(:has(.study-section.open)) .study-section {
+      margin-bottom: 0;
     }
   }
 
@@ -946,7 +964,10 @@
     <!-- Acordeón de 3 -- separadas de verdad (una sola abierta a la vez),
          no las tres apiladas en el mismo scroll. Entrar por primera vez
          (o tocar "Estudiar" en el menú) las deja las tres cerradas, mostrando
-         solo estos 3 encabezados para elegir. -->
+         solo estos 3 encabezados para elegir. .study-grid es el wrapper que
+         en pantalla ancha (ver CSS) las acomoda una al lado de la otra
+         mientras ninguna está abierta. -->
+    <div class="study-grid">
     <div class="study-section" id="sec-tiempo" data-sec="tiempo">
       <div class="study-section-head" onclick="toggleStudySection('tiempo')">
         <span class="study-section-title"><span class="ic">⏱️</span>Tiempo de estudio</span>
@@ -1056,6 +1077,7 @@
           <a class="ref-link" href="https://claude.ai" target="_blank" rel="noopener" style="margin-top:10px;">Conectar con Claude ↗</a>
         </div>
       </div>
+    </div>
     </div>
 
     <div class="spacer"></div>
