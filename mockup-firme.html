@@ -61,6 +61,20 @@
     flex-direction: column;
     min-height: 720px;
   }
+  /* El ancho fijo de 375px de arriba es la vidriera "mockup de celular
+     dentro del navegador", pensada para cuando se ve desde una compu (ahí
+     tiene sentido dejar aire a los costados). En un viewport que YA es de
+     celular (<860px, el mismo corte que separa "modo compu" de "modo
+     celular" en todo el resto del archivo) no hay ninguna vidriera que
+     mostrar -- si el dispositivo mide más de 375px de ancho (la mayoría),
+     ese ancho fijo dejaba un huequito del fondo pastel a los costados,
+     apenas visible en pantallas con contenido pero muy notorio en una casi
+     vacía como el picker de Estudiar antes de elegir una opción. Antes esto
+     solo se corregía en modo standalone (instalada a pantalla de inicio);
+     ahora se estira también en Safari/Chrome del celular sin instalar. */
+  @media (max-width: 859px) {
+    .phone { width: 100%; }
+  }
   .statusbar { height: 20px; background: #22333d; }
   .screen {
     display: none;
