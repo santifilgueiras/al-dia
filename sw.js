@@ -2,13 +2,14 @@
 // para que abra rápido y funcione con conexión mala o sin conexión.
 // Las llamadas a /api/* (fichas, resumen) siempre van a la red -- nunca
 // tiene sentido servir una respuesta vieja de la IA desde el cache.
-const CACHE_NAME = 'al-dia-v2';
+const CACHE_NAME = 'al-dia-v3';
 const APP_SHELL = [
   '/mockup-firme.html',
   '/manifest.json',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
   '/icons/apple-touch-icon.png',
+  '/sounds/ambiente.mp3',
 ];
 
 self.addEventListener('install', (event) => {

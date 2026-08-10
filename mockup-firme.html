@@ -73,6 +73,53 @@
     min-width: 0;
   }
   .screen.active { display: flex; }
+
+  /* Transición nativa entre pantallas (View Transitions API del navegador,
+     sin dependencias). go() la activa vía document.startViewTransition.
+     Por defecto es el fade sutil de siempre (como antes) -- se usa en toda
+     la navegación normal, incluyendo pasar de una pestaña a otra del menú
+     de abajo (ej. Repaso <-> Estudiar). El rebote (html.vt-rebote) queda
+     reservado solo para Bienvenida/Login, que go() activa puntualmente.
+     Se degrada sola (sin animación) en navegadores que no la soportan, y
+     se desactiva del todo si el usuario prefiere menos movimiento. */
+  ::view-transition-old(root) {
+    animation: al-dia-fade-out .18s ease-in both;
+  }
+  ::view-transition-new(root) {
+    animation: al-dia-fade-in .2s cubic-bezier(.4, 0, .2, 1) both;
+  }
+  @keyframes al-dia-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes al-dia-fade-out {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-8px); }
+  }
+  /* Rebote suave, solo para Bienvenida/Login (ver PANTALLAS_CON_REBOTE en JS) */
+  html.vt-rebote::view-transition-new(root) {
+    animation: al-dia-pop-in .34s cubic-bezier(.22, 1, .36, 1) both;
+  }
+  @keyframes al-dia-pop-in {
+    0%   { opacity: 0; transform: translateY(12px) scale(.95); }
+    60%  { opacity: 1; transform: translateY(-2px) scale(1.012); }
+    100% { opacity: 1; transform: translateY(0)    scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root), ::view-transition-new(root),
+    html.vt-rebote::view-transition-new(root) { animation: none !important; }
+  }
+
+  /* Reset de estilos nativos del elemento button: estos ítems de navegación
+     eran divs con onclick (no accesibles por teclado/lector de pantalla) y
+     pasaron a ser botones reales -- este reset los deja viéndose igual que
+     antes. El padding/font-size/color propios de cada clase siguen
+     definidos más abajo y ganan por venir después en la cascada. */
+  .side-nav-item, .side-nav-item-label, .side-nav-chevron, .side-nav-subitem,
+  .nav-item, .home-menu-item {
+    background: none; border: none; margin: 0; font: inherit; color: inherit;
+    -webkit-appearance: none; appearance: none;
+  }
   /* Envoltorio para las 5 pantallas con bottom-nav (Calendario, Resumen,
      Repaso, Exámenes, Estudiar): separa lo que scrollea (todo el contenido)
      de lo que no (.bottom-nav, que queda afuera de este wrapper, como
@@ -232,6 +279,15 @@
   .field input, .field select {
     width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 12px; font-size: 14.5px; font-family: inherit;
   }
+  /* Versión chica de la racha para el Calendario (la pantalla que más se
+     visita día a día) -- la tarjeta grande sigue estando en Resumen, esto
+     es solo un recordatorio compacto arriba para que no quede escondida. */
+  .racha-mini {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 800;
+    color: var(--ink); background: linear-gradient(135deg, #fff3e6, #ffe6d9);
+    border-radius: 999px; padding: 5px 12px 5px 8px; margin-bottom: 12px;
+  }
+  .racha-mini .racha-fuego { font-size: 15px; }
   .racha-card {
     display: flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #fff3e6, #ffe6d9);
     border: 1px solid #ffd8b8; border-radius: 16px; padding: 12px 14px; margin-bottom: 14px;
@@ -321,7 +377,18 @@
   .btn.secondary.picked-on { background: var(--firme-soft); color: var(--firme); }
   .racha-num { font-weight: 800; font-size: 15px; color: var(--ink); }
   .racha-sub { font-size: 11.5px; color: var(--muted); margin-top: 1px; }
-  .summary-bar { display: flex; gap: 8px; margin-bottom: 16px; }
+  .summary-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  /* Barra de progreso (% firme sobre el total) -- se agrega arriba de los
+     3 conteos de siempre, no los reemplaza. flex-basis:100% + flex-wrap en
+     .summary-bar hace que ocupe su propia fila entera. */
+  .stat-progress {
+    flex: 1 0 100%; height: 8px; border-radius: 999px; background: var(--nuevo-soft);
+    overflow: hidden; margin-bottom: 2px;
+  }
+  .stat-progress-fill {
+    height: 100%; border-radius: 999px; background: var(--firme);
+    transition: width .6s cubic-bezier(.22, 1, .36, 1);
+  }
   .stat { flex: 1; text-align: center; border-radius: 14px; padding: 10px 4px; }
   .stat .n { font-size: 19px; font-weight: 800; display: block; transition: transform .25s ease; }
   .stat .n.pulse { animation: statPulse .45s ease; }
@@ -356,6 +423,12 @@
     aspect-ratio: 1 / 1.05; border-radius: 9px; border: 1px solid var(--line);
     padding: 3px 4px; display: flex; flex-direction: column; cursor: pointer; overflow: hidden;
     transition: background-color .3s ease, border-color .3s ease;
+    /* auto = sin JS todavía, la celda mantiene el aspect-ratio de arriba.
+       ajustarAlturaCalendario() la pisa con un alto en px calculado a partir
+       de lo que mide la pantalla, para que la agenda del día asome sin
+       scroll -- ver esa función en el JS (aplica en cualquier ancho, no
+       solo en compu). */
+    height: var(--cal-cell-h, auto);
   }
   .cal-cell.empty { border-color: transparent; cursor: default; }
   .cal-cell .cal-daynum { font-size: 10.5px; font-weight: 800; color: var(--ink); line-height: 1; }
@@ -417,6 +490,19 @@
   .state-btn small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; margin-top: 2px; }
   .state-btn.flojo-btn:hover, .state-btn.flojo-btn.picked { border-color: var(--flojo); background: var(--flojo-soft); }
   .state-btn.firme-btn:hover, .state-btn.firme-btn.picked { border-color: var(--firme); background: var(--firme-soft); }
+  /* Pequeño "festejo" al marcar un tema firme -- es la acción que más se
+     repite en toda la app, vale la pena que se sienta como un logro y no
+     solo un toast de texto. Se dispara una sola vez desde marcar(). */
+  @keyframes firmePop {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(1.045); box-shadow: 0 0 0 8px var(--firme-soft); }
+    65%  { transform: scale(.985); }
+    100% { transform: scale(1); box-shadow: none; }
+  }
+  .state-btn.firme-pop { animation: firmePop .5s cubic-bezier(.34, 1.56, .64, 1); }
+  @media (prefers-reduced-motion: reduce) {
+    .state-btn.firme-pop { animation: none; }
+  }
   .bottom-nav {
     display: flex; border-top: 1px solid var(--line); background: #fff; flex-shrink: 0;
   }
@@ -632,18 +718,18 @@
 <div class="app-shell">
 <nav class="side-nav" id="sideNav">
   <div class="side-nav-logo"><span class="ic">📚</span>Al Día</div>
-  <div class="side-nav-item" data-nav="8" onclick="go(8)"><span class="ic">📚</span>Exámenes</div>
-  <div class="side-nav-item" data-nav="4" onclick="go(4)"><span class="ic">📅</span>Calendario</div>
-  <div class="side-nav-item" data-nav="7" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></div>
-  <div class="side-nav-item" data-nav="6" onclick="go(6)"><span class="ic">📊</span>Resumen</div>
+  <button type="button" class="side-nav-item" data-nav="8" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
+  <button type="button" class="side-nav-item" data-nav="4" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
+  <button type="button" class="side-nav-item" data-nav="7" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+  <button type="button" class="side-nav-item" data-nav="6" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
   <div class="side-nav-item side-nav-parent" data-nav="10">
-    <span class="side-nav-item-label" onclick="irAEstudiarPicker()"><span class="ic">📖</span>Estudiar</span>
-    <span class="side-nav-chevron" id="sideNavEstudiarChevron" onclick="toggleEstudiarSubmenu(event)">▸</span>
+    <button type="button" class="side-nav-item-label" onclick="irAEstudiarPicker()"><span class="ic">📖</span>Estudiar</button>
+    <button type="button" class="side-nav-chevron" id="sideNavEstudiarChevron" onclick="toggleEstudiarSubmenu(event)" aria-label="Mostrar submenú de Estudiar">▸</button>
   </div>
   <div class="side-nav-submenu" id="sideNavEstudiarSub">
-    <div class="side-nav-subitem" onclick="irAEstudiar('tiempo')"><span class="ic">⏱️</span>Tiempo de estudio</div>
-    <div class="side-nav-subitem" onclick="irAEstudiar('fichas')"><span class="ic">🧠</span>Fichas de repaso</div>
-    <div class="side-nav-subitem" onclick="irAEstudiar('resumen')"><span class="ic">📄</span>Resumen de apuntes</div>
+    <button type="button" class="side-nav-subitem" onclick="irAEstudiar('tiempo')"><span class="ic">⏱️</span>Tiempo de estudio</button>
+    <button type="button" class="side-nav-subitem" onclick="irAEstudiar('fichas')"><span class="ic">🧠</span>Fichas de repaso</button>
+    <button type="button" class="side-nav-subitem" onclick="irAEstudiar('resumen')"><span class="ic">📄</span>Resumen de apuntes</button>
   </div>
 </nav>
 <div class="phone" id="phone">
@@ -654,7 +740,7 @@
        flash de la app o del login de más, ni de menos. -->
   <div class="auth-loading" id="authLoading">
     <div class="logo" style="width:64px; height:64px; font-size:28px; margin:0 auto 14px;">📚</div>
-    <div style="color:var(--muted); font-size:13px;">Cargando...</div>
+    <div style="color:var(--muted); font-size:13px;">Cargando…</div>
   </div>
 
   <!-- S0 Bienvenida -->
@@ -690,11 +776,11 @@
       <p id="authSub">Iniciá sesión para ver tu calendario, sincronizado en todos tus dispositivos.</p>
     </div>
     <div class="field">
-      <label>Mail</label>
+      <label for="authEmail">Mail</label>
       <input type="email" id="authEmail" placeholder="tu@mail.com" autocomplete="email">
     </div>
     <div class="field">
-      <label>Contraseña</label>
+      <label for="authPassword">Contraseña</label>
       <input type="password" id="authPassword" placeholder="Mínimo 6 caracteres" autocomplete="current-password" onkeydown="if(event.key==='Enter') submitAuth()">
     </div>
     <div id="authError" style="display:none; color:var(--flojo); font-size:12.5px; font-weight:700; margin-bottom:10px;"></div>
@@ -709,16 +795,16 @@
       <button class="nav-close" onclick="toggleMenu(false)">×</button>
       <div class="nav-panel-title">Menú</div>
       <div style="font-size:11.5px; color:var(--muted); margin:0 4px 10px; word-break:break-all;" id="navUserEmail"></div>
-      <div class="home-menu-item" onclick="toggleMenu(false); go(8)">
+      <button type="button" class="home-menu-item" onclick="toggleMenu(false); go(8)">
         <span class="home-menu-icon">📅</span>
         <span class="home-menu-text">Calendario<small id="homeCalSub">Armá tu plan de estudio</small></span>
         <span class="chev">›</span>
-      </div>
-      <div class="home-menu-item" onclick="cerrarSesion()">
+      </button>
+      <button type="button" class="home-menu-item" onclick="cerrarSesion()">
         <span class="home-menu-icon">🚪</span>
         <span class="home-menu-text">Cerrar sesión</span>
         <span class="chev">›</span>
-      </div>
+      </button>
     </div>
   </div>
 
@@ -795,7 +881,7 @@
     <div id="materiasDelAnio"></div>
     <h2>¿No está tu materia?</h2>
     <div class="own-input">
-      <input type="text" id="materiaPropiaInput" placeholder="Ej: Farmacología II">
+      <input type="text" id="materiaPropiaInput" placeholder="Ej: Farmacología II" aria-label="Nombre de tu materia">
       <button onclick="elegirMateriaPropia()">Usar</button>
     </div>
     <div class="spacer"></div>
@@ -811,7 +897,7 @@
 
     <h2>Tus temas</h2>
     <div class="own-input">
-      <input type="text" id="ownInput" placeholder="Ej: Síndrome nefrótico">
+      <input type="text" id="ownInput" placeholder="Ej: Síndrome nefrótico" aria-label="Nombre del tema">
       <button onclick="addOwn()">+ Agregar</button>
     </div>
     <div id="ownList"></div>
@@ -835,8 +921,8 @@
     <div id="ordenList" style="margin-bottom:18px;"></div>
 
     <div class="field">
-      <label>Fecha del examen</label>
-      <input type="date" id="examDate" onchange="renderRitmo()">
+      <label for="examDate">Fecha del examen</label>
+      <input type="date" id="examDate" onchange="renderRitmo()" autocomplete="off">
       <div id="examDateError" style="display:none; color:var(--flojo); font-size:12px; font-weight:700; margin-top:6px;"></div>
     </div>
     <div class="field">
@@ -857,6 +943,7 @@
     <div class="screen-content">
     <h1 style="margin-top:4px;">Calendario</h1>
     <p class="sub" style="margin-bottom:10px;">Todas tus materias en curso, combinadas en un solo calendario.</p>
+    <div class="racha-mini"><span class="racha-fuego">🔥</span><span id="rachaTextoCal">0 días seguidos</span></div>
     <div class="summary-bar" id="summaryBar"></div>
     <div class="cal-nav">
       <button onclick="calPrevMonth()" aria-label="Mes anterior">‹</button>
@@ -872,11 +959,11 @@
     <div id="calAgenda"></div>
     </div>
     <div class="bottom-nav">
-      <div class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</div>
+      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
       <div class="nav-item active"><span class="ic">📅</span>Calendario</div>
-      <div class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></div>
-      <div class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</div>
-      <div class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</div>
+      <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+      <button type="button" class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
+      <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
     </div>
   </div>
 
@@ -932,11 +1019,11 @@
     </div>
     </div>
     <div class="bottom-nav">
-      <div class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</div>
-      <div class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</div>
-      <div class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></div>
+      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
+      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
       <div class="nav-item active"><span class="ic">📊</span>Resumen</div>
-      <div class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</div>
+      <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
     </div>
   </div>
 
@@ -948,11 +1035,11 @@
     <div id="repasoList"></div>
     </div>
     <div class="bottom-nav">
-      <div class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</div>
-      <div class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</div>
+      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
+      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
       <div class="nav-item active"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></div>
-      <div class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</div>
-      <div class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</div>
+      <button type="button" class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
+      <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
     </div>
   </div>
 
@@ -973,10 +1060,10 @@
     </div>
     <div class="bottom-nav" id="materiasBottomNav" style="display:none;">
       <div class="nav-item active"><span class="ic">📚</span>Exámenes</div>
-      <div class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</div>
-      <div class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></div>
-      <div class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</div>
-      <div class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</div>
+      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+      <button type="button" class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
+      <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
     </div>
   </div>
 
@@ -1065,7 +1152,7 @@
           <label for="fichasBusquedaCheckbox" style="margin:0; font-weight:normal;">🔎 Buscar parciales/exámenes anteriores para calibrar el estilo (más lento)</label>
         </div>
         <div class="field">
-          <label>Cantidad de fichas</label>
+          <label for="fichasCantidadSelect">Cantidad de fichas</label>
           <select id="fichasCantidadSelect">
             <option value="6">6</option>
             <option value="10">10</option>
@@ -1103,10 +1190,10 @@
     </div>
     </div>
     <div class="bottom-nav">
-      <div class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</div>
-      <div class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</div>
-      <div class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></div>
-      <div class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</div>
+      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
+      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+      <button type="button" class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
       <div class="nav-item active"><span class="ic">📖</span>Estudiar</div>
     </div>
   </div>
@@ -4859,14 +4946,40 @@ function toggleMenu(show) {
 }
 
 function go(n) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.querySelector(`.screen[data-screen="${n}"]`).classList.add('active');
-  // Entrar a Estudiar por su cuenta (no desde un ítem del submenú) siempre
-  // arranca con las 3 opciones cerradas -- así "estudiar" solo (apretado
-  // por si solo) muestra el picker, nunca una sección ya desplegada.
-  if (n === 10) document.querySelectorAll('.study-section').forEach(s => s.classList.remove('open'));
-  actualizarSideNav();
+  const aplicarPantalla = () => {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelector(`.screen[data-screen="${n}"]`).classList.add('active');
+    // Entrar a Estudiar por su cuenta (no desde un ítem del submenú) siempre
+    // arranca con las 3 opciones cerradas -- así "estudiar" solo (apretado
+    // por si solo) muestra el picker, nunca una sección ya desplegada.
+    if (n === 10) document.querySelectorAll('.study-section').forEach(s => s.classList.remove('open'));
+    actualizarSideNav();
+  };
+  // View Transitions API nativa: anima el cambio de pantalla (cross-fade +
+  // pequeño desplazamiento, ver CSS de ::view-transition-*). Sin librerías.
+  // Se salta sola en navegadores sin soporte y si el usuario prefiere menos
+  // movimiento (prefers-reduced-motion), para no forzar la animación.
+  const prefiereMenosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (document.startViewTransition && !prefiereMenosMovimiento) {
+    // El rebote (ver CSS html.vt-rebote) queda solo para Bienvenida/Login --
+    // el resto de la navegación (pestañas, flujo de armar el plan) usa el
+    // fade sutil de siempre.
+    const conRebote = PANTALLAS_CON_REBOTE.includes(n);
+    if (conRebote) document.documentElement.classList.add('vt-rebote');
+    const transicion = document.startViewTransition(aplicarPantalla);
+    // .catch() vacío en ready Y finished: si el usuario navega rápido (dos
+    // toques seguidos), el navegador aborta la transición anterior -- es
+    // comportamiento normal, no un error real, pero "ready" y "finished" son
+    // promesas separadas y ambas quedan sin manejar si no se capturan las dos.
+    transicion.ready.catch(() => {});
+    transicion.finished.catch(() => {}).finally(() => {
+      if (conRebote) document.documentElement.classList.remove('vt-rebote');
+    });
+  } else {
+    aplicarPantalla();
+  }
 }
+const PANTALLAS_CON_REBOTE = [0, 11];
 
 // Menú lateral de compu (ver CSS .side-nav): se muestra en vez del
 // bottom-nav en pantallas anchas, solo en las mismas pantallas donde el
@@ -5084,14 +5197,22 @@ function addDays(date, n) {
 function fmt(d) {
   return d.toISOString().slice(0,10);
 }
+// Formateadores de fecha centralizados (Intl.DateTimeFormat en vez de
+// concatenar día/mes/año a mano en cada lugar) -- mismo formato visual de
+// siempre (D/M o D/M/AAAA, sin ceros a la izquierda), pero en un solo lugar.
+const FORMATO_FECHA_CORTA = new Intl.DateTimeFormat('es-UY', { day: 'numeric', month: 'numeric' });
+const FORMATO_FECHA_LARGA = new Intl.DateTimeFormat('es-UY', { day: 'numeric', month: 'numeric', year: 'numeric' });
+function formatearFecha(d) { return FORMATO_FECHA_LARGA.format(d); }
+function formatearFechaCorta(d) { return FORMATO_FECHA_CORTA.format(d); }
+
 function fmtLabel(d) {
   const dias = ['dom','lun','mar','mié','jué','vie','sáb'];
-  return `${dias[d.getDay()]} ${d.getDate()}/${d.getMonth()+1}`;
+  return `${dias[d.getDay()]} ${formatearFechaCorta(d)}`;
 }
 function fmtFecha(iso) {
   if (!iso) return 'sin fecha';
   const d = new Date(iso + 'T00:00:00');
-  return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
+  return formatearFecha(d);
 }
 
 function diasHastaExamen() {
@@ -6831,10 +6952,15 @@ function contarEstadosGlobal() {
 function renderSummary(elId) {
   const c = contarEstadosGlobal();
   const el = document.getElementById(elId);
+  const total = c.firme + c.flojo + c.nuevo;
+  const pct = total > 0 ? Math.round((c.firme / total) * 100) : 0;
   const prev = el.dataset.firme !== undefined
     ? { firme: +el.dataset.firme, flojo: +el.dataset.flojo, nuevo: +el.dataset.nuevo }
     : null;
   el.innerHTML = `
+    <div class="stat-progress" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="${pct}% de los temas firmes">
+      <div class="stat-progress-fill" style="width:${pct}%"></div>
+    </div>
     <div class="stat firme"><span class="n">${c.firme}</span><span class="l">Firmes</span></div>
     <div class="stat flojo"><span class="n">${c.flojo}</span><span class="l">Flojos</span></div>
     <div class="stat nuevo"><span class="n">${c.nuevo}</span><span class="l">Nuevos</span></div>
@@ -6904,19 +7030,33 @@ function renderCalendario() {
 // mide de verdad la pantalla (no un número fijo adivinado -- ver comentario
 // en el CSS de .cal-cell). Deja lugar reservado abajo para que el cartel de
 // próximos exámenes, el título del día Y el primer tema de la agenda asomen
-// sin scroll. Solo aplica en el layout ancho (>=860px, que incluye compu Y
-// iPad horizontal); en celular angosto las celdas siguen usando aspect-ratio.
-function ajustarAlturaCalendario() {
+// sin scroll. Corre en cualquier ancho: en celular la grilla ya no usa
+// aspect-ratio fijo (eso hacía que, sumado a racha/resumen/nav arriba, la
+// agenda del día quedara tapada y hubiera que scrollear para verla); en
+// compu/iPad horizontal sigue igual que antes, solo con el límite más alto.
+function ajustarAlturaCalendario(intentos) {
+  intentos = intentos || 0;
   const screenEl = document.querySelector('.screen[data-screen="4"]');
-  if (!screenEl || !screenEl.classList.contains('active')) return;
+  if (!screenEl) return;
+  if (!screenEl.classList.contains('active')) {
+    // go() navega con la View Transitions API cuando el navegador la
+    // soporta (Chrome/Edge): el callback que agrega la clase "active" corre
+    // async, un instante después de este llamado (que sale de
+    // renderCalendario(), invocado en el mismo tick que go(4)). Sin este
+    // reintento, acá arriba la pantalla todavía está oculta (alto 0), la
+    // función se cancelaba, y --cal-cell-h nunca se llegaba a fijar -- la
+    // grilla se quedaba con su alto por defecto (alto, tapa la agenda)
+    // hasta que el usuario resizeara la ventana. Reintenta por unos frames
+    // (sobra con 1-2 en la práctica) y se rinde si de verdad no es la
+    // pantalla activa.
+    if (intentos < 15) requestAnimationFrame(() => ajustarAlturaCalendario(intentos + 1));
+    return;
+  }
   // El área que scrollea es .screen-content -- el bottom-nav quedó afuera de
   // ella (ver .screen-content en el CSS), así que ya no compite por altura
   // con el calendario y no hace falta reservarle lugar acá.
   const content = screenEl.querySelector('.screen-content') || screenEl;
-  if (!window.matchMedia('(min-width: 860px)').matches) {
-    screenEl.style.removeProperty('--cal-cell-h');
-    return;
-  }
+  const esAncho = window.matchMedia('(min-width: 860px)').matches;
   requestAnimationFrame(() => {
     const grid = document.getElementById('calGrid');
     if (!grid) return;
@@ -6924,7 +7064,7 @@ function ajustarAlturaCalendario() {
     const gridRect = grid.getBoundingClientRect();
     const gridTop = gridRect.top - contentRect.top;
     const numRows = Math.max(1, Math.ceil(grid.children.length / 7));
-    const rowGaps = (numRows - 1) * 4; // el mismo gap:4px de .cal-grid en CSS
+    const rowGaps = (numRows - 1) * (esAncho ? 8 : 4); // mismo gap que .cal-grid en CSS
     // Todo lo que va DESPUÉS de la grilla (cartel de exámenes, título del
     // día, primer tema de la agenda) se mide directo de su posición real en
     // el DOM en vez de sumar paddings/márgenes a mano -- así no hace falta
@@ -6941,7 +7081,13 @@ function ajustarAlturaCalendario() {
       : 90;
     const reservedBelow = belowGridHeight + 16;
     const available = content.clientHeight - gridTop - reservedBelow - rowGaps;
-    const cellHeight = Math.max(56, Math.min(120, Math.floor(available / numRows)));
+    // En celular el piso es bajo (34px): la celda solo necesita mostrar el
+    // número del día, el resto (tema/etiqueta) se recorta con line-clamp sin
+    // romper el layout -- ver overflow:hidden en .cal-cell. Preferible a
+    // dejar una grilla alta que tape la agenda.
+    const minH = esAncho ? 56 : 34;
+    const maxH = esAncho ? 120 : 80;
+    const cellHeight = Math.max(minH, Math.min(maxH, Math.floor(available / numRows)));
     screenEl.style.setProperty('--cal-cell-h', cellHeight + 'px');
   });
 }
@@ -7144,7 +7290,15 @@ function marcar(estado) {
   }
   registrarActividadHoy();
   document.getElementById('btnFlojo').classList.toggle('picked', estado === 'flojo');
-  document.getElementById('btnFirme').classList.toggle('picked', estado === 'firme');
+  const btnFirmeEl = document.getElementById('btnFirme');
+  btnFirmeEl.classList.toggle('picked', estado === 'firme');
+  if (estado === 'firme') {
+    // Reinicia la animación aunque ya estuviera aplicada (dos "firme"
+    // seguidos en temas distintos deben festejar las dos veces).
+    btnFirmeEl.classList.remove('firme-pop');
+    void btnFirmeEl.offsetWidth;
+    btnFirmeEl.classList.add('firme-pop');
+  }
   showToast(estado === 'nuevo' ? 'Sigue agendado como estaba' : `Marcado como ${estado}`);
   renderSummary('summaryBar');
   updateBadges();
@@ -7490,7 +7644,7 @@ function marcarRendidaDesdeHub(id) {
   if (!e) return;
   const hoy = new Date();
   e.rendidaManual = true;
-  e.fechaRendidaLabel = `${hoy.getDate()}/${hoy.getMonth() + 1}/${hoy.getFullYear()}`;
+  e.fechaRendidaLabel = formatearFecha(hoy);
   archivarSiRendido(e);
   renderExamenes();
   updateBadges();
@@ -7593,9 +7747,12 @@ function showToast(msg) {
 // temas). Marcar rendida y marcar prioritaria viven en el hub de Exámenes,
 // no acá.
 function renderRacha() {
+  const texto = `${racha} día${racha === 1 ? '' : 's'} seguido${racha === 1 ? '' : 's'}`;
   const el = document.getElementById('rachaTexto');
-  if (!el) return;
-  el.textContent = `${racha} día${racha === 1 ? '' : 's'} seguido${racha === 1 ? '' : 's'}`;
+  if (el) el.textContent = texto;
+  // Copia chica en Calendario (ver .racha-mini) -- misma racha, dos lugares.
+  const elCal = document.getElementById('rachaTextoCal');
+  if (elCal) elCal.textContent = texto;
 }
 
 // ---- Recordatorio diario (S6) -- push real ----
@@ -8038,22 +8195,22 @@ async function generarResumen() {
 }
 
 // ---- Sonido ambiente para estudiar ----
-// Generado en el momento con Web Audio API, no es una pista real -- evita
-// cualquier problema de copyright (misma política que ya usamos con la
-// bibliografía: nunca alojar/linkear contenido con derechos de autor de
-// otro; si alguien quiere música real, el link "Buscar en YouTube" de al
-// lado abre una búsqueda para que la escuche en su propia cuenta, en vez de
-// que la app aloje o rehostee un mp3/pista ajena). Es un pad suave de 3
-// tonos + una capa de ruido tipo "brown noise" filtrado, pensado como
-// textura de fondo, no protagonista -- si sonaba "a ruido feo" en una
-// versión anterior, era un problema de mezcla (ruido demasiado fuerte y
-// poco filtrado tapando el pad), no del enfoque en sí: se corrigió bajando
-// el volumen general por defecto, suavizando el ruido con doble filtro, y
-// agregando un slider para que cada quien lo ajuste a su gusto en vez de
-// un volumen fijo. El AudioContext se crea recién al primer click (los
-// navegadores, sobre todo iOS Safari, bloquean audio que no arranque de un
-// gesto real del usuario), y el grafo de nodos se arma una sola vez --
-// después solo se sube/baja el volumen general, no se recrea nada.
+// Antes esto era un pad + ruido generado con Web Audio (osciladores + ruido
+// rosa sintetizado) para evitar cualquier lío de copyright -- pero sonaba a
+// zumbido feo por más que se ajustara la mezcla, porque generar ruido/pads
+// que suenen bien de verdad es difícil. Ahora es un clip real: un loop de
+// 2:30 recortado de un archivo que Santiago subió marcado explícitamente
+// como "No Copyright Music" (pensado por su propio canal para uso libre en
+// otros proyectos) -- sounds/ambiente.mp3. El recorte lo hizo Claude con un
+// crossfade en la unión (no es un corte seco) para que el loop no se note.
+// Si en algún momento se quiere cambiar el clip, alcanza con reemplazar ese
+// archivo (mismo nombre) y actualizar sw.js si cambia el nombre.
+//
+// El AudioContext se crea recién al primer click (los navegadores, sobre
+// todo iOS Safari, bloquean audio que no arranque de un gesto real del
+// usuario). El archivo se descarga y decodifica una sola vez (sonidoBuffer
+// lo cachea) y de ahí en más el grafo de nodos se arma una vez -- después
+// solo se sube/baja el volumen general, no se recrea nada.
 //
 // Nota para probar en iPhone/iPad: si no se escucha nada, lo primero a
 // revisar es que el interruptor físico de silencio (a un costado del
@@ -8063,79 +8220,29 @@ async function generarResumen() {
 // algo que se pueda forzar desde la página.
 let audioCtx = null;
 let sonidoNodos = null;
+let sonidoBuffer = null; // AudioBuffer decodificado del mp3 -- se cachea, no se vuelve a bajar/decodificar en cada toggle
 let sonidoActivo = false;
 let sonidoVolumen = 0.35; // 0-1, controlado por el slider (arranca en 35%, no al máximo)
 
-function crearSonidoAmbiente() {
-  const ctx = audioCtx;
+async function crearSonidoAmbiente(ctx) {
+  if (!sonidoBuffer) {
+    const resp = await fetch('sounds/ambiente.mp3');
+    if (!resp.ok) throw new Error('no-se-pudo-cargar-el-audio');
+    const arrayBuffer = await resp.arrayBuffer();
+    sonidoBuffer = await ctx.decodeAudioData(arrayBuffer);
+  }
+
   const master = ctx.createGain();
   master.gain.value = 0;
   master.connect(ctx.destination);
 
-  const filtro = ctx.createBiquadFilter();
-  filtro.type = 'lowpass';
-  filtro.frequency.value = 700;
-  filtro.connect(master);
+  const source = ctx.createBufferSource();
+  source.buffer = sonidoBuffer;
+  source.loop = true;
+  source.connect(master);
+  source.start();
 
-  // Acorde simple y consonante (A2/E3/A3) -- el fondo musical, más
-  // presente que antes para que no quede tapado por el ruido.
-  [110, 164.81, 220].forEach(freq => {
-    const osc = ctx.createOscillator();
-    osc.type = 'sine';
-    osc.frequency.value = freq;
-    const g = ctx.createGain();
-    g.gain.value = 0.06;
-    osc.connect(g);
-    g.connect(filtro);
-    osc.start();
-  });
-
-  // LFO lento que mueve el filtro para que no suene estático/artificial.
-  const lfo = ctx.createOscillator();
-  lfo.frequency.value = 0.05;
-  const lfoGain = ctx.createGain();
-  lfoGain.gain.value = 150;
-  lfo.connect(lfoGain);
-  lfoGain.connect(filtro.frequency);
-  lfo.start();
-
-  // Brown noise -- pensado como una textura suave de fondo (tipo lluvia
-  // lejana), no como protagonista. Doble filtro pasa-bajos en cascada (en
-  // vez de uno solo) para que sea un "shhh" redondeado, sin el filo áspero
-  // de un solo filtro suave; un pasa-altos saca el retumbe grave que se
-  // sentía más a "ruido de motor" que a ambiente relajante.
-  const bufferSize = 2 * ctx.sampleRate;
-  const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-  const data = noiseBuffer.getChannelData(0);
-  let ultimo = 0;
-  for (let i = 0; i < bufferSize; i++) {
-    const blanco = Math.random() * 2 - 1;
-    data[i] = (ultimo + 0.02 * blanco) / 1.02;
-    ultimo = data[i];
-    data[i] *= 2.2;
-  }
-  const noise = ctx.createBufferSource();
-  noise.buffer = noiseBuffer;
-  noise.loop = true;
-  const noiseAltos = ctx.createBiquadFilter();
-  noiseAltos.type = 'highpass';
-  noiseAltos.frequency.value = 90;
-  const noiseFiltro1 = ctx.createBiquadFilter();
-  noiseFiltro1.type = 'lowpass';
-  noiseFiltro1.frequency.value = 450;
-  const noiseFiltro2 = ctx.createBiquadFilter();
-  noiseFiltro2.type = 'lowpass';
-  noiseFiltro2.frequency.value = 320;
-  const noiseGain = ctx.createGain();
-  noiseGain.gain.value = 0.035;
-  noise.connect(noiseAltos);
-  noiseAltos.connect(noiseFiltro1);
-  noiseFiltro1.connect(noiseFiltro2);
-  noiseFiltro2.connect(noiseGain);
-  noiseGain.connect(master);
-  noise.start();
-
-  return { master };
+  return { master, source };
 }
 
 async function toggleSonidoAmbiente() {
@@ -8145,7 +8252,7 @@ async function toggleSonidoAmbiente() {
     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     if (audioCtx.state === 'suspended') await audioCtx.resume();
     if (audioCtx.state !== 'running') throw new Error('audio-bloqueado');
-    if (!sonidoNodos) sonidoNodos = crearSonidoAmbiente();
+    if (!sonidoNodos) sonidoNodos = await crearSonidoAmbiente(audioCtx);
 
     sonidoActivo = !sonidoActivo;
     sonidoNodos.master.gain.cancelScheduledValues(audioCtx.currentTime);
@@ -8155,7 +8262,14 @@ async function toggleSonidoAmbiente() {
     btn.classList.toggle('picked-on', sonidoActivo);
     controles.style.display = sonidoActivo ? 'flex' : 'none';
   } catch (e) {
-    showToast('No se pudo activar el sonido -- en iPhone/iPad revisá que el celular no esté en modo silencioso.');
+    // Dos causas típicas, mensaje distinto para cada una: el archivo no se
+    // pudo descargar (sin internet y todavía no estaba cacheado por el
+    // service worker) vs. el navegador bloqueó el audio (iOS en modo
+    // silencioso, el caso más común).
+    const msg = e && e.message === 'no-se-pudo-cargar-el-audio'
+      ? 'No se pudo cargar el sonido -- revisá tu conexión (la primera vez necesita internet).'
+      : 'No se pudo activar el sonido -- en iPhone/iPad revisá que el celular no esté en modo silencioso.';
+    showToast(msg);
   }
 }
 

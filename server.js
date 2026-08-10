@@ -57,6 +57,7 @@ app.get('/sw.js', (req, res) => res.sendFile(path.join(__dirname, 'sw.js')));
 app.get('/robots.txt', (req, res) => res.sendFile(path.join(__dirname, 'robots.txt')));
 app.get('/sitemap.xml', (req, res) => res.sendFile(path.join(__dirname, 'sitemap.xml')));
 app.use('/icons', express.static(path.join(__dirname, 'icons')));
+app.use('/sounds', express.static(path.join(__dirname, 'sounds')));
 // El paquete de supabase-js (cliente para el navegador) servido por
 // nosotros mismos, para no depender de un CDN externo.
 app.use('/vendor/supabase.js', express.static(

@@ -108,3 +108,53 @@ En orden de lo último que se estaba pidiendo cuando se cortó la sesión:
 ## 9. Nota sobre cómo seguir
 
 El usuario (Santiago) está construyendo esto con y para su novia (estudiante real de 5to año de Medicina, UDELAR), como validación de una idea de negocio real, no solo un ejercicio. El tono de trabajo hasta acá fue: proponer, mostrar un mockup clickeable, el usuario lo prueba y da feedback puntual y concreto (a veces con capturas de pantalla), iterar. Vale la pena mantener ese mismo ritmo de iteración rápida en Claude Code en vez de intentar construir todo de una sin volver a mostrar avances.
+
+---
+
+## 10. Sesión de Cowork — 10 de agosto 2026
+
+**Importante:** las secciones 1-9 de arriba son del documento original, de una etapa mucho más temprana del proyecto. Para cuando arrancó esta sesión, la app ya tenía mucho más construido de lo que la sección 8 ("Pendiente") deja ver — auth real con Supabase, múltiples exámenes en paralelo, notificaciones push, service worker/PWA instalable, timer de estudio, sonido ambiente, fichas con IA. **Antes de asumir que algo de la sección 8 sigue pendiente, conviene revisar el HTML actual** en vez de confiar en ese texto viejo.
+
+Esta sección documenta puntualmente lo que se hizo en esta sesión (arrancó retomando una sesión anterior ya resumida, así que puede haber contexto previo no listado acá — este es solo el tramo con detalle completo).
+
+### 10.1 Calendario: la agenda del día quedaba tapada, había que scrollear
+
+Problema reportado: en la pantalla Calendario, la grilla de días ocupaba tanto lugar que la agenda del día (los temas a estudiar) quedaba debajo de la pantalla visible.
+
+Causa raíz doble:
+1. En celular (`<860px`), `.cal-cell` usaba `aspect-ratio: 1/1.05` fijo — el alto de la celda no tenía en cuenta cuánto espacio quedaba realmente disponible. Ya existía una función `ajustarAlturaCalendario()` que calculaba un alto dinámico, pero **solo corría en compu/iPad (`>=860px`)**.
+2. Bug más de fondo, afecta también a compu: `go()` navega con la View Transitions API nativa (`document.startViewTransition`) cuando el navegador la soporta (Chrome/Edge la soportan, por eso "en Google no funcionaba"). El callback que agrega la clase `active` a la pantalla corre **async**, un instante después de que `renderCalendario()` ya se llamó — entonces `ajustarAlturaCalendario()` medía una pantalla todavía oculta (alto 0), se cancelaba por el guard `if (!screenEl.classList.contains('active')) return`, y nunca se reintentaba. El resultado: el cálculo dinámico nunca llegaba a aplicarse en la primera navegación a Calendario.
+
+Arreglado en `mockup-firme.html`:
+- CSS: `.cal-cell` ahora tiene `height: var(--cal-cell-h, auto)` sin depender del media query (antes solo estaba dentro de `@media (min-width: 860px)`).
+- JS: `ajustarAlturaCalendario()` ahora corre en cualquier ancho (antes hacía `return` temprano si `window.matchMedia('(min-width: 860px)')` era falso), con mínimos/máximos de celda distintos por ancho (`minH`/`maxH`: 34/80px en celular, 56/120px en compu) y gap correcto (4px vs 8px) para el cálculo.
+- JS: la función ahora reintenta con `requestAnimationFrame` (hasta 15 frames) si la pantalla todavía no tiene la clase `active`, en vez de cancelarse — soluciona el bug de la View Transition async.
+
+### 10.2 Sonido ambiente: sonaba a zumbido
+
+El sonido "ambiente para estudiar" era sintetizado con Web Audio API (osciladores + ruido rosa generado a mano) para evitar cualquier problema de copyright. Sonaba mal (zumbido/silbido) sin importar cuánto se ajustara la mezcla — generar ruido/pads que suenen bien de verdad es difícil.
+
+Solución: Santiago mandó un archivo real, marcado por su fuente original como "No Copyright Music" — `[No Copyright Music] Aesthetic Music Chill Music (For studying,relax,and feeling good).mp3`, ~60 min. Posible origen (encontrado por título exacto vía búsqueda, no confirmado al 100% porque Santiago mandó el archivo, no el link): https://www.youtube.com/watch?v=kSNH-18gjQY — **vale la pena confirmarlo con Santiago y guardar la referencia real antes de cualquier deploy público**, la etiqueta "no copyright" del video no es una garantía legal formal.
+
+Se recortaron 2:30 de la parte más estable/pareja del archivo (se midió volumen en varios tramos con `ffmpeg -af volumedetect` para evitar un bajón de energía), con un crossfade de 3s en la unión (`ffmpeg acrossfade`) para que el loop no se note el corte. Resultado: `sounds/ambiente.mp3` (~2.4MB, 128kbps).
+
+Cambios en `mockup-firme.html`:
+- `crearSonidoAmbiente()` ya no genera nada con osciladores/ruido — ahora es `async`, hace `fetch('sounds/ambiente.mp3')` + `ctx.decodeAudioData()` (cacheado en `sonidoBuffer`, se descarga/decodifica una sola vez) y reproduce con `AudioBufferSourceNode` (`loop = true`) a través del mismo `GainNode` master de siempre — el toggle, el slider de volumen y el fade-in/out quedaron sin cambios.
+- Mensaje de error en `toggleSonidoAmbiente()` ahora distingue "no se pudo descargar el archivo" (sin internet la primera vez) de "audio bloqueado por el navegador" (iOS en silencioso).
+
+Cambios en `sw.js`: se agregó `/sounds/ambiente.mp3` a `APP_SHELL` y se subió `CACHE_NAME` a `al-dia-v3`, para que quede disponible offline después de la primera carga.
+
+**Si se cambia el clip de sonido más adelante:** basta con reemplazar `sounds/ambiente.mp3` (mismo nombre) y, si el nombre de archivo cambia, actualizar también `sw.js`.
+
+### 10.3 Git: commit bloqueado
+
+Quedó un `al-dia/.git/index.lock` viejo (de una corrida anterior, 0 bytes) que Cowork no tiene permiso de sistema para borrar en este entorno (aunque el usuario también rechazó el pedido de permiso una vez). Ningún cambio de esta sesión quedó commiteado a git — **sí están guardados en los archivos reales** (`mockup-firme.html`, `sw.js`, `sounds/ambiente.mp3`), porque Cowork edita el archivo real en disco, no una copia.
+
+Para Claude Code (con shell real en la máquina de Santiago, sin esta restricción): borrar `al-dia/.git/index.lock` y hacer commit de lo pendiente (`git status` lo va a mostrar) antes de seguir, así queda un punto de referencia limpio.
+
+### 10.4 Archivos nuevos/tocados en esta sesión
+
+- `mockup-firme.html` — ver 10.1 y 10.2.
+- `sw.js` — ver 10.2.
+- `sounds/ambiente.mp3` — nuevo.
+- `test-server.js` (en la carpeta de outputs de Cowork, no en `al-dia/`) — server mínimo de Node solo para que Cowork probara el HTML sin depender de `server.js` completo (que necesita `.env` con claves reales). No es parte de la app, no hace falta portarlo.
