@@ -19,13 +19,33 @@ const GRAD_DEFS = `<linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"
 // páginas abiertas en forma de ala, sin necesitar más de una forma.
 const BOOK_PATH = 'M256 178 C 214 152 152 148 108 170 L 108 344 C 152 322 214 326 256 352 C 298 326 360 322 404 344 L 404 170 C 360 148 298 152 256 178 Z';
 
+// Líneas de "texto" adentro de cada página (rediseño 2026-08-12, a pedido de
+// Santiago -- antes decía "Al" / "Día" en palabras; ahora son solo líneas,
+// como un libro con renglones, sin ninguna palabra encima). Tres renglones
+// por página, centrados dentro de la curva del ala para no salirse del
+// contorno del libro.
+const LINES = `
+    <g stroke="#1e3a52" stroke-width="14" stroke-linecap="round" opacity="0.85">
+      <line x1="140" y1="215" x2="235" y2="215"/>
+      <line x1="140" y1="248" x2="235" y2="248"/>
+      <line x1="140" y1="281" x2="215" y2="281"/>
+      <line x1="372" y1="215" x2="277" y2="215"/>
+      <line x1="372" y1="248" x2="277" y2="248"/>
+      <line x1="372" y1="281" x2="297" y2="281"/>
+    </g>`;
+
+// El libro + sus renglones se agrupan una sola vez y se reusan tal cual en
+// las dos variantes (ícono normal / maskable) para que ambos queden
+// idénticos salvo por el fondo y el escalado.
+const BOOK_GROUP = `<path d="${BOOK_PATH}" fill="#ffffff"/>${LINES}`;
+
 // Ícono normal: fondo redondeado, el libro ocupa casi todo -- para
 // apple-touch-icon e íconos "any" (iOS ya recorta las esquinas solo).
 const svgIcon = `
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>${GRAD_DEFS}</defs>
   <rect width="512" height="512" rx="115" fill="url(#grad)"/>
-  <path d="${BOOK_PATH}" fill="#ffffff"/>
+  ${BOOK_GROUP}
 </svg>`.trim();
 
 // Ícono "maskable": el fondo llega hasta el borde (sin esquinas redondeadas
@@ -37,7 +57,7 @@ const svgMaskable = `
   <defs>${GRAD_DEFS}</defs>
   <rect width="512" height="512" fill="url(#grad)"/>
   <g transform="translate(256,256) scale(0.6) translate(-256,-256)">
-    <path d="${BOOK_PATH}" fill="#ffffff"/>
+    ${BOOK_GROUP}
   </g>
 </svg>`.trim();
 
@@ -45,7 +65,7 @@ const svgMaskable = `
 // (algo del lado de Windows lo bloquea con "unable to open for write" --
 // un fs.writeFileSync normal a la misma carpeta SÍ funciona, así que
 // generamos en el scratchpad con sharp y después copiamos con fs plano.
-const scratchDir = 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\claude\\C--Users-Usuario\\3396db7f-4a8c-4754-9f76-e207e080df1c\\scratchpad';
+const scratchDir = 'C:\\Users\\Usuario\\AppData\\Local\\Temp\\claude\\C--Users-Usuario\\7f099f3a-5158-4520-93da-dc4d8bdbba4b\\scratchpad';
 const outDir = path.join(__dirname, 'icons');
 fs.writeFileSync(path.join(outDir, 'icon.svg'), svgIcon);
 

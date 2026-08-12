@@ -5,4 +5,12 @@
     </linearGradient></defs>
   <rect width="512" height="512" rx="115" fill="url(#grad)"/>
   <path d="M256 178 C 214 152 152 148 108 170 L 108 344 C 152 322 214 326 256 352 C 298 326 360 322 404 344 L 404 170 C 360 148 298 152 256 178 Z" fill="#ffffff"/>
+    <g stroke="#1e3a52" stroke-width="14" stroke-linecap="round" opacity="0.85">
+      <line x1="140" y1="215" x2="235" y2="215"/>
+      <line x1="140" y1="248" x2="235" y2="248"/>
+      <line x1="140" y1="281" x2="215" y2="281"/>
+      <line x1="372" y1="215" x2="277" y2="215"/>
+      <line x1="372" y1="248" x2="277" y2="248"/>
+      <line x1="372" y1="281" x2="297" y2="281"/>
+    </g>
 </svg>
