@@ -564,6 +564,37 @@
     .hoy-racha-badge { display: flex; }
     .hoy-header-mobile-actions { display: flex; }
   }
+  /* Monitor bien ancho (decisión de Santiago, 2026-08-12): con el tope de
+     1000px sacado, en una pantalla de 2560px+ el contenido de Hoy usa todo
+     el ancho pero queda corto de alto -- sube texto y paddings ~25-30% acá
+     para que también ocupe más alto, en vez de dejar un colchón de blanco
+     grande debajo de las dos cards. */
+  @media (min-width: 1800px) {
+    .screen[data-screen="13"] .hoy-header h1 { font-size: 30px; }
+    .screen[data-screen="13"] .hoy-fecha { font-size: 13px; }
+    .screen[data-screen="13"] .hoy-stats-nums { font-size: 15px; gap: 22px; }
+    .screen[data-screen="13"] .hoy-stats-pct { font-size: 16px; }
+    .screen[data-screen="13"] .hoy-stats-bar { height: 9px; }
+    .screen[data-screen="13"] .hoy-lista { gap: 12px; margin: 20px 0; }
+    .screen[data-screen="13"] .hoy-item { padding: 20px 22px; gap: 16px; }
+    .screen[data-screen="13"] .hoy-item-check { width: 24px; height: 24px; }
+    .screen[data-screen="13"] .hoy-item-title { font-size: 17px; }
+    .screen[data-screen="13"] .hoy-item-sub { font-size: 14px; }
+    .screen[data-screen="13"] .hoy-item-min { font-size: 13.5px; }
+    .screen[data-screen="13"] .hoy-item-btn { font-size: 14px; padding: 11px 20px; }
+    .screen[data-screen="13"] .hoy-cols { gap: 20px; }
+    .screen[data-screen="13"] .card { padding: 22px; }
+    .screen[data-screen="13"] .hoy-card-head h2 { font-size: 20px; }
+    .screen[data-screen="13"] .hoy-card-head h2 .ic { font-size: 19px; }
+    .screen[data-screen="13"] .hoy-card-head-sub { font-size: 15px; }
+    .screen[data-screen="13"] .hoy-repaso-nombre { font-size: 16px; }
+    .screen[data-screen="13"] .hoy-repaso-materia { font-size: 13.5px; }
+    .screen[data-screen="13"] .hoy-repaso-tag { font-size: 12px; }
+    .screen[data-screen="13"] .hoy-semana-row { font-size: 15px; padding: 11px 0; }
+    .screen[data-screen="13"] .hoy-proximo-label { font-size: 12px; }
+    .screen[data-screen="13"] .hoy-proximo-nombre { font-size: 17px; }
+    .screen[data-screen="13"] .hoy-proximo-dias { font-size: 15px; }
+  }
 
   /* Encabezado mono en mayúsculas reutilizado por Materias (RENDIDAS) y
      Repaso (ATRASADAS/HOY/PRÓXIMAS). */
@@ -636,7 +667,13 @@
   .cal-cell.out .cal-daynum { color: var(--muted); opacity: .45; }
   .cal-cell.today { border-color: var(--accent); border-width: 1.5px; }
   .cal-cell.today .cal-daynum { color: var(--accent); }
-  .cal-cell.selected { background: var(--accent-soft); border-color: var(--accent); }
+  /* Sin background acá a propósito (solo el borde marca la selección,
+     igual que .today) -- --accent-soft es EL MISMO color que --firme-soft
+     (los dos son var(--teal-tint)), así que si "seleccionado" también
+     pintaba el fondo, marcar firme en el día de hoy (que arranca
+     seleccionado) no se veía: el fondo ya era ese mismo verde antes de
+     marcar nada. */
+  .cal-cell.selected { border-color: var(--accent); }
   .cal-cell.has-final { background: var(--flojo-soft); }
   /* Estado real de autoevaluación (firme/flojo) pesa más que el tipo de
      acción agendada -- así un día "de repaso" que ya quedó firme se ve
