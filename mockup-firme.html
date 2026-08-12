@@ -757,9 +757,16 @@
   .side-nav-subitem:hover { background: rgba(255,255,255,.06); color: #fff; }
   .side-nav-subitem .ic { font-size: 14px; }
   .side-nav-racha {
-    margin-top: auto; display: flex; align-items: center; gap: 10px;
+    margin-top: auto; display: flex; flex-direction: column;
     background: rgba(255,255,255,.06); border-radius: 9px; padding: 12px 12px;
   }
+  .side-nav-racha-top { display: flex; align-items: center; gap: 10px; }
+  /* Mini-indicador semanal (7 rayitas, llenas = días de la racha actual
+     hasta un máximo de 7) -- estaba en el prototipo pero no se había
+     recreado nunca en la app real. */
+  .side-nav-racha-ticks { display: flex; gap: 3px; margin-top: 11px; }
+  .side-nav-racha-tick { flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,.16); }
+  .side-nav-racha-tick.filled { background: var(--amber); }
   .side-nav-racha .racha-fuego { font-size: 19px; position: relative; }
   .side-nav-racha-flame-wrap { position: relative; width: 26px; height: 26px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
   .side-nav-racha-glow {
@@ -1007,14 +1014,17 @@
     <button type="button" class="side-nav-subitem" onclick="irAEstudiar('resumen')"><span class="ic">📄</span>Resumen de apuntes</button>
   </div>
   <div class="side-nav-racha" id="sideNavRacha">
-    <div class="side-nav-racha-flame-wrap">
-      <div class="side-nav-racha-glow"></div>
-      <span class="racha-fuego">🔥</span>
+    <div class="side-nav-racha-top">
+      <div class="side-nav-racha-flame-wrap">
+        <div class="side-nav-racha-glow"></div>
+        <span class="racha-fuego">🔥</span>
+      </div>
+      <div>
+        <div class="side-nav-racha-num mono js-racha-num">0</div>
+        <div class="side-nav-racha-label">DÍAS SEGUIDOS</div>
+      </div>
     </div>
-    <div>
-      <div class="side-nav-racha-num mono js-racha-num">0</div>
-      <div class="side-nav-racha-label">DÍAS SEGUIDOS</div>
-    </div>
+    <div class="side-nav-racha-ticks" id="sideNavRachaTicks"></div>
   </div>
   <button type="button" class="side-nav-logout" onclick="cerrarSesion()"><span class="ic">🚪</span>Cerrar sesión</button>
 </nav>
@@ -8443,6 +8453,17 @@ function renderRacha() {
   if (elCal) elCal.textContent = texto;
   // Tarjeta fija al pie del menú lateral y header de Hoy -- mismo dato, tres lugares.
   document.querySelectorAll('.js-racha-num').forEach(elx => { elx.textContent = racha; });
+  // Mini-indicador semanal de la tarjeta del sidebar: 7 rayitas, llenas de
+  // izquierda a derecha según los días de racha actual (tope en 7 -- no
+  // hay historial real de qué día puntual se activó, es una aproximación
+  // visual de "cuántos días seguidos", no un calendario real semana a semana).
+  const ticksEl = document.getElementById('sideNavRachaTicks');
+  if (ticksEl) {
+    const llenos = Math.min(racha, 7);
+    ticksEl.innerHTML = Array.from({ length: 7 }, (_, i) =>
+      `<div class="side-nav-racha-tick${i < llenos ? ' filled' : ''}"></div>`
+    ).join('');
+  }
 }
 
 // ---- Recordatorio diario (S6) -- push real ----
