@@ -948,10 +948,11 @@
     .screen[data-screen="5"] { max-width: 820px; margin: 0 auto; width: 100%; }
     .brand { margin-top: 30px; }
     /* Pantallas CON menú lateral (Hoy, Calendario, Repaso, Materias, Resumen,
-       Estudiar) -- sin esto el contenido se estira de punta a punta en un
-       monitor ancho de verdad (2560px+), a diferencia de las capturas del
-       handoff de diseño (contenido centrado, con aire a los costados). */
-    body.has-nav .screen-content { max-width: 1000px; margin: 0 auto; width: 100%; }
+       Estudiar) -- decisión explícita de Santiago (2026-08-12): sin tope de
+       ancho, que el contenido use toda la pantalla disponible en vez de
+       quedarse a 1000px con margen a los costados en monitores anchos.
+       Elegido a sabiendas de que las cards/tipografía se ven más anchas que
+       en las capturas del handoff de diseño. */
     /* Listas de tarjetas (exámenes en curso/rendidas, materias en Resumen)
        -- en celular son una columna porque no hay lugar para otra cosa; acá
        hay ancho de sobra, así que se acomodan solas en grilla en vez de
