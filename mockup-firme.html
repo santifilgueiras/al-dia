@@ -7,7 +7,7 @@
 
 <!-- PWA: instalable en iOS/iPadOS (Compartir -> Agregar a inicio) y Android (banner de instalar) -->
 <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#4f9dd6">
+<meta name="theme-color" content="#0f766e">
 <link rel="icon" href="/icons/icon-512.png">
 <!-- iOS todavía no lee manifest.json para el ícono/nombre de home screen -- necesita estas etiquetas propias -->
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
@@ -17,36 +17,58 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-1: #eaf6fb;
-    --bg-2: #eafaf1;
-    --frame: #ffffff;
-    --ink: #2b4152;
-    --muted: #74909f;
-    --line: #dfeaee;
-    --accent: #4f9dd6;
-    --accent-soft: #e6f3fb;
-    --firme: #3fac83;
-    --firme-soft: #e3f7ee;
-    --flojo: #e2934f;
-    --flojo-soft: #fcefe0;
-    --nuevo: #8aa4b1;
-    --nuevo-soft: #eef4f6;
-    --atrasado: #d64545;
-    --atrasado-soft: #fbe3e3;
+    /* Rediseño (handoff design_handoff_al_dia) -- paleta ink/teal/amber sobre paper.
+       Los nombres viejos (--accent, --firme, --flojo...) se mantienen como alias
+       para no romper los ~150 usos existentes; los tokens nuevos (--teal, --amber,
+       --paper...) son los que usan los componentes reestilizados. */
+    --paper: #faf9f6;
+    --paper-2: #f4f2ec;
+    --surface: #ffffff;
+    --bg-1: #faf9f6;
+    --bg-2: #faf9f6;
+    --frame: var(--surface);
+    --ink: #14201d;
+    --muted: rgba(20, 32, 29, .6);
+    --text-tertiary: rgba(20, 32, 29, .42);
+    --line: rgba(20, 32, 29, .10);
+    --line-strong: rgba(20, 32, 29, .15);
+
+    --teal: #0f766e;
+    --teal-hover: #0b5a54;
+    --teal-light: #7fe6d0;
+    --teal-tint: rgba(15, 118, 110, .10);
+    --teal-tint-strong: rgba(15, 118, 110, .16);
+    --amber: #e0a33c;
+    --amber-deep: #b8811f;
+    --amber-tint: rgba(224, 163, 60, .14);
+
+    --accent: var(--teal);
+    --accent-soft: var(--teal-tint);
+    --firme: var(--teal);
+    --firme-soft: var(--teal-tint);
+    --flojo: var(--amber);
+    --flojo-soft: var(--amber-tint);
+    --nuevo: #8a958f;
+    --nuevo-soft: var(--paper-2);
+    --atrasado: #c2410c;
+    --atrasado-soft: rgba(194, 65, 12, .12);
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--paper);
     display: flex;
     align-items: flex-start;
     justify-content: center;
     padding: 32px 12px;
     min-height: 100vh;
+  }
+  .mono {
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   }
   .phone {
     position: relative;
@@ -237,6 +259,10 @@
   }
   .tema-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; font-size: 13.5px; }
   .tema-row input { width: 17px; height: 17px; accent-color: var(--accent); }
+  /* Rediseño: los temas vienen pre-tildados (opt-out) -- destildar tacha y
+     atenúa la fila en vez de solo vaciar el checkbox, para que se note de
+     un vistazo qué quedó afuera. */
+  .tema-row.destildado { opacity: .5; text-decoration: line-through; }
   .tema-row label { flex: 1; display: flex; align-items: center; gap: 10px; }
   .lupa { border: none; background: none; cursor: pointer; font-size: 14px; padding: 2px 4px; opacity: .6; flex-shrink: 0; }
   .lupa:hover { opacity: 1; }
@@ -252,8 +278,21 @@
   }
   .pace-pill.selected { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
   .pace-warning { color: var(--flojo); font-weight: 700; }
-  .orden-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
-  .orden-row:first-child { border-top: none; }
+  /* Fila reordenable a mano (paso 4, rediseño) -- se agarra del handle ⠿
+     (Pointer Events, ver ordenPointerDown), no de la fila entera. La fila
+     levantada (.dragging) es la única con feedback visual fuerte; las
+     demás no cambian mientras se arrastra por encima. */
+  .orden-row {
+    display: flex; align-items: center; gap: 10px; padding: 11px 12px; font-size: 13.5px;
+    border: 1px solid var(--line); border-radius: 10px; background: var(--surface);
+    margin-bottom: 6px;
+  }
+  .orden-row.dragging {
+    opacity: .6; border: 1.5px dashed var(--teal);
+    box-shadow: 0 6px 16px rgba(0,0,0,.1);
+  }
+  .orden-handle { color: var(--muted); font-size: 17px; flex-shrink: 0; cursor: grab; touch-action: none; padding: 4px; margin: -4px; }
+  .orden-row.dragging .orden-handle { cursor: grabbing; }
   .orden-row .num { width: 20px; flex-shrink: 0; color: var(--muted); font-weight: 700; font-size: 12px; }
   .orden-row .name { flex: 1; }
   .orden-row .name small { display: block; color: var(--muted); font-weight: 400; font-size: 11.5px; }
@@ -297,14 +336,14 @@
      visita día a día) -- la tarjeta grande sigue estando en Resumen, esto
      es solo un recordatorio compacto arriba para que no quede escondida. */
   .racha-mini {
-    display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 800;
-    color: var(--ink); background: linear-gradient(135deg, #fff3e6, #ffe6d9);
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700;
+    color: var(--amber-deep); background: var(--amber-tint);
     border-radius: 999px; padding: 5px 12px 5px 8px; margin-bottom: 12px;
   }
   .racha-mini .racha-fuego { font-size: 15px; }
   .racha-card {
-    display: flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #fff3e6, #ffe6d9);
-    border: 1px solid #ffd8b8; border-radius: 16px; padding: 12px 14px; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px; background: var(--amber-tint);
+    border: none; border-radius: 16px; padding: 12px 14px; margin-bottom: 14px;
   }
   .racha-fuego { font-size: 26px; }
   .notif-preview {
@@ -388,6 +427,50 @@
   .ficha-opcion:disabled { cursor: default; }
   .ficha-opcion.correcta { border-color: var(--firme); background: var(--firme-soft); font-weight: 700; }
   .ficha-opcion.incorrecta { border-color: var(--flojo); background: var(--flojo-soft); }
+
+  /* Fichas en mobile (rediseño, <860px): pantalla completa oscura -- ver
+     #fichaFullscreen, fuera de .app-shell en el HTML. Reusa el mismo
+     estado (fichasActuales/fichaIndexActual/fichaRespuestas) que la
+     versión de escritorio, renderFichaActual() decide cuál pintar. */
+  .ficha-fullscreen {
+    display: none; position: fixed; inset: 0; z-index: 300; background: var(--ink); color: #fff;
+    flex-direction: column; padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+    overflow-y: auto;
+  }
+  .ficha-fullscreen.active { display: flex; }
+  .ficha-fs-top { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+  .ficha-fs-close { background: none; border: none; color: rgba(255,255,255,.7); font-size: 20px; cursor: pointer; padding: 4px; line-height: 1; }
+  .ficha-fs-count { font-size: 12px; color: rgba(255,255,255,.55); }
+  .ficha-fs-dots { display: flex; gap: 4px; margin: 16px 0 20px; flex-wrap: wrap; flex-shrink: 0; }
+  .ficha-dot { width: 16px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.15); cursor: pointer; border: none; padding: 0; }
+  .ficha-dot.actual { background: var(--teal-light); }
+  .ficha-dot.ok { background: var(--teal); }
+  .ficha-dot.mal { background: var(--amber); }
+  .ficha-dot.skip { background: rgba(255,255,255,.35); }
+  .ficha-fs-tema { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10.5px; font-weight: 600; letter-spacing: .08em; color: rgba(255,255,255,.5); margin-bottom: 12px; flex-shrink: 0; }
+  .ficha-fs-pregunta { font-size: 19px; font-weight: 700; line-height: 1.35; }
+  .ficha-fs-hint { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 14px; }
+  .ficha-fs-opciones { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  .ficha-fs-opcion {
+    display: flex; align-items: center; gap: 12px; text-align: left; background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.14); color: #fff; border-radius: 12px; padding: 14px 16px;
+    font-family: inherit; font-size: 13.5px; cursor: pointer;
+  }
+  .ficha-fs-opcion .letra {
+    width: 24px; height: 24px; border-radius: 7px; background: rgba(255,255,255,.1); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700;
+  }
+  .ficha-fs-opcion.correcta { border-color: var(--teal); background: rgba(15,118,110,.35); }
+  .ficha-fs-opcion.correcta .letra { background: var(--teal); }
+  .ficha-fs-opcion.incorrecta { border-color: var(--amber); background: rgba(224,163,60,.25); }
+  .ficha-fs-opcion:disabled { cursor: default; }
+  .ficha-fs-bottom { margin-top: auto; padding-top: 18px; display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; }
+  .ficha-fs-biblio { font-size: 11.5px; color: rgba(255,255,255,.5); }
+  .ficha-fs-bottom .btn { margin-top: 0; }
+  .ficha-fs-bottom .btn.secondary { background: rgba(255,255,255,.08); color: #fff; }
+  .ficha-fs-bottom .btn:disabled { opacity: .4; cursor: default; }
+  .ficha-fs-nav { display: flex; gap: 10px; }
+  .ficha-fs-nav .btn { flex: 1; margin-top: 0; }
   .btn.secondary.picked-on { background: var(--firme-soft); color: var(--firme); }
   .racha-num { font-weight: 800; font-size: 15px; color: var(--ink); }
   .racha-sub { font-size: 11.5px; color: var(--muted); margin-top: 1px; }
@@ -411,6 +494,80 @@
   .stat.firme { background: var(--firme-soft); } .stat.firme .n { color: var(--firme); }
   .stat.flojo { background: var(--flojo-soft); } .stat.flojo .n { color: var(--flojo); }
   .stat.nuevo { background: var(--nuevo-soft); } .stat.nuevo .n { color: var(--ink); }
+
+  /* ---- Hoy (S13) ---- */
+  .hoy-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .hoy-fecha { font-size: 11px; font-weight: 600; letter-spacing: .08em; color: var(--muted); }
+  .hoy-racha-badge { display: none; align-items: center; gap: 5px; background: var(--amber-tint); color: var(--amber-deep); font-weight: 700; font-size: 13px; padding: 6px 10px; border-radius: 20px; height: fit-content; }
+  .hoy-proximo { text-align: right; }
+  .hoy-proximo-label { font-size: 10px; font-weight: 600; letter-spacing: .08em; color: var(--muted); }
+  .hoy-proximo-nombre { font-size: 13.5px; font-weight: 700; margin-top: 2px; }
+  .hoy-proximo-dias { font-size: 12px; font-weight: 600; color: var(--amber-deep); margin-top: 1px; }
+  .hoy-lista { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+  .hoy-item { display: flex; align-items: center; gap: 12px; padding: 13px 14px; cursor: pointer; }
+  .hoy-item-check { width: 18px; height: 18px; border-radius: 6px; border: 1.5px solid var(--line-strong); flex-shrink: 0; }
+  .hoy-item-check.checked { background: var(--teal); border-color: var(--teal); }
+  .hoy-item-info { flex: 1; min-width: 0; }
+  .hoy-item-title { font-size: 13.5px; font-weight: 600; }
+  .hoy-item-sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .hoy-item-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .hoy-item-min { font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .hoy-item-btn { margin-top: 0; width: auto; padding: 8px 14px; font-size: 12px; white-space: nowrap; }
+  .hoy-cols { display: flex; flex-direction: column; gap: 14px; }
+  .hoy-card-head { display: flex; justify-content: space-between; align-items: center; }
+  .hoy-card-head h2, .hoy-semana-card h2 { margin: 0 0 10px; }
+  .hoy-repaso-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); cursor: pointer; }
+  .hoy-repaso-row:first-child { border-top: none; padding-top: 0; }
+  .hoy-repaso-nombre { font-size: 13px; font-weight: 600; }
+  .hoy-repaso-materia { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .hoy-repaso-tag { font-size: 10px; font-weight: 700; letter-spacing: .04em; color: var(--amber-deep); white-space: nowrap; }
+  .hoy-repaso-row.atrasado .hoy-repaso-tag { color: var(--atrasado); }
+  .hoy-semana-row { display: flex; justify-content: space-between; padding: 7px 0; font-size: 12.5px; border-top: 1px solid var(--line); }
+  .hoy-semana-row:first-child { border-top: none; padding-top: 0; }
+  .hoy-semana-row.hoy { color: var(--teal); font-weight: 700; }
+  @media (min-width: 700px) {
+    .hoy-cols { flex-direction: row; }
+    .hoy-cols > .card { flex: 1; }
+  }
+  @media (max-width: 859px) {
+    .hoy-racha-badge { display: flex; }
+  }
+
+  /* Encabezado mono en mayúsculas reutilizado por Materias (RENDIDAS) y
+     Repaso (ATRASADAS/HOY/PRÓXIMAS). */
+  .section-label-mono {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; font-weight: 600;
+    letter-spacing: .08em; color: var(--muted); padding-bottom: 8px; margin-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* ---- Materias (S8) ---- */
+  .materias-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+  .materias-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .materia-card { position: relative; margin-bottom: 0; }
+  .materia-badge {
+    display: inline-block; border: none; font-family: inherit; cursor: pointer;
+    font-size: 10px; font-weight: 700; letter-spacing: .04em; padding: 4px 9px; border-radius: 20px;
+  }
+  .materia-badge.prioritaria { background: var(--teal-tint); color: var(--teal); }
+  .materia-badge.priorizar { background: var(--paper-2); color: var(--muted); }
+  .materia-card-nombre { font-weight: 700; font-size: 15.5px; margin-top: 10px; padding-right: 22px; line-height: 1.25; }
+  .materia-card-fecha { font-size: 11.5px; color: var(--muted); margin-top: 5px; }
+  .materia-card-stats { display: flex; justify-content: space-between; align-items: baseline; margin-top: 14px; font-size: 12.5px; color: var(--muted); }
+  .materia-card-pct { color: var(--teal); font-weight: 700; }
+  .materia-progress { display: flex; height: 7px; border-radius: 4px; background: var(--line); overflow: hidden; margin-top: 6px; }
+  .materia-progress-firme { background: var(--teal); }
+  .materia-progress-flojo { background: var(--amber); }
+  .materia-card-breakdown { font-size: 11px; color: var(--muted); margin-top: 6px; }
+  .materia-card-actions { display: flex; gap: 8px; margin-top: 13px; }
+  .materias-rendidas-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .materia-rendida-chip { display: flex; align-items: center; gap: 10px; background: var(--paper-2); border-radius: 11px; padding: 8px 10px; flex: 0 1 220px; }
+  .materia-rendida-chip .ic { font-size: 16px; }
+  .materia-rendida-nombre { font-size: 13px; font-weight: 600; }
+  .materia-rendida-sub { font-size: 10.5px; color: var(--muted); margin-top: 1px; }
+  @media (min-width: 640px) { .materias-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 960px) { .materias-grid { grid-template-columns: repeat(3, 1fr); } }
+
   .day-card { border: 1px solid var(--line); border-radius: 16px; margin-bottom: 10px; overflow: hidden; }
   .day-head { background: var(--nuevo-soft); padding: 8px 14px; font-size: 12.5px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
   .day-head.today { background: var(--accent-soft); color: var(--accent); }
@@ -540,18 +697,18 @@
      verdad (tipo Supabase/Notion) en vez de un widget flotando arriba de
      la página. */
   .side-nav {
-    display: none; flex-direction: column; gap: 2px; width: 230px; flex-shrink: 0;
-    background: var(--ink); padding: 20px 12px; position: sticky; top: 0;
+    display: none; flex-direction: column; gap: 2px; width: 196px; flex-shrink: 0;
+    background: var(--ink); padding: 20px 10px; position: sticky; top: 0; min-height: 100vh;
   }
-  .side-nav-logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 15px; color: #fff; padding: 4px 10px 22px; }
-  .side-nav-logo .ic { font-size: 20px; }
+  .side-nav-logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; color: #fff; padding: 4px 10px 22px; }
+  .side-nav-logo .ic-logo img { width: 22px; height: 22px; border-radius: 6px; display: block; }
   .side-nav-item {
-    display: flex; align-items: center; gap: 12px; padding: 12px 10px; border-radius: 10px;
-    cursor: pointer; font-size: 14px; font-weight: 700; color: rgba(255,255,255,.6);
+    display: flex; align-items: center; gap: 12px; padding: 11px 10px; border-radius: 7px;
+    cursor: pointer; font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,.62);
   }
-  .side-nav-item:hover { background: rgba(255,255,255,.07); color: #fff; }
-  .side-nav-item.active { background: rgba(255,255,255,.12); color: #fff; }
-  .side-nav-item .ic { font-size: 18px; }
+  .side-nav-item:hover { background: rgba(255,255,255,.06); color: #fff; }
+  .side-nav-item.active { background: var(--teal-tint-strong); color: var(--teal-light); font-weight: 600; }
+  .side-nav-item .ic { font-size: 16px; }
   .side-nav-item .badge-repaso { margin-left: auto; }
   /* "Estudiar" es el único ítem con submenú -- la fila se parte en label
      (navega) + flechita (despliega), en vez de un solo click-target como
@@ -567,28 +724,63 @@
   .side-nav-submenu { display: none; flex-direction: column; gap: 2px; padding-left: 14px; margin: 2px 0 4px; }
   .side-nav-submenu.open { display: flex; }
   .side-nav-subitem {
-    display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px;
-    cursor: pointer; font-size: 12.5px; font-weight: 700; color: rgba(255,255,255,.5);
+    display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 7px;
+    cursor: pointer; font-size: 12.5px; font-weight: 500; color: rgba(255,255,255,.5);
   }
-  .side-nav-subitem:hover { background: rgba(255,255,255,.07); color: #fff; }
+  .side-nav-subitem:hover { background: rgba(255,255,255,.06); color: #fff; }
   .side-nav-subitem .ic { font-size: 14px; }
-
-  /* Acordeón de "Estudiar": las 3 secciones son mutuamente excluyentes --
-     solo el body de la abierta se renderiza, así quedan realmente separadas
-     en vez de todas juntas en un mismo scroll largo. */
-  .study-section { border: 1px solid var(--line); border-radius: 16px; margin-bottom: 10px; overflow: hidden; }
-  .study-section-head {
-    display: flex; align-items: center; justify-content: space-between; gap: 10px;
-    padding: 16px; cursor: pointer; font-weight: 800; font-size: 15px;
+  .side-nav-racha {
+    margin-top: auto; display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,.06); border-radius: 9px; padding: 12px 12px;
   }
-  .study-section-head:hover { background: var(--accent-soft); }
-  .study-section-title { display: flex; align-items: center; gap: 10px; }
-  .study-section-title .ic { font-size: 19px; }
-  .study-section-chevron { color: var(--muted); font-size: 12px; transition: transform .18s; flex-shrink: 0; }
-  .study-section.open .study-section-chevron { transform: rotate(90deg); }
-  .study-section.open .study-section-head { border-bottom: 1px solid var(--line); }
-  .study-section-body { display: none; padding: 16px; }
-  .study-section.open .study-section-body { display: block; }
+  .side-nav-racha .racha-fuego { font-size: 20px; }
+  .side-nav-racha-num { font-size: 17px; font-weight: 700; color: #fff; line-height: 1.1; }
+  .side-nav-racha-label { font-size: 9.5px; font-weight: 600; letter-spacing: .08em; color: rgba(255,255,255,.5); margin-top: 2px; }
+
+  /* Estudiar (S10, rediseño): pestañas reales en vez de acordeón -- solo el
+     panel activo se muestra, la pestaña activa se ve con fondo teal-tint
+     (a diferencia de los otros .tabs de la app, que usan el estilo
+     "segmented control" blanco -- de ahí el modificador .study-tabs). */
+  .study-tabs .tab { display: flex; align-items: center; justify-content: center; gap: 7px; }
+  .study-tabs .tab.active { background: var(--teal-tint); color: var(--teal); box-shadow: none; }
+  .study-layout { display: flex; flex-direction: column; gap: 16px; }
+  .study-main { flex: 1; min-width: 0; }
+  .study-panel { display: none; }
+  .study-panel.active { display: block; }
+  .estudiar-rail { display: flex; flex-direction: column; gap: 14px; }
+  .estudiar-rail h3 { margin: 0 0 4px; font-size: 14px; }
+  @media (min-width: 860px) {
+    .study-layout { flex-direction: row; align-items: flex-start; }
+    .estudiar-rail { width: 260px; flex-shrink: 0; }
+  }
+
+  /* .study-section-chevron sigue en pie solo para el acordeón de carreras
+     agrupadas por facultad (toggleGrupoFacultad, ver S12) -- no tiene
+     relación con el acordeón de Estudiar que reemplazaron las pestañas de
+     arriba, coincide el nombre nomás. */
+  .study-section-chevron { color: var(--muted); font-size: 12px; transition: transform .18s; flex-shrink: 0; display: inline-flex; }
+  .study-section-chevron.open { transform: rotate(90deg); }
+
+  /* Indicador de paso del alta de materia (rediseño, 4 pasos). */
+  .paso-indicador { margin-bottom: 14px; }
+  .paso-label { font-size: 11px; font-weight: 600; letter-spacing: .08em; color: var(--teal); }
+  .paso-bars { display: flex; gap: 4px; margin-top: 6px; }
+  .paso-bar { width: 22px; height: 3px; border-radius: 2px; background: rgba(20,32,29,.12); }
+  .paso-bar.filled { background: var(--teal); }
+  .buscador-input {
+    width: 100%; padding: 11px 14px; border: 1px solid var(--line); border-radius: 10px;
+    font-family: inherit; font-size: 13.5px; margin-bottom: 14px;
+  }
+
+  /* Dropzone real para Resumen de apuntes (rediseño) -- antes era un
+     <input type=file> desnudo. */
+  .dropzone {
+    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px;
+    border: 1.5px dashed var(--line-strong); border-radius: 14px; padding: 28px 18px;
+    cursor: pointer; color: var(--muted); font-size: 12.5px; margin-bottom: 14px; transition: border-color .15s, background .15s;
+  }
+  .dropzone:hover, .dropzone.dragover { border-color: var(--teal); background: var(--teal-tint); }
+  .dropzone-ic { font-size: 24px; }
 
   /* Panel derecho -- en monitores anchos .phone (flex:1) se estiraba hasta
      ocupar toda la pantalla, con el calendario/tarjetas gigantes. En vez de
@@ -644,7 +836,11 @@
        del menú lateral nuevo. */
     .bottom-nav { display: none !important; }
     body.has-nav .side-nav { display: flex; }
-    body.has-nav .info-rail { display: flex; }
+    /* El panel decorativo de la derecha (.info-rail) queda retirado del
+       rediseño -- las pantallas que necesitan una columna derecha (Estudiar,
+       ver .estudiar-rail) traen su propio contenido específico en vez de un
+       panel genérico repetido en todas. Se deja el markup/CSS de .info-rail
+       sin usar por las dudas, simplemente ya no se activa acá. */
     .caption { max-width: 640px; }
   }
 
@@ -678,22 +874,14 @@
        -- en celular son una columna porque no hay lugar para otra cosa; acá
        hay ancho de sobra, así que se acomodan solas en grilla en vez de
        quedar una debajo de la otra ocupando media pantalla vacía al lado. */
-    #examenesEnCurso, #examenesRendidos, #resumenMaterias {
+    /* #examenesEnCurso y #examenesRendidos tienen su propio layout de grilla
+       vía .materias-grid/.materias-rendidas-grid (ver esas clases) -- acá
+       solo queda #resumenMaterias, que no se tocó en el rediseño todavía. */
+    #resumenMaterias {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px;
     }
-    #examenesEnCurso .empty-state, #examenesRendidos .empty-state, #resumenMaterias .empty-state {
+    #resumenMaterias .empty-state {
       grid-column: 1 / -1;
-    }
-    /* Las 3 opciones de "Estudiar" (Tiempo/Fichas/Resumen) son un acordeón
-       de a una -- apiladas y cerradas, en pantalla ancha quedan como una
-       lista angosta con un montón de aire vacío al costado. Mientras ninguna
-       está abierta se acomodan una al lado de la otra; en cuanto se abre
-       una, vuelve a apilarse para que esa sección tenga todo el ancho. */
-    .study-grid:not(:has(.study-section.open)) {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start;
-    }
-    .study-grid:not(:has(.study-section.open)) .study-section {
-      margin-bottom: 0;
     }
   }
 
@@ -731,10 +919,11 @@
 
 <div class="app-shell">
 <nav class="side-nav" id="sideNav">
-  <div class="side-nav-logo"><span class="ic">📚</span>Al Día</div>
-  <button type="button" class="side-nav-item" data-nav="8" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
-  <button type="button" class="side-nav-item" data-nav="4" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
+  <div class="side-nav-logo"><span class="ic-logo"><img src="/icons/icon-192.png" alt=""></span>Al Día</div>
+  <button type="button" class="side-nav-item" data-nav="13" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+  <button type="button" class="side-nav-item" data-nav="4" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
   <button type="button" class="side-nav-item" data-nav="7" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+  <button type="button" class="side-nav-item" data-nav="8" onclick="go(8)"><span class="ic">📚</span>Materias</button>
   <button type="button" class="side-nav-item" data-nav="6" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
   <div class="side-nav-item side-nav-parent" data-nav="10">
     <button type="button" class="side-nav-item-label" onclick="irAEstudiarPicker()"><span class="ic">📖</span>Estudiar</button>
@@ -744,6 +933,13 @@
     <button type="button" class="side-nav-subitem" onclick="irAEstudiar('tiempo')"><span class="ic">⏱️</span>Tiempo de estudio</button>
     <button type="button" class="side-nav-subitem" onclick="irAEstudiar('fichas')"><span class="ic">🧠</span>Fichas de repaso</button>
     <button type="button" class="side-nav-subitem" onclick="irAEstudiar('resumen')"><span class="ic">📄</span>Resumen de apuntes</button>
+  </div>
+  <div class="side-nav-racha" id="sideNavRacha">
+    <span class="racha-fuego">🔥</span>
+    <div>
+      <div class="side-nav-racha-num mono js-racha-num">0</div>
+      <div class="side-nav-racha-label">DÍAS SEGUIDOS</div>
+    </div>
   </div>
 </nav>
 <div class="phone" id="phone">
@@ -757,7 +953,44 @@
     <div style="color:var(--muted); font-size:13px;">Cargando…</div>
   </div>
 
-  <!-- S0 Bienvenida -->
+  <!-- S13 Hoy -- pantalla de aterrizaje del rediseño (reemplaza S0 como
+       destino post-login; ver manejarSesionActiva()). -->
+  <div class="screen" data-screen="13">
+    <div class="screen-content">
+    <div class="hoy-header">
+      <div>
+        <div class="hoy-fecha mono" id="hoyFecha">—</div>
+        <h1 id="hoyTitulo" style="margin-top:2px;">Hoy</h1>
+      </div>
+      <div class="hoy-racha-badge">🔥<span class="js-racha-num mono">0</span></div>
+      <div class="hoy-proximo" id="hoyProximoExamen"></div>
+    </div>
+    <div class="summary-bar" id="summaryBarHoy"></div>
+    <div class="hoy-lista" id="hoyLista"></div>
+    <div class="hoy-cols">
+      <div class="card hoy-repaso-card">
+        <div class="hoy-card-head">
+          <h2>Repaso</h2>
+          <a href="#" class="ref-link" onclick="event.preventDefault(); go(7);">Ver todo</a>
+        </div>
+        <div id="hoyRepasoPreview"></div>
+      </div>
+      <div class="card hoy-semana-card">
+        <h2>Esta semana</h2>
+        <div id="hoySemana"></div>
+      </div>
+    </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item active"><span class="ic">📅</span>Hoy</div>
+      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
+      <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
+    </div>
+  </div>
+
+  <!-- S0 Bienvenida (sin usar en la navegación real -- ver S13) -->
   <div class="screen" data-screen="0">
     <div class="home-topbar">
       <button class="hamburger" onclick="toggleMenu(true)" aria-label="Menú">☰</button>
@@ -869,30 +1102,40 @@
     </div>
   </div>
 
-  <!-- S12 Elegir facultad -->
+  <!-- S12 Elegir facultad (Paso 1 de 4: Carrera) -->
   <div class="screen" data-screen="12">
     <div class="topbar"><button class="back" onclick="go(8)">←</button></div>
+    <div class="paso-indicador"><div class="paso-label mono">PASO 1 DE 4</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar"></span><span class="paso-bar"></span><span class="paso-bar"></span></div></div>
     <h1>¿Qué carrera estás estudiando?</h1>
     <p class="sub">Elegí tu facultad para ver qué materias tenemos cargadas.</p>
+    <input type="search" class="buscador-input" id="facultadBuscador" placeholder="Buscar carrera..." oninput="filtrarFacultades()" aria-label="Buscar carrera">
     <div id="facultadesList"></div>
     <div class="spacer"></div>
   </div>
 
-  <!-- S1 Elegir año/semestre -->
+  <!-- S1 Elegir año/semestre (Paso 2 de 4: Materia -- primero el semestre) -->
   <div class="screen" data-screen="1">
     <div class="topbar"><button class="back" onclick="go(12)">←</button></div>
+    <div class="paso-indicador"><div class="paso-label mono">PASO 2 DE 4</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar"></span><span class="paso-bar"></span></div></div>
     <h1 id="anioTitle">¿En qué año estás?</h1>
     <p class="sub" id="anioSub">Elegí el año de la carrera para ver qué materias tenemos cargadas.</p>
     <div id="aniosList" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
     <div class="spacer"></div>
   </div>
 
-  <!-- S9 Elegir materia (del año elegido) -->
+  <!-- S9 Elegir materia (del año elegido) (Paso 2 de 4: Materia) -->
   <div class="screen" data-screen="9">
     <div class="topbar"><button class="back" onclick="go(1)">←</button></div>
+    <div class="paso-indicador"><div class="paso-label mono">PASO 2 DE 4</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar"></span><span class="paso-bar"></span></div></div>
     <h1 id="materiaAnioTitle">Materias</h1>
     <p class="sub">Elegí una materia con catálogo cargado, o escribí el nombre de la tuya si no está.</p>
     <div id="materiasDelAnio"></div>
+    <div class="selected-bar" id="materiasSelectedBar" style="display:none;">
+      <div style="font-size:12.5px; color:var(--muted); margin-bottom:8px;">
+        <span id="materiasSelCount">0</span> materias elegidas
+      </div>
+      <button type="button" class="btn" onclick="confirmarMateriasElegidas()">Continuar</button>
+    </div>
     <h2>¿No está tu materia?</h2>
     <div class="own-input">
       <input type="text" id="materiaPropiaInput" placeholder="Ej: Farmacología II" aria-label="Nombre de tu materia">
@@ -901,9 +1144,11 @@
     <div class="spacer"></div>
   </div>
 
-  <!-- S2 Elegir temas -->
+  <!-- S2 Elegir temas (Paso 3 de 4: Temas) -->
   <div class="screen" data-screen="2">
     <div class="topbar"><button class="back" onclick="go(1)">←</button></div>
+    <div class="paso-indicador"><div class="paso-label mono">PASO 3 DE 4</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar"></span></div></div>
+    <div class="section-label-mono" id="colaBannerS2" style="display:none; border-bottom:none; margin-bottom:8px;"></div>
     <h1>Elegí tus temas</h1>
     <p class="sub" id="elegirTemasSub">Tildá del catálogo de la cátedra, o agregá los tuyos si te falta algo puntual — quedan todos juntos acá abajo.</p>
 
@@ -915,6 +1160,11 @@
       <button onclick="addOwn()">+ Agregar</button>
     </div>
     <div id="ownList"></div>
+    <button type="button" class="ref-link" style="border:none; background:none; cursor:pointer; padding:6px 0;" onclick="togglePegarLista()">📋 ¿Tenés varios? Pegar mi lista</button>
+    <div id="pegarListaBox" style="display:none; margin:6px 0 10px;">
+      <textarea id="pegarListaTextarea" rows="4" placeholder="Un tema por línea" style="width:100%; padding:10px; border:1px solid var(--line); border-radius:10px; font-family:inherit; font-size:13px; resize:vertical;"></textarea>
+      <button type="button" class="btn secondary" style="margin-top:8px; width:auto;" onclick="confirmarPegarLista()">Agregar todos</button>
+    </div>
 
     <div class="selected-bar">
       <div style="font-size:12.5px; color:var(--muted); margin-bottom:8px;">
@@ -924,32 +1174,29 @@
     </div>
   </div>
 
-  <!-- S3 Configurar -->
+  <!-- S3 Configurar (Paso 4 de 4: Fecha y orden) -->
   <div class="screen" data-screen="3">
     <div class="topbar"><button class="back" onclick="go(2)">←</button></div>
-    <h1>Configurá el plazo</h1>
-    <p class="sub">Con esto armamos el calendario de repaso de <strong id="materiaConfigNombre">tu examen</strong>.</p>
-
-    <h2 style="margin-top:0;">Orden de estudio</h2>
-    <p class="sub" style="margin-bottom:10px;">Los ordené así por defecto siguiendo el programa de la cátedra. Movelos si preferís otro orden — el calendario respeta este orden, un tema termina antes de que arranque el siguiente.</p>
-    <div id="ordenList" style="margin-bottom:18px;"></div>
+    <div class="paso-indicador"><div class="paso-label mono">PASO 4 DE 4</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar filled"></span></div></div>
+    <div class="section-label-mono" id="colaBannerS3" style="display:none; border-bottom:none; margin-bottom:8px;"></div>
+    <h1>Fecha y orden</h1>
+    <p class="sub">Arrastrá para poner primero lo que se da al principio del curso de <strong id="materiaConfigNombre">tu examen</strong>.</p>
 
     <div class="field">
       <label for="examDate">Fecha del examen</label>
       <input type="date" id="examDate" onchange="renderRitmo()" autocomplete="off">
-      <div id="examDateError" style="display:none; color:var(--flojo); font-size:12px; font-weight:700; margin-top:6px;"></div>
+      <div id="examDateError" style="display:none; color:var(--atrasado); font-size:12px; font-weight:700; margin-top:6px;"></div>
     </div>
-    <div class="field">
-      <div id="ritmoTexto" style="font-size:12.5px; color:var(--muted); line-height:1.5; margin-bottom:10px;"></div>
-      <label>¿Hasta cuántos temas en paralelo podés llegar a meter como máximo?</label>
-      <div id="ritmoOptions" style="display:flex; gap:8px; margin-top:8px; flex-wrap:wrap;"></div>
-      <div id="pacePersonalizadoBox" style="display:none; margin-top:8px;">
-        <input type="number" min="1" class="pace-custom" id="pacePersonalizado" placeholder="Ej: 5" onchange="pickPaceCustom()">
-      </div>
-      <div id="tiempoEstimado" style="font-size:12px; color:var(--muted); margin-top:10px;"></div>
-    </div>
+    <div id="ritmoTexto" class="mono" style="font-size:12.5px; color:var(--teal); font-weight:600; margin:2px 0 18px;"></div>
+
+    <div class="section-label-mono">ORDEN DE LOS TEMAS</div>
+    <div id="ordenList" style="margin-bottom:18px;"></div>
+
     <div class="spacer"></div>
-    <button class="btn" id="btnGenerar" onclick="generarCalendario()" disabled>📚 Generar calendario</button>
+    <div style="display:flex; gap:10px;">
+      <button type="button" class="btn secondary" style="flex:0 0 auto; margin-top:0; width:auto; padding:13px 20px;" onclick="go(2)">Atrás</button>
+      <button class="btn" id="btnGenerar" style="flex:1; margin-top:0;" onclick="generarCalendario()" disabled>Crear el plan de repaso</button>
+    </div>
   </div>
 
   <!-- S4 Calendario -->
@@ -973,10 +1220,10 @@
     <div id="calAgenda"></div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
-      <div class="nav-item active"><span class="ic">📅</span>Calendario</div>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <div class="nav-item active"><span class="ic">🗓️</span>Calendario</div>
       <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <button type="button" class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
+      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
       <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
     </div>
   </div>
@@ -1033,10 +1280,10 @@
     </div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
       <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <div class="nav-item active"><span class="ic">📊</span>Resumen</div>
+      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
       <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
     </div>
   </div>
@@ -1049,57 +1296,58 @@
     <div id="repasoList"></div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
       <div class="nav-item active"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></div>
-      <button type="button" class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
+      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
       <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
     </div>
   </div>
 
-  <!-- S8 Exámenes (antes "Materias") -->
+  <!-- S8 Materias (antes "Exámenes") -->
   <div class="screen" data-screen="8">
     <div class="screen-content">
-    <div class="topbar"><button class="back" onclick="go(0)">←</button></div>
-    <h1>📅 Calendario</h1>
-    <p class="sub">Tus exámenes en curso y las materias que ya rendiste.</p>
+    <div class="materias-header">
+      <div>
+        <h1>Materias</h1>
+        <p class="sub" id="materiasSub">Tus materias en curso.</p>
+      </div>
+      <button type="button" class="btn" style="margin-top:0; width:auto;" onclick="agregarExamen()">+ Agregar materia</button>
+    </div>
+    <p class="sub" style="margin-top:-8px; margin-bottom:14px;">☆ Marcá una materia como <strong>prioritaria</strong> para que tu calendario le dé el primer lugar y arranque hoy, aunque otra tenga el examen más cerca.</p>
+    <div class="materias-grid" id="examenesEnCurso"></div>
 
-    <h2 style="margin-top:0;">En curso</h2>
-    <p class="sub" style="margin-top:-6px; margin-bottom:12px;">☆ Marcá una materia como <strong>prioritaria</strong> para que tu calendario le dé el primer lugar y arranque hoy, aunque otra tenga el examen más cerca.</p>
-    <div id="examenesEnCurso"></div>
-    <button class="btn secondary" style="margin-top:2px;" onclick="agregarExamen()">+ Agregar examen</button>
-
-    <h2>Rendidas</h2>
-    <div id="examenesRendidos"></div>
+    <div class="section-label-mono" style="margin-top:22px;">RENDIDAS · <span id="materiasRendidasCount">0</span></div>
+    <div class="materias-rendidas-grid" id="examenesRendidos"></div>
     </div>
     <div class="bottom-nav" id="materiasBottomNav" style="display:none;">
-      <div class="nav-item active"><span class="ic">📚</span>Exámenes</div>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
       <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <button type="button" class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
+      <div class="nav-item active"><span class="ic">📚</span>Materias</div>
       <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
     </div>
   </div>
 
-  <!-- S10 Estudiá con Al Día -->
+  <!-- S10 Estudiar -->
   <div class="screen" data-screen="10">
     <div class="screen-content">
-    <h1 style="margin-top:4px;">Estudiá con Al Día</h1>
-    <p class="sub">Elegí qué querés usar ahora.</p>
+    <h1 style="margin-top:4px;">Estudiar</h1>
+    <p class="sub" id="estudiarSub">Elegí qué querés usar ahora.</p>
 
-    <!-- Acordeón de 3 -- separadas de verdad (una sola abierta a la vez),
-         no las tres apiladas en el mismo scroll. Entrar por primera vez
-         (o tocar "Estudiar" en el menú) las deja las tres cerradas, mostrando
-         solo estos 3 encabezados para elegir. .study-grid es el wrapper que
-         en pantalla ancha (ver CSS) las acomoda una al lado de la otra
-         mientras ninguna está abierta. -->
-    <div class="study-grid">
-    <div class="study-section" id="sec-tiempo" data-sec="tiempo">
-      <div class="study-section-head" onclick="toggleStudySection('tiempo')">
-        <span class="study-section-title"><span class="ic">⏱️</span>Tiempo de estudio</span>
-        <span class="study-section-chevron">▸</span>
-      </div>
-      <div class="study-section-body">
+    <!-- Pestañas reales (rediseño) -- una sola sección visible a la vez, en
+         vez del acordeón de antes. El submenú del sidebar (irAEstudiar) y
+         switchStudyTab() son el único punto de entrada para cambiar de
+         pestaña; el contenido interno de cada una no cambió. -->
+    <div class="tabs study-tabs" id="studyMainTabs">
+      <div class="tab" data-sec="tiempo" onclick="switchStudyTab('tiempo')"><span class="ic">⏱️</span>Tiempo de estudio</div>
+      <div class="tab" data-sec="fichas" onclick="switchStudyTab('fichas')"><span class="ic">🧠</span>Fichas de repaso</div>
+      <div class="tab" data-sec="resumen" onclick="switchStudyTab('resumen')"><span class="ic">📄</span>Resumen de apuntes</div>
+    </div>
+
+    <div class="study-layout">
+    <div class="study-main">
+    <div class="study-panel" id="sec-tiempo" data-sec="tiempo">
         <div style="display:flex; justify-content:flex-end; align-items:center; margin-bottom:8px;">
           <button class="btn secondary" id="sonidoAmbienteBtn" onclick="toggleSonidoAmbiente()" style="margin-top:0; width:auto; padding:8px 14px; font-size:12px;">🔇 Sonido</button>
         </div>
@@ -1127,15 +1375,9 @@
             <button class="btn secondary" onclick="resetearTimer()">↺ Reiniciar</button>
           </div>
         </div>
-      </div>
     </div>
 
-    <div class="study-section" id="sec-fichas" data-sec="fichas">
-      <div class="study-section-head" onclick="toggleStudySection('fichas')">
-        <span class="study-section-title"><span class="ic">🧠</span>Fichas de repaso</span>
-        <span class="study-section-chevron">▸</span>
-      </div>
-      <div class="study-section-body">
+    <div class="study-panel" id="sec-fichas" data-sec="fichas">
         <p class="sub" style="margin-top:0;">Elegí facultad, año/semestre, materia y tema -- la IA te arma preguntas y respuestas para autoevaluarte.</p>
         <div class="field">
           <select id="fichasFacultadSelect" onchange="onFichasFacultadChange()"></select>
@@ -1147,7 +1389,7 @@
           <select id="fichasMateriaSelect" onchange="onFichasMateriaChange()"></select>
         </div>
         <div class="field">
-          <select id="fichasTemaSelect"></select>
+          <select id="fichasTemaSelect" onchange="renderEstudiarRail()"></select>
         </div>
         <div class="field">
           <label>📎 Opcional: subí tu propio apunte (en vez de la bibliografía general)</label>
@@ -1177,37 +1419,46 @@
         </div>
         <button class="btn" id="fichasGenerarBtn" onclick="generarFichas()">✨ Generar fichas</button>
         <div id="fichasBox"></div>
-      </div>
     </div>
 
-    <div class="study-section" id="sec-resumen" data-sec="resumen">
-      <div class="study-section-head" onclick="toggleStudySection('resumen')">
-        <span class="study-section-title"><span class="ic">📄</span>Resumen de apuntes</span>
-        <span class="study-section-chevron">▸</span>
-      </div>
-      <div class="study-section-body">
+    <div class="study-panel" id="sec-resumen" data-sec="resumen">
         <p class="sub" style="margin-top:0;">Subí un PDF o Word (.docx) y la IA te descarga un PDF con el resumen para repasar.</p>
-        <div class="field">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <input type="file" id="resumenFileInput" accept=".pdf,.doc,.docx" onchange="actualizarBotonBorrarArchivo('resumenFileInput','resumenArchivoBorrarBtn')" style="flex:1;">
-            <button type="button" id="resumenArchivoBorrarBtn" class="btn secondary" style="display:none; margin-top:0; width:auto; padding:8px 12px;" onclick="borrarArchivo('resumenFileInput','resumenArchivoBorrarBtn')" title="Sacar el archivo">🗑️</button>
-          </div>
-        </div>
+        <label class="dropzone" id="resumenDropzone" for="resumenFileInput">
+          <input type="file" id="resumenFileInput" accept=".pdf,.doc,.docx" onchange="actualizarBotonBorrarArchivo('resumenFileInput','resumenArchivoBorrarBtn'); actualizarNombreDropzone();" style="display:none;">
+          <span class="dropzone-ic">📎</span>
+          <span id="resumenDropzoneTexto">Arrastrá un PDF o Word acá, o tocá para elegirlo</span>
+          <button type="button" id="resumenArchivoBorrarBtn" class="btn secondary" style="display:none; margin-top:10px; width:auto; padding:8px 12px;" onclick="event.preventDefault(); borrarArchivo('resumenFileInput','resumenArchivoBorrarBtn'); actualizarNombreDropzone();" title="Sacar el archivo">🗑️ Sacar archivo</button>
+        </label>
         <button class="btn" id="resumenGenerarBtn" onclick="generarResumen()">📄 Resumir y descargar PDF</button>
         <div id="resumenBox"></div>
 
         <div class="card" style="background:var(--nuevo-soft); border:none; margin-top:16px;">
           <a class="ref-link" href="https://claude.ai" target="_blank" rel="noopener">Conectar con Claude ↗</a>
         </div>
-      </div>
     </div>
+    </div>
+
+    <aside class="estudiar-rail" id="estudiarRail">
+      <div class="card" id="estudiarAccionesCard" style="display:none;">
+        <h3>Al terminar el bloque</h3>
+        <p class="sub" style="margin-top:2px;">Marcá cómo te fue con <strong id="estudiarRailTema">este tema</strong> para reprogramar el próximo repaso.</p>
+        <div style="display:flex; gap:8px; margin-top:10px;">
+          <button type="button" class="btn secondary" style="flex:1; margin-top:0;" onclick="marcarDesdeEstudiar('firme')">Firme</button>
+          <button type="button" class="btn secondary" style="flex:1; margin-top:0;" onclick="marcarDesdeEstudiar('flojo')">Flojo</button>
+        </div>
+      </div>
+      <div class="card" id="estudiarBiblioCard" style="display:none;">
+        <h3>Bibliografía del tema</h3>
+        <div id="estudiarBiblioBox" style="margin-top:6px;"></div>
+      </div>
+    </aside>
     </div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
       <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <button type="button" class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
+      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
       <div class="nav-item active"><span class="ic">📖</span>Estudiar</div>
     </div>
   </div>
@@ -1224,6 +1475,14 @@
   </div>
 </aside>
 </div>
+
+<!-- Fichas en mobile (rediseño, <860px): pantalla completa oscura en vez de
+     la tarjeta normal in-line -- fuera de .app-shell/.phone a propósito
+     para que position:fixed no dependa de que ningún ancestro no tenga
+     overflow/transform. renderFichaActual() decide cuál de las dos mostrar
+     según el ancho real; ambas leen el mismo estado (fichasActuales/
+     fichaIndexActual/fichaRespuestas). -->
+<div class="ficha-fullscreen" id="fichaFullscreen"></div>
 
 <script>
 // Catálogo organizado por año de la carrera -> materias de ese año -> módulos
@@ -4963,10 +5222,11 @@ function go(n) {
   const aplicarPantalla = () => {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.querySelector(`.screen[data-screen="${n}"]`).classList.add('active');
-    // Entrar a Estudiar por su cuenta (no desde un ítem del submenú) siempre
-    // arranca con las 3 opciones cerradas -- así "estudiar" solo (apretado
-    // por si solo) muestra el picker, nunca una sección ya desplegada.
-    if (n === 10) document.querySelectorAll('.study-section').forEach(s => s.classList.remove('open'));
+    // Primera vez que se entra a Estudiar en la sesión: arranca en "Tiempo
+    // de estudio". Si ya había una pestaña activa (se venía navegando desde
+    // ahí, o irAEstudiar() ya la fijó explícitamente después de este mismo
+    // go()), se respeta -- no se resetea en cada visita.
+    if (n === 10 && !document.querySelector('#studyMainTabs .tab.active')) switchStudyTab('tiempo');
     actualizarSideNav();
   };
   // View Transitions API nativa: anima el cambio de pantalla (cross-fade +
@@ -5000,7 +5260,7 @@ const PANTALLAS_CON_REBOTE = [0, 11];
 // bottom-nav real se mostraría -- se lee su estado en vez de duplicar la
 // condición (ej. Exámenes solo tiene bottom-nav una vez que hay una materia
 // real cargada, vía #materiasBottomNav.style.display).
-const PANTALLAS_CON_NAV = [4, 6, 7, 8, 10];
+const PANTALLAS_CON_NAV = [4, 6, 7, 8, 10, 13];
 function actualizarSideNav() {
   const pantallaActiva = document.querySelector('.screen.active');
   const n = pantallaActiva ? +pantallaActiva.dataset.screen : null;
@@ -5021,18 +5281,17 @@ function toggleEstudiarSubmenu(event) {
   document.getElementById('sideNavEstudiarChevron').classList.toggle('open', abierto);
 }
 
-// Abre solo la sección elegida del acordeón (cierra las otras dos) -- así
-// queda de verdad separada de las demás, no solo scrolleada por encima.
-function toggleStudySection(name) {
-  const target = document.getElementById('sec-' + name);
-  if (!target) return;
-  const yaAbierta = target.classList.contains('open');
-  document.querySelectorAll('.study-section').forEach(s => s.classList.remove('open'));
-  if (!yaAbierta) target.classList.add('open');
+// Muestra solo el panel elegido (pestañas reales, rediseño) -- reemplaza al
+// acordeón de antes (toggleStudySection abría/cerraba con display:none).
+function switchStudyTab(name) {
+  document.querySelectorAll('#studyMainTabs .tab').forEach(t => t.classList.toggle('active', t.dataset.sec === name));
+  document.querySelectorAll('.study-panel').forEach(p => p.classList.toggle('active', p.dataset.sec === name));
+  if (name === 'fichas') renderEstudiarRail();
 }
 
-// Desde el ítem "Estudiar" del menú, sin elegir submenú: va a la pantalla
-// y despliega el submenú lateral, pero deja las 3 secciones cerradas.
+// Desde el ítem "Estudiar" del menú, sin elegir submenú: va a la pantalla y
+// despliega el submenú lateral, sin forzar ninguna pestaña en particular
+// (switchStudyTab dentro de go() ya elige "Tiempo" la primera vez).
 function irAEstudiarPicker() {
   go(10);
   document.getElementById('sideNavEstudiarSub').classList.add('open');
@@ -5040,19 +5299,16 @@ function irAEstudiarPicker() {
 }
 
 // Desde un ítem del submenú (tiempo/fichas/resumen): va directo a esa
-// sección abierta y separada de las otras.
+// pestaña.
 function irAEstudiar(name) {
   go(10);
   document.getElementById('sideNavEstudiarSub').classList.add('open');
   document.getElementById('sideNavEstudiarChevron').classList.add('open');
-  const target = document.getElementById('sec-' + name);
-  if (target) target.classList.add('open');
-  requestAnimationFrame(() => {
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
+  switchStudyTab(name);
 }
 
 function renderCatalogo() {
+  renderColaBanner('colaBannerS2');
   const list = document.getElementById('modulosList');
   const e = examActual();
   const sub = document.getElementById('elegirTemasSub');
@@ -5064,7 +5320,14 @@ function renderCatalogo() {
     return;
   }
   list.style.display = '';
-  if (sub) sub.textContent = 'Tildá del catálogo de la cátedra, o agregá los tuyos si te falta algo puntual — quedan todos juntos acá abajo.';
+  if (sub) sub.textContent = 'Vienen todos tildados del programa de la cátedra -- destildá lo que no entra en tu examen, o agregá los tuyos si te falta algo puntual.';
+  // Rediseño: opt-out en vez de opt-in -- la primera vez que se abre un
+  // catálogo (selected vacío, siempre el caso al llegar acá con una materia
+  // recién elegida) se tildan todos los temas de entrada, en vez de arrancar
+  // todo destildado y que el estudiante tenga que tildar uno por uno.
+  if (selected.length === 0) {
+    modulos.forEach(mod => mod.temas.forEach(t => { if (!selected.includes(t)) selected.push(t); }));
+  }
   list.innerHTML = '';
   modulos.forEach((mod, mi) => {
     const div = document.createElement('div');
@@ -5077,14 +5340,18 @@ function renderCatalogo() {
       </div>
       <div class="modulo-body">
         <span class="modulo-select-all" onclick="seleccionarTodoModulo(${mi})">Seleccionar todos</span>
-        ${mod.temas.map((t,ti) => `
-          <label class="tema-row">
-            <input type="checkbox" data-tema="${t.replace(/"/g,'&quot;')}" onchange="toggleTema('${t.replace(/'/g,"\\'")}', this.checked)">
+        ${mod.temas.map((t,ti) => {
+          const checked = selected.includes(t);
+          return `
+          <label class="tema-row${checked ? '' : ' destildado'}">
+            <input type="checkbox" data-tema="${t.replace(/"/g,'&quot;')}" ${checked ? 'checked' : ''} onchange="toggleTema('${t.replace(/'/g,"\\'")}', this.checked); this.closest('.tema-row').classList.toggle('destildado', !this.checked);">
             ${t}
-          </label>`).join('')}
+          </label>`;
+        }).join('')}
       </div>`;
     list.appendChild(div);
   });
+  updateSelCount();
 }
 
 // Tilda de una sola vez todos los temas de un módulo (ej. "Cardiovascular"),
@@ -5096,6 +5363,7 @@ function seleccionarTodoModulo(mi) {
   if (!body) return;
   body.querySelectorAll('input[type=checkbox]').forEach(cb => {
     cb.checked = true;
+    cb.closest('.tema-row').classList.remove('destildado');
     toggleTema(cb.dataset.tema, true);
   });
 }
@@ -5118,6 +5386,27 @@ function addOwn() {
   // se queda en la misma pantalla, el tema nuevo aparece al final de la lista
   const box = document.getElementById('ownList');
   box.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+function togglePegarLista() {
+  const box = document.getElementById('pegarListaBox');
+  box.style.display = box.style.display === 'none' ? 'block' : 'none';
+}
+
+// Escape hatch del paso 3 (rediseño): agrega varios temas propios de una
+// sola vez reutilizando addOwn() tema por tema, en vez de duplicar su
+// lógica (ownTemas/selected, re-render, contador).
+function confirmarPegarLista() {
+  const ta = document.getElementById('pegarListaTextarea');
+  const lineas = ta.value.split('\n').map(l => l.trim()).filter(Boolean);
+  const input = document.getElementById('ownInput');
+  let agregados = 0;
+  lineas.forEach(linea => {
+    if (!selected.includes(linea)) { input.value = linea; addOwn(); agregados++; }
+  });
+  ta.value = '';
+  document.getElementById('pegarListaBox').style.display = 'none';
+  showToast(agregados ? `${agregados} tema${agregados === 1 ? '' : 's'} agregado${agregados === 1 ? '' : 's'}` : 'No había temas nuevos para agregar');
 }
 
 function renderOwnList() {
@@ -5185,21 +5474,54 @@ function renderOrden() {
   box.innerHTML = selected.map((t, i) => {
     const dur = duracionDe(t);
     return `
-    <div class="orden-row">
-      <span class="num">${i + 1}</span>
+    <div class="orden-row" data-idx="${i}">
+      <span class="orden-handle" onpointerdown="ordenPointerDown(event, ${i})">⠿</span>
+      <span class="num mono">${i + 1}</span>
       <span class="name">${t}<small>${dur} día${dur > 1 ? 's' : ''} de estudio estimado</small></span>
-      <div class="orden-btns">
-        <button ${i === 0 ? 'disabled' : ''} onclick="moverTema(${i},-1)" title="Subir">▲</button>
-        <button ${i === selected.length - 1 ? 'disabled' : ''} onclick="moverTema(${i},1)" title="Bajar">▼</button>
-      </div>
     </div>`;
   }).join('');
 }
 
-function moverTema(i, dir) {
-  const j = i + dir;
-  if (j < 0 || j >= selected.length) return;
-  [selected[i], selected[j]] = [selected[j], selected[i]];
+// Reordenar arrastrando el handle ⠿ (paso 4, rediseño). Pointer Events en
+// vez de drag&drop nativo de HTML5 a propósito: el nativo NO funciona por
+// touch en Safari/Chrome mobile (donde de hecho se usa esta pantalla la
+// mayor parte del tiempo), Pointer Events sí cubre mouse y touch por igual
+// con el mismo código. Sigue mutando el mismo array `selected` que ya
+// consume construirSchedulePara() -- no hace falta tocar el algoritmo de
+// calendario para nada, solo cómo se reordena en pantalla.
+let ordenDrag = null;
+function ordenPointerDown(e, idx) {
+  if (e.pointerType === 'mouse' && e.button !== 0) return;
+  const row = e.currentTarget.closest('.orden-row');
+  if (!row) return;
+  e.preventDefault();
+  ordenDrag = { idx, startY: e.clientY, row, rowHeight: row.getBoundingClientRect().height || 48 };
+  row.classList.add('dragging');
+  row.style.zIndex = '5';
+  try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {}
+  document.addEventListener('pointermove', ordenPointerMove);
+  document.addEventListener('pointerup', ordenPointerUp, { once: true });
+  document.addEventListener('pointercancel', ordenPointerUp, { once: true });
+}
+function ordenPointerMove(e) {
+  if (!ordenDrag) return;
+  const dy = e.clientY - ordenDrag.startY;
+  ordenDrag.row.style.transform = `translateY(${dy}px) rotate(-.6deg)`;
+}
+function ordenPointerUp(e) {
+  document.removeEventListener('pointermove', ordenPointerMove);
+  if (!ordenDrag) return;
+  const dy = e.clientY - ordenDrag.startY;
+  const steps = Math.round(dy / ordenDrag.rowHeight);
+  const newIdx = Math.max(0, Math.min(selected.length - 1, ordenDrag.idx + steps));
+  ordenDrag.row.style.transform = '';
+  ordenDrag.row.style.zIndex = '';
+  ordenDrag.row.classList.remove('dragging');
+  if (newIdx !== ordenDrag.idx) {
+    const [moved] = selected.splice(ordenDrag.idx, 1);
+    selected.splice(newIdx, 0, moved);
+  }
+  ordenDrag = null;
   renderOrden();
 }
 
@@ -6646,6 +6968,23 @@ function duracionDe(tema, e) {
   return base + extra;
 }
 
+// Estimación de minutos de estudio/repaso para un tema, para la pantalla
+// "Hoy" -- no hay un dato real de minutos en ningún lado (DURACIONES son
+// días, no minutos), así que se deriva con una regla simple a partir de la
+// misma duración en días que ya usa el algoritmo de calendario.
+function minutosEstimados(tema) {
+  return Math.min(90, Math.max(15, duracionDe(tema) * 20));
+}
+
+// Días hasta una fecha (ISO yyyy-mm-dd) desde hoy, genérico -- a diferencia
+// de diasHastaExamen(), que lee el input del formulario de alta de materia.
+function diasHasta(fechaISO) {
+  if (!fechaISO) return null;
+  const fecha = new Date(fechaISO + 'T00:00:00');
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  return Math.max(0, Math.round((fecha - hoy) / 86400000));
+}
+
 // Ritmo = cuántos temas podés arrancar EN PARALELO cada vez para ESTA
 // materia sola (no cuántos por día en total, porque un tema puede ocupar
 // varios días). El mínimo se calcula sobre el total de días de estudio que
@@ -6688,67 +7027,30 @@ function validarFechaExamen() {
   return true;
 }
 
+// Rediseño: ya no hay picker manual de ritmo (paralelo de temas) -- se usa
+// siempre el mínimo necesario para llegar a tiempo (r.minPace), que además
+// ya era el default de facto de la versión anterior en el caso común. El
+// número en sí sigue siendo el mismo que ya usa generarCalendarioGlobal()
+// (recalculado fresco ahí, e.selectedPace acá es solo el flag de "esta
+// materia ya terminó de configurarse" que lee examenesConCalendario()).
 function renderRitmo() {
+  renderColaBanner('colaBannerS3');
   renderOrden();
   const eActual = examActual();
-  document.getElementById('btnGenerar').textContent = (eActual && eActual.selectedPace) ? '📚 Actualizar calendario' : '📚 Generar calendario';
+  const btn = document.getElementById('btnGenerar');
+  btn.textContent = (eActual && eActual.selectedPace) ? 'Actualizar el plan de repaso' : 'Crear el plan de repaso';
+  const texto = document.getElementById('ritmoTexto');
   if (!validarFechaExamen()) {
-    document.getElementById('btnGenerar').disabled = true;
-    document.getElementById('ritmoTexto').innerHTML = '';
-    document.getElementById('ritmoOptions').innerHTML = '';
-    document.getElementById('tiempoEstimado').textContent = '';
+    btn.disabled = true;
+    texto.textContent = '';
     return;
   }
   const r = calcularRitmo();
-  const texto = document.getElementById('ritmoTexto');
-  const warn = r.minPace > 4 ? `<div class="pace-warning">Es justo: sumando los días que estimamos que lleva cada tema, con ${r.diasUtiles} días útiles vas ajustado. Si podés, sumá algún día más de estudio.</div>` : '';
-  texto.innerHTML = `Elegiste <strong>${r.N} temas</strong>, que entre todos estimamos que llevan unos <strong>${r.totalDuracion} días de estudio</strong> (no todos pesan igual -- los más densos ocupan varios días seguidos, no uno solo). Quedan <strong>${r.diasUtiles} días útiles</strong> antes del examen. Para llegar a tiempo necesitás arrancar como mínimo <strong>${r.minPace} temas en paralelo</strong> por vez -- esto es un tope máximo, no una obligación: si un tema alcanza para llenar el día, no metemos otro al lado solo por completar el número. Si tenés otras materias en curso, el calendario las combina a todas y puede adelantar o atrasar un poco el arranque de esta según cuál sea más urgente o cuál hayas marcado como prioritaria. ${warn}`;
-
-  const opts = document.getElementById('ritmoOptions');
-  opts.innerHTML = '';
-  for (let p = r.minPace; p <= r.maxPace; p++) {
-    const pill = document.createElement('div');
-    pill.className = 'pace-pill' + (p === selectedPace ? ' selected' : '');
-    pill.textContent = `${p} / día`;
-    pill.onclick = () => pickPace(p);
-    opts.appendChild(pill);
-  }
-  const otro = document.createElement('div');
-  otro.className = 'pace-pill' + (selectedPace !== null && selectedPace > r.maxPace ? ' selected' : '');
-  otro.textContent = 'Otro';
-  otro.onclick = () => {
-    document.getElementById('pacePersonalizadoBox').style.display = 'block';
-    document.getElementById('pacePersonalizado').focus();
-  };
-  opts.appendChild(otro);
-
-  if (selectedPace === null || selectedPace < r.minPace) {
-    selectedPace = r.minPace; // default: el ritmo justo y necesario
-  }
-  if (selectedPace > r.maxPace) {
-    document.getElementById('pacePersonalizadoBox').style.display = 'block';
-    document.getElementById('pacePersonalizado').value = selectedPace;
-  }
-  pickPace(selectedPace);
-}
-
-function pickPace(p) {
-  selectedPace = p;
-  document.querySelectorAll('.pace-pill').forEach(el => {
-    el.classList.toggle('selected', el.textContent.startsWith(String(p) + ' '));
-  });
-  const r = calcularRitmo();
-  document.getElementById('tiempoEstimado').textContent = p > r.minPace
-    ? `Este es tu techo de tolerancia (hasta ${p} en paralelo si hiciera falta). Con lo que elegiste, en realidad alcanza con ${r.minPace} a la vez -- el plan va a ir tema por tema, entero, salvo que más adelante haga falta acelerar.`
-    : `Vas a tener como máximo ${p} tema${p>1?'s':''} en curso al mismo tiempo, y solo si hace falta para llegar a tiempo -- si con menos alcanza, se estudia uno por vez, entero.`;
-  document.getElementById('btnGenerar').disabled = false;
-}
-
-function pickPaceCustom() {
-  const v = parseInt(document.getElementById('pacePersonalizado').value, 10);
-  if (!v || v < 1) return;
-  document.querySelectorAll('.pace-pill').forEach(el => el.classList.remove('selected'));
-  pickPace(v);
+  const { dias } = diasHastaExamen();
+  const minutosPorDia = Math.round((r.totalDuracion * 20) / Math.max(1, r.diasUtiles));
+  texto.textContent = `en ${dias} día${dias === 1 ? '' : 's'} · ~${minutosPorDia} min de repaso por día`;
+  selectedPace = r.minPace;
+  btn.disabled = false;
 }
 
 // Intervalos del repaso espaciado, en días desde el ÚLTIMO repaso real (no
@@ -6890,7 +7192,13 @@ function generarCalendario() {
       e.touched = touched;
     }
     calYear = null; calMonth = null; calSelectedKey = null; // reanclar la grilla al mes de hoy
-    go(4);
+    // Alta múltiple (rediseño): si queda otra materia en la cola, seguir con
+    // ella en vez de terminar en el calendario.
+    if (!empezarSiguienteDeCola()) {
+      colaMateriasTotal = 0;
+      colaContexto = null;
+      go(4);
+    }
   }, 350);
 }
 
@@ -7225,9 +7533,10 @@ function esFuenteGenerica(libro) {
   return /^Apuntes de c[aá]tedra|^Repaso de Unidades Curriculares|^Gu[ií]as AHA/i.test(libro || '');
 }
 
-function renderReferencia(name, materiaNombre) {
+function renderReferencia(name, materiaNombre, targetId) {
   const t = TEXTOS[name];
-  const box = document.getElementById('referenciaBox');
+  const box = document.getElementById(targetId || 'referenciaBox');
+  if (!box) return;
   const linkResumen = `<a class="ref-link" href="https://www.studocu.com/latam/search/${encodeURIComponent(name)}" target="_blank">📝 Buscar un resumen o apunte en Studocu</a>`;
   const queryVideo = materiaNombre ? `${name} ${nombreCorto(materiaNombre)}` : name;
   const linkVideo = `<a class="ref-link" href="https://www.youtube.com/results?search_query=${encodeURIComponent(queryVideo)}" target="_blank">🎥 Buscar un video explicativo</a>`;
@@ -7423,7 +7732,117 @@ function updateBadges() {
   // completar un bloque del timer, cada navegación vía go()) -- por eso es
   // un buen lugar único para marcar que hay algo nuevo para guardar, en vez
   // de tener que acordarse de llamarlo a mano en cada función que muta algo.
+  // Mismo motivo para refrescar acá la racha del pie del menú lateral: se ve
+  // en TODAS las pantallas (no solo Resumen), así que necesita actualizarse
+  // en cualquier mutación/navegación, no solo al abrir S6.
+  renderRacha();
   marcarEstadoSucio();
+}
+
+// ---- Hoy (S13): pantalla de aterrizaje después de loguearse (rediseño) ----
+// No agrega estado nuevo -- combina lo que ya calculan generarCalendarioGlobal()
+// (agenda de hoy), contarEstadosGlobal() (conteos) y la misma lógica de
+// atrasados que usa Repaso, todo reutilizado tal cual.
+const FORMATO_FECHA_HOY = new Intl.DateTimeFormat('es-UY', { weekday: 'long', day: 'numeric', month: 'long' });
+
+function itemsRepasoGlobal() {
+  const todayKey = fmt(new Date());
+  const items = [];
+  examenesConCalendario().forEach(e => {
+    e.selected.forEach(t => {
+      if (e.states[t] !== 'firme') {
+        const atrasado = !!(e.proximoRepaso && e.proximoRepaso[t] && e.proximoRepaso[t] < todayKey);
+        items.push({ examId: e.id, materiaNombre: e.materiaNombre, name: t, state: e.states[t], atrasado });
+      }
+    });
+  });
+  items.sort((a, b) => (b.atrasado ? 1 : 0) - (a.atrasado ? 1 : 0));
+  return items;
+}
+
+function renderHoy() {
+  generarCalendarioGlobal();
+  renderSummary('summaryBarHoy');
+
+  const hoy = new Date();
+  const todayKey = fmt(hoy);
+  const fechaEl = document.getElementById('hoyFecha');
+  if (fechaEl) fechaEl.textContent = FORMATO_FECHA_HOY.format(hoy).toUpperCase();
+
+  const entries = ((planGlobal && planGlobal.schedule[todayKey]) || []).filter(t => t.action !== 'final');
+  const tituloEl = document.getElementById('hoyTitulo');
+  if (tituloEl) {
+    tituloEl.textContent = entries.length
+      ? `${entries.length} tema${entries.length === 1 ? '' : 's'} para hoy`
+      : 'Nada agendado para hoy';
+  }
+
+  const listBox = document.getElementById('hoyLista');
+  listBox.innerHTML = entries.length ? entries.map(t => {
+    const estado = estadoDeEntry(t);
+    const esc = t.name.replace(/'/g, "\\'");
+    const min = minutosEstimados(t.name);
+    const contexto = t.action === 'nuevo' ? 'primera vez' : (t.atrasado ? 'atrasado' : (t.totalDias > 1 ? `repaso · día ${t.dia}/${t.totalDias}` : 'repaso'));
+    const accion = estado === 'flojo'
+      ? `<span class="tag repaso-tag">FLOJO</span><button type="button" class="btn secondary hoy-item-btn" onclick="event.stopPropagation(); irAEstudiar('fichas')">Fichas</button>`
+      : `<button type="button" class="btn hoy-item-btn" onclick="event.stopPropagation(); abrirDetalle(${t.examId}, '${esc}')">Empezar</button>`;
+    return `
+    <div class="card hoy-item" onclick="abrirDetalle(${t.examId}, '${esc}')">
+      <div class="hoy-item-check ${estado === 'firme' ? 'checked' : ''}"></div>
+      <div class="hoy-item-info">
+        <div class="hoy-item-title">${t.atrasado ? '⏰ ' : ''}${t.name}</div>
+        <div class="hoy-item-sub">${nombreCorto(t.materiaNombre)} · ${contexto}</div>
+      </div>
+      <div class="hoy-item-right">
+        <span class="hoy-item-min mono">~${min} min</span>
+        ${accion}
+      </div>
+    </div>`;
+  }).join('') : '<div class="empty-state">No tenés nada agendado para hoy. 🎉</div>';
+
+  const activos = examenesConCalendario().slice().sort((a, b) => (a.fecha || '').localeCompare(b.fecha || ''));
+  const proximo = activos.find(e => e.prioridad) || activos[0];
+  const proxBox = document.getElementById('hoyProximoExamen');
+  if (proxBox) {
+    proxBox.innerHTML = proximo ? (() => {
+      const dias = diasHasta(proximo.fecha);
+      return `<div class="hoy-proximo-label mono">PRÓXIMO EXAMEN</div>
+      <div class="hoy-proximo-nombre">${nombreCorto(proximo.materiaNombre)}</div>
+      <div class="hoy-proximo-dias mono">${dias === 0 ? 'es hoy' : `en ${dias} día${dias === 1 ? '' : 's'}`}</div>`;
+    })() : '';
+  }
+
+  const items = itemsRepasoGlobal();
+  const vencidos = items.filter(i => i.atrasado).length;
+  const repasoBox = document.getElementById('hoyRepasoPreview');
+  if (repasoBox) {
+    const top3 = items.slice(0, 3);
+    repasoBox.innerHTML = top3.length
+      ? top3.map(it => `
+        <div class="hoy-repaso-row ${it.atrasado ? 'atrasado' : ''}" onclick="abrirDetalle(${it.examId}, '${it.name.replace(/'/g, "\\'")}', true)">
+          <div><div class="hoy-repaso-nombre">${it.name}</div><div class="hoy-repaso-materia">${nombreCorto(it.materiaNombre)}</div></div>
+          <span class="hoy-repaso-tag mono">${it.atrasado ? 'VENCIÓ' : 'HOY'}</span>
+        </div>`).join('') + (vencidos > 0 ? `<button type="button" class="btn" style="margin-top:10px; width:100%;" onclick="go(7)">Repasar los ${vencidos} vencidos</button>` : '')
+      : '<div class="empty-state" style="padding:20px 8px;">Nada pendiente de repaso.</div>';
+  }
+
+  const semBox = document.getElementById('hoySemana');
+  if (semBox) {
+    const NOMBRES_DIA = ['LUN','MAR','MIÉ','JUE','VIE','SÁB','DOM'];
+    const lunes = addDays(hoy, -((hoy.getDay() + 6) % 7));
+    let html = '';
+    for (let i = 0; i < 7; i++) {
+      const d = addDays(lunes, i);
+      const key = fmt(d);
+      const n = ((planGlobal && planGlobal.schedule[key]) || []).filter(t => t.action !== 'final').length;
+      const esHoy = key === todayKey;
+      html += `<div class="hoy-semana-row ${esHoy ? 'hoy' : ''}">
+        <span class="mono">${NOMBRES_DIA[i]}</span>
+        <span>${n ? `${n} tema${n === 1 ? '' : 's'}` : 'libre'}</span>
+      </div>`;
+    }
+    semBox.innerHTML = html;
+  }
 }
 
 // Repaso (S7): junta los temas pendientes (no firmes) de TODAS las materias
@@ -7435,35 +7854,43 @@ function renderRepaso() {
   if (!activos.length) { list.innerHTML = '<div class="empty-state">Todavía no armaste ningún calendario.</div>'; sub.textContent = ''; return; }
 
   const todayKey = fmt(new Date());
-  const items = [];
+  // Agrupado por urgencia (rediseño) en vez de una lista plana: atrasadas
+  // primero (proximoRepaso ya pasó), después lo que vence hoy, y por último
+  // lo que todavía no venció (incluye temas de primera vez, sin fecha de
+  // repaso asignada todavía -- van al final del todo).
+  const grupos = { atrasadas: [], hoy: [], proximas: [] };
   let totalFaltanVer = 0;
   activos.forEach(e => {
     e.selected.forEach(t => {
       if (!e.touched[t]) totalFaltanVer++;
       if (e.states[t] !== 'firme') {
-        const atrasado = !!(e.proximoRepaso && e.proximoRepaso[t] && e.proximoRepaso[t] < todayKey);
-        items.push({ examId: e.id, materiaNombre: e.materiaNombre, name: t, state: e.states[t], atrasado });
+        const prox = e.proximoRepaso && e.proximoRepaso[t];
+        const item = { examId: e.id, materiaNombre: e.materiaNombre, name: t, state: e.states[t], prox: prox || '' };
+        if (prox && prox < todayKey) grupos.atrasadas.push({ ...item, atrasado: true });
+        else if (prox === todayKey) grupos.hoy.push(item);
+        else grupos.proximas.push(item);
       }
     });
   });
-  items.sort((a, b) => (b.atrasado ? 1 : 0) - (a.atrasado ? 1 : 0)); // atrasados primero
+  grupos.proximas.sort((a, b) => (a.prox || '9999').localeCompare(b.prox || '9999'));
+  const totalItems = grupos.atrasadas.length + grupos.hoy.length + grupos.proximas.length;
 
   if (totalFaltanVer > 0) {
     sub.textContent = `Te faltan ${totalFaltanVer} temas por ver por primera vez entre todas tus materias -- el repaso de refuerzo se habilita cuando ya pasaste por todos al menos una vez.`;
   } else {
-    sub.textContent = items.length
+    sub.textContent = totalItems
       ? 'Ya viste todo. Esto es lo que todavía no tenés firme -- tocá uno para repasarlo de nuevo.'
       : '';
   }
 
-  if (items.length === 0) {
+  if (totalItems === 0) {
     list.innerHTML = totalFaltanVer > 0
       ? '<div class="empty-state">Terminá de ver tus temas por primera vez y acá te van a aparecer los que te falten afirmar.</div>'
       : '<div class="empty-state">Tenés todo firme. No te queda nada pendiente de repaso por ahora.</div>';
     return;
   }
 
-  list.innerHTML = `<div class="day-card">${items.map(it => {
+  const renderItem = (it) => {
     const esc = it.name.replace(/'/g,"\\'");
     const tagClass = it.atrasado ? 'atrasado-tag' : (it.state === 'flojo' ? 'repaso-tag' : 'nuevo-tag');
     const tagText = it.atrasado ? 'atrasado' : it.state;
@@ -7474,7 +7901,13 @@ function renderRepaso() {
         <button class="lupa" title="Buscarlo" onclick="event.stopPropagation(); buscarReferencia('${esc}')">🔍</button>
         <span class="tag ${tagClass}">${tagText}</span>
       </span>
-    </div>`; }).join('')}</div>`;
+    </div>`;
+  };
+  const renderGrupo = (titulo, arr) => !arr.length ? '' : `
+    <div class="section-label-mono">${titulo} · ${arr.length}</div>
+    <div class="day-card">${arr.map(renderItem).join('')}</div>`;
+
+  list.innerHTML = renderGrupo('ATRASADAS', grupos.atrasadas) + renderGrupo('HOY', grupos.hoy) + renderGrupo('PRÓXIMAS', grupos.proximas);
 }
 
 // Home (S0): el botón principal lleva al hub de Calendario/Exámenes, donde
@@ -7496,6 +7929,19 @@ function renderHome() {
 // Crea un examen "borrador" (todavía no confirmado): si el estudiante se
 // arrepiente y vuelve atrás antes de elegir materia, se descarta solo, sin
 // dejar una entrada vacía en la lista de exámenes.
+// ---- Alta múltiple de materias (rediseño, paso 2) ----
+// El wizard sigue siendo "una materia = un borradorExamen", pero el paso 2
+// ahora permite tildar varias materias de una sola vez -- colaMaterias
+// guarda las que quedan pendientes después de la primera, colaContexto
+// recuerda la facultad/año de la tanda (borradorExamen se pone en null en
+// cada commitBorrador(), así que ese contexto no sobrevive solo). Al
+// terminar temas+fecha de una materia, generarCalendario() revisa la cola
+// antes de ir al calendario -- si queda algo, arranca la siguiente en vez
+// de terminar.
+let colaMaterias = [];
+let colaContexto = null;
+let colaMateriasTotal = 0; // tamaño fijo de la tanda actual, para el cartel "Materia N de TOTAL"
+
 function agregarExamen() {
   guardarExamenActual();
   borradorExamen = { selected: [], ownTemas: [], states: {}, touched: {}, proximoRepaso: {}, intervaloIdx: {}, selectedPace: null, prioridad: false, rendidaManual: false, fechaRendidaLabel: '', materiaNombre: '', fecha: '', usaCatalogo: true, facultad: null, anio: null, modulos: [] };
@@ -7503,6 +7949,9 @@ function agregarExamen() {
   selected = borradorExamen.selected;
   ownTemas = borradorExamen.ownTemas;
   selectedPace = null;
+  colaMaterias = [];
+  colaContexto = null;
+  colaMateriasTotal = 0;
   go(12);
 }
 
@@ -7548,6 +7997,15 @@ function renderFacultades() {
   }).join('');
 }
 
+// Buscador del paso 1 (rediseño): filtra las tarjetas ya renderizadas por
+// texto en vez de reimplementar el agrupado de renderFacultades().
+function filtrarFacultades() {
+  const q = (document.getElementById('facultadBuscador').value || '').toLowerCase().trim();
+  document.querySelectorAll('#facultadesList > .card').forEach(card => {
+    card.style.display = card.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
 function toggleGrupoFacultad(headEl) {
   const sub = headEl.nextElementSibling;
   const chevron = headEl.querySelector('.study-section-chevron');
@@ -7587,31 +8045,107 @@ function elegirAnio(anio) {
   go(9);
 }
 
+// Rediseño: multi-selección (checkboxes) en vez de un click por tarjeta que
+// confirmaba de una -- materiasSeleccionadasIdx junta los índices tildados
+// de la lista actual, confirmarMateriasElegidas() los convierte en la cola.
+let materiasSeleccionadasIdx = [];
+
 function renderMateriasDelAnio() {
   const f = facultadDe(borradorExamen ? borradorExamen.facultad : null);
   const anio = borradorExamen ? borradorExamen.anio : null;
   document.getElementById('materiaAnioTitle').textContent = anio ? `Materias de ${f.cicloLabel(anio)}` : 'Materias';
   const materias = (anio && f.catalogoPorCiclo[anio]) || [];
+  materiasSeleccionadasIdx = [];
   const box = document.getElementById('materiasDelAnio');
   box.innerHTML = materias.length ? materias.map((m, i) => `
-    <div class="card" style="border-color:var(--accent); background:var(--accent-soft); cursor:pointer;" onclick="elegirMateriaCatalogo(${i})">
-      <span class="pill">${contextoFor(f.key, anio)}</span>
-      <div style="font-weight:800; font-size:16px; margin-top:8px;">${f.iconoMateria} ${m.nombre}</div>
-      <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${m.modulos.length} módulos · ${m.modulos.reduce((s,mo)=>s+mo.temas.length,0)} temas en el catálogo</div>
-    </div>`).join('') : '<div class="empty-state">Todavía no tenemos materias cargadas para este ' + f.cicloNombre + ' -- agregá la tuya abajo con tus propios temas.</div>';
+    <label class="card" style="border-color:var(--accent); background:var(--accent-soft); cursor:pointer; display:flex; align-items:flex-start; gap:10px;">
+      <input type="checkbox" style="margin-top:3px; width:17px; height:17px; flex-shrink:0; accent-color:var(--accent);" onchange="toggleMateriaDelAnio(${i}, this.checked)">
+      <div style="flex:1; min-width:0;">
+        <span class="pill">${contextoFor(f.key, anio)}</span>
+        <div style="font-weight:800; font-size:16px; margin-top:8px;">${f.iconoMateria} ${m.nombre}</div>
+        <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${m.modulos.length} módulos · ${m.modulos.reduce((s,mo)=>s+mo.temas.length,0)} temas en el catálogo</div>
+      </div>
+    </label>`).join('') : '<div class="empty-state">Todavía no tenemos materias cargadas para este ' + f.cicloNombre + ' -- agregá la tuya abajo con tus propios temas.</div>';
+  actualizarBarraMaterias();
 }
 
-function elegirMateriaCatalogo(idx) {
-  if (!borradorExamen) return;
+function toggleMateriaDelAnio(idx, checked) {
+  if (checked) { if (!materiasSeleccionadasIdx.includes(idx)) materiasSeleccionadasIdx.push(idx); }
+  else { materiasSeleccionadasIdx = materiasSeleccionadasIdx.filter(i => i !== idx); }
+  actualizarBarraMaterias();
+}
+
+function actualizarBarraMaterias() {
+  const bar = document.getElementById('materiasSelectedBar');
+  if (!bar) return;
+  document.getElementById('materiasSelCount').textContent = materiasSeleccionadasIdx.length;
+  bar.style.display = materiasSeleccionadasIdx.length ? 'block' : 'none';
+}
+
+// Confirma la tanda: la primera materia arranca ya (temas -> fecha ->
+// generar, como siempre); el resto queda en colaMaterias, y
+// generarCalendario() la va destilando sola al terminar cada una.
+function confirmarMateriasElegidas() {
+  if (!borradorExamen || !materiasSeleccionadasIdx.length) return;
   const f = facultadDe(borradorExamen.facultad);
   const materias = f.catalogoPorCiclo[borradorExamen.anio] || [];
-  const m = materias[idx];
-  if (!m) return;
+  const elegidas = materiasSeleccionadasIdx.map(i => materias[i]).filter(Boolean);
+  if (!elegidas.length) return;
+  colaContexto = { facultad: borradorExamen.facultad, anio: borradorExamen.anio };
+  colaMaterias = elegidas.slice(1);
+  colaMateriasTotal = elegidas.length;
+  empezarMateriaDelCatalogo(elegidas[0]);
+}
+
+function empezarMateriaDelCatalogo(m) {
   borradorExamen.materiaNombre = m.nombre;
   borradorExamen.usaCatalogo = true;
   borradorExamen.modulos = m.modulos;
   commitBorrador();
   go(2);
+}
+
+// Arranca la siguiente materia de la cola (si hay) armando un
+// borradorExamen fresco con la misma facultad/año de la tanda -- mismo
+// shape que agregarExamen(), pero con la materia ya elegida de antes.
+// Devuelve true si arrancó otra, false si la cola ya estaba vacía.
+function empezarSiguienteDeCola() {
+  if (!colaMaterias.length) return false;
+  const m = colaMaterias.shift();
+  borradorExamen = {
+    selected: [], ownTemas: [], states: {}, touched: {}, proximoRepaso: {}, intervaloIdx: {},
+    selectedPace: null, prioridad: false, rendidaManual: false, fechaRendidaLabel: '',
+    materiaNombre: m.nombre, fecha: '', usaCatalogo: true,
+    facultad: colaContexto.facultad, anio: colaContexto.anio, modulos: m.modulos,
+  };
+  examenActualId = null;
+  selected = borradorExamen.selected;
+  ownTemas = borradorExamen.ownTemas;
+  selectedPace = null;
+  commitBorrador();
+  // El input #examDate sigue mostrando la fecha de la materia anterior (no
+  // se limpia solo al cambiar de pantalla) -- si no se vacía acá, el
+  // guardarExamenActual() que dispara el próximo go() la copiaría sin
+  // querer a esta materia nueva antes de que el estudiante toque nada.
+  const dateInput = document.getElementById('examDate');
+  if (dateInput) dateInput.value = '';
+  go(2);
+  showToast(`Ahora elegí los temas de ${nombreCorto(m.nombre)}${colaMaterias.length ? ` (quedan ${colaMaterias.length} más)` : ''}`);
+  return true;
+}
+
+// Cartel "MATERIA N DE TOTAL" en los pasos 3 y 4 -- solo se ve cuando la
+// tanda actual tiene más de una materia (alta simple no cambia).
+function renderColaBanner(targetId) {
+  const el = document.getElementById(targetId);
+  if (!el) return;
+  if (colaMateriasTotal > 1) {
+    const pos = colaMateriasTotal - colaMaterias.length;
+    el.textContent = `MATERIA ${pos} DE ${colaMateriasTotal}`;
+    el.style.display = 'block';
+  } else {
+    el.style.display = 'none';
+  }
 }
 
 function elegirMateriaPropia() {
@@ -7629,6 +8163,9 @@ function abrirExamen(id) {
   guardarExamenActual();
   examenActualId = id;
   cargarExamenActual();
+  // Editar una materia ya existente nunca es parte de una tanda de alta
+  // múltiple en curso -- corta cualquier cola/cartel que hubiera quedado.
+  colaMaterias = []; colaContexto = null; colaMateriasTotal = 0;
   const e = examActual();
   if (e.selected.length) go(3);
   else go(1);
@@ -7709,24 +8246,46 @@ function renderExamenes() {
   const enCurso = examenesEnCurso().slice().sort((a,b) => (a.fecha||'').localeCompare(b.fecha||''));
   const rendidos = examenesRendidos().slice().sort((a,b) => (b.fecha||'').localeCompare(a.fecha||''));
 
+  const subEl = document.getElementById('materiasSub');
+  if (subEl) subEl.textContent = enCurso.length ? `${enCurso.length} en curso` : 'Todavía no agregaste ninguna materia.';
+
   const box1 = document.getElementById('examenesEnCurso');
   box1.innerHTML = enCurso.length ? enCurso.map(e => {
     const faltaConfig = !e.selectedPace;
     const c = !faltaConfig ? contarEstados(e.states) : null;
+    const total = c ? c.firme + c.flojo + c.nuevo : 0;
+    const pct = total > 0 ? Math.round((c.firme / total) * 100) : 0;
+    const dias = e.fecha ? diasHasta(e.fecha) : null;
+    const badge = e.prioridad
+      ? `<span class="tag materia-badge prioritaria">★ PRIORITARIA</span>`
+      : `<button type="button" class="tag materia-badge priorizar" onclick="event.stopPropagation(); toggleMateriaPrioritaria(${e.id})">☆ PRIORIZAR</button>`;
     return `
-    <div class="card" style="border-color:var(--accent); background:var(--accent-soft); position:relative;">
+    <div class="card materia-card">
       <button class="card-delete-btn" title="Borrar" onclick="event.stopPropagation(); pedirBorrarMateria(${e.id})">🗑️</button>
       <div style="cursor:pointer;" onclick="abrirExamen(${e.id})">
-        <span class="pill">📅 ${fmtFecha(e.fecha)}</span>
-        <div style="font-weight:800; font-size:16px; margin-top:8px; padding-right:22px;">${e.prioridad ? '⭐ ' : ''}${e.materiaNombre || 'Sin nombre'}</div>
-        <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${faltaConfig ? 'Todavía no armaste el calendario' : `${c.firme} firmes · ${c.flojo} flojos · ${c.nuevo} nuevos`}</div>
+        ${badge}
+        <div class="materia-card-nombre">${e.materiaNombre || 'Sin nombre'}</div>
+        <div class="materia-card-fecha mono">${e.fecha ? `${fmtFecha(e.fecha)} · ${dias === 0 ? 'es hoy' : `en ${dias} días`}` : 'sin fecha'}</div>
+        ${faltaConfig ? '<div class="sub" style="margin-top:8px;">Todavía no armaste el calendario</div>' : `
+        <div class="materia-card-stats">
+          <span>${total} temas</span>
+          <span class="materia-card-pct mono">${pct}% firme</span>
+        </div>
+        <div class="materia-progress">
+          <div class="materia-progress-firme" style="width:${total ? (c.firme / total * 100) : 0}%"></div>
+          <div class="materia-progress-flojo" style="width:${total ? (c.flojo / total * 100) : 0}%"></div>
+        </div>
+        <div class="materia-card-breakdown mono">${c.firme} firmes · ${c.flojo} flojos · ${c.nuevo} sin ver</div>`}
       </div>
-      <div style="display:flex; gap:8px; margin-top:10px;">
-        <button class="btn secondary" style="flex:1; margin-top:0; padding:9px; font-size:12px;" onclick="event.stopPropagation(); toggleMateriaPrioritaria(${e.id})">${e.prioridad ? '★ Prioritaria' : '☆ Marcar prioritaria'}</button>
-        <button class="btn secondary" style="flex:1; margin-top:0; padding:9px; font-size:12px;" onclick="event.stopPropagation(); marcarRendidaDesdeHub(${e.id})">Marcar rendida</button>
+      <div class="materia-card-actions">
+        <button type="button" class="btn ${e.prioridad ? '' : 'secondary'}" style="flex:1; margin-top:0;" onclick="event.stopPropagation(); abrirExamen(${e.id})">Ver temas</button>
+        <button type="button" class="btn secondary" style="flex:1; margin-top:0;" onclick="event.stopPropagation(); marcarRendidaDesdeHub(${e.id})">Rendida</button>
       </div>
     </div>`;
-  }).join('') : '<div class="empty-state">Todavía no agregaste ningún examen.</div>';
+  }).join('') : '<div class="empty-state">Todavía no agregaste ninguna materia.</div>';
+
+  const countEl = document.getElementById('materiasRendidasCount');
+  if (countEl) countEl.textContent = rendidos.length;
 
   const box2 = document.getElementById('examenesRendidos');
   box2.innerHTML = rendidos.length === 0
@@ -7735,12 +8294,13 @@ function renderExamenes() {
         const firmes = e.ejemplo ? e.firmesEjemplo : (e.firmesFinal || 0);
         const total = e.ejemplo ? e.totalEjemplo : (e.selected ? e.selected.length : 0);
         return `
-        <div class="card" style="position:relative;">
-          <button class="card-delete-btn" title="Borrar" onclick="pedirBorrarMateria(${e.id})">🗑️</button>
-          <div style="font-weight:800; font-size:14.5px; padding-right:22px;">${e.materiaNombre}</div>
-          <div style="color:var(--muted); font-size:12.5px; margin-top:3px;">
-            Rendida el ${fmtFecha(e.fecha)} · ${firmes}/${total} firmes${e.ejemplo ? ' <span style="opacity:.7;">(ejemplo)</span>' : ''}
+        <div class="materia-rendida-chip">
+          <span class="ic">🎓</span>
+          <div style="flex:1; min-width:0;">
+            <div class="materia-rendida-nombre">${e.materiaNombre}</div>
+            <div class="materia-rendida-sub mono">${fmtFecha(e.fecha)} · ${firmes}/${total}${e.ejemplo ? ' (ejemplo)' : ''}</div>
           </div>
+          <button class="card-delete-btn" style="position:static;" title="Borrar" onclick="pedirBorrarMateria(${e.id})">🗑️</button>
         </div>`;
       }).join('');
 
@@ -7767,6 +8327,8 @@ function renderRacha() {
   // Copia chica en Calendario (ver .racha-mini) -- misma racha, dos lugares.
   const elCal = document.getElementById('rachaTextoCal');
   if (elCal) elCal.textContent = texto;
+  // Tarjeta fija al pie del menú lateral y header de Hoy -- mismo dato, tres lugares.
+  document.querySelectorAll('.js-racha-num').forEach(elx => { elx.textContent = racha; });
 }
 
 // ---- Recordatorio diario (S6) -- push real ----
@@ -7993,6 +8555,35 @@ function borrarArchivo(inputId, btnId) {
   document.getElementById(btnId).style.display = 'none';
 }
 
+// Dropzone real de Resumen de apuntes (rediseño) -- el <input type=file>
+// sigue siendo el que de verdad manda el archivo, la dropzone solo agrega
+// arrastrar-y-soltar y el estado visual encima.
+function actualizarNombreDropzone() {
+  const input = document.getElementById('resumenFileInput');
+  const texto = document.getElementById('resumenDropzoneTexto');
+  if (!input || !texto) return;
+  texto.textContent = input.files.length ? `📄 ${input.files[0].name}` : 'Arrastrá un PDF o Word acá, o tocá para elegirlo';
+}
+
+(function initResumenDropzone() {
+  const zona = document.getElementById('resumenDropzone');
+  if (!zona) return;
+  ['dragenter', 'dragover'].forEach(ev => zona.addEventListener(ev, e => {
+    e.preventDefault(); e.stopPropagation(); zona.classList.add('dragover');
+  }));
+  ['dragleave', 'drop'].forEach(ev => zona.addEventListener(ev, e => {
+    e.preventDefault(); e.stopPropagation(); zona.classList.remove('dragover');
+  }));
+  zona.addEventListener('drop', e => {
+    const files = e.dataTransfer && e.dataTransfer.files;
+    if (files && files.length) {
+      document.getElementById('resumenFileInput').files = files;
+      actualizarBotonBorrarArchivo('resumenFileInput', 'resumenArchivoBorrarBtn');
+      actualizarNombreDropzone();
+    }
+  });
+})();
+
 // ---- Fichas de repaso generadas por IA ----
 // Llama al server local (server.js), que a su vez llama a la API de Claude
 // -- la API key nunca viaja al navegador, se queda en el server. Reutiliza
@@ -8010,6 +8601,11 @@ let fichaFlipped = false;
 // no borre lo que ya habías contestado. undefined = todavía no contestada.
 let fichaRespuestas = [];
 let fichasTipo = 'normal'; // 'normal' | 'multiple'
+// Tema/materia de la tanda actual -- solo para mostrar contexto en la
+// versión mobile de pantalla completa (encabezado + bibliografía). La
+// versión de escritorio no lo necesita, ya lo tiene en los <select>.
+let fichasContexto = null;
+const FICHA_LETRAS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
 function seleccionarTipoFicha(tipo) {
   fichasTipo = tipo;
@@ -8054,10 +8650,11 @@ function onFichasMateriaChange() {
   fichasTemasDisponibles = [];
   if (!materia || !materia.modulos.length) {
     temaSel.innerHTML = '<option value="">Sin temas digitalizados todavía para esta materia</option>';
-    return;
+  } else {
+    materia.modulos.forEach(mod => mod.temas.forEach(t => fichasTemasDisponibles.push({ tema: t, materiaNombre: materia.nombre })));
+    temaSel.innerHTML = fichasTemasDisponibles.map((it, i) => `<option value="${i}">${it.tema}</option>`).join('');
   }
-  materia.modulos.forEach(mod => mod.temas.forEach(t => fichasTemasDisponibles.push({ tema: t, materiaNombre: materia.nombre })));
-  temaSel.innerHTML = fichasTemasDisponibles.map((it, i) => `<option value="${i}">${it.tema}</option>`).join('');
+  renderEstudiarRail();
 }
 
 async function generarFichas() {
@@ -8101,6 +8698,7 @@ async function generarFichas() {
     fichaIndexActual = 0;
     fichaFlipped = false;
     fichaRespuestas = [];
+    fichasContexto = { tema: item.tema, materiaNombre: item.materiaNombre };
     renderFichaActual();
   } catch (e) {
     const msg = e.message === 'Failed to fetch'
@@ -8114,7 +8712,18 @@ async function generarFichas() {
 }
 
 function renderFichaActual() {
+  const esMobile = window.matchMedia('(max-width: 859px)').matches;
+  const fsBox = document.getElementById('fichaFullscreen');
+  renderFichaEscritorio();
+  if (fsBox) {
+    if (esMobile && fichasActuales.length) { fsBox.classList.add('active'); renderFichaFullscreen(fsBox); }
+    else fsBox.classList.remove('active');
+  }
+}
+
+function renderFichaEscritorio() {
   const box = document.getElementById('fichasBox');
+  if (!box) return;
   if (!fichasActuales.length) { box.innerHTML = ''; return; }
   const f = fichasActuales[fichaIndexActual];
   const esMultiple = Array.isArray(f.opciones);
@@ -8145,6 +8754,96 @@ function renderFichaActual() {
       <button class="btn secondary" onclick="cambiarFicha(-1)" ${fichaIndexActual === 0 ? 'disabled' : ''}>‹ Anterior</button>
       <button class="btn secondary" onclick="cambiarFicha(1)" ${fichaIndexActual === fichasActuales.length - 1 ? 'disabled' : ''}>Siguiente ›</button>
     </div>`;
+}
+
+// Puntitos de progreso de la versión mobile -- uno por ficha, clickeable
+// para saltar directo. Color: actual (teal claro), contestada bien
+// (teal), contestada mal (ámbar), "no me la sé" (gris más marcado que las
+// pendientes), pendiente (gris tenue).
+function fichaDotsHTML() {
+  return fichasActuales.map((f, i) => {
+    let cls = '';
+    if (i === fichaIndexActual) cls = 'actual';
+    else if (fichaRespuestas[i] !== undefined) {
+      if (Array.isArray(f.opciones)) {
+        cls = fichaRespuestas[i] === -1 ? 'skip' : (fichaRespuestas[i] === f.correcta ? 'ok' : 'mal');
+      } else {
+        cls = 'ok';
+      }
+    }
+    return `<button type="button" class="ficha-dot ${cls}" onclick="irAFicha(${i})" aria-label="Ir a la ficha ${i + 1}"></button>`;
+  }).join('');
+}
+
+function irAFicha(i) {
+  fichaIndexActual = i;
+  fichaFlipped = false;
+  renderFichaActual();
+}
+
+// Versión mobile de pantalla completa (rediseño) -- mismo estado que la de
+// escritorio (fichasActuales/fichaIndexActual/fichaRespuestas/toggleFicha/
+// elegirOpcionFicha/cambiarFicha), solo cambia la plantilla.
+function renderFichaFullscreen(fsBox) {
+  const f = fichasActuales[fichaIndexActual];
+  const esMultiple = Array.isArray(f.opciones);
+  const elegida = fichaRespuestas[fichaIndexActual];
+  const yaContestada = elegida !== undefined;
+  const tema = fichasContexto ? fichasContexto.tema : '';
+  const t = tema ? TEXTOS[tema] : null;
+  const biblio = t ? `<div class="ficha-fs-biblio">📄 ${t.libro} — ${t.seccion}</div>` : '';
+
+  const cuerpo = esMultiple ? `
+    <div class="ficha-fs-pregunta">${f.pregunta}</div>
+    <div class="ficha-fs-opciones">
+      ${f.opciones.map((op, i) => {
+        let cls = '';
+        if (yaContestada) {
+          if (i === f.correcta) cls = 'correcta';
+          else if (i === elegida) cls = 'incorrecta';
+        }
+        return `<button class="ficha-fs-opcion ${cls}" onclick="elegirOpcionFicha(${i})" ${yaContestada ? 'disabled' : ''}><span class="letra">${FICHA_LETRAS[i] || i + 1}</span>${op}</button>`;
+      }).join('')}
+    </div>
+    <div class="ficha-fs-bottom">
+      ${biblio}
+      <button class="btn" ${yaContestada ? '' : 'disabled'} onclick="cambiarFicha(1)">Confirmar</button>
+      ${yaContestada ? '' : '<button class="btn secondary" onclick="noMeLaSeFicha()">No me la sé</button>'}
+    </div>` : `
+    <div class="ficha-fs-pregunta" onclick="toggleFicha()" style="cursor:pointer;">${fichaFlipped ? f.respuesta : f.pregunta}</div>
+    <div class="ficha-fs-hint">${fichaFlipped ? '↺ Tocá para ver la pregunta' : '🔎 Tocá para ver la respuesta'}</div>
+    <div class="ficha-fs-bottom">
+      ${biblio}
+      <div class="ficha-fs-nav">
+        <button class="btn secondary" onclick="cambiarFicha(-1)" ${fichaIndexActual === 0 ? 'disabled' : ''}>‹ Anterior</button>
+        <button class="btn" onclick="cambiarFicha(1)" ${fichaIndexActual === fichasActuales.length - 1 ? 'disabled' : ''}>Siguiente ›</button>
+      </div>
+    </div>`;
+
+  fsBox.innerHTML = `
+    <div class="ficha-fs-top">
+      <button type="button" class="ficha-fs-close" onclick="cerrarFichaFullscreen()" aria-label="Cerrar">✕</button>
+      <span class="ficha-fs-count mono">${fichaIndexActual + 1} / ${fichasActuales.length}</span>
+    </div>
+    <div class="ficha-fs-dots">${fichaDotsHTML()}</div>
+    <div class="ficha-fs-tema">${nombreCorto(fichasContexto ? fichasContexto.materiaNombre : '')}${tema ? ' · ' + tema.toUpperCase() : ''}</div>
+    ${cuerpo}`;
+}
+
+// "No me la sé" (mobile, opción múltiple): registra -1 -- un índice que
+// nunca matchea ninguna opción real, así renderFichaActual() revela la
+// correcta en verde pero sin marcar ninguna en rojo (a diferencia de
+// contestar mal). Avanza sola a la siguiente.
+function noMeLaSeFicha() {
+  if (fichaRespuestas[fichaIndexActual] === undefined) fichaRespuestas[fichaIndexActual] = -1;
+  cambiarFicha(1);
+}
+
+function cerrarFichaFullscreen() {
+  fichasActuales = [];
+  fichaRespuestas = [];
+  fichasContexto = null;
+  renderFichaActual();
 }
 
 function elegirOpcionFicha(i) {
@@ -8196,7 +8895,18 @@ async function generarResumen() {
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
-    box.innerHTML = '<div class="empty-state" style="color:var(--firme);">✅ Resumen descargado como PDF.</div>';
+    // Si hay un tema elegido en Fichas que además pertenece a una materia en
+    // curso, el resumen queda "atado" a ese tema (README del handoff) --
+    // aditivo al JSONB de Supabase, se guarda solo con el autoguardado ya
+    // existente (estadoSucio).
+    const info = examenDelTemaFichasActual();
+    if (info) {
+      if (!info.exam.resumenesPorTema) info.exam.resumenesPorTema = {};
+      if (!info.exam.resumenesPorTema[info.tema]) info.exam.resumenesPorTema[info.tema] = [];
+      info.exam.resumenesPorTema[info.tema].push({ fecha: fmt(new Date()), nombreArchivo: a.download });
+      marcarEstadoSucio();
+    }
+    box.innerHTML = `<div class="empty-state" style="color:var(--firme);">✅ Resumen descargado como PDF.${info ? ` Queda asociado a <strong>${info.tema}</strong>.` : ''}</div>`;
   } catch (e) {
     const msg = e.message === 'Failed to fetch'
       ? 'No se pudo conectar con el server -- ¿está corriendo "npm start"?'
@@ -8295,9 +9005,56 @@ function cambiarVolumenSonido(valor) {
   }
 }
 
+// ---- Columna derecha de Estudiar (rediseño) ----
+// El único lugar de la pantalla Estudiar donde se elige un tema puntual es
+// el selector de Fichas -- se reutiliza como "tema en foco" para la
+// bibliografía y las acciones rápidas de firme/flojo del panel derecho, en
+// vez de inventar un estado nuevo en paralelo.
+function examenDelTemaFichasActual() {
+  const sel = document.getElementById('fichasTemaSelect');
+  if (!sel || !sel.value) return null;
+  const item = fichasTemasDisponibles[sel.value];
+  if (!item) return null;
+  const e = examenes.find(x => !esRendido(x) && x.selected && x.selected.includes(item.tema));
+  return e ? { exam: e, tema: item.tema, materiaNombre: item.materiaNombre } : null;
+}
+
+// Marca firme/flojo el tema actualmente elegido en Fichas, reutilizando
+// marcar() tal cual (mismo repaso espaciado, mismo check-in adaptativo) --
+// solo se le "prestan" por un instante las variables globales de detalle
+// que normalmente fija abrirDetalle() al entrar a S5.
+function marcarDesdeEstudiar(estado) {
+  const info = examenDelTemaFichasActual();
+  if (!info) { showToast('Este tema todavía no está en ninguna de tus materias en curso'); return; }
+  activeDetailExamId = info.exam.id;
+  activeDetailTema = info.tema;
+  marcar(estado);
+  renderEstudiarRail();
+}
+
+function renderEstudiarRail() {
+  const item = examenDelTemaFichasActual() || (() => {
+    const sel = document.getElementById('fichasTemaSelect');
+    return (sel && sel.value && fichasTemasDisponibles[sel.value]) ? { tema: fichasTemasDisponibles[sel.value].tema, materiaNombre: fichasTemasDisponibles[sel.value].materiaNombre } : null;
+  })();
+  const biblioCard = document.getElementById('estudiarBiblioCard');
+  const accionesCard = document.getElementById('estudiarAccionesCard');
+  if (!biblioCard || !accionesCard) return;
+  if (!item) { biblioCard.style.display = 'none'; accionesCard.style.display = 'none'; return; }
+  const tema = item.tema;
+  const materiaNombre = item.materiaNombre;
+  renderReferencia(tema, materiaNombre, 'estudiarBiblioBox');
+  biblioCard.style.display = '';
+  const conExamen = examenDelTemaFichasActual();
+  accionesCard.style.display = conExamen ? '' : 'none';
+  const tituloEl = document.getElementById('estudiarRailTema');
+  if (tituloEl) tituloEl.textContent = tema;
+}
+
 function renderEstudiar() {
   renderTimer();
   renderFichasSelect();
+  renderEstudiarRail();
 }
 
 function abrirResumen() {
@@ -8360,6 +9117,7 @@ go = function(n) {
   if (n === 7) renderRepaso();
   if (n === 8) renderExamenes();
   if (n === 10) renderEstudiar();
+  if (n === 13) renderHoy();
   updateBadges();
 };
 
@@ -8544,7 +9302,10 @@ async function manejarSesionActiva(session) {
   document.getElementById('navUserEmail').textContent = sesionUsuario.email;
   await cargarEstadoUsuario();
   renderOwnList();
-  go(0);
+  // Rediseño: "Hoy" (S13) es la pantalla de aterrizaje después de loguearse
+  // -- reemplaza a S0 (Bienvenida), que queda sin usar en la navegación real
+  // pero se deja en el DOM por las dudas.
+  go(examenesEnCurso().length ? 13 : 8);
   chequearCheckins();
   document.getElementById('authLoading').style.display = 'none';
 }
