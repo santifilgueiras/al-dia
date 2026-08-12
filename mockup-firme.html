@@ -499,8 +499,8 @@
   .materia-progress-flojo { background: var(--amber); }
   .materia-card-breakdown { font-size: 11px; color: var(--muted); margin-top: 6px; }
   .materia-card-actions { display: flex; gap: 8px; margin-top: 13px; }
-  .materias-rendidas-grid { display: flex; flex-direction: column; gap: 8px; }
-  .materia-rendida-chip { display: flex; align-items: center; gap: 10px; background: var(--paper-2); border-radius: 11px; padding: 10px 12px; }
+  .materias-rendidas-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .materia-rendida-chip { display: flex; align-items: center; gap: 10px; background: var(--paper-2); border-radius: 11px; padding: 8px 10px; flex: 0 1 220px; }
   .materia-rendida-chip .ic { font-size: 16px; }
   .materia-rendida-nombre { font-size: 13px; font-weight: 600; }
   .materia-rendida-sub { font-size: 10.5px; color: var(--muted); margin-top: 1px; }
@@ -676,22 +676,32 @@
   .side-nav-racha-num { font-size: 17px; font-weight: 700; color: #fff; line-height: 1.1; }
   .side-nav-racha-label { font-size: 9.5px; font-weight: 600; letter-spacing: .08em; color: rgba(255,255,255,.5); margin-top: 2px; }
 
-  /* Acordeón de "Estudiar": las 3 secciones son mutuamente excluyentes --
-     solo el body de la abierta se renderiza, así quedan realmente separadas
-     en vez de todas juntas en un mismo scroll largo. */
-  .study-section { border: 1px solid var(--line); border-radius: 16px; margin-bottom: 10px; overflow: hidden; }
-  .study-section-head {
-    display: flex; align-items: center; justify-content: space-between; gap: 10px;
-    padding: 16px; cursor: pointer; font-weight: 800; font-size: 15px;
+  /* Estudiar (S10, rediseño): pestañas reales en vez de acordeón -- solo el
+     panel activo se muestra, la pestaña activa se ve con fondo teal-tint
+     (a diferencia de los otros .tabs de la app, que usan el estilo
+     "segmented control" blanco -- de ahí el modificador .study-tabs). */
+  .study-tabs .tab { display: flex; align-items: center; justify-content: center; gap: 7px; }
+  .study-tabs .tab.active { background: var(--teal-tint); color: var(--teal); box-shadow: none; }
+  .study-layout { display: flex; flex-direction: column; gap: 16px; }
+  .study-main { flex: 1; min-width: 0; }
+  .study-panel { display: none; }
+  .study-panel.active { display: block; }
+  .estudiar-rail { display: flex; flex-direction: column; gap: 14px; }
+  .estudiar-rail h3 { margin: 0 0 4px; font-size: 14px; }
+  @media (min-width: 860px) {
+    .study-layout { flex-direction: row; align-items: flex-start; }
+    .estudiar-rail { width: 260px; flex-shrink: 0; }
   }
-  .study-section-head:hover { background: var(--accent-soft); }
-  .study-section-title { display: flex; align-items: center; gap: 10px; }
-  .study-section-title .ic { font-size: 19px; }
-  .study-section-chevron { color: var(--muted); font-size: 12px; transition: transform .18s; flex-shrink: 0; }
-  .study-section.open .study-section-chevron { transform: rotate(90deg); }
-  .study-section.open .study-section-head { border-bottom: 1px solid var(--line); }
-  .study-section-body { display: none; padding: 16px; }
-  .study-section.open .study-section-body { display: block; }
+
+  /* Dropzone real para Resumen de apuntes (rediseño) -- antes era un
+     <input type=file> desnudo. */
+  .dropzone {
+    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px;
+    border: 1.5px dashed var(--line-strong); border-radius: 14px; padding: 28px 18px;
+    cursor: pointer; color: var(--muted); font-size: 12.5px; margin-bottom: 14px; transition: border-color .15s, background .15s;
+  }
+  .dropzone:hover, .dropzone.dragover { border-color: var(--teal); background: var(--teal-tint); }
+  .dropzone-ic { font-size: 24px; }
 
   /* Panel derecho -- en monitores anchos .phone (flex:1) se estiraba hasta
      ocupar toda la pantalla, con el calendario/tarjetas gigantes. En vez de
@@ -785,22 +795,14 @@
        -- en celular son una columna porque no hay lugar para otra cosa; acá
        hay ancho de sobra, así que se acomodan solas en grilla en vez de
        quedar una debajo de la otra ocupando media pantalla vacía al lado. */
-    #examenesEnCurso, #examenesRendidos, #resumenMaterias {
+    /* #examenesEnCurso y #examenesRendidos tienen su propio layout de grilla
+       vía .materias-grid/.materias-rendidas-grid (ver esas clases) -- acá
+       solo queda #resumenMaterias, que no se tocó en el rediseño todavía. */
+    #resumenMaterias {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px;
     }
-    #examenesEnCurso .empty-state, #examenesRendidos .empty-state, #resumenMaterias .empty-state {
+    #resumenMaterias .empty-state {
       grid-column: 1 / -1;
-    }
-    /* Las 3 opciones de "Estudiar" (Tiempo/Fichas/Resumen) son un acordeón
-       de a una -- apiladas y cerradas, en pantalla ancha quedan como una
-       lista angosta con un montón de aire vacío al costado. Mientras ninguna
-       está abierta se acomodan una al lado de la otra; en cuanto se abre
-       una, vuelve a apilarse para que esa sección tenga todo el ancho. */
-    .study-grid:not(:has(.study-section.open)) {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start;
-    }
-    .study-grid:not(:has(.study-section.open)) .study-section {
-      margin-bottom: 0;
     }
   }
 
@@ -1234,25 +1236,25 @@
     </div>
   </div>
 
-  <!-- S10 Estudiá con Al Día -->
+  <!-- S10 Estudiar -->
   <div class="screen" data-screen="10">
     <div class="screen-content">
-    <h1 style="margin-top:4px;">Estudiá con Al Día</h1>
-    <p class="sub">Elegí qué querés usar ahora.</p>
+    <h1 style="margin-top:4px;">Estudiar</h1>
+    <p class="sub" id="estudiarSub">Elegí qué querés usar ahora.</p>
 
-    <!-- Acordeón de 3 -- separadas de verdad (una sola abierta a la vez),
-         no las tres apiladas en el mismo scroll. Entrar por primera vez
-         (o tocar "Estudiar" en el menú) las deja las tres cerradas, mostrando
-         solo estos 3 encabezados para elegir. .study-grid es el wrapper que
-         en pantalla ancha (ver CSS) las acomoda una al lado de la otra
-         mientras ninguna está abierta. -->
-    <div class="study-grid">
-    <div class="study-section" id="sec-tiempo" data-sec="tiempo">
-      <div class="study-section-head" onclick="toggleStudySection('tiempo')">
-        <span class="study-section-title"><span class="ic">⏱️</span>Tiempo de estudio</span>
-        <span class="study-section-chevron">▸</span>
-      </div>
-      <div class="study-section-body">
+    <!-- Pestañas reales (rediseño) -- una sola sección visible a la vez, en
+         vez del acordeón de antes. El submenú del sidebar (irAEstudiar) y
+         switchStudyTab() son el único punto de entrada para cambiar de
+         pestaña; el contenido interno de cada una no cambió. -->
+    <div class="tabs study-tabs" id="studyMainTabs">
+      <div class="tab" data-sec="tiempo" onclick="switchStudyTab('tiempo')"><span class="ic">⏱️</span>Tiempo de estudio</div>
+      <div class="tab" data-sec="fichas" onclick="switchStudyTab('fichas')"><span class="ic">🧠</span>Fichas de repaso</div>
+      <div class="tab" data-sec="resumen" onclick="switchStudyTab('resumen')"><span class="ic">📄</span>Resumen de apuntes</div>
+    </div>
+
+    <div class="study-layout">
+    <div class="study-main">
+    <div class="study-panel" id="sec-tiempo" data-sec="tiempo">
         <div style="display:flex; justify-content:flex-end; align-items:center; margin-bottom:8px;">
           <button class="btn secondary" id="sonidoAmbienteBtn" onclick="toggleSonidoAmbiente()" style="margin-top:0; width:auto; padding:8px 14px; font-size:12px;">🔇 Sonido</button>
         </div>
@@ -1280,15 +1282,9 @@
             <button class="btn secondary" onclick="resetearTimer()">↺ Reiniciar</button>
           </div>
         </div>
-      </div>
     </div>
 
-    <div class="study-section" id="sec-fichas" data-sec="fichas">
-      <div class="study-section-head" onclick="toggleStudySection('fichas')">
-        <span class="study-section-title"><span class="ic">🧠</span>Fichas de repaso</span>
-        <span class="study-section-chevron">▸</span>
-      </div>
-      <div class="study-section-body">
+    <div class="study-panel" id="sec-fichas" data-sec="fichas">
         <p class="sub" style="margin-top:0;">Elegí facultad, año/semestre, materia y tema -- la IA te arma preguntas y respuestas para autoevaluarte.</p>
         <div class="field">
           <select id="fichasFacultadSelect" onchange="onFichasFacultadChange()"></select>
@@ -1300,7 +1296,7 @@
           <select id="fichasMateriaSelect" onchange="onFichasMateriaChange()"></select>
         </div>
         <div class="field">
-          <select id="fichasTemaSelect"></select>
+          <select id="fichasTemaSelect" onchange="renderEstudiarRail()"></select>
         </div>
         <div class="field">
           <label>📎 Opcional: subí tu propio apunte (en vez de la bibliografía general)</label>
@@ -1330,30 +1326,39 @@
         </div>
         <button class="btn" id="fichasGenerarBtn" onclick="generarFichas()">✨ Generar fichas</button>
         <div id="fichasBox"></div>
-      </div>
     </div>
 
-    <div class="study-section" id="sec-resumen" data-sec="resumen">
-      <div class="study-section-head" onclick="toggleStudySection('resumen')">
-        <span class="study-section-title"><span class="ic">📄</span>Resumen de apuntes</span>
-        <span class="study-section-chevron">▸</span>
-      </div>
-      <div class="study-section-body">
+    <div class="study-panel" id="sec-resumen" data-sec="resumen">
         <p class="sub" style="margin-top:0;">Subí un PDF o Word (.docx) y la IA te descarga un PDF con el resumen para repasar.</p>
-        <div class="field">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <input type="file" id="resumenFileInput" accept=".pdf,.doc,.docx" onchange="actualizarBotonBorrarArchivo('resumenFileInput','resumenArchivoBorrarBtn')" style="flex:1;">
-            <button type="button" id="resumenArchivoBorrarBtn" class="btn secondary" style="display:none; margin-top:0; width:auto; padding:8px 12px;" onclick="borrarArchivo('resumenFileInput','resumenArchivoBorrarBtn')" title="Sacar el archivo">🗑️</button>
-          </div>
-        </div>
+        <label class="dropzone" id="resumenDropzone" for="resumenFileInput">
+          <input type="file" id="resumenFileInput" accept=".pdf,.doc,.docx" onchange="actualizarBotonBorrarArchivo('resumenFileInput','resumenArchivoBorrarBtn'); actualizarNombreDropzone();" style="display:none;">
+          <span class="dropzone-ic">📎</span>
+          <span id="resumenDropzoneTexto">Arrastrá un PDF o Word acá, o tocá para elegirlo</span>
+          <button type="button" id="resumenArchivoBorrarBtn" class="btn secondary" style="display:none; margin-top:10px; width:auto; padding:8px 12px;" onclick="event.preventDefault(); borrarArchivo('resumenFileInput','resumenArchivoBorrarBtn'); actualizarNombreDropzone();" title="Sacar el archivo">🗑️ Sacar archivo</button>
+        </label>
         <button class="btn" id="resumenGenerarBtn" onclick="generarResumen()">📄 Resumir y descargar PDF</button>
         <div id="resumenBox"></div>
 
         <div class="card" style="background:var(--nuevo-soft); border:none; margin-top:16px;">
           <a class="ref-link" href="https://claude.ai" target="_blank" rel="noopener">Conectar con Claude ↗</a>
         </div>
-      </div>
     </div>
+    </div>
+
+    <aside class="estudiar-rail" id="estudiarRail">
+      <div class="card" id="estudiarAccionesCard" style="display:none;">
+        <h3>Al terminar el bloque</h3>
+        <p class="sub" style="margin-top:2px;">Marcá cómo te fue con <strong id="estudiarRailTema">este tema</strong> para reprogramar el próximo repaso.</p>
+        <div style="display:flex; gap:8px; margin-top:10px;">
+          <button type="button" class="btn secondary" style="flex:1; margin-top:0;" onclick="marcarDesdeEstudiar('firme')">Firme</button>
+          <button type="button" class="btn secondary" style="flex:1; margin-top:0;" onclick="marcarDesdeEstudiar('flojo')">Flojo</button>
+        </div>
+      </div>
+      <div class="card" id="estudiarBiblioCard" style="display:none;">
+        <h3>Bibliografía del tema</h3>
+        <div id="estudiarBiblioBox" style="margin-top:6px;"></div>
+      </div>
+    </aside>
     </div>
     </div>
     <div class="bottom-nav">
@@ -5116,10 +5121,11 @@ function go(n) {
   const aplicarPantalla = () => {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.querySelector(`.screen[data-screen="${n}"]`).classList.add('active');
-    // Entrar a Estudiar por su cuenta (no desde un ítem del submenú) siempre
-    // arranca con las 3 opciones cerradas -- así "estudiar" solo (apretado
-    // por si solo) muestra el picker, nunca una sección ya desplegada.
-    if (n === 10) document.querySelectorAll('.study-section').forEach(s => s.classList.remove('open'));
+    // Primera vez que se entra a Estudiar en la sesión: arranca en "Tiempo
+    // de estudio". Si ya había una pestaña activa (se venía navegando desde
+    // ahí, o irAEstudiar() ya la fijó explícitamente después de este mismo
+    // go()), se respeta -- no se resetea en cada visita.
+    if (n === 10 && !document.querySelector('#studyMainTabs .tab.active')) switchStudyTab('tiempo');
     actualizarSideNav();
   };
   // View Transitions API nativa: anima el cambio de pantalla (cross-fade +
@@ -5174,18 +5180,17 @@ function toggleEstudiarSubmenu(event) {
   document.getElementById('sideNavEstudiarChevron').classList.toggle('open', abierto);
 }
 
-// Abre solo la sección elegida del acordeón (cierra las otras dos) -- así
-// queda de verdad separada de las demás, no solo scrolleada por encima.
-function toggleStudySection(name) {
-  const target = document.getElementById('sec-' + name);
-  if (!target) return;
-  const yaAbierta = target.classList.contains('open');
-  document.querySelectorAll('.study-section').forEach(s => s.classList.remove('open'));
-  if (!yaAbierta) target.classList.add('open');
+// Muestra solo el panel elegido (pestañas reales, rediseño) -- reemplaza al
+// acordeón de antes (toggleStudySection abría/cerraba con display:none).
+function switchStudyTab(name) {
+  document.querySelectorAll('#studyMainTabs .tab').forEach(t => t.classList.toggle('active', t.dataset.sec === name));
+  document.querySelectorAll('.study-panel').forEach(p => p.classList.toggle('active', p.dataset.sec === name));
+  if (name === 'fichas') renderEstudiarRail();
 }
 
-// Desde el ítem "Estudiar" del menú, sin elegir submenú: va a la pantalla
-// y despliega el submenú lateral, pero deja las 3 secciones cerradas.
+// Desde el ítem "Estudiar" del menú, sin elegir submenú: va a la pantalla y
+// despliega el submenú lateral, sin forzar ninguna pestaña en particular
+// (switchStudyTab dentro de go() ya elige "Tiempo" la primera vez).
 function irAEstudiarPicker() {
   go(10);
   document.getElementById('sideNavEstudiarSub').classList.add('open');
@@ -5193,16 +5198,12 @@ function irAEstudiarPicker() {
 }
 
 // Desde un ítem del submenú (tiempo/fichas/resumen): va directo a esa
-// sección abierta y separada de las otras.
+// pestaña.
 function irAEstudiar(name) {
   go(10);
   document.getElementById('sideNavEstudiarSub').classList.add('open');
   document.getElementById('sideNavEstudiarChevron').classList.add('open');
-  const target = document.getElementById('sec-' + name);
-  if (target) target.classList.add('open');
-  requestAnimationFrame(() => {
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
+  switchStudyTab(name);
 }
 
 function renderCatalogo() {
@@ -7395,9 +7396,10 @@ function esFuenteGenerica(libro) {
   return /^Apuntes de c[aá]tedra|^Repaso de Unidades Curriculares|^Gu[ií]as AHA/i.test(libro || '');
 }
 
-function renderReferencia(name, materiaNombre) {
+function renderReferencia(name, materiaNombre, targetId) {
   const t = TEXTOS[name];
-  const box = document.getElementById('referenciaBox');
+  const box = document.getElementById(targetId || 'referenciaBox');
+  if (!box) return;
   const linkResumen = `<a class="ref-link" href="https://www.studocu.com/latam/search/${encodeURIComponent(name)}" target="_blank">📝 Buscar un resumen o apunte en Studocu</a>`;
   const queryVideo = materiaNombre ? `${name} ${nombreCorto(materiaNombre)}` : name;
   const linkVideo = `<a class="ref-link" href="https://www.youtube.com/results?search_query=${encodeURIComponent(queryVideo)}" target="_blank">🎥 Buscar un video explicativo</a>`;
@@ -8312,6 +8314,35 @@ function borrarArchivo(inputId, btnId) {
   document.getElementById(btnId).style.display = 'none';
 }
 
+// Dropzone real de Resumen de apuntes (rediseño) -- el <input type=file>
+// sigue siendo el que de verdad manda el archivo, la dropzone solo agrega
+// arrastrar-y-soltar y el estado visual encima.
+function actualizarNombreDropzone() {
+  const input = document.getElementById('resumenFileInput');
+  const texto = document.getElementById('resumenDropzoneTexto');
+  if (!input || !texto) return;
+  texto.textContent = input.files.length ? `📄 ${input.files[0].name}` : 'Arrastrá un PDF o Word acá, o tocá para elegirlo';
+}
+
+(function initResumenDropzone() {
+  const zona = document.getElementById('resumenDropzone');
+  if (!zona) return;
+  ['dragenter', 'dragover'].forEach(ev => zona.addEventListener(ev, e => {
+    e.preventDefault(); e.stopPropagation(); zona.classList.add('dragover');
+  }));
+  ['dragleave', 'drop'].forEach(ev => zona.addEventListener(ev, e => {
+    e.preventDefault(); e.stopPropagation(); zona.classList.remove('dragover');
+  }));
+  zona.addEventListener('drop', e => {
+    const files = e.dataTransfer && e.dataTransfer.files;
+    if (files && files.length) {
+      document.getElementById('resumenFileInput').files = files;
+      actualizarBotonBorrarArchivo('resumenFileInput', 'resumenArchivoBorrarBtn');
+      actualizarNombreDropzone();
+    }
+  });
+})();
+
 // ---- Fichas de repaso generadas por IA ----
 // Llama al server local (server.js), que a su vez llama a la API de Claude
 // -- la API key nunca viaja al navegador, se queda en el server. Reutiliza
@@ -8373,10 +8404,11 @@ function onFichasMateriaChange() {
   fichasTemasDisponibles = [];
   if (!materia || !materia.modulos.length) {
     temaSel.innerHTML = '<option value="">Sin temas digitalizados todavía para esta materia</option>';
-    return;
+  } else {
+    materia.modulos.forEach(mod => mod.temas.forEach(t => fichasTemasDisponibles.push({ tema: t, materiaNombre: materia.nombre })));
+    temaSel.innerHTML = fichasTemasDisponibles.map((it, i) => `<option value="${i}">${it.tema}</option>`).join('');
   }
-  materia.modulos.forEach(mod => mod.temas.forEach(t => fichasTemasDisponibles.push({ tema: t, materiaNombre: materia.nombre })));
-  temaSel.innerHTML = fichasTemasDisponibles.map((it, i) => `<option value="${i}">${it.tema}</option>`).join('');
+  renderEstudiarRail();
 }
 
 async function generarFichas() {
@@ -8515,7 +8547,18 @@ async function generarResumen() {
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
-    box.innerHTML = '<div class="empty-state" style="color:var(--firme);">✅ Resumen descargado como PDF.</div>';
+    // Si hay un tema elegido en Fichas que además pertenece a una materia en
+    // curso, el resumen queda "atado" a ese tema (README del handoff) --
+    // aditivo al JSONB de Supabase, se guarda solo con el autoguardado ya
+    // existente (estadoSucio).
+    const info = examenDelTemaFichasActual();
+    if (info) {
+      if (!info.exam.resumenesPorTema) info.exam.resumenesPorTema = {};
+      if (!info.exam.resumenesPorTema[info.tema]) info.exam.resumenesPorTema[info.tema] = [];
+      info.exam.resumenesPorTema[info.tema].push({ fecha: fmt(new Date()), nombreArchivo: a.download });
+      marcarEstadoSucio();
+    }
+    box.innerHTML = `<div class="empty-state" style="color:var(--firme);">✅ Resumen descargado como PDF.${info ? ` Queda asociado a <strong>${info.tema}</strong>.` : ''}</div>`;
   } catch (e) {
     const msg = e.message === 'Failed to fetch'
       ? 'No se pudo conectar con el server -- ¿está corriendo "npm start"?'
@@ -8614,9 +8657,56 @@ function cambiarVolumenSonido(valor) {
   }
 }
 
+// ---- Columna derecha de Estudiar (rediseño) ----
+// El único lugar de la pantalla Estudiar donde se elige un tema puntual es
+// el selector de Fichas -- se reutiliza como "tema en foco" para la
+// bibliografía y las acciones rápidas de firme/flojo del panel derecho, en
+// vez de inventar un estado nuevo en paralelo.
+function examenDelTemaFichasActual() {
+  const sel = document.getElementById('fichasTemaSelect');
+  if (!sel || !sel.value) return null;
+  const item = fichasTemasDisponibles[sel.value];
+  if (!item) return null;
+  const e = examenes.find(x => !esRendido(x) && x.selected && x.selected.includes(item.tema));
+  return e ? { exam: e, tema: item.tema, materiaNombre: item.materiaNombre } : null;
+}
+
+// Marca firme/flojo el tema actualmente elegido en Fichas, reutilizando
+// marcar() tal cual (mismo repaso espaciado, mismo check-in adaptativo) --
+// solo se le "prestan" por un instante las variables globales de detalle
+// que normalmente fija abrirDetalle() al entrar a S5.
+function marcarDesdeEstudiar(estado) {
+  const info = examenDelTemaFichasActual();
+  if (!info) { showToast('Este tema todavía no está en ninguna de tus materias en curso'); return; }
+  activeDetailExamId = info.exam.id;
+  activeDetailTema = info.tema;
+  marcar(estado);
+  renderEstudiarRail();
+}
+
+function renderEstudiarRail() {
+  const item = examenDelTemaFichasActual() || (() => {
+    const sel = document.getElementById('fichasTemaSelect');
+    return (sel && sel.value && fichasTemasDisponibles[sel.value]) ? { tema: fichasTemasDisponibles[sel.value].tema, materiaNombre: fichasTemasDisponibles[sel.value].materiaNombre } : null;
+  })();
+  const biblioCard = document.getElementById('estudiarBiblioCard');
+  const accionesCard = document.getElementById('estudiarAccionesCard');
+  if (!biblioCard || !accionesCard) return;
+  if (!item) { biblioCard.style.display = 'none'; accionesCard.style.display = 'none'; return; }
+  const tema = item.tema;
+  const materiaNombre = item.materiaNombre;
+  renderReferencia(tema, materiaNombre, 'estudiarBiblioBox');
+  biblioCard.style.display = '';
+  const conExamen = examenDelTemaFichasActual();
+  accionesCard.style.display = conExamen ? '' : 'none';
+  const tituloEl = document.getElementById('estudiarRailTema');
+  if (tituloEl) tituloEl.textContent = tema;
+}
+
 function renderEstudiar() {
   renderTimer();
   renderFichasSelect();
+  renderEstudiarRail();
 }
 
 function abrirResumen() {
