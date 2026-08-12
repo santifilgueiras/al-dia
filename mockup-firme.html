@@ -427,6 +427,50 @@
   .ficha-opcion:disabled { cursor: default; }
   .ficha-opcion.correcta { border-color: var(--firme); background: var(--firme-soft); font-weight: 700; }
   .ficha-opcion.incorrecta { border-color: var(--flojo); background: var(--flojo-soft); }
+
+  /* Fichas en mobile (rediseño, <860px): pantalla completa oscura -- ver
+     #fichaFullscreen, fuera de .app-shell en el HTML. Reusa el mismo
+     estado (fichasActuales/fichaIndexActual/fichaRespuestas) que la
+     versión de escritorio, renderFichaActual() decide cuál pintar. */
+  .ficha-fullscreen {
+    display: none; position: fixed; inset: 0; z-index: 300; background: var(--ink); color: #fff;
+    flex-direction: column; padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+    overflow-y: auto;
+  }
+  .ficha-fullscreen.active { display: flex; }
+  .ficha-fs-top { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+  .ficha-fs-close { background: none; border: none; color: rgba(255,255,255,.7); font-size: 20px; cursor: pointer; padding: 4px; line-height: 1; }
+  .ficha-fs-count { font-size: 12px; color: rgba(255,255,255,.55); }
+  .ficha-fs-dots { display: flex; gap: 4px; margin: 16px 0 20px; flex-wrap: wrap; flex-shrink: 0; }
+  .ficha-dot { width: 16px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.15); cursor: pointer; border: none; padding: 0; }
+  .ficha-dot.actual { background: var(--teal-light); }
+  .ficha-dot.ok { background: var(--teal); }
+  .ficha-dot.mal { background: var(--amber); }
+  .ficha-dot.skip { background: rgba(255,255,255,.35); }
+  .ficha-fs-tema { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10.5px; font-weight: 600; letter-spacing: .08em; color: rgba(255,255,255,.5); margin-bottom: 12px; flex-shrink: 0; }
+  .ficha-fs-pregunta { font-size: 19px; font-weight: 700; line-height: 1.35; }
+  .ficha-fs-hint { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 14px; }
+  .ficha-fs-opciones { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  .ficha-fs-opcion {
+    display: flex; align-items: center; gap: 12px; text-align: left; background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.14); color: #fff; border-radius: 12px; padding: 14px 16px;
+    font-family: inherit; font-size: 13.5px; cursor: pointer;
+  }
+  .ficha-fs-opcion .letra {
+    width: 24px; height: 24px; border-radius: 7px; background: rgba(255,255,255,.1); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700;
+  }
+  .ficha-fs-opcion.correcta { border-color: var(--teal); background: rgba(15,118,110,.35); }
+  .ficha-fs-opcion.correcta .letra { background: var(--teal); }
+  .ficha-fs-opcion.incorrecta { border-color: var(--amber); background: rgba(224,163,60,.25); }
+  .ficha-fs-opcion:disabled { cursor: default; }
+  .ficha-fs-bottom { margin-top: auto; padding-top: 18px; display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; }
+  .ficha-fs-biblio { font-size: 11.5px; color: rgba(255,255,255,.5); }
+  .ficha-fs-bottom .btn { margin-top: 0; }
+  .ficha-fs-bottom .btn.secondary { background: rgba(255,255,255,.08); color: #fff; }
+  .ficha-fs-bottom .btn:disabled { opacity: .4; cursor: default; }
+  .ficha-fs-nav { display: flex; gap: 10px; }
+  .ficha-fs-nav .btn { flex: 1; margin-top: 0; }
   .btn.secondary.picked-on { background: var(--firme-soft); color: var(--firme); }
   .racha-num { font-weight: 800; font-size: 15px; color: var(--ink); }
   .racha-sub { font-size: 11.5px; color: var(--muted); margin-top: 1px; }
@@ -1423,6 +1467,14 @@
   </div>
 </aside>
 </div>
+
+<!-- Fichas en mobile (rediseño, <860px): pantalla completa oscura en vez de
+     la tarjeta normal in-line -- fuera de .app-shell/.phone a propósito
+     para que position:fixed no dependa de que ningún ancestro no tenga
+     overflow/transform. renderFichaActual() decide cuál de las dos mostrar
+     según el ancho real; ambas leen el mismo estado (fichasActuales/
+     fichaIndexActual/fichaRespuestas). -->
+<div class="ficha-fullscreen" id="fichaFullscreen"></div>
 
 <script>
 // Catálogo organizado por año de la carrera -> materias de ese año -> módulos
@@ -8438,6 +8490,11 @@ let fichaFlipped = false;
 // no borre lo que ya habías contestado. undefined = todavía no contestada.
 let fichaRespuestas = [];
 let fichasTipo = 'normal'; // 'normal' | 'multiple'
+// Tema/materia de la tanda actual -- solo para mostrar contexto en la
+// versión mobile de pantalla completa (encabezado + bibliografía). La
+// versión de escritorio no lo necesita, ya lo tiene en los <select>.
+let fichasContexto = null;
+const FICHA_LETRAS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
 function seleccionarTipoFicha(tipo) {
   fichasTipo = tipo;
@@ -8530,6 +8587,7 @@ async function generarFichas() {
     fichaIndexActual = 0;
     fichaFlipped = false;
     fichaRespuestas = [];
+    fichasContexto = { tema: item.tema, materiaNombre: item.materiaNombre };
     renderFichaActual();
   } catch (e) {
     const msg = e.message === 'Failed to fetch'
@@ -8543,7 +8601,18 @@ async function generarFichas() {
 }
 
 function renderFichaActual() {
+  const esMobile = window.matchMedia('(max-width: 859px)').matches;
+  const fsBox = document.getElementById('fichaFullscreen');
+  renderFichaEscritorio();
+  if (fsBox) {
+    if (esMobile && fichasActuales.length) { fsBox.classList.add('active'); renderFichaFullscreen(fsBox); }
+    else fsBox.classList.remove('active');
+  }
+}
+
+function renderFichaEscritorio() {
   const box = document.getElementById('fichasBox');
+  if (!box) return;
   if (!fichasActuales.length) { box.innerHTML = ''; return; }
   const f = fichasActuales[fichaIndexActual];
   const esMultiple = Array.isArray(f.opciones);
@@ -8574,6 +8643,96 @@ function renderFichaActual() {
       <button class="btn secondary" onclick="cambiarFicha(-1)" ${fichaIndexActual === 0 ? 'disabled' : ''}>‹ Anterior</button>
       <button class="btn secondary" onclick="cambiarFicha(1)" ${fichaIndexActual === fichasActuales.length - 1 ? 'disabled' : ''}>Siguiente ›</button>
     </div>`;
+}
+
+// Puntitos de progreso de la versión mobile -- uno por ficha, clickeable
+// para saltar directo. Color: actual (teal claro), contestada bien
+// (teal), contestada mal (ámbar), "no me la sé" (gris más marcado que las
+// pendientes), pendiente (gris tenue).
+function fichaDotsHTML() {
+  return fichasActuales.map((f, i) => {
+    let cls = '';
+    if (i === fichaIndexActual) cls = 'actual';
+    else if (fichaRespuestas[i] !== undefined) {
+      if (Array.isArray(f.opciones)) {
+        cls = fichaRespuestas[i] === -1 ? 'skip' : (fichaRespuestas[i] === f.correcta ? 'ok' : 'mal');
+      } else {
+        cls = 'ok';
+      }
+    }
+    return `<button type="button" class="ficha-dot ${cls}" onclick="irAFicha(${i})" aria-label="Ir a la ficha ${i + 1}"></button>`;
+  }).join('');
+}
+
+function irAFicha(i) {
+  fichaIndexActual = i;
+  fichaFlipped = false;
+  renderFichaActual();
+}
+
+// Versión mobile de pantalla completa (rediseño) -- mismo estado que la de
+// escritorio (fichasActuales/fichaIndexActual/fichaRespuestas/toggleFicha/
+// elegirOpcionFicha/cambiarFicha), solo cambia la plantilla.
+function renderFichaFullscreen(fsBox) {
+  const f = fichasActuales[fichaIndexActual];
+  const esMultiple = Array.isArray(f.opciones);
+  const elegida = fichaRespuestas[fichaIndexActual];
+  const yaContestada = elegida !== undefined;
+  const tema = fichasContexto ? fichasContexto.tema : '';
+  const t = tema ? TEXTOS[tema] : null;
+  const biblio = t ? `<div class="ficha-fs-biblio">📄 ${t.libro} — ${t.seccion}</div>` : '';
+
+  const cuerpo = esMultiple ? `
+    <div class="ficha-fs-pregunta">${f.pregunta}</div>
+    <div class="ficha-fs-opciones">
+      ${f.opciones.map((op, i) => {
+        let cls = '';
+        if (yaContestada) {
+          if (i === f.correcta) cls = 'correcta';
+          else if (i === elegida) cls = 'incorrecta';
+        }
+        return `<button class="ficha-fs-opcion ${cls}" onclick="elegirOpcionFicha(${i})" ${yaContestada ? 'disabled' : ''}><span class="letra">${FICHA_LETRAS[i] || i + 1}</span>${op}</button>`;
+      }).join('')}
+    </div>
+    <div class="ficha-fs-bottom">
+      ${biblio}
+      <button class="btn" ${yaContestada ? '' : 'disabled'} onclick="cambiarFicha(1)">Confirmar</button>
+      ${yaContestada ? '' : '<button class="btn secondary" onclick="noMeLaSeFicha()">No me la sé</button>'}
+    </div>` : `
+    <div class="ficha-fs-pregunta" onclick="toggleFicha()" style="cursor:pointer;">${fichaFlipped ? f.respuesta : f.pregunta}</div>
+    <div class="ficha-fs-hint">${fichaFlipped ? '↺ Tocá para ver la pregunta' : '🔎 Tocá para ver la respuesta'}</div>
+    <div class="ficha-fs-bottom">
+      ${biblio}
+      <div class="ficha-fs-nav">
+        <button class="btn secondary" onclick="cambiarFicha(-1)" ${fichaIndexActual === 0 ? 'disabled' : ''}>‹ Anterior</button>
+        <button class="btn" onclick="cambiarFicha(1)" ${fichaIndexActual === fichasActuales.length - 1 ? 'disabled' : ''}>Siguiente ›</button>
+      </div>
+    </div>`;
+
+  fsBox.innerHTML = `
+    <div class="ficha-fs-top">
+      <button type="button" class="ficha-fs-close" onclick="cerrarFichaFullscreen()" aria-label="Cerrar">✕</button>
+      <span class="ficha-fs-count mono">${fichaIndexActual + 1} / ${fichasActuales.length}</span>
+    </div>
+    <div class="ficha-fs-dots">${fichaDotsHTML()}</div>
+    <div class="ficha-fs-tema">${nombreCorto(fichasContexto ? fichasContexto.materiaNombre : '')}${tema ? ' · ' + tema.toUpperCase() : ''}</div>
+    ${cuerpo}`;
+}
+
+// "No me la sé" (mobile, opción múltiple): registra -1 -- un índice que
+// nunca matchea ninguna opción real, así renderFichaActual() revela la
+// correcta en verde pero sin marcar ninguna en rojo (a diferencia de
+// contestar mal). Avanza sola a la siguiente.
+function noMeLaSeFicha() {
+  if (fichaRespuestas[fichaIndexActual] === undefined) fichaRespuestas[fichaIndexActual] = -1;
+  cambiarFicha(1);
+}
+
+function cerrarFichaFullscreen() {
+  fichasActuales = [];
+  fichaRespuestas = [];
+  fichasContexto = null;
+  renderFichaActual();
 }
 
 function elegirOpcionFicha(i) {
