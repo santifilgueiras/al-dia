@@ -762,6 +762,55 @@
   .repaso-plain-title { font-size: 14px; color: var(--ink); font-weight: 500; }
   .repaso-plain-right { display: flex; align-items: center; gap: 18px; color: var(--muted); font-size: 12.5px; flex-shrink: 0; }
   .repaso-plain-dias { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-weight: 600; }
+
+  /* ---- Resumen (S6) -- dashboard de progreso ---- */
+  .resumen-stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0; }
+  .resumen-stat-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .resumen-stat-label {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10.5px; font-weight: 700;
+    letter-spacing: .06em; color: var(--muted); text-transform: uppercase;
+  }
+  .resumen-stat-value { font-size: 26px; font-weight: 800; margin-top: 6px; line-height: 1.15; }
+  .resumen-stat-value small { font-size: 14px; font-weight: 600; color: var(--muted); }
+  .resumen-stat-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .resumen-stat-bar { display: flex; height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; margin-top: 10px; }
+  .resumen-stat-bar span { background: var(--teal); }
+
+  .resumen-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; align-items: start; margin-bottom: 18px; }
+  .resumen-card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+  .resumen-card-head h2 { margin: 0; }
+  .resumen-card-count { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11.5px; color: var(--muted); font-weight: 600; }
+  .resumen-materia-row { padding: 12px 0; border-top: 1px solid var(--line); }
+  .resumen-materia-row:first-child { border-top: none; padding-top: 6px; }
+  .resumen-materia-head { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+  .resumen-materia-nombre { font-weight: 700; font-size: 14px; flex: 1; min-width: 0; }
+  .resumen-materia-pct { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-weight: 700; font-size: 13px; color: var(--teal); flex-shrink: 0; }
+  .resumen-materia-bar { display: flex; height: 7px; border-radius: 4px; background: var(--line); overflow: hidden; }
+  .resumen-materia-bar-firme { background: var(--teal); }
+  .resumen-materia-bar-flojo { background: var(--amber); }
+  .resumen-legend { display: flex; gap: 16px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); }
+  .resumen-legend .dot { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; }
+  .resumen-legend .dot.firme { background: var(--teal); }
+  .resumen-legend .dot.flojo { background: var(--amber); }
+  .resumen-legend .dot.sinver { background: var(--line-strong); }
+
+  .resumen-side { display: flex; flex-direction: column; gap: 14px; }
+  .constancia-grid { display: grid; grid-template-rows: repeat(7, 1fr); grid-auto-flow: column; grid-auto-columns: 1fr; gap: 3px; margin: 10px 0; }
+  .constancia-cell { aspect-ratio: 1; border-radius: 3px; background: var(--line); }
+  .constancia-cell.lvl1 { background: var(--teal-tint); }
+  .constancia-cell.lvl2 { background: rgba(15,118,110,.45); }
+  .constancia-cell.lvl3 { background: var(--teal); }
+  .resumen-constancia-caption { font-size: 12px; color: var(--muted); margin: 4px 0 0; }
+  .escapando-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
+  .escapando-row:first-child { border-top: none; padding-top: 6px; }
+  .escapando-nombre { font-weight: 700; font-size: 13.5px; }
+  .escapando-materia { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; margin-top: 1px; }
+  .escapando-badge { background: var(--amber-tint); color: var(--amber-deep); font-weight: 800; font-size: 11.5px; padding: 3px 9px; border-radius: 20px; flex-shrink: 0; white-space: nowrap; }
+  @media (max-width: 859px) {
+    .resumen-stats-row { grid-template-columns: 1fr; }
+    .resumen-grid { grid-template-columns: 1fr; }
+  }
+
   .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
   .cal-nav button { border: none; background: var(--accent-soft); color: var(--accent); width: 30px; height: 30px; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; font-family: inherit; }
   .cal-nav .label { font-weight: 800; font-size: 14.5px; text-transform: capitalize; }
@@ -1506,24 +1555,39 @@
   <div class="screen" data-screen="6">
     <div class="screen-content">
     <h1 style="margin-top:4px;">Resumen</h1>
-    <p class="sub" id="resumenSub">Tu progreso en todas las materias que estás cursando.</p>
-    <div class="racha-card">
-      <span class="racha-fuego">🔥</span>
-      <div>
-        <div class="racha-num" id="rachaTexto">0 días seguidos</div>
-        <div class="racha-sub">Repasá algo hoy para no perderla.</div>
+    <p class="sub" id="resumenSub">Cómo venís con todo lo que tenés en curso.</p>
+
+    <div class="resumen-stats-row" id="resumenStatsRow"></div>
+
+    <div class="resumen-grid">
+      <div class="card resumen-materias-card">
+        <div class="resumen-card-head">
+          <h2>Por materia</h2>
+          <span class="resumen-card-count" id="resumenMateriasCount"></span>
+        </div>
+        <div id="resumenMateriasList"></div>
+        <div class="resumen-legend">
+          <span><i class="dot firme"></i>Firme</span>
+          <span><i class="dot flojo"></i>Flojo</span>
+          <span><i class="dot sinver"></i>Sin ver</span>
+        </div>
+      </div>
+      <div class="resumen-side">
+        <div class="card">
+          <div class="resumen-card-head">
+            <h2>Constancia</h2>
+            <span class="resumen-card-count" id="constanciaSemanasLabel"></span>
+          </div>
+          <div class="constancia-grid" id="constanciaGrid"></div>
+          <p class="resumen-constancia-caption" id="constanciaCaption"></p>
+        </div>
+        <div class="card" id="escapandoCard" style="display:none;">
+          <h2 style="margin-top:0;">Se te sigue escapando</h2>
+          <p class="sub" style="margin-bottom:0;">Temas que fallaste más de una vez.</p>
+          <div id="escapandoList"></div>
+        </div>
       </div>
     </div>
-    <div class="summary-bar" id="summaryBar2"></div>
-    <div class="card" style="background:var(--nuevo-soft); border:none;">
-      <div style="font-size:12.5px; color:var(--ink); line-height:1.5;">
-        Sentir que "no sabés nada" es normal cuando todavía hay temas sin repasar. Lo que importa
-        no es la sensación — es este número de temas firmes, que hoy es <strong id="firmeInline">0</strong>.
-      </div>
-    </div>
-    <div id="ctaRepaso"></div>
-    <h2>Tus materias</h2>
-    <div id="resumenMaterias"></div>
 
     <h2>Recordatorio diario</h2>
     <div class="card">
@@ -5419,6 +5483,12 @@ function hoy0() { const h = new Date(); h.setHours(0,0,0,0); return h; }
 // hoy ni ayer, la racha se reinicia a 1 -- un solo día salteado la corta.
 let racha = 0;
 let ultimoDiaActivo = '';
+// Minutos estimados repasados por día (yyyy-mm-dd -> minutos), para el mapa
+// de constancia y el promedio diario de Resumen -- a diferencia de
+// racha/ultimoDiaActivo (un solo día, se pisa), este queda como historial
+// completo. Arranca vacío para cuentas existentes (no hay forma de
+// reconstruir el pasado), se va llenando desde acá en adelante.
+let actividadDiaria = {};
 
 function registrarActividadHoy() {
   const hoyKey = fmt(new Date());
@@ -5426,6 +5496,11 @@ function registrarActividadHoy() {
   const ayerKey = fmt(addDays(new Date(), -1));
   racha = (ultimoDiaActivo === ayerKey) ? racha + 1 : 1;
   ultimoDiaActivo = hoyKey;
+}
+
+function registrarMinutosHoy(min) {
+  const hoyKey = fmt(new Date());
+  actividadDiaria[hoyKey] = (actividadDiaria[hoyKey] || 0) + min;
 }
 
 // Un examen se considera "rendido" si el usuario lo marcó a mano (desde el
@@ -7876,7 +7951,12 @@ function marcar(estado) {
     } else {
       e.intervaloIdx[activeDetailTema] = 0;
       e.proximoRepaso[activeDetailTema] = fmt(proximoFechaRepaso(e, 0, hoy0()));
+      // Cuenta de "se te sigue escapando" (Resumen) -- cuántas veces este
+      // tema puntual quedó flojo, no cuántas veces se tocó en total.
+      if (!e.flojoCount) e.flojoCount = {};
+      e.flojoCount[activeDetailTema] = (e.flojoCount[activeDetailTema] || 0) + 1;
     }
+    registrarMinutosHoy(minutosEstimados(activeDetailTema));
   }
   registrarActividadHoy();
   document.getElementById('btnFlojo').classList.toggle('picked', estado === 'flojo');
@@ -9428,38 +9508,103 @@ function renderEstudiar() {
 }
 
 function abrirResumen() {
-  renderSummary('summaryBar2');
   renderRacha();
   renderRecordatorio();
   const c = contarEstadosGlobal();
-  document.getElementById('firmeInline').textContent = c.firme;
+  const totalTemas = c.firme + c.flojo + c.nuevo;
   const activos = examenesConCalendario().slice().sort((a,b) => (a.fecha||'').localeCompare(b.fecha||''));
 
-  const materiasBox = document.getElementById('resumenMaterias');
+  // ---- Fila de 3 cajas ----
+  const proximo = activos.filter(e => e.fecha).sort((a,b) => a.fecha.localeCompare(b.fecha))[0];
+  const diasProximo = proximo ? diasHasta(proximo.fecha) : null;
+
+  const desde = addDays(new Date(), -27);
+  let sumaMin = 0, diasConDatos = 0;
+  for (let d = new Date(desde); d <= new Date(); d.setDate(d.getDate() + 1)) {
+    const k = fmt(d);
+    if (actividadDiaria[k]) { sumaMin += actividadDiaria[k]; diasConDatos++; }
+  }
+  const promedioMin = diasConDatos ? Math.round(sumaMin / diasConDatos) : null;
+
+  document.getElementById('resumenStatsRow').innerHTML = `
+    <div class="resumen-stat-card">
+      <div class="resumen-stat-label">Temas firmes</div>
+      <div class="resumen-stat-value">${c.firme} <small>/ ${totalTemas}</small></div>
+      <div class="resumen-stat-bar"><span style="width:${totalTemas ? (c.firme/totalTemas*100) : 0}%"></span></div>
+    </div>
+    <div class="resumen-stat-card">
+      <div class="resumen-stat-label">Próximo examen</div>
+      ${proximo ? `
+      <div class="resumen-stat-value">${diasProximo} <small>día${diasProximo === 1 ? '' : 's'}</small></div>
+      <div class="resumen-stat-sub">${nombreCorto(proximo.materiaNombre)} · ${fmtFecha(proximo.fecha)}</div>` : `
+      <div class="resumen-stat-value"><small>Sin materias en curso</small></div>`}
+    </div>
+    <div class="resumen-stat-card">
+      <div class="resumen-stat-label">Repaso diario</div>
+      ${promedioMin !== null ? `
+      <div class="resumen-stat-value">${promedioMin} <small>min promedio</small></div>
+      <div class="resumen-stat-sub">últimas 4 semanas</div>` : `
+      <div class="resumen-stat-value"><small>Todavía sin datos</small></div>`}
+    </div>`;
+
+  // ---- Por materia ----
+  document.getElementById('resumenMateriasCount').textContent = activos.length ? `${activos.length} EN CURSO` : '';
+  const materiasBox = document.getElementById('resumenMateriasList');
   materiasBox.innerHTML = activos.length ? activos.map(e => {
     const ce = contarEstados(e.states);
+    const total = ce.firme + ce.flojo + ce.nuevo;
+    const pct = total ? Math.round(ce.firme / total * 100) : 0;
     return `
-    <div class="card" style="cursor:pointer;" onclick="abrirExamen(${e.id})">
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <div style="font-weight:800; font-size:14px;">${e.prioridad ? '⭐ ' : ''}${nombreCorto(e.materiaNombre)}</div>
-        <span class="pill">${fmtFecha(e.fecha)}</span>
+    <div class="resumen-materia-row" style="cursor:pointer;" onclick="abrirExamen(${e.id})">
+      <div class="resumen-materia-head">
+        ${e.prioridad ? '<span class="tag materia-badge prioritaria">PRIORITARIA</span>' : ''}
+        <div class="resumen-materia-nombre">${nombreCorto(e.materiaNombre)}</div>
+        <div class="resumen-materia-pct">${pct}%</div>
       </div>
-      <div style="color:var(--muted); font-size:12px; margin-top:4px;">${ce.firme} firmes · ${ce.flojo} flojos · ${ce.nuevo} nuevos de ${e.selected.length}</div>
+      <div class="resumen-materia-bar">
+        <div class="resumen-materia-bar-firme" style="width:${total ? (ce.firme/total*100) : 0}%"></div>
+        <div class="resumen-materia-bar-flojo" style="width:${total ? (ce.flojo/total*100) : 0}%"></div>
+      </div>
     </div>`;
   }).join('') : '<div class="empty-state">Todavía no armaste el calendario de ninguna materia.</div>';
 
-  const totalFaltanVer = activos.reduce((s, e) => s + e.selected.filter(t => !e.touched[t]).length, 0);
-  const pendientesGlobal = pendingCountGlobal();
-  const cta = document.getElementById('ctaRepaso');
-  if (!activos.length) {
-    cta.innerHTML = '';
-  } else if (totalFaltanVer > 0) {
-    cta.innerHTML = `<div style="font-size:12px; color:var(--muted); margin-top:12px;">Te faltan ${totalFaltanVer} temas por ver por primera vez entre todas tus materias. El repaso de refuerzo se habilita cuando termines la primera vuelta de cada una.</div>`;
-  } else if (pendientesGlobal > 0) {
-    cta.innerHTML = `<button class="btn cta-repaso" onclick="go(7)">Repasar lo que no tenés firme (${pendientesGlobal})</button>`;
+  // ---- Constancia (últimas 8 semanas, 56 días) ----
+  const SEMANAS = 8;
+  const dias56 = [];
+  for (let i = SEMANAS * 7 - 1; i >= 0; i--) dias56.push(fmt(addDays(new Date(), -i)));
+  document.getElementById('constanciaSemanasLabel').textContent = `${SEMANAS} SEMANAS`;
+  document.getElementById('constanciaGrid').innerHTML = dias56.map(k => {
+    const min = actividadDiaria[k] || 0;
+    const lvl = min === 0 ? '' : min < 20 ? ' lvl1' : min < 45 ? ' lvl2' : ' lvl3';
+    return `<div class="constancia-cell${lvl}" title="${k}${min ? ` · ${min} min` : ''}"></div>`;
+  }).join('');
+  const dias40 = []; for (let i = 39; i >= 0; i--) dias40.push(fmt(addDays(new Date(), -i)));
+  const activos40 = dias40.filter(k => actividadDiaria[k]).length;
+  document.getElementById('constanciaCaption').textContent = `Repasaste ${activos40} de los últimos 40 días.`;
+
+  // ---- Se te sigue escapando (temas fallados 2+ veces) ----
+  const escapando = [];
+  activos.forEach(e => {
+    Object.entries(e.flojoCount || {}).forEach(([tema, n]) => {
+      if (n >= 2) escapando.push({ tema, n, materia: nombreCorto(e.materiaNombre) });
+    });
+  });
+  escapando.sort((a, b) => b.n - a.n);
+  const escapandoCard = document.getElementById('escapandoCard');
+  if (escapando.length) {
+    escapandoCard.style.display = '';
+    document.getElementById('escapandoList').innerHTML = escapando.slice(0, 6).map(it => `
+      <div class="escapando-row">
+        <div>
+          <div class="escapando-nombre">${it.tema}</div>
+          <div class="escapando-materia">${it.materia}</div>
+        </div>
+        <span class="escapando-badge">${it.n}x</span>
+      </div>`).join('');
   } else {
-    cta.innerHTML = `<div style="font-size:12px; color:var(--firme); font-weight:700; margin-top:12px;">Ya tenés todo firme por ahora.</div>`;
+    escapandoCard.style.display = 'none';
   }
+
   updateBadges();
 }
 
@@ -9596,6 +9741,7 @@ function hidratarEstado(estado) {
   racha = estado.racha || 0;
   ultimoDiaActivo = estado.ultimoDiaActivo || '';
   recordatorioActivo = !!estado.recordatorioActivo;
+  actividadDiaria = estado.actividadDiaria || {};
 }
 
 // Recién en true después de cargar (o inicializar de cero) el estado real
@@ -9624,6 +9770,7 @@ async function cargarEstadoUsuario() {
       racha = 0;
       ultimoDiaActivo = '';
       recordatorioActivo = false;
+      actividadDiaria = {};
     }
     estadoHidratado = true;
   } catch (e) {
@@ -9648,7 +9795,7 @@ async function guardarEstadoSiHaceFalta() {
   if (!sesionUsuario || !estadoHidratado || !estadoSucio || guardadoEnCurso) return;
   guardadoEnCurso = true;
   estadoSucio = false;
-  const estado = { examenes, nextExamenId, racha, ultimoDiaActivo, recordatorioActivo };
+  const estado = { examenes, nextExamenId, racha, ultimoDiaActivo, recordatorioActivo, actividadDiaria };
   try {
     const { error } = await supabaseClient.from('app_state').upsert({ user_id: sesionUsuario.id, estado });
     if (error) {
