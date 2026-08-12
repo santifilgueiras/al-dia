@@ -655,6 +655,16 @@
     .screen[data-screen="10"] .timer-ciclos { font-size: 14px; }
     .screen[data-screen="10"] .estudiar-rail h3 { font-size: 16px; }
     .screen[data-screen="10"] .dropzone-ic { font-size: 30px; }
+    /* Estudiar (S10) en particular queda con MUY poco contenido por pestaña
+       (timer, un form, un dropzone) -- agrandar la letra no alcanza para
+       llenar el alto de un monitor ancho. En vez de eso, el panel activo
+       pasa a ocupar el alto completo disponible y centra su contenido
+       verticalmente ("safe" para que si algún día hay más contenido del
+       que entra -- ej. muchas fichas generadas -- no se recorte arriba,
+       se comporte como flex-start y scrollee normal). */
+    .screen[data-screen="10"] .study-layout { flex: 1; align-items: stretch; }
+    .screen[data-screen="10"] .study-main { display: flex; flex-direction: column; }
+    .screen[data-screen="10"] .study-panel.active { flex: 1; display: flex; flex-direction: column; justify-content: safe center; }
   }
 
   /* Encabezado mono en mayúsculas reutilizado por Materias (RENDIDAS) y
