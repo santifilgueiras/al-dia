@@ -55,6 +55,8 @@
     --nuevo-soft: var(--paper-2);
     --atrasado: #c2410c;
     --atrasado-soft: rgba(194, 65, 12, .12);
+    --pink: #db4f8f;
+    --pink-tint: rgba(219, 79, 143, .12);
   }
   * { box-sizing: border-box; }
   body {
@@ -710,6 +712,56 @@
   .tag.repaso-tag { background: var(--accent-soft); color: var(--accent); }
   .tag.atrasado-tag { background: var(--atrasado-soft); color: var(--atrasado); }
   .final-note { background: var(--flojo-soft); border: 1px solid #f0d3ac; border-radius: 14px; padding: 12px 14px; font-size: 12.5px; color: #8a5a24; margin-top: 4px; }
+
+  /* ---- Repaso (S7) ---- */
+  .repaso-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap; }
+  .repaso-cta { width: auto; margin-top: 0; display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; white-space: nowrap; }
+  .repaso-pills { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 20px; }
+  .repaso-pill {
+    border: 1px solid var(--line); background: #fff; color: var(--ink); font-family: inherit;
+    font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 999px; cursor: pointer; white-space: nowrap;
+  }
+  .repaso-pill.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .repaso-group-head { display: flex; align-items: baseline; gap: 8px; margin: 24px 0 10px; }
+  .repaso-group-head:first-of-type { margin-top: 0; }
+  .repaso-group-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .repaso-group-dot.vencidos { background: var(--atrasado); }
+  .repaso-group-dot.hoy { background: var(--teal); }
+  .repaso-group-dot.proximas { background: var(--muted); }
+  .repaso-group-title {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px; font-weight: 700;
+    letter-spacing: .05em; text-transform: uppercase;
+  }
+  .repaso-group-title.vencidos { color: var(--atrasado); }
+  .repaso-group-title.hoy { color: var(--teal); }
+  .repaso-group-title.proximas { color: var(--muted); }
+  .repaso-group-note { color: var(--muted); font-weight: 500; font-size: 12px; }
+  .repaso-item {
+    display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--line);
+    border-left: 3px solid transparent; border-radius: 12px; padding: 16px 18px; margin-bottom: 10px; cursor: pointer;
+  }
+  .repaso-item.vencido { border-left-color: var(--atrasado); }
+  .repaso-item.hoy { border-left-color: var(--teal); }
+  .repaso-item-info { flex: 1; min-width: 0; }
+  .repaso-item-title { font-size: 14.5px; font-weight: 700; }
+  .repaso-item-sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .repaso-item-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .repaso-item-min { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .repaso-fichas-btn {
+    background: var(--pink-tint); color: var(--pink); border: none; font-family: inherit; font-weight: 700;
+    font-size: 12.5px; padding: 9px 14px; border-radius: 8px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+  }
+  .repaso-go-btn {
+    background: var(--teal); color: #fff; border: none; font-family: inherit; font-weight: 700;
+    font-size: 12.5px; padding: 9px 16px; border-radius: 8px; cursor: pointer; white-space: nowrap;
+  }
+  .repaso-go-btn:hover { background: var(--teal-hover); }
+  .repaso-plain-row { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); cursor: pointer; }
+  .repaso-plain-row:first-child { border-top: none; }
+  .repaso-plain-title { font-size: 14px; color: var(--ink); font-weight: 500; }
+  .repaso-plain-right { display: flex; align-items: center; gap: 18px; color: var(--muted); font-size: 12.5px; flex-shrink: 0; }
+  .repaso-plain-dias { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-weight: 600; }
   .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
   .cal-nav button { border: none; background: var(--accent-soft); color: var(--accent); width: 30px; height: 30px; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; font-family: inherit; }
   .cal-nav .label { font-weight: 800; font-size: 14.5px; text-transform: capitalize; }
@@ -1505,8 +1557,14 @@
   <!-- S7 Repaso -->
   <div class="screen" data-screen="7">
     <div class="screen-content">
-    <h1 style="margin-top:4px;">Repaso</h1>
-    <p class="sub" id="repasoSub">Temas que todavía no tenés firmes.</p>
+    <div class="repaso-header">
+      <div>
+        <h1 style="margin-top:4px;">Repaso</h1>
+        <p class="sub" id="repasoSub" style="margin-bottom:0;">Temas que todavía no tenés firmes.</p>
+      </div>
+      <button type="button" class="btn repaso-cta" id="repasoCta" style="display:none;">📋 Repasar lo de hoy</button>
+    </div>
+    <div class="repaso-pills" id="repasoPills"></div>
     <div id="repasoList"></div>
     </div>
     <div class="bottom-nav">
@@ -8083,12 +8141,26 @@ function renderHoy() {
 
 // Repaso (S7): junta los temas pendientes (no firmes) de TODAS las materias
 // en curso que ya armaron calendario, cada uno etiquetado con su materia.
+let repasoFiltroMateria = null;
+
+function filtrarRepasoPorMateria(examId) {
+  repasoFiltroMateria = examId;
+  renderRepaso();
+}
+
 function renderRepaso() {
   const list = document.getElementById('repasoList');
   const sub = document.getElementById('repasoSub');
+  const cta = document.getElementById('repasoCta');
+  const pillsBox = document.getElementById('repasoPills');
   const activos = examenesConCalendario();
-  if (!activos.length) { list.innerHTML = '<div class="empty-state">Todavía no armaste ningún calendario.</div>'; sub.textContent = ''; return; }
+  if (!activos.length) {
+    list.innerHTML = '<div class="empty-state">Todavía no armaste ningún calendario.</div>';
+    sub.textContent = ''; cta.style.display = 'none'; pillsBox.innerHTML = '';
+    return;
+  }
 
+  const hoy = hoy0();
   const todayKey = fmt(new Date());
   // Agrupado por urgencia (rediseño) en vez de una lista plana: atrasadas
   // primero (proximoRepaso ya pasó), después lo que vence hoy, y por último
@@ -8101,7 +8173,8 @@ function renderRepaso() {
       if (!e.touched[t]) totalFaltanVer++;
       if (e.states[t] !== 'firme') {
         const prox = e.proximoRepaso && e.proximoRepaso[t];
-        const item = { examId: e.id, materiaNombre: e.materiaNombre, name: t, state: e.states[t], prox: prox || '' };
+        const ordinal = ((e.intervaloIdx && e.intervaloIdx[t]) || 0) + 1;
+        const item = { examId: e.id, materiaNombre: e.materiaNombre, name: t, state: e.states[t], prox: prox || '', ordinal };
         if (prox && prox < todayKey) grupos.atrasadas.push({ ...item, atrasado: true });
         else if (prox === todayKey) grupos.hoy.push(item);
         else grupos.proximas.push(item);
@@ -8111,12 +8184,34 @@ function renderRepaso() {
   grupos.proximas.sort((a, b) => (a.prox || '9999').localeCompare(b.prox || '9999'));
   const totalItems = grupos.atrasadas.length + grupos.hoy.length + grupos.proximas.length;
 
+  // Pills de filtro por materia -- solo materias con algo pendiente en la cola.
+  const idsConPendientes = new Set([...grupos.atrasadas, ...grupos.hoy, ...grupos.proximas].map(i => i.examId));
+  const materiasConPendientes = activos.filter(e => idsConPendientes.has(e.id));
+  if (repasoFiltroMateria !== null && !idsConPendientes.has(repasoFiltroMateria)) repasoFiltroMateria = null;
+  pillsBox.innerHTML = materiasConPendientes.length < 2 ? '' :
+    `<button type="button" class="repaso-pill ${repasoFiltroMateria === null ? 'active' : ''}" onclick="filtrarRepasoPorMateria(null)">Todas</button>` +
+    materiasConPendientes.map(e => `<button type="button" class="repaso-pill ${repasoFiltroMateria === e.id ? 'active' : ''}" onclick="filtrarRepasoPorMateria(${e.id})">${nombreCorto(e.materiaNombre)}</button>`).join('');
+
+  const filtrar = arr => repasoFiltroMateria === null ? arr : arr.filter(i => i.examId === repasoFiltroMateria);
+  const gAtrasadas = filtrar(grupos.atrasadas), gHoy = filtrar(grupos.hoy), gProximas = filtrar(grupos.proximas);
+  const totalFiltrado = gAtrasadas.length + gHoy.length + gProximas.length;
+
   if (totalFaltanVer > 0) {
     sub.textContent = `Te faltan ${totalFaltanVer} temas por ver por primera vez entre todas tus materias -- el repaso de refuerzo se habilita cuando ya pasaste por todos al menos una vez.`;
   } else {
-    sub.textContent = totalItems
-      ? 'Ya viste todo. Esto es lo que todavía no tenés firme -- tocá uno para repasarlo de nuevo.'
-      : '';
+    sub.textContent = totalItems ? `${totalItems} tema${totalItems === 1 ? '' : 's'} en cola${grupos.atrasadas.length ? ` · ${grupos.atrasadas.length} vencido${grupos.atrasadas.length === 1 ? '' : 's'}` : ''}` : '';
+  }
+
+  // CTA "Repasar lo de hoy": suma de vencidos+hoy (lo que hay que resolver
+  // ya) -- lleva directo al primero de la cola, no marca nada solo.
+  const colaHoy = gAtrasadas.concat(gHoy);
+  if (colaHoy.length) {
+    const minTotal = colaHoy.reduce((s, i) => s + minutosEstimados(i.name), 0);
+    cta.style.display = 'inline-flex';
+    cta.textContent = `📋 Repasar lo de hoy · ${minTotal} min`;
+    cta.onclick = () => abrirDetalle(colaHoy[0].examId, colaHoy[0].name, true);
+  } else {
+    cta.style.display = 'none';
   }
 
   if (totalItems === 0) {
@@ -8125,25 +8220,59 @@ function renderRepaso() {
       : '<div class="empty-state">Tenés todo firme. No te queda nada pendiente de repaso por ahora.</div>';
     return;
   }
+  if (totalFiltrado === 0) { list.innerHTML = '<div class="empty-state">Nada pendiente de esa materia por ahora.</div>'; return; }
 
-  const renderItem = (it) => {
-    const esc = it.name.replace(/'/g,"\\'");
-    const tagClass = it.atrasado ? 'atrasado-tag' : (it.state === 'flojo' ? 'repaso-tag' : 'nuevo-tag');
-    const tagText = it.atrasado ? 'atrasado' : it.state;
+  const renderCard = (it, cls) => {
+    const esc = it.name.replace(/'/g, "\\'");
+    const min = minutosEstimados(it.name);
+    const diasVencido = it.atrasado ? Math.round((hoy - new Date(it.prox + 'T00:00:00')) / 86400000) : 0;
+    const subPartes = [nombreCorto(it.materiaNombre), `repaso ${it.ordinal}°`];
+    if (it.atrasado) subPartes.push(`hace ${diasVencido} día${diasVencido === 1 ? '' : 's'}`);
     return `
-    <div class="tema-item" onclick="abrirDetalle(${it.examId}, '${esc}', true)">
-      <span>${it.atrasado ? '⏰ ' : ''}${it.name}<small style="display:block; color:var(--muted); font-weight:400; font-size:11px; margin-top:2px;">${nombreCorto(it.materiaNombre)}</small></span>
-      <span style="display:flex; align-items:center; gap:8px;">
-        <button class="lupa" title="Buscarlo" onclick="event.stopPropagation(); buscarReferencia('${esc}')">🔍</button>
-        <span class="tag ${tagClass}">${tagText}</span>
-      </span>
+    <div class="repaso-item ${cls}" onclick="abrirDetalle(${it.examId}, '${esc}', true)">
+      <div class="repaso-item-info">
+        <div class="repaso-item-title">${it.name}</div>
+        <div class="repaso-item-sub">${subPartes.join(' · ')}</div>
+      </div>
+      ${it.state === 'flojo' ? '<span class="tag repaso-tag">FLOJO</span>' : ''}
+      <div class="repaso-item-right">
+        <span class="repaso-item-min mono">~${min} min</span>
+        <button type="button" class="repaso-fichas-btn" onclick="event.stopPropagation(); irAEstudiar('fichas');">🧠 Fichas</button>
+        <button type="button" class="repaso-go-btn" onclick="event.stopPropagation(); abrirDetalle(${it.examId}, '${esc}', true);">Repasar</button>
+      </div>
     </div>`;
   };
-  const renderGrupo = (titulo, arr) => !arr.length ? '' : `
-    <div class="section-label-mono">${titulo} · ${arr.length}</div>
-    <div class="day-card">${arr.map(renderItem).join('')}</div>`;
+  const renderPlain = (it) => {
+    const esc = it.name.replace(/'/g, "\\'");
+    const dias = it.prox ? diasHasta(it.prox) : null;
+    return `
+    <div class="repaso-plain-row" onclick="abrirDetalle(${it.examId}, '${esc}', true)">
+      <div class="repaso-plain-title">${it.name}</div>
+      <div class="repaso-plain-right">
+        <span>${nombreCorto(it.materiaNombre)}</span>
+        <span class="repaso-plain-dias">${dias === null ? 'primera vez' : `EN ${dias} D`}</span>
+      </div>
+    </div>`;
+  };
 
-  list.innerHTML = renderGrupo('ATRASADAS', grupos.atrasadas) + renderGrupo('HOY', grupos.hoy) + renderGrupo('PRÓXIMAS', grupos.proximas);
+  const grupoConCards = (dotCls, titulo, arr, note) => !arr.length ? '' : `
+    <div class="repaso-group-head">
+      <span class="repaso-group-dot ${dotCls}"></span>
+      <span class="repaso-group-title ${dotCls}">${titulo} · ${arr.length}</span>
+      ${note ? `<span class="repaso-group-note">${note}</span>` : ''}
+    </div>
+    ${arr.map(it => renderCard(it, dotCls === 'vencidos' ? 'vencido' : 'hoy')).join('')}`;
+  const grupoPlano = (arr) => !arr.length ? '' : `
+    <div class="repaso-group-head">
+      <span class="repaso-group-dot proximas"></span>
+      <span class="repaso-group-title proximas">MÁS ADELANTE · ${arr.length}</span>
+    </div>
+    <div class="card" style="padding:4px 18px;">${arr.map(renderPlain).join('')}</div>`;
+
+  list.innerHTML =
+    grupoConCards('vencidos', 'VENCIDOS', gAtrasadas, 'se reprograman solos si no los tocás hoy') +
+    grupoConCards('hoy', 'HOY', gHoy, '') +
+    grupoPlano(gProximas);
 }
 
 // Home (S0): el botón principal lleva al hub de Calendario/Exámenes, donde
