@@ -107,6 +107,12 @@
   .hero-mock-nav-item { display: flex; align-items: center; gap: 6px; padding: 7px 5px; border-radius: 6px; font-size: 10px; font-weight: 600; color: rgba(255,255,255,.55); }
   .hero-mock-nav-item.active { background: rgba(127,230,208,.14); color: #7fe6d0; }
   .hero-mock-racha { margin-top: auto; display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.06); border-radius: 8px; padding: 8px; }
+  .hero-mock-flame { display: inline-block; animation: flame 1.5s ease-in-out infinite; transform-origin: 50% 85%; }
+  @keyframes flame {
+    0%, 100% { transform: scale(1) rotate(-2deg); filter: brightness(1); }
+    35% { transform: scale(1.13) rotate(3deg); filter: brightness(1.15); }
+    65% { transform: scale(.96) rotate(-3deg); filter: brightness(.95); }
+  }
   .hero-mock-racha-num { color: #fff; font-weight: 700; font-size: 12px; line-height: 1; }
   .hero-mock-racha-label { font-size: 6.5px; font-weight: 600; letter-spacing: .06em; color: rgba(255,255,255,.5); }
   .hero-mock-main { flex: 1; min-width: 0; padding: 16px 18px; }
@@ -211,7 +217,7 @@
           <div class="hero-mock-nav-item">🔁 Repaso</div>
           <div class="hero-mock-nav-item">📚 Materias</div>
           <div class="hero-mock-nav-item">📖 Estudiar</div>
-          <div class="hero-mock-racha">🔥<div><div class="hero-mock-racha-num">6</div><div class="hero-mock-racha-label">DÍAS</div></div></div>
+          <div class="hero-mock-racha"><span class="hero-mock-flame">🔥</span><div><div class="hero-mock-racha-num">6</div><div class="hero-mock-racha-label">DÍAS</div></div></div>
         </div>
         <div class="hero-mock-main">
           <div class="hero-mock-date mono">MARTES 11 DE AGOSTO</div>
