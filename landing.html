@@ -97,9 +97,28 @@
   /* ---- Mockup decorativo del hero (recreación estática de la pantalla
      Hoy, no la app real -- mismos componentes/tokens que mockup-firme.html
      para que se sienta parte de la misma marca). ---- */
+  /* Dos elementos anidados a propósito: heroRise (entrada, una sola vez) y
+     heroFloat (loop lento) usan las dos la propiedad transform -- un solo
+     elemento no puede correr ambas animaciones a la vez. */
+  .hero-mock-rise {
+    width: 100%; max-width: 500px;
+    animation: heroRise .7s cubic-bezier(.22,1,.36,1) both;
+  }
   .hero-mock {
-    display: flex; width: 100%; max-width: 500px; background: #fff; border: 1px solid var(--line);
+    display: flex; width: 100%; background: #fff; border: 1px solid var(--line);
     border-radius: 16px; overflow: hidden; box-shadow: 0 20px 50px rgba(20,32,29,.10);
+    animation: heroFloat 6s ease-in-out .7s infinite;
+  }
+  @keyframes heroRise {
+    0% { opacity: 0; transform: translateY(26px) scale(.985); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes heroFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; }
   }
   .hero-mock-side { width: 108px; flex-shrink: 0; background: var(--ink); padding: 14px 8px; display: flex; flex-direction: column; gap: 3px; }
   .hero-mock-logo { display: flex; align-items: center; gap: 6px; color: #fff; font-weight: 800; font-size: 11px; padding: 2px 4px 12px; }
@@ -107,7 +126,7 @@
   .hero-mock-nav-item { display: flex; align-items: center; gap: 6px; padding: 7px 5px; border-radius: 6px; font-size: 10px; font-weight: 600; color: rgba(255,255,255,.55); }
   .hero-mock-nav-item.active { background: rgba(127,230,208,.14); color: #7fe6d0; }
   .hero-mock-racha { margin-top: auto; display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.06); border-radius: 8px; padding: 8px; }
-  .hero-mock-flame { display: inline-block; animation: flame 1.5s ease-in-out infinite; transform-origin: 50% 85%; }
+  .hero-mock-flame { display: inline-block; font-size: 13px; animation: flame 1.5s ease-in-out infinite; transform-origin: 50% 85%; }
   @keyframes flame {
     0%, 100% { transform: scale(1) rotate(-2deg); filter: brightness(1); }
     35% { transform: scale(1.13) rotate(3deg); filter: brightness(1.15); }
@@ -210,6 +229,7 @@
         <p class="hero-caption">Es gratis y tu progreso queda guardado.</p>
       </div>
 
+      <div class="hero-mock-rise">
       <div class="hero-mock" aria-hidden="true">
         <div class="hero-mock-side">
           <div class="hero-mock-logo"><img src="/icons/icon-192.png" alt="">Al Día</div>
@@ -239,6 +259,7 @@
             <div class="hero-mock-row-info"><b>Ecuaciones diferenciales</b><small>Cálculo en Varias Variables</small></div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </div>
