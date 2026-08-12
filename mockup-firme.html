@@ -667,6 +667,24 @@
     .screen[data-screen="10"] .study-layout { flex: 1; align-items: stretch; }
     .screen[data-screen="10"] .study-main { display: flex; flex-direction: column; }
     .screen[data-screen="10"] .study-panel.active { flex: 1; display: flex; flex-direction: column; justify-content: safe center; }
+
+    /* Resumen (S6) -- los widgets nuevos (stats/por materia/constancia/
+       escapando) se sumaron después de este bloque y quedaron con su
+       tamaño de letra base, más chico que el resto de la pantalla ya
+       agrandada. */
+    .screen[data-screen="6"] .resumen-stat-label { font-size: 12px; }
+    .screen[data-screen="6"] .resumen-stat-value { font-size: 32px; }
+    .screen[data-screen="6"] .resumen-stat-value small { font-size: 16px; }
+    .screen[data-screen="6"] .resumen-stat-sub { font-size: 14px; }
+    .screen[data-screen="6"] .resumen-card-head h2 { font-size: 20px; }
+    .screen[data-screen="6"] .resumen-card-count { font-size: 13px; }
+    .screen[data-screen="6"] .resumen-materia-nombre { font-size: 16px; }
+    .screen[data-screen="6"] .resumen-materia-pct { font-size: 15px; }
+    .screen[data-screen="6"] .resumen-legend { font-size: 13px; }
+    .screen[data-screen="6"] .resumen-constancia-caption { font-size: 13.5px; }
+    .screen[data-screen="6"] .escapando-nombre { font-size: 15px; }
+    .screen[data-screen="6"] .escapando-materia { font-size: 12.5px; }
+    .screen[data-screen="6"] .escapando-badge { font-size: 13px; }
   }
 
   /* Encabezado mono en mayúsculas reutilizado por Materias (RENDIDAS) y
@@ -811,8 +829,12 @@
   .resumen-legend .dot.sinver { background: var(--line-strong); }
 
   .resumen-side { display: flex; flex-direction: column; gap: 14px; }
-  .constancia-grid { display: grid; grid-template-rows: repeat(7, 1fr); grid-auto-flow: column; grid-auto-columns: 1fr; gap: 3px; margin: 10px 0; }
-  .constancia-cell { aspect-ratio: 1; border-radius: 3px; background: var(--line); }
+  /* Celdas de tamaño fijo (no 1fr fluido) a propósito -- con el ancho de
+     pantalla completo (sin max-width global) un grid fluido de 8 columnas
+     quedaba con cuadrados enormes, muy distinto de la referencia (celdas
+     chicas tipo mapa de calor de GitHub, con aire alrededor). */
+  .constancia-grid { display: grid; grid-template-rows: repeat(7, 16px); grid-auto-flow: column; grid-auto-columns: 16px; gap: 3px; margin: 10px 0; }
+  .constancia-cell { width: 16px; height: 16px; border-radius: 3px; background: var(--line); }
   .constancia-cell.lvl1 { background: var(--teal-tint); }
   .constancia-cell.lvl2 { background: rgba(15,118,110,.45); }
   .constancia-cell.lvl3 { background: var(--teal); }
@@ -825,6 +847,9 @@
   @media (max-width: 859px) {
     .resumen-stats-row { grid-template-columns: 1fr; }
     .resumen-grid { grid-template-columns: 1fr; }
+  }
+  @media (min-width: 860px) {
+    #resumenCuentaSection { display: none; }
   }
 
   .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
@@ -1610,7 +1635,7 @@
           <div class="constancia-grid" id="constanciaGrid"></div>
           <p class="resumen-constancia-caption" id="constanciaCaption"></p>
         </div>
-        <div class="card" id="escapandoCard" style="display:none;">
+        <div class="card" id="escapandoCard">
           <h2 style="margin-top:0;">Se te sigue escapando</h2>
           <p class="sub" style="margin-bottom:0;">Temas que fallaste más de una vez.</p>
           <div id="escapandoList"></div>
@@ -1618,10 +1643,16 @@
       </div>
     </div>
 
+    <!-- Solo entra en mobile (ver CSS) -- ahí no hay sidebar, así que es el
+         único lugar de Resumen donde se puede cerrar sesión. En desktop el
+         sidebar ya tiene su propio "Cerrar sesión" -- mostrarlo acá también
+         era redundante y confuso. -->
+    <div id="resumenCuentaSection">
     <h2>Cuenta</h2>
     <div class="card resumen-cuenta">
       <div class="resumen-cuenta-email mono" id="resumenUserEmail"></div>
       <button type="button" class="resumen-logout" onclick="cerrarSesion()"><span class="ic">🚪</span>Cerrar sesión</button>
+    </div>
     </div>
     </div>
     <div class="bottom-nav">
@@ -9605,20 +9636,16 @@ function abrirResumen() {
     });
   });
   escapando.sort((a, b) => b.n - a.n);
-  const escapandoCard = document.getElementById('escapandoCard');
-  if (escapando.length) {
-    escapandoCard.style.display = '';
-    document.getElementById('escapandoList').innerHTML = escapando.slice(0, 6).map(it => `
+  document.getElementById('escapandoList').innerHTML = escapando.length
+    ? escapando.slice(0, 6).map(it => `
       <div class="escapando-row">
         <div>
           <div class="escapando-nombre">${it.tema}</div>
           <div class="escapando-materia">${it.materia}</div>
         </div>
         <span class="escapando-badge">${it.n}x</span>
-      </div>`).join('');
-  } else {
-    escapandoCard.style.display = 'none';
-  }
+      </div>`).join('')
+    : '<div class="empty-state" style="padding:20px 4px;">Nada se te sigue escapando -- ningún tema te falló dos veces todavía.</div>';
 
   updateBadges();
 }
