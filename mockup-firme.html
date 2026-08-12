@@ -5594,14 +5594,7 @@ function renderCatalogo() {
     return;
   }
   list.style.display = '';
-  if (sub) sub.textContent = 'Vienen todos tildados del programa de la cátedra -- destildá lo que no entra en tu examen, o agregá los tuyos si te falta algo puntual.';
-  // Rediseño: opt-out en vez de opt-in -- la primera vez que se abre un
-  // catálogo (selected vacío, siempre el caso al llegar acá con una materia
-  // recién elegida) se tildan todos los temas de entrada, en vez de arrancar
-  // todo destildado y que el estudiante tenga que tildar uno por uno.
-  if (selected.length === 0) {
-    modulos.forEach(mod => mod.temas.forEach(t => { if (!selected.includes(t)) selected.push(t); }));
-  }
+  if (sub) sub.textContent = 'Elegí los temas que entran en tu examen -- tocá "Seleccionar todos" en un módulo si lo querés entero, o agregá los tuyos si te falta algo puntual.';
   list.innerHTML = '';
   modulos.forEach((mod, mi) => {
     const div = document.createElement('div');
@@ -5617,8 +5610,8 @@ function renderCatalogo() {
         ${mod.temas.map((t,ti) => {
           const checked = selected.includes(t);
           return `
-          <label class="tema-row${checked ? '' : ' destildado'}">
-            <input type="checkbox" data-tema="${t.replace(/"/g,'&quot;')}" ${checked ? 'checked' : ''} onchange="toggleTema('${t.replace(/'/g,"\\'")}', this.checked); this.closest('.tema-row').classList.toggle('destildado', !this.checked);">
+          <label class="tema-row">
+            <input type="checkbox" data-tema="${t.replace(/"/g,'&quot;')}" ${checked ? 'checked' : ''} onchange="toggleTema('${t.replace(/'/g,"\\'")}', this.checked);">
             ${t}
           </label>`;
         }).join('')}
