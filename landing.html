@@ -20,7 +20,7 @@
 <meta name="twitter:description" content="Calendario de repaso espaciado y fichas generadas por IA para estudiantes de Medicina y Psicología de la UDELAR.">
 <meta name="twitter:image" content="https://al-dia-03ew.onrender.com/icons/icon-512.png">
 
-<meta name="theme-color" content="#4f9dd6">
+<meta name="theme-color" content="#0f766e">
 <link rel="icon" href="/icons/icon-512.png">
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
@@ -29,26 +29,32 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-1: #eaf6fb;
-    --bg-2: #eafaf1;
-    --ink: #2b4152;
-    --muted: #74909f;
-    --accent: #4f9dd6;
-    --accent-soft: #e6f3fb;
-    --firme: #3fac83;
-    --firme-soft: #e3f7ee;
-    --line: #dfeaee;
+    --paper: #faf9f6;
+    --ink: #14201d;
+    --muted: rgba(20, 32, 29, .6);
+    --line: rgba(20, 32, 29, .10);
+    --teal: #0f766e;
+    --teal-tint: rgba(15, 118, 110, .10);
+    --amber: #e0a33c;
+    --amber-tint: rgba(224, 163, 60, .14);
+    --amber-deep: #b8811f;
+    /* Alias para no reescribir cada regla de abajo. */
+    --accent: var(--teal);
+    --accent-soft: var(--teal-tint);
+    --firme: var(--teal);
+    --firme-soft: var(--teal-tint);
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    margin: 0; font-family: 'Nunito', sans-serif; color: var(--ink);
-    background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
+    margin: 0; font-family: 'Public Sans', sans-serif; color: var(--ink);
+    background: var(--paper);
     min-height: 100dvh; position: relative; overflow-x: hidden;
   }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
   .landing-shell { position: relative; z-index: 1; }
   .wrap { max-width: 900px; margin: 0 auto; padding: 56px 24px 70px; position: relative; overflow: hidden; }
   /* Logo grande, transparentado, de fondo -- le da aire de página web de
@@ -75,10 +81,10 @@
   .hero { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 40px; }
   .logo {
     width: 84px; height: 84px; border-radius: 24px; margin: 0 auto 18px;
-    background: linear-gradient(135deg, #6fc3e0, #58c896);
-    display: flex; align-items: center; justify-content: center; font-size: 42px;
-    box-shadow: 0 14px 28px rgba(79,157,214,.3);
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+    box-shadow: 0 14px 28px rgba(15,118,110,.25);
   }
+  .logo img { width: 100%; height: 100%; object-fit: cover; }
   h1 { font-size: 34px; font-weight: 800; margin: 0 0 10px; }
   .tagline { color: var(--muted); font-size: 15.5px; line-height: 1.55; margin: 0 0 20px; max-width: 520px; }
   .deco-icons { font-size: 24px; letter-spacing: 10px; margin-bottom: 8px; opacity: .85; }
@@ -105,7 +111,8 @@
     display: block; width: 100%; text-align: center; text-decoration: none; border: none; cursor: pointer;
     font-family: inherit; font-weight: 800; font-size: 15px; padding: 14px; border-radius: 12px;
   }
-  .cta.primary { background: linear-gradient(135deg, #6fc3e0, #58c896); color: #fff; box-shadow: 0 10px 22px rgba(88,200,150,.3); }
+  .cta.primary { background: var(--teal); color: #fff; box-shadow: 0 10px 22px rgba(15,118,110,.25); }
+  .cta.primary:hover { background: #0b5a54; }
   .cta.secondary { background: var(--accent-soft); color: var(--accent); }
 
   .features {
@@ -122,12 +129,34 @@
   }
   .feature-text b { display: block; font-size: 14.5px; margin-bottom: 2px; }
   .feature-text span { font-size: 13px; color: var(--muted); line-height: 1.4; }
-  .carreras {
-    background: #fff; border-radius: 16px; padding: 20px; border: 1px solid var(--line);
-    text-align: center; margin-bottom: 30px;
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px; background: var(--teal-tint); color: var(--teal);
+    font-size: 12px; font-weight: 600; padding: 6px 13px; border-radius: 999px; margin-bottom: 18px;
   }
-  .carreras b { display: block; font-size: 14.5px; margin-bottom: 6px; }
-  .carreras span { font-size: 13px; color: var(--muted); }
+  .section-label-mono {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; font-weight: 600;
+    letter-spacing: .08em; color: var(--muted); margin: 0 0 14px;
+  }
+  /* Franja oscura full-bleed (rediseño) -- misma idea que el sidebar oscuro,
+     rompe el ritmo de cards claras antes de "Cómo funciona". */
+  .catalogo-strip {
+    background: var(--ink); color: #fff; border-radius: 16px; padding: 22px 26px;
+    display: flex; flex-direction: column; gap: 6px; margin-bottom: 40px;
+  }
+  .catalogo-strip b { font-size: 14.5px; }
+  .catalogo-strip span { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.5; }
+  @media (min-width: 600px) {
+    .catalogo-strip { flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; }
+    .catalogo-strip span { max-width: 60%; }
+  }
+  .install-card {
+    background: var(--teal-tint); border-radius: 16px; padding: 20px 22px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; margin-bottom: 30px;
+  }
+  .install-card b { display: block; font-size: 14.5px; }
+  .install-card span { font-size: 12.5px; color: var(--muted); }
+  .install-card .cta { width: auto; padding: 11px 20px; flex-shrink: 0; }
   footer { text-align: center; font-size: 11.5px; color: var(--muted); margin-top: 10px; }
 
   @media (min-width: 720px) {
@@ -142,8 +171,8 @@
        en el medio de la pantalla). */
     .landing-shell { display: flex; align-items: stretch; width: 100%; min-height: 100vh; }
     .landing-sidebar {
-      display: flex; flex-direction: column; gap: 2px; width: 230px; flex-shrink: 0;
-      background: var(--ink); padding: 20px 12px; position: sticky; top: 0;
+      display: flex; flex-direction: column; gap: 2px; width: 196px; flex-shrink: 0;
+      background: var(--ink); padding: 20px 10px; position: sticky; top: 0;
     }
     .landing-sidebar-logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 15px; color: #fff; padding: 4px 10px 22px; }
     .landing-sidebar-logo .ic { font-size: 20px; }
@@ -166,7 +195,7 @@
 <body>
 <div class="landing-shell">
 <nav class="landing-sidebar">
-  <div class="landing-sidebar-logo"><span class="ic">📚</span>Al Día</div>
+  <div class="landing-sidebar-logo"><img src="/icons/icon-192.png" alt="" style="width:22px; height:22px; border-radius:6px;">Al Día</div>
   <a class="side-item" href="#funciones"><span class="ic">✨</span>Funciones</a>
   <a class="side-item" href="#carreras"><span class="ic">🎓</span>Carreras</a>
   <a class="side-item" href="/instalar.html" target="_blank" rel="noopener"><span class="ic">📲</span>Instalar</a>
@@ -176,7 +205,8 @@
 </nav>
 <div class="wrap">
   <div class="hero">
-    <div class="logo">📚</div>
+    <span class="hero-badge">🎓 Hecho para estudiantes de la UDELAR</span>
+    <div class="logo"><img src="/icons/icon-192.png" alt="Al Día"></div>
     <h1>Al Día</h1>
     <p class="tagline">Organizá lo que tenés que estudiar y decile para cuándo es el examen. Armamos un calendario día por día que programa cuándo repasar cada tema, para que no se te olvide nada.</p>
     <div class="deco-icons">📚 🧠 🎓 ✏️ 📝</div>
@@ -196,6 +226,7 @@
     </div>
   </div>
 
+  <div class="section-label-mono" style="text-align:center;">CÓMO FUNCIONA</div>
   <div class="features" id="funciones">
     <div class="feature">
       <div class="feature-icon">📅</div>
@@ -215,9 +246,17 @@
     </div>
   </div>
 
-  <div class="carreras" id="carreras">
+  <div class="catalogo-strip" id="carreras">
     <b>Catálogo completo</b>
     <span>25 Unidades Curriculares de Medicina y todas las materias de Psicología (UDELAR), con bibliografía real por tema.</span>
+  </div>
+
+  <div class="install-card">
+    <div>
+      <b>📲 Instalá Al Día en tu celular</b>
+      <span>Un toque y queda como cualquier app en tu celular.</span>
+    </div>
+    <a class="cta primary" href="/instalar.html" target="_blank" rel="noopener">Instalar ahora</a>
   </div>
 
   <footer>Hecho para estudiantes de la UDELAR, por un estudiante.</footer>
