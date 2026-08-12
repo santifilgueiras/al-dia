@@ -764,6 +764,22 @@
   .repaso-plain-dias { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-weight: 600; }
 
   /* ---- Resumen (S6) -- dashboard de progreso ---- */
+  .resumen-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap; }
+  /* Chica a propósito (pedido de Santiago) -- vive arriba a la derecha, al
+     lado del título, no como su propia sección grande más abajo. */
+  .resumen-recordatorio-mini {
+    background: var(--paper-2); border: 1px solid var(--line); border-radius: 12px;
+    padding: 10px 12px; min-width: 220px;
+  }
+  .resumen-recordatorio-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .resumen-recordatorio-label { font-size: 12.5px; font-weight: 700; white-space: nowrap; }
+  .resumen-recordatorio-mini .btn.secondary {
+    margin-top: 0; width: auto; padding: 6px 12px; font-size: 11.5px; flex-shrink: 0;
+  }
+  .resumen-recordatorio-mini input[type="time"] {
+    margin-top: 8px; width: 100%; padding: 7px 10px; border: 1px solid var(--line);
+    border-radius: 8px; font-family: inherit; font-size: 12.5px;
+  }
   .resumen-stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0; }
   .resumen-stat-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
   .resumen-stat-label {
@@ -1554,8 +1570,21 @@
   <!-- S6 Resumen -->
   <div class="screen" data-screen="6">
     <div class="screen-content">
-    <h1 style="margin-top:4px;">Resumen</h1>
-    <p class="sub" id="resumenSub">Cómo venís con todo lo que tenés en curso.</p>
+    <div class="resumen-header">
+      <div>
+        <h1 style="margin-top:4px;">Resumen</h1>
+        <p class="sub" id="resumenSub" style="margin-bottom:0;">Cómo venís con todo lo que tenés en curso.</p>
+      </div>
+      <div class="resumen-recordatorio-mini">
+        <div class="resumen-recordatorio-row">
+          <span class="resumen-recordatorio-label">🔔 Recordatorio diario</span>
+          <button type="button" class="btn secondary" id="recordatorioToggle" onclick="toggleRecordatorio()">Desactivado</button>
+        </div>
+        <div id="recordatorioConfig" style="display:none;">
+          <input type="time" id="recordatorioHora" value="20:00" onchange="onCambiaHoraRecordatorio()">
+        </div>
+      </div>
+    </div>
 
     <div class="resumen-stats-row" id="resumenStatsRow"></div>
 
@@ -1586,20 +1615,6 @@
           <p class="sub" style="margin-bottom:0;">Temas que fallaste más de una vez.</p>
           <div id="escapandoList"></div>
         </div>
-      </div>
-    </div>
-
-    <h2>Recordatorio diario</h2>
-    <div class="card">
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <div style="font-size:13.5px; font-weight:700;">🔔 Avisarme si me quedan temas pendientes</div>
-        <button class="btn secondary" id="recordatorioToggle" style="margin-top:0; width:auto; padding:8px 16px; font-size:12px;" onclick="toggleRecordatorio()">Desactivado</button>
-      </div>
-      <div id="recordatorioConfig" style="display:none; margin-top:12px;">
-        <label style="display:block; font-size:12px; color:var(--muted); font-weight:700; margin-bottom:6px;">Hora del recordatorio</label>
-        <input type="time" id="recordatorioHora" value="20:00" onchange="onCambiaHoraRecordatorio()" style="padding:9px 12px; border:1px solid var(--line); border-radius:10px; font-family:inherit; font-size:13.5px;">
-        <div class="notif-preview" id="recordatorioPreview"></div>
-        <div style="color:var(--muted); font-size:10.5px; margin-top:8px;">Notificación real -- necesita que le des permiso al navegador. En iPhone/iPad solo funciona si instalaste la app a la pantalla de inicio.</div>
       </div>
     </div>
 
