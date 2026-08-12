@@ -472,6 +472,41 @@
     .hoy-racha-badge { display: flex; }
   }
 
+  /* Encabezado mono en mayúsculas reutilizado por Materias (RENDIDAS) y
+     Repaso (ATRASADAS/HOY/PRÓXIMAS). */
+  .section-label-mono {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; font-weight: 600;
+    letter-spacing: .08em; color: var(--muted); padding-bottom: 8px; margin-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* ---- Materias (S8) ---- */
+  .materias-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+  .materias-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .materia-card { position: relative; margin-bottom: 0; }
+  .materia-badge {
+    display: inline-block; border: none; font-family: inherit; cursor: pointer;
+    font-size: 10px; font-weight: 700; letter-spacing: .04em; padding: 4px 9px; border-radius: 20px;
+  }
+  .materia-badge.prioritaria { background: var(--teal-tint); color: var(--teal); }
+  .materia-badge.priorizar { background: var(--paper-2); color: var(--muted); }
+  .materia-card-nombre { font-weight: 700; font-size: 15.5px; margin-top: 10px; padding-right: 22px; line-height: 1.25; }
+  .materia-card-fecha { font-size: 11.5px; color: var(--muted); margin-top: 5px; }
+  .materia-card-stats { display: flex; justify-content: space-between; align-items: baseline; margin-top: 14px; font-size: 12.5px; color: var(--muted); }
+  .materia-card-pct { color: var(--teal); font-weight: 700; }
+  .materia-progress { display: flex; height: 7px; border-radius: 4px; background: var(--line); overflow: hidden; margin-top: 6px; }
+  .materia-progress-firme { background: var(--teal); }
+  .materia-progress-flojo { background: var(--amber); }
+  .materia-card-breakdown { font-size: 11px; color: var(--muted); margin-top: 6px; }
+  .materia-card-actions { display: flex; gap: 8px; margin-top: 13px; }
+  .materias-rendidas-grid { display: flex; flex-direction: column; gap: 8px; }
+  .materia-rendida-chip { display: flex; align-items: center; gap: 10px; background: var(--paper-2); border-radius: 11px; padding: 10px 12px; }
+  .materia-rendida-chip .ic { font-size: 16px; }
+  .materia-rendida-nombre { font-size: 13px; font-weight: 600; }
+  .materia-rendida-sub { font-size: 10.5px; color: var(--muted); margin-top: 1px; }
+  @media (min-width: 640px) { .materias-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 960px) { .materias-grid { grid-template-columns: repeat(3, 1fr); } }
+
   .day-card { border: 1px solid var(--line); border-radius: 16px; margin-bottom: 10px; overflow: hidden; }
   .day-head { background: var(--nuevo-soft); padding: 8px 14px; font-size: 12.5px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
   .day-head.today { background: var(--accent-soft); color: var(--accent); }
@@ -1177,17 +1212,18 @@
   <!-- S8 Materias (antes "Exámenes") -->
   <div class="screen" data-screen="8">
     <div class="screen-content">
-    <div class="topbar"><button class="back" onclick="go(0)">←</button></div>
-    <h1>📅 Calendario</h1>
-    <p class="sub">Tus exámenes en curso y las materias que ya rendiste.</p>
+    <div class="materias-header">
+      <div>
+        <h1>Materias</h1>
+        <p class="sub" id="materiasSub">Tus materias en curso.</p>
+      </div>
+      <button type="button" class="btn" style="margin-top:0; width:auto;" onclick="agregarExamen()">+ Agregar materia</button>
+    </div>
+    <p class="sub" style="margin-top:-8px; margin-bottom:14px;">☆ Marcá una materia como <strong>prioritaria</strong> para que tu calendario le dé el primer lugar y arranque hoy, aunque otra tenga el examen más cerca.</p>
+    <div class="materias-grid" id="examenesEnCurso"></div>
 
-    <h2 style="margin-top:0;">En curso</h2>
-    <p class="sub" style="margin-top:-6px; margin-bottom:12px;">☆ Marcá una materia como <strong>prioritaria</strong> para que tu calendario le dé el primer lugar y arranque hoy, aunque otra tenga el examen más cerca.</p>
-    <div id="examenesEnCurso"></div>
-    <button class="btn secondary" style="margin-top:2px;" onclick="agregarExamen()">+ Agregar examen</button>
-
-    <h2>Rendidas</h2>
-    <div id="examenesRendidos"></div>
+    <div class="section-label-mono" style="margin-top:22px;">RENDIDAS · <span id="materiasRendidasCount">0</span></div>
+    <div class="materias-rendidas-grid" id="examenesRendidos"></div>
     </div>
     <div class="bottom-nav" id="materiasBottomNav" style="display:none;">
       <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
@@ -7679,35 +7715,43 @@ function renderRepaso() {
   if (!activos.length) { list.innerHTML = '<div class="empty-state">Todavía no armaste ningún calendario.</div>'; sub.textContent = ''; return; }
 
   const todayKey = fmt(new Date());
-  const items = [];
+  // Agrupado por urgencia (rediseño) en vez de una lista plana: atrasadas
+  // primero (proximoRepaso ya pasó), después lo que vence hoy, y por último
+  // lo que todavía no venció (incluye temas de primera vez, sin fecha de
+  // repaso asignada todavía -- van al final del todo).
+  const grupos = { atrasadas: [], hoy: [], proximas: [] };
   let totalFaltanVer = 0;
   activos.forEach(e => {
     e.selected.forEach(t => {
       if (!e.touched[t]) totalFaltanVer++;
       if (e.states[t] !== 'firme') {
-        const atrasado = !!(e.proximoRepaso && e.proximoRepaso[t] && e.proximoRepaso[t] < todayKey);
-        items.push({ examId: e.id, materiaNombre: e.materiaNombre, name: t, state: e.states[t], atrasado });
+        const prox = e.proximoRepaso && e.proximoRepaso[t];
+        const item = { examId: e.id, materiaNombre: e.materiaNombre, name: t, state: e.states[t], prox: prox || '' };
+        if (prox && prox < todayKey) grupos.atrasadas.push({ ...item, atrasado: true });
+        else if (prox === todayKey) grupos.hoy.push(item);
+        else grupos.proximas.push(item);
       }
     });
   });
-  items.sort((a, b) => (b.atrasado ? 1 : 0) - (a.atrasado ? 1 : 0)); // atrasados primero
+  grupos.proximas.sort((a, b) => (a.prox || '9999').localeCompare(b.prox || '9999'));
+  const totalItems = grupos.atrasadas.length + grupos.hoy.length + grupos.proximas.length;
 
   if (totalFaltanVer > 0) {
     sub.textContent = `Te faltan ${totalFaltanVer} temas por ver por primera vez entre todas tus materias -- el repaso de refuerzo se habilita cuando ya pasaste por todos al menos una vez.`;
   } else {
-    sub.textContent = items.length
+    sub.textContent = totalItems
       ? 'Ya viste todo. Esto es lo que todavía no tenés firme -- tocá uno para repasarlo de nuevo.'
       : '';
   }
 
-  if (items.length === 0) {
+  if (totalItems === 0) {
     list.innerHTML = totalFaltanVer > 0
       ? '<div class="empty-state">Terminá de ver tus temas por primera vez y acá te van a aparecer los que te falten afirmar.</div>'
       : '<div class="empty-state">Tenés todo firme. No te queda nada pendiente de repaso por ahora.</div>';
     return;
   }
 
-  list.innerHTML = `<div class="day-card">${items.map(it => {
+  const renderItem = (it) => {
     const esc = it.name.replace(/'/g,"\\'");
     const tagClass = it.atrasado ? 'atrasado-tag' : (it.state === 'flojo' ? 'repaso-tag' : 'nuevo-tag');
     const tagText = it.atrasado ? 'atrasado' : it.state;
@@ -7718,7 +7762,13 @@ function renderRepaso() {
         <button class="lupa" title="Buscarlo" onclick="event.stopPropagation(); buscarReferencia('${esc}')">🔍</button>
         <span class="tag ${tagClass}">${tagText}</span>
       </span>
-    </div>`; }).join('')}</div>`;
+    </div>`;
+  };
+  const renderGrupo = (titulo, arr) => !arr.length ? '' : `
+    <div class="section-label-mono">${titulo} · ${arr.length}</div>
+    <div class="day-card">${arr.map(renderItem).join('')}</div>`;
+
+  list.innerHTML = renderGrupo('ATRASADAS', grupos.atrasadas) + renderGrupo('HOY', grupos.hoy) + renderGrupo('PRÓXIMAS', grupos.proximas);
 }
 
 // Home (S0): el botón principal lleva al hub de Calendario/Exámenes, donde
@@ -7953,24 +8003,46 @@ function renderExamenes() {
   const enCurso = examenesEnCurso().slice().sort((a,b) => (a.fecha||'').localeCompare(b.fecha||''));
   const rendidos = examenesRendidos().slice().sort((a,b) => (b.fecha||'').localeCompare(a.fecha||''));
 
+  const subEl = document.getElementById('materiasSub');
+  if (subEl) subEl.textContent = enCurso.length ? `${enCurso.length} en curso` : 'Todavía no agregaste ninguna materia.';
+
   const box1 = document.getElementById('examenesEnCurso');
   box1.innerHTML = enCurso.length ? enCurso.map(e => {
     const faltaConfig = !e.selectedPace;
     const c = !faltaConfig ? contarEstados(e.states) : null;
+    const total = c ? c.firme + c.flojo + c.nuevo : 0;
+    const pct = total > 0 ? Math.round((c.firme / total) * 100) : 0;
+    const dias = e.fecha ? diasHasta(e.fecha) : null;
+    const badge = e.prioridad
+      ? `<span class="tag materia-badge prioritaria">★ PRIORITARIA</span>`
+      : `<button type="button" class="tag materia-badge priorizar" onclick="event.stopPropagation(); toggleMateriaPrioritaria(${e.id})">☆ PRIORIZAR</button>`;
     return `
-    <div class="card" style="border-color:var(--accent); background:var(--accent-soft); position:relative;">
+    <div class="card materia-card">
       <button class="card-delete-btn" title="Borrar" onclick="event.stopPropagation(); pedirBorrarMateria(${e.id})">🗑️</button>
       <div style="cursor:pointer;" onclick="abrirExamen(${e.id})">
-        <span class="pill">📅 ${fmtFecha(e.fecha)}</span>
-        <div style="font-weight:800; font-size:16px; margin-top:8px; padding-right:22px;">${e.prioridad ? '⭐ ' : ''}${e.materiaNombre || 'Sin nombre'}</div>
-        <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${faltaConfig ? 'Todavía no armaste el calendario' : `${c.firme} firmes · ${c.flojo} flojos · ${c.nuevo} nuevos`}</div>
+        ${badge}
+        <div class="materia-card-nombre">${e.materiaNombre || 'Sin nombre'}</div>
+        <div class="materia-card-fecha mono">${e.fecha ? `${fmtFecha(e.fecha)} · ${dias === 0 ? 'es hoy' : `en ${dias} días`}` : 'sin fecha'}</div>
+        ${faltaConfig ? '<div class="sub" style="margin-top:8px;">Todavía no armaste el calendario</div>' : `
+        <div class="materia-card-stats">
+          <span>${total} temas</span>
+          <span class="materia-card-pct mono">${pct}% firme</span>
+        </div>
+        <div class="materia-progress">
+          <div class="materia-progress-firme" style="width:${total ? (c.firme / total * 100) : 0}%"></div>
+          <div class="materia-progress-flojo" style="width:${total ? (c.flojo / total * 100) : 0}%"></div>
+        </div>
+        <div class="materia-card-breakdown mono">${c.firme} firmes · ${c.flojo} flojos · ${c.nuevo} sin ver</div>`}
       </div>
-      <div style="display:flex; gap:8px; margin-top:10px;">
-        <button class="btn secondary" style="flex:1; margin-top:0; padding:9px; font-size:12px;" onclick="event.stopPropagation(); toggleMateriaPrioritaria(${e.id})">${e.prioridad ? '★ Prioritaria' : '☆ Marcar prioritaria'}</button>
-        <button class="btn secondary" style="flex:1; margin-top:0; padding:9px; font-size:12px;" onclick="event.stopPropagation(); marcarRendidaDesdeHub(${e.id})">Marcar rendida</button>
+      <div class="materia-card-actions">
+        <button type="button" class="btn ${e.prioridad ? '' : 'secondary'}" style="flex:1; margin-top:0;" onclick="event.stopPropagation(); abrirExamen(${e.id})">Ver temas</button>
+        <button type="button" class="btn secondary" style="flex:1; margin-top:0;" onclick="event.stopPropagation(); marcarRendidaDesdeHub(${e.id})">Rendida</button>
       </div>
     </div>`;
-  }).join('') : '<div class="empty-state">Todavía no agregaste ningún examen.</div>';
+  }).join('') : '<div class="empty-state">Todavía no agregaste ninguna materia.</div>';
+
+  const countEl = document.getElementById('materiasRendidasCount');
+  if (countEl) countEl.textContent = rendidos.length;
 
   const box2 = document.getElementById('examenesRendidos');
   box2.innerHTML = rendidos.length === 0
@@ -7979,12 +8051,13 @@ function renderExamenes() {
         const firmes = e.ejemplo ? e.firmesEjemplo : (e.firmesFinal || 0);
         const total = e.ejemplo ? e.totalEjemplo : (e.selected ? e.selected.length : 0);
         return `
-        <div class="card" style="position:relative;">
-          <button class="card-delete-btn" title="Borrar" onclick="pedirBorrarMateria(${e.id})">🗑️</button>
-          <div style="font-weight:800; font-size:14.5px; padding-right:22px;">${e.materiaNombre}</div>
-          <div style="color:var(--muted); font-size:12.5px; margin-top:3px;">
-            Rendida el ${fmtFecha(e.fecha)} · ${firmes}/${total} firmes${e.ejemplo ? ' <span style="opacity:.7;">(ejemplo)</span>' : ''}
+        <div class="materia-rendida-chip">
+          <span class="ic">🎓</span>
+          <div style="flex:1; min-width:0;">
+            <div class="materia-rendida-nombre">${e.materiaNombre}</div>
+            <div class="materia-rendida-sub mono">${fmtFecha(e.fecha)} · ${firmes}/${total}${e.ejemplo ? ' (ejemplo)' : ''}</div>
           </div>
+          <button class="card-delete-btn" style="position:static;" title="Borrar" onclick="pedirBorrarMateria(${e.id})">🗑️</button>
         </div>`;
       }).join('');
 
