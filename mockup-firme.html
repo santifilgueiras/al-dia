@@ -594,6 +594,67 @@
     .screen[data-screen="13"] .hoy-proximo-label { font-size: 12px; }
     .screen[data-screen="13"] .hoy-proximo-nombre { font-size: 17px; }
     .screen[data-screen="13"] .hoy-proximo-dias { font-size: 15px; }
+
+    /* Mismo criterio en el resto de las pantallas con sidebar (pedido de
+       Santiago, 2026-08-12): que también "estiren hacia abajo" en vez de
+       dejar el contenido corto con blanco debajo. */
+    .screen[data-screen="4"] h1, .screen[data-screen="6"] h1, .screen[data-screen="7"] h1,
+    .screen[data-screen="8"] h1, .screen[data-screen="10"] h1 { font-size: 26px; }
+    .screen[data-screen="4"] p.sub, .screen[data-screen="6"] p.sub, .screen[data-screen="7"] p.sub,
+    .screen[data-screen="8"] p.sub, .screen[data-screen="10"] p.sub { font-size: 15px; }
+    .screen[data-screen="4"] h2, .screen[data-screen="6"] h2, .screen[data-screen="8"] h2 { font-size: 19px; }
+
+    /* Calendario (S4) */
+    .screen[data-screen="4"] .stat .n { font-size: 24px; }
+    .screen[data-screen="4"] .stat .l { font-size: 12px; }
+    .screen[data-screen="4"] .stat { padding: 14px 6px; }
+    .screen[data-screen="4"] .racha-mini { font-size: 14px; padding: 7px 15px 7px 10px; }
+    .screen[data-screen="4"] .cal-nav .label { font-size: 18px; }
+    .screen[data-screen="4"] .cal-nav button { width: 36px; height: 36px; font-size: 18px; }
+    .screen[data-screen="4"] .cal-weekday { font-size: 12px; }
+    .screen[data-screen="4"] .cal-cell .cal-daynum { font-size: 13px; }
+    .screen[data-screen="4"] .cal-cell .cal-tema { font-size: 11px; }
+    .screen[data-screen="4"] .cal-agenda-head { font-size: 14px; }
+    .screen[data-screen="4"] .cal-exam-caption { font-size: 13px; }
+
+    /* Calendario + Repaso comparten .tema-item/.day-card/.tag */
+    .screen[data-screen="4"] .tema-item, .screen[data-screen="7"] .tema-item { font-size: 16px; padding: 14px 16px; }
+    .screen[data-screen="4"] .tag, .screen[data-screen="7"] .tag { font-size: 12px; padding: 4px 10px; }
+    .screen[data-screen="7"] .section-label-mono { font-size: 14px; }
+
+    /* Materias (S8) */
+    .screen[data-screen="8"] .materia-badge { font-size: 12px; padding: 5px 11px; }
+    .screen[data-screen="8"] .materia-card-nombre { font-size: 19px; }
+    .screen[data-screen="8"] .materia-card-fecha { font-size: 14px; }
+    .screen[data-screen="8"] .materia-card-stats { font-size: 15px; }
+    .screen[data-screen="8"] .materia-progress { height: 9px; }
+    .screen[data-screen="8"] .materia-card-breakdown { font-size: 13px; }
+    .screen[data-screen="8"] .materia-card { padding: 20px; }
+    .screen[data-screen="8"] .section-label-mono { font-size: 14px; }
+    .screen[data-screen="8"] .materia-rendida-nombre { font-size: 15px; }
+    .screen[data-screen="8"] .materia-rendida-sub { font-size: 12px; }
+
+    /* Resumen (S6) */
+    .screen[data-screen="6"] .racha-card { padding: 16px 18px; }
+    .screen[data-screen="6"] .racha-num { font-size: 18px; }
+    .screen[data-screen="6"] .racha-sub { font-size: 13.5px; }
+    .screen[data-screen="6"] .stat .n { font-size: 24px; }
+    .screen[data-screen="6"] .stat .l { font-size: 12px; }
+    .screen[data-screen="6"] .stat { padding: 14px 6px; }
+    .screen[data-screen="6"] .card { padding: 20px; }
+    .screen[data-screen="6"] .resumen-cuenta-email { font-size: 13px; }
+    .screen[data-screen="6"] .resumen-logout { font-size: 15px; }
+
+    /* Estudiar (S10) */
+    .screen[data-screen="10"] .tabs .tab { font-size: 15px; padding: 12px; }
+    .screen[data-screen="10"] .field label { font-size: 14.5px; }
+    .screen[data-screen="10"] .field input, .screen[data-screen="10"] .field select { font-size: 15px; padding: 13px 14px; }
+    .screen[data-screen="10"] .timer-card { padding: 34px 22px; }
+    .screen[data-screen="10"] .timer-display { font-size: 68px; }
+    .screen[data-screen="10"] .timer-fase { font-size: 15px; }
+    .screen[data-screen="10"] .timer-ciclos { font-size: 14px; }
+    .screen[data-screen="10"] .estudiar-rail h3 { font-size: 16px; }
+    .screen[data-screen="10"] .dropzone-ic { font-size: 30px; }
   }
 
   /* Encabezado mono en mayúsculas reutilizado por Materias (RENDIDAS) y
