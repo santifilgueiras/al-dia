@@ -529,8 +529,17 @@
     .hoy-cols { flex-direction: row; }
     .hoy-cols > .card { flex: 1; }
   }
+  .hoy-header-mobile-actions { display: none; align-items: center; gap: 8px; }
+  /* Único punto de entrada a "Cuenta" (ver Resumen) en mobile -- ahí no hay
+     sidebar, y el spec pide que cerrar sesión NO viva en la barra inferior. */
+  .hoy-profile-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line);
+    background: #fff; font-size: 14px; cursor: pointer; padding: 0; flex-shrink: 0;
+  }
   @media (max-width: 859px) {
     .hoy-racha-badge { display: flex; }
+    .hoy-header-mobile-actions { display: flex; }
   }
 
   /* Encabezado mono en mayúsculas reutilizado por Materias (RENDIDAS) y
@@ -745,6 +754,18 @@
   }
   .side-nav-logout:hover { color: #fff; }
   .side-nav-logout .ic { font-size: 16px; }
+  /* Mismo botón de cerrar sesión que el sidebar, pero para fondo claro --
+     en mobile el sidebar no existe, así que esto vive al pie de Resumen
+     (la pantalla más parecida a "perfil/ajustes" que ya tenía la app). */
+  .resumen-cuenta { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .resumen-cuenta-email { font-size: 11.5px; color: var(--muted); word-break: break-all; }
+  .resumen-logout {
+    display: flex; align-items: center; gap: 8px; border: none; background: none;
+    font-family: inherit; cursor: pointer; font-size: 13px; font-weight: 600;
+    color: var(--muted); padding: 6px 0; flex-shrink: 0;
+  }
+  .resumen-logout:hover { color: var(--flojo); }
+  .resumen-logout .ic { font-size: 15px; }
 
   /* Estudiar (S10, rediseño): pestañas reales en vez de acordeón -- solo el
      panel activo se muestra, la pestaña activa se ve con fondo teal-tint
@@ -981,7 +1002,10 @@
         <div class="hoy-fecha mono" id="hoyFecha">—</div>
         <h1 id="hoyTitulo" style="margin-top:2px;">Hoy</h1>
       </div>
-      <div class="hoy-racha-badge">🔥<span class="js-racha-num mono">0</span></div>
+      <div class="hoy-header-mobile-actions">
+        <div class="hoy-racha-badge">🔥<span class="js-racha-num mono">0</span></div>
+        <button type="button" class="hoy-profile-btn" onclick="go(6)" aria-label="Cuenta y ajustes">👤</button>
+      </div>
       <div class="hoy-proximo" id="hoyProximoExamen"></div>
     </div>
     <div class="summary-bar" id="summaryBarHoy"></div>
@@ -1303,6 +1327,12 @@
         <div class="notif-preview" id="recordatorioPreview"></div>
         <div style="color:var(--muted); font-size:10.5px; margin-top:8px;">Notificación real -- necesita que le des permiso al navegador. En iPhone/iPad solo funciona si instalaste la app a la pantalla de inicio.</div>
       </div>
+    </div>
+
+    <h2>Cuenta</h2>
+    <div class="card resumen-cuenta">
+      <div class="resumen-cuenta-email mono" id="resumenUserEmail"></div>
+      <button type="button" class="resumen-logout" onclick="cerrarSesion()"><span class="ic">🚪</span>Cerrar sesión</button>
     </div>
     </div>
     <div class="bottom-nav">
@@ -9326,6 +9356,12 @@ document.addEventListener('visibilitychange', () => {
 async function manejarSesionActiva(session) {
   sesionUsuario = { id: session.user.id, email: session.user.email };
   document.getElementById('navUserEmail').textContent = sesionUsuario.email;
+  document.getElementById('resumenUserEmail').textContent = sesionUsuario.email;
+  // Si se entró con ?auth=login/registro (desde un botón de la landing), se
+  // limpia de la URL una vez logueado -- si no, un cierre de sesión más
+  // tarde en la misma pestaña seguiría viendo ese parámetro viejo y
+  // mostraría el formulario en vez de mandar a la landing.
+  if (location.search) history.replaceState(null, '', location.pathname);
   await cargarEstadoUsuario();
   renderOwnList();
   // Rediseño: "Hoy" (S13) es la pantalla de aterrizaje después de loguearse
@@ -9344,6 +9380,15 @@ function mostrarPantallaAuth() {
   // qué botón tocaron -- así la app abre directo en el modo correcto, sin
   // que el estudiante tenga que tocar "¿No tenés cuenta?" a mano.
   const modoUrl = new URLSearchParams(location.search).get('auth');
+  // Sin sesión Y sin venir de un botón de la landing (?auth=...) -- no hay
+  // nada que mostrar acá, así que se manda a la landing pública en vez del
+  // formulario embebido. replace() (no href) para que, si esto pasa justo
+  // después de cerrar sesión, "atrás" no vuelva a esta pantalla vacía --
+  // salta directo a lo que hubiera antes en el historial.
+  if (!modoUrl) {
+    location.replace('/landing.html');
+    return;
+  }
   if (modoUrl === 'registro') setAuthModo('signup');
   else if (modoUrl === 'login') setAuthModo('login');
   go(11);
