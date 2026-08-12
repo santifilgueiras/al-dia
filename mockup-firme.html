@@ -502,6 +502,20 @@
 
   /* ---- Hoy (S13) ---- */
   .hoy-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  /* Fila compacta (no las 3 cajas grandes de .summary-bar que usan
+     Calendario/Materias/Resumen) -- la captura de referencia para Hoy
+     muestra el desglose en una sola línea + una barra fina, no cajas. */
+  .hoy-stats { margin-bottom: 16px; }
+  .hoy-stats-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 6px; flex-wrap: wrap; }
+  .hoy-stats-nums { display: flex; gap: 16px; font-size: 12.5px; color: var(--muted); font-weight: 500; }
+  .hoy-stats-nums b { font-weight: 700; }
+  .hoy-stats-nums b.firme { color: var(--teal); }
+  .hoy-stats-nums b.flojo { color: var(--amber-deep); }
+  .hoy-stats-nums b.nuevo { color: var(--muted); }
+  .hoy-stats-pct { font-weight: 700; font-size: 13px; color: var(--teal); }
+  .hoy-stats-bar { display: flex; height: 7px; border-radius: 4px; background: var(--line); overflow: hidden; }
+  .hoy-stats-bar-firme { background: var(--teal); }
+  .hoy-stats-bar-flojo { background: var(--amber); }
   .hoy-fecha { font-size: 11px; font-weight: 600; letter-spacing: .08em; color: var(--muted); }
   .hoy-racha-badge { display: none; align-items: center; gap: 5px; background: var(--amber-tint); color: var(--amber-deep); font-weight: 700; font-size: 13px; padding: 6px 10px; border-radius: 20px; height: fit-content; }
   .hoy-racha-badge .racha-fuego { font-size: 15px; }
@@ -1030,7 +1044,7 @@
       </div>
       <div class="hoy-proximo" id="hoyProximoExamen"></div>
     </div>
-    <div class="summary-bar" id="summaryBarHoy"></div>
+    <div class="hoy-stats" id="hoyStats"></div>
     <div class="hoy-lista" id="hoyLista"></div>
     <div class="hoy-cols">
       <div class="card hoy-repaso-card">
@@ -7838,9 +7852,31 @@ function itemsRepasoGlobal() {
   return items;
 }
 
+function renderHoyStats() {
+  const c = contarEstadosGlobal();
+  const el = document.getElementById('hoyStats');
+  if (!el) return;
+  const total = c.firme + c.flojo + c.nuevo;
+  const pct = total > 0 ? Math.round((c.firme / total) * 100) : 0;
+  el.innerHTML = `
+    <div class="hoy-stats-row">
+      <div class="hoy-stats-nums mono">
+        <span><b class="firme">${c.firme}</b> firmes</span>
+        <span><b class="flojo">${c.flojo}</b> flojos</span>
+        <span><b class="nuevo">${c.nuevo}</b> sin ver</span>
+      </div>
+      <span class="hoy-stats-pct mono">${pct}% firme</span>
+    </div>
+    <div class="hoy-stats-bar">
+      <div class="hoy-stats-bar-firme" style="width:${total ? (c.firme / total * 100) : 0}%"></div>
+      <div class="hoy-stats-bar-flojo" style="width:${total ? (c.flojo / total * 100) : 0}%"></div>
+    </div>
+  `;
+}
+
 function renderHoy() {
   generarCalendarioGlobal();
-  renderSummary('summaryBarHoy');
+  renderHoyStats();
 
   const hoy = new Date();
   const todayKey = fmt(hoy);
