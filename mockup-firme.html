@@ -414,6 +414,15 @@
   .timer-ciclos { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
   .timer-btns { display: flex; gap: 10px; }
   .timer-btns .btn { margin-top: 0; }
+  .timer-sonido-row { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 16px; }
+  .timer-sonido-row button, .timer-sonido-row a {
+    background: none; border: none; color: var(--muted); font-family: inherit;
+    font-size: 12.5px; cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 5px; padding: 0;
+  }
+  .timer-sonido-row button:hover, .timer-sonido-row a:hover { color: var(--ink); }
+  .timer-sonido-volumen { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+  .timer-sonido-volumen span { font-size: 11px; color: var(--muted); }
   .ficha-card {
     border: 1px solid var(--line); border-radius: 18px; padding: 22px 18px; margin-top: 14px;
     min-height: 130px; display: flex; flex-direction: column; justify-content: center;
@@ -1061,11 +1070,21 @@
   .resumen-logout .ic { font-size: 15px; }
 
   /* Estudiar (S10, rediseño): pestañas reales en vez de acordeón -- solo el
-     panel activo se muestra, la pestaña activa se ve con fondo teal-tint
-     (a diferencia de los otros .tabs de la app, que usan el estilo
-     "segmented control" blanco -- de ahí el modificador .study-tabs). */
-  .study-tabs .tab { display: flex; align-items: center; justify-content: center; gap: 7px; }
-  .study-tabs .tab.active { background: var(--teal-tint); color: var(--teal); box-shadow: none; }
+     panel activo se muestra. A diferencia de los otros .tabs de la app
+     (estilo "segmented control" con fondo), las 3 pestañas principales de
+     Estudiar van con subrayado simple (de ahí el modificador .study-tabs) --
+     las pestañas chicas de adentro de cada panel (método del timer, tipo de
+     ficha) siguen con el estilo segmented normal, sin cambios. */
+  .study-tabs {
+    background: none; padding: 0; border-radius: 0; gap: 26px;
+    border-bottom: 1px solid var(--line); margin-bottom: 20px;
+  }
+  .study-tabs .tab {
+    flex: none; display: flex; align-items: center; gap: 7px;
+    padding: 0 0 12px; margin-bottom: -1px; border-radius: 0;
+    border-bottom: 2px solid transparent; color: var(--muted); font-weight: 600;
+  }
+  .study-tabs .tab.active { background: none; box-shadow: none; color: var(--teal); border-bottom-color: var(--teal); font-weight: 700; }
   .study-layout { display: flex; flex-direction: column; gap: 16px; }
   .study-main { flex: 1; min-width: 0; }
   .study-panel { display: none; }
@@ -1730,17 +1749,6 @@
     <div class="study-layout">
     <div class="study-main">
     <div class="study-panel" id="sec-tiempo" data-sec="tiempo">
-        <div style="display:flex; justify-content:flex-end; align-items:center; margin-bottom:8px;">
-          <button class="btn secondary" id="sonidoAmbienteBtn" onclick="toggleSonidoAmbiente()" style="margin-top:0; width:auto; padding:8px 14px; font-size:12px;">🔇 Sonido</button>
-        </div>
-        <div id="sonidoAmbienteControles" style="display:none; align-items:center; gap:8px; margin:-4px 0 10px;">
-          <span style="font-size:11px; color:var(--muted);">🔈</span>
-          <input type="range" id="sonidoVolumen" min="0" max="100" value="35" oninput="cambiarVolumenSonido(this.value)" style="flex:1;">
-          <span style="font-size:11px; color:var(--muted);">🔊</span>
-        </div>
-        <div style="margin:-6px 0 10px;">
-          <a class="ref-link" href="https://www.youtube.com/results?search_query=musica+relajante+para+estudiar+lofi" target="_blank" style="font-size:11.5px; padding:6px 10px;">🎵 Prefiero música real -- buscar en YouTube</a>
-        </div>
         <div class="tabs" id="timerMetodoTabs">
           <div class="tab" data-metodo="pomodoro" onclick="seleccionarMetodoTimer('pomodoro')">🍅 Pomodoro</div>
           <div class="tab" data-metodo="52-17" onclick="seleccionarMetodoTimer('52-17')">⚡ 52/17</div>
@@ -1755,6 +1763,15 @@
           <div class="timer-btns">
             <button class="btn" id="timerStartBtn" onclick="toggleTimer()">▶️ Empezar</button>
             <button class="btn secondary" onclick="resetearTimer()">↺ Reiniciar</button>
+          </div>
+          <div class="timer-sonido-row">
+            <button type="button" id="sonidoAmbienteBtn" onclick="toggleSonidoAmbiente()">🔇 Sonido de fondo</button>
+            <a href="https://www.youtube.com/results?search_query=musica+relajante+para+estudiar+lofi" target="_blank">🎵 Prefiero música real</a>
+          </div>
+          <div id="sonidoAmbienteControles" class="timer-sonido-volumen" style="display:none;">
+            <span>🔈</span>
+            <input type="range" id="sonidoVolumen" min="0" max="100" value="35" oninput="cambiarVolumenSonido(this.value)" style="flex:1;">
+            <span>🔊</span>
           </div>
         </div>
     </div>
@@ -1833,6 +1850,7 @@
         <h3>Bibliografía del tema</h3>
         <div id="estudiarBiblioBox" style="margin-top:6px;"></div>
       </div>
+      <button type="button" class="btn secondary" style="margin-top:0;" onclick="switchStudyTab('resumen')">+ Subir apunte para resumir</button>
     </aside>
     </div>
     </div>
@@ -9478,7 +9496,7 @@ async function toggleSonidoAmbiente() {
     sonidoNodos.master.gain.cancelScheduledValues(audioCtx.currentTime);
     sonidoNodos.master.gain.linearRampToValueAtTime(sonidoActivo ? sonidoVolumen : 0, audioCtx.currentTime + 1.2);
 
-    btn.textContent = sonidoActivo ? '🔊 Sonido' : '🔇 Sonido';
+    btn.textContent = sonidoActivo ? '🔊 Sonido de fondo' : '🔇 Sonido de fondo';
     btn.classList.toggle('picked-on', sonidoActivo);
     controles.style.display = sonidoActivo ? 'flex' : 'none';
   } catch (e) {
@@ -9533,12 +9551,18 @@ function renderEstudiarRail() {
     const sel = document.getElementById('fichasTemaSelect');
     return (sel && sel.value && fichasTemasDisponibles[sel.value]) ? { tema: fichasTemasDisponibles[sel.value].tema, materiaNombre: fichasTemasDisponibles[sel.value].materiaNombre } : null;
   })();
+  const sub = document.getElementById('estudiarSub');
   const biblioCard = document.getElementById('estudiarBiblioCard');
   const accionesCard = document.getElementById('estudiarAccionesCard');
   if (!biblioCard || !accionesCard) return;
-  if (!item) { biblioCard.style.display = 'none'; accionesCard.style.display = 'none'; return; }
+  if (!item) {
+    biblioCard.style.display = 'none'; accionesCard.style.display = 'none';
+    if (sub) sub.textContent = 'Elegí qué querés usar ahora.';
+    return;
+  }
   const tema = item.tema;
   const materiaNombre = item.materiaNombre;
+  if (sub) sub.innerHTML = `Estás con <strong>${tema}</strong> · ${nombreCorto(materiaNombre)}`;
   renderReferencia(tema, materiaNombre, 'estudiarBiblioBox');
   biblioCard.style.display = '';
   const conExamen = examenDelTemaFichasActual();
