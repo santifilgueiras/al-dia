@@ -543,7 +543,7 @@
 
   /* ---- Materias (S8) ---- */
   .materias-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
-  .materias-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .materias-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
   .materia-card { position: relative; margin-bottom: 0; }
   .materia-badge {
     display: inline-block; border: none; font-family: inherit; cursor: pointer;
@@ -565,8 +565,6 @@
   .materia-rendida-chip .ic { font-size: 16px; }
   .materia-rendida-nombre { font-size: 13px; font-weight: 600; }
   .materia-rendida-sub { font-size: 10.5px; color: var(--muted); margin-top: 1px; }
-  @media (min-width: 640px) { .materias-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 960px) { .materias-grid { grid-template-columns: repeat(3, 1fr); } }
 
   .day-card { border: 1px solid var(--line); border-radius: 16px; margin-bottom: 10px; overflow: hidden; }
   .day-head { background: var(--nuevo-soft); padding: 8px 14px; font-size: 12.5px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
@@ -736,6 +734,17 @@
   .side-nav-racha .racha-fuego { font-size: 20px; }
   .side-nav-racha-num { font-size: 17px; font-weight: 700; color: #fff; line-height: 1.1; }
   .side-nav-racha-label { font-size: 9.5px; font-weight: 600; letter-spacing: .08em; color: rgba(255,255,255,.5); margin-top: 2px; }
+  /* Separado del resto de la navegación (spec: no debe competir con los
+     ítems principales) -- línea divisoria + texto apagado que solo se
+     aclara en hover, en vez del mismo tratamiento que .side-nav-item. */
+  .side-nav-logout {
+    display: flex; align-items: center; gap: 12px; margin-top: 10px; padding: 11px 10px 0;
+    border: none; border-top: 1px solid rgba(255,255,255,.1); border-radius: 0;
+    background: none; font-family: inherit; cursor: pointer;
+    font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,.55);
+  }
+  .side-nav-logout:hover { color: #fff; }
+  .side-nav-logout .ic { font-size: 16px; }
 
   /* Estudiar (S10, rediseño): pestañas reales en vez de acordeón -- solo el
      panel activo se muestra, la pestaña activa se ve con fondo teal-tint
@@ -878,7 +887,7 @@
        Estudiar) -- sin esto el contenido se estira de punta a punta en un
        monitor ancho de verdad (2560px+), a diferencia de las capturas del
        handoff de diseño (contenido centrado, con aire a los costados). */
-    body.has-nav .screen-content { max-width: 900px; margin: 0 auto; width: 100%; }
+    body.has-nav .screen-content { max-width: 1000px; margin: 0 auto; width: 100%; }
     /* Listas de tarjetas (exámenes en curso/rendidas, materias en Resumen)
        -- en celular son una columna porque no hay lugar para otra cosa; acá
        hay ancho de sobra, así que se acomodan solas en grilla en vez de
@@ -950,7 +959,7 @@
       <div class="side-nav-racha-label">DÍAS SEGUIDOS</div>
     </div>
   </div>
-  <button type="button" class="side-nav-item" onclick="cerrarSesion()"><span class="ic">🚪</span>Cerrar sesión</button>
+  <button type="button" class="side-nav-logout" onclick="cerrarSesion()"><span class="ic">🚪</span>Cerrar sesión</button>
 </nav>
 <div class="phone" id="phone">
 
