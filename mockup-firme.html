@@ -7,7 +7,7 @@
 
 <!-- PWA: instalable en iOS/iPadOS (Compartir -> Agregar a inicio) y Android (banner de instalar) -->
 <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#4f9dd6">
+<meta name="theme-color" content="#0f766e">
 <link rel="icon" href="/icons/icon-512.png">
 <!-- iOS todavía no lee manifest.json para el ícono/nombre de home screen -- necesita estas etiquetas propias -->
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
@@ -17,36 +17,58 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-1: #eaf6fb;
-    --bg-2: #eafaf1;
-    --frame: #ffffff;
-    --ink: #2b4152;
-    --muted: #74909f;
-    --line: #dfeaee;
-    --accent: #4f9dd6;
-    --accent-soft: #e6f3fb;
-    --firme: #3fac83;
-    --firme-soft: #e3f7ee;
-    --flojo: #e2934f;
-    --flojo-soft: #fcefe0;
-    --nuevo: #8aa4b1;
-    --nuevo-soft: #eef4f6;
-    --atrasado: #d64545;
-    --atrasado-soft: #fbe3e3;
+    /* Rediseño (handoff design_handoff_al_dia) -- paleta ink/teal/amber sobre paper.
+       Los nombres viejos (--accent, --firme, --flojo...) se mantienen como alias
+       para no romper los ~150 usos existentes; los tokens nuevos (--teal, --amber,
+       --paper...) son los que usan los componentes reestilizados. */
+    --paper: #faf9f6;
+    --paper-2: #f4f2ec;
+    --surface: #ffffff;
+    --bg-1: #faf9f6;
+    --bg-2: #faf9f6;
+    --frame: var(--surface);
+    --ink: #14201d;
+    --muted: rgba(20, 32, 29, .6);
+    --text-tertiary: rgba(20, 32, 29, .42);
+    --line: rgba(20, 32, 29, .10);
+    --line-strong: rgba(20, 32, 29, .15);
+
+    --teal: #0f766e;
+    --teal-hover: #0b5a54;
+    --teal-light: #7fe6d0;
+    --teal-tint: rgba(15, 118, 110, .10);
+    --teal-tint-strong: rgba(15, 118, 110, .16);
+    --amber: #e0a33c;
+    --amber-deep: #b8811f;
+    --amber-tint: rgba(224, 163, 60, .14);
+
+    --accent: var(--teal);
+    --accent-soft: var(--teal-tint);
+    --firme: var(--teal);
+    --firme-soft: var(--teal-tint);
+    --flojo: var(--amber);
+    --flojo-soft: var(--amber-tint);
+    --nuevo: #8a958f;
+    --nuevo-soft: var(--paper-2);
+    --atrasado: #c2410c;
+    --atrasado-soft: rgba(194, 65, 12, .12);
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--paper);
     display: flex;
     align-items: flex-start;
     justify-content: center;
     padding: 32px 12px;
     min-height: 100vh;
+  }
+  .mono {
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   }
   .phone {
     position: relative;
@@ -411,6 +433,45 @@
   .stat.firme { background: var(--firme-soft); } .stat.firme .n { color: var(--firme); }
   .stat.flojo { background: var(--flojo-soft); } .stat.flojo .n { color: var(--flojo); }
   .stat.nuevo { background: var(--nuevo-soft); } .stat.nuevo .n { color: var(--ink); }
+
+  /* ---- Hoy (S13) ---- */
+  .hoy-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .hoy-fecha { font-size: 11px; font-weight: 600; letter-spacing: .08em; color: var(--muted); }
+  .hoy-racha-badge { display: none; align-items: center; gap: 5px; background: var(--amber-tint); color: var(--amber-deep); font-weight: 700; font-size: 13px; padding: 6px 10px; border-radius: 20px; height: fit-content; }
+  .hoy-proximo { text-align: right; }
+  .hoy-proximo-label { font-size: 10px; font-weight: 600; letter-spacing: .08em; color: var(--muted); }
+  .hoy-proximo-nombre { font-size: 13.5px; font-weight: 700; margin-top: 2px; }
+  .hoy-proximo-dias { font-size: 12px; font-weight: 600; color: var(--amber-deep); margin-top: 1px; }
+  .hoy-lista { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+  .hoy-item { display: flex; align-items: center; gap: 12px; padding: 13px 14px; cursor: pointer; }
+  .hoy-item-check { width: 18px; height: 18px; border-radius: 6px; border: 1.5px solid var(--line-strong); flex-shrink: 0; }
+  .hoy-item-check.checked { background: var(--teal); border-color: var(--teal); }
+  .hoy-item-info { flex: 1; min-width: 0; }
+  .hoy-item-title { font-size: 13.5px; font-weight: 600; }
+  .hoy-item-sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .hoy-item-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .hoy-item-min { font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .hoy-item-btn { margin-top: 0; width: auto; padding: 8px 14px; font-size: 12px; white-space: nowrap; }
+  .hoy-cols { display: flex; flex-direction: column; gap: 14px; }
+  .hoy-card-head { display: flex; justify-content: space-between; align-items: center; }
+  .hoy-card-head h2, .hoy-semana-card h2 { margin: 0 0 10px; }
+  .hoy-repaso-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); cursor: pointer; }
+  .hoy-repaso-row:first-child { border-top: none; padding-top: 0; }
+  .hoy-repaso-nombre { font-size: 13px; font-weight: 600; }
+  .hoy-repaso-materia { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .hoy-repaso-tag { font-size: 10px; font-weight: 700; letter-spacing: .04em; color: var(--amber-deep); white-space: nowrap; }
+  .hoy-repaso-row.atrasado .hoy-repaso-tag { color: var(--atrasado); }
+  .hoy-semana-row { display: flex; justify-content: space-between; padding: 7px 0; font-size: 12.5px; border-top: 1px solid var(--line); }
+  .hoy-semana-row:first-child { border-top: none; padding-top: 0; }
+  .hoy-semana-row.hoy { color: var(--teal); font-weight: 700; }
+  @media (min-width: 700px) {
+    .hoy-cols { flex-direction: row; }
+    .hoy-cols > .card { flex: 1; }
+  }
+  @media (max-width: 859px) {
+    .hoy-racha-badge { display: flex; }
+  }
+
   .day-card { border: 1px solid var(--line); border-radius: 16px; margin-bottom: 10px; overflow: hidden; }
   .day-head { background: var(--nuevo-soft); padding: 8px 14px; font-size: 12.5px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
   .day-head.today { background: var(--accent-soft); color: var(--accent); }
@@ -540,18 +601,18 @@
      verdad (tipo Supabase/Notion) en vez de un widget flotando arriba de
      la página. */
   .side-nav {
-    display: none; flex-direction: column; gap: 2px; width: 230px; flex-shrink: 0;
-    background: var(--ink); padding: 20px 12px; position: sticky; top: 0;
+    display: none; flex-direction: column; gap: 2px; width: 196px; flex-shrink: 0;
+    background: var(--ink); padding: 20px 10px; position: sticky; top: 0; min-height: 100vh;
   }
-  .side-nav-logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 15px; color: #fff; padding: 4px 10px 22px; }
-  .side-nav-logo .ic { font-size: 20px; }
+  .side-nav-logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; color: #fff; padding: 4px 10px 22px; }
+  .side-nav-logo .ic-logo img { width: 22px; height: 22px; border-radius: 6px; display: block; }
   .side-nav-item {
-    display: flex; align-items: center; gap: 12px; padding: 12px 10px; border-radius: 10px;
-    cursor: pointer; font-size: 14px; font-weight: 700; color: rgba(255,255,255,.6);
+    display: flex; align-items: center; gap: 12px; padding: 11px 10px; border-radius: 7px;
+    cursor: pointer; font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,.62);
   }
-  .side-nav-item:hover { background: rgba(255,255,255,.07); color: #fff; }
-  .side-nav-item.active { background: rgba(255,255,255,.12); color: #fff; }
-  .side-nav-item .ic { font-size: 18px; }
+  .side-nav-item:hover { background: rgba(255,255,255,.06); color: #fff; }
+  .side-nav-item.active { background: var(--teal-tint-strong); color: var(--teal-light); font-weight: 600; }
+  .side-nav-item .ic { font-size: 16px; }
   .side-nav-item .badge-repaso { margin-left: auto; }
   /* "Estudiar" es el único ítem con submenú -- la fila se parte en label
      (navega) + flechita (despliega), en vez de un solo click-target como
@@ -567,11 +628,18 @@
   .side-nav-submenu { display: none; flex-direction: column; gap: 2px; padding-left: 14px; margin: 2px 0 4px; }
   .side-nav-submenu.open { display: flex; }
   .side-nav-subitem {
-    display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px;
-    cursor: pointer; font-size: 12.5px; font-weight: 700; color: rgba(255,255,255,.5);
+    display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 7px;
+    cursor: pointer; font-size: 12.5px; font-weight: 500; color: rgba(255,255,255,.5);
   }
-  .side-nav-subitem:hover { background: rgba(255,255,255,.07); color: #fff; }
+  .side-nav-subitem:hover { background: rgba(255,255,255,.06); color: #fff; }
   .side-nav-subitem .ic { font-size: 14px; }
+  .side-nav-racha {
+    margin-top: auto; display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,.06); border-radius: 9px; padding: 12px 12px;
+  }
+  .side-nav-racha .racha-fuego { font-size: 20px; }
+  .side-nav-racha-num { font-size: 17px; font-weight: 700; color: #fff; line-height: 1.1; }
+  .side-nav-racha-label { font-size: 9.5px; font-weight: 600; letter-spacing: .08em; color: rgba(255,255,255,.5); margin-top: 2px; }
 
   /* Acordeón de "Estudiar": las 3 secciones son mutuamente excluyentes --
      solo el body de la abierta se renderiza, así quedan realmente separadas
@@ -644,7 +712,11 @@
        del menú lateral nuevo. */
     .bottom-nav { display: none !important; }
     body.has-nav .side-nav { display: flex; }
-    body.has-nav .info-rail { display: flex; }
+    /* El panel decorativo de la derecha (.info-rail) queda retirado del
+       rediseño -- las pantallas que necesitan una columna derecha (Estudiar,
+       ver .estudiar-rail) traen su propio contenido específico en vez de un
+       panel genérico repetido en todas. Se deja el markup/CSS de .info-rail
+       sin usar por las dudas, simplemente ya no se activa acá. */
     .caption { max-width: 640px; }
   }
 
@@ -731,10 +803,11 @@
 
 <div class="app-shell">
 <nav class="side-nav" id="sideNav">
-  <div class="side-nav-logo"><span class="ic">📚</span>Al Día</div>
-  <button type="button" class="side-nav-item" data-nav="8" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
-  <button type="button" class="side-nav-item" data-nav="4" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
+  <div class="side-nav-logo"><span class="ic-logo"><img src="/icons/icon-192.png" alt=""></span>Al Día</div>
+  <button type="button" class="side-nav-item" data-nav="13" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+  <button type="button" class="side-nav-item" data-nav="4" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
   <button type="button" class="side-nav-item" data-nav="7" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+  <button type="button" class="side-nav-item" data-nav="8" onclick="go(8)"><span class="ic">📚</span>Materias</button>
   <button type="button" class="side-nav-item" data-nav="6" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
   <div class="side-nav-item side-nav-parent" data-nav="10">
     <button type="button" class="side-nav-item-label" onclick="irAEstudiarPicker()"><span class="ic">📖</span>Estudiar</button>
@@ -744,6 +817,13 @@
     <button type="button" class="side-nav-subitem" onclick="irAEstudiar('tiempo')"><span class="ic">⏱️</span>Tiempo de estudio</button>
     <button type="button" class="side-nav-subitem" onclick="irAEstudiar('fichas')"><span class="ic">🧠</span>Fichas de repaso</button>
     <button type="button" class="side-nav-subitem" onclick="irAEstudiar('resumen')"><span class="ic">📄</span>Resumen de apuntes</button>
+  </div>
+  <div class="side-nav-racha" id="sideNavRacha">
+    <span class="racha-fuego">🔥</span>
+    <div>
+      <div class="side-nav-racha-num mono js-racha-num">0</div>
+      <div class="side-nav-racha-label">DÍAS SEGUIDOS</div>
+    </div>
   </div>
 </nav>
 <div class="phone" id="phone">
@@ -757,7 +837,44 @@
     <div style="color:var(--muted); font-size:13px;">Cargando…</div>
   </div>
 
-  <!-- S0 Bienvenida -->
+  <!-- S13 Hoy -- pantalla de aterrizaje del rediseño (reemplaza S0 como
+       destino post-login; ver manejarSesionActiva()). -->
+  <div class="screen" data-screen="13">
+    <div class="screen-content">
+    <div class="hoy-header">
+      <div>
+        <div class="hoy-fecha mono" id="hoyFecha">—</div>
+        <h1 id="hoyTitulo" style="margin-top:2px;">Hoy</h1>
+      </div>
+      <div class="hoy-racha-badge">🔥<span class="js-racha-num mono">0</span></div>
+      <div class="hoy-proximo" id="hoyProximoExamen"></div>
+    </div>
+    <div class="summary-bar" id="summaryBarHoy"></div>
+    <div class="hoy-lista" id="hoyLista"></div>
+    <div class="hoy-cols">
+      <div class="card hoy-repaso-card">
+        <div class="hoy-card-head">
+          <h2>Repaso</h2>
+          <a href="#" class="ref-link" onclick="event.preventDefault(); go(7);">Ver todo</a>
+        </div>
+        <div id="hoyRepasoPreview"></div>
+      </div>
+      <div class="card hoy-semana-card">
+        <h2>Esta semana</h2>
+        <div id="hoySemana"></div>
+      </div>
+    </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item active"><span class="ic">📅</span>Hoy</div>
+      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
+      <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
+    </div>
+  </div>
+
+  <!-- S0 Bienvenida (sin usar en la navegación real -- ver S13) -->
   <div class="screen" data-screen="0">
     <div class="home-topbar">
       <button class="hamburger" onclick="toggleMenu(true)" aria-label="Menú">☰</button>
@@ -973,10 +1090,10 @@
     <div id="calAgenda"></div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
-      <div class="nav-item active"><span class="ic">📅</span>Calendario</div>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <div class="nav-item active"><span class="ic">🗓️</span>Calendario</div>
       <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <button type="button" class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
+      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
       <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
     </div>
   </div>
@@ -1033,10 +1150,10 @@
     </div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
       <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <div class="nav-item active"><span class="ic">📊</span>Resumen</div>
+      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
       <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
     </div>
   </div>
@@ -1049,15 +1166,15 @@
     <div id="repasoList"></div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
       <div class="nav-item active"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></div>
-      <button type="button" class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
+      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
       <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
     </div>
   </div>
 
-  <!-- S8 Exámenes (antes "Materias") -->
+  <!-- S8 Materias (antes "Exámenes") -->
   <div class="screen" data-screen="8">
     <div class="screen-content">
     <div class="topbar"><button class="back" onclick="go(0)">←</button></div>
@@ -1073,10 +1190,10 @@
     <div id="examenesRendidos"></div>
     </div>
     <div class="bottom-nav" id="materiasBottomNav" style="display:none;">
-      <div class="nav-item active"><span class="ic">📚</span>Exámenes</div>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
       <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <button type="button" class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
+      <div class="nav-item active"><span class="ic">📚</span>Materias</div>
       <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
     </div>
   </div>
@@ -1204,10 +1321,10 @@
     </div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Exámenes</button>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">📅</span>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
       <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <button type="button" class="nav-item" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
+      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
       <div class="nav-item active"><span class="ic">📖</span>Estudiar</div>
     </div>
   </div>
@@ -5000,7 +5117,7 @@ const PANTALLAS_CON_REBOTE = [0, 11];
 // bottom-nav real se mostraría -- se lee su estado en vez de duplicar la
 // condición (ej. Exámenes solo tiene bottom-nav una vez que hay una materia
 // real cargada, vía #materiasBottomNav.style.display).
-const PANTALLAS_CON_NAV = [4, 6, 7, 8, 10];
+const PANTALLAS_CON_NAV = [4, 6, 7, 8, 10, 13];
 function actualizarSideNav() {
   const pantallaActiva = document.querySelector('.screen.active');
   const n = pantallaActiva ? +pantallaActiva.dataset.screen : null;
@@ -6646,6 +6763,23 @@ function duracionDe(tema, e) {
   return base + extra;
 }
 
+// Estimación de minutos de estudio/repaso para un tema, para la pantalla
+// "Hoy" -- no hay un dato real de minutos en ningún lado (DURACIONES son
+// días, no minutos), así que se deriva con una regla simple a partir de la
+// misma duración en días que ya usa el algoritmo de calendario.
+function minutosEstimados(tema) {
+  return Math.min(90, Math.max(15, duracionDe(tema) * 20));
+}
+
+// Días hasta una fecha (ISO yyyy-mm-dd) desde hoy, genérico -- a diferencia
+// de diasHastaExamen(), que lee el input del formulario de alta de materia.
+function diasHasta(fechaISO) {
+  if (!fechaISO) return null;
+  const fecha = new Date(fechaISO + 'T00:00:00');
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  return Math.max(0, Math.round((fecha - hoy) / 86400000));
+}
+
 // Ritmo = cuántos temas podés arrancar EN PARALELO cada vez para ESTA
 // materia sola (no cuántos por día en total, porque un tema puede ocupar
 // varios días). El mínimo se calcula sobre el total de días de estudio que
@@ -7423,7 +7557,117 @@ function updateBadges() {
   // completar un bloque del timer, cada navegación vía go()) -- por eso es
   // un buen lugar único para marcar que hay algo nuevo para guardar, en vez
   // de tener que acordarse de llamarlo a mano en cada función que muta algo.
+  // Mismo motivo para refrescar acá la racha del pie del menú lateral: se ve
+  // en TODAS las pantallas (no solo Resumen), así que necesita actualizarse
+  // en cualquier mutación/navegación, no solo al abrir S6.
+  renderRacha();
   marcarEstadoSucio();
+}
+
+// ---- Hoy (S13): pantalla de aterrizaje después de loguearse (rediseño) ----
+// No agrega estado nuevo -- combina lo que ya calculan generarCalendarioGlobal()
+// (agenda de hoy), contarEstadosGlobal() (conteos) y la misma lógica de
+// atrasados que usa Repaso, todo reutilizado tal cual.
+const FORMATO_FECHA_HOY = new Intl.DateTimeFormat('es-UY', { weekday: 'long', day: 'numeric', month: 'long' });
+
+function itemsRepasoGlobal() {
+  const todayKey = fmt(new Date());
+  const items = [];
+  examenesConCalendario().forEach(e => {
+    e.selected.forEach(t => {
+      if (e.states[t] !== 'firme') {
+        const atrasado = !!(e.proximoRepaso && e.proximoRepaso[t] && e.proximoRepaso[t] < todayKey);
+        items.push({ examId: e.id, materiaNombre: e.materiaNombre, name: t, state: e.states[t], atrasado });
+      }
+    });
+  });
+  items.sort((a, b) => (b.atrasado ? 1 : 0) - (a.atrasado ? 1 : 0));
+  return items;
+}
+
+function renderHoy() {
+  generarCalendarioGlobal();
+  renderSummary('summaryBarHoy');
+
+  const hoy = new Date();
+  const todayKey = fmt(hoy);
+  const fechaEl = document.getElementById('hoyFecha');
+  if (fechaEl) fechaEl.textContent = FORMATO_FECHA_HOY.format(hoy).toUpperCase();
+
+  const entries = ((planGlobal && planGlobal.schedule[todayKey]) || []).filter(t => t.action !== 'final');
+  const tituloEl = document.getElementById('hoyTitulo');
+  if (tituloEl) {
+    tituloEl.textContent = entries.length
+      ? `${entries.length} tema${entries.length === 1 ? '' : 's'} para hoy`
+      : 'Nada agendado para hoy';
+  }
+
+  const listBox = document.getElementById('hoyLista');
+  listBox.innerHTML = entries.length ? entries.map(t => {
+    const estado = estadoDeEntry(t);
+    const esc = t.name.replace(/'/g, "\\'");
+    const min = minutosEstimados(t.name);
+    const contexto = t.action === 'nuevo' ? 'primera vez' : (t.atrasado ? 'atrasado' : (t.totalDias > 1 ? `repaso · día ${t.dia}/${t.totalDias}` : 'repaso'));
+    const accion = estado === 'flojo'
+      ? `<span class="tag repaso-tag">FLOJO</span><button type="button" class="btn secondary hoy-item-btn" onclick="event.stopPropagation(); irAEstudiar('fichas')">Fichas</button>`
+      : `<button type="button" class="btn hoy-item-btn" onclick="event.stopPropagation(); abrirDetalle(${t.examId}, '${esc}')">Empezar</button>`;
+    return `
+    <div class="card hoy-item" onclick="abrirDetalle(${t.examId}, '${esc}')">
+      <div class="hoy-item-check ${estado === 'firme' ? 'checked' : ''}"></div>
+      <div class="hoy-item-info">
+        <div class="hoy-item-title">${t.atrasado ? '⏰ ' : ''}${t.name}</div>
+        <div class="hoy-item-sub">${nombreCorto(t.materiaNombre)} · ${contexto}</div>
+      </div>
+      <div class="hoy-item-right">
+        <span class="hoy-item-min mono">~${min} min</span>
+        ${accion}
+      </div>
+    </div>`;
+  }).join('') : '<div class="empty-state">No tenés nada agendado para hoy. 🎉</div>';
+
+  const activos = examenesConCalendario().slice().sort((a, b) => (a.fecha || '').localeCompare(b.fecha || ''));
+  const proximo = activos.find(e => e.prioridad) || activos[0];
+  const proxBox = document.getElementById('hoyProximoExamen');
+  if (proxBox) {
+    proxBox.innerHTML = proximo ? (() => {
+      const dias = diasHasta(proximo.fecha);
+      return `<div class="hoy-proximo-label mono">PRÓXIMO EXAMEN</div>
+      <div class="hoy-proximo-nombre">${nombreCorto(proximo.materiaNombre)}</div>
+      <div class="hoy-proximo-dias mono">${dias === 0 ? 'es hoy' : `en ${dias} día${dias === 1 ? '' : 's'}`}</div>`;
+    })() : '';
+  }
+
+  const items = itemsRepasoGlobal();
+  const vencidos = items.filter(i => i.atrasado).length;
+  const repasoBox = document.getElementById('hoyRepasoPreview');
+  if (repasoBox) {
+    const top3 = items.slice(0, 3);
+    repasoBox.innerHTML = top3.length
+      ? top3.map(it => `
+        <div class="hoy-repaso-row ${it.atrasado ? 'atrasado' : ''}" onclick="abrirDetalle(${it.examId}, '${it.name.replace(/'/g, "\\'")}', true)">
+          <div><div class="hoy-repaso-nombre">${it.name}</div><div class="hoy-repaso-materia">${nombreCorto(it.materiaNombre)}</div></div>
+          <span class="hoy-repaso-tag mono">${it.atrasado ? 'VENCIÓ' : 'HOY'}</span>
+        </div>`).join('') + (vencidos > 0 ? `<button type="button" class="btn" style="margin-top:10px; width:100%;" onclick="go(7)">Repasar los ${vencidos} vencidos</button>` : '')
+      : '<div class="empty-state" style="padding:20px 8px;">Nada pendiente de repaso.</div>';
+  }
+
+  const semBox = document.getElementById('hoySemana');
+  if (semBox) {
+    const NOMBRES_DIA = ['LUN','MAR','MIÉ','JUE','VIE','SÁB','DOM'];
+    const lunes = addDays(hoy, -((hoy.getDay() + 6) % 7));
+    let html = '';
+    for (let i = 0; i < 7; i++) {
+      const d = addDays(lunes, i);
+      const key = fmt(d);
+      const n = ((planGlobal && planGlobal.schedule[key]) || []).filter(t => t.action !== 'final').length;
+      const esHoy = key === todayKey;
+      html += `<div class="hoy-semana-row ${esHoy ? 'hoy' : ''}">
+        <span class="mono">${NOMBRES_DIA[i]}</span>
+        <span>${n ? `${n} tema${n === 1 ? '' : 's'}` : 'libre'}</span>
+      </div>`;
+    }
+    semBox.innerHTML = html;
+  }
 }
 
 // Repaso (S7): junta los temas pendientes (no firmes) de TODAS las materias
@@ -7767,6 +8011,8 @@ function renderRacha() {
   // Copia chica en Calendario (ver .racha-mini) -- misma racha, dos lugares.
   const elCal = document.getElementById('rachaTextoCal');
   if (elCal) elCal.textContent = texto;
+  // Tarjeta fija al pie del menú lateral y header de Hoy -- mismo dato, tres lugares.
+  document.querySelectorAll('.js-racha-num').forEach(elx => { elx.textContent = racha; });
 }
 
 // ---- Recordatorio diario (S6) -- push real ----
@@ -8360,6 +8606,7 @@ go = function(n) {
   if (n === 7) renderRepaso();
   if (n === 8) renderExamenes();
   if (n === 10) renderEstudiar();
+  if (n === 13) renderHoy();
   updateBadges();
 };
 
@@ -8544,7 +8791,10 @@ async function manejarSesionActiva(session) {
   document.getElementById('navUserEmail').textContent = sesionUsuario.email;
   await cargarEstadoUsuario();
   renderOwnList();
-  go(0);
+  // Rediseño: "Hoy" (S13) es la pantalla de aterrizaje después de loguearse
+  // -- reemplaza a S0 (Bienvenida), que queda sin usar en la navegación real
+  // pero se deja en el DOM por las dudas.
+  go(examenesEnCurso().length ? 13 : 8);
   chequearCheckins();
   document.getElementById('authLoading').style.display = 'none';
 }
