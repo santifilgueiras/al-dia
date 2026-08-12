@@ -259,6 +259,10 @@
   }
   .tema-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; font-size: 13.5px; }
   .tema-row input { width: 17px; height: 17px; accent-color: var(--accent); }
+  /* Rediseño: los temas vienen pre-tildados (opt-out) -- destildar tacha y
+     atenúa la fila en vez de solo vaciar el checkbox, para que se note de
+     un vistazo qué quedó afuera. */
+  .tema-row.destildado { opacity: .5; text-decoration: line-through; }
   .tema-row label { flex: 1; display: flex; align-items: center; gap: 10px; }
   .lupa { border: none; background: none; cursor: pointer; font-size: 14px; padding: 2px 4px; opacity: .6; flex-shrink: 0; }
   .lupa:hover { opacity: 1; }
@@ -274,8 +278,19 @@
   }
   .pace-pill.selected { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
   .pace-warning { color: var(--flojo); font-weight: 700; }
-  .orden-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
-  .orden-row:first-child { border-top: none; }
+  /* Fila reordenable a mano (paso 4, rediseño) -- arrastre nativo HTML5, sin
+     librerías. La fila levantada (.dragging) es la única con feedback
+     visual fuerte; las demás no cambian mientras se arrastra por encima. */
+  .orden-row {
+    display: flex; align-items: center; gap: 10px; padding: 11px 12px; font-size: 13.5px;
+    border: 1px solid var(--line); border-radius: 10px; background: var(--surface);
+    margin-bottom: 6px; cursor: grab;
+  }
+  .orden-row.dragging {
+    opacity: .6; border: 1.5px dashed var(--teal); transform: rotate(-.6deg);
+    box-shadow: 0 6px 16px rgba(0,0,0,.1); cursor: grabbing;
+  }
+  .orden-handle { color: var(--muted); font-size: 15px; flex-shrink: 0; }
   .orden-row .num { width: 20px; flex-shrink: 0; color: var(--muted); font-weight: 700; font-size: 12px; }
   .orden-row .name { flex: 1; }
   .orden-row .name small { display: block; color: var(--muted); font-weight: 400; font-size: 11.5px; }
@@ -693,6 +708,24 @@
     .estudiar-rail { width: 260px; flex-shrink: 0; }
   }
 
+  /* .study-section-chevron sigue en pie solo para el acordeón de carreras
+     agrupadas por facultad (toggleGrupoFacultad, ver S12) -- no tiene
+     relación con el acordeón de Estudiar que reemplazaron las pestañas de
+     arriba, coincide el nombre nomás. */
+  .study-section-chevron { color: var(--muted); font-size: 12px; transition: transform .18s; flex-shrink: 0; display: inline-flex; }
+  .study-section-chevron.open { transform: rotate(90deg); }
+
+  /* Indicador de paso del alta de materia (rediseño, 4 pasos). */
+  .paso-indicador { margin-bottom: 14px; }
+  .paso-label { font-size: 11px; font-weight: 600; letter-spacing: .08em; color: var(--teal); }
+  .paso-bars { display: flex; gap: 4px; margin-top: 6px; }
+  .paso-bar { width: 22px; height: 3px; border-radius: 2px; background: rgba(20,32,29,.12); }
+  .paso-bar.filled { background: var(--teal); }
+  .buscador-input {
+    width: 100%; padding: 11px 14px; border: 1px solid var(--line); border-radius: 10px;
+    font-family: inherit; font-size: 13.5px; margin-bottom: 14px;
+  }
+
   /* Dropzone real para Resumen de apuntes (rediseño) -- antes era un
      <input type=file> desnudo. */
   .dropzone {
@@ -1023,27 +1056,31 @@
     </div>
   </div>
 
-  <!-- S12 Elegir facultad -->
+  <!-- S12 Elegir facultad (Paso 1 de 4: Carrera) -->
   <div class="screen" data-screen="12">
     <div class="topbar"><button class="back" onclick="go(8)">←</button></div>
+    <div class="paso-indicador"><div class="paso-label mono">PASO 1 DE 4</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar"></span><span class="paso-bar"></span><span class="paso-bar"></span></div></div>
     <h1>¿Qué carrera estás estudiando?</h1>
     <p class="sub">Elegí tu facultad para ver qué materias tenemos cargadas.</p>
+    <input type="search" class="buscador-input" id="facultadBuscador" placeholder="Buscar carrera..." oninput="filtrarFacultades()" aria-label="Buscar carrera">
     <div id="facultadesList"></div>
     <div class="spacer"></div>
   </div>
 
-  <!-- S1 Elegir año/semestre -->
+  <!-- S1 Elegir año/semestre (Paso 2 de 4: Materia -- primero el semestre) -->
   <div class="screen" data-screen="1">
     <div class="topbar"><button class="back" onclick="go(12)">←</button></div>
+    <div class="paso-indicador"><div class="paso-label mono">PASO 2 DE 4</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar"></span><span class="paso-bar"></span></div></div>
     <h1 id="anioTitle">¿En qué año estás?</h1>
     <p class="sub" id="anioSub">Elegí el año de la carrera para ver qué materias tenemos cargadas.</p>
     <div id="aniosList" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
     <div class="spacer"></div>
   </div>
 
-  <!-- S9 Elegir materia (del año elegido) -->
+  <!-- S9 Elegir materia (del año elegido) (Paso 2 de 4: Materia) -->
   <div class="screen" data-screen="9">
     <div class="topbar"><button class="back" onclick="go(1)">←</button></div>
+    <div class="paso-indicador"><div class="paso-label mono">PASO 2 DE 4</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar"></span><span class="paso-bar"></span></div></div>
     <h1 id="materiaAnioTitle">Materias</h1>
     <p class="sub">Elegí una materia con catálogo cargado, o escribí el nombre de la tuya si no está.</p>
     <div id="materiasDelAnio"></div>
@@ -1055,9 +1092,10 @@
     <div class="spacer"></div>
   </div>
 
-  <!-- S2 Elegir temas -->
+  <!-- S2 Elegir temas (Paso 3 de 4: Temas) -->
   <div class="screen" data-screen="2">
     <div class="topbar"><button class="back" onclick="go(1)">←</button></div>
+    <div class="paso-indicador"><div class="paso-label mono">PASO 3 DE 4</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar"></span></div></div>
     <h1>Elegí tus temas</h1>
     <p class="sub" id="elegirTemasSub">Tildá del catálogo de la cátedra, o agregá los tuyos si te falta algo puntual — quedan todos juntos acá abajo.</p>
 
@@ -1069,6 +1107,11 @@
       <button onclick="addOwn()">+ Agregar</button>
     </div>
     <div id="ownList"></div>
+    <button type="button" class="ref-link" style="border:none; background:none; cursor:pointer; padding:6px 0;" onclick="togglePegarLista()">📋 ¿Tenés varios? Pegar mi lista</button>
+    <div id="pegarListaBox" style="display:none; margin:6px 0 10px;">
+      <textarea id="pegarListaTextarea" rows="4" placeholder="Un tema por línea" style="width:100%; padding:10px; border:1px solid var(--line); border-radius:10px; font-family:inherit; font-size:13px; resize:vertical;"></textarea>
+      <button type="button" class="btn secondary" style="margin-top:8px; width:auto;" onclick="confirmarPegarLista()">Agregar todos</button>
+    </div>
 
     <div class="selected-bar">
       <div style="font-size:12.5px; color:var(--muted); margin-bottom:8px;">
@@ -1078,32 +1121,28 @@
     </div>
   </div>
 
-  <!-- S3 Configurar -->
+  <!-- S3 Configurar (Paso 4 de 4: Fecha y orden) -->
   <div class="screen" data-screen="3">
     <div class="topbar"><button class="back" onclick="go(2)">←</button></div>
-    <h1>Configurá el plazo</h1>
-    <p class="sub">Con esto armamos el calendario de repaso de <strong id="materiaConfigNombre">tu examen</strong>.</p>
-
-    <h2 style="margin-top:0;">Orden de estudio</h2>
-    <p class="sub" style="margin-bottom:10px;">Los ordené así por defecto siguiendo el programa de la cátedra. Movelos si preferís otro orden — el calendario respeta este orden, un tema termina antes de que arranque el siguiente.</p>
-    <div id="ordenList" style="margin-bottom:18px;"></div>
+    <div class="paso-indicador"><div class="paso-label mono">PASO 4 DE 4</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar filled"></span></div></div>
+    <h1>Fecha y orden</h1>
+    <p class="sub">Arrastrá para poner primero lo que se da al principio del curso de <strong id="materiaConfigNombre">tu examen</strong>.</p>
 
     <div class="field">
       <label for="examDate">Fecha del examen</label>
       <input type="date" id="examDate" onchange="renderRitmo()" autocomplete="off">
-      <div id="examDateError" style="display:none; color:var(--flojo); font-size:12px; font-weight:700; margin-top:6px;"></div>
+      <div id="examDateError" style="display:none; color:var(--atrasado); font-size:12px; font-weight:700; margin-top:6px;"></div>
     </div>
-    <div class="field">
-      <div id="ritmoTexto" style="font-size:12.5px; color:var(--muted); line-height:1.5; margin-bottom:10px;"></div>
-      <label>¿Hasta cuántos temas en paralelo podés llegar a meter como máximo?</label>
-      <div id="ritmoOptions" style="display:flex; gap:8px; margin-top:8px; flex-wrap:wrap;"></div>
-      <div id="pacePersonalizadoBox" style="display:none; margin-top:8px;">
-        <input type="number" min="1" class="pace-custom" id="pacePersonalizado" placeholder="Ej: 5" onchange="pickPaceCustom()">
-      </div>
-      <div id="tiempoEstimado" style="font-size:12px; color:var(--muted); margin-top:10px;"></div>
-    </div>
+    <div id="ritmoTexto" class="mono" style="font-size:12.5px; color:var(--teal); font-weight:600; margin:2px 0 18px;"></div>
+
+    <div class="section-label-mono">ORDEN DE LOS TEMAS</div>
+    <div id="ordenList" style="margin-bottom:18px;"></div>
+
     <div class="spacer"></div>
-    <button class="btn" id="btnGenerar" onclick="generarCalendario()" disabled>📚 Generar calendario</button>
+    <div style="display:flex; gap:10px;">
+      <button type="button" class="btn secondary" style="flex:0 0 auto; margin-top:0; width:auto; padding:13px 20px;" onclick="go(2)">Atrás</button>
+      <button class="btn" id="btnGenerar" style="flex:1; margin-top:0;" onclick="generarCalendario()" disabled>Crear el plan de repaso</button>
+    </div>
   </div>
 
   <!-- S4 Calendario -->
@@ -5218,7 +5257,14 @@ function renderCatalogo() {
     return;
   }
   list.style.display = '';
-  if (sub) sub.textContent = 'Tildá del catálogo de la cátedra, o agregá los tuyos si te falta algo puntual — quedan todos juntos acá abajo.';
+  if (sub) sub.textContent = 'Vienen todos tildados del programa de la cátedra -- destildá lo que no entra en tu examen, o agregá los tuyos si te falta algo puntual.';
+  // Rediseño: opt-out en vez de opt-in -- la primera vez que se abre un
+  // catálogo (selected vacío, siempre el caso al llegar acá con una materia
+  // recién elegida) se tildan todos los temas de entrada, en vez de arrancar
+  // todo destildado y que el estudiante tenga que tildar uno por uno.
+  if (selected.length === 0) {
+    modulos.forEach(mod => mod.temas.forEach(t => { if (!selected.includes(t)) selected.push(t); }));
+  }
   list.innerHTML = '';
   modulos.forEach((mod, mi) => {
     const div = document.createElement('div');
@@ -5231,14 +5277,18 @@ function renderCatalogo() {
       </div>
       <div class="modulo-body">
         <span class="modulo-select-all" onclick="seleccionarTodoModulo(${mi})">Seleccionar todos</span>
-        ${mod.temas.map((t,ti) => `
-          <label class="tema-row">
-            <input type="checkbox" data-tema="${t.replace(/"/g,'&quot;')}" onchange="toggleTema('${t.replace(/'/g,"\\'")}', this.checked)">
+        ${mod.temas.map((t,ti) => {
+          const checked = selected.includes(t);
+          return `
+          <label class="tema-row${checked ? '' : ' destildado'}">
+            <input type="checkbox" data-tema="${t.replace(/"/g,'&quot;')}" ${checked ? 'checked' : ''} onchange="toggleTema('${t.replace(/'/g,"\\'")}', this.checked); this.closest('.tema-row').classList.toggle('destildado', !this.checked);">
             ${t}
-          </label>`).join('')}
+          </label>`;
+        }).join('')}
       </div>`;
     list.appendChild(div);
   });
+  updateSelCount();
 }
 
 // Tilda de una sola vez todos los temas de un módulo (ej. "Cardiovascular"),
@@ -5250,6 +5300,7 @@ function seleccionarTodoModulo(mi) {
   if (!body) return;
   body.querySelectorAll('input[type=checkbox]').forEach(cb => {
     cb.checked = true;
+    cb.closest('.tema-row').classList.remove('destildado');
     toggleTema(cb.dataset.tema, true);
   });
 }
@@ -5272,6 +5323,27 @@ function addOwn() {
   // se queda en la misma pantalla, el tema nuevo aparece al final de la lista
   const box = document.getElementById('ownList');
   box.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+function togglePegarLista() {
+  const box = document.getElementById('pegarListaBox');
+  box.style.display = box.style.display === 'none' ? 'block' : 'none';
+}
+
+// Escape hatch del paso 3 (rediseño): agrega varios temas propios de una
+// sola vez reutilizando addOwn() tema por tema, en vez de duplicar su
+// lógica (ownTemas/selected, re-render, contador).
+function confirmarPegarLista() {
+  const ta = document.getElementById('pegarListaTextarea');
+  const lineas = ta.value.split('\n').map(l => l.trim()).filter(Boolean);
+  const input = document.getElementById('ownInput');
+  let agregados = 0;
+  lineas.forEach(linea => {
+    if (!selected.includes(linea)) { input.value = linea; addOwn(); agregados++; }
+  });
+  ta.value = '';
+  document.getElementById('pegarListaBox').style.display = 'none';
+  showToast(agregados ? `${agregados} tema${agregados === 1 ? '' : 's'} agregado${agregados === 1 ? '' : 's'}` : 'No había temas nuevos para agregar');
 }
 
 function renderOwnList() {
@@ -5339,22 +5411,43 @@ function renderOrden() {
   box.innerHTML = selected.map((t, i) => {
     const dur = duracionDe(t);
     return `
-    <div class="orden-row">
-      <span class="num">${i + 1}</span>
+    <div class="orden-row" draggable="true" data-idx="${i}"
+         ondragstart="ordenDragStart(event)" ondragover="ordenDragOver(event)"
+         ondrop="ordenDrop(event)" ondragend="ordenDragEnd(event)">
+      <span class="orden-handle">⠿</span>
+      <span class="num mono">${i + 1}</span>
       <span class="name">${t}<small>${dur} día${dur > 1 ? 's' : ''} de estudio estimado</small></span>
-      <div class="orden-btns">
-        <button ${i === 0 ? 'disabled' : ''} onclick="moverTema(${i},-1)" title="Subir">▲</button>
-        <button ${i === selected.length - 1 ? 'disabled' : ''} onclick="moverTema(${i},1)" title="Bajar">▼</button>
-      </div>
     </div>`;
   }).join('');
 }
 
-function moverTema(i, dir) {
-  const j = i + dir;
-  if (j < 0 || j >= selected.length) return;
-  [selected[i], selected[j]] = [selected[j], selected[i]];
+// Reordenar por drag & drop nativo (paso 4, rediseño) -- reemplaza los
+// botones ▲▼ de antes, pero sigue mutando el mismo array `selected` que ya
+// consume construirSchedulePara(), así que no hace falta tocar el algoritmo
+// de calendario para nada.
+let ordenDragIdx = null;
+function ordenDragStart(e) {
+  ordenDragIdx = +e.currentTarget.dataset.idx;
+  e.currentTarget.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', String(ordenDragIdx));
+}
+function ordenDragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+}
+function ordenDrop(e) {
+  e.preventDefault();
+  const destIdx = +e.currentTarget.dataset.idx;
+  if (ordenDragIdx === null || destIdx === ordenDragIdx) return;
+  const [moved] = selected.splice(ordenDragIdx, 1);
+  selected.splice(destIdx, 0, moved);
+  ordenDragIdx = null;
   renderOrden();
+}
+function ordenDragEnd() {
+  ordenDragIdx = null;
+  document.querySelectorAll('.orden-row.dragging').forEach(r => r.classList.remove('dragging'));
 }
 
 function addDays(date, n) {
@@ -6859,67 +6952,29 @@ function validarFechaExamen() {
   return true;
 }
 
+// Rediseño: ya no hay picker manual de ritmo (paralelo de temas) -- se usa
+// siempre el mínimo necesario para llegar a tiempo (r.minPace), que además
+// ya era el default de facto de la versión anterior en el caso común. El
+// número en sí sigue siendo el mismo que ya usa generarCalendarioGlobal()
+// (recalculado fresco ahí, e.selectedPace acá es solo el flag de "esta
+// materia ya terminó de configurarse" que lee examenesConCalendario()).
 function renderRitmo() {
   renderOrden();
   const eActual = examActual();
-  document.getElementById('btnGenerar').textContent = (eActual && eActual.selectedPace) ? '📚 Actualizar calendario' : '📚 Generar calendario';
+  const btn = document.getElementById('btnGenerar');
+  btn.textContent = (eActual && eActual.selectedPace) ? 'Actualizar el plan de repaso' : 'Crear el plan de repaso';
+  const texto = document.getElementById('ritmoTexto');
   if (!validarFechaExamen()) {
-    document.getElementById('btnGenerar').disabled = true;
-    document.getElementById('ritmoTexto').innerHTML = '';
-    document.getElementById('ritmoOptions').innerHTML = '';
-    document.getElementById('tiempoEstimado').textContent = '';
+    btn.disabled = true;
+    texto.textContent = '';
     return;
   }
   const r = calcularRitmo();
-  const texto = document.getElementById('ritmoTexto');
-  const warn = r.minPace > 4 ? `<div class="pace-warning">Es justo: sumando los días que estimamos que lleva cada tema, con ${r.diasUtiles} días útiles vas ajustado. Si podés, sumá algún día más de estudio.</div>` : '';
-  texto.innerHTML = `Elegiste <strong>${r.N} temas</strong>, que entre todos estimamos que llevan unos <strong>${r.totalDuracion} días de estudio</strong> (no todos pesan igual -- los más densos ocupan varios días seguidos, no uno solo). Quedan <strong>${r.diasUtiles} días útiles</strong> antes del examen. Para llegar a tiempo necesitás arrancar como mínimo <strong>${r.minPace} temas en paralelo</strong> por vez -- esto es un tope máximo, no una obligación: si un tema alcanza para llenar el día, no metemos otro al lado solo por completar el número. Si tenés otras materias en curso, el calendario las combina a todas y puede adelantar o atrasar un poco el arranque de esta según cuál sea más urgente o cuál hayas marcado como prioritaria. ${warn}`;
-
-  const opts = document.getElementById('ritmoOptions');
-  opts.innerHTML = '';
-  for (let p = r.minPace; p <= r.maxPace; p++) {
-    const pill = document.createElement('div');
-    pill.className = 'pace-pill' + (p === selectedPace ? ' selected' : '');
-    pill.textContent = `${p} / día`;
-    pill.onclick = () => pickPace(p);
-    opts.appendChild(pill);
-  }
-  const otro = document.createElement('div');
-  otro.className = 'pace-pill' + (selectedPace !== null && selectedPace > r.maxPace ? ' selected' : '');
-  otro.textContent = 'Otro';
-  otro.onclick = () => {
-    document.getElementById('pacePersonalizadoBox').style.display = 'block';
-    document.getElementById('pacePersonalizado').focus();
-  };
-  opts.appendChild(otro);
-
-  if (selectedPace === null || selectedPace < r.minPace) {
-    selectedPace = r.minPace; // default: el ritmo justo y necesario
-  }
-  if (selectedPace > r.maxPace) {
-    document.getElementById('pacePersonalizadoBox').style.display = 'block';
-    document.getElementById('pacePersonalizado').value = selectedPace;
-  }
-  pickPace(selectedPace);
-}
-
-function pickPace(p) {
-  selectedPace = p;
-  document.querySelectorAll('.pace-pill').forEach(el => {
-    el.classList.toggle('selected', el.textContent.startsWith(String(p) + ' '));
-  });
-  const r = calcularRitmo();
-  document.getElementById('tiempoEstimado').textContent = p > r.minPace
-    ? `Este es tu techo de tolerancia (hasta ${p} en paralelo si hiciera falta). Con lo que elegiste, en realidad alcanza con ${r.minPace} a la vez -- el plan va a ir tema por tema, entero, salvo que más adelante haga falta acelerar.`
-    : `Vas a tener como máximo ${p} tema${p>1?'s':''} en curso al mismo tiempo, y solo si hace falta para llegar a tiempo -- si con menos alcanza, se estudia uno por vez, entero.`;
-  document.getElementById('btnGenerar').disabled = false;
-}
-
-function pickPaceCustom() {
-  const v = parseInt(document.getElementById('pacePersonalizado').value, 10);
-  if (!v || v < 1) return;
-  document.querySelectorAll('.pace-pill').forEach(el => el.classList.remove('selected'));
-  pickPace(v);
+  const { dias } = diasHastaExamen();
+  const minutosPorDia = Math.round((r.totalDuracion * 20) / Math.max(1, r.diasUtiles));
+  texto.textContent = `en ${dias} día${dias === 1 ? '' : 's'} · ~${minutosPorDia} min de repaso por día`;
+  selectedPace = r.minPace;
+  btn.disabled = false;
 }
 
 // Intervalos del repaso espaciado, en días desde el ÚLTIMO repaso real (no
@@ -7842,6 +7897,15 @@ function renderFacultades() {
       </div>
     </div>`;
   }).join('');
+}
+
+// Buscador del paso 1 (rediseño): filtra las tarjetas ya renderizadas por
+// texto en vez de reimplementar el agrupado de renderFacultades().
+function filtrarFacultades() {
+  const q = (document.getElementById('facultadBuscador').value || '').toLowerCase().trim();
+  document.querySelectorAll('#facultadesList > .card').forEach(card => {
+    card.style.display = card.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
 }
 
 function toggleGrupoFacultad(headEl) {
