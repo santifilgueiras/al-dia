@@ -1130,6 +1130,12 @@
     <h1 id="materiaAnioTitle">Materias</h1>
     <p class="sub">Elegí una materia con catálogo cargado, o escribí el nombre de la tuya si no está.</p>
     <div id="materiasDelAnio"></div>
+    <div class="selected-bar" id="materiasSelectedBar" style="display:none;">
+      <div style="font-size:12.5px; color:var(--muted); margin-bottom:8px;">
+        <span id="materiasSelCount">0</span> materias elegidas
+      </div>
+      <button type="button" class="btn" onclick="confirmarMateriasElegidas()">Continuar</button>
+    </div>
     <h2>¿No está tu materia?</h2>
     <div class="own-input">
       <input type="text" id="materiaPropiaInput" placeholder="Ej: Farmacología II" aria-label="Nombre de tu materia">
@@ -1142,6 +1148,7 @@
   <div class="screen" data-screen="2">
     <div class="topbar"><button class="back" onclick="go(1)">←</button></div>
     <div class="paso-indicador"><div class="paso-label mono">PASO 3 DE 4</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar"></span></div></div>
+    <div class="section-label-mono" id="colaBannerS2" style="display:none; border-bottom:none; margin-bottom:8px;"></div>
     <h1>Elegí tus temas</h1>
     <p class="sub" id="elegirTemasSub">Tildá del catálogo de la cátedra, o agregá los tuyos si te falta algo puntual — quedan todos juntos acá abajo.</p>
 
@@ -1171,6 +1178,7 @@
   <div class="screen" data-screen="3">
     <div class="topbar"><button class="back" onclick="go(2)">←</button></div>
     <div class="paso-indicador"><div class="paso-label mono">PASO 4 DE 4</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar filled"></span></div></div>
+    <div class="section-label-mono" id="colaBannerS3" style="display:none; border-bottom:none; margin-bottom:8px;"></div>
     <h1>Fecha y orden</h1>
     <p class="sub">Arrastrá para poner primero lo que se da al principio del curso de <strong id="materiaConfigNombre">tu examen</strong>.</p>
 
@@ -5300,6 +5308,7 @@ function irAEstudiar(name) {
 }
 
 function renderCatalogo() {
+  renderColaBanner('colaBannerS2');
   const list = document.getElementById('modulosList');
   const e = examActual();
   const sub = document.getElementById('elegirTemasSub');
@@ -7025,6 +7034,7 @@ function validarFechaExamen() {
 // (recalculado fresco ahí, e.selectedPace acá es solo el flag de "esta
 // materia ya terminó de configurarse" que lee examenesConCalendario()).
 function renderRitmo() {
+  renderColaBanner('colaBannerS3');
   renderOrden();
   const eActual = examActual();
   const btn = document.getElementById('btnGenerar');
@@ -7182,7 +7192,13 @@ function generarCalendario() {
       e.touched = touched;
     }
     calYear = null; calMonth = null; calSelectedKey = null; // reanclar la grilla al mes de hoy
-    go(4);
+    // Alta múltiple (rediseño): si queda otra materia en la cola, seguir con
+    // ella en vez de terminar en el calendario.
+    if (!empezarSiguienteDeCola()) {
+      colaMateriasTotal = 0;
+      colaContexto = null;
+      go(4);
+    }
   }, 350);
 }
 
@@ -7913,6 +7929,19 @@ function renderHome() {
 // Crea un examen "borrador" (todavía no confirmado): si el estudiante se
 // arrepiente y vuelve atrás antes de elegir materia, se descarta solo, sin
 // dejar una entrada vacía en la lista de exámenes.
+// ---- Alta múltiple de materias (rediseño, paso 2) ----
+// El wizard sigue siendo "una materia = un borradorExamen", pero el paso 2
+// ahora permite tildar varias materias de una sola vez -- colaMaterias
+// guarda las que quedan pendientes después de la primera, colaContexto
+// recuerda la facultad/año de la tanda (borradorExamen se pone en null en
+// cada commitBorrador(), así que ese contexto no sobrevive solo). Al
+// terminar temas+fecha de una materia, generarCalendario() revisa la cola
+// antes de ir al calendario -- si queda algo, arranca la siguiente en vez
+// de terminar.
+let colaMaterias = [];
+let colaContexto = null;
+let colaMateriasTotal = 0; // tamaño fijo de la tanda actual, para el cartel "Materia N de TOTAL"
+
 function agregarExamen() {
   guardarExamenActual();
   borradorExamen = { selected: [], ownTemas: [], states: {}, touched: {}, proximoRepaso: {}, intervaloIdx: {}, selectedPace: null, prioridad: false, rendidaManual: false, fechaRendidaLabel: '', materiaNombre: '', fecha: '', usaCatalogo: true, facultad: null, anio: null, modulos: [] };
@@ -7920,6 +7949,9 @@ function agregarExamen() {
   selected = borradorExamen.selected;
   ownTemas = borradorExamen.ownTemas;
   selectedPace = null;
+  colaMaterias = [];
+  colaContexto = null;
+  colaMateriasTotal = 0;
   go(12);
 }
 
@@ -8013,31 +8045,107 @@ function elegirAnio(anio) {
   go(9);
 }
 
+// Rediseño: multi-selección (checkboxes) en vez de un click por tarjeta que
+// confirmaba de una -- materiasSeleccionadasIdx junta los índices tildados
+// de la lista actual, confirmarMateriasElegidas() los convierte en la cola.
+let materiasSeleccionadasIdx = [];
+
 function renderMateriasDelAnio() {
   const f = facultadDe(borradorExamen ? borradorExamen.facultad : null);
   const anio = borradorExamen ? borradorExamen.anio : null;
   document.getElementById('materiaAnioTitle').textContent = anio ? `Materias de ${f.cicloLabel(anio)}` : 'Materias';
   const materias = (anio && f.catalogoPorCiclo[anio]) || [];
+  materiasSeleccionadasIdx = [];
   const box = document.getElementById('materiasDelAnio');
   box.innerHTML = materias.length ? materias.map((m, i) => `
-    <div class="card" style="border-color:var(--accent); background:var(--accent-soft); cursor:pointer;" onclick="elegirMateriaCatalogo(${i})">
-      <span class="pill">${contextoFor(f.key, anio)}</span>
-      <div style="font-weight:800; font-size:16px; margin-top:8px;">${f.iconoMateria} ${m.nombre}</div>
-      <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${m.modulos.length} módulos · ${m.modulos.reduce((s,mo)=>s+mo.temas.length,0)} temas en el catálogo</div>
-    </div>`).join('') : '<div class="empty-state">Todavía no tenemos materias cargadas para este ' + f.cicloNombre + ' -- agregá la tuya abajo con tus propios temas.</div>';
+    <label class="card" style="border-color:var(--accent); background:var(--accent-soft); cursor:pointer; display:flex; align-items:flex-start; gap:10px;">
+      <input type="checkbox" style="margin-top:3px; width:17px; height:17px; flex-shrink:0; accent-color:var(--accent);" onchange="toggleMateriaDelAnio(${i}, this.checked)">
+      <div style="flex:1; min-width:0;">
+        <span class="pill">${contextoFor(f.key, anio)}</span>
+        <div style="font-weight:800; font-size:16px; margin-top:8px;">${f.iconoMateria} ${m.nombre}</div>
+        <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${m.modulos.length} módulos · ${m.modulos.reduce((s,mo)=>s+mo.temas.length,0)} temas en el catálogo</div>
+      </div>
+    </label>`).join('') : '<div class="empty-state">Todavía no tenemos materias cargadas para este ' + f.cicloNombre + ' -- agregá la tuya abajo con tus propios temas.</div>';
+  actualizarBarraMaterias();
 }
 
-function elegirMateriaCatalogo(idx) {
-  if (!borradorExamen) return;
+function toggleMateriaDelAnio(idx, checked) {
+  if (checked) { if (!materiasSeleccionadasIdx.includes(idx)) materiasSeleccionadasIdx.push(idx); }
+  else { materiasSeleccionadasIdx = materiasSeleccionadasIdx.filter(i => i !== idx); }
+  actualizarBarraMaterias();
+}
+
+function actualizarBarraMaterias() {
+  const bar = document.getElementById('materiasSelectedBar');
+  if (!bar) return;
+  document.getElementById('materiasSelCount').textContent = materiasSeleccionadasIdx.length;
+  bar.style.display = materiasSeleccionadasIdx.length ? 'block' : 'none';
+}
+
+// Confirma la tanda: la primera materia arranca ya (temas -> fecha ->
+// generar, como siempre); el resto queda en colaMaterias, y
+// generarCalendario() la va destilando sola al terminar cada una.
+function confirmarMateriasElegidas() {
+  if (!borradorExamen || !materiasSeleccionadasIdx.length) return;
   const f = facultadDe(borradorExamen.facultad);
   const materias = f.catalogoPorCiclo[borradorExamen.anio] || [];
-  const m = materias[idx];
-  if (!m) return;
+  const elegidas = materiasSeleccionadasIdx.map(i => materias[i]).filter(Boolean);
+  if (!elegidas.length) return;
+  colaContexto = { facultad: borradorExamen.facultad, anio: borradorExamen.anio };
+  colaMaterias = elegidas.slice(1);
+  colaMateriasTotal = elegidas.length;
+  empezarMateriaDelCatalogo(elegidas[0]);
+}
+
+function empezarMateriaDelCatalogo(m) {
   borradorExamen.materiaNombre = m.nombre;
   borradorExamen.usaCatalogo = true;
   borradorExamen.modulos = m.modulos;
   commitBorrador();
   go(2);
+}
+
+// Arranca la siguiente materia de la cola (si hay) armando un
+// borradorExamen fresco con la misma facultad/año de la tanda -- mismo
+// shape que agregarExamen(), pero con la materia ya elegida de antes.
+// Devuelve true si arrancó otra, false si la cola ya estaba vacía.
+function empezarSiguienteDeCola() {
+  if (!colaMaterias.length) return false;
+  const m = colaMaterias.shift();
+  borradorExamen = {
+    selected: [], ownTemas: [], states: {}, touched: {}, proximoRepaso: {}, intervaloIdx: {},
+    selectedPace: null, prioridad: false, rendidaManual: false, fechaRendidaLabel: '',
+    materiaNombre: m.nombre, fecha: '', usaCatalogo: true,
+    facultad: colaContexto.facultad, anio: colaContexto.anio, modulos: m.modulos,
+  };
+  examenActualId = null;
+  selected = borradorExamen.selected;
+  ownTemas = borradorExamen.ownTemas;
+  selectedPace = null;
+  commitBorrador();
+  // El input #examDate sigue mostrando la fecha de la materia anterior (no
+  // se limpia solo al cambiar de pantalla) -- si no se vacía acá, el
+  // guardarExamenActual() que dispara el próximo go() la copiaría sin
+  // querer a esta materia nueva antes de que el estudiante toque nada.
+  const dateInput = document.getElementById('examDate');
+  if (dateInput) dateInput.value = '';
+  go(2);
+  showToast(`Ahora elegí los temas de ${nombreCorto(m.nombre)}${colaMaterias.length ? ` (quedan ${colaMaterias.length} más)` : ''}`);
+  return true;
+}
+
+// Cartel "MATERIA N DE TOTAL" en los pasos 3 y 4 -- solo se ve cuando la
+// tanda actual tiene más de una materia (alta simple no cambia).
+function renderColaBanner(targetId) {
+  const el = document.getElementById(targetId);
+  if (!el) return;
+  if (colaMateriasTotal > 1) {
+    const pos = colaMateriasTotal - colaMaterias.length;
+    el.textContent = `MATERIA ${pos} DE ${colaMateriasTotal}`;
+    el.style.display = 'block';
+  } else {
+    el.style.display = 'none';
+  }
 }
 
 function elegirMateriaPropia() {
@@ -8055,6 +8163,9 @@ function abrirExamen(id) {
   guardarExamenActual();
   examenActualId = id;
   cargarExamenActual();
+  // Editar una materia ya existente nunca es parte de una tanda de alta
+  // múltiple en curso -- corta cualquier cola/cartel que hubiera quedado.
+  colaMaterias = []; colaContexto = null; colaMateriasTotal = 0;
   const e = examActual();
   if (e.selected.length) go(3);
   else go(1);
