@@ -1017,17 +1017,6 @@
        scroll -- ver esa función en el JS (aplica en cualquier ancho, no
        solo en compu). */
     height: var(--cal-cell-h, auto);
-    /* Santiago reportó el calendario "bugueado" a veces (borde de una celda
-       pintado corrido/superpuesto sobre las vecinas, captura 2026-08-13) --
-       encaja con un glitch de repintado conocido de WebKit en grillas CSS
-       cuando el borde/fondo de una celda cambia (transition de arriba) al
-       mismo tiempo que --cal-cell-h se recalcula por JS. translateZ(0)
-       fuerza cada celda a su propia capa de composición, el workaround
-       estándar para este tipo de glitch -- no se pudo reproducir de forma
-       confiable en esta máquina para confirmar del todo, avisar si sigue
-       pasando después de este cambio. */
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
   }
   .cal-cell.empty { border-color: transparent; cursor: default; }
   .cal-cell .cal-daynum { font-size: 10.5px; font-weight: 800; color: var(--ink); line-height: 1; }
@@ -1052,10 +1041,21 @@
   .cal-cell.has-flojo .cal-daynum { color: var(--flojo); }
   .cal-cell.has-atrasado { background: var(--atrasado-soft); border-color: var(--atrasado); }
   .cal-cell.has-atrasado .cal-daynum { color: var(--atrasado); }
+  /* Las celdas superpuestas que reportó Santiago (2026-08-13, varias veces,
+     mismo patrón desde el primer reporte) coinciden con un problema
+     conocido de WebKit: la técnica vieja de recorte a 2 líneas
+     (display:-webkit-box + -webkit-line-clamp) no siempre reajusta bien su
+     caja cuando el alto de la celda que la contiene cambia por JS DESPUÉS
+     del primer render -- que es exactamente lo que hace
+     ajustarAlturaCalendario() acá. No se pudo confirmar en ningún entorno
+     de desarrollo disponible (Chrome no tiene ese bug, usa otro motor), así
+     que se cambia por max-height + overflow:hidden -- más simple, sin la
+     caja exótica -webkit-box, se banca un cambio de alto sin re-layout raro.
+     Se pierden los "..." al final del texto cortado, aceptable a cambio de
+     que no se superponga nada. */
   .cal-cell .cal-tema {
     font-size: 8px; line-height: 1.15; margin-top: 2px; font-weight: 700; color: var(--accent);
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    text-overflow: ellipsis; word-break: break-word;
+    max-height: 2.35em; overflow: hidden; word-break: break-word;
   }
   .cal-cell.has-repaso .cal-tema { color: var(--muted); }
   .cal-cell.has-final .cal-tema { color: #8a5a24; }
@@ -1072,7 +1072,7 @@
        apretadas entre sí. */
     .cal-grid.days { gap: 8px; }
     .cal-cell { padding: 8px 9px; border-radius: 12px; }
-    .cal-cell .cal-tema { font-size: 11.5px; -webkit-line-clamp: 2; margin-top: 4px; }
+    .cal-cell .cal-tema { font-size: 11.5px; max-height: 2.35em; margin-top: 4px; }
     .cal-cell .cal-daynum { font-size: 14px; }
     .cal-cell .cal-more { font-size: 8.5px; }
     /* En vez de aspect-ratio (que en compu, con celdas anchas, las hacía
