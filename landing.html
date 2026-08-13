@@ -43,7 +43,9 @@
     --amber-deep: #b8811f;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  /* Ver el mismo comentario/fix en mockup-firme.html -- iOS Safari infla
+     texto solo por su cuenta en algunas pantallas, sin ser zoom real. */
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
     margin: 0; font-family: 'Public Sans', sans-serif; color: var(--ink);
     background: var(--paper);

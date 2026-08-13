@@ -59,6 +59,16 @@
     --pink-tint: rgba(219, 79, 143, .12);
   }
   * { box-sizing: border-box; }
+  /* iOS Safari (no iPadOS, tienen heurísticas distintas) a veces "infla"
+     el tamaño de texto por su cuenta para que se lea mejor en columnas
+     angostas -- un algoritmo interno, NO el zoom real de la página (por
+     eso pellizcar para alejar no hace nada, y el ajuste "Aa" de Safari
+     marcaba 100% en las pruebas de Santiago, 2026-08-13). Sin esta línea
+     queda a criterio de Safari cuándo activarlo, así que puede aparecer
+     recién al abrir cierta pantalla y quedarse (no depende de zoom real,
+     por eso tampoco se arregla rotando el celular). Esto lo desactiva del
+     todo -- los tamaños ya están pensados a mano en todo el CSS. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
     margin: 0;
     font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
