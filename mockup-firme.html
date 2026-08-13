@@ -1255,7 +1255,15 @@
     .timer-metodos { gap: 5px; padding: 5px; border-radius: 11px; }
     .timer-metodos .tab { padding: 10px 24px; font-size: 17px; }
     .timer-fase { font-size: 19px; margin-bottom: 18px; }
-    .timer-display { font-size: 210px; }
+    /* clamp en vez de un valor fijo -- 210px asume un monitor de compu de
+       verdad. Un iPhone grande en horizontal (ej. Pro Max, 932px de ancho)
+       ya cruza este min-width:860px y entra a esta rama, pero le sobra
+       mucho menos ancho real (sidebar + grilla de 2 columnas de por medio)
+       que a un monitor -- con 210px fijo el "25:00" se salía literalmente
+       de su tarjeta (reportado por Santiago, 2026-08-13). El clamp lo deja
+       chico en anchos "de escritorio" angostos y solo llega a 210px en
+       pantallas realmente anchas. */
+    .timer-display { font-size: clamp(48px, 10vw, 210px); }
     .timer-ciclos { font-size: 18px; margin-top: 20px; }
     .timer-btns { gap: 18px; }
     .timer-btns .btn { gap: 10px; border-radius: 12px; }
