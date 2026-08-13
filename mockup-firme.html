@@ -672,6 +672,10 @@
     .screen[data-screen="10"] #estudiarAccionesCard,
     .screen[data-screen="10"] #estudiarBiblioCard { padding: 22px; }
     .screen[data-screen="10"] .estudiar-rail .sub { font-size: 14px; }
+    /* Pedido explícito de Santiago con una captura marcada: la tarjeta de
+       bibliografía se queda chica al lado del timer -- mismo criterio que
+       .timer-card (min-height, contenido arriba, nunca centrado). */
+    .screen[data-screen="10"] #estudiarBiblioCard { min-height: 480px; }
     /* (Revertido -- ver historial) Centrar el panel verticalmente con
        flex:1 + justify-content:center dejaba un hueco enorme en blanco
        arriba de las pestañas de método cuando el contenido era corto
@@ -1852,7 +1856,6 @@
         <h3>Bibliografía del tema</h3>
         <div id="estudiarBiblioBox" style="margin-top:6px;"></div>
       </div>
-      <button type="button" class="btn secondary" style="margin-top:0;" onclick="switchStudyTab('resumen')">+ Subir apunte para resumir</button>
     </aside>
     </div>
     </div>
