@@ -171,6 +171,19 @@ function extraerJSON(texto) {
   }
 }
 
+// Igual que extraerJSON pero para un objeto {...} en vez de un array --
+// usada por /api/explicar (Preguntame sobre esto), que devuelve una
+// pregunta/evaluación suelta, no una lista.
+function extraerJSONObjeto(texto) {
+  const match = texto.match(/\{[\s\S]*\}/);
+  if (!match) return null;
+  try {
+    return JSON.parse(match[0]);
+  } catch (e) {
+    return null;
+  }
+}
+
 // La IA, al armar el JSON de opción múltiple, tiende a poner la respuesta
 // correcta casi siempre en las primeras posiciones (el propio ejemplo del
 // prompt muestra "correcta": 0, y eso la ancla) -- nunca o casi nunca en la
@@ -293,6 +306,107 @@ ${consigna}`;
         if (error) console.error('Error guardando fichas_cache', error);
       }).catch(e => console.error('Error guardando fichas_cache', e));
     }
+  } catch (e) {
+    res.status(e.status || 500).json({ error: e.message || 'Error de conexión con la API de Claude.' });
+  }
+});
+
+// "Explícamelo" -- tutor de IA dentro de Estudiar (ver
+// Especificacion_Al_Dia_modificaciones_v2.docx, punto 4). Un solo endpoint
+// para los 4 modos, distinguidos por `modo` en el body:
+//   simple / examen  -> devuelve { texto } con la explicación.
+//   preguntas        -> sin `historial`, devuelve la primera pregunta
+//                       ({ pregunta }); con `historial` (rondas previas
+//                       {pregunta, respuesta}), evalúa la última respuesta y
+//                       genera la siguiente ({ estado, explicacion,
+//                       siguientePregunta }).
+//   test             -> devuelve { preguntas: [...] } en el mismo formato de
+//                       opción múltiple que ya usan las fichas (reutiliza
+//                       mezclarOpcionesMultiple para no sesgar la posición
+//                       de la correcta).
+// Usa JSON normal (no multipart) -- a diferencia de fichas/resumen, acá no
+// hay archivo que subir.
+app.post('/api/explicar', async (req, res) => {
+  if (!ANTHROPIC_API_KEY) {
+    return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
+  }
+  const { tema, modo, carrera, materiaNombre, historial } = req.body || {};
+  if (!tema) return res.status(400).json({ error: 'Falta el tema.' });
+  if (!['simple', 'examen', 'preguntas', 'test'].includes(modo)) {
+    return res.status(400).json({ error: 'Modo inválido.' });
+  }
+
+  // Nunca se inventa carrera/materia si no hay dato real cargado -- ver
+  // punto 4.6 del documento ("no inventar datos académicos que el sistema
+  // no tenga").
+  const contextoAcademico = carrera
+    ? `Es un estudiante de ${carrera}${materiaNombre ? `, cursando la materia "${materiaNombre}"` : ''}.`
+    : 'No se conoce su carrera ni materia -- no inventes ese dato, adaptá el nivel a un estudiante universitario en general.';
+
+  try {
+    if (modo === 'simple' || modo === 'examen') {
+      const consigna = modo === 'simple'
+        ? 'Dale una explicación clara y simple, evitando tecnicismos innecesarios, como si recién estuviera empezando a ver el tema. Si ayuda a entenderlo, usá un ejemplo o una analogía.'
+        : 'Dale una explicación completa, con el nivel de detalle que debería dominar para una evaluación de grado: mecanismos, clasificaciones, matices y datos que suelen tomarse en examen.';
+      const prompt = `Sos el tutor de IA de Al Día, una app de estudio para universitarios. ${contextoAcademico}
+El estudiante te escribió porque no entiende: "${tema}"
+
+${consigna}
+
+Respondé en español rioplatense, con tono cercano de tutor (no de chat genérico ni acartonado). Organizá la respuesta en párrafos cortos separados por un salto de línea en blanco; si necesitás enumerar algo, usá líneas que empiecen con "- ". No uses markdown de ningún otro tipo (nada de "#", "**", etc).`;
+      const texto = await llamarClaude(prompt, 1200, undefined, FICHAS_MODEL);
+      return res.json({ texto: texto.trim() });
+    }
+
+    if (modo === 'preguntas') {
+      if (!historial || !historial.length) {
+        const prompt = `Sos el tutor de IA de Al Día. ${contextoAcademico}
+Le vas a hacer preguntas progresivas al estudiante sobre el tema "${tema}" para evaluar si lo entiende (empezando simple y subiendo la dificultad de a poco según cómo responda).
+
+Hacé SOLO la primera pregunta, básica. Respondé ÚNICAMENTE con un JSON válido, sin texto antes ni después: {"pregunta": "..."}`;
+        const texto = await llamarClaude(prompt, 300, undefined, FICHAS_MODEL);
+        const data = extraerJSONObjeto(texto);
+        if (!data || !data.pregunta) {
+          console.error('Respuesta sin JSON reconocible (explicar/preguntas, primera):', texto);
+          return res.status(502).json({ error: 'No se pudo generar la pregunta. Probá de nuevo.' });
+        }
+        return res.json({ pregunta: data.pregunta });
+      }
+      const historialTexto = historial
+        .map((h, i) => `Pregunta ${i + 1}: ${h.pregunta}\nRespuesta del estudiante: ${h.respuesta}`)
+        .join('\n\n');
+      const prompt = `Sos el tutor de IA de Al Día. ${contextoAcademico}
+Estás evaluando al estudiante sobre el tema "${tema}" con preguntas progresivas. Así fue la conversación hasta ahora:
+
+${historialTexto}
+
+Evaluá la ÚLTIMA respuesta del estudiante (¿fue correcta, parcialmente correcta o incorrecta?) con una explicación breve de por qué, y generá la SIGUIENTE pregunta -- un poco más difícil si venía respondiendo bien, o reforzando el mismo punto de otra forma si no.
+
+Respondé ÚNICAMENTE con un JSON válido, sin texto antes ni después: {"estado": "correcta", "explicacion": "...", "siguientePregunta": "..."}
+Donde "estado" es exactamente una de estas tres palabras: "correcta", "parcial" o "incorrecta".`;
+      const texto = await llamarClaude(prompt, 500, undefined, FICHAS_MODEL);
+      const data = extraerJSONObjeto(texto);
+      if (!data || !data.siguientePregunta) {
+        console.error('Respuesta sin JSON reconocible (explicar/preguntas, siguiente):', texto);
+        return res.status(502).json({ error: 'No se pudo interpretar la respuesta de la IA. Probá de nuevo.' });
+      }
+      return res.json(data);
+    }
+
+    // modo === 'test'
+    const prompt = `Sos el tutor de IA de Al Día. ${contextoAcademico}
+Armá una mini evaluación de 5 preguntas de opción múltiple sobre el tema "${tema}", nivel universitario, para comprobar si el estudiante lo entendió de verdad. Cada una con 4 opciones (una correcta, tres distractores plausibles pero incorrectos, no absurdos).
+
+Respondé ÚNICAMENTE con un JSON válido, sin texto antes ni después, con este formato exacto:
+[{"pregunta": "...", "opciones": ["...", "...", "...", "..."], "correcta": 0}, ...]
+Donde "correcta" es el índice (0 a 3, como NÚMERO, nunca como string entre comillas) de la opción correcta dentro de "opciones".`;
+    const texto = await llamarClaude(prompt, 2200, undefined, FICHAS_MODEL);
+    const preguntas = extraerJSON(texto);
+    if (!preguntas) {
+      console.error('Respuesta sin JSON reconocible (explicar/test):', texto);
+      return res.status(502).json({ error: 'No se pudo interpretar la respuesta de la IA. Probá de nuevo.' });
+    }
+    res.json({ preguntas: mezclarOpcionesMultiple(preguntas) });
   } catch (e) {
     res.status(e.status || 500).json({ error: e.message || 'Error de conexión con la API de Claude.' });
   }

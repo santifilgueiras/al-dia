@@ -298,6 +298,16 @@
   .orden-row .num { width: 20px; flex-shrink: 0; color: var(--muted); font-weight: 700; font-size: 12px; }
   .orden-row .name { flex: 1; }
   .orden-row .name small { display: block; color: var(--muted); font-weight: 400; font-size: 11.5px; }
+  /* Prioridad por tema, editable acá también (además de S5) -- punto 9 de
+     Especificacion_Al_Dia_modificaciones_v2.docx. */
+  .orden-prioridad { display: flex; gap: 3px; flex-shrink: 0; }
+  .orden-prioridad-btn {
+    width: 24px; height: 24px; border-radius: 7px; border: 1.5px solid var(--line); background: #fff;
+    font-size: 11px; font-weight: 800; font-family: inherit; cursor: pointer; color: var(--muted); padding: 0;
+  }
+  .orden-prioridad-btn.active.baja { border-color: var(--muted); background: rgba(20,32,29,.08); color: var(--ink); }
+  .orden-prioridad-btn.active.media { border-color: var(--teal); background: var(--firme-soft); color: var(--teal); }
+  .orden-prioridad-btn.active.alta { border-color: var(--amber); background: var(--amber-tint); color: var(--amber-deep); }
   .orden-btns { display: flex; flex-direction: column; gap: 2px; }
   .orden-btns button {
     border: 1px solid var(--line); background: #fff; border-radius: 6px; width: 26px; height: 22px;
@@ -483,6 +493,36 @@
   .ficha-opcion.correcta { border-color: var(--firme); background: var(--firme-soft); font-weight: 700; }
   .ficha-opcion.incorrecta { border-color: var(--flojo); background: var(--flojo-soft); }
 
+  /* Estudiar > Explícamelo (tutor de IA, ver
+     Especificacion_Al_Dia_modificaciones_v2.docx punto 4). */
+  .explicar-textarea {
+    width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px;
+    font-family: inherit; font-size: 14px; resize: vertical;
+  }
+  .explicar-modos { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+  .explicar-modo-btn {
+    padding: 8px 14px; border-radius: 20px; border: 1px solid var(--line); background: #fff;
+    font-size: 12.5px; font-weight: 600; font-family: inherit; color: var(--muted); cursor: pointer;
+  }
+  .explicar-modo-btn.active { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .explicar-modo-btn:hover:not(.active) { border-color: var(--teal); color: var(--teal); }
+  .explicar-respuesta { font-size: 14px; line-height: 1.6; color: var(--ink); }
+  .explicar-respuesta p { margin: 0 0 12px; }
+  .explicar-respuesta p:last-child { margin-bottom: 0; }
+  .explicar-chat-ronda { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+  .explicar-chat-pregunta { font-weight: 700; font-size: 14.5px; color: var(--ink); margin-bottom: 8px; }
+  .explicar-chat-respuesta { font-size: 13.5px; color: var(--muted); margin-bottom: 10px; padding-left: 14px; border-left: 2px solid var(--line); }
+  .explicar-chat-feedback { font-size: 13px; padding: 10px 12px; border-radius: 10px; line-height: 1.45; }
+  .explicar-chat-feedback.correcta { background: var(--firme-soft); color: var(--firme); }
+  .explicar-chat-feedback.parcial { background: var(--amber-tint); color: var(--amber-deep); }
+  .explicar-chat-feedback.incorrecta { background: var(--flojo-soft); color: var(--flojo); }
+  .explicar-chat-actual { margin-top: 4px; }
+  .explicar-resultado { text-align: center; padding: 30px 0; }
+  .explicar-resultado-num { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 40px; font-weight: 700; color: var(--teal); }
+  .explicar-resultado-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .explicar-resultado-btns { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+  .explicar-resultado-btns .btn { width: auto; margin-top: 0; }
+
   /* Fichas en mobile (rediseño, <860px): pantalla completa oscura -- ver
      #fichaFullscreen, fuera de .app-shell en el HTML. Reusa el mismo
      estado (fichasActuales/fichaIndexActual/fichaRespuestas) que la
@@ -566,6 +606,7 @@
   .hoy-stats-bar { display: flex; height: 7px; border-radius: 4px; background: var(--line); overflow: hidden; }
   .hoy-stats-bar-firme { background: var(--teal); }
   .hoy-stats-bar-flojo { background: var(--amber); }
+  .hoy-saludo { font-size: 13.5px; font-weight: 700; color: var(--teal); margin-bottom: 2px; }
   .hoy-fecha { font-size: 11px; font-weight: 600; letter-spacing: .08em; color: var(--muted); }
   .hoy-racha-badge { display: none; align-items: center; gap: 5px; background: var(--amber-tint); color: var(--amber-deep); font-weight: 700; font-size: 13px; padding: 6px 10px; border-radius: 20px; height: fit-content; }
   .hoy-racha-badge .racha-fuego { font-size: 15px; }
@@ -621,6 +662,7 @@
      grande debajo de las dos cards. */
   @media (min-width: 1800px) {
     .screen[data-screen="13"] .hoy-header h1 { font-size: 30px; }
+    .screen[data-screen="13"] .hoy-saludo { font-size: 16px; }
     .screen[data-screen="13"] .hoy-fecha { font-size: 13px; }
     .screen[data-screen="13"] .hoy-stats-nums { font-size: 15px; gap: 22px; }
     .screen[data-screen="13"] .hoy-stats-pct { font-size: 16px; }
@@ -750,6 +792,9 @@
   .materia-progress-flojo { background: var(--amber); }
   .materia-card-breakdown { font-size: 11px; color: var(--muted); margin-top: 6px; }
   .materia-card-actions { display: flex; gap: 8px; margin-top: 13px; }
+  /* "No estoy llegando" (punto 10 del documento de especificación) --
+     acción secundaria, chica, no compite con "Ver temas"/"Rendida". */
+  .materia-no-llego-btn { width: 100%; margin-top: 8px; font-size: 12px; padding: 8px; }
   .materias-rendidas-grid { display: flex; flex-wrap: wrap; gap: 8px; }
   .materia-rendida-chip { display: flex; align-items: center; gap: 10px; background: var(--paper-2); border-radius: 11px; padding: 8px 10px; flex: 0 1 220px; }
   .materia-rendida-chip .ic { font-size: 16px; }
@@ -977,6 +1022,19 @@
   .state-btn small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; margin-top: 2px; }
   .state-btn.flojo-btn:hover, .state-btn.flojo-btn.picked { border-color: var(--flojo); background: var(--flojo-soft); }
   .state-btn.firme-btn:hover, .state-btn.firme-btn.picked { border-color: var(--firme); background: var(--firme-soft); }
+  /* Prioridad de tema (S5 y "Fecha y orden" S3) -- influye en el orden de
+     estudio junto con fecha de examen/tiempo disponible/estado ya existente,
+     ver Especificacion_Al_Dia_modificaciones_v2.docx punto 9. */
+  .prioridad-field { margin: 4px 0 16px; }
+  .prioridad-field label { display: block; font-size: 12.5px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+  .prioridad-selector { display: flex; gap: 6px; }
+  .prioridad-btn {
+    flex: 1; padding: 9px; border-radius: 10px; border: 1.5px solid var(--line); background: #fff;
+    font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; color: var(--muted);
+  }
+  .prioridad-btn[data-nivel="baja"].active { border-color: var(--muted); background: rgba(20,32,29,.06); color: var(--ink); }
+  .prioridad-btn[data-nivel="media"].active { border-color: var(--teal); background: var(--firme-soft); color: var(--teal); }
+  .prioridad-btn[data-nivel="alta"].active { border-color: var(--amber); background: var(--amber-tint); color: var(--amber-deep); }
   /* Pequeño "festejo" al marcar un tema firme -- es la acción que más se
      repite en toda la app, vale la pena que se sienta como un logro y no
      solo un toast de texto. Se dispara una sola vez desde marcar(). */
@@ -1329,7 +1387,7 @@
 <div class="app-shell">
 <nav class="side-nav" id="sideNav">
   <div class="side-nav-logo"><span class="ic-logo"><img src="/icons/icon-192.png" alt=""></span>Al Día</div>
-  <button type="button" class="side-nav-item" data-nav="13" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+  <button type="button" class="side-nav-item" data-nav="13" onclick="go(13)"><span class="ic">📅</span>Inicio</button>
   <button type="button" class="side-nav-item" data-nav="4" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
   <button type="button" class="side-nav-item" data-nav="7" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
   <button type="button" class="side-nav-item" data-nav="8" onclick="go(8)"><span class="ic">📚</span>Materias</button>
@@ -1342,6 +1400,7 @@
     <button type="button" class="side-nav-subitem" onclick="irAEstudiar('tiempo')"><span class="ic">⏱️</span>Tiempo de estudio</button>
     <button type="button" class="side-nav-subitem" onclick="irAEstudiar('fichas')"><span class="ic">🧠</span>Fichas de repaso</button>
     <button type="button" class="side-nav-subitem" onclick="irAEstudiar('resumen')"><span class="ic">📄</span>Resumen de apuntes</button>
+    <button type="button" class="side-nav-subitem" onclick="irAEstudiar('explicar')"><span class="ic">💡</span>Explícamelo</button>
   </div>
   <div class="side-nav-racha" id="sideNavRacha">
     <div class="side-nav-racha-top">
@@ -1375,6 +1434,7 @@
     <div class="screen-content">
     <div class="hoy-header">
       <div>
+        <div class="hoy-saludo" id="hoySaludo">Hola</div>
         <div class="hoy-fecha mono" id="hoyFecha">—</div>
         <h1 id="hoyTitulo" style="margin-top:2px;">Hoy</h1>
       </div>
@@ -1401,7 +1461,7 @@
     </div>
     </div>
     <div class="bottom-nav">
-      <div class="nav-item active"><span class="ic">📅</span>Hoy</div>
+      <div class="nav-item active"><span class="ic">📅</span>Inicio</div>
       <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
       <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
       <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
@@ -1440,6 +1500,10 @@
       <div class="logo">📚</div>
       <h1>Al Día</h1>
       <p id="authSub">Iniciá sesión para ver tu calendario, sincronizado en todos tus dispositivos.</p>
+    </div>
+    <div class="field" id="authNombreField" style="display:none;">
+      <label for="authNombre">Nombre</label>
+      <input type="text" id="authNombre" placeholder="Como querés que te saludemos" autocomplete="given-name">
     </div>
     <div class="field">
       <label for="authEmail">Mail</label>
@@ -1500,6 +1564,20 @@
     </div>
   </div>
 
+  <!-- Overlay: confirmación de "No estoy llegando" (punto 10 de
+       Especificacion_Al_Dia_modificaciones_v2.docx) -->
+  <div class="checkin-overlay" id="noLlegoOverlay">
+    <div class="checkin-card">
+      <div class="checkin-icon">🧭</div>
+      <h3 id="noLlegoTitle">Reorganizamos tu plan</h3>
+      <p id="noLlegoBody"></p>
+      <div class="checkin-btns">
+        <button class="btn" onclick="cerrarNoLlegoOverlay(); go(4);">Ver calendario</button>
+        <button class="btn secondary" onclick="cerrarNoLlegoOverlay()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Overlay: guía visual para instalar en iPhone/iPad (Safari no tiene botón nativo de instalar) -->
   <div class="install-guide-overlay" id="installGuideOverlay" onclick="if(event.target===this) cerrarGuiaInstalar()">
     <div class="install-guide-card">
@@ -1542,10 +1620,11 @@
     <div class="spacer"></div>
   </div>
 
-  <!-- S9 Elegir materia (del año elegido) (Paso 2 de 4: Materia) -->
+  <!-- S9 Elegir materia (del año elegido) (Paso 3 de 4: Materias -- corregido, ver
+       Especificacion_Al_Dia_modificaciones_v2.docx punto 5) -->
   <div class="screen" data-screen="9">
     <div class="topbar"><button class="back" onclick="go(1)">←</button></div>
-    <div class="paso-indicador"><div class="paso-label mono">PASO 2 DE 4</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar"></span><span class="paso-bar"></span></div></div>
+    <div class="paso-indicador"><div class="paso-label mono">PASO 3 DE 4 — Materias</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar"></span></div></div>
     <h1 id="materiaAnioTitle">Materias</h1>
     <p class="sub">Elegí una materia con catálogo cargado, o escribí el nombre de la tuya si no está.</p>
     <div id="materiasDelAnio"></div>
@@ -1639,7 +1718,7 @@
     <div id="calAgenda"></div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Inicio</button>
       <div class="nav-item active"><span class="ic">🗓️</span>Calendario</div>
       <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
       <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
@@ -1656,11 +1735,19 @@
     <button class="state-btn" onclick="marcar('nuevo')">👀 Todavía no lo vi <small>Lo dejo agendado como está</small></button>
     <button class="state-btn flojo-btn" id="btnFlojo" onclick="marcar('flojo')">😅 Me costó <small>Dudé, tuve que volver a leer — vuelve en 2 días</small></button>
     <button class="state-btn firme-btn" id="btnFirme" onclick="marcar('firme')">💪 Lo tengo firme <small>Lo explicaría sin mirar apuntes — se espacia el repaso</small></button>
+    <div class="prioridad-field">
+      <label>Prioridad de este tema</label>
+      <div class="prioridad-selector" id="prioridadSelector">
+        <button type="button" class="prioridad-btn" data-nivel="baja" onclick="setPrioridadTema('baja')">Baja</button>
+        <button type="button" class="prioridad-btn" data-nivel="media" onclick="setPrioridadTema('media')">Media</button>
+        <button type="button" class="prioridad-btn" data-nivel="alta" onclick="setPrioridadTema('alta')">Alta</button>
+      </div>
+    </div>
     <div id="referenciaBox" style="margin-top:6px;"></div>
     <div class="spacer"></div>
     <button class="btn secondary" id="volverBtn" onclick="volverDeDetalle()">Volver al calendario</button>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Inicio</button>
       <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
       <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
       <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
@@ -1732,7 +1819,7 @@
     </div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Inicio</button>
       <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
       <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
       <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
@@ -1754,7 +1841,7 @@
     <div id="repasoList"></div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Inicio</button>
       <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
       <div class="nav-item active"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></div>
       <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
@@ -1779,7 +1866,7 @@
     <div class="materias-rendidas-grid" id="examenesRendidos"></div>
     </div>
     <div class="bottom-nav" id="materiasBottomNav">
-      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Inicio</button>
       <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
       <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
       <div class="nav-item active"><span class="ic">📚</span>Materias</div>
@@ -1801,6 +1888,7 @@
       <div class="tab" data-sec="tiempo" onclick="switchStudyTab('tiempo')"><span class="ic">⏱️</span>Tiempo de estudio</div>
       <div class="tab" data-sec="fichas" onclick="switchStudyTab('fichas')"><span class="ic">🧠</span>Fichas de repaso</div>
       <div class="tab" data-sec="resumen" onclick="switchStudyTab('resumen')"><span class="ic">📄</span>Resumen de apuntes</div>
+      <div class="tab" data-sec="explicar" onclick="switchStudyTab('explicar')"><span class="ic">💡</span>Explícamelo</div>
     </div>
 
     <div class="study-layout">
@@ -1892,6 +1980,15 @@
           <a class="ref-link" href="https://claude.ai" target="_blank" rel="noopener">Conectar con Claude ↗</a>
         </div>
     </div>
+
+    <div class="study-panel" id="sec-explicar" data-sec="explicar">
+        <p class="sub" style="margin-top:0;">¿Qué tema no entendés? Decímelo y te lo explico.</p>
+        <div class="field">
+          <textarea id="explicarInput" class="explicar-textarea" rows="2" placeholder="Ej: no entiendo bien la diferencia entre mitosis y meiosis"></textarea>
+        </div>
+        <button class="btn" id="explicarBtn" onclick="pedirExplicacion('simple')">💡 Explicámelo</button>
+        <div id="explicarBox"></div>
+    </div>
     </div>
 
     <aside class="estudiar-rail" id="estudiarRail">
@@ -1911,7 +2008,7 @@
     </div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Hoy</button>
+      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">📅</span>Inicio</button>
       <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
       <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
       <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
@@ -5931,17 +6028,37 @@ function ordenarYContinuar() {
   go(3);
 }
 
+// El examen que se está configurando en S3 -- ya existente si se está
+// editando el orden de una materia en curso (examActual()), o el borrador
+// todavía sin guardar si es de alta (borradorExamen). prioridadTema vive en
+// ESE objeto, no en el array `selected` (que es solo el orden de nombres).
+function examEnEdicionParaPrioridad() { return examActual() || borradorExamen; }
+
 function renderOrden() {
   const box = document.getElementById('ordenList');
+  const e = examEnEdicionParaPrioridad();
   box.innerHTML = selected.map((t, i) => {
     const dur = duracionDe(t);
+    const nivelActual = (e && e.prioridadTema && e.prioridadTema[t]) || 'media';
+    const tEsc = t.replace(/'/g, "\\'");
+    const pills = ['baja', 'media', 'alta'].map(n => `<button type="button" class="orden-prioridad-btn ${n === nivelActual ? 'active ' + n : ''}" onclick="setPrioridadTemaConfig('${tEsc}','${n}')" title="Prioridad ${n}">${n === 'baja' ? 'B' : n === 'media' ? 'M' : 'A'}</button>`).join('');
     return `
     <div class="orden-row" data-idx="${i}">
       <span class="orden-handle" onpointerdown="ordenPointerDown(event, ${i})">⠿</span>
       <span class="num mono">${i + 1}</span>
       <span class="name">${t}<small>${dur} día${dur > 1 ? 's' : ''} de estudio estimado</small></span>
+      <div class="orden-prioridad">${pills}</div>
     </div>`;
   }).join('');
+}
+
+function setPrioridadTemaConfig(tema, nivel) {
+  const e = examEnEdicionParaPrioridad();
+  if (!e) return;
+  if (!e.prioridadTema) e.prioridadTema = {};
+  e.prioridadTema[tema] = nivel;
+  if (e.id) marcarEstadoSucio(); // examen ya guardado -- el borrador se guarda recién al confirmar
+  renderOrden();
 }
 
 // Reordenar arrastrando el handle ⠿ (paso 4, rediseño). Pointer Events en
@@ -7565,6 +7682,22 @@ function proximoFechaRepaso(e, idx, desde) {
 // NO se guardan en ningún lado: se recalculan de cero en cada render a
 // partir de la única fecha confirmada, así que en cuanto el estudiante
 // marca algo de verdad, la proyección se corrige sola desde ese punto.
+// Prioridad de tema (Baja/Media/Alta, ver punto 9 de
+// Especificacion_Al_Dia_modificaciones_v2.docx): orden estable -- los de
+// mayor prioridad pasan primero a construirSchedulePara() (así entran antes
+// a los carriles de la primera vuelta), pero DENTRO de un mismo nivel se
+// respeta el orden manual que ya trae `temas` (drag&drop de "Fecha y
+// orden"). Sin prioridades puestas (todo "media", el default) el orden
+// queda idéntico al de antes -- no cambia nada del algoritmo ya probado.
+function ordenarPorPrioridad(e, temas) {
+  const rango = { alta: 0, media: 1, baja: 2 };
+  const prioridadDe = t => rango[(e.prioridadTema && e.prioridadTema[t]) || 'media'];
+  return temas
+    .map((t, i) => ({ t, i, p: prioridadDe(t) }))
+    .sort((a, b) => a.p - b.p || a.i - b.i)
+    .map(x => x.t);
+}
+
 function construirSchedulePara(e, temas, examDate, today, numCarriles, startFrom) {
   const examId = e.id, materiaNombre = e.materiaNombre;
   const finalReviewDay = addDays(examDate, -1);
@@ -7706,13 +7839,40 @@ function generarCalendarioGlobal() {
       const delayReal = Math.min(delayDeseado, margen);
       start = addDays(hoy, delayReal);
     }
-    const { schedule, finFase1 } = construirSchedulePara(e, e.selected, examDate, hoy, r.minPace, start);
+    const { schedule, finFase1 } = construirSchedulePara(e, ordenarPorPrioridad(e, e.selected), examDate, hoy, r.minPace, start);
     Object.entries(schedule).forEach(([key, entries]) => {
       scheduleGlobal[key] = (scheduleGlobal[key] || []).concat(entries);
     });
     if (finFase1 > cursor) cursor = finFase1;
   });
   planGlobal = { schedule: scheduleGlobal };
+}
+
+// "No estoy llegando" (punto 10 de Especificacion_Al_Dia_modificaciones_v2.docx):
+// el estudiante avisa que se está atrasando con una materia puntual y la app
+// responde reorganizando en vez de solo mostrar el atraso. generarCalendarioGlobal()
+// YA recalcula el ritmo mínimo (calcularRitmoDe) a partir de la fecha real de
+// hoy en cada render -- nunca se quedó con un ritmo viejo -- así que acá no
+// hace falta un algoritmo nuevo: se fuerza el recálculo (con el orden por
+// prioridad ya aplicado, ver ordenarPorPrioridad) y se le confirma al
+// estudiante con números reales que el plan restante ya contempla sus
+// temas prioritarios primero.
+function noEstoyLlegando(examId) {
+  const e = examenes.find(x => x.id === examId);
+  if (!e || !e.fecha) return;
+  const dias = diasHasta(e.fecha);
+  const pendientes = e.selected.filter(t => e.states[t] !== 'firme');
+  const nAlta = pendientes.filter(t => (e.prioridadTema && e.prioridadTema[t]) === 'alta').length;
+  generarCalendarioGlobal();
+  const cuerpo = pendientes.length
+    ? `Tenés ${pendientes.length} tema${pendientes.length === 1 ? '' : 's'} pendiente${pendientes.length === 1 ? '' : 's'} de <strong>${nombreCorto(e.materiaNombre)}</strong> y ${dias === 0 ? 'el examen es hoy' : `${dias} día${dias === 1 ? '' : 's'}`}. Reorganizamos tu plan para que puedas avanzar${nAlta ? ` sin perder los ${nAlta} tema${nAlta === 1 ? '' : 's'} que marcaste como prioridad alta` : ''}.`
+    : `Ya tenés todos los temas de <strong>${nombreCorto(e.materiaNombre)}</strong> firmes -- no hay nada pendiente para reorganizar.`;
+  document.getElementById('noLlegoBody').innerHTML = cuerpo;
+  document.getElementById('noLlegoOverlay').classList.add('show');
+}
+
+function cerrarNoLlegoOverlay() {
+  document.getElementById('noLlegoOverlay').classList.remove('show');
 }
 
 function contarEstados(states) {
@@ -7982,8 +8142,28 @@ function abrirDetalle(examId, name, fromRepaso) {
   document.getElementById('btnFlojo').classList.toggle('picked', e.states[name] === 'flojo');
   document.getElementById('btnFirme').classList.toggle('picked', e.states[name] === 'firme');
   document.getElementById('volverBtn').textContent = cameFromRepaso ? 'Volver al repaso' : 'Volver al calendario';
+  renderPrioridadSelector();
   renderReferencia(name, e.materiaNombre);
   go(5);
+}
+
+function renderPrioridadSelector() {
+  const e = examenes.find(x => x.id === activeDetailExamId);
+  if (!e) return;
+  const nivel = (e.prioridadTema && e.prioridadTema[activeDetailTema]) || 'media';
+  document.querySelectorAll('#prioridadSelector .prioridad-btn').forEach(b => b.classList.toggle('active', b.dataset.nivel === nivel));
+}
+
+// Editable desde el propio tema (S5, acá) y desde la materia (S3, ver
+// setPrioridadTemaConfig) -- punto 9 del documento de especificación.
+function setPrioridadTema(nivel) {
+  const e = examenes.find(x => x.id === activeDetailExamId);
+  if (!e || !activeDetailTema) return;
+  if (!e.prioridadTema) e.prioridadTema = {};
+  e.prioridadTema[activeDetailTema] = nivel;
+  renderPrioridadSelector();
+  marcarEstadoSucio();
+  generarCalendarioGlobal();
 }
 
 // Referencia de estudio del tema (S5). Nunca linkeamos a una copia del
@@ -8249,12 +8429,26 @@ function renderHoyStats() {
   `;
 }
 
+// Saludo según la hora local del dispositivo -- se recalcula en cada
+// entrada a Inicio, nunca lo elige el usuario a mano.
+function saludoSegunHora() {
+  const h = new Date().getHours();
+  if (h >= 6 && h < 12) return 'Buenos días';
+  if (h >= 12 && h < 20) return 'Buenas tardes';
+  return 'Buenas noches';
+}
+
 function renderHoy() {
   generarCalendarioGlobal();
   renderHoyStats();
 
   const hoy = new Date();
   const todayKey = fmt(hoy);
+  const saludoEl = document.getElementById('hoySaludo');
+  if (saludoEl) {
+    const nombre = sesionUsuario && sesionUsuario.nombre ? sesionUsuario.nombre.charAt(0).toUpperCase() + sesionUsuario.nombre.slice(1) : '';
+    saludoEl.textContent = nombre ? `${saludoSegunHora()}, ${nombre}` : saludoSegunHora();
+  }
   const fechaEl = document.getElementById('hoyFecha');
   if (fechaEl) fechaEl.textContent = FORMATO_FECHA_HOY.format(hoy).toUpperCase();
 
@@ -8504,7 +8698,7 @@ let colaMateriasTotal = 0; // tamaño fijo de la tanda actual, para el cartel "M
 
 function agregarExamen() {
   guardarExamenActual();
-  borradorExamen = { selected: [], ownTemas: [], states: {}, touched: {}, proximoRepaso: {}, intervaloIdx: {}, selectedPace: null, prioridad: false, rendidaManual: false, fechaRendidaLabel: '', materiaNombre: '', fecha: '', usaCatalogo: true, facultad: null, anio: null, modulos: [] };
+  borradorExamen = { selected: [], ownTemas: [], states: {}, touched: {}, proximoRepaso: {}, intervaloIdx: {}, prioridadTema: {}, selectedPace: null, prioridad: false, rendidaManual: false, fechaRendidaLabel: '', materiaNombre: '', fecha: '', usaCatalogo: true, facultad: null, anio: null, modulos: [] };
   examenActualId = null;
   selected = borradorExamen.selected;
   ownTemas = borradorExamen.ownTemas;
@@ -8841,6 +9035,7 @@ function renderExamenes() {
         <button type="button" class="btn ${e.prioridad ? '' : 'secondary'}" style="flex:1; margin-top:0;" onclick="event.stopPropagation(); abrirExamen(${e.id})">Ver temas</button>
         <button type="button" class="btn secondary" style="flex:1; margin-top:0;" onclick="event.stopPropagation(); marcarRendidaDesdeHub(${e.id})">Rendida</button>
       </div>
+      ${faltaConfig ? '' : `<button type="button" class="btn secondary materia-no-llego-btn" onclick="event.stopPropagation(); noEstoyLlegando(${e.id})">🧭 No estoy llegando</button>`}
     </div>`;
   }).join('') : '<div class="empty-state">Todavía no agregaste ninguna materia.</div>';
 
@@ -9528,6 +9723,184 @@ async function generarResumen() {
   }
 }
 
+// ---- Estudiar > Explícamelo (tutor de IA) ----
+// Ver Especificacion_Al_Dia_modificaciones_v2.docx punto 4. Un solo endpoint
+// server-side (/api/explicar) con 4 modos; acá solo se arma el request y se
+// pinta la respuesta.
+
+// Nunca se inserta texto de la IA (ni del propio estudiante) crudo en el
+// DOM -- mismo criterio ya usado para el resumen de apuntes.
+function escapeHtml(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function formatExplicacionHTML(texto) {
+  return texto.split(/\n\s*\n/).filter(p => p.trim()).map(p => `<p>${escapeHtml(p.trim()).replace(/\n/g, '<br>')}</p>`).join('');
+}
+
+// Contexto académico real (nunca inventado, punto 4.6): reusa la misma
+// cascada carrera/año/materia que ya completó el estudiante en Fichas de
+// repaso, si la completó -- si no, se manda vacío y el server no asume nada.
+function contextoAcademicoExplicar() {
+  const facSel = document.getElementById('fichasFacultadSelect');
+  const matSel = document.getElementById('fichasMateriaSelect');
+  const carrera = (facSel && facSel.value) ? facultadDe(facSel.value).carrera : '';
+  const materiaNombre = (matSel && matSel.selectedOptions[0]) ? matSel.selectedOptions[0].textContent : '';
+  return { carrera, materiaNombre };
+}
+
+let explicarTemaActual = '';
+let explicarModoActual = null;
+let explicarHistorialPreguntas = []; // [{pregunta, respuesta, estado, explicacion}]
+let explicarPreguntaPendiente = '';
+let explicarTestPreguntas = [];
+let explicarTestIndex = 0;
+let explicarTestRespuestas = [];
+
+function explicarModosHTML() {
+  const modos = [
+    ['simple', '💡 Explicación simple'],
+    ['examen', '🎓 Explicación nivel examen'],
+    ['preguntas', '❓ Preguntame sobre esto'],
+    ['test', '✅ Poneme a prueba'],
+  ];
+  return modos.map(([m, label]) => `<button type="button" class="explicar-modo-btn ${m === explicarModoActual ? 'active' : ''}" onclick="pedirExplicacion('${m}')">${label}</button>`).join('');
+}
+
+async function pedirExplicacion(modo) {
+  const input = document.getElementById('explicarInput');
+  const tema = explicarTemaActual || input.value.trim();
+  if (!tema) { showToast('Escribí primero qué tema no entendés'); return; }
+  explicarTemaActual = tema;
+  explicarModoActual = modo;
+  explicarHistorialPreguntas = [];
+  explicarPreguntaPendiente = '';
+  explicarTestPreguntas = [];
+  explicarTestIndex = 0;
+  explicarTestRespuestas = [];
+
+  const box = document.getElementById('explicarBox');
+  const btn = document.getElementById('explicarBtn');
+  btn.disabled = true;
+  box.innerHTML = '<div class="empty-state">⏳ Pensando la mejor forma de explicártelo...</div>';
+  try {
+    if (modo === 'simple' || modo === 'examen') {
+      const data = await pedirAlServerExplicar({ tema, modo, ...contextoAcademicoExplicar() });
+      box.innerHTML = `<div class="explicar-modos">${explicarModosHTML()}</div><div class="explicar-respuesta">${formatExplicacionHTML(data.texto)}</div>`;
+    } else if (modo === 'preguntas') {
+      const data = await pedirAlServerExplicar({ tema, modo, historial: [], ...contextoAcademicoExplicar() });
+      explicarPreguntaPendiente = data.pregunta;
+      renderExplicarConversacion();
+    } else if (modo === 'test') {
+      const data = await pedirAlServerExplicar({ tema, modo, ...contextoAcademicoExplicar() });
+      explicarTestPreguntas = data.preguntas;
+      renderExplicarTest();
+    }
+  } catch (e) {
+    const msg = e.message === 'Failed to fetch' ? 'No se pudo conectar con el server -- ¿está corriendo "npm start"?' : e.message;
+    box.innerHTML = `<div class="explicar-modos">${explicarModosHTML()}</div><div class="empty-state">${escapeHtml(msg)}</div>`;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function pedirAlServerExplicar(body) {
+  const r = await fetch('/api/explicar', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+  const data = await r.json();
+  if (!r.ok) throw new Error(data.error || 'Error consultando a la IA');
+  return data;
+}
+
+function renderExplicarConversacion() {
+  const box = document.getElementById('explicarBox');
+  const rondas = explicarHistorialPreguntas.map(h => `
+    <div class="explicar-chat-ronda">
+      <div class="explicar-chat-pregunta">❓ ${escapeHtml(h.pregunta)}</div>
+      <div class="explicar-chat-respuesta">🙋 ${escapeHtml(h.respuesta)}</div>
+      <div class="explicar-chat-feedback ${h.estado}">${h.estado === 'correcta' ? '✅' : h.estado === 'parcial' ? '🤔' : '❌'} ${escapeHtml(h.explicacion)}</div>
+    </div>`).join('');
+  box.innerHTML = `
+    <div class="explicar-modos">${explicarModosHTML()}</div>
+    ${rondas}
+    <div class="explicar-chat-actual">
+      <div class="explicar-chat-pregunta">❓ ${escapeHtml(explicarPreguntaPendiente)}</div>
+      <div class="field">
+        <textarea id="explicarRespuestaInput" class="explicar-textarea" rows="2" placeholder="Escribí tu respuesta..." onkeydown="if(event.key==='Enter' && !event.shiftKey){ event.preventDefault(); enviarRespuestaPregunta(); }"></textarea>
+      </div>
+      <button class="btn" id="explicarResponderBtn" onclick="enviarRespuestaPregunta()">Responder</button>
+    </div>`;
+  const ta = document.getElementById('explicarRespuestaInput');
+  if (ta) { ta.focus(); ta.scrollIntoView({ block: 'nearest' }); }
+}
+
+async function enviarRespuestaPregunta() {
+  const input = document.getElementById('explicarRespuestaInput');
+  const respuesta = input.value.trim();
+  if (!respuesta) { showToast('Escribí una respuesta primero'); return; }
+  const btn = document.getElementById('explicarResponderBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Evaluando...';
+  const historialParaEnviar = [...explicarHistorialPreguntas, { pregunta: explicarPreguntaPendiente, respuesta }];
+  try {
+    const data = await pedirAlServerExplicar({ tema: explicarTemaActual, modo: 'preguntas', historial: historialParaEnviar, ...contextoAcademicoExplicar() });
+    explicarHistorialPreguntas.push({ pregunta: explicarPreguntaPendiente, respuesta, estado: data.estado, explicacion: data.explicacion });
+    explicarPreguntaPendiente = data.siguientePregunta;
+    renderExplicarConversacion();
+  } catch (e) {
+    const msg = e.message === 'Failed to fetch' ? 'No se pudo conectar con el server -- ¿está corriendo "npm start"?' : e.message;
+    showToast(msg);
+    btn.disabled = false;
+    btn.textContent = 'Responder';
+  }
+}
+
+function renderExplicarTest() {
+  const box = document.getElementById('explicarBox');
+  if (!explicarTestPreguntas.length) {
+    box.innerHTML = `<div class="explicar-modos">${explicarModosHTML()}</div><div class="empty-state">No se pudo armar la evaluación. Probá de nuevo.</div>`;
+    return;
+  }
+  if (explicarTestIndex >= explicarTestPreguntas.length) {
+    const correctas = explicarTestRespuestas.filter((r, i) => r === explicarTestPreguntas[i].correcta).length;
+    box.innerHTML = `
+      <div class="explicar-modos">${explicarModosHTML()}</div>
+      <div class="explicar-resultado">
+        <div class="explicar-resultado-num mono">${correctas} / ${explicarTestPreguntas.length}</div>
+        <div class="explicar-resultado-label">respuestas correctas</div>
+        <div class="explicar-resultado-btns">
+          <button type="button" class="btn secondary" onclick="explicarTestIndex=0; renderExplicarTest();">👀 Revisar respuestas</button>
+          <button type="button" class="btn" onclick="explicarTestRespuestas=[]; explicarTestIndex=0; renderExplicarTest();">↺ Volver a intentar</button>
+        </div>
+      </div>`;
+    return;
+  }
+  const f = explicarTestPreguntas[explicarTestIndex];
+  const elegida = explicarTestRespuestas[explicarTestIndex];
+  const yaContestada = elegida !== undefined;
+  box.innerHTML = `
+    <div class="explicar-modos">${explicarModosHTML()}</div>
+    <div class="ficha-card mc" style="flex:none;">
+      <div class="ficha-count">${explicarTestIndex + 1} / ${explicarTestPreguntas.length}</div>
+      <div class="ficha-texto" style="margin-bottom:10px;">${escapeHtml(f.pregunta)}</div>
+      <div class="ficha-opciones">
+        ${f.opciones.map((op, i) => {
+          let cls = '';
+          if (yaContestada) { if (i === f.correcta) cls = 'correcta'; else if (i === elegida) cls = 'incorrecta'; }
+          return `<button type="button" class="ficha-opcion ${cls}" onclick="elegirOpcionExplicarTest(${i})" ${yaContestada ? 'disabled' : ''}>${escapeHtml(op)}</button>`;
+        }).join('')}
+      </div>
+    </div>
+    <div class="ficha-nav">
+      <button type="button" class="btn secondary" onclick="explicarTestIndex=Math.max(0,explicarTestIndex-1); renderExplicarTest();" ${explicarTestIndex === 0 ? 'disabled' : ''}>‹ Anterior</button>
+      <button type="button" class="btn secondary" onclick="explicarTestIndex++; renderExplicarTest();" ${yaContestada ? '' : 'disabled'}>${explicarTestIndex === explicarTestPreguntas.length - 1 ? 'Ver resultado' : 'Siguiente ›'}</button>
+    </div>`;
+}
+
+function elegirOpcionExplicarTest(i) {
+  explicarTestRespuestas[explicarTestIndex] = i;
+  renderExplicarTest();
+}
+
 // ---- Sonido ambiente para estudiar ----
 // Antes esto era un pad + ruido generado con Web Audio (osciladores + ruido
 // rosa sintetizado) para evitar cualquier lío de copyright -- pero sonaba a
@@ -9820,6 +10193,7 @@ function setAuthModo(modo) {
   document.getElementById('authSub').textContent = modo === 'login'
     ? 'Iniciá sesión para ver tu calendario, sincronizado en todos tus dispositivos.'
     : 'Creá tu cuenta -- es gratis y tu progreso va a quedar guardado.';
+  document.getElementById('authNombreField').style.display = modo === 'login' ? 'none' : '';
 }
 
 function toggleAuthModo() {
@@ -9840,12 +10214,19 @@ function traducirErrorAuth(msg) {
 async function submitAuth() {
   const email = document.getElementById('authEmail').value.trim();
   const password = document.getElementById('authPassword').value;
+  const nombre = document.getElementById('authNombre').value.trim();
   const errBox = document.getElementById('authError');
   const btn = document.getElementById('authSubmitBtn');
   errBox.style.display = 'none';
   if (!email || !password) {
     errBox.style.color = 'var(--flojo)';
     errBox.textContent = 'Completá mail y contraseña.';
+    errBox.style.display = 'block';
+    return;
+  }
+  if (authModo === 'signup' && !nombre) {
+    errBox.style.color = 'var(--flojo)';
+    errBox.textContent = 'Contanos cómo te llamás para poder saludarte.';
     errBox.style.display = 'block';
     return;
   }
@@ -9857,7 +10238,7 @@ async function submitAuth() {
       if (error) throw error;
       // onAuthStateChange dispara SIGNED_IN y carga la app desde ahí.
     } else {
-      const { data, error } = await supabaseClient.auth.signUp({ email, password });
+      const { data, error } = await supabaseClient.auth.signUp({ email, password, options: { data: { nombre } } });
       if (error) throw error;
       if (!data.session) {
         // El proyecto tiene "Confirmar mail" activado -- todavía no hay sesión.
@@ -9899,6 +10280,10 @@ function hidratarEstado(estado) {
   // todavía es true y ese guard lo ignoraría.
   const sinEjemplos = cargados.filter(e => !e.ejemplo);
   if (sinEjemplos.length !== cargados.length) estadoSucio = true;
+  // Cuentas creadas antes de la prioridad por tema (ronda de
+  // Especificacion_Al_Dia_modificaciones_v2.docx) no tienen este campo --
+  // se completa vacío (equivale a "media" para todos, ver ordenarPorPrioridad).
+  sinEjemplos.forEach(e => { if (!e.prioridadTema) e.prioridadTema = {}; });
   examenes = sinEjemplos;
   nextExamenId = estado.nextExamenId || 1;
   racha = estado.racha || 0;
@@ -9978,7 +10363,8 @@ document.addEventListener('visibilitychange', () => {
 });
 
 async function manejarSesionActiva(session) {
-  sesionUsuario = { id: session.user.id, email: session.user.email };
+  const nombre = (session.user.user_metadata && session.user.user_metadata.nombre) || session.user.email.split('@')[0];
+  sesionUsuario = { id: session.user.id, email: session.user.email, nombre };
   document.getElementById('navUserEmail').textContent = sesionUsuario.email;
   document.getElementById('resumenUserEmail').textContent = sesionUsuario.email;
   // Si se entró con ?auth=login/registro (desde un botón de la landing), se
