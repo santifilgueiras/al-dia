@@ -1226,6 +1226,23 @@
        borde inferior marcando el límite visual. */
     flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    /* LA causa real del "zoom"/recorte que reportó Santiago en iPhone
+       (confirmado con el panel de diagnóstico, 2026-08-13): .study-tabs es
+       hijo de .screen-content (flex-direction:column), y como sus 4
+       pestañas no se pueden achicar (flex-shrink:0 + white-space:nowrap),
+       terminan necesitando ~650px en una sola fila. overflow-x:auto por sí
+       solo NO alcanza para contenerlo -- en flexbox, un item tiene un
+       "min-width:auto" implícito igual al ancho mínimo de su contenido, así
+       que en vez de scrollear ADENTRO de .study-tabs, TODO .study-tabs (y
+       en cascada .screen-content/.phone/el documento entero) se estiraba a
+       ~650px para no cortar esas pestañas -- Safari, al ver que la página
+       ya no entraba en la pantalla real, la reescalaba entera para que
+       entrara (por eso se veía "zoomeada"/recortada, sin que pellizcar o
+       rotar lo arreglara: no era zoom del usuario, era el navegador
+       compensando un desborde real). min-width:0 apaga ese piso implícito,
+       el mismo patrón que ya se usó en .cal-grid/.study-main para el mismo
+       tipo de bug de flexbox. */
+    min-width: 0;
   }
   .study-tabs::-webkit-scrollbar { display: none; }
   .study-tabs .tab {
