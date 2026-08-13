@@ -5755,7 +5755,7 @@ function toggleEstudiarSubmenu(event) {
 function switchStudyTab(name) {
   document.querySelectorAll('#studyMainTabs .tab').forEach(t => t.classList.toggle('active', t.dataset.sec === name));
   document.querySelectorAll('.study-panel').forEach(p => p.classList.toggle('active', p.dataset.sec === name));
-  if (name === 'fichas') renderEstudiarRail();
+  renderEstudiarRail();
 }
 
 // Desde el ítem "Estudiar" del menú, sin elegir submenú: va a la pantalla y
@@ -9662,7 +9662,8 @@ function renderEstudiarRail() {
   renderReferencia(tema, materiaNombre, 'estudiarBiblioBox');
   biblioCard.style.display = '';
   const conExamen = examenDelTemaFichasActual();
-  accionesCard.style.display = conExamen ? '' : 'none';
+  const enFichas = document.querySelector('.study-panel.active')?.dataset.sec === 'fichas';
+  accionesCard.style.display = (conExamen && enFichas) ? '' : 'none';
   const tituloEl = document.getElementById('estudiarRailTema');
   if (tituloEl) tituloEl.textContent = tema;
 }
