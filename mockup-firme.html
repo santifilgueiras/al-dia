@@ -344,6 +344,30 @@
   .field input, .field select {
     width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 12px; font-size: 14.5px; font-family: inherit;
   }
+  /* iOS Safari hace zoom automático al enfocar cualquier input/select/
+     textarea con letra menor a 16px (para que se lea sin achicar la
+     página) -- y como esto es una SPA sin reload de página, ese zoom
+     queda pegado al navegar entre pantallas/pestañas hasta que el
+     usuario lo saca a mano con pellizco. Santiago lo reportó como "toda
+     la pantalla de Estudiar bugueada" (2026-08-13) justo después de tocar
+     los selects de Fichas de repaso, que estaban en 14.5px -- por eso el
+     zoom se quedó pegado en las 4 pestañas de Estudiar (todas viven en la
+     misma pantalla/SPA). Sube a 16px en celular TODOS los campos de la
+     app que estaban por debajo de eso, no solo los de Fichas, para que no
+     vuelva a pasar en otra pantalla. !important porque #pegarListaTextarea
+     trae un font-size en su atributo style="" que gana por especificidad
+     a cualquier selector de clase. */
+  @media (max-width: 859px) {
+    .field input, .field select,
+    .own-input input,
+    .buscador-input,
+    .pace-custom,
+    .explicar-textarea,
+    #pegarListaTextarea,
+    #recordatorioHora {
+      font-size: 16px !important;
+    }
+  }
   /* Versión chica de la racha para el Calendario (la pantalla que más se
      visita día a día) -- la tarjeta grande sigue estando en Resumen, esto
      es solo un recordatorio compacto arriba para que no quede escondida. */
