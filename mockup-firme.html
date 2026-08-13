@@ -407,21 +407,55 @@
     background: linear-gradient(135deg, #6fc3e0, #58c896); border-radius: 20px;
     display: flex; align-items: center; justify-content: center; color: #fff;
   }
-  .timer-card { border: 1px solid var(--line); border-radius: 20px; padding: 26px 18px; text-align: center; margin-top: 14px; }
-  .timer-fase { font-size: 13px; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: .04em; }
+  /* Tarjeta del cronómetro -- armada siguiendo
+     CORRECCION-tiempo-de-estudio.md al pie de la letra. Sin height/
+     min-height: se estira sola como hija de la grilla de dos columnas
+     (ver .study-layout más abajo) y justify-content:center la centra
+     verticalmente sea cual sea el alto real. */
+  .timer-card {
+    background: #fff; border: 1px solid rgba(0,0,0,.1); border-radius: 11px;
+    padding: 24px 26px 26px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 18px;
+  }
+  /* Selector de método: pastillas compactas (mide lo que miden sus 3
+     pastillas, no 100% de ancho) -- clase propia en vez de reusar .tabs,
+     que en el resto de la app es un segmented control full-width. */
+  .timer-metodos { display: flex; gap: 3px; padding: 3px; background: rgba(0,0,0,.05); border-radius: 8px; }
+  .timer-metodos .tab {
+    padding: 6px 15px; border-radius: 6px; font-size: 12px; font-weight: 500;
+    color: rgba(0,0,0,.5); cursor: pointer; white-space: nowrap;
+  }
+  .timer-metodos .tab.active { background: #fff; color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .timer-clock { text-align: center; }
+  .timer-fase {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; font-weight: 600;
+    color: var(--teal); letter-spacing: .14em; margin-bottom: 8px;
+  }
   .timer-fase.descanso { color: var(--firme); }
-  .timer-display { font-size: 52px; font-weight: 800; color: var(--ink); margin: 10px 0; font-variant-numeric: tabular-nums; }
-  .timer-ciclos { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
-  .timer-btns { display: flex; gap: 10px; }
-  .timer-btns .btn { margin-top: 0; }
-  .timer-sonido-row { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 16px; }
+  .timer-display {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 72px; line-height: 1; font-weight: 600;
+    color: var(--ink); letter-spacing: -.03em; font-variant-numeric: tabular-nums;
+  }
+  .timer-ciclos { font-size: 12.5px; color: rgba(0,0,0,.45); margin-top: 10px; }
+  /* Chicos, uno al lado del otro, con el ancho que les da el padding --
+     no full-width como el resto de los .btn de la app. */
+  .timer-btns { display: flex; gap: 10px; align-items: center; }
+  .timer-btns .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    width: auto; margin-top: 0; border-radius: 9px; box-shadow: none;
+  }
+  .timer-btns .btn:not(.secondary) { padding: 12px 34px; font-size: 14px; font-weight: 700; background: var(--teal); }
+  .timer-btns .btn:not(.secondary):hover { background: var(--teal-hover); }
+  .timer-btns .btn.secondary { padding: 12px 20px; font-size: 13px; font-weight: 600; background: none; border: 1px solid rgba(0,0,0,.15); color: rgba(0,0,0,.6); }
+  .timer-btns .btn.secondary:hover { border-color: var(--teal); color: var(--teal); }
+  .timer-sonido-row { display: flex; align-items: center; justify-content: center; gap: 16px; }
   .timer-sonido-row button, .timer-sonido-row a {
-    background: none; border: none; color: var(--muted); font-family: inherit;
-    font-size: 12.5px; cursor: pointer; text-decoration: none;
+    background: none; border: none; color: rgba(0,0,0,.45); font-family: inherit;
+    font-size: 12px; font-weight: 500; cursor: pointer; text-decoration: none;
     display: inline-flex; align-items: center; gap: 5px; padding: 0;
   }
-  .timer-sonido-row button:hover, .timer-sonido-row a:hover { color: var(--ink); }
-  .timer-sonido-volumen { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+  .timer-sonido-row button:hover, .timer-sonido-row a:hover { color: var(--teal); }
+  .timer-sonido-volumen { display: flex; align-items: center; gap: 8px; }
   .timer-sonido-volumen span { font-size: 11px; color: var(--muted); }
   .ficha-card {
     border: 1px solid var(--line); border-radius: 18px; padding: 22px 18px; margin-top: 14px;
@@ -656,46 +690,14 @@
     .screen[data-screen="6"] .resumen-cuenta-email { font-size: 13px; }
     .screen[data-screen="6"] .resumen-logout { font-size: 15px; }
 
-    /* Estudiar (S10) */
-    .screen[data-screen="10"] .tabs .tab { font-size: 15px; padding: 12px; }
+    /* Estudiar (S10) -- ver bloque dedicado más abajo (grilla de dos
+       columnas, .timer-card, .estudiar-rail) para la implementación
+       completa, armada siguiendo CORRECCION-tiempo-de-estudio.md al pie
+       de la letra. Acá solo quedan los campos de Fichas/Resumen, que no
+       cambiaron. */
     .screen[data-screen="10"] .field label { font-size: 14.5px; }
     .screen[data-screen="10"] .field input, .screen[data-screen="10"] .field select { font-size: 15px; padding: 13px 14px; }
-    .screen[data-screen="10"] .timer-card { padding: 34px 22px; }
-    .screen[data-screen="10"] .timer-display { font-size: 68px; }
-    .screen[data-screen="10"] .timer-fase { font-size: 15px; }
-    .screen[data-screen="10"] .timer-ciclos { font-size: 14px; }
-    .screen[data-screen="10"] .estudiar-rail h3 { font-size: 16px; }
     .screen[data-screen="10"] .dropzone-ic { font-size: 30px; }
-    .screen[data-screen="10"] #estudiarAccionesCard,
-    .screen[data-screen="10"] #estudiarBiblioCard { padding: 22px; }
-    .screen[data-screen="10"] .estudiar-rail .sub { font-size: 14px; }
-    /* Pedido explícito de Santiago (captura marcada a mano, dos vueltas):
-       las tarjetas de Estudiar tienen que llegar hasta abajo de la
-       pantalla de verdad, no solo un poco más altas con un min-height
-       fijo. La vuelta anterior con flex:1 + justify-content:center se
-       había descartado porque centrar el GRUPO entero (tabs + timer-card
-       como una unidad) dejaba un hueco enorme ARRIBA de las pestañas de
-       método. La diferencia clave acá: no se centra nada -- las pestañas
-       de método y el título de "Bibliografía"/"Al terminar el bloque"
-       se quedan en flujo normal arriba de todo, y es solo el ÚLTIMO
-       elemento de cada columna (.timer-card a la izquierda,
-       #estudiarBiblioCard a la derecha) el que se estira con flex:1 para
-       absorber el espacio que sobra hasta el borde de abajo. */
-    .screen[data-screen="10"] .study-layout { flex: 1; align-items: stretch; }
-    .screen[data-screen="10"] .study-main { display: flex; flex-direction: column; }
-    .screen[data-screen="10"] .study-panel.active { flex: 1; display: flex; flex-direction: column; }
-    /* Las tarjetas en sí (no el panel entero -- esa fue la vuelta anterior
-       que salió mal) se vuelven flex-column y centran SU PROPIO contenido
-       adentro. El título "Bibliografía del tema" queda pegado arriba
-       (fuera del área que se centra) para que no flote suelto en el medio
-       de una tarjeta grande -- solo la lista de abajo se centra en el
-       espacio que le queda. */
-    .screen[data-screen="10"] .timer-card {
-      flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center;
-    }
-    .screen[data-screen="10"] .estudiar-rail { display: flex; flex-direction: column; }
-    .screen[data-screen="10"] #estudiarBiblioCard { flex: 1; min-height: 0; display: flex; flex-direction: column; }
-    .screen[data-screen="10"] #estudiarBiblioBox { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 
     /* Resumen (S6) -- los widgets nuevos (stats/por materia/constancia/
        escapando) se sumaron después de este bloque y quedaron con su
@@ -1106,15 +1108,45 @@
   }
   .study-tabs .tab.active { background: none; box-shadow: none; color: var(--teal); border-bottom-color: var(--teal); font-weight: 700; }
   .study-layout { display: flex; flex-direction: column; gap: 16px; }
-  .study-main { flex: 1; min-width: 0; }
+  .study-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
   .study-panel { display: none; }
-  .study-panel.active { display: block; }
+  .study-panel.active { display: flex; flex-direction: column; flex: 1; min-height: 0; }
   .estudiar-rail { display: flex; flex-direction: column; gap: 14px; }
   .estudiar-rail h3 { margin: 0 0 4px; font-size: 14px; }
+  /* Grilla de dos columnas (armada según CORRECCION-tiempo-de-estudio.md):
+     1.35fr/1fr, con .study-layout como flex:1 dentro de .screen-content
+     para que tenga alto real que repartir -- sin esto la grilla no tiene
+     "sobra de alto" que darle a sus columnas y quedan del alto de su
+     contenido nomás. */
   @media (min-width: 860px) {
-    .study-layout { flex-direction: row; align-items: flex-start; }
-    .estudiar-rail { width: 260px; flex-shrink: 0; }
+    .study-layout {
+      display: grid; grid-template-columns: 1.35fr 1fr; gap: 20px;
+      align-items: stretch; flex: 1; min-height: 0;
+    }
+    .estudiar-rail { width: auto; min-height: 0; }
+    /* Card 1 ("Al terminar el bloque") a su alto natural; card 2
+       ("Bibliografía del tema") absorbe el resto con flex:1, así las dos
+       columnas de la grilla terminan a la misma altura. */
+    #estudiarBiblioCard { flex: 1; min-height: 0; }
+    .timer-card { flex: 1; min-height: 0; }
   }
+  /* Tarjetas del rail: fondo/borde propios (antes usaban .card genérica),
+     "Al terminar el bloque" a su alto natural, bibliografía con el
+     contenido arriba y a la izquierda -- nunca centrado. */
+  #estudiarAccionesCard, #estudiarBiblioCard {
+    background: #fff; border: 1px solid rgba(0,0,0,.1); border-radius: 11px;
+    padding: 17px 19px; display: flex; flex-direction: column; gap: 10px;
+  }
+  #estudiarAccionesCard h3, #estudiarBiblioCard h3 { margin: 0; font-size: 14px; font-weight: 700; color: var(--ink); }
+  #estudiarAccionesCard .sub { margin: 0; font-size: 12.5px; line-height: 1.55; color: rgba(0,0,0,.55); }
+  .estudiar-acciones-btns { display: flex; gap: 7px; }
+  .estudiar-acciones-btns button {
+    flex: 1; padding: 9px; border-radius: 7px; font-size: 12px; font-weight: 600;
+    font-family: inherit; cursor: pointer; text-align: center;
+  }
+  .estudiar-acciones-btns .btn-firme { background: rgba(15,118,110,.09); border: 1px solid rgba(15,118,110,.25); color: var(--teal); }
+  .estudiar-acciones-btns .btn-flojo { background: rgba(224,163,60,.11); border: 1px solid rgba(224,163,60,.3); color: #8a5f10; }
+  #estudiarBiblioBox { text-align: left; }
 
   /* .study-section-chevron sigue en pie solo para el acordeón de carreras
      agrupadas por facultad (toggleGrupoFacultad, ver S12) -- no tiene
@@ -1769,23 +1801,23 @@
     <div class="study-layout">
     <div class="study-main">
     <div class="study-panel" id="sec-tiempo" data-sec="tiempo">
-        <div class="tabs" id="timerMetodoTabs">
-          <div class="tab" data-metodo="pomodoro" onclick="seleccionarMetodoTimer('pomodoro')">🍅 Pomodoro</div>
-          <div class="tab" data-metodo="52-17" onclick="seleccionarMetodoTimer('52-17')">⚡ 52/17</div>
-          <div class="tab" data-metodo="90-20" onclick="seleccionarMetodoTimer('90-20')">🌊 90/20</div>
-        </div>
-        <p class="sub" id="timerMetodoDesc" style="margin-top:-6px;"></p>
-
         <div class="timer-card">
-          <div class="timer-fase" id="timerFaseLabel">Estudio</div>
-          <div class="timer-display" id="timerDisplay">25:00</div>
-          <div class="timer-ciclos" id="timerCiclosLabel">0 bloques completados hoy</div>
+          <div class="timer-metodos" id="timerMetodoTabs">
+            <span class="tab" data-metodo="pomodoro" onclick="seleccionarMetodoTimer('pomodoro')">Pomodoro 25/5</span>
+            <span class="tab" data-metodo="52-17" onclick="seleccionarMetodoTimer('52-17')">52/17</span>
+            <span class="tab" data-metodo="90-20" onclick="seleccionarMetodoTimer('90-20')">90/20</span>
+          </div>
+          <div class="timer-clock">
+            <div class="timer-fase" id="timerFaseLabel">ESTUDIO</div>
+            <div class="timer-display" id="timerDisplay">25:00</div>
+            <div class="timer-ciclos" id="timerCiclosLabel">0 bloques completados hoy · 25 min de foco, 5 de descanso</div>
+          </div>
           <div class="timer-btns">
-            <button class="btn" id="timerStartBtn" onclick="toggleTimer()">▶️ Empezar</button>
-            <button class="btn secondary" onclick="resetearTimer()">↺ Reiniciar</button>
+            <button class="btn" id="timerStartBtn" onclick="toggleTimer()">▶ Empezar</button>
+            <button class="btn secondary" onclick="resetearTimer()">Reiniciar</button>
           </div>
           <div class="timer-sonido-row">
-            <button type="button" id="sonidoAmbienteBtn" onclick="toggleSonidoAmbiente()">🔇 Sonido de fondo</button>
+            <button type="button" id="sonidoAmbienteBtn" onclick="toggleSonidoAmbiente()">🔈 Sonido de fondo</button>
             <a href="https://www.youtube.com/results?search_query=musica+relajante+para+estudiar+lofi" target="_blank">🎵 Prefiero música real</a>
           </div>
           <div id="sonidoAmbienteControles" class="timer-sonido-volumen" style="display:none;">
@@ -1858,17 +1890,17 @@
     </div>
 
     <aside class="estudiar-rail" id="estudiarRail">
-      <div class="card" id="estudiarAccionesCard" style="display:none;">
+      <div id="estudiarAccionesCard" style="display:none;">
         <h3>Al terminar el bloque</h3>
-        <p class="sub" style="margin-top:2px;">Marcá cómo te fue con <strong id="estudiarRailTema">este tema</strong> para reprogramar el próximo repaso.</p>
-        <div style="display:flex; gap:8px; margin-top:10px;">
-          <button type="button" class="btn secondary" style="flex:1; margin-top:0;" onclick="marcarDesdeEstudiar('firme')">Firme</button>
-          <button type="button" class="btn secondary" style="flex:1; margin-top:0;" onclick="marcarDesdeEstudiar('flojo')">Flojo</button>
+        <p class="sub">Marcá cómo te fue con <strong id="estudiarRailTema">este tema</strong> para reprogramar el próximo repaso.</p>
+        <div class="estudiar-acciones-btns">
+          <button type="button" class="btn-firme" onclick="marcarDesdeEstudiar('firme')">Firme</button>
+          <button type="button" class="btn-flojo" onclick="marcarDesdeEstudiar('flojo')">Flojo</button>
         </div>
       </div>
-      <div class="card" id="estudiarBiblioCard" style="display:none;">
+      <div id="estudiarBiblioCard" style="display:none;">
         <h3>Bibliografía del tema</h3>
-        <div id="estudiarBiblioBox" style="margin-top:6px;"></div>
+        <div id="estudiarBiblioBox"></div>
       </div>
     </aside>
     </div>
@@ -9066,13 +9098,15 @@ function renderTimer() {
   const tabs = document.getElementById('timerMetodoTabs');
   if (!tabs) return;
   tabs.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.metodo === timerMetodo));
-  document.getElementById('timerMetodoDesc').textContent = METODOS_TIMER[timerMetodo].desc;
   const faseEl = document.getElementById('timerFaseLabel');
-  faseEl.textContent = timerFase === 'trabajo' ? '📚 Estudio' : '☕ Descanso';
+  faseEl.textContent = timerFase === 'trabajo' ? 'ESTUDIO' : 'DESCANSO';
   faseEl.classList.toggle('descanso', timerFase === 'descanso');
   document.getElementById('timerDisplay').textContent = fmtTimer(timerSegundos);
-  document.getElementById('timerCiclosLabel').textContent = `${timerCiclosHoy} ${timerCiclosHoy === 1 ? 'bloque completado' : 'bloques completados'} hoy`;
-  document.getElementById('timerStartBtn').textContent = timerCorriendo ? '⏸️ Pausar' : '▶️ Empezar';
+  const metodo = METODOS_TIMER[timerMetodo];
+  const minFoco = Math.round(metodo.trabajo / 60);
+  const minDescanso = Math.round(metodo.descanso / 60);
+  document.getElementById('timerCiclosLabel').textContent = `${timerCiclosHoy} ${timerCiclosHoy === 1 ? 'bloque completado' : 'bloques completados'} hoy · ${minFoco} min de foco, ${minDescanso} de descanso`;
+  document.getElementById('timerStartBtn').textContent = timerCorriendo ? '⏸ Pausar' : '▶ Empezar';
 }
 
 // Compartido por los inputs de archivo de fichas y resúmenes -- muestra/
