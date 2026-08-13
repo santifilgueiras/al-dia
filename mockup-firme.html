@@ -660,10 +660,7 @@
     .screen[data-screen="10"] .tabs .tab { font-size: 15px; padding: 12px; }
     .screen[data-screen="10"] .field label { font-size: 14.5px; }
     .screen[data-screen="10"] .field input, .screen[data-screen="10"] .field select { font-size: 15px; padding: 13px 14px; }
-    /* min-height (no flex/centrado) -- el contenido se queda arriba, tal
-       cual el flujo normal del documento, y el espacio de más aparece
-       solo, como aire abajo del todo. Nada empuja el timer hacia abajo. */
-    .screen[data-screen="10"] .timer-card { padding: 34px 22px; min-height: 380px; }
+    .screen[data-screen="10"] .timer-card { padding: 34px 22px; }
     .screen[data-screen="10"] .timer-display { font-size: 68px; }
     .screen[data-screen="10"] .timer-fase { font-size: 15px; }
     .screen[data-screen="10"] .timer-ciclos { font-size: 14px; }
@@ -672,16 +669,24 @@
     .screen[data-screen="10"] #estudiarAccionesCard,
     .screen[data-screen="10"] #estudiarBiblioCard { padding: 22px; }
     .screen[data-screen="10"] .estudiar-rail .sub { font-size: 14px; }
-    /* Pedido explícito de Santiago con una captura marcada: la tarjeta de
-       bibliografía se queda chica al lado del timer -- mismo criterio que
-       .timer-card (min-height, contenido arriba, nunca centrado). */
-    .screen[data-screen="10"] #estudiarBiblioCard { min-height: 480px; }
-    /* (Revertido -- ver historial) Centrar el panel verticalmente con
-       flex:1 + justify-content:center dejaba un hueco enorme en blanco
-       arriba de las pestañas de método cuando el contenido era corto
-       (Tiempo de estudio, con solo el timer). Se probó, se vio mal, se
-       sacó -- el contenido de Estudiar queda arriba como en la captura
-       de referencia, sin forzar que ocupe el alto completo. */
+    /* Pedido explícito de Santiago (captura marcada a mano, dos vueltas):
+       las tarjetas de Estudiar tienen que llegar hasta abajo de la
+       pantalla de verdad, no solo un poco más altas con un min-height
+       fijo. La vuelta anterior con flex:1 + justify-content:center se
+       había descartado porque centrar el GRUPO entero (tabs + timer-card
+       como una unidad) dejaba un hueco enorme ARRIBA de las pestañas de
+       método. La diferencia clave acá: no se centra nada -- las pestañas
+       de método y el título de "Bibliografía"/"Al terminar el bloque"
+       se quedan en flujo normal arriba de todo, y es solo el ÚLTIMO
+       elemento de cada columna (.timer-card a la izquierda,
+       #estudiarBiblioCard a la derecha) el que se estira con flex:1 para
+       absorber el espacio que sobra hasta el borde de abajo. */
+    .screen[data-screen="10"] .study-layout { flex: 1; align-items: stretch; }
+    .screen[data-screen="10"] .study-main { display: flex; flex-direction: column; }
+    .screen[data-screen="10"] .study-panel.active { flex: 1; display: flex; flex-direction: column; }
+    .screen[data-screen="10"] .timer-card { flex: 1; min-height: 0; }
+    .screen[data-screen="10"] .estudiar-rail { display: flex; flex-direction: column; }
+    .screen[data-screen="10"] #estudiarBiblioCard { flex: 1; min-height: 0; }
 
     /* Resumen (S6) -- los widgets nuevos (stats/por materia/constancia/
        escapando) se sumaron después de este bloque y quedaron con su
