@@ -684,9 +684,18 @@
     .screen[data-screen="10"] .study-layout { flex: 1; align-items: stretch; }
     .screen[data-screen="10"] .study-main { display: flex; flex-direction: column; }
     .screen[data-screen="10"] .study-panel.active { flex: 1; display: flex; flex-direction: column; }
-    .screen[data-screen="10"] .timer-card { flex: 1; min-height: 0; }
+    /* Las tarjetas en sí (no el panel entero -- esa fue la vuelta anterior
+       que salió mal) se vuelven flex-column y centran SU PROPIO contenido
+       adentro. El título "Bibliografía del tema" queda pegado arriba
+       (fuera del área que se centra) para que no flote suelto en el medio
+       de una tarjeta grande -- solo la lista de abajo se centra en el
+       espacio que le queda. */
+    .screen[data-screen="10"] .timer-card {
+      flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center;
+    }
     .screen[data-screen="10"] .estudiar-rail { display: flex; flex-direction: column; }
-    .screen[data-screen="10"] #estudiarBiblioCard { flex: 1; min-height: 0; }
+    .screen[data-screen="10"] #estudiarBiblioCard { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+    .screen[data-screen="10"] #estudiarBiblioBox { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 
     /* Resumen (S6) -- los widgets nuevos (stats/por materia/constancia/
        escapando) se sumaron después de este bloque y quedaron con su
