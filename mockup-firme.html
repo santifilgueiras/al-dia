@@ -660,12 +660,18 @@
     .screen[data-screen="10"] .tabs .tab { font-size: 15px; padding: 12px; }
     .screen[data-screen="10"] .field label { font-size: 14.5px; }
     .screen[data-screen="10"] .field input, .screen[data-screen="10"] .field select { font-size: 15px; padding: 13px 14px; }
-    .screen[data-screen="10"] .timer-card { padding: 34px 22px; }
+    /* min-height (no flex/centrado) -- el contenido se queda arriba, tal
+       cual el flujo normal del documento, y el espacio de más aparece
+       solo, como aire abajo del todo. Nada empuja el timer hacia abajo. */
+    .screen[data-screen="10"] .timer-card { padding: 34px 22px; min-height: 380px; }
     .screen[data-screen="10"] .timer-display { font-size: 68px; }
     .screen[data-screen="10"] .timer-fase { font-size: 15px; }
     .screen[data-screen="10"] .timer-ciclos { font-size: 14px; }
     .screen[data-screen="10"] .estudiar-rail h3 { font-size: 16px; }
     .screen[data-screen="10"] .dropzone-ic { font-size: 30px; }
+    .screen[data-screen="10"] #estudiarAccionesCard,
+    .screen[data-screen="10"] #estudiarBiblioCard { padding: 22px; }
+    .screen[data-screen="10"] .estudiar-rail .sub { font-size: 14px; }
     /* (Revertido -- ver historial) Centrar el panel verticalmente con
        flex:1 + justify-content:center dejaba un hueco enorme en blanco
        arriba de las pestañas de método cuando el contenido era corto
