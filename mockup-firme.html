@@ -8156,6 +8156,17 @@ function ajustarAlturaCalendario(intentos) {
     const maxH = esAncho ? 120 : 80;
     const cellHeight = Math.max(minH, Math.min(maxH, Math.floor(available / numRows)));
     screenEl.style.setProperty('--cal-cell-h', cellHeight + 'px');
+    // Además de la variable CSS: Santiago reportó el calendario "bugueado"
+    // (celdas superpuestas) de forma intermitente en su iPhone, sin que se
+    // haya podido reproducir en ningún entorno de desarrollo disponible acá
+    // (Chrome usa un motor de render distinto a Safari/WebKit) -- coincide
+    // con un tipo de bug conocido de WebKit donde el motor no siempre
+    // recalcula bien el alto de las filas de un CSS Grid cuando lo que
+    // cambia es una custom property leída con var(), en vez del estilo
+    // puesto directo. Fijar el alto directo en cada celda por JS (además de
+    // la variable, que se deja por si algo más la usa) es más contundente y
+    // no depende de que el motor propague bien la variable a la grilla.
+    grid.querySelectorAll('.cal-cell').forEach(cell => { cell.style.height = cellHeight + 'px'; });
   });
 }
 
