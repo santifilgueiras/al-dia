@@ -457,22 +457,27 @@
   .timer-sonido-row button:hover, .timer-sonido-row a:hover { color: var(--teal); }
   .timer-sonido-volumen { display: flex; align-items: center; gap: 8px; }
   .timer-sonido-volumen span { font-size: 11px; color: var(--muted); }
+  /* #fichasBox (Estudiar > Fichas de repaso) crece para ocupar el espacio
+     que sobra debajo del formulario, y la propia tarjeta se estira dentro
+     -- "Generar fichas" quedó reubicado después en el HTML, así que cae
+     solo, pegado abajo. */
+  #fichasBox { display: flex; flex-direction: column; flex: 1; min-height: 0; gap: 16px; }
   .ficha-card {
-    border: 1px solid var(--line); border-radius: 18px; padding: 22px 18px; margin-top: 14px;
-    min-height: 130px; display: flex; flex-direction: column; justify-content: center;
-    text-align: center; cursor: pointer; background: var(--accent-soft);
+    border: 1px solid var(--line); border-radius: 18px; padding: 34px 32px; margin-top: 0;
+    flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center;
+    text-align: center; cursor: pointer; background: var(--accent-soft); overflow-y: auto;
   }
   .ficha-card.flipped { background: var(--firme-soft); }
-  .ficha-count { font-size: 11px; color: var(--muted); font-weight: 800; margin-bottom: 8px; }
-  .ficha-texto { font-size: 14.5px; font-weight: 700; color: var(--ink); line-height: 1.45; }
-  .ficha-hint { font-size: 11px; color: var(--muted); margin-top: 12px; }
-  .ficha-nav { display: flex; gap: 8px; margin-top: 10px; }
+  .ficha-count { font-size: 13px; color: var(--muted); font-weight: 800; margin-bottom: 14px; }
+  .ficha-texto { font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.45; }
+  .ficha-hint { font-size: 13px; color: var(--muted); margin-top: 18px; }
+  .ficha-nav { display: flex; gap: 8px; margin-top: 0; }
   .ficha-nav .btn { margin-top: 0; flex: 1; }
   .ficha-card.mc { cursor: default; text-align: left; }
-  .ficha-opciones { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+  .ficha-opciones { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
   .ficha-opcion {
-    text-align: left; padding: 10px 12px; border-radius: 12px; border: 1.5px solid var(--line);
-    background: #fff; font-size: 13px; font-family: inherit; cursor: pointer; color: var(--ink);
+    text-align: left; padding: 15px 18px; border-radius: 12px; border: 1.5px solid var(--line);
+    background: #fff; font-size: 15.5px; font-family: inherit; cursor: pointer; color: var(--ink);
   }
   .ficha-opcion:disabled { cursor: default; }
   .ficha-opcion.correcta { border-color: var(--firme); background: var(--firme-soft); font-weight: 700; }
@@ -1868,8 +1873,8 @@
             <option value="30">30</option>
           </select>
         </div>
-        <button class="btn" id="fichasGenerarBtn" onclick="generarFichas()">✨ Generar fichas</button>
         <div id="fichasBox"></div>
+        <button class="btn" id="fichasGenerarBtn" onclick="generarFichas()">✨ Generar fichas</button>
     </div>
 
     <div class="study-panel" id="sec-resumen" data-sec="resumen">
