@@ -107,6 +107,23 @@
      solo se corregía en modo standalone (instalada a pantalla de inicio);
      ahora se estira también en Safari/Chrome del celular sin instalar. */
   @media (max-width: 859px) {
+    /* Causa real del "zoom"/recorte en Estudiar (confirmado con datos del
+       panel de diagnóstico, 2026-08-13): .app-shell (el div que envuelve
+       .phone) NUNCA tuvo un ancho explícito en celular -- solo lo tiene
+       adentro del media query de compu, más abajo. Sin un ancho propio,
+       .app-shell se comporta como "achicate a tu contenido" (shrink-to-fit)
+       en vez de "ocupá el ancho de la pantalla". Casi siempre no se notaba
+       porque nada adentro pedía más ancho que la pantalla real -- pero en
+       Estudiar, las 4 pestañas que no se achican (ver .study-tabs) sí piden
+       más, y sin un ancho de contenedor definido arriba en la cadena, ese
+       pedido se propaga hacia afuera en vez de recortarse/scrollearse dentro
+       de .phone. .phone ya tenía "width:100%", pero "100% de un contenedor
+       sin ancho propio" no es un ancho real -- por eso .phone terminaba
+       midiendo lo que pedía su contenido (~650px) en vez de la pantalla
+       real. Dándole a .app-shell un ancho fijo de una vez, el 100% de
+       .phone ya tiene contra qué medirse, y overflow:hidden (que .phone y
+       .screen ya tenían) por fin puede recortar/contener lo que sobra. */
+    .app-shell { width: 100%; }
     .phone { width: 100%; }
   }
   .statusbar { height: 20px; background: #22333d; }
@@ -178,7 +195,7 @@
      para que el flex item pueda encogerse y scrollear en vez de estirar
      a .screen entero. */
   .screen-content {
-    display: flex; flex-direction: column; flex: 1; min-height: 0;
+    display: flex; flex-direction: column; flex: 1; min-height: 0; min-width: 0;
     overflow-y: auto; overflow-x: hidden;
   }
   .topbar {
@@ -1252,7 +1269,7 @@
     white-space: nowrap;
   }
   .study-tabs .tab.active { background: none; box-shadow: none; color: var(--teal); border-bottom-color: var(--teal); font-weight: 700; }
-  .study-layout { display: flex; flex-direction: column; gap: 16px; }
+  .study-layout { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
   .study-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
   .study-panel { display: none; }
   .study-panel.active { display: flex; flex-direction: column; flex: 1; min-height: 0; }
@@ -1467,7 +1484,7 @@
      se instale en una pantalla ancha -- es la experiencia de app, no de web. */
   @media (display-mode: standalone) {
     body { padding: 0; align-items: stretch; }
-    .app-shell { flex-direction: column; gap: 0; }
+    .app-shell { flex-direction: column; gap: 0; width: 100%; }
     .phone {
       width: 100%; max-width: 100%; min-height: 100dvh;
       border: none; border-radius: 0; box-shadow: none;
