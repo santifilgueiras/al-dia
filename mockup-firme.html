@@ -9126,6 +9126,27 @@ function seleccionarTipoFicha(tipo) {
   document.querySelectorAll('#fichasTipoTabs .tab').forEach(t => t.classList.toggle('active', t.dataset.tipo === tipo));
 }
 
+// Con qué tema real conviene arrancar el selector de Fichas al entrar a
+// Estudiar (en vez de siempre el primero del catálogo, que no tiene nada
+// que ver con lo que el estudiante está cursando): prioridad al primer
+// tema agendado para HOY; si no hay nada agendado hoy, el primer tema no
+// firme de la primera materia con calendario armado.
+function focoInicialEstudiar() {
+  const activos = examenesConCalendario();
+  if (!activos.length) return null;
+  const todayKey = fmt(new Date());
+  const entriesHoy = ((planGlobal && planGlobal.schedule[todayKey]) || []).filter(t => t.action !== 'final');
+  if (entriesHoy.length) {
+    const e = examenes.find(x => x.id === entriesHoy[0].examId);
+    if (e) return { exam: e, tema: entriesHoy[0].name };
+  }
+  for (const e of activos) {
+    const t = e.selected.find(t => e.states[t] !== 'firme');
+    if (t) return { exam: e, tema: t };
+  }
+  return null;
+}
+
 function renderFichasSelect() {
   const facSel = document.getElementById('fichasFacultadSelect');
   if (!facSel) return;
@@ -9134,7 +9155,24 @@ function renderFichasSelect() {
   // así que listarlas por label las mostraría duplicadas y sin forma de
   // distinguirlas.
   facSel.innerHTML = FACULTADES_ORDEN.map(key => `<option value="${key}">${FACULTADES[key].carrera}</option>`).join('');
-  onFichasFacultadChange();
+
+  const foco = focoInicialEstudiar();
+  const f = foco ? facultadDe(foco.exam.facultad) : null;
+  const materias = f ? (f.catalogoPorCiclo[foco.exam.anio] || []) : [];
+  const materiaIdx = f ? materias.findIndex(m => m.nombre === foco.exam.materiaNombre) : -1;
+  if (foco && materiaIdx >= 0) {
+    facSel.value = foco.exam.facultad;
+    onFichasFacultadChange();
+    document.getElementById('fichasAnioSelect').value = foco.exam.anio;
+    onFichasAnioChange();
+    document.getElementById('fichasMateriaSelect').value = materiaIdx;
+    onFichasMateriaChange();
+    const temaIdx = fichasTemasDisponibles.findIndex(it => it.tema === foco.tema);
+    if (temaIdx >= 0) document.getElementById('fichasTemaSelect').value = temaIdx;
+  } else {
+    onFichasFacultadChange();
+  }
+  renderEstudiarRail();
 }
 
 function onFichasFacultadChange() {
