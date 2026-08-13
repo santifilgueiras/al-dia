@@ -10596,6 +10596,50 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js').catch(err => console.error('SW register falló:', err));
   });
 }
+
+// Panel de diagnóstico temporal (solo con ?debug=1 en la URL) -- para
+// investigar un bug de "zoom"/recorte reportado en iPhone que no se pudo
+// reproducir en ningún entorno de desarrollo (2026-08-13). Sacar cuando
+// se resuelva.
+if (location.search.includes('debug=1')) {
+  const panel = document.createElement('div');
+  panel.id = 'debugPanel';
+  panel.style.cssText = 'position:fixed; top:0; left:0; right:0; z-index:99999; background:rgba(0,0,0,.92); color:#0f6; font-family:monospace; font-size:11px; line-height:1.5; padding:8px 10px; max-height:50vh; overflow-y:auto; white-space:pre-wrap;';
+  document.body.appendChild(panel);
+  function actualizarDebug() {
+    const vv = window.visualViewport;
+    const de = document.documentElement;
+    const activo = document.querySelector('.screen.active');
+    const sc = activo ? activo.querySelector('.screen-content') : null;
+    const st = document.getElementById('studyMainTabs');
+    const sl = activo ? activo.querySelector('.study-layout') : null;
+    const phone = document.querySelector('.phone');
+    const lines = [
+      'UA: ' + navigator.userAgent,
+      'innerW/H: ' + window.innerWidth + ' x ' + window.innerHeight,
+      'outerW/H: ' + window.outerWidth + ' x ' + window.outerHeight,
+      'devicePixelRatio: ' + window.devicePixelRatio,
+      'visualViewport: ' + (vv ? ('w=' + vv.width.toFixed(1) + ' h=' + vv.height.toFixed(1) + ' scale=' + vv.scale.toFixed(3) + ' offX=' + vv.offsetLeft.toFixed(1) + ' offY=' + vv.offsetTop.toFixed(1)) : 'n/a'),
+      'documentElement client/scroll W: ' + de.clientWidth + ' / ' + de.scrollWidth,
+      'documentElement client/scroll H: ' + de.clientHeight + ' / ' + de.scrollHeight,
+      'body scrollW/clientW: ' + document.body.scrollWidth + ' / ' + document.body.clientWidth,
+      '.phone client/scroll W: ' + (phone ? phone.clientWidth + ' / ' + phone.scrollWidth : 'n/a'),
+      'display-mode standalone: ' + window.matchMedia('(display-mode: standalone)').matches,
+      'max-width 859px matches: ' + window.matchMedia('(max-width: 859px)').matches,
+      'pantalla activa (data-screen): ' + (activo ? activo.getAttribute('data-screen') : 'ninguna'),
+      'screen-content client/scroll W: ' + (sc ? sc.clientWidth + ' / ' + sc.scrollWidth : 'n/a'),
+      'studyMainTabs client/scroll W: ' + (st ? st.clientWidth + ' / ' + st.scrollWidth : 'n/a'),
+      'study-layout client/scroll W: ' + (sl ? sl.clientWidth + ' / ' + sl.scrollWidth : 'n/a'),
+      'html fontSize (computed): ' + getComputedStyle(document.documentElement).fontSize,
+    ];
+    panel.textContent = lines.join('\n');
+  }
+  actualizarDebug();
+  window.addEventListener('resize', actualizarDebug);
+  window.addEventListener('orientationchange', () => setTimeout(actualizarDebug, 300));
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', actualizarDebug);
+  setInterval(actualizarDebug, 1000);
+}
 </script>
 
 </body>
