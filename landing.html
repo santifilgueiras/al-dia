@@ -56,6 +56,16 @@
     padding: 16px 24px; background: #fff; border-bottom: 1px solid var(--line);
     position: sticky; top: 0; z-index: 5;
   }
+  /* Instalada a pantalla de inicio (o vista desde adentro de la app
+     instalada, ej. tras Cerrar sesión), esta página corre en
+     display-mode:standalone igual que mockup-firme.html -- sin este
+     padding la barra de estado del iPhone (reloj/batería) queda pintada
+     encima del logo y los botones de arriba quedan tapados/imposibles de
+     tocar (reportado por Santiago, 2026-08-13; mockup-firme.html ya
+     resuelve esto mismo para la app en sí, acá nunca se había hecho). */
+  @media (display-mode: standalone) {
+    .landing-nav { padding-top: calc(16px + env(safe-area-inset-top)); }
+  }
   .landing-nav-logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 16px; color: var(--ink); text-decoration: none; }
   .landing-nav-logo img { width: 24px; height: 24px; border-radius: 6px; display: block; }
   .landing-nav-links { display: none; align-items: center; gap: 28px; }

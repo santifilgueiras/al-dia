@@ -425,44 +425,44 @@
   .timer-card {
     background: #fff; border: 1px solid rgba(0,0,0,.1); border-radius: 11px;
     padding: 24px 26px 26px; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 34px;
+    align-items: center; justify-content: center; gap: 18px;
   }
   /* Selector de método: pastillas compactas (mide lo que miden sus 3
      pastillas, no 100% de ancho) -- clase propia en vez de reusar .tabs,
      que en el resto de la app es un segmented control full-width. */
-  .timer-metodos { display: flex; gap: 5px; padding: 5px; background: rgba(0,0,0,.05); border-radius: 11px; }
+  .timer-metodos { display: flex; gap: 3px; padding: 3px; background: rgba(0,0,0,.05); border-radius: 8px; }
   .timer-metodos .tab {
-    padding: 10px 24px; border-radius: 8px; font-size: 17px; font-weight: 500;
+    padding: 6px 15px; border-radius: 6px; font-size: 12px; font-weight: 500;
     color: rgba(0,0,0,.5); cursor: pointer; white-space: nowrap;
   }
   .timer-metodos .tab.active { background: #fff; color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
   .timer-clock { text-align: center; }
   .timer-fase {
-    font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 19px; font-weight: 600;
-    color: var(--teal); letter-spacing: .14em; margin-bottom: 18px;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; font-weight: 600;
+    color: var(--teal); letter-spacing: .14em; margin-bottom: 8px;
   }
   .timer-fase.descanso { color: var(--firme); }
   .timer-display {
-    font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 210px; line-height: 1; font-weight: 600;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 72px; line-height: 1; font-weight: 600;
     color: var(--ink); letter-spacing: -.03em; font-variant-numeric: tabular-nums;
   }
-  .timer-ciclos { font-size: 18px; color: rgba(0,0,0,.45); margin-top: 20px; }
+  .timer-ciclos { font-size: 12.5px; color: rgba(0,0,0,.45); margin-top: 10px; }
   /* Chicos, uno al lado del otro, con el ancho que les da el padding --
      no full-width como el resto de los .btn de la app. */
-  .timer-btns { display: flex; gap: 18px; align-items: center; }
+  .timer-btns { display: flex; gap: 10px; align-items: center; }
   .timer-btns .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    width: auto; margin-top: 0; border-radius: 12px; box-shadow: none;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    width: auto; margin-top: 0; border-radius: 9px; box-shadow: none;
   }
-  .timer-btns .btn:not(.secondary) { padding: 19px 52px; font-size: 21px; font-weight: 700; background: var(--teal); }
+  .timer-btns .btn:not(.secondary) { padding: 12px 34px; font-size: 14px; font-weight: 700; background: var(--teal); }
   .timer-btns .btn:not(.secondary):hover { background: var(--teal-hover); }
-  .timer-btns .btn.secondary { padding: 19px 32px; font-size: 19px; font-weight: 600; background: none; border: 1px solid rgba(0,0,0,.15); color: rgba(0,0,0,.6); }
+  .timer-btns .btn.secondary { padding: 12px 20px; font-size: 13px; font-weight: 600; background: none; border: 1px solid rgba(0,0,0,.15); color: rgba(0,0,0,.6); }
   .timer-btns .btn.secondary:hover { border-color: var(--teal); color: var(--teal); }
-  .timer-sonido-row { display: flex; align-items: center; justify-content: center; gap: 24px; }
+  .timer-sonido-row { display: flex; align-items: center; justify-content: center; gap: 16px; }
   .timer-sonido-row button, .timer-sonido-row a {
     background: none; border: none; color: rgba(0,0,0,.45); font-family: inherit;
-    font-size: 16px; font-weight: 500; cursor: pointer; text-decoration: none;
-    display: inline-flex; align-items: center; gap: 6px; padding: 0;
+    font-size: 12px; font-weight: 500; cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 5px; padding: 0;
   }
   .timer-sonido-row button:hover, .timer-sonido-row a:hover { color: var(--teal); }
   .timer-sonido-volumen { display: flex; align-items: center; gap: 8px; }
@@ -529,7 +529,11 @@
      versión de escritorio, renderFichaActual() decide cuál pintar. */
   .ficha-fullscreen {
     display: none; position: fixed; inset: 0; z-index: 300; background: var(--ink); color: #fff;
-    flex-direction: column; padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+    flex-direction: column;
+    /* Sin safe-area-inset-top la X quedaba pegada arriba del todo, debajo
+       del notch/Dynamic Island en iPhone real -- prácticamente imposible
+       de tocar (reportado por Santiago, 2026-08-13). */
+    padding: calc(20px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom));
     overflow-y: auto;
   }
   .ficha-fullscreen.active { display: flex; }
@@ -858,9 +862,16 @@
   .repaso-go-btn:hover { background: var(--teal-hover); }
   .repaso-plain-row { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); cursor: pointer; }
   .repaso-plain-row:first-child { border-top: none; }
-  .repaso-plain-title { font-size: 14px; color: var(--ink); font-weight: 500; }
-  .repaso-plain-right { display: flex; align-items: center; gap: 18px; color: var(--muted); font-size: 12.5px; flex-shrink: 0; }
-  .repaso-plain-dias { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-weight: 600; }
+  .repaso-plain-title { font-size: 14px; color: var(--ink); font-weight: 500; flex: 1; min-width: 0; }
+  /* Antes ninguno de los dos hijos cedía (flex-shrink:0 + materia sin
+     límite de ancho) -- con una materia larga ("Teorías y Técnicas de las
+     Intervenciones") + un título largo, "EN N D" terminaba empujado fuera
+     del borde derecho de la pantalla (reportado por Santiago, 2026-08-13).
+     Ahora el nombre de materia es el que cede (elipsis) para que los días,
+     la info que importa de verdad acá, se vean siempre completos. */
+  .repaso-plain-right { display: flex; align-items: baseline; gap: 8px; color: var(--muted); font-size: 12.5px; min-width: 0; max-width: 55%; }
+  .repaso-plain-materia { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; flex-shrink: 1; }
+  .repaso-plain-dias { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-weight: 600; white-space: nowrap; flex-shrink: 0; }
 
   /* ---- Resumen (S6) -- dashboard de progreso ---- */
   .resumen-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap; }
@@ -955,6 +966,17 @@
        scroll -- ver esa función en el JS (aplica en cualquier ancho, no
        solo en compu). */
     height: var(--cal-cell-h, auto);
+    /* Santiago reportó el calendario "bugueado" a veces (borde de una celda
+       pintado corrido/superpuesto sobre las vecinas, captura 2026-08-13) --
+       encaja con un glitch de repintado conocido de WebKit en grillas CSS
+       cuando el borde/fondo de una celda cambia (transition de arriba) al
+       mismo tiempo que --cal-cell-h se recalcula por JS. translateZ(0)
+       fuerza cada celda a su propia capa de composición, el workaround
+       estándar para este tipo de glitch -- no se pudo reproducir de forma
+       confiable en esta máquina para confirmar del todo, avisar si sigue
+       pasando después de este cambio. */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
   }
   .cal-cell.empty { border-color: transparent; cursor: default; }
   .cal-cell .cal-daynum { font-size: 10.5px; font-weight: 800; color: var(--ink); line-height: 1; }
@@ -1163,11 +1185,20 @@
   .study-tabs {
     background: none; padding: 0; border-radius: 0; gap: 26px;
     border-bottom: 1px solid var(--line); margin-bottom: 20px;
+    /* 4 pestañas con ícono+texto no entran en un ancho de celular (375-
+       430px) -- antes se salían de la pantalla sin ninguna forma de
+       llegar a las últimas. flex-wrap:nowrap + overflow-x:auto las hace
+       deslizables en vez de recortarse; scrollbar oculta porque ya hay un
+       borde inferior marcando el límite visual. */
+    flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .study-tabs::-webkit-scrollbar { display: none; }
   .study-tabs .tab {
-    flex: none; display: flex; align-items: center; gap: 7px;
+    flex: none; flex-shrink: 0; display: flex; align-items: center; gap: 7px;
     padding: 0 0 12px; margin-bottom: -1px; border-radius: 0;
     border-bottom: 2px solid transparent; color: var(--muted); font-weight: 600;
+    white-space: nowrap;
   }
   .study-tabs .tab.active { background: none; box-shadow: none; color: var(--teal); border-bottom-color: var(--teal); font-weight: 700; }
   .study-layout { display: flex; flex-direction: column; gap: 16px; }
@@ -1191,7 +1222,23 @@
        ("Bibliografía del tema") absorbe el resto con flex:1, así las dos
        columnas de la grilla terminan a la misma altura. */
     #estudiarBiblioCard { flex: 1; min-height: 0; }
-    .timer-card { flex: 1; min-height: 0; }
+    .timer-card { flex: 1; min-height: 0; gap: 34px; }
+    /* Cronómetro grande (pedido 2026-08-12) -- SOLO acá: el commit original
+       que lo agrandó tocaba los valores base (sin media query), así que
+       también agrandaba el timer en celular y desbordaba el header/las
+       pestañas de Estudiar (ver captura de Santiago, 2026-08-13). El resto
+       del bloque escala en proporción, igual que antes. */
+    .timer-metodos { gap: 5px; padding: 5px; border-radius: 11px; }
+    .timer-metodos .tab { padding: 10px 24px; font-size: 17px; }
+    .timer-fase { font-size: 19px; margin-bottom: 18px; }
+    .timer-display { font-size: 210px; }
+    .timer-ciclos { font-size: 18px; margin-top: 20px; }
+    .timer-btns { gap: 18px; }
+    .timer-btns .btn { gap: 10px; border-radius: 12px; }
+    .timer-btns .btn:not(.secondary) { padding: 19px 52px; font-size: 21px; }
+    .timer-btns .btn.secondary { padding: 19px 32px; font-size: 19px; }
+    .timer-sonido-row { gap: 24px; }
+    .timer-sonido-row button, .timer-sonido-row a { font-size: 16px; gap: 6px; }
   }
   /* Tarjetas del rail: fondo/borde propios (antes usaban .card genérica),
      "Al terminar el bloque" a su alto natural, bibliografía con el
@@ -8638,7 +8685,7 @@ function renderRepaso() {
     <div class="repaso-plain-row" onclick="abrirDetalle(${it.examId}, '${esc}', true)">
       <div class="repaso-plain-title">${it.name}</div>
       <div class="repaso-plain-right">
-        <span>${nombreCorto(it.materiaNombre)}</span>
+        <span class="repaso-plain-materia">${nombreCorto(it.materiaNombre)}</span>
         <span class="repaso-plain-dias">${dias === null ? 'primera vez' : `EN ${dias} D`}</span>
       </div>
     </div>`;
@@ -9597,6 +9644,12 @@ function renderFichaFullscreen(fsBox) {
   const tema = fichasContexto ? fichasContexto.tema : '';
   const t = tema ? TEXTOS[tema] : null;
   const biblio = t ? `<div class="ficha-fs-biblio">📄 ${t.libro} — ${t.seccion}</div>` : '';
+  // En la última ficha (de cualquier tipo) "Siguiente"/"Confirmar" ya no
+  // tiene a dónde avanzar -- antes quedaba deshabilitado o sin efecto ahí
+  // y, como la X de cerrar también estaba rota (ver .ficha-fullscreen),
+  // era un callejón sin salida real (reportado por Santiago, 2026-08-13).
+  // "Continuar" cierra y vuelve a Estudiar en vez de intentar avanzar.
+  const esUltima = fichaIndexActual === fichasActuales.length - 1;
 
   const cuerpo = esMultiple ? `
     <div class="ficha-fs-pregunta">${f.pregunta}</div>
@@ -9612,16 +9665,16 @@ function renderFichaFullscreen(fsBox) {
     </div>
     <div class="ficha-fs-bottom">
       ${biblio}
-      <button class="btn" ${yaContestada ? '' : 'disabled'} onclick="cambiarFicha(1)">Confirmar</button>
-      ${yaContestada ? '' : '<button class="btn secondary" onclick="noMeLaSeFicha()">No me la sé</button>'}
+      <button class="btn" ${yaContestada ? '' : 'disabled'} onclick="${esUltima ? 'cerrarFichaFullscreen()' : 'cambiarFicha(1)'}">${esUltima ? 'Continuar' : 'Confirmar'}</button>
+      ${yaContestada || esUltima ? '' : '<button class="btn secondary" onclick="noMeLaSeFicha()">No me la sé</button>'}
     </div>` : `
     <div class="ficha-fs-pregunta" onclick="toggleFicha()" style="cursor:pointer;">${fichaFlipped ? f.respuesta : f.pregunta}</div>
-    <div class="ficha-fs-hint">${fichaFlipped ? '↺ Tocá para ver la pregunta' : '🔎 Tocá para ver la respuesta'}</div>
+    <div class="ficha-fs-hint" onclick="toggleFicha()" style="cursor:pointer;">${fichaFlipped ? '↺ Tocá para ver la pregunta' : '🔎 Tocá para ver la respuesta'}</div>
     <div class="ficha-fs-bottom">
       ${biblio}
       <div class="ficha-fs-nav">
         <button class="btn secondary" onclick="cambiarFicha(-1)" ${fichaIndexActual === 0 ? 'disabled' : ''}>‹ Anterior</button>
-        <button class="btn" onclick="cambiarFicha(1)" ${fichaIndexActual === fichasActuales.length - 1 ? 'disabled' : ''}>Siguiente ›</button>
+        <button class="btn" onclick="${esUltima ? 'cerrarFichaFullscreen()' : 'cambiarFicha(1)'}">${esUltima ? 'Continuar' : 'Siguiente ›'}</button>
       </div>
     </div>`;
 
