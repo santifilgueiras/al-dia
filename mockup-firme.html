@@ -340,10 +340,10 @@
      debajo de la lista, mismos colores que los botones activos para que se
      entienda de un vistazo cuál es cuál. */
   .orden-prioridad-legend {
-    display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--muted);
-    margin: -8px 0 18px; padding: 9px 12px; background: var(--nuevo-soft); border-radius: 10px;
+    display: flex; gap: 20px; flex-wrap: wrap; font-size: 14px; color: var(--muted);
+    margin: -8px 0 18px; padding: 13px 16px; background: var(--nuevo-soft); border-radius: 10px;
   }
-  .orden-prioridad-legend b { font-weight: 800; margin-right: 4px; }
+  .orden-prioridad-legend b { font-weight: 800; margin-right: 6px; }
   .orden-prioridad-legend .baja-lbl b { color: var(--ink); }
   .orden-prioridad-legend .media-lbl b { color: var(--teal); }
   .orden-prioridad-legend .alta-lbl b { color: var(--amber-deep); }
@@ -1628,16 +1628,9 @@
 
     <div class="card">
       <h2 style="margin-top:0;">Contraseña</h2>
-      <div class="field">
-        <label for="perfilPassword1">Nueva contraseña</label>
-        <input type="password" id="perfilPassword1" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
-      </div>
-      <div class="field">
-        <label for="perfilPassword2">Repetir contraseña</label>
-        <input type="password" id="perfilPassword2" placeholder="Repetí la contraseña nueva" autocomplete="new-password">
-      </div>
-      <div id="perfilPasswordError" style="display:none; font-size:12.5px; font-weight:700; margin-bottom:10px;"></div>
-      <button class="btn secondary" id="perfilPasswordBtn" onclick="guardarPerfilPassword()">Actualizar contraseña</button>
+      <p class="sub" style="margin-bottom:12px;">Por seguridad, el cambio de contraseña se confirma por mail -- te mandamos un link, y desde ahí la definís.</p>
+      <div id="perfilPasswordMsg" style="display:none; font-size:12.5px; font-weight:700; margin-bottom:10px;"></div>
+      <button class="btn secondary" id="perfilPasswordBtn" onclick="pedirCambioPassword()">Enviar mail para cambiar contraseña</button>
     </div>
 
     <div class="card">
@@ -1761,6 +1754,31 @@
       <div class="checkin-btns">
         <button class="btn" onclick="cerrarNoLlegoOverlay(); go(4);">Ver calendario</button>
         <button class="btn secondary" onclick="cerrarNoLlegoOverlay()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay: definir contraseña nueva -- se muestra cuando Supabase dispara
+       PASSWORD_RECOVERY (el usuario tocó el link del mail de confirmación
+       que manda pedirCambioPassword(), nunca se puede llegar acá sin haber
+       confirmado el mail primero). -->
+  <div class="checkin-overlay" id="nuevaPasswordOverlay">
+    <div class="checkin-card">
+      <div class="checkin-icon">🔒</div>
+      <h3>Elegí tu nueva contraseña</h3>
+      <p>Confirmaste el cambio desde tu mail -- ya podés definir la contraseña nueva.</p>
+      <div class="field">
+        <label for="nuevaPassword1">Nueva contraseña</label>
+        <input type="password" id="nuevaPassword1" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+      </div>
+      <div class="field">
+        <label for="nuevaPassword2">Repetir contraseña</label>
+        <input type="password" id="nuevaPassword2" placeholder="Repetí la contraseña nueva" autocomplete="new-password">
+      </div>
+      <div id="nuevaPasswordError" style="display:none; color:var(--flojo); font-size:12.5px; font-weight:700; margin-bottom:10px;"></div>
+      <div class="checkin-btns">
+        <button class="btn" id="nuevaPasswordBtn" onclick="confirmarNuevaPassword()">Guardar contraseña</button>
+        <button class="btn secondary" onclick="cerrarNuevaPasswordOverlay()">Ahora no</button>
       </div>
     </div>
   </div>
@@ -13994,6 +14012,8 @@ function traducirErrorAuth(msg) {
     'User already registered': 'Ya existe una cuenta con ese mail -- probá iniciar sesión.',
     'Password should be at least 6 characters': 'La contraseña tiene que tener al menos 6 caracteres.',
     'Email not confirmed': 'Todavía no confirmaste tu mail -- revisá tu casilla de entrada.',
+    'New password should be different from the old password.': 'La contraseña nueva tiene que ser distinta de la anterior.',
+    'Auth session missing!': 'El link del mail ya venció -- pedí el cambio de contraseña de nuevo.',
   };
   return mapa[msg] || msg;
 }
@@ -14060,11 +14080,7 @@ function renderPerfil() {
   const emailInput = document.getElementById('perfilEmail');
   if (nombreInput) nombreInput.value = (sesionUsuario && sesionUsuario.nombre) || '';
   if (emailInput) emailInput.value = (sesionUsuario && sesionUsuario.email) || '';
-  const pass1 = document.getElementById('perfilPassword1');
-  const pass2 = document.getElementById('perfilPassword2');
-  if (pass1) pass1.value = '';
-  if (pass2) pass2.value = '';
-  ['perfilDatosError', 'perfilPasswordError'].forEach(id => {
+  ['perfilDatosError', 'perfilPasswordMsg'].forEach(id => {
     const box = document.getElementById(id);
     if (box) box.style.display = 'none';
   });
@@ -14104,45 +14120,81 @@ async function guardarPerfilDatos() {
   }
 }
 
-async function guardarPerfilPassword() {
-  const p1 = document.getElementById('perfilPassword1').value;
-  const p2 = document.getElementById('perfilPassword2').value;
-  const errBox = document.getElementById('perfilPasswordError');
+// Cambio de contraseña en 2 pasos por seguridad (no se puede escribir la
+// contraseña nueva directo estando logueado): 1) este botón le pide a
+// Supabase que mande un mail de recuperación a la cuenta -- nunca cambia
+// nada por sí solo. 2) Recién cuando Supabase dispara el evento
+// PASSWORD_RECOVERY (ver iniciarApp/onAuthStateChange), que solo pasa
+// después de tocar el link de ESE mail, se abre el overlay para definir
+// la contraseña nueva de verdad (confirmarNuevaPassword()).
+async function pedirCambioPassword() {
+  const msg = document.getElementById('perfilPasswordMsg');
   const btn = document.getElementById('perfilPasswordBtn');
+  msg.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = '⏳ Enviando...';
+  try {
+    const { error } = await supabaseClient.auth.resetPasswordForEmail(sesionUsuario.email, {
+      redirectTo: window.location.origin + window.location.pathname,
+    });
+    if (error) throw error;
+    msg.style.color = 'var(--firme)';
+    msg.textContent = `Te mandamos un mail a ${sesionUsuario.email} con un link para confirmar el cambio.`;
+    msg.style.display = 'block';
+  } catch (e) {
+    msg.style.color = 'var(--flojo)';
+    msg.textContent = traducirErrorAuth(e.message);
+    msg.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Enviar mail para cambiar contraseña';
+  }
+}
+
+function mostrarNuevaPasswordOverlay() {
+  document.getElementById('nuevaPassword1').value = '';
+  document.getElementById('nuevaPassword2').value = '';
+  document.getElementById('nuevaPasswordError').style.display = 'none';
+  document.getElementById('nuevaPasswordOverlay').classList.add('show');
+}
+function cerrarNuevaPasswordOverlay() {
+  document.getElementById('nuevaPasswordOverlay').classList.remove('show');
+}
+
+async function confirmarNuevaPassword() {
+  const p1 = document.getElementById('nuevaPassword1').value;
+  const p2 = document.getElementById('nuevaPassword2').value;
+  const errBox = document.getElementById('nuevaPasswordError');
+  const btn = document.getElementById('nuevaPasswordBtn');
   errBox.style.display = 'none';
   if (!p1 || !p2) {
-    errBox.style.color = 'var(--flojo)';
     errBox.textContent = 'Completá los dos campos de contraseña.';
     errBox.style.display = 'block';
     return;
   }
   if (p1.length < 6) {
-    errBox.style.color = 'var(--flojo)';
     errBox.textContent = 'La contraseña tiene que tener al menos 6 caracteres.';
     errBox.style.display = 'block';
     return;
   }
   if (p1 !== p2) {
-    errBox.style.color = 'var(--flojo)';
     errBox.textContent = 'Las dos contraseñas no coinciden.';
     errBox.style.display = 'block';
     return;
   }
   btn.disabled = true;
-  btn.textContent = '⏳ Actualizando...';
+  btn.textContent = '⏳ Guardando...';
   try {
     const { error } = await supabaseClient.auth.updateUser({ password: p1 });
     if (error) throw error;
-    document.getElementById('perfilPassword1').value = '';
-    document.getElementById('perfilPassword2').value = '';
+    cerrarNuevaPasswordOverlay();
     showToast('Contraseña actualizada');
   } catch (e) {
-    errBox.style.color = 'var(--flojo)';
     errBox.textContent = traducirErrorAuth(e.message);
     errBox.style.display = 'block';
   } finally {
     btn.disabled = false;
-    btn.textContent = 'Actualizar contraseña';
+    btn.textContent = 'Guardar contraseña';
   }
 }
 
@@ -14354,20 +14406,27 @@ async function iniciarApp() {
     supabaseClient = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
     vapidPublicKey = cfg.vapidPublicKey || '';
 
+    // Suscribirse ANTES de pedir la sesión: si esta carga viene de tocar el
+    // link de un mail de recuperación de contraseña, supabase-js procesa el
+    // token de la URL apenas se crea el cliente y dispara PASSWORD_RECOVERY
+    // -- si nos suscribiéramos después de getSession() podríamos perdernos
+    // ese evento por una carrera entre ambas cosas.
+    supabaseClient.auth.onAuthStateChange(async (event, session) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        mostrarNuevaPasswordOverlay();
+      } else if (event === 'SIGNED_IN' && session && (!sesionUsuario || sesionUsuario.id !== session.user.id)) {
+        await manejarSesionActiva(session);
+      } else if (event === 'SIGNED_OUT') {
+        mostrarPantallaAuth();
+      }
+    });
+
     const { data: { session } } = await supabaseClient.auth.getSession();
     if (session) {
       await manejarSesionActiva(session);
     } else {
       mostrarPantallaAuth();
     }
-
-    supabaseClient.auth.onAuthStateChange(async (event, session) => {
-      if (event === 'SIGNED_IN' && session && (!sesionUsuario || sesionUsuario.id !== session.user.id)) {
-        await manejarSesionActiva(session);
-      } else if (event === 'SIGNED_OUT') {
-        mostrarPantallaAuth();
-      }
-    });
   } catch (e) {
     console.error('Error iniciando la app', e);
     document.getElementById('authLoading').innerHTML =
