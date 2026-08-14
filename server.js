@@ -311,6 +311,45 @@ ${consigna}`;
   }
 });
 
+// Simulacro de examen completo: a diferencia de /api/fichas (un tema puntual)
+// o del modo "test" de /api/explicar (5 preguntas de un tema), acá se arma un
+// examen mezclado de TODA la materia -- se le manda la lista completa de
+// temas del catálogo y se le pide que reparta las preguntas entre varios,
+// etiquetando cada una con el tema exacto al que corresponde para que el
+// front pueda armar el desglose de "temas flojos" al final.
+app.post('/api/simulacro', async (req, res) => {
+  if (!ANTHROPIC_API_KEY) {
+    return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
+  }
+  const { materiaNombre, carrera, temas, cantidad } = req.body || {};
+  if (!materiaNombre) return res.status(400).json({ error: 'Falta la materia.' });
+  if (!Array.isArray(temas) || !temas.length) return res.status(400).json({ error: 'Faltan los temas de la materia.' });
+  const n = Math.max(10, Math.min(30, parseInt(cantidad, 10) || 20));
+
+  const prompt = `Sos un profesor armando un simulacro de examen final para un estudiante de ${carrera || 'grado'} (UDELAR) sobre la materia "${materiaNombre}".
+
+Estos son los temas del programa que hay que cubrir (elegí una mezcla representativa, no te concentres en pocos temas):
+${temas.map(t => `- ${t}`).join('\n')}
+
+Generá ${n} preguntas de opción múltiple de nivel de examen final de grado (ni trivial ni de sub-especialidad), repartidas entre la mayor cantidad posible de temas distintos de la lista (no repitas el mismo tema más de 2-3 veces si se puede evitar). Cada pregunta con 4 opciones (una correcta, tres distractores plausibles pero incorrectos, no absurdos). No repitas la misma pregunta de dos formas distintas.
+
+Respondé ÚNICAMENTE con un JSON válido, sin texto antes ni después, con este formato exacto:
+[{"pregunta": "...", "opciones": ["...", "...", "...", "..."], "correcta": 0, "tema": "..."}, ...]
+Donde "correcta" es el índice (0 a 3, como NÚMERO, nunca como string entre comillas) de la opción correcta, y "tema" es EXACTAMENTE uno de los nombres de tema de la lista de arriba (copiado tal cual, sin modificarlo).`;
+
+  try {
+    const texto = await llamarClaude(prompt, Math.max(4500, n * 260 + 2000), undefined, FICHAS_MODEL);
+    const preguntas = extraerJSON(texto);
+    if (!preguntas) {
+      console.error('Respuesta sin JSON reconocible (simulacro):', texto);
+      return res.status(502).json({ error: 'No se pudo interpretar la respuesta de la IA. Probá de nuevo.' });
+    }
+    res.json({ preguntas: mezclarOpcionesMultiple(preguntas) });
+  } catch (e) {
+    res.status(e.status || 500).json({ error: e.message || 'Error de conexión con la API de Claude.' });
+  }
+});
+
 // "Explícamelo" -- tutor de IA dentro de Estudiar (ver
 // Especificacion_Al_Dia_modificaciones_v2.docx, punto 4). Un solo endpoint
 // para los 4 modos, distinguidos por `modo` en el body:
@@ -467,6 +506,62 @@ ${texto}
     }
   });
   doc.end();
+});
+
+// Corregir mi resumen: a diferencia de /api/resumen (resume un apunte de
+// cátedra que subís), acá lo que sube el estudiante es SU PROPIO resumen ya
+// hecho -- la IA lo compara contra la referencia bibliográfica real del tema
+// (mismo libro/sección que usa /api/fichas) y devuelve qué cubre bien, qué le
+// falta y qué tiene mal. Responde JSON (no PDF) porque es feedback para
+// reaccionar en el momento, no algo para guardar y leer después.
+app.post('/api/corregir-resumen', upload.single('archivo'), async (req, res) => {
+  if (!ANTHROPIC_API_KEY) {
+    return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
+  }
+  const { tema, materiaNombre, carrera, libro, seccion } = req.body || {};
+  if (!tema) return res.status(400).json({ error: 'Falta el tema.' });
+  if (!req.file) return res.status(400).json({ error: 'Falta el archivo con tu resumen.' });
+
+  let texto;
+  try {
+    texto = await extraerTextoArchivo(req.file);
+  } catch (e) {
+    return res.status(e.status || 400).json({ error: e.message });
+  }
+
+  const contextoBiblio = libro
+    ? `La referencia de cátedra para este tema es "${libro}"${seccion ? `, sección "${seccion}"` : ''}. Usala como base de lo que el estudiante debería saber.`
+    : 'No hay una referencia bibliográfica específica cargada -- usá el contenido estándar de la materia como base.';
+
+  const prompt = `Sos un tutor universitario para un estudiante de ${carrera || 'grado'} (UDELAR) que está repasando el tema "${tema}"${materiaNombre ? ` de la materia "${materiaNombre}"` : ''}.
+${contextoBiblio}
+
+El estudiante subió SU PROPIO resumen de estudio sobre este tema (lo que escribió mientras estudiaba, no un apunte de cátedra). Comparalo contra lo que debería saber según la referencia de arriba y evaluá qué tan completo y correcto está.
+
+Resumen del estudiante:
+"""
+${texto}
+"""
+
+Respondé ÚNICAMENTE con un JSON válido, sin texto antes ni después, con este formato exacto:
+{"cobertura": 72, "bien": ["...", "..."], "faltantes": ["...", "..."], "errores": ["...", "..."]}
+Donde:
+- "cobertura" es un número entero de 0 a 100 que estima qué porcentaje del tema cubre bien el resumen.
+- "bien" es una lista corta (máximo 6) de los puntos clave que el resumen cubre correctamente.
+- "faltantes" es una lista (máximo 6) de puntos importantes del tema que el resumen NO menciona.
+- "errores" es una lista de afirmaciones incorrectas o imprecisas que sí aparecen en el resumen (lista vacía si no encontrás ninguna).`;
+
+  try {
+    const respuesta = await llamarClaude(prompt, 1800, undefined, FICHAS_MODEL);
+    const data = extraerJSONObjeto(respuesta);
+    if (!data) {
+      console.error('Respuesta sin JSON reconocible (corregir-resumen):', respuesta);
+      return res.status(502).json({ error: 'No se pudo interpretar la respuesta de la IA. Probá de nuevo.' });
+    }
+    res.json(data);
+  } catch (e) {
+    res.status(e.status || 500).json({ error: e.message || 'Error de conexión con la API de Claude.' });
+  }
 });
 
 // ---- Recordatorio diario (push real) ----

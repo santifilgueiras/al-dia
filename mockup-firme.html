@@ -2106,7 +2106,9 @@
     <div class="tabs study-tabs" id="studyMainTabs">
       <div class="tab" data-sec="tiempo" onclick="switchStudyTab('tiempo')"><span class="ic">⏱️</span>Tiempo de estudio</div>
       <div class="tab" data-sec="fichas" onclick="switchStudyTab('fichas')"><span class="ic">🧠</span>Fichas de repaso</div>
+      <div class="tab" data-sec="simulacro" onclick="switchStudyTab('simulacro')"><span class="ic">🎯</span>Simulacro de examen</div>
       <div class="tab" data-sec="resumen" onclick="switchStudyTab('resumen')"><span class="ic">📄</span>Resumen de apuntes</div>
+      <div class="tab" data-sec="corrector" onclick="switchStudyTab('corrector')"><span class="ic">🔎</span>Corregir mi resumen</div>
       <div class="tab" data-sec="explicar" onclick="switchStudyTab('explicar')"><span class="ic">💡</span>Explícamelo</div>
     </div>
 
@@ -2182,6 +2184,30 @@
         </div>
         <div id="fichasBox"></div>
         <button class="btn" id="fichasGenerarBtn" onclick="generarFichas()">✨ Generar fichas</button>
+        <button type="button" class="btn secondary" id="fichasTTSBtn" onclick="toggleTTSFichas()" style="margin-top:8px;">🔊 Escuchar fichas</button>
+    </div>
+
+    <div class="study-panel" id="sec-simulacro" data-sec="simulacro">
+        <p class="sub" style="margin-top:0;">Un examen mezclado de TODA la materia, cronometrado, para saber si estás realmente listo -- no fichas de un tema puntual.</p>
+        <div class="field">
+          <select id="simulacroFacultadSelect" onchange="onSimulacroFacultadChange()"></select>
+        </div>
+        <div class="field">
+          <select id="simulacroAnioSelect" onchange="onSimulacroAnioChange()"></select>
+        </div>
+        <div class="field">
+          <select id="simulacroMateriaSelect"></select>
+        </div>
+        <div class="field">
+          <label for="simulacroCantidadSelect">Cantidad de preguntas</label>
+          <select id="simulacroCantidadSelect">
+            <option value="20" selected>20</option>
+            <option value="25">25</option>
+            <option value="30">30</option>
+          </select>
+        </div>
+        <div id="simulacroBox"></div>
+        <button class="btn" id="simulacroGenerarBtn" onclick="generarSimulacro()">🎯 Empezar simulacro</button>
     </div>
 
     <div class="study-panel" id="sec-resumen" data-sec="resumen">
@@ -2198,6 +2224,30 @@
         <div class="card" style="background:var(--nuevo-soft); border:none; margin-top:16px;">
           <a class="ref-link" href="https://claude.ai" target="_blank" rel="noopener">Conectar con Claude ↗</a>
         </div>
+    </div>
+
+    <div class="study-panel" id="sec-corrector" data-sec="corrector">
+        <p class="sub" style="margin-top:0;">Subí TU resumen (el que hiciste vos) y la IA lo compara contra la bibliografía real del tema -- te dice qué te falta o qué tenés mal.</p>
+        <div class="field">
+          <select id="correctorFacultadSelect" onchange="onCorrectorFacultadChange()"></select>
+        </div>
+        <div class="field">
+          <select id="correctorAnioSelect" onchange="onCorrectorAnioChange()"></select>
+        </div>
+        <div class="field">
+          <select id="correctorMateriaSelect" onchange="onCorrectorMateriaChange()"></select>
+        </div>
+        <div class="field">
+          <select id="correctorTemaSelect"></select>
+        </div>
+        <label class="dropzone" id="correctorDropzone" for="correctorArchivoInput">
+          <input type="file" id="correctorArchivoInput" accept=".pdf,.doc,.docx" onchange="actualizarBotonBorrarArchivo('correctorArchivoInput','correctorArchivoBorrarBtn'); actualizarNombreDropzone('correctorDropzoneTexto','correctorArchivoInput');" style="display:none;">
+          <span class="dropzone-ic">📎</span>
+          <span id="correctorDropzoneTexto">Arrastrá TU resumen (PDF o Word) acá, o tocá para elegirlo</span>
+          <button type="button" id="correctorArchivoBorrarBtn" class="btn secondary" style="display:none; margin-top:10px; width:auto; padding:8px 12px;" onclick="event.preventDefault(); borrarArchivo('correctorArchivoInput','correctorArchivoBorrarBtn'); actualizarNombreDropzone('correctorDropzoneTexto','correctorArchivoInput');" title="Sacar el archivo">🗑️ Sacar archivo</button>
+        </label>
+        <button class="btn" id="correctorGenerarBtn" onclick="generarCorrector()">🔎 Corregir mi resumen</button>
+        <div id="correctorBox"></div>
     </div>
 
     <div class="study-panel" id="sec-explicar" data-sec="explicar">
@@ -13157,18 +13207,22 @@ function borrarArchivo(inputId, btnId) {
   document.getElementById(btnId).style.display = 'none';
 }
 
-// Dropzone real de Resumen de apuntes (rediseño) -- el <input type=file>
-// sigue siendo el que de verdad manda el archivo, la dropzone solo agrega
-// arrastrar-y-soltar y el estado visual encima.
-function actualizarNombreDropzone() {
-  const input = document.getElementById('resumenFileInput');
-  const texto = document.getElementById('resumenDropzoneTexto');
+// Dropzone real de Resumen de apuntes y Corregir mi resumen (rediseño) -- el
+// <input type=file> sigue siendo el que de verdad manda el archivo, la
+// dropzone solo agrega arrastrar-y-soltar y el estado visual encima.
+// Parametrizada por IDs (en vez de una copia hardcodeada a resumen y otra a
+// corrector) porque las dos pantallas necesitan exactamente el mismo
+// comportamiento de dropzone.
+function actualizarNombreDropzone(textoId = 'resumenDropzoneTexto', inputId = 'resumenFileInput') {
+  const input = document.getElementById(inputId);
+  const texto = document.getElementById(textoId);
   if (!input || !texto) return;
-  texto.textContent = input.files.length ? `📄 ${input.files[0].name}` : 'Arrastrá un PDF o Word acá, o tocá para elegirlo';
+  const placeholder = inputId === 'correctorArchivoInput' ? 'Arrastrá TU resumen (PDF o Word) acá, o tocá para elegirlo' : 'Arrastrá un PDF o Word acá, o tocá para elegirlo';
+  texto.textContent = input.files.length ? `📄 ${input.files[0].name}` : placeholder;
 }
 
-(function initResumenDropzone() {
-  const zona = document.getElementById('resumenDropzone');
+function initDropzone(zonaId, inputId, btnId, textoId) {
+  const zona = document.getElementById(zonaId);
   if (!zona) return;
   ['dragenter', 'dragover'].forEach(ev => zona.addEventListener(ev, e => {
     e.preventDefault(); e.stopPropagation(); zona.classList.add('dragover');
@@ -13179,12 +13233,14 @@ function actualizarNombreDropzone() {
   zona.addEventListener('drop', e => {
     const files = e.dataTransfer && e.dataTransfer.files;
     if (files && files.length) {
-      document.getElementById('resumenFileInput').files = files;
-      actualizarBotonBorrarArchivo('resumenFileInput', 'resumenArchivoBorrarBtn');
-      actualizarNombreDropzone();
+      document.getElementById(inputId).files = files;
+      actualizarBotonBorrarArchivo(inputId, btnId);
+      actualizarNombreDropzone(textoId, inputId);
     }
   });
-})();
+}
+initDropzone('resumenDropzone', 'resumenFileInput', 'resumenArchivoBorrarBtn', 'resumenDropzoneTexto');
+initDropzone('correctorDropzone', 'correctorArchivoInput', 'correctorArchivoBorrarBtn', 'correctorDropzoneTexto');
 
 // ---- Fichas de repaso generadas por IA ----
 // Llama al server local (server.js), que a su vez llama a la API de Claude
@@ -13508,6 +13564,200 @@ function cambiarFicha(delta) {
   renderFichaActual();
 }
 
+// ---- Fichas con audio (texto a voz del navegador) ----
+// Usa la Web Speech API del navegador (SpeechSynthesis) en vez de un
+// servicio de TTS pago -- Anthropic no ofrece texto-a-voz, y sintetizar del
+// lado del cliente es gratis y no necesita ningún endpoint nuevo. Lee las
+// fichas YA generadas (fichasActuales) en orden, pregunta + respuesta.
+let ttsQueue = [];
+let ttsIndex = 0;
+
+function toggleTTSFichas() {
+  if (!('speechSynthesis' in window)) { showToast('Tu navegador no soporta lectura en voz alta'); return; }
+  const synth = window.speechSynthesis;
+  const btn = document.getElementById('fichasTTSBtn');
+  // synth.paused/.speaking no se actualizan de forma sincrónica apenas se
+  // llama pause()/resume() en todos los navegadores -- leerlos de nuevo acá
+  // para pintar el botón daba texto viejo por un instante (reportado al
+  // probar). Se pinta directo según la acción que ACABAMOS de tomar, en vez
+  // de volver a preguntarle a synth su estado.
+  if (synth.speaking && !synth.paused) {
+    synth.pause();
+    if (btn) btn.textContent = '▶️ Reanudar lectura';
+    return;
+  }
+  if (synth.paused) {
+    synth.resume();
+    if (btn) btn.textContent = '⏸️ Pausar lectura';
+    return;
+  }
+  if (!fichasActuales.length) { showToast('Generá fichas primero'); return; }
+  ttsQueue = fichasActuales.map(f => Array.isArray(f.opciones)
+    ? `${f.pregunta}. Respuesta correcta: ${f.opciones[f.correcta]}.`
+    : `${f.pregunta}. Respuesta: ${f.respuesta}.`);
+  ttsIndex = 0;
+  hablarSiguienteFicha();
+  if (btn) btn.textContent = '⏸️ Pausar lectura';
+}
+
+function hablarSiguienteFicha() {
+  if (ttsIndex >= ttsQueue.length) { ttsIndex = 0; actualizarBotonTTS(); return; }
+  const u = new SpeechSynthesisUtterance(ttsQueue[ttsIndex]);
+  u.lang = 'es-UY';
+  u.rate = 0.98;
+  u.onstart = actualizarBotonTTS;
+  u.onend = () => { ttsIndex++; hablarSiguienteFicha(); };
+  window.speechSynthesis.speak(u);
+}
+
+function actualizarBotonTTS() {
+  const btn = document.getElementById('fichasTTSBtn');
+  if (!btn) return;
+  const synth = window.speechSynthesis;
+  btn.textContent = (synth.speaking && !synth.paused) ? '⏸️ Pausar lectura' : synth.paused ? '▶️ Reanudar lectura' : '🔊 Escuchar fichas';
+}
+
+// ---- Simulacro de examen completo ----
+// A diferencia de Fichas (un tema puntual), acá se manda TODO el catálogo de
+// temas de la materia elegida al server (/api/simulacro), que arma un examen
+// mezclado y cronometrado -- mismo patrón de cascada facultad/año/materia
+// que Fichas, pero sin selector de tema individual.
+let simulacroPreguntas = [];
+let simulacroIndex = 0;
+let simulacroRespuestas = [];
+let simulacroInicio = null;
+let simulacroTimerInt = null;
+
+function onSimulacroFacultadChange() {
+  const f = facultadDe(document.getElementById('simulacroFacultadSelect').value);
+  const anioSel = document.getElementById('simulacroAnioSelect');
+  anioSel.innerHTML = f.ciclos.map(a => `<option value="${a}">${f.cicloLabel(a)}</option>`).join('');
+  onSimulacroAnioChange();
+}
+
+function onSimulacroAnioChange() {
+  const f = facultadDe(document.getElementById('simulacroFacultadSelect').value);
+  const anio = +document.getElementById('simulacroAnioSelect').value;
+  const materias = f.catalogoPorCiclo[anio] || [];
+  const materiaSel = document.getElementById('simulacroMateriaSelect');
+  materiaSel.innerHTML = materias.length
+    ? materias.map((m, i) => `<option value="${i}">${m.nombre}</option>`).join('')
+    : `<option value="">Sin materias cargadas para este ${f.cicloNombre}</option>`;
+}
+
+function renderSimulacroSelect() {
+  const facSel = document.getElementById('simulacroFacultadSelect');
+  if (!facSel) return;
+  facSel.innerHTML = FACULTADES_ORDEN.map(key => `<option value="${key}">${FACULTADES[key].carrera}</option>`).join('');
+  onSimulacroFacultadChange();
+}
+
+async function generarSimulacro() {
+  const f = facultadDe(document.getElementById('simulacroFacultadSelect').value);
+  const anio = +document.getElementById('simulacroAnioSelect').value;
+  const materiaIdx = document.getElementById('simulacroMateriaSelect').value;
+  const materia = (f.catalogoPorCiclo[anio] || [])[materiaIdx];
+  if (!materia || !materia.modulos.length) { showToast('Elegí una materia con temas cargados'); return; }
+  const temas = [];
+  materia.modulos.forEach(mod => mod.temas.forEach(t => temas.push(t)));
+  const cantidad = +document.getElementById('simulacroCantidadSelect').value;
+  const btn = document.getElementById('simulacroGenerarBtn');
+  const box = document.getElementById('simulacroBox');
+  btn.disabled = true;
+  btn.textContent = '⏳ Armando el simulacro...';
+  box.innerHTML = '';
+  clearInterval(simulacroTimerInt);
+  try {
+    const r = await fetch('/api/simulacro', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ materiaNombre: materia.nombre, carrera: f.carrera, temas, cantidad }),
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Error generando el simulacro');
+    simulacroPreguntas = (data.preguntas || []).map(p => ({ ...p, correcta: Number(p.correcta) }));
+    simulacroIndex = 0;
+    simulacroRespuestas = [];
+    simulacroInicio = Date.now();
+    simulacroTimerInt = setInterval(() => {
+      const el = document.getElementById('simulacroTimer');
+      if (!el) { clearInterval(simulacroTimerInt); return; }
+      el.textContent = tiempoSimulacroTexto();
+    }, 1000);
+    renderSimulacro();
+  } catch (e) {
+    const msg = e.message === 'Failed to fetch' ? 'No se pudo conectar con el server -- ¿está corriendo "npm start"?' : e.message;
+    box.innerHTML = `<div class="empty-state">${escapeHtml(msg)}</div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🎯 Empezar simulacro';
+  }
+}
+
+function tiempoSimulacroTexto() {
+  const segs = Math.floor((Date.now() - simulacroInicio) / 1000);
+  return `⏱️ ${String(Math.floor(segs / 60)).padStart(2, '0')}:${String(segs % 60).padStart(2, '0')}`;
+}
+
+function renderSimulacro() {
+  const box = document.getElementById('simulacroBox');
+  if (!simulacroPreguntas.length) { box.innerHTML = ''; return; }
+  if (simulacroIndex >= simulacroPreguntas.length) {
+    clearInterval(simulacroTimerInt);
+    const correctas = simulacroRespuestas.filter((r, i) => r === simulacroPreguntas[i].correcta).length;
+    const pct = Math.round((correctas / simulacroPreguntas.length) * 100);
+    const porTema = {};
+    simulacroPreguntas.forEach((p, i) => {
+      const tema = p.tema || 'Sin clasificar';
+      if (!porTema[tema]) porTema[tema] = { ok: 0, total: 0 };
+      porTema[tema].total++;
+      if (simulacroRespuestas[i] === p.correcta) porTema[tema].ok++;
+    });
+    const flacos = Object.entries(porTema)
+      .filter(([, v]) => v.ok < v.total)
+      .sort((a, b) => (a[1].ok / a[1].total) - (b[1].ok / b[1].total));
+    box.innerHTML = `
+      <div class="explicar-resultado">
+        <div class="explicar-resultado-num mono">${correctas} / ${simulacroPreguntas.length}</div>
+        <div class="explicar-resultado-label">${pct}% correctas · terminado en ${tiempoSimulacroTexto().replace('⏱️ ', '')}</div>
+        ${flacos.length ? `
+          <div class="sub" style="margin-top:14px; text-align:left;"><strong>Temas para reforzar:</strong></div>
+          <ul style="text-align:left; margin:6px 0 0; padding-left:18px;">
+            ${flacos.map(([tema, v]) => `<li>${escapeHtml(tema)} (${v.ok}/${v.total})</li>`).join('')}
+          </ul>` : '<div class="sub" style="margin-top:14px;">Ningún tema flojo -- ¡buen resultado!</div>'}
+        <div class="explicar-resultado-btns">
+          <button type="button" class="btn secondary" onclick="simulacroIndex=0; renderSimulacro();">👀 Revisar respuestas</button>
+          <button type="button" class="btn" onclick="simulacroPreguntas=[]; renderSimulacro();">✕ Cerrar</button>
+        </div>
+      </div>`;
+    return;
+  }
+  const f = simulacroPreguntas[simulacroIndex];
+  const elegida = simulacroRespuestas[simulacroIndex];
+  const yaContestada = elegida !== undefined;
+  box.innerHTML = `
+    <div class="ficha-card mc">
+      <div class="ficha-count">${simulacroIndex + 1} / ${simulacroPreguntas.length} <span id="simulacroTimer" class="mono" style="float:right;">${tiempoSimulacroTexto()}</span></div>
+      <div class="ficha-texto" style="margin-bottom:10px;">${escapeHtml(f.pregunta)}</div>
+      <div class="ficha-opciones">
+        ${f.opciones.map((op, i) => {
+          let cls = '';
+          if (yaContestada) { if (i === f.correcta) cls = 'correcta'; else if (i === elegida) cls = 'incorrecta'; }
+          return `<button type="button" class="ficha-opcion ${cls}" onclick="elegirOpcionSimulacro(${i})" ${yaContestada ? 'disabled' : ''}>${escapeHtml(op)}</button>`;
+        }).join('')}
+      </div>
+    </div>
+    <div class="ficha-nav">
+      <button type="button" class="btn secondary" onclick="simulacroIndex=Math.max(0,simulacroIndex-1); renderSimulacro();" ${simulacroIndex === 0 ? 'disabled' : ''}>‹ Anterior</button>
+      <button type="button" class="btn secondary" onclick="simulacroIndex++; renderSimulacro();" ${yaContestada ? '' : 'disabled'}>${simulacroIndex === simulacroPreguntas.length - 1 ? 'Ver resultado' : 'Siguiente ›'}</button>
+    </div>`;
+}
+
+function elegirOpcionSimulacro(i) {
+  simulacroRespuestas[simulacroIndex] = i;
+  renderSimulacro();
+}
+
 // ---- Resúmenes de apuntes con IA real ----
 // Sube el archivo al server (/api/resumen), que extrae el texto (PDF/DOCX),
 // se lo pasa a Claude y arma un PDF con el resumen del lado del server
@@ -13562,6 +13812,119 @@ async function generarResumen() {
     btn.disabled = false;
     btn.textContent = '📄 Resumir y descargar PDF';
   }
+}
+
+// ---- Corregir mi resumen (IA compara TU resumen contra la bibliografía real) ----
+// A diferencia de "Resumen de apuntes" (resume un apunte de cátedra que
+// subís), acá lo que subís es TU PROPIO resumen ya hecho -- la IA lo compara
+// contra la referencia real del tema (TEXTOS[tema], igual que Fichas) y
+// devuelve qué cubre bien, qué le falta y qué tiene mal. Misma cascada
+// facultad/año/materia/tema que Fichas, con su propio estado
+// (correctorTemasDisponibles) para no interferir con la selección de Fichas.
+let correctorTemasDisponibles = [];
+
+function onCorrectorFacultadChange() {
+  const f = facultadDe(document.getElementById('correctorFacultadSelect').value);
+  const anioSel = document.getElementById('correctorAnioSelect');
+  anioSel.innerHTML = f.ciclos.map(a => `<option value="${a}">${f.cicloLabel(a)}</option>`).join('');
+  onCorrectorAnioChange();
+}
+
+function onCorrectorAnioChange() {
+  const f = facultadDe(document.getElementById('correctorFacultadSelect').value);
+  const anio = +document.getElementById('correctorAnioSelect').value;
+  const materias = f.catalogoPorCiclo[anio] || [];
+  const materiaSel = document.getElementById('correctorMateriaSelect');
+  materiaSel.innerHTML = materias.length
+    ? materias.map((m, i) => `<option value="${i}">${m.nombre}</option>`).join('')
+    : `<option value="">Sin materias cargadas para este ${f.cicloNombre}</option>`;
+  onCorrectorMateriaChange();
+}
+
+function onCorrectorMateriaChange() {
+  const f = facultadDe(document.getElementById('correctorFacultadSelect').value);
+  const anio = +document.getElementById('correctorAnioSelect').value;
+  const materiaIdx = document.getElementById('correctorMateriaSelect').value;
+  const materia = (f.catalogoPorCiclo[anio] || [])[materiaIdx];
+  const temaSel = document.getElementById('correctorTemaSelect');
+  correctorTemasDisponibles = [];
+  if (!materia || !materia.modulos.length) {
+    temaSel.innerHTML = '<option value="">Sin temas digitalizados todavía para esta materia</option>';
+  } else {
+    materia.modulos.forEach(mod => mod.temas.forEach(t => correctorTemasDisponibles.push({ tema: t, materiaNombre: materia.nombre })));
+    temaSel.innerHTML = correctorTemasDisponibles.map((it, i) => `<option value="${i}">${it.tema}</option>`).join('');
+  }
+}
+
+function renderCorrectorSelect() {
+  const facSel = document.getElementById('correctorFacultadSelect');
+  if (!facSel) return;
+  facSel.innerHTML = FACULTADES_ORDEN.map(key => `<option value="${key}">${FACULTADES[key].carrera}</option>`).join('');
+  onCorrectorFacultadChange();
+}
+
+async function generarCorrector() {
+  const sel = document.getElementById('correctorTemaSelect');
+  if (!sel.value) { showToast('Elegí un tema primero'); return; }
+  const item = correctorTemasDisponibles[sel.value];
+  const archivo = document.getElementById('correctorArchivoInput').files[0];
+  if (!archivo) { showToast('Subí tu resumen primero'); return; }
+  const ext = archivo.name.split('.').pop().toLowerCase();
+  if (!['pdf', 'doc', 'docx'].includes(ext)) { showToast('Tu resumen debe ser PDF o Word (.doc/.docx)'); return; }
+  const t = TEXTOS[item.tema];
+  const carrera = facultadDe(document.getElementById('correctorFacultadSelect').value).carrera;
+  const btn = document.getElementById('correctorGenerarBtn');
+  const box = document.getElementById('correctorBox');
+  btn.disabled = true;
+  btn.textContent = '⏳ Leyendo y comparando...';
+  box.innerHTML = '';
+  try {
+    const form = new FormData();
+    form.append('tema', item.tema);
+    form.append('materiaNombre', item.materiaNombre);
+    form.append('carrera', carrera);
+    if (t && t.libro) form.append('libro', t.libro);
+    if (t && t.seccion) form.append('seccion', t.seccion);
+    form.append('archivo', archivo);
+    const r = await fetch('/api/corregir-resumen', { method: 'POST', body: form });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Error corrigiendo el resumen');
+    renderCorrector(data);
+  } catch (e) {
+    const msg = e.message === 'Failed to fetch' ? 'No se pudo conectar con el server -- ¿está corriendo "npm start"?' : e.message;
+    box.innerHTML = `<div class="empty-state">${escapeHtml(msg)}</div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🔎 Corregir mi resumen';
+  }
+}
+
+function renderCorrector(data) {
+  const box = document.getElementById('correctorBox');
+  const cobertura = Math.max(0, Math.min(100, Number(data.cobertura) || 0));
+  const listaHTML = (arr, vacio) => (arr && arr.length)
+    ? `<ul style="margin:6px 0 0; padding-left:18px;">${arr.map(x => `<li>${escapeHtml(x)}</li>`).join('')}</ul>`
+    : `<p class="sub" style="margin:6px 0 0;">${vacio}</p>`;
+  box.innerHTML = `
+    <div class="card" style="text-align:center;">
+      <div class="explicar-resultado-num mono">${cobertura}%</div>
+      <div class="explicar-resultado-label">de cobertura estimada del tema</div>
+      <div class="stat-progress" role="progressbar" aria-valuenow="${cobertura}" aria-valuemin="0" aria-valuemax="100" style="margin-top:10px;">
+        <div class="stat-progress-fill" style="width:${cobertura}%"></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:12px;">
+      <h3 style="margin-top:0; color:var(--firme);">✅ Bien cubierto</h3>
+      ${listaHTML(data.bien, 'No se identificaron puntos claros -- probá con un resumen más desarrollado.')}
+    </div>
+    <div class="card" style="margin-top:12px;">
+      <h3 style="margin-top:0; color:var(--flojo);">📌 Te falta</h3>
+      ${listaHTML(data.faltantes, 'No se detectó nada importante faltando -- buen resumen.')}
+    </div>
+    <div class="card" style="margin-top:12px;">
+      <h3 style="margin-top:0; color:var(--flojo);">⚠️ Revisar (posibles errores)</h3>
+      ${listaHTML(data.errores, 'No se detectaron errores.')}
+    </div>`;
 }
 
 // ---- Estudiar > Explícamelo (tutor de IA) ----
@@ -13885,6 +14248,8 @@ function renderEstudiarRail() {
 function renderEstudiar() {
   renderTimer();
   renderFichasSelect();
+  renderSimulacroSelect();
+  renderCorrectorSelect();
   renderEstudiarRail();
 }
 
