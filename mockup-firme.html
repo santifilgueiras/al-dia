@@ -5852,6 +5852,392 @@ const CATALOGO_POR_CICLO_INGENIERIA_ALIMENTOS = {
   ],
 };
 
+// Catálogo de Ingeniería de Producción (misma facultad que Computación/
+// Civil/Eléctrica/Mecánica/Química/Naval/Alimentos, carrera distinta -- ver
+// FACULTADES.ingenieria_produccion). 33 materias en 8 semestres, armados a
+// partir del Anexo I del plan oficial (fing.edu.uy/sites/default/files/
+// 2011/3051/plan_produccion.pdf), que trae una tabla real de "Grupo /
+// Materia / Asignatura" (Cálculo 1-2-3, GAL 1-2, Probabilidad y
+// Estadística, Física 1-2-3, Física Térmica, Mecánica Newtoniana,
+// Principios de Química General, Materiales y Ensayos, Programación 1,
+// Métodos Numéricos, Transferencia de Calor 1-2, Estática Aplicada,
+// Estática de Sólidos Deformables, Introd. Investigación de Operaciones,
+// Gestión de Calidad y Productividad, Gestión de Proyectos, Desarrollo de
+// Productos, Gestión de Operaciones, Administración de Empresas,
+// Microeconomía, Organizaciones y su Administración, Derecho Laboral,
+// Higiene y Seguridad Laboral, Responsabilidad Social Empresarial,
+// Tecnología y Sociedad, Economía, Electrotecnia 1, Introd. al Control/
+// Control e Instrumentación Industrial, Introd. Ing. Química, Elementos de
+// Ing. Ambiental, Servicios Industriales, Bases de Datos y Sistemas de
+// Información) en vez de una tabla fija por semestre. El núcleo básico y
+// buena parte de "Ingeniería y Tecnología Industriales" (mínimo 7 créditos
+// cada una, pensadas solo como introducción para poder interactuar con
+// otras especialidades) es LITERALMENTE el mismo curso que ya está cargado
+// en las otras carreras de Ingeniería -- se reusa el mismo contenido para
+// no duplicar temas. Lo específico de gestión/producción se armó con
+// currícula estándar internacional y bibliografía clásica (Hillier &
+// Lieberman, Heizer & Render, Montgomery, Ulrich & Eppinger, Robbins).
+const CATALOGO_POR_CICLO_INGENIERIA_PRODUCCION = {
+  1: [
+    { nombre: "Cálculo Diferencial e Integral en Una Variable", modulos: [
+      { modulo: "Números reales y funciones", temas: [
+        "Axioma de completitud y supremo de un conjunto",
+        "Funciones reales: inyectividad, sobreyectividad y monotonía",
+        "Trigonometría: círculo trigonométrico y funciones inversas",
+      ] },
+      { modulo: "Límites y continuidad", temas: [
+        "Definición de límite y álgebra de límites",
+        "Continuidad y teorema de Bolzano",
+        "Teorema de Weierstrass y extremos globales",
+      ] },
+      { modulo: "Derivadas", temas: [
+        "Definición de derivada y regla de la cadena",
+        "Teoremas de Rolle, Lagrange y Cauchy",
+        "Derivadas, crecimiento y concavidad",
+        "Regla de L'Hôpital",
+      ] },
+      { modulo: "Integrales y desarrollo de Taylor", temas: [
+        "Integral de Riemann mediante sumas superiores e inferiores",
+        "Teorema fundamental del cálculo y regla de Barrow",
+        "Técnicas de integración: partes, sustitución y fracciones simples",
+        "Polinomio de Taylor y estimación del error",
+      ] },
+    ] },
+    { nombre: "Geometría y Álgebra Lineal 1", modulos: [
+      { modulo: "Sistemas de ecuaciones y matrices", temas: [
+        "Eliminación de Gauss y sistemas de ecuaciones lineales",
+        "Rango de una matriz y teorema de Rouché-Frobenius",
+        "Álgebra de matrices: suma, producto e inversa",
+      ] },
+      { modulo: "Determinantes", temas: [
+        "Determinantes de orden 2 y 3 y definición inductiva",
+        "Propiedades del determinante y matrices elementales",
+        "Regla de Cramer y cálculo del rango por determinantes",
+      ] },
+      { modulo: "Geometría del espacio", temas: [
+        "Rectas y planos en el espacio",
+        "Producto escalar: ángulos y distancias",
+        "Producto vectorial: áreas y volúmenes",
+      ] },
+      { modulo: "Espacios vectoriales y transformaciones lineales", temas: [
+        "Espacios y subespacios vectoriales",
+        "Generadores, independencia lineal, base y dimensión",
+        "Cambio de base de un espacio vectorial",
+        "Núcleo e imagen de una transformación lineal",
+        "Matriz asociada a una transformación lineal",
+      ] },
+    ] },
+    { nombre: "Física 1 (Mecánica)", modulos: [
+      { modulo: "Cinemática y dinámica de partículas", temas: [
+        "Cinemática: posición, velocidad y aceleración",
+        "Leyes de Newton y diagramas de cuerpo libre",
+      ] },
+      { modulo: "Trabajo, energía y sistemas de partículas", temas: [
+        "Trabajo, energía cinética y potencial, conservación de energía",
+        "Momento lineal, impulso y colisiones",
+      ] },
+    ] },
+    { nombre: "Principios de Química General", modulos: [
+      { modulo: "Estructura y enlace", temas: [
+        "Estructura atómica, tabla periódica y tipos de enlace químico",
+        "Estequiometría y reacciones químicas",
+      ] },
+    ] },
+  ],
+  2: [
+    { nombre: "Cálculo Diferencial e Integral en Varias Variables", modulos: [
+      { modulo: "Sucesiones, series e integrales impropias", temas: [
+        "Sucesiones: límite, monotonía, acotación y subsucesiones",
+        "Series numéricas y criterios de convergencia",
+        "Convergencia condicional y absoluta",
+        "Integrales impropias y criterio serie-integral",
+      ] },
+      { modulo: "Topología y continuidad en Rⁿ", temas: [
+        "Normas y conjuntos abiertos y cerrados en Rⁿ",
+        "Sucesiones en Rⁿ y caracterización de conjuntos compactos",
+        "Límites y continuidad de funciones de varias variables",
+      ] },
+      { modulo: "Diferenciabilidad e integrales múltiples", temas: [
+        "Derivadas parciales y derivadas direccionales",
+        "Diferenciabilidad y plano tangente",
+        "Diferencial de la función compuesta",
+        "Integrales dobles y triples: teorema de Fubini",
+        "Teorema de cambio de variables: coordenadas polares, cilíndricas y esféricas",
+      ] },
+    ] },
+    { nombre: "Geometría y Álgebra Lineal 2", modulos: [
+      { modulo: "Valores y vectores propios", temas: [
+        "Valores y vectores propios, polinomio característico",
+        "Diagonalización de matrices",
+        "Multiplicidades algebraica y geométrica; teorema de Gershgorin",
+      ] },
+      { modulo: "Formas canónicas", temas: [
+        "Forma canónica de Jordan",
+        "Matrices semejantes y cambio de base para operadores",
+      ] },
+      { modulo: "Producto interno y ortogonalidad", temas: [
+        "Producto interno y norma en un espacio vectorial",
+        "Ortogonalidad, ortonormalidad y proceso de Gram-Schmidt",
+        "Descomposición QR",
+        "Complemento ortogonal y proyección ortogonal",
+        "Aproximación por mínimos cuadrados",
+      ] },
+      { modulo: "Transformaciones adjuntas e isometrías", temas: [
+        "Teorema de representación de Riesz y transformación adjunta",
+        "Operadores autoadjuntos y teorema espectral",
+        "Isometrías lineales",
+      ] },
+    ] },
+    { nombre: "Física 2 (Oscilaciones, Ondas y Termodinámica)", modulos: [
+      { modulo: "Oscilaciones y ondas mecánicas", temas: [
+        "Movimiento armónico simple y oscilador amortiguado",
+        "Ondas mecánicas: propagación, interferencia y ondas estacionarias",
+      ] },
+      { modulo: "Termodinámica", temas: [
+        "Temperatura, calor y primer principio de la termodinámica",
+        "Entropía y segundo principio de la termodinámica",
+      ] },
+    ] },
+    { nombre: "Programación 1", modulos: [
+      { modulo: "Fundamentos de la programación imperativa", temas: [
+        "Modelo de computación y concepto de algoritmo",
+        "Sintaxis y semántica de un lenguaje de programación",
+        "Compilación, ejecución y tipos de errores",
+        "Identificadores, variables, constantes y expresiones",
+      ] },
+      { modulo: "Estructuras de control", temas: [
+        "Estructuras de selección",
+        "Estructuras de iteración",
+        "Recursión: diseño de algoritmos recursivos simples",
+      ] },
+    ] },
+  ],
+  3: [
+    { nombre: "Cálculo Vectorial", modulos: [
+      { modulo: "Campos escalares y vectoriales", temas: [
+        "Gradiente, divergencia y rotor",
+        "Campos conservativos y funciones potenciales",
+      ] },
+      { modulo: "Integrales de línea y de superficie", temas: [
+        "Integrales de línea de campos escalares y vectoriales",
+        "Integrales de superficie y flujo de un campo vectorial",
+        "Teoremas de Green, Stokes y de la divergencia (Gauss)",
+      ] },
+    ] },
+    { nombre: "Probabilidad y Estadística", modulos: [
+      { modulo: "Probabilidad básica", temas: [
+        "Espacios de probabilidad y probabilidad condicional",
+        "Variables aleatorias discretas y continuas",
+        "Distribuciones de probabilidad clásicas (binomial, Poisson, normal, exponencial)",
+        "Esperanza, varianza y funciones generadoras",
+      ] },
+      { modulo: "Vectores aleatorios y teoremas límite", temas: [
+        "Vectores aleatorios y distribuciones conjuntas",
+        "Covarianza y correlación",
+        "Ley de los grandes números",
+        "Teorema central del límite",
+      ] },
+      { modulo: "Estadística descriptiva e inferencial", temas: [
+        "Estadística descriptiva y análisis exploratorio de datos",
+        "Estimación puntual y por intervalos de confianza",
+        "Contraste de hipótesis",
+        "Regresión lineal simple y múltiple",
+      ] },
+    ] },
+    { nombre: "Física 3 (Ondas y Óptica)", modulos: [
+      { modulo: "Ondas electromagnéticas", temas: [
+        "Ecuación de ondas y espectro electromagnético",
+        "Polarización de ondas electromagnéticas",
+      ] },
+      { modulo: "Óptica geométrica y ondulatoria", temas: [
+        "Reflexión, refracción y lentes delgadas",
+        "Interferencia y difracción de la luz",
+      ] },
+    ] },
+    { nombre: "Mecánica Newtoniana", modulos: [
+      { modulo: "Dinámica de sistemas de partículas", temas: [
+        "Centro de masa y movimiento de sistemas de partículas",
+        "Momento angular y torque en sistemas de partículas",
+      ] },
+      { modulo: "Cuerpo rígido y oscilaciones", temas: [
+        "Cinemática y dinámica de rotación del cuerpo rígido",
+        "Momento de inercia y teorema de Steiner",
+        "Osciladores acoplados y modos normales",
+      ] },
+    ] },
+  ],
+  4: [
+    { nombre: "Ecuaciones Diferenciales", modulos: [
+      { modulo: "Ecuaciones diferenciales ordinarias", temas: [
+        "Ecuaciones lineales de orden superior a coeficientes constantes",
+        "Sistemas de ecuaciones diferenciales lineales",
+      ] },
+      { modulo: "Transformada de Laplace", temas: [
+        "Transformada de Laplace y propiedades",
+        "Resolución de ecuaciones diferenciales mediante Laplace",
+      ] },
+    ] },
+    { nombre: "Materiales y Ensayos", modulos: [
+      { modulo: "Estructura y propiedades de los materiales", temas: [
+        "Estructura cristalina de metales y defectos cristalinos",
+        "Diagramas de fase y diagrama hierro-carbono",
+      ] },
+      { modulo: "Propiedades mecánicas y ensayos", temas: [
+        "Ensayo de tracción, dureza e impacto",
+        "Fatiga y mecanismos de falla de materiales",
+      ] },
+    ] },
+    { nombre: "Estática Aplicada", modulos: [
+      { modulo: "Equilibrio de cuerpos rígidos", temas: [
+        "Momento de una fuerza y equilibrio de cuerpos rígidos",
+        "Reacciones de apoyo y diagramas de cuerpo libre en estructuras",
+      ] },
+      { modulo: "Análisis de estructuras simples", temas: [
+        "Armaduras planas: método de nudos y de secciones",
+        "Centroides, centros de gravedad y momentos de inercia de áreas",
+      ] },
+    ] },
+    { nombre: "Introducción a la Investigación de Operaciones", modulos: [
+      { modulo: "Programación matemática", temas: [
+        "Programación lineal: formulación y método símplex",
+        "Programación entera y modelos de redes",
+      ] },
+      { modulo: "Modelos estocásticos", temas: [
+        "Teoría de colas y modelos de líneas de espera",
+      ] },
+    ] },
+  ],
+  5: [
+    { nombre: "Métodos Numéricos", modulos: [
+      { modulo: "Resolución numérica de ecuaciones y sistemas", temas: [
+        "Métodos de bisección, Newton-Raphson y punto fijo",
+        "Resolución numérica de sistemas de ecuaciones lineales",
+      ] },
+      { modulo: "Integración y ecuaciones diferenciales numéricas", temas: [
+        "Cuadratura numérica: trapecios y Simpson",
+        "Métodos de Euler y Runge-Kutta para EDO",
+      ] },
+    ] },
+    { nombre: "Estática de Sólidos Deformables", modulos: [
+      { modulo: "Esfuerzo y deformación", temas: [
+        "Esfuerzo axial, deformación y la ley de Hooke",
+        "Esfuerzo cortante y torsión en elementos estructurales",
+      ] },
+      { modulo: "Flexión y pandeo", temas: [
+        "Flexión de vigas: esfuerzos normales y diagramas de momento",
+        "Pandeo de columnas y carga crítica de Euler",
+      ] },
+    ] },
+    { nombre: "Administración de Empresas", modulos: [
+      { modulo: "Fundamentos de administración", temas: [
+        "Funciones administrativas: planificación, organización, dirección y control",
+        "Estados financieros y análisis de costos para la toma de decisiones",
+      ] },
+    ] },
+    { nombre: "Microeconomía", modulos: [
+      { modulo: "Teoría del consumidor y la firma", temas: [
+        "Oferta, demanda y equilibrio de mercado",
+        "Estructuras de mercado: competencia perfecta, monopolio y oligopolio",
+      ] },
+    ] },
+  ],
+  6: [
+    { nombre: "Gestión de Operaciones", modulos: [
+      { modulo: "Planificación y control de la producción", temas: [
+        "Pronóstico de la demanda y planificación agregada de la producción",
+        "Gestión de inventarios y planificación de requerimientos de materiales (MRP)",
+      ] },
+      { modulo: "Diseño de procesos productivos", temas: [
+        "Distribución en planta (layout) y balanceo de líneas",
+        "Cadena de suministro y logística",
+      ] },
+    ] },
+    { nombre: "Gestión de Calidad y Productividad", modulos: [
+      { modulo: "Sistemas de gestión de calidad", temas: [
+        "Control estadístico de procesos y cartas de control",
+        "Normas ISO 9001 y mejora continua (Kaizen)",
+      ] },
+    ] },
+    { nombre: "Electrotecnia 1", modulos: [
+      { modulo: "Sistemas trifásicos", temas: [
+        "Circuitos trifásicos equilibrados: conexión estrella y triángulo",
+        "Potencia en sistemas trifásicos",
+      ] },
+      { modulo: "Transformadores", temas: [
+        "Principio de funcionamiento del transformador ideal",
+        "Circuito equivalente y ensayos de vacío y cortocircuito",
+      ] },
+    ] },
+    { nombre: "Organizaciones y su Administración", modulos: [
+      { modulo: "Comportamiento organizacional", temas: [
+        "Estructura organizacional y diseño de organizaciones",
+        "Liderazgo, trabajo en equipo y gestión de recursos humanos",
+      ] },
+    ] },
+  ],
+  7: [
+    { nombre: "Gestión de Proyectos", modulos: [
+      { modulo: "Planificación y control de proyectos", temas: [
+        "Estructura de desglose de trabajo (EDT) y cronograma de proyecto",
+        "Método de la ruta crítica (CPM) y PERT",
+      ] },
+    ] },
+    { nombre: "Desarrollo de Productos", modulos: [
+      { modulo: "Ingeniería y diseño de producto", temas: [
+        "Proceso de desarrollo de nuevos productos",
+        "Diseño para manufactura y ensamble (DFMA)",
+      ] },
+    ] },
+    { nombre: "Control e Instrumentación Industrial", modulos: [
+      { modulo: "Modelado de sistemas dinámicos", temas: [
+        "Función de transferencia y diagramas de bloques",
+        "Representación en espacio de estados",
+      ] },
+      { modulo: "Análisis y diseño de controladores", temas: [
+        "Estabilidad: criterio de Routh-Hurwitz y lugar de las raíces",
+        "Controladores PID y sintonización",
+      ] },
+    ] },
+    { nombre: "Introducción a la Ingeniería Química y de Procesos", modulos: [
+      { modulo: "Balances de materia y energía", temas: [
+        "Balances de materia en procesos sin y con reacción química",
+        "Balances de energía en procesos industriales",
+      ] },
+    ] },
+  ],
+  8: [
+    { nombre: "Elementos de Ingeniería Ambiental", modulos: [
+      { modulo: "Gestión ambiental industrial", temas: [
+        "Impacto ambiental y evaluación de impacto ambiental de procesos industriales",
+        "Gestión de residuos y efluentes industriales",
+      ] },
+    ] },
+    { nombre: "Servicios Industriales", modulos: [
+      { modulo: "Servicios auxiliares de planta", temas: [
+        "Generación y distribución de vapor y agua de servicios industriales",
+        "Sistemas de aire comprimido y tratamiento de efluentes industriales",
+      ] },
+    ] },
+    { nombre: "Bases de Datos y Sistemas de Información", modulos: [
+      { modulo: "Sistemas de información para la gestión", temas: [
+        "Modelo entidad-relación y diseño de bases de datos",
+        "Sistemas ERP y CRM para la gestión empresarial",
+      ] },
+    ] },
+    { nombre: "Entorno Empresarial", modulos: [
+      { modulo: "Marco legal y social del trabajo", temas: [
+        "Derecho laboral: contratación y relaciones de trabajo",
+        "Higiene y seguridad laboral en la industria",
+      ] },
+      { modulo: "Economía y sociedad", temas: [
+        "Economía nacional y regional aplicada a la producción industrial",
+        "Responsabilidad social empresarial y tecnología y sociedad",
+      ] },
+    ] },
+    { nombre: "Proyecto Final de Ingeniería de Producción", modulos: [] },
+  ],
+};
+
 // Multi-facultad: cada facultad define su propio catálogo (por año o por
 // semestre, según cómo organice sus ciclos) y cómo nombrar/etiquetar ese
 // ciclo -- el resto de la app (S1/S9/S10) lee de acá en vez de asumir
@@ -5979,8 +6365,21 @@ const FACULTADES = {
     cicloLabel: (n) => `${n}º semestre`,
     iconoMateria: '🍎',
   },
+  ingenieria_produccion: {
+    key: 'ingenieria_produccion',
+    label: 'Facultad de Ingeniería',
+    nombreCorto: 'Ing. de Producción',
+    grupo: 'Facultad de Ingeniería',
+    carrera: 'Ingeniería de Producción',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_INGENIERIA_PRODUCCION,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '📊',
+  },
 };
-const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica', 'ingenieria_naval', 'ingenieria_alimentos'];
+const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica', 'ingenieria_naval', 'ingenieria_alimentos', 'ingenieria_produccion'];
 
 // Exámenes guardados antes de este cambio no tienen `facultad` -- todos
 // eran de Medicina (la única que existía), así que ese es el default.
@@ -6503,6 +6902,22 @@ const MODULO_ICONS = {
   "Envasado": "📦",
   "Gestión de la producción alimentaria": "🏭",
   "Evaluación sensorial": "👅",
+
+  // ---- Ingeniería de Producción ----
+  "Programación matemática": "🔢",
+  "Modelos estocásticos": "🎲",
+  "Fundamentos de administración": "📊",
+  "Teoría del consumidor y la firma": "📈",
+  "Planificación y control de la producción": "🗓️",
+  "Diseño de procesos productivos": "🏭",
+  "Sistemas de gestión de calidad": "✅",
+  "Comportamiento organizacional": "🤝",
+  "Planificación y control de proyectos": "📋",
+  "Ingeniería y diseño de producto": "💡",
+  "Gestión ambiental industrial": "🌱",
+  "Sistemas de información para la gestión": "🗄️",
+  "Marco legal y social del trabajo": "⚖️",
+  "Economía y sociedad": "🌍",
 };
 
 // Bibliografía real de la cátedra. Por tema: qué libro cubre mejor el
@@ -8190,6 +8605,35 @@ const TEXTOS = {
   "Costos y planificación de la producción industrial": { libro: "Apuntes de cátedra", seccion: "guías de organización industrial y gestión" },
   "Fundamentos de análisis sensorial y atributos organolépticos": { libro: "Anzaldúa-Morales -- La Evaluación Sensorial de los Alimentos en la Teoría y la Práctica", seccion: "capítulo de fundamentos del análisis sensorial" },
   "Pruebas sensoriales discriminativas, descriptivas y afectivas": { libro: "Anzaldúa-Morales -- La Evaluación Sensorial de los Alimentos en la Teoría y la Práctica", seccion: "capítulo de pruebas sensoriales" },
+
+  // ---- Ingeniería de Producción ----
+  "Programación lineal: formulación y método símplex": { libro: "Hillier, Lieberman -- Introducción a la Investigación de Operaciones", seccion: "capítulo de programación lineal y el método símplex" },
+  "Programación entera y modelos de redes": { libro: "Hillier, Lieberman -- Introducción a la Investigación de Operaciones", seccion: "capítulos de programación entera y modelos de optimización de redes" },
+  "Teoría de colas y modelos de líneas de espera": { libro: "Hillier, Lieberman -- Introducción a la Investigación de Operaciones", seccion: "capítulo de teoría de colas" },
+  "Funciones administrativas: planificación, organización, dirección y control": { libro: "Robbins, Coulter -- Administración", seccion: "capítulo del proceso administrativo" },
+  "Estados financieros y análisis de costos para la toma de decisiones": { libro: "Robbins, Coulter -- Administración", seccion: "capítulo de control y herramientas de control financiero" },
+  "Oferta, demanda y equilibrio de mercado": { libro: "Pindyck, Rubinfeld -- Microeconomía", seccion: "capítulo de oferta y demanda" },
+  "Estructuras de mercado: competencia perfecta, monopolio y oligopolio": { libro: "Pindyck, Rubinfeld -- Microeconomía", seccion: "capítulos de estructuras de mercado" },
+  "Pronóstico de la demanda y planificación agregada de la producción": { libro: "Heizer, Render -- Dirección de la Producción y de Operaciones", seccion: "capítulos de pronósticos y planificación agregada" },
+  "Gestión de inventarios y planificación de requerimientos de materiales (MRP)": { libro: "Heizer, Render -- Dirección de la Producción y de Operaciones", seccion: "capítulos de gestión de inventarios y MRP" },
+  "Distribución en planta (layout) y balanceo de líneas": { libro: "Heizer, Render -- Dirección de la Producción y de Operaciones", seccion: "capítulo de distribución en planta" },
+  "Cadena de suministro y logística": { libro: "Heizer, Render -- Dirección de la Producción y de Operaciones", seccion: "capítulo de gestión de la cadena de suministro" },
+  "Control estadístico de procesos y cartas de control": { libro: "Montgomery -- Control Estadístico de la Calidad", seccion: "capítulo de control estadístico de procesos" },
+  "Normas ISO 9001 y mejora continua (Kaizen)": { libro: "Montgomery -- Control Estadístico de la Calidad", seccion: "capítulo de sistemas de gestión de la calidad" },
+  "Estructura organizacional y diseño de organizaciones": { libro: "Robbins, Judge -- Comportamiento Organizacional", seccion: "capítulo de estructura y diseño organizacional" },
+  "Liderazgo, trabajo en equipo y gestión de recursos humanos": { libro: "Robbins, Judge -- Comportamiento Organizacional", seccion: "capítulos de liderazgo y trabajo en equipo" },
+  "Estructura de desglose de trabajo (EDT) y cronograma de proyecto": { libro: "Gray, Larson -- Administración de Proyectos", seccion: "capítulo de planificación y programación de proyectos" },
+  "Método de la ruta crítica (CPM) y PERT": { libro: "Gray, Larson -- Administración de Proyectos", seccion: "capítulo de redes de proyecto y método de la ruta crítica" },
+  "Proceso de desarrollo de nuevos productos": { libro: "Ulrich, Eppinger -- Diseño y Desarrollo de Productos", seccion: "capítulo del proceso de desarrollo de productos" },
+  "Diseño para manufactura y ensamble (DFMA)": { libro: "Ulrich, Eppinger -- Diseño y Desarrollo de Productos", seccion: "capítulo de diseño para fabricación" },
+  "Impacto ambiental y evaluación de impacto ambiental de procesos industriales": { libro: "Canter -- Environmental Impact Assessment", seccion: "capítulo de metodologías de evaluación" },
+  "Gestión de residuos y efluentes industriales": { libro: "Metcalf & Eddy -- Ingeniería de Aguas Residuales", seccion: "capítulo de tratamiento de efluentes industriales" },
+  "Modelo entidad-relación y diseño de bases de datos": { libro: "Silberschatz, Korth, Sudarshan -- Fundamentos de Bases de Datos", seccion: "capítulo de modelo entidad-relación" },
+  "Sistemas ERP y CRM para la gestión empresarial": { libro: "Laudon, Laudon -- Sistemas de Información Gerencial", seccion: "capítulo de sistemas empresariales" },
+  "Derecho laboral: contratación y relaciones de trabajo": { libro: "Apuntes de cátedra", seccion: "guías de derecho laboral" },
+  "Higiene y seguridad laboral en la industria": { libro: "Apuntes de cátedra", seccion: "guías de higiene y seguridad laboral" },
+  "Economía nacional y regional aplicada a la producción industrial": { libro: "Apuntes de cátedra", seccion: "guías de entorno empresarial" },
+  "Responsabilidad social empresarial y tecnología y sociedad": { libro: "Apuntes de cátedra", seccion: "guías de entorno empresarial" },
 };
 
 // ---- Estado de la materia/examen que se está EDITANDO (pantallas 1-3: elegir
@@ -10323,6 +10767,35 @@ const DURACIONES = {
   "Costos y planificación de la producción industrial": 1,
   "Fundamentos de análisis sensorial y atributos organolépticos": 1,
   "Pruebas sensoriales discriminativas, descriptivas y afectivas": 1,
+
+  // ---- Ingeniería de Producción ----
+  "Programación lineal: formulación y método símplex": 2,
+  "Programación entera y modelos de redes": 2,
+  "Teoría de colas y modelos de líneas de espera": 1,
+  "Funciones administrativas: planificación, organización, dirección y control": 1,
+  "Estados financieros y análisis de costos para la toma de decisiones": 1,
+  "Oferta, demanda y equilibrio de mercado": 1,
+  "Estructuras de mercado: competencia perfecta, monopolio y oligopolio": 1,
+  "Pronóstico de la demanda y planificación agregada de la producción": 1,
+  "Gestión de inventarios y planificación de requerimientos de materiales (MRP)": 2,
+  "Distribución en planta (layout) y balanceo de líneas": 1,
+  "Cadena de suministro y logística": 1,
+  "Control estadístico de procesos y cartas de control": 2,
+  "Normas ISO 9001 y mejora continua (Kaizen)": 1,
+  "Estructura organizacional y diseño de organizaciones": 1,
+  "Liderazgo, trabajo en equipo y gestión de recursos humanos": 1,
+  "Estructura de desglose de trabajo (EDT) y cronograma de proyecto": 1,
+  "Método de la ruta crítica (CPM) y PERT": 2,
+  "Proceso de desarrollo de nuevos productos": 1,
+  "Diseño para manufactura y ensamble (DFMA)": 1,
+  "Impacto ambiental y evaluación de impacto ambiental de procesos industriales": 1,
+  "Gestión de residuos y efluentes industriales": 1,
+  "Modelo entidad-relación y diseño de bases de datos": 1,
+  "Sistemas ERP y CRM para la gestión empresarial": 1,
+  "Derecho laboral: contratación y relaciones de trabajo": 1,
+  "Higiene y seguridad laboral en la industria": 1,
+  "Economía nacional y regional aplicada a la producción industrial": 1,
+  "Responsabilidad social empresarial y tecnología y sociedad": 1,
 };
 // e permite sumar los días extra que el estudiante pidió vía el check-in
 // adaptativo ("seguir con este tema") -- ver resolverCheckin().
