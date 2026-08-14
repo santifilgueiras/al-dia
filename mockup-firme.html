@@ -5501,6 +5501,357 @@ const CATALOGO_POR_CICLO_INGENIERIA_NAVAL = {
   ],
 };
 
+// Catálogo de Ingeniería de Alimentos (misma facultad que Computación/
+// Civil/Eléctrica/Mecánica/Química/Naval, carrera distinta -- ver
+// FACULTADES.ingenieria_alimentos). 32 materias en 8 semestres. El plan
+// oficial (fing.edu.uy/sites/default/files/2011/3049/Ing%20Alimentos.pdf)
+// es multidisciplinario a propósito (créditos repartidos entre Facultad de
+// Química, Facultad de Ingeniería, Facultad de Agronomía y Facultad de
+// Veterinaria) y define grupos de Materias con temas posibles en vez de una
+// tabla fija de trayectoria por semestre: Formación Básica (Matemática,
+// Física, Química, Ciencias Biológicas, Informática), Formación Profesional
+// Específica (Química de Alimentos, Microbiología de Alimentos, Ingeniería
+// de Procesos de Producción y Preservación de Alimentos, Tecnologías de
+// Alimentos, Calidad de Alimentos) y Formación Complementaria (Organización
+// Industrial/Gestión, Ciencias Sociales y Económicas, Legal). Se armó una
+// trayectoria de 8 semestres real a partir de esos grupos y los temas
+// sugeridos textualmente en el plan. El núcleo básico (Cálculo 1/2, GAL 1/2,
+// Física 1/2, Probabilidad y Estadística, Ecuaciones Diferenciales, Química
+// General 1/2, Química Orgánica 1, Fisicoquímica 1, Química Analítica 1,
+// Fenómenos de Transporte, Métodos Numéricos, Computación 1) es
+// LITERALMENTE el mismo curso que ya está cargado en Química/Eléctrica/
+// Civil/Computación -- se reusa el mismo contenido para no duplicar temas.
+// Lo específico de alimentos se armó con currícula estándar internacional y
+// bibliografía clásica (Fennema/Damodaran, Singh & Heldman, Jay, Fellows).
+const CATALOGO_POR_CICLO_INGENIERIA_ALIMENTOS = {
+  1: [
+    { nombre: "Cálculo Diferencial e Integral en Una Variable", modulos: [
+      { modulo: "Números reales y funciones", temas: [
+        "Axioma de completitud y supremo de un conjunto",
+        "Funciones reales: inyectividad, sobreyectividad y monotonía",
+        "Trigonometría: círculo trigonométrico y funciones inversas",
+      ] },
+      { modulo: "Límites y continuidad", temas: [
+        "Definición de límite y álgebra de límites",
+        "Continuidad y teorema de Bolzano",
+        "Teorema de Weierstrass y extremos globales",
+      ] },
+      { modulo: "Derivadas", temas: [
+        "Definición de derivada y regla de la cadena",
+        "Teoremas de Rolle, Lagrange y Cauchy",
+        "Derivadas, crecimiento y concavidad",
+        "Regla de L'Hôpital",
+      ] },
+      { modulo: "Integrales y desarrollo de Taylor", temas: [
+        "Integral de Riemann mediante sumas superiores e inferiores",
+        "Teorema fundamental del cálculo y regla de Barrow",
+        "Técnicas de integración: partes, sustitución y fracciones simples",
+        "Polinomio de Taylor y estimación del error",
+      ] },
+    ] },
+    { nombre: "Geometría y Álgebra Lineal 1", modulos: [
+      { modulo: "Sistemas de ecuaciones y matrices", temas: [
+        "Eliminación de Gauss y sistemas de ecuaciones lineales",
+        "Rango de una matriz y teorema de Rouché-Frobenius",
+        "Álgebra de matrices: suma, producto e inversa",
+      ] },
+      { modulo: "Determinantes", temas: [
+        "Determinantes de orden 2 y 3 y definición inductiva",
+        "Propiedades del determinante y matrices elementales",
+        "Regla de Cramer y cálculo del rango por determinantes",
+      ] },
+      { modulo: "Geometría del espacio", temas: [
+        "Rectas y planos en el espacio",
+        "Producto escalar: ángulos y distancias",
+        "Producto vectorial: áreas y volúmenes",
+      ] },
+      { modulo: "Espacios vectoriales y transformaciones lineales", temas: [
+        "Espacios y subespacios vectoriales",
+        "Generadores, independencia lineal, base y dimensión",
+        "Cambio de base de un espacio vectorial",
+        "Núcleo e imagen de una transformación lineal",
+        "Matriz asociada a una transformación lineal",
+      ] },
+    ] },
+    { nombre: "Física 1 (Mecánica)", modulos: [
+      { modulo: "Cinemática y dinámica de partículas", temas: [
+        "Cinemática: posición, velocidad y aceleración",
+        "Leyes de Newton y diagramas de cuerpo libre",
+      ] },
+      { modulo: "Trabajo, energía y sistemas de partículas", temas: [
+        "Trabajo, energía cinética y potencial, conservación de energía",
+        "Momento lineal, impulso y colisiones",
+      ] },
+    ] },
+    { nombre: "Química General 1", modulos: [
+      { modulo: "Estructura y enlace", temas: [
+        "Estructura atómica, tabla periódica y tipos de enlace químico",
+        "Estequiometría y reacciones químicas",
+      ] },
+    ] },
+  ],
+  2: [
+    { nombre: "Cálculo Diferencial e Integral en Varias Variables", modulos: [
+      { modulo: "Sucesiones, series e integrales impropias", temas: [
+        "Sucesiones: límite, monotonía, acotación y subsucesiones",
+        "Series numéricas y criterios de convergencia",
+        "Convergencia condicional y absoluta",
+        "Integrales impropias y criterio serie-integral",
+      ] },
+      { modulo: "Topología y continuidad en Rⁿ", temas: [
+        "Normas y conjuntos abiertos y cerrados en Rⁿ",
+        "Sucesiones en Rⁿ y caracterización de conjuntos compactos",
+        "Límites y continuidad de funciones de varias variables",
+      ] },
+      { modulo: "Diferenciabilidad e integrales múltiples", temas: [
+        "Derivadas parciales y derivadas direccionales",
+        "Diferenciabilidad y plano tangente",
+        "Diferencial de la función compuesta",
+        "Integrales dobles y triples: teorema de Fubini",
+        "Teorema de cambio de variables: coordenadas polares, cilíndricas y esféricas",
+      ] },
+    ] },
+    { nombre: "Geometría y Álgebra Lineal 2", modulos: [
+      { modulo: "Valores y vectores propios", temas: [
+        "Valores y vectores propios, polinomio característico",
+        "Diagonalización de matrices",
+        "Multiplicidades algebraica y geométrica; teorema de Gershgorin",
+      ] },
+      { modulo: "Formas canónicas", temas: [
+        "Forma canónica de Jordan",
+        "Matrices semejantes y cambio de base para operadores",
+      ] },
+      { modulo: "Producto interno y ortogonalidad", temas: [
+        "Producto interno y norma en un espacio vectorial",
+        "Ortogonalidad, ortonormalidad y proceso de Gram-Schmidt",
+        "Descomposición QR",
+        "Complemento ortogonal y proyección ortogonal",
+        "Aproximación por mínimos cuadrados",
+      ] },
+      { modulo: "Transformaciones adjuntas e isometrías", temas: [
+        "Teorema de representación de Riesz y transformación adjunta",
+        "Operadores autoadjuntos y teorema espectral",
+        "Isometrías lineales",
+      ] },
+    ] },
+    { nombre: "Física 2 (Oscilaciones, Ondas y Termodinámica)", modulos: [
+      { modulo: "Oscilaciones y ondas mecánicas", temas: [
+        "Movimiento armónico simple y oscilador amortiguado",
+        "Ondas mecánicas: propagación, interferencia y ondas estacionarias",
+      ] },
+      { modulo: "Termodinámica", temas: [
+        "Temperatura, calor y primer principio de la termodinámica",
+        "Entropía y segundo principio de la termodinámica",
+      ] },
+    ] },
+    { nombre: "Química General 2", modulos: [
+      { modulo: "Estados de la materia y termoquímica", temas: [
+        "Propiedades de gases, líquidos y sólidos",
+        "Termoquímica: entalpía de reacción y calorimetría",
+      ] },
+    ] },
+  ],
+  3: [
+    { nombre: "Probabilidad y Estadística", modulos: [
+      { modulo: "Probabilidad básica", temas: [
+        "Espacios de probabilidad y probabilidad condicional",
+        "Variables aleatorias discretas y continuas",
+        "Distribuciones de probabilidad clásicas (binomial, Poisson, normal, exponencial)",
+        "Esperanza, varianza y funciones generadoras",
+      ] },
+      { modulo: "Vectores aleatorios y teoremas límite", temas: [
+        "Vectores aleatorios y distribuciones conjuntas",
+        "Covarianza y correlación",
+        "Ley de los grandes números",
+        "Teorema central del límite",
+      ] },
+      { modulo: "Estadística descriptiva e inferencial", temas: [
+        "Estadística descriptiva y análisis exploratorio de datos",
+        "Estimación puntual y por intervalos de confianza",
+        "Contraste de hipótesis",
+        "Regresión lineal simple y múltiple",
+      ] },
+    ] },
+    { nombre: "Química Orgánica 1", modulos: [
+      { modulo: "Estructura de compuestos orgánicos", temas: [
+        "Hibridación del carbono, isomería y grupos funcionales",
+        "Estereoquímica: quiralidad y proyecciones de Fischer",
+      ] },
+      { modulo: "Hidrocarburos y sus reacciones", temas: [
+        "Nomenclatura y reacciones de alcanos, alquenos y alquinos",
+        "Mecanismos de sustitución y eliminación (SN1, SN2, E1, E2)",
+      ] },
+    ] },
+    { nombre: "Química Analítica 1", modulos: [
+      { modulo: "Equilibrio químico en análisis", temas: [
+        "Equilibrio ácido-base y volumetría de neutralización",
+        "Equilibrio de solubilidad y precipitación",
+      ] },
+    ] },
+    { nombre: "Biología y Bioquímica", modulos: [
+      { modulo: "Fundamentos de biología celular", temas: [
+        "Estructura y función celular, membranas y transporte",
+      ] },
+      { modulo: "Bioquímica básica", temas: [
+        "Estructura y función de proteínas, carbohidratos y lípidos",
+        "Enzimas: cinética y regulación de la actividad enzimática",
+      ] },
+    ] },
+  ],
+  4: [
+    { nombre: "Ecuaciones Diferenciales", modulos: [
+      { modulo: "Ecuaciones diferenciales ordinarias", temas: [
+        "Ecuaciones lineales de orden superior a coeficientes constantes",
+        "Sistemas de ecuaciones diferenciales lineales",
+      ] },
+      { modulo: "Transformada de Laplace", temas: [
+        "Transformada de Laplace y propiedades",
+        "Resolución de ecuaciones diferenciales mediante Laplace",
+      ] },
+    ] },
+    { nombre: "Fisicoquímica 1", modulos: [
+      { modulo: "Gases y primera ley", temas: [
+        "Ecuaciones de estado de gases ideales y reales",
+        "Primera ley de la termodinámica aplicada a sistemas químicos",
+      ] },
+      { modulo: "Equilibrio de fases", temas: [
+        "Segunda y tercera ley: entropía y energía libre de Gibbs",
+        "Diagramas de fase de sustancias puras",
+      ] },
+    ] },
+    { nombre: "Microbiología General", modulos: [
+      { modulo: "Microorganismos y su metabolismo", temas: [
+        "Estructura y clasificación de bacterias, hongos y levaduras",
+        "Metabolismo microbiano y curvas de crecimiento",
+      ] },
+    ] },
+    { nombre: "Computación 1", modulos: [
+      { modulo: "Fundamentos de la programación imperativa", temas: [
+        "Modelo de computación y concepto de algoritmo",
+        "Sintaxis y semántica de un lenguaje de programación",
+        "Compilación, ejecución y tipos de errores",
+        "Identificadores, variables, constantes y expresiones",
+      ] },
+      { modulo: "Estructuras de control", temas: [
+        "Estructuras de selección",
+        "Estructuras de iteración",
+        "Recursión: diseño de algoritmos recursivos simples",
+      ] },
+    ] },
+  ],
+  5: [
+    { nombre: "Fenómenos de Transporte", modulos: [
+      { modulo: "Transporte de cantidad de movimiento", temas: [
+        "Ley de viscosidad de Newton y perfil de velocidades en flujo laminar",
+        "Ecuaciones de balance de cantidad de movimiento",
+      ] },
+      { modulo: "Analogías de transporte", temas: [
+        "Analogía entre transporte de momento, calor y masa",
+      ] },
+    ] },
+    { nombre: "Química de los Alimentos", modulos: [
+      { modulo: "Constituyentes de los alimentos", temas: [
+        "Agua, actividad de agua y su rol en la estabilidad de los alimentos",
+        "Proteínas, lípidos y carbohidratos en los alimentos",
+      ] },
+      { modulo: "Cambios químicos y deterioro", temas: [
+        "Reacciones de pardeamiento enzimático y no enzimático (Maillard)",
+        "Oxidación lipídica y rancidez",
+      ] },
+    ] },
+    { nombre: "Microbiología de los Alimentos", modulos: [
+      { modulo: "Microorganismos en alimentos", temas: [
+        "Microorganismos alterantes y patógenos transmitidos por alimentos",
+        "Puntos críticos de control y sistema HACCP",
+      ] },
+    ] },
+    { nombre: "Nutrición y Toxicología de Alimentos", modulos: [
+      { modulo: "Nutrición", temas: [
+        "Función biológica de macro y micronutrientes",
+        "Metabolismo de nutrientes y requerimientos nutricionales",
+      ] },
+      { modulo: "Toxicología alimentaria", temas: [
+        "Contaminantes y riesgo toxicológico en alimentos",
+        "Aditivos alimentarios: clasificación y límites de uso",
+      ] },
+    ] },
+  ],
+  6: [
+    { nombre: "Ingeniería de Procesos de Alimentos 1", modulos: [
+      { modulo: "Balances y operaciones unitarias", temas: [
+        "Balances de materia y energía en procesos alimentarios",
+        "Análisis dimensional y semejanza en operaciones de alimentos",
+      ] },
+      { modulo: "Transporte en alimentos", temas: [
+        "Fluidodinámica aplicada al procesamiento de alimentos",
+        "Transferencia de calor en procesos de alimentos",
+      ] },
+    ] },
+    { nombre: "Métodos Numéricos", modulos: [
+      { modulo: "Resolución numérica de ecuaciones y sistemas", temas: [
+        "Métodos de bisección, Newton-Raphson y punto fijo",
+        "Resolución numérica de sistemas de ecuaciones lineales",
+      ] },
+      { modulo: "Integración y ecuaciones diferenciales numéricas", temas: [
+        "Cuadratura numérica: trapecios y Simpson",
+        "Métodos de Euler y Runge-Kutta para EDO",
+      ] },
+    ] },
+    { nombre: "Tecnología de Alimentos 1", modulos: [
+      { modulo: "Procesamiento de un producto alimentario", temas: [
+        "Materias primas, manipulación y acondicionamiento",
+        "Operaciones de procesado, transformación y envasado",
+      ] },
+    ] },
+    { nombre: "Calidad de Alimentos", modulos: [
+      { modulo: "Sistemas de calidad", temas: [
+        "Calidad total y gestión de la calidad en la industria alimentaria",
+        "Calidad nutricional y atributos higiénico-sanitarios",
+      ] },
+    ] },
+  ],
+  7: [
+    { nombre: "Ingeniería de Procesos de Alimentos 2", modulos: [
+      { modulo: "Métodos de conservación", temas: [
+        "Métodos térmicos de conservación: pasteurización y esterilización",
+        "Métodos de conservación por frío, deshidratación y reducción de actividad de agua",
+      ] },
+      { modulo: "Cinética de deterioro", temas: [
+        "Cinética de reacciones de deterioro y vida útil de los alimentos",
+      ] },
+    ] },
+    { nombre: "Tecnología de Alimentos 2", modulos: [
+      { modulo: "Procesamiento de un segundo producto alimentario", temas: [
+        "Tecnología de procesamiento de cereales y derivados",
+        "Tecnología de procesamiento de frutas y hortalizas",
+      ] },
+    ] },
+    { nombre: "Envasado y Conservación de Alimentos", modulos: [
+      { modulo: "Envasado", temas: [
+        "Materiales y sistemas de envasado de alimentos",
+        "Envasado en atmósfera modificada y al vacío",
+      ] },
+    ] },
+    { nombre: "Legislación Alimentaria", modulos: [] },
+  ],
+  8: [
+    { nombre: "Organización Industrial y Gestión", modulos: [
+      { modulo: "Gestión de la producción alimentaria", temas: [
+        "Estructura organizacional y gestión de plantas de producción de alimentos",
+        "Costos y planificación de la producción industrial",
+      ] },
+    ] },
+    { nombre: "Análisis Sensorial", modulos: [
+      { modulo: "Evaluación sensorial", temas: [
+        "Fundamentos de análisis sensorial y atributos organolépticos",
+        "Pruebas sensoriales discriminativas, descriptivas y afectivas",
+      ] },
+    ] },
+    { nombre: "Taller de Alimentos", modulos: [] },
+    { nombre: "Proyecto Final de Ingeniería de Alimentos", modulos: [] },
+  ],
+};
+
 // Multi-facultad: cada facultad define su propio catálogo (por año o por
 // semestre, según cómo organice sus ciclos) y cómo nombrar/etiquetar ese
 // ciclo -- el resto de la app (S1/S9/S10) lee de acá en vez de asumir
@@ -5615,8 +5966,21 @@ const FACULTADES = {
     cicloLabel: (n) => `${n}º semestre`,
     iconoMateria: '⚓',
   },
+  ingenieria_alimentos: {
+    key: 'ingenieria_alimentos',
+    label: 'Facultad de Ingeniería',
+    nombreCorto: 'Ing. de Alimentos',
+    grupo: 'Facultad de Ingeniería',
+    carrera: 'Ingeniería de Alimentos',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_INGENIERIA_ALIMENTOS,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '🍎',
+  },
 };
-const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica', 'ingenieria_naval'];
+const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica', 'ingenieria_naval', 'ingenieria_alimentos'];
 
 // Exámenes guardados antes de este cambio no tienen `facultad` -- todos
 // eran de Medicina (la única que existía), así que ese es el default.
@@ -6119,6 +6483,26 @@ const MODULO_ICONS = {
   "Instalaciones auxiliares": "🔧",
   "Alistamiento de buques": "🚢",
   "Reparación y mantenimiento del casco": "⚓",
+
+  // ---- Ingeniería de Alimentos ----
+  "Fundamentos de biología celular": "🦠",
+  "Bioquímica básica": "🧬",
+  "Microorganismos y su metabolismo": "🦠",
+  "Constituyentes de los alimentos": "🍎",
+  "Cambios químicos y deterioro": "🍂",
+  "Microorganismos en alimentos": "🦠",
+  "Nutrición": "🥗",
+  "Toxicología alimentaria": "☠️",
+  "Balances y operaciones unitarias": "⚖️",
+  "Transporte en alimentos": "🌊",
+  "Procesamiento de un producto alimentario": "🏭",
+  "Sistemas de calidad": "✅",
+  "Métodos de conservación": "❄️",
+  "Cinética de deterioro": "⏱️",
+  "Procesamiento de un segundo producto alimentario": "🌾",
+  "Envasado": "📦",
+  "Gestión de la producción alimentaria": "🏭",
+  "Evaluación sensorial": "👅",
 };
 
 // Bibliografía real de la cátedra. Por tema: qué libro cubre mejor el
@@ -7770,6 +8154,42 @@ const TEXTOS = {
   "Sistemas de carga y guinches": { libro: "Apuntes de cátedra", seccion: "guías de alistamiento de buques" },
   "Diagnóstico de averías y varada en dique seco": { libro: "Apuntes de cátedra", seccion: "guías de reparaciones navales" },
   "Procesos de reparación y montaje de elementos estructurales y mecánicos a bordo": { libro: "Apuntes de cátedra", seccion: "guías de reparaciones navales" },
+
+  // ---- Ingeniería de Alimentos ----
+  "Estructura y función celular, membranas y transporte": { libro: "Alberts et al. -- Biología Molecular de la Célula", seccion: "capítulo de estructura y función de membranas" },
+  "Estructura y función de proteínas, carbohidratos y lípidos": { libro: "Nelson, Cox -- Lehninger: Principios de Bioquímica", seccion: "capítulos de aminoácidos, péptidos y proteínas; carbohidratos; lípidos" },
+  "Enzimas: cinética y regulación de la actividad enzimática": { libro: "Nelson, Cox -- Lehninger: Principios de Bioquímica", seccion: "capítulo de enzimas" },
+  "Estructura y clasificación de bacterias, hongos y levaduras": { libro: "Madigan et al. -- Brock: Biología de los Microorganismos", seccion: "capítulo de diversidad microbiana" },
+  "Metabolismo microbiano y curvas de crecimiento": { libro: "Madigan et al. -- Brock: Biología de los Microorganismos", seccion: "capítulo de crecimiento microbiano" },
+  "Agua, actividad de agua y su rol en la estabilidad de los alimentos": { libro: "Damodaran, Parkin, Fennema -- Química de los Alimentos", seccion: "capítulo del agua" },
+  "Proteínas, lípidos y carbohidratos en los alimentos": { libro: "Damodaran, Parkin, Fennema -- Química de los Alimentos", seccion: "capítulos de proteínas, lípidos y carbohidratos alimentarios" },
+  "Reacciones de pardeamiento enzimático y no enzimático (Maillard)": { libro: "Damodaran, Parkin, Fennema -- Química de los Alimentos", seccion: "capítulo de pardeamiento enzimático y no enzimático" },
+  "Oxidación lipídica y rancidez": { libro: "Damodaran, Parkin, Fennema -- Química de los Alimentos", seccion: "capítulo de lípidos: oxidación" },
+  "Microorganismos alterantes y patógenos transmitidos por alimentos": { libro: "Jay, Loessner, Golden -- Microbiología Moderna de los Alimentos", seccion: "capítulo de microorganismos indicadores y patógenos" },
+  "Puntos críticos de control y sistema HACCP": { libro: "Jay, Loessner, Golden -- Microbiología Moderna de los Alimentos", seccion: "capítulo de HACCP" },
+  "Función biológica de macro y micronutrientes": { libro: "Mahan, Raymond -- Krause: Dietoterapia", seccion: "capítulo de nutrientes: ingesta, digestión y metabolismo" },
+  "Metabolismo de nutrientes y requerimientos nutricionales": { libro: "Mahan, Raymond -- Krause: Dietoterapia", seccion: "capítulo de necesidades nutricionales" },
+  "Contaminantes y riesgo toxicológico en alimentos": { libro: "Damodaran, Parkin, Fennema -- Química de los Alimentos", seccion: "capítulo de toxicantes en los alimentos" },
+  "Aditivos alimentarios: clasificación y límites de uso": { libro: "Damodaran, Parkin, Fennema -- Química de los Alimentos", seccion: "capítulo de aditivos alimentarios" },
+  "Balances de materia y energía en procesos alimentarios": { libro: "Singh, Heldman -- Introducción a la Ingeniería de los Alimentos", seccion: "capítulo de balances de materia y energía" },
+  "Análisis dimensional y semejanza en operaciones de alimentos": { libro: "Singh, Heldman -- Introducción a la Ingeniería de los Alimentos", seccion: "capítulo de análisis dimensional" },
+  "Fluidodinámica aplicada al procesamiento de alimentos": { libro: "Singh, Heldman -- Introducción a la Ingeniería de los Alimentos", seccion: "capítulo de flujo de fluidos en el procesamiento de alimentos" },
+  "Transferencia de calor en procesos de alimentos": { libro: "Singh, Heldman -- Introducción a la Ingeniería de los Alimentos", seccion: "capítulo de transferencia de calor en el procesamiento de alimentos" },
+  "Materias primas, manipulación y acondicionamiento": { libro: "Fellows -- Tecnología del Procesado de los Alimentos", seccion: "capítulo de propiedades de las materias primas" },
+  "Operaciones de procesado, transformación y envasado": { libro: "Fellows -- Tecnología del Procesado de los Alimentos", seccion: "capítulo de operaciones de procesado" },
+  "Calidad total y gestión de la calidad en la industria alimentaria": { libro: "Hubbard -- Statistical Quality Control for the Food Industry", seccion: "capítulo de sistemas de gestión de calidad" },
+  "Calidad nutricional y atributos higiénico-sanitarios": { libro: "Hubbard -- Statistical Quality Control for the Food Industry", seccion: "capítulo de control de calidad y seguridad alimentaria" },
+  "Métodos térmicos de conservación: pasteurización y esterilización": { libro: "Singh, Heldman -- Introducción a la Ingeniería de los Alimentos", seccion: "capítulo de procesamiento térmico" },
+  "Métodos de conservación por frío, deshidratación y reducción de actividad de agua": { libro: "Singh, Heldman -- Introducción a la Ingeniería de los Alimentos", seccion: "capítulos de refrigeración/congelación y deshidratación" },
+  "Cinética de reacciones de deterioro y vida útil de los alimentos": { libro: "Damodaran, Parkin, Fennema -- Química de los Alimentos", seccion: "capítulo de cinética de reacciones en alimentos" },
+  "Tecnología de procesamiento de cereales y derivados": { libro: "Fellows -- Tecnología del Procesado de los Alimentos", seccion: "capítulo de procesamiento de cereales" },
+  "Tecnología de procesamiento de frutas y hortalizas": { libro: "Fellows -- Tecnología del Procesado de los Alimentos", seccion: "capítulo de procesamiento de frutas y hortalizas" },
+  "Materiales y sistemas de envasado de alimentos": { libro: "Robertson -- Food Packaging: Principles and Practice", seccion: "capítulo de materiales de envasado" },
+  "Envasado en atmósfera modificada y al vacío": { libro: "Robertson -- Food Packaging: Principles and Practice", seccion: "capítulo de envasado en atmósfera modificada" },
+  "Estructura organizacional y gestión de plantas de producción de alimentos": { libro: "Apuntes de cátedra", seccion: "guías de organización industrial y gestión" },
+  "Costos y planificación de la producción industrial": { libro: "Apuntes de cátedra", seccion: "guías de organización industrial y gestión" },
+  "Fundamentos de análisis sensorial y atributos organolépticos": { libro: "Anzaldúa-Morales -- La Evaluación Sensorial de los Alimentos en la Teoría y la Práctica", seccion: "capítulo de fundamentos del análisis sensorial" },
+  "Pruebas sensoriales discriminativas, descriptivas y afectivas": { libro: "Anzaldúa-Morales -- La Evaluación Sensorial de los Alimentos en la Teoría y la Práctica", seccion: "capítulo de pruebas sensoriales" },
 };
 
 // ---- Estado de la materia/examen que se está EDITANDO (pantallas 1-3: elegir
@@ -9867,6 +10287,42 @@ const DURACIONES = {
   "Sistemas de carga y guinches": 1,
   "Diagnóstico de averías y varada en dique seco": 1,
   "Procesos de reparación y montaje de elementos estructurales y mecánicos a bordo": 1,
+
+  // ---- Ingeniería de Alimentos ----
+  "Estructura y función celular, membranas y transporte": 1,
+  "Estructura y función de proteínas, carbohidratos y lípidos": 2,
+  "Enzimas: cinética y regulación de la actividad enzimática": 2,
+  "Estructura y clasificación de bacterias, hongos y levaduras": 1,
+  "Metabolismo microbiano y curvas de crecimiento": 1,
+  "Agua, actividad de agua y su rol en la estabilidad de los alimentos": 1,
+  "Proteínas, lípidos y carbohidratos en los alimentos": 2,
+  "Reacciones de pardeamiento enzimático y no enzimático (Maillard)": 1,
+  "Oxidación lipídica y rancidez": 1,
+  "Microorganismos alterantes y patógenos transmitidos por alimentos": 1,
+  "Puntos críticos de control y sistema HACCP": 1,
+  "Función biológica de macro y micronutrientes": 1,
+  "Metabolismo de nutrientes y requerimientos nutricionales": 1,
+  "Contaminantes y riesgo toxicológico en alimentos": 1,
+  "Aditivos alimentarios: clasificación y límites de uso": 1,
+  "Balances de materia y energía en procesos alimentarios": 2,
+  "Análisis dimensional y semejanza en operaciones de alimentos": 1,
+  "Fluidodinámica aplicada al procesamiento de alimentos": 1,
+  "Transferencia de calor en procesos de alimentos": 1,
+  "Materias primas, manipulación y acondicionamiento": 1,
+  "Operaciones de procesado, transformación y envasado": 1,
+  "Calidad total y gestión de la calidad en la industria alimentaria": 1,
+  "Calidad nutricional y atributos higiénico-sanitarios": 1,
+  "Métodos térmicos de conservación: pasteurización y esterilización": 1,
+  "Métodos de conservación por frío, deshidratación y reducción de actividad de agua": 1,
+  "Cinética de reacciones de deterioro y vida útil de los alimentos": 2,
+  "Tecnología de procesamiento de cereales y derivados": 1,
+  "Tecnología de procesamiento de frutas y hortalizas": 1,
+  "Materiales y sistemas de envasado de alimentos": 1,
+  "Envasado en atmósfera modificada y al vacío": 1,
+  "Estructura organizacional y gestión de plantas de producción de alimentos": 1,
+  "Costos y planificación de la producción industrial": 1,
+  "Fundamentos de análisis sensorial y atributos organolépticos": 1,
+  "Pruebas sensoriales discriminativas, descriptivas y afectivas": 1,
 };
 // e permite sumar los días extra que el estudiante pidió vía el check-in
 // adaptativo ("seguir con este tema") -- ver resolverCheckin().
