@@ -6238,6 +6238,339 @@ const CATALOGO_POR_CICLO_INGENIERIA_PRODUCCION = {
   ],
 };
 
+// Catálogo de Agrimensura (misma facultad que Computación/Civil/Eléctrica/
+// Mecánica/Química/Naval/Alimentos/Producción, carrera distinta -- ver
+// FACULTADES.agrimensura). 32 materias en 8 semestres. La trayectoria
+// sugerida oficial vigente (Plan 2023, "TrayectoriaSugerida_2025_
+// Montevideo.pdf") vive detrás de login en eva.fing.edu.uy, así que no se
+// pudo descargar directo -- se armó combinando: 1) los nombres reales de
+// los primeros 4 semestres (indexados públicamente: Cálculo 1/2/3, GAL 1/2,
+// Física 1/2/3, Economía, Probabilidad y Estadística, Introducción al
+// Derecho, Sistemas de Referencia, Teoría Instrumental, Computación 1,
+// Teoría de Errores 1, Astronomía Geodésica, Física Experimental 2), y 2)
+// el PDF público del plan anterior (fing.edu.uy/sites/default/files/
+// agrimensura.pdf), que lista las áreas y asignaturas reales de la
+// formación específica (Agrimensura Legal I/II, Avaluaciones, Catastro,
+// Cartografía, Fotogrametría y Percepción Remota, Geodesia I/II, Topografía
+// I/II/III, Elementos de Geología/Hidrología, Planificación). El núcleo
+// básico (Cálculo 1/2/3, GAL 1/2, Física 1/2/3, Probabilidad y Estadística,
+// Computación 1) es LITERALMENTE el mismo curso que ya está cargado en las
+// otras carreras de Ingeniería -- se reusa el mismo contenido para no
+// duplicar temas. Lo específico de agrimensura se armó con currícula
+// estándar internacional y bibliografía clásica (Wolf & Ghilani, Torge,
+// Chow/Maidment/Mays, Chuvieco).
+const CATALOGO_POR_CICLO_AGRIMENSURA = {
+  1: [
+    { nombre: "Cálculo Diferencial e Integral en Una Variable", modulos: [
+      { modulo: "Números reales y funciones", temas: [
+        "Axioma de completitud y supremo de un conjunto",
+        "Funciones reales: inyectividad, sobreyectividad y monotonía",
+        "Trigonometría: círculo trigonométrico y funciones inversas",
+      ] },
+      { modulo: "Límites y continuidad", temas: [
+        "Definición de límite y álgebra de límites",
+        "Continuidad y teorema de Bolzano",
+        "Teorema de Weierstrass y extremos globales",
+      ] },
+      { modulo: "Derivadas", temas: [
+        "Definición de derivada y regla de la cadena",
+        "Teoremas de Rolle, Lagrange y Cauchy",
+        "Derivadas, crecimiento y concavidad",
+        "Regla de L'Hôpital",
+      ] },
+      { modulo: "Integrales y desarrollo de Taylor", temas: [
+        "Integral de Riemann mediante sumas superiores e inferiores",
+        "Teorema fundamental del cálculo y regla de Barrow",
+        "Técnicas de integración: partes, sustitución y fracciones simples",
+        "Polinomio de Taylor y estimación del error",
+      ] },
+    ] },
+    { nombre: "Geometría y Álgebra Lineal 1", modulos: [
+      { modulo: "Sistemas de ecuaciones y matrices", temas: [
+        "Eliminación de Gauss y sistemas de ecuaciones lineales",
+        "Rango de una matriz y teorema de Rouché-Frobenius",
+        "Álgebra de matrices: suma, producto e inversa",
+      ] },
+      { modulo: "Determinantes", temas: [
+        "Determinantes de orden 2 y 3 y definición inductiva",
+        "Propiedades del determinante y matrices elementales",
+        "Regla de Cramer y cálculo del rango por determinantes",
+      ] },
+      { modulo: "Geometría del espacio", temas: [
+        "Rectas y planos en el espacio",
+        "Producto escalar: ángulos y distancias",
+        "Producto vectorial: áreas y volúmenes",
+      ] },
+      { modulo: "Espacios vectoriales y transformaciones lineales", temas: [
+        "Espacios y subespacios vectoriales",
+        "Generadores, independencia lineal, base y dimensión",
+        "Cambio de base de un espacio vectorial",
+        "Núcleo e imagen de una transformación lineal",
+        "Matriz asociada a una transformación lineal",
+      ] },
+    ] },
+    { nombre: "Física 1 (Mecánica)", modulos: [
+      { modulo: "Cinemática y dinámica de partículas", temas: [
+        "Cinemática: posición, velocidad y aceleración",
+        "Leyes de Newton y diagramas de cuerpo libre",
+      ] },
+      { modulo: "Trabajo, energía y sistemas de partículas", temas: [
+        "Trabajo, energía cinética y potencial, conservación de energía",
+        "Momento lineal, impulso y colisiones",
+      ] },
+    ] },
+    { nombre: "Teoría Instrumental", modulos: [
+      { modulo: "Instrumentos topográficos", temas: [
+        "Instrumentos de medición angular y de distancias: teodolito y estación total",
+        "Nivelación y equipos de nivel",
+      ] },
+    ] },
+  ],
+  2: [
+    { nombre: "Cálculo Diferencial e Integral en Varias Variables", modulos: [
+      { modulo: "Sucesiones, series e integrales impropias", temas: [
+        "Sucesiones: límite, monotonía, acotación y subsucesiones",
+        "Series numéricas y criterios de convergencia",
+        "Convergencia condicional y absoluta",
+        "Integrales impropias y criterio serie-integral",
+      ] },
+      { modulo: "Topología y continuidad en Rⁿ", temas: [
+        "Normas y conjuntos abiertos y cerrados en Rⁿ",
+        "Sucesiones en Rⁿ y caracterización de conjuntos compactos",
+        "Límites y continuidad de funciones de varias variables",
+      ] },
+      { modulo: "Diferenciabilidad e integrales múltiples", temas: [
+        "Derivadas parciales y derivadas direccionales",
+        "Diferenciabilidad y plano tangente",
+        "Diferencial de la función compuesta",
+        "Integrales dobles y triples: teorema de Fubini",
+        "Teorema de cambio de variables: coordenadas polares, cilíndricas y esféricas",
+      ] },
+    ] },
+    { nombre: "Geometría y Álgebra Lineal 2", modulos: [
+      { modulo: "Valores y vectores propios", temas: [
+        "Valores y vectores propios, polinomio característico",
+        "Diagonalización de matrices",
+        "Multiplicidades algebraica y geométrica; teorema de Gershgorin",
+      ] },
+      { modulo: "Formas canónicas", temas: [
+        "Forma canónica de Jordan",
+        "Matrices semejantes y cambio de base para operadores",
+      ] },
+      { modulo: "Producto interno y ortogonalidad", temas: [
+        "Producto interno y norma en un espacio vectorial",
+        "Ortogonalidad, ortonormalidad y proceso de Gram-Schmidt",
+        "Descomposición QR",
+        "Complemento ortogonal y proyección ortogonal",
+        "Aproximación por mínimos cuadrados",
+      ] },
+      { modulo: "Transformaciones adjuntas e isometrías", temas: [
+        "Teorema de representación de Riesz y transformación adjunta",
+        "Operadores autoadjuntos y teorema espectral",
+        "Isometrías lineales",
+      ] },
+    ] },
+    { nombre: "Física 2 (Oscilaciones, Ondas y Termodinámica)", modulos: [
+      { modulo: "Oscilaciones y ondas mecánicas", temas: [
+        "Movimiento armónico simple y oscilador amortiguado",
+        "Ondas mecánicas: propagación, interferencia y ondas estacionarias",
+      ] },
+      { modulo: "Termodinámica", temas: [
+        "Temperatura, calor y primer principio de la termodinámica",
+        "Entropía y segundo principio de la termodinámica",
+      ] },
+    ] },
+    { nombre: "Computación 1", modulos: [
+      { modulo: "Fundamentos de la programación imperativa", temas: [
+        "Modelo de computación y concepto de algoritmo",
+        "Sintaxis y semántica de un lenguaje de programación",
+        "Compilación, ejecución y tipos de errores",
+        "Identificadores, variables, constantes y expresiones",
+      ] },
+      { modulo: "Estructuras de control", temas: [
+        "Estructuras de selección",
+        "Estructuras de iteración",
+        "Recursión: diseño de algoritmos recursivos simples",
+      ] },
+    ] },
+  ],
+  3: [
+    { nombre: "Cálculo Vectorial", modulos: [
+      { modulo: "Campos escalares y vectoriales", temas: [
+        "Gradiente, divergencia y rotor",
+        "Campos conservativos y funciones potenciales",
+      ] },
+      { modulo: "Integrales de línea y de superficie", temas: [
+        "Integrales de línea de campos escalares y vectoriales",
+        "Integrales de superficie y flujo de un campo vectorial",
+        "Teoremas de Green, Stokes y de la divergencia (Gauss)",
+      ] },
+    ] },
+    { nombre: "Probabilidad y Estadística", modulos: [
+      { modulo: "Probabilidad básica", temas: [
+        "Espacios de probabilidad y probabilidad condicional",
+        "Variables aleatorias discretas y continuas",
+        "Distribuciones de probabilidad clásicas (binomial, Poisson, normal, exponencial)",
+        "Esperanza, varianza y funciones generadoras",
+      ] },
+      { modulo: "Vectores aleatorios y teoremas límite", temas: [
+        "Vectores aleatorios y distribuciones conjuntas",
+        "Covarianza y correlación",
+        "Ley de los grandes números",
+        "Teorema central del límite",
+      ] },
+      { modulo: "Estadística descriptiva e inferencial", temas: [
+        "Estadística descriptiva y análisis exploratorio de datos",
+        "Estimación puntual y por intervalos de confianza",
+        "Contraste de hipótesis",
+        "Regresión lineal simple y múltiple",
+      ] },
+    ] },
+    { nombre: "Física 3 (Ondas y Óptica)", modulos: [
+      { modulo: "Ondas electromagnéticas", temas: [
+        "Ecuación de ondas y espectro electromagnético",
+        "Polarización de ondas electromagnéticas",
+      ] },
+      { modulo: "Óptica geométrica y ondulatoria", temas: [
+        "Reflexión, refracción y lentes delgadas",
+        "Interferencia y difracción de la luz",
+      ] },
+    ] },
+    { nombre: "Teoría de Errores 1", modulos: [
+      { modulo: "Teoría de errores y ajuste de observaciones", temas: [
+        "Propagación de errores y precisión de las mediciones",
+        "Ajuste de observaciones por mínimos cuadrados",
+      ] },
+    ] },
+  ],
+  4: [
+    { nombre: "Introducción al Derecho", modulos: [
+      { modulo: "Fundamentos jurídicos", temas: [
+        "Nociones de derecho civil y derecho de propiedad",
+        "El agrimensor como profesional universitario: ética y responsabilidad legal",
+      ] },
+    ] },
+    { nombre: "Sistemas de Referencia", modulos: [
+      { modulo: "Sistemas de referencia geodésicos", temas: [
+        "Elipsoide de referencia y sistemas de coordenadas geodésicas",
+        "Sistemas de referencia terrestres y datums (WGS84, SIRGAS)",
+      ] },
+    ] },
+    { nombre: "Astronomía Geodésica", modulos: [
+      { modulo: "Astronomía de posición", temas: [
+        "Sistemas de coordenadas astronómicas y tiempo sidéreo",
+        "Determinación astronómica de posición y azimut",
+      ] },
+    ] },
+    { nombre: "Física Experimental 2", modulos: [] },
+  ],
+  5: [
+    { nombre: "Topografía 1", modulos: [
+      { modulo: "Medición y levantamiento topográfico", temas: [
+        "Medición de ángulos y distancias en el terreno",
+        "Poligonales topográficas y cálculo de coordenadas",
+      ] },
+      { modulo: "Nivelación", temas: [
+        "Nivelación geométrica y trigonométrica",
+      ] },
+    ] },
+    { nombre: "Geodesia 1", modulos: [
+      { modulo: "Geodesia geométrica", temas: [
+        "Forma de la Tierra: geoide y elipsoide de referencia",
+        "Cálculo geodésico sobre el elipsoide",
+      ] },
+    ] },
+    { nombre: "Economía", modulos: [
+      { modulo: "Fundamentos de economía", temas: [
+        "Principios de economía política aplicados a la valuación de bienes",
+      ] },
+    ] },
+    { nombre: "Elementos de Geología", modulos: [
+      { modulo: "Geología aplicada", temas: [
+        "Formación y clasificación de rocas y suelos",
+        "Geología aplicada a obras de agrimensura",
+      ] },
+    ] },
+  ],
+  6: [
+    { nombre: "Topografía 2", modulos: [
+      { modulo: "Levantamientos avanzados", temas: [
+        "Levantamientos con GNSS/GPS diferencial",
+        "Replanteo de obras y control topográfico",
+      ] },
+    ] },
+    { nombre: "Geodesia 2", modulos: [
+      { modulo: "Geodesia física y satelital", temas: [
+        "Campo gravitatorio terrestre y geoide gravimétrico",
+        "Posicionamiento satelital y redes geodésicas GNSS",
+      ] },
+    ] },
+    { nombre: "Cartografía", modulos: [
+      { modulo: "Proyecciones y representación cartográfica", temas: [
+        "Sistemas de proyección cartográfica y sus deformaciones",
+        "Elaboración de planos y mapas topográficos",
+      ] },
+    ] },
+    { nombre: "Elementos de Hidrología", modulos: [
+      { modulo: "Hidrología aplicada", temas: [
+        "Ciclo hidrológico y cuencas hidrográficas",
+        "Delimitación de cursos de agua y su relevancia catastral",
+      ] },
+    ] },
+  ],
+  7: [
+    { nombre: "Topografía 3", modulos: [
+      { modulo: "Aplicaciones especiales de topografía", temas: [
+        "Topografía de obras lineales: caminos y canales",
+        "Deformaciones y monitoreo de estructuras (auscultación)",
+      ] },
+    ] },
+    { nombre: "Fotogrametría y Percepción Remota", modulos: [
+      { modulo: "Fotogrametría", temas: [
+        "Principios de fotogrametría y restitución fotogramétrica",
+        "Fotointerpretación y ortofotos",
+      ] },
+      { modulo: "Percepción remota", temas: [
+        "Sensores remotos y clasificación de imágenes satelitales",
+        "Sistemas de información geográfica (SIG) aplicados a agrimensura",
+      ] },
+    ] },
+    { nombre: "Catastro", modulos: [
+      { modulo: "Catastro", temas: [
+        "Catastro territorial: objetivos y organización en Uruguay",
+        "Deslinde, mensura y amojonamiento de parcelas",
+      ] },
+    ] },
+    { nombre: "Agrimensura Legal 1", modulos: [
+      { modulo: "Régimen legal de la propiedad", temas: [
+        "Régimen de la propiedad inmueble y derechos reales",
+        "Servidumbres y limitaciones al dominio",
+      ] },
+    ] },
+  ],
+  8: [
+    { nombre: "Avaluaciones", modulos: [
+      { modulo: "Tasación de inmuebles", temas: [
+        "Métodos de valuación de inmuebles urbanos y rurales",
+        "Valuación catastral y peritajes judiciales",
+      ] },
+    ] },
+    { nombre: "Agrimensura Legal 2", modulos: [
+      { modulo: "Fraccionamientos y regularización", temas: [
+        "Fraccionamientos urbanos y rurales: normativa aplicable",
+        "Propiedad horizontal y regularización de la tenencia de la tierra",
+      ] },
+    ] },
+    { nombre: "Planificación", modulos: [
+      { modulo: "Planificación territorial", temas: [
+        "Ordenamiento territorial y uso del suelo",
+        "Planes de desarrollo urbano y catastro multifinalitario",
+      ] },
+    ] },
+    { nombre: "Proyecto Final de Agrimensura", modulos: [] },
+  ],
+};
+
 // Multi-facultad: cada facultad define su propio catálogo (por año o por
 // semestre, según cómo organice sus ciclos) y cómo nombrar/etiquetar ese
 // ciclo -- el resto de la app (S1/S9/S10) lee de acá en vez de asumir
@@ -6378,8 +6711,21 @@ const FACULTADES = {
     cicloLabel: (n) => `${n}º semestre`,
     iconoMateria: '📊',
   },
+  agrimensura: {
+    key: 'agrimensura',
+    label: 'Facultad de Ingeniería',
+    nombreCorto: 'Agrimensura',
+    grupo: 'Facultad de Ingeniería',
+    carrera: 'Ingeniería en Agrimensura',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_AGRIMENSURA,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '📐',
+  },
 };
-const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica', 'ingenieria_naval', 'ingenieria_alimentos', 'ingenieria_produccion'];
+const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica', 'ingenieria_naval', 'ingenieria_alimentos', 'ingenieria_produccion', 'agrimensura'];
 
 // Exámenes guardados antes de este cambio no tienen `facultad` -- todos
 // eran de Medicina (la única que existía), así que ese es el default.
@@ -6918,6 +7264,30 @@ const MODULO_ICONS = {
   "Sistemas de información para la gestión": "🗄️",
   "Marco legal y social del trabajo": "⚖️",
   "Economía y sociedad": "🌍",
+
+  // ---- Agrimensura ----
+  "Instrumentos topográficos": "🔭",
+  "Teoría de errores y ajuste de observaciones": "📐",
+  "Fundamentos jurídicos": "⚖️",
+  "Sistemas de referencia geodésicos": "🌐",
+  "Astronomía de posición": "🌌",
+  "Medición y levantamiento topográfico": "📏",
+  "Nivelación": "📊",
+  "Geodesia geométrica": "🌍",
+  "Fundamentos de economía": "💰",
+  "Geología aplicada": "🪨",
+  "Levantamientos avanzados": "🛰️",
+  "Geodesia física y satelital": "🛰️",
+  "Proyecciones y representación cartográfica": "🗺️",
+  "Hidrología aplicada": "💧",
+  "Aplicaciones especiales de topografía": "🛣️",
+  "Fotogrametría": "📷",
+  "Percepción remota": "🛰️",
+  "Catastro": "🏘️",
+  "Régimen legal de la propiedad": "⚖️",
+  "Tasación de inmuebles": "🏠",
+  "Fraccionamientos y regularización": "🏘️",
+  "Planificación territorial": "🏙️",
 };
 
 // Bibliografía real de la cátedra. Por tema: qué libro cubre mejor el
@@ -8634,6 +9004,50 @@ const TEXTOS = {
   "Higiene y seguridad laboral en la industria": { libro: "Apuntes de cátedra", seccion: "guías de higiene y seguridad laboral" },
   "Economía nacional y regional aplicada a la producción industrial": { libro: "Apuntes de cátedra", seccion: "guías de entorno empresarial" },
   "Responsabilidad social empresarial y tecnología y sociedad": { libro: "Apuntes de cátedra", seccion: "guías de entorno empresarial" },
+
+  // ---- Agrimensura ----
+  "Instrumentos de medición angular y de distancias: teodolito y estación total": { libro: "Wolf, Ghilani -- Topografía", seccion: "capítulo de instrumentos de medición angular y electrónica de distancias" },
+  "Nivelación y equipos de nivel": { libro: "Wolf, Ghilani -- Topografía", seccion: "capítulo de nivelación" },
+  "Propagación de errores y precisión de las mediciones": { libro: "Ghilani -- Adjustment Computations: Spatial Data Analysis", seccion: "capítulo de propagación de errores aleatorios" },
+  "Ajuste de observaciones por mínimos cuadrados": { libro: "Ghilani -- Adjustment Computations: Spatial Data Analysis", seccion: "capítulo de ajuste por mínimos cuadrados" },
+  "Nociones de derecho civil y derecho de propiedad": { libro: "Apuntes de cátedra", seccion: "guías de introducción al derecho" },
+  "El agrimensor como profesional universitario: ética y responsabilidad legal": { libro: "Apuntes de cátedra", seccion: "guías de introducción al derecho" },
+  "Elipsoide de referencia y sistemas de coordenadas geodésicas": { libro: "Torge, Müller -- Geodesy", seccion: "capítulo de sistemas de referencia geodésicos" },
+  "Sistemas de referencia terrestres y datums (WGS84, SIRGAS)": { libro: "Torge, Müller -- Geodesy", seccion: "capítulo de sistemas de referencia terrestres" },
+  "Sistemas de coordenadas astronómicas y tiempo sidéreo": { libro: "Mueller -- Spherical and Practical Astronomy as Applied to Geodesy", seccion: "capítulo de sistemas de coordenadas astronómicas" },
+  "Determinación astronómica de posición y azimut": { libro: "Mueller -- Spherical and Practical Astronomy as Applied to Geodesy", seccion: "capítulo de determinación astronómica de posición" },
+  "Medición de ángulos y distancias en el terreno": { libro: "Wolf, Ghilani -- Topografía", seccion: "capítulo de medición de ángulos y distancias" },
+  "Poligonales topográficas y cálculo de coordenadas": { libro: "Wolf, Ghilani -- Topografía", seccion: "capítulo de poligonación" },
+  "Nivelación geométrica y trigonométrica": { libro: "Wolf, Ghilani -- Topografía", seccion: "capítulo de nivelación" },
+  "Forma de la Tierra: geoide y elipsoide de referencia": { libro: "Torge, Müller -- Geodesy", seccion: "capítulo del campo de gravedad de la Tierra y figura de la Tierra" },
+  "Cálculo geodésico sobre el elipsoide": { libro: "Torge, Müller -- Geodesy", seccion: "capítulo de geodesia geométrica" },
+  "Principios de economía política aplicados a la valuación de bienes": { libro: "Apuntes de cátedra", seccion: "guías de economía" },
+  "Formación y clasificación de rocas y suelos": { libro: "Tarbuck, Lutgens -- Ciencias de la Tierra", seccion: "capítulo de rocas y minerales" },
+  "Geología aplicada a obras de agrimensura": { libro: "Tarbuck, Lutgens -- Ciencias de la Tierra", seccion: "capítulo de geología aplicada" },
+  "Levantamientos con GNSS/GPS diferencial": { libro: "Wolf, Ghilani -- Topografía", seccion: "capítulo de posicionamiento satelital" },
+  "Replanteo de obras y control topográfico": { libro: "Wolf, Ghilani -- Topografía", seccion: "capítulo de topografía para la construcción" },
+  "Campo gravitatorio terrestre y geoide gravimétrico": { libro: "Torge, Müller -- Geodesy", seccion: "capítulo del campo de gravedad de la Tierra" },
+  "Posicionamiento satelital y redes geodésicas GNSS": { libro: "Torge, Müller -- Geodesy", seccion: "capítulo de métodos geodésicos satelitales" },
+  "Sistemas de proyección cartográfica y sus deformaciones": { libro: "Robinson et al. -- Elementos de Cartografía", seccion: "capítulo de proyecciones cartográficas" },
+  "Elaboración de planos y mapas topográficos": { libro: "Robinson et al. -- Elementos de Cartografía", seccion: "capítulo de diseño y elaboración de mapas" },
+  "Ciclo hidrológico y cuencas hidrográficas": { libro: "Chow, Maidment, Mays -- Hidrología Aplicada", seccion: "capítulo del ciclo hidrológico" },
+  "Delimitación de cursos de agua y su relevancia catastral": { libro: "Chow, Maidment, Mays -- Hidrología Aplicada", seccion: "capítulo de análisis de cuencas" },
+  "Topografía de obras lineales: caminos y canales": { libro: "Wolf, Ghilani -- Topografía", seccion: "capítulo de topografía para rutas" },
+  "Deformaciones y monitoreo de estructuras (auscultación)": { libro: "Wolf, Ghilani -- Topografía", seccion: "capítulo de levantamientos de control y monitoreo" },
+  "Principios de fotogrametría y restitución fotogramétrica": { libro: "Wolf, Dewitt -- Elements of Photogrammetry", seccion: "capítulo de principios de fotogrametría" },
+  "Fotointerpretación y ortofotos": { libro: "Wolf, Dewitt -- Elements of Photogrammetry", seccion: "capítulo de ortofotografía" },
+  "Sensores remotos y clasificación de imágenes satelitales": { libro: "Chuvieco -- Teledetección Ambiental", seccion: "capítulo de clasificación de imágenes" },
+  "Sistemas de información geográfica (SIG) aplicados a agrimensura": { libro: "Chuvieco -- Teledetección Ambiental", seccion: "capítulo de integración con sistemas de información geográfica" },
+  "Catastro territorial: objetivos y organización en Uruguay": { libro: "Erba -- Catastro Multifinalitario", seccion: "capítulo de fundamentos del catastro territorial" },
+  "Deslinde, mensura y amojonamiento de parcelas": { libro: "Apuntes de cátedra", seccion: "guías de catastro" },
+  "Régimen de la propiedad inmueble y derechos reales": { libro: "Apuntes de cátedra", seccion: "guías de agrimensura legal" },
+  "Servidumbres y limitaciones al dominio": { libro: "Apuntes de cátedra", seccion: "guías de agrimensura legal" },
+  "Métodos de valuación de inmuebles urbanos y rurales": { libro: "Apuntes de cátedra", seccion: "guías de avaluaciones" },
+  "Valuación catastral y peritajes judiciales": { libro: "Apuntes de cátedra", seccion: "guías de avaluaciones" },
+  "Fraccionamientos urbanos y rurales: normativa aplicable": { libro: "Apuntes de cátedra", seccion: "guías de agrimensura legal" },
+  "Propiedad horizontal y regularización de la tenencia de la tierra": { libro: "Apuntes de cátedra", seccion: "guías de agrimensura legal" },
+  "Ordenamiento territorial y uso del suelo": { libro: "Erba -- Catastro Multifinalitario", seccion: "capítulo de ordenamiento territorial" },
+  "Planes de desarrollo urbano y catastro multifinalitario": { libro: "Erba -- Catastro Multifinalitario", seccion: "capítulo de catastro multifinalitario" },
 };
 
 // ---- Estado de la materia/examen que se está EDITANDO (pantallas 1-3: elegir
@@ -10796,6 +11210,50 @@ const DURACIONES = {
   "Higiene y seguridad laboral en la industria": 1,
   "Economía nacional y regional aplicada a la producción industrial": 1,
   "Responsabilidad social empresarial y tecnología y sociedad": 1,
+
+  // ---- Agrimensura ----
+  "Instrumentos de medición angular y de distancias: teodolito y estación total": 1,
+  "Nivelación y equipos de nivel": 1,
+  "Propagación de errores y precisión de las mediciones": 2,
+  "Ajuste de observaciones por mínimos cuadrados": 2,
+  "Nociones de derecho civil y derecho de propiedad": 1,
+  "El agrimensor como profesional universitario: ética y responsabilidad legal": 1,
+  "Elipsoide de referencia y sistemas de coordenadas geodésicas": 2,
+  "Sistemas de referencia terrestres y datums (WGS84, SIRGAS)": 1,
+  "Sistemas de coordenadas astronómicas y tiempo sidéreo": 1,
+  "Determinación astronómica de posición y azimut": 2,
+  "Medición de ángulos y distancias en el terreno": 1,
+  "Poligonales topográficas y cálculo de coordenadas": 2,
+  "Nivelación geométrica y trigonométrica": 1,
+  "Forma de la Tierra: geoide y elipsoide de referencia": 1,
+  "Cálculo geodésico sobre el elipsoide": 2,
+  "Principios de economía política aplicados a la valuación de bienes": 1,
+  "Formación y clasificación de rocas y suelos": 1,
+  "Geología aplicada a obras de agrimensura": 1,
+  "Levantamientos con GNSS/GPS diferencial": 1,
+  "Replanteo de obras y control topográfico": 1,
+  "Campo gravitatorio terrestre y geoide gravimétrico": 2,
+  "Posicionamiento satelital y redes geodésicas GNSS": 1,
+  "Sistemas de proyección cartográfica y sus deformaciones": 1,
+  "Elaboración de planos y mapas topográficos": 1,
+  "Ciclo hidrológico y cuencas hidrográficas": 1,
+  "Delimitación de cursos de agua y su relevancia catastral": 1,
+  "Topografía de obras lineales: caminos y canales": 1,
+  "Deformaciones y monitoreo de estructuras (auscultación)": 1,
+  "Principios de fotogrametría y restitución fotogramétrica": 2,
+  "Fotointerpretación y ortofotos": 1,
+  "Sensores remotos y clasificación de imágenes satelitales": 1,
+  "Sistemas de información geográfica (SIG) aplicados a agrimensura": 1,
+  "Catastro territorial: objetivos y organización en Uruguay": 1,
+  "Deslinde, mensura y amojonamiento de parcelas": 1,
+  "Régimen de la propiedad inmueble y derechos reales": 1,
+  "Servidumbres y limitaciones al dominio": 1,
+  "Métodos de valuación de inmuebles urbanos y rurales": 1,
+  "Valuación catastral y peritajes judiciales": 1,
+  "Fraccionamientos urbanos y rurales: normativa aplicable": 1,
+  "Propiedad horizontal y regularización de la tenencia de la tierra": 1,
+  "Ordenamiento territorial y uso del suelo": 1,
+  "Planes de desarrollo urbano y catastro multifinalitario": 1,
 };
 // e permite sumar los días extra que el estudiante pidió vía el check-in
 // adaptativo ("seguir con este tema") -- ver resolverCheckin().
