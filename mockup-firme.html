@@ -1619,6 +1619,10 @@
         <input type="text" id="perfilNombre" autocomplete="given-name">
       </div>
       <div class="field">
+        <label for="perfilApellido">Apellido</label>
+        <input type="text" id="perfilApellido" autocomplete="family-name">
+      </div>
+      <div class="field">
         <label for="perfilEmail">Mail</label>
         <input type="email" id="perfilEmail" autocomplete="email">
       </div>
@@ -1684,6 +1688,10 @@
     <div class="field" id="authNombreField" style="display:none;">
       <label for="authNombre">Nombre</label>
       <input type="text" id="authNombre" placeholder="Como querés que te saludemos" autocomplete="given-name">
+    </div>
+    <div class="field" id="authApellidoField" style="display:none;">
+      <label for="authApellido">Apellido</label>
+      <input type="text" id="authApellido" placeholder="Tu apellido" autocomplete="family-name">
     </div>
     <div class="field">
       <label for="authEmail">Mail</label>
@@ -13999,6 +14007,7 @@ function setAuthModo(modo) {
     ? 'Iniciá sesión para ver tu calendario, sincronizado en todos tus dispositivos.'
     : 'Creá tu cuenta -- es gratis y tu progreso va a quedar guardado.';
   document.getElementById('authNombreField').style.display = modo === 'login' ? 'none' : '';
+  document.getElementById('authApellidoField').style.display = modo === 'login' ? 'none' : '';
 }
 
 function toggleAuthModo() {
@@ -14022,6 +14031,7 @@ async function submitAuth() {
   const email = document.getElementById('authEmail').value.trim();
   const password = document.getElementById('authPassword').value;
   const nombre = document.getElementById('authNombre').value.trim();
+  const apellido = document.getElementById('authApellido').value.trim();
   const errBox = document.getElementById('authError');
   const btn = document.getElementById('authSubmitBtn');
   errBox.style.display = 'none';
@@ -14031,9 +14041,9 @@ async function submitAuth() {
     errBox.style.display = 'block';
     return;
   }
-  if (authModo === 'signup' && !nombre) {
+  if (authModo === 'signup' && (!nombre || !apellido)) {
     errBox.style.color = 'var(--flojo)';
-    errBox.textContent = 'Contanos cómo te llamás para poder saludarte.';
+    errBox.textContent = 'Contanos tu nombre y apellido para poder saludarte.';
     errBox.style.display = 'block';
     return;
   }
@@ -14045,7 +14055,7 @@ async function submitAuth() {
       if (error) throw error;
       // onAuthStateChange dispara SIGNED_IN y carga la app desde ahí.
     } else {
-      const { data, error } = await supabaseClient.auth.signUp({ email, password, options: { data: { nombre } } });
+      const { data, error } = await supabaseClient.auth.signUp({ email, password, options: { data: { nombre, apellido } } });
       if (error) throw error;
       if (!data.session) {
         // El proyecto tiene "Confirmar mail" activado -- todavía no hay sesión.
@@ -14077,8 +14087,10 @@ async function cerrarSesion() {
 // los campos de contraseña/errores de una visita anterior a la pantalla.
 function renderPerfil() {
   const nombreInput = document.getElementById('perfilNombre');
+  const apellidoInput = document.getElementById('perfilApellido');
   const emailInput = document.getElementById('perfilEmail');
   if (nombreInput) nombreInput.value = (sesionUsuario && sesionUsuario.nombre) || '';
+  if (apellidoInput) apellidoInput.value = (sesionUsuario && sesionUsuario.apellido) || '';
   if (emailInput) emailInput.value = (sesionUsuario && sesionUsuario.email) || '';
   ['perfilDatosError', 'perfilPasswordMsg'].forEach(id => {
     const box = document.getElementById(id);
@@ -14088,13 +14100,14 @@ function renderPerfil() {
 
 async function guardarPerfilDatos() {
   const nombre = document.getElementById('perfilNombre').value.trim();
+  const apellido = document.getElementById('perfilApellido').value.trim();
   const email = document.getElementById('perfilEmail').value.trim();
   const errBox = document.getElementById('perfilDatosError');
   const btn = document.getElementById('perfilDatosBtn');
   errBox.style.display = 'none';
-  if (!nombre || !email) {
+  if (!nombre || !apellido || !email) {
     errBox.style.color = 'var(--flojo)';
-    errBox.textContent = 'Completá nombre y mail.';
+    errBox.textContent = 'Completá nombre, apellido y mail.';
     errBox.style.display = 'block';
     return;
   }
@@ -14102,11 +14115,12 @@ async function guardarPerfilDatos() {
   btn.disabled = true;
   btn.textContent = '⏳ Guardando...';
   try {
-    const attrs = { data: { nombre } };
+    const attrs = { data: { nombre, apellido } };
     if (cambiaEmail) attrs.email = email;
     const { error } = await supabaseClient.auth.updateUser(attrs);
     if (error) throw error;
     sesionUsuario.nombre = nombre;
+    sesionUsuario.apellido = apellido;
     if (!cambiaEmail) sesionUsuario.email = email;
     if (typeof renderHoy === 'function') renderHoy();
     showToast(cambiaEmail ? 'Revisá tu mail nuevo para confirmar el cambio' : 'Perfil actualizado');
@@ -14296,8 +14310,10 @@ document.addEventListener('visibilitychange', () => {
 });
 
 async function manejarSesionActiva(session) {
-  const nombre = (session.user.user_metadata && session.user.user_metadata.nombre) || session.user.email.split('@')[0];
-  sesionUsuario = { id: session.user.id, email: session.user.email, nombre };
+  const metadata = session.user.user_metadata || {};
+  const nombre = metadata.nombre || session.user.email.split('@')[0];
+  const apellido = metadata.apellido || '';
+  sesionUsuario = { id: session.user.id, email: session.user.email, nombre, apellido };
   document.getElementById('navUserEmail').textContent = sesionUsuario.email;
   document.getElementById('resumenUserEmail').textContent = sesionUsuario.email;
   // Si se entró con ?auth=login/registro (desde un botón de la landing), se
