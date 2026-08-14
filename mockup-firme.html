@@ -4329,6 +4329,396 @@ const CATALOGO_POR_CICLO_INGENIERIA_ELECTRICA = {
   ],
 };
 
+// Catálogo de Ingeniería Industrial Mecánica (misma facultad que
+// Computación/Civil/Eléctrica, carrera distinta -- ver
+// FACULTADES.ingenieria_mecanica). 31 materias en 8 semestres. El PDF
+// oficial del plan (fing.edu.uy/sites/default/files/ing_mecanica.pdf) no
+// trae una tabla de trayectoria por semestre como el de Eléctrica -- solo
+// las 11 áreas temáticas con créditos mínimos y las asignaturas específicas
+// de sus 3 perfiles (Diseño Mecánico y Materiales / Fluidos y Energía /
+// Ingeniería de Planta: Elemento de Máquinas, Metalurgia de
+// Transformaciones, Estática Aplicada, Generadores de Vapor, Máquinas para
+// Fluidos II, Instalaciones Eléctricas, Gestión de Mantenimiento). Se armó
+// una trayectoria de 8 semestres a partir de esas áreas + esas asignaturas
+// específicas reales, con currícula estándar internacional y bibliografía
+// clásica (Shigley, Callister, Incropera, Cengel, Groover, Rao) para el
+// contenido de cada una. El núcleo común (Cálculo 1/2, GAL 1/2, Física 1/2,
+// Programación 1, Probabilidad y Estadística, Estática, Mecánica de
+// Materiales, Mecánica de Fluidos, Mecánica Newtoniana, Ecuaciones
+// Diferenciales, Métodos Numéricos, Instalaciones Eléctricas) es
+// LITERALMENTE el mismo curso que ya está cargado en Computación/Civil/
+// Eléctrica -- se reusa el mismo contenido para no duplicar temas.
+const CATALOGO_POR_CICLO_INGENIERIA_MECANICA = {
+  1: [
+    { nombre: "Cálculo Diferencial e Integral en Una Variable", modulos: [
+      { modulo: "Números reales y funciones", temas: [
+        "Axioma de completitud y supremo de un conjunto",
+        "Funciones reales: inyectividad, sobreyectividad y monotonía",
+        "Trigonometría: círculo trigonométrico y funciones inversas",
+      ] },
+      { modulo: "Límites y continuidad", temas: [
+        "Definición de límite y álgebra de límites",
+        "Continuidad y teorema de Bolzano",
+        "Teorema de Weierstrass y extremos globales",
+      ] },
+      { modulo: "Derivadas", temas: [
+        "Definición de derivada y regla de la cadena",
+        "Teoremas de Rolle, Lagrange y Cauchy",
+        "Derivadas, crecimiento y concavidad",
+        "Regla de L'Hôpital",
+      ] },
+      { modulo: "Integrales y desarrollo de Taylor", temas: [
+        "Integral de Riemann mediante sumas superiores e inferiores",
+        "Teorema fundamental del cálculo y regla de Barrow",
+        "Técnicas de integración: partes, sustitución y fracciones simples",
+        "Polinomio de Taylor y estimación del error",
+      ] },
+    ] },
+    { nombre: "Geometría y Álgebra Lineal 1", modulos: [
+      { modulo: "Sistemas de ecuaciones y matrices", temas: [
+        "Eliminación de Gauss y sistemas de ecuaciones lineales",
+        "Rango de una matriz y teorema de Rouché-Frobenius",
+        "Álgebra de matrices: suma, producto e inversa",
+      ] },
+      { modulo: "Determinantes", temas: [
+        "Determinantes de orden 2 y 3 y definición inductiva",
+        "Propiedades del determinante y matrices elementales",
+        "Regla de Cramer y cálculo del rango por determinantes",
+      ] },
+      { modulo: "Geometría del espacio", temas: [
+        "Rectas y planos en el espacio",
+        "Producto escalar: ángulos y distancias",
+        "Producto vectorial: áreas y volúmenes",
+      ] },
+      { modulo: "Espacios vectoriales y transformaciones lineales", temas: [
+        "Espacios y subespacios vectoriales",
+        "Generadores, independencia lineal, base y dimensión",
+        "Cambio de base de un espacio vectorial",
+        "Núcleo e imagen de una transformación lineal",
+        "Matriz asociada a una transformación lineal",
+      ] },
+    ] },
+    { nombre: "Física 1 (Mecánica)", modulos: [
+      { modulo: "Cinemática y dinámica de partículas", temas: [
+        "Cinemática: posición, velocidad y aceleración",
+        "Leyes de Newton y diagramas de cuerpo libre",
+      ] },
+      { modulo: "Trabajo, energía y sistemas de partículas", temas: [
+        "Trabajo, energía cinética y potencial, conservación de energía",
+        "Momento lineal, impulso y colisiones",
+      ] },
+    ] },
+    { nombre: "Dibujo Técnico y CAD", modulos: [
+      { modulo: "Representación gráfica de piezas mecánicas", temas: [
+        "Vistas normalizadas, cortes y acotación de piezas mecánicas",
+        "Modelado paramétrico 3D y planos de fabricación asistidos por computadora",
+      ] },
+    ] },
+  ],
+  2: [
+    { nombre: "Cálculo Diferencial e Integral en Varias Variables", modulos: [
+      { modulo: "Sucesiones, series e integrales impropias", temas: [
+        "Sucesiones: límite, monotonía, acotación y subsucesiones",
+        "Series numéricas y criterios de convergencia",
+        "Convergencia condicional y absoluta",
+        "Integrales impropias y criterio serie-integral",
+      ] },
+      { modulo: "Topología y continuidad en Rⁿ", temas: [
+        "Normas y conjuntos abiertos y cerrados en Rⁿ",
+        "Sucesiones en Rⁿ y caracterización de conjuntos compactos",
+        "Límites y continuidad de funciones de varias variables",
+      ] },
+      { modulo: "Diferenciabilidad e integrales múltiples", temas: [
+        "Derivadas parciales y derivadas direccionales",
+        "Diferenciabilidad y plano tangente",
+        "Diferencial de la función compuesta",
+        "Integrales dobles y triples: teorema de Fubini",
+        "Teorema de cambio de variables: coordenadas polares, cilíndricas y esféricas",
+      ] },
+    ] },
+    { nombre: "Geometría y Álgebra Lineal 2", modulos: [
+      { modulo: "Valores y vectores propios", temas: [
+        "Valores y vectores propios, polinomio característico",
+        "Diagonalización de matrices",
+        "Multiplicidades algebraica y geométrica; teorema de Gershgorin",
+      ] },
+      { modulo: "Formas canónicas", temas: [
+        "Forma canónica de Jordan",
+        "Matrices semejantes y cambio de base para operadores",
+      ] },
+      { modulo: "Producto interno y ortogonalidad", temas: [
+        "Producto interno y norma en un espacio vectorial",
+        "Ortogonalidad, ortonormalidad y proceso de Gram-Schmidt",
+        "Descomposición QR",
+        "Complemento ortogonal y proyección ortogonal",
+        "Aproximación por mínimos cuadrados",
+      ] },
+      { modulo: "Transformaciones adjuntas e isometrías", temas: [
+        "Teorema de representación de Riesz y transformación adjunta",
+        "Operadores autoadjuntos y teorema espectral",
+        "Isometrías lineales",
+      ] },
+    ] },
+    { nombre: "Física 2 (Oscilaciones, Ondas y Termodinámica)", modulos: [
+      { modulo: "Oscilaciones y ondas mecánicas", temas: [
+        "Movimiento armónico simple y oscilador amortiguado",
+        "Ondas mecánicas: propagación, interferencia y ondas estacionarias",
+      ] },
+      { modulo: "Termodinámica", temas: [
+        "Temperatura, calor y primer principio de la termodinámica",
+        "Entropía y segundo principio de la termodinámica",
+      ] },
+    ] },
+    { nombre: "Programación 1", modulos: [
+      { modulo: "Fundamentos de la programación imperativa", temas: [
+        "Modelo de computación y concepto de algoritmo",
+        "Sintaxis y semántica de un lenguaje de programación",
+        "Compilación, ejecución y tipos de errores",
+        "Identificadores, variables, constantes y expresiones",
+      ] },
+      { modulo: "Estructuras de control", temas: [
+        "Estructuras de selección",
+        "Estructuras de iteración",
+        "Recursión: diseño de algoritmos recursivos simples",
+      ] },
+      { modulo: "Tipos de datos y subprogramas", temas: [
+        "Tipos de datos elementales y estructurados: arreglos y registros",
+        "Procedimientos, funciones y pasaje de parámetros",
+        "Precondiciones, postcondiciones y reglas de alcance",
+      ] },
+      { modulo: "Algoritmos básicos", temas: [
+        "Búsqueda lineal y búsqueda binaria",
+        "Algoritmos de ordenación",
+        "Nociones elementales de análisis de algoritmos",
+        "Buenas prácticas de diseño, implementación y casos de prueba",
+      ] },
+    ] },
+  ],
+  3: [
+    { nombre: "Estática", modulos: [
+      { modulo: "Equilibrio de cuerpos rígidos", temas: [
+        "Momento de una fuerza y equilibrio de cuerpos rígidos",
+        "Reacciones de apoyo y diagramas de cuerpo libre en estructuras",
+      ] },
+      { modulo: "Análisis de estructuras simples", temas: [
+        "Armaduras planas: método de nudos y de secciones",
+        "Centroides, centros de gravedad y momentos de inercia de áreas",
+      ] },
+    ] },
+    { nombre: "Química General", modulos: [
+      { modulo: "Estructura y enlace", temas: [
+        "Estructura atómica, tabla periódica y tipos de enlace químico",
+        "Estequiometría y reacciones químicas",
+      ] },
+      { modulo: "Estados de la materia y termoquímica", temas: [
+        "Propiedades de gases, líquidos y sólidos",
+        "Termoquímica: entalpía de reacción y calorimetría",
+      ] },
+    ] },
+    { nombre: "Probabilidad y Estadística", modulos: [
+      { modulo: "Probabilidad básica", temas: [
+        "Espacios de probabilidad y probabilidad condicional",
+        "Variables aleatorias discretas y continuas",
+        "Distribuciones de probabilidad clásicas (binomial, Poisson, normal, exponencial)",
+        "Esperanza, varianza y funciones generadoras",
+      ] },
+      { modulo: "Vectores aleatorios y teoremas límite", temas: [
+        "Vectores aleatorios y distribuciones conjuntas",
+        "Covarianza y correlación",
+        "Ley de los grandes números",
+        "Teorema central del límite",
+      ] },
+      { modulo: "Estadística descriptiva e inferencial", temas: [
+        "Estadística descriptiva y análisis exploratorio de datos",
+        "Estimación puntual y por intervalos de confianza",
+        "Contraste de hipótesis",
+        "Regresión lineal simple y múltiple",
+      ] },
+    ] },
+    { nombre: "Mecánica Newtoniana", modulos: [
+      { modulo: "Dinámica de sistemas de partículas", temas: [
+        "Centro de masa y movimiento de sistemas de partículas",
+        "Momento angular y torque en sistemas de partículas",
+      ] },
+      { modulo: "Cuerpo rígido y oscilaciones", temas: [
+        "Cinemática y dinámica de rotación del cuerpo rígido",
+        "Momento de inercia y teorema de Steiner",
+        "Osciladores acoplados y modos normales",
+      ] },
+    ] },
+  ],
+  4: [
+    { nombre: "Mecánica de Materiales", modulos: [
+      { modulo: "Esfuerzo y deformación", temas: [
+        "Esfuerzo axial, deformación y la ley de Hooke",
+        "Esfuerzo cortante y torsión en elementos estructurales",
+      ] },
+      { modulo: "Flexión y pandeo", temas: [
+        "Flexión de vigas: esfuerzos normales y diagramas de momento",
+        "Pandeo de columnas y carga crítica de Euler",
+      ] },
+    ] },
+    { nombre: "Termodinámica Aplicada", modulos: [
+      { modulo: "Propiedades y ciclos de potencia de vapor", temas: [
+        "Propiedades termodinámicas de sustancias puras y tablas de vapor",
+        "Ciclo Rankine y sus variantes de mejora",
+      ] },
+      { modulo: "Ciclos de refrigeración y aire", temas: [
+        "Ciclo Otto, Diesel y aire estándar",
+        "Ciclo de refrigeración por compresión de vapor",
+      ] },
+    ] },
+    { nombre: "Ecuaciones Diferenciales", modulos: [
+      { modulo: "Ecuaciones diferenciales ordinarias", temas: [
+        "Ecuaciones lineales de orden superior a coeficientes constantes",
+        "Sistemas de ecuaciones diferenciales lineales",
+      ] },
+      { modulo: "Transformada de Laplace", temas: [
+        "Transformada de Laplace y propiedades",
+        "Resolución de ecuaciones diferenciales mediante Laplace",
+      ] },
+    ] },
+    { nombre: "Metrología y Tolerancias", modulos: [
+      { modulo: "Instrumentos y sistemas de tolerancias", temas: [
+        "Instrumentos de medición dimensional: calibre, micrómetro y comparador",
+        "Sistema de tolerancias y ajustes ISO, cotas funcionales",
+      ] },
+    ] },
+  ],
+  5: [
+    { nombre: "Mecánica de Fluidos", modulos: [
+      { modulo: "Fluidos en reposo y en movimiento", temas: [
+        "Hidrostática: presión, empuje y estabilidad de cuerpos flotantes",
+        "Ecuación de Bernoulli y conservación de la energía en flujos",
+      ] },
+      { modulo: "Flujo en conductos", temas: [
+        "Flujo laminar y turbulento, número de Reynolds",
+        "Pérdidas de carga en tuberías y redes de conductos",
+      ] },
+    ] },
+    { nombre: "Elementos de Máquinas", modulos: [
+      { modulo: "Uniones y elementos de transmisión", temas: [
+        "Uniones roscadas, soldadas y remachadas: diseño y falla",
+        "Ejes, chavetas y acoplamientos",
+      ] },
+      { modulo: "Engranajes y rodamientos", temas: [
+        "Engranajes rectos y helicoidales: diseño y relación de transmisión",
+        "Selección y vida útil de rodamientos",
+      ] },
+    ] },
+    { nombre: "Ciencia de los Materiales", modulos: [
+      { modulo: "Estructura y propiedades de los materiales", temas: [
+        "Estructura cristalina de metales y defectos cristalinos",
+        "Diagramas de fase y diagrama hierro-carbono",
+      ] },
+      { modulo: "Propiedades mecánicas y ensayos", temas: [
+        "Ensayo de tracción, dureza e impacto",
+        "Fatiga y mecanismos de falla de materiales",
+      ] },
+    ] },
+    { nombre: "Métodos Numéricos", modulos: [
+      { modulo: "Resolución numérica de ecuaciones y sistemas", temas: [
+        "Métodos de bisección, Newton-Raphson y punto fijo",
+        "Resolución numérica de sistemas de ecuaciones lineales",
+      ] },
+      { modulo: "Integración y ecuaciones diferenciales numéricas", temas: [
+        "Cuadratura numérica: trapecios y Simpson",
+        "Métodos de Euler y Runge-Kutta para EDO",
+      ] },
+    ] },
+  ],
+  6: [
+    { nombre: "Transferencia de Calor", modulos: [
+      { modulo: "Conducción y convección", temas: [
+        "Conducción de calor en régimen permanente y transitorio",
+        "Convección forzada y natural: coeficiente de película",
+      ] },
+      { modulo: "Radiación e intercambiadores de calor", temas: [
+        "Radiación térmica entre superficies",
+        "Diseño térmico de intercambiadores de calor",
+      ] },
+    ] },
+    { nombre: "Máquinas para Fluidos", modulos: [
+      { modulo: "Bombas y ventiladores", temas: [
+        "Curvas características de bombas centrífugas y punto de operación",
+        "Cavitación y altura neta de succión positiva (NPSH)",
+      ] },
+      { modulo: "Turbinas hidráulicas", temas: [
+        "Clasificación y principio de funcionamiento de turbinas hidráulicas",
+        "Semejanza y velocidad específica en turbomáquinas",
+      ] },
+    ] },
+    { nombre: "Procesos de Fabricación", modulos: [
+      { modulo: "Procesos de conformado", temas: [
+        "Fundición: procesos y defectos típicos",
+        "Conformado por deformación plástica: laminado, forjado y extrusión",
+      ] },
+      { modulo: "Mecanizado", temas: [
+        "Procesos de mecanizado por arranque de viruta: torneado y fresado",
+        "Parámetros de corte y selección de herramientas",
+      ] },
+    ] },
+    { nombre: "Control e Instrumentación", modulos: [
+      { modulo: "Modelado de sistemas dinámicos", temas: [
+        "Función de transferencia y diagramas de bloques",
+        "Representación en espacio de estados",
+      ] },
+      { modulo: "Análisis y diseño de controladores", temas: [
+        "Estabilidad: criterio de Routh-Hurwitz y lugar de las raíces",
+        "Controladores PID y sintonización",
+      ] },
+    ] },
+  ],
+  7: [
+    { nombre: "Generadores de Vapor y Máquinas Térmicas", modulos: [
+      { modulo: "Generadores de vapor", temas: [
+        "Componentes y balance térmico de un generador de vapor",
+        "Combustión y rendimiento de calderas industriales",
+      ] },
+      { modulo: "Turbomáquinas térmicas", temas: [
+        "Turbinas de vapor: etapas de acción y de reacción",
+        "Turbinas de gas y ciclo Brayton",
+      ] },
+    ] },
+    { nombre: "Vibraciones Mecánicas", modulos: [
+      { modulo: "Sistemas de un grado de libertad", temas: [
+        "Vibración libre no amortiguada y amortiguada de sistemas mecánicos",
+        "Vibración forzada y resonancia",
+      ] },
+      { modulo: "Aislamiento y balanceo", temas: [
+        "Transmisibilidad y aislamiento de vibraciones",
+        "Balanceo estático y dinámico de rotores",
+      ] },
+    ] },
+    { nombre: "Instalaciones Eléctricas", modulos: [
+      { modulo: "Diseño de instalaciones de baja tensión", temas: [
+        "Normativa y reglamentación de instalaciones eléctricas",
+        "Cálculo de cargas y dimensionado de conductores",
+      ] },
+      { modulo: "Protecciones en baja tensión", temas: [
+        "Selección de protecciones termomagnéticas y diferenciales",
+        "Puesta a tierra y seguridad eléctrica",
+      ] },
+    ] },
+    { nombre: "Gestión de Mantenimiento", modulos: [
+      { modulo: "Estrategias de mantenimiento", temas: [
+        "Mantenimiento preventivo, correctivo y predictivo",
+        "Indicadores de mantenimiento: disponibilidad, MTBF y MTTR",
+      ] },
+    ] },
+  ],
+  8: [
+    { nombre: "Economía para Ingeniería", modulos: [
+      { modulo: "Evaluación económica de proyectos", temas: [
+        "Valor del dinero en el tiempo y equivalencia de flujos de caja",
+        "Valor actual neto y tasa interna de retorno para decisiones de inversión",
+      ] },
+    ] },
+    { nombre: "Taller de Diseño Mecánico", modulos: [] },
+    { nombre: "Proyecto Final de Ingeniería Industrial Mecánica", modulos: [] },
+  ],
+};
+
 // Multi-facultad: cada facultad define su propio catálogo (por año o por
 // semestre, según cómo organice sus ciclos) y cómo nombrar/etiquetar ese
 // ciclo -- el resto de la app (S1/S9/S10) lee de acá en vez de asumir
@@ -4404,8 +4794,21 @@ const FACULTADES = {
     cicloLabel: (n) => `${n}º semestre`,
     iconoMateria: '⚡',
   },
+  ingenieria_mecanica: {
+    key: 'ingenieria_mecanica',
+    label: 'Facultad de Ingeniería',
+    nombreCorto: 'Ing. Mecánica',
+    grupo: 'Facultad de Ingeniería',
+    carrera: 'Ingeniería Industrial Mecánica',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_INGENIERIA_MECANICA,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '⚙️',
+  },
 };
-const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica'];
+const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica'];
 
 // Exámenes guardados antes de este cambio no tienen `facultad` -- todos
 // eran de Medicina (la única que existía), así que ese es el default.
@@ -4847,6 +5250,30 @@ const MODULO_ICONS = {
   "Arquitectura de redes": "📡",
   "Nivel de red y transporte": "🔀",
   "Líneas de transmisión": "🗼",
+
+  // ---- Ingeniería Industrial Mecánica ----
+  "Representación gráfica de piezas mecánicas": "📐",
+  "Estructura y enlace": "⚛️",
+  "Estados de la materia y termoquímica": "🧪",
+  "Propiedades y ciclos de potencia de vapor": "♨️",
+  "Ciclos de refrigeración y aire": "❄️",
+  "Instrumentos y sistemas de tolerancias": "📏",
+  "Uniones y elementos de transmisión": "🔩",
+  "Engranajes y rodamientos": "⚙️",
+  "Estructura y propiedades de los materiales": "🔬",
+  "Propiedades mecánicas y ensayos": "🧱",
+  "Conducción y convección": "🌡️",
+  "Radiación e intercambiadores de calor": "☀️",
+  "Bombas y ventiladores": "🌀",
+  "Turbinas hidráulicas": "💧",
+  "Procesos de conformado": "🔨",
+  "Mecanizado": "🛠️",
+  "Generadores de vapor": "♨️",
+  "Turbomáquinas térmicas": "🌪️",
+  "Sistemas de un grado de libertad": "〰️",
+  "Aislamiento y balanceo": "⚖️",
+  "Estrategias de mantenimiento": "🔧",
+  "Evaluación económica de proyectos": "💰",
 };
 
 // Bibliografía real de la cátedra. Por tema: qué libro cubre mejor el
@@ -6384,6 +6811,52 @@ const TEXTOS = {
   "Protocolos de transporte: TCP y UDP": { libro: "Tanenbaum, Wetherall -- Redes de Computadoras", seccion: "capítulo de la capa de transporte" },
   "Parámetros eléctricos de líneas de transmisión (R, L, C)": { libro: "Glover, Sarma -- Sistemas de Potencia: Análisis y Diseño", seccion: "capítulo de parámetros de líneas de transmisión" },
   "Modelos de línea corta, media y larga": { libro: "Glover, Sarma -- Sistemas de Potencia: Análisis y Diseño", seccion: "capítulo del modelado de líneas de transmisión en estado estacionario" },
+
+  // ---- Ingeniería Industrial Mecánica ----
+  "Vistas normalizadas, cortes y acotación de piezas mecánicas": { libro: "Giesecke -- Dibujo y Comunicación Gráfica", seccion: "capítulo de vistas, cortes y acotación" },
+  "Modelado paramétrico 3D y planos de fabricación asistidos por computadora": { libro: "Giesecke -- Dibujo y Comunicación Gráfica", seccion: "capítulo de modelado CAD" },
+  "Estructura atómica, tabla periódica y tipos de enlace químico": { libro: "Chang -- Química", seccion: "capítulo de estructura atómica y enlace químico" },
+  "Estequiometría y reacciones químicas": { libro: "Chang -- Química", seccion: "capítulo de relaciones de masa en las reacciones químicas" },
+  "Propiedades de gases, líquidos y sólidos": { libro: "Chang -- Química", seccion: "capítulo de estados de la materia" },
+  "Termoquímica: entalpía de reacción y calorimetría": { libro: "Chang -- Química", seccion: "capítulo de termoquímica" },
+  "Propiedades termodinámicas de sustancias puras y tablas de vapor": { libro: "Cengel, Boles -- Termodinámica", seccion: "capítulo de propiedades de sustancias puras" },
+  "Ciclo Rankine y sus variantes de mejora": { libro: "Cengel, Boles -- Termodinámica", seccion: "capítulo de ciclos de potencia de vapor" },
+  "Ciclo Otto, Diesel y aire estándar": { libro: "Cengel, Boles -- Termodinámica", seccion: "capítulo de ciclos de potencia de gas" },
+  "Ciclo de refrigeración por compresión de vapor": { libro: "Cengel, Boles -- Termodinámica", seccion: "capítulo de ciclos de refrigeración" },
+  "Instrumentos de medición dimensional: calibre, micrómetro y comparador": { libro: "Apuntes de cátedra", seccion: "guías de metrología dimensional" },
+  "Sistema de tolerancias y ajustes ISO, cotas funcionales": { libro: "Apuntes de cátedra", seccion: "guías de tolerancias y ajustes ISO" },
+  "Uniones roscadas, soldadas y remachadas: diseño y falla": { libro: "Shigley, Mischke -- Diseño en Ingeniería Mecánica", seccion: "capítulo de uniones atornilladas y remachadas" },
+  "Ejes, chavetas y acoplamientos": { libro: "Shigley, Mischke -- Diseño en Ingeniería Mecánica", seccion: "capítulo de diseño de ejes" },
+  "Engranajes rectos y helicoidales: diseño y relación de transmisión": { libro: "Shigley, Mischke -- Diseño en Ingeniería Mecánica", seccion: "capítulo de engranajes rectos y helicoidales" },
+  "Selección y vida útil de rodamientos": { libro: "Shigley, Mischke -- Diseño en Ingeniería Mecánica", seccion: "capítulo de rodamientos de contacto rodante" },
+  "Estructura cristalina de metales y defectos cristalinos": { libro: "Callister -- Ciencia e Ingeniería de los Materiales", seccion: "capítulo de estructura cristalina e imperfecciones" },
+  "Diagramas de fase y diagrama hierro-carbono": { libro: "Callister -- Ciencia e Ingeniería de los Materiales", seccion: "capítulo de diagramas de fase" },
+  "Ensayo de tracción, dureza e impacto": { libro: "Callister -- Ciencia e Ingeniería de los Materiales", seccion: "capítulo de propiedades mecánicas de los metales" },
+  "Fatiga y mecanismos de falla de materiales": { libro: "Callister -- Ciencia e Ingeniería de los Materiales", seccion: "capítulo de falla: fatiga y fractura" },
+  "Conducción de calor en régimen permanente y transitorio": { libro: "Incropera, DeWitt -- Fundamentos de Transferencia de Calor y Masa", seccion: "capítulo de conducción de calor" },
+  "Convección forzada y natural: coeficiente de película": { libro: "Incropera, DeWitt -- Fundamentos de Transferencia de Calor y Masa", seccion: "capítulo de convección" },
+  "Radiación térmica entre superficies": { libro: "Incropera, DeWitt -- Fundamentos de Transferencia de Calor y Masa", seccion: "capítulo de radiación" },
+  "Diseño térmico de intercambiadores de calor": { libro: "Incropera, DeWitt -- Fundamentos de Transferencia de Calor y Masa", seccion: "capítulo de intercambiadores de calor" },
+  "Curvas características de bombas centrífugas y punto de operación": { libro: "Mataix -- Turbomáquinas Hidráulicas", seccion: "capítulo de bombas centrífugas" },
+  "Cavitación y altura neta de succión positiva (NPSH)": { libro: "Mataix -- Turbomáquinas Hidráulicas", seccion: "capítulo de cavitación en bombas" },
+  "Clasificación y principio de funcionamiento de turbinas hidráulicas": { libro: "Mataix -- Turbomáquinas Hidráulicas", seccion: "capítulo de turbinas hidráulicas" },
+  "Semejanza y velocidad específica en turbomáquinas": { libro: "Mataix -- Turbomáquinas Hidráulicas", seccion: "capítulo de teoría de semejanza" },
+  "Fundición: procesos y defectos típicos": { libro: "Groover -- Fundamentos de Manufactura Moderna", seccion: "capítulo de procesos de fundición" },
+  "Conformado por deformación plástica: laminado, forjado y extrusión": { libro: "Groover -- Fundamentos de Manufactura Moderna", seccion: "capítulo de procesos de conformado de metales" },
+  "Procesos de mecanizado por arranque de viruta: torneado y fresado": { libro: "Groover -- Fundamentos de Manufactura Moderna", seccion: "capítulo de operaciones de maquinado" },
+  "Parámetros de corte y selección de herramientas": { libro: "Groover -- Fundamentos de Manufactura Moderna", seccion: "capítulo de tecnología del maquinado" },
+  "Componentes y balance térmico de un generador de vapor": { libro: "Cengel, Boles -- Termodinámica", seccion: "capítulo de ciclos de potencia de vapor" },
+  "Combustión y rendimiento de calderas industriales": { libro: "Cengel, Boles -- Termodinámica", seccion: "capítulo de combustión" },
+  "Turbinas de vapor: etapas de acción y de reacción": { libro: "Cengel, Boles -- Termodinámica", seccion: "capítulo de ciclos de potencia de vapor" },
+  "Turbinas de gas y ciclo Brayton": { libro: "Cengel, Boles -- Termodinámica", seccion: "capítulo de ciclos de potencia de gas" },
+  "Vibración libre no amortiguada y amortiguada de sistemas mecánicos": { libro: "Rao -- Mecánica de Vibraciones", seccion: "capítulo de vibración libre" },
+  "Vibración forzada y resonancia": { libro: "Rao -- Mecánica de Vibraciones", seccion: "capítulo de vibración forzada" },
+  "Transmisibilidad y aislamiento de vibraciones": { libro: "Rao -- Mecánica de Vibraciones", seccion: "capítulo de control de vibraciones" },
+  "Balanceo estático y dinámico de rotores": { libro: "Rao -- Mecánica de Vibraciones", seccion: "capítulo de balanceo de maquinaria rotativa" },
+  "Mantenimiento preventivo, correctivo y predictivo": { libro: "García Garrido -- Ingeniería del Mantenimiento", seccion: "capítulo de tipos de mantenimiento" },
+  "Indicadores de mantenimiento: disponibilidad, MTBF y MTTR": { libro: "García Garrido -- Ingeniería del Mantenimiento", seccion: "capítulo de indicadores de mantenimiento" },
+  "Valor del dinero en el tiempo y equivalencia de flujos de caja": { libro: "Blank, Tarquin -- Ingeniería Económica", seccion: "capítulo de equivalencia y valor del dinero en el tiempo" },
+  "Valor actual neto y tasa interna de retorno para decisiones de inversión": { libro: "Blank, Tarquin -- Ingeniería Económica", seccion: "capítulo de evaluación de alternativas de inversión" },
 };
 
 // ---- Estado de la materia/examen que se está EDITANDO (pantallas 1-3: elegir
@@ -8367,6 +8840,52 @@ const DURACIONES = {
   "Protocolos de transporte: TCP y UDP": 1,
   "Parámetros eléctricos de líneas de transmisión (R, L, C)": 1,
   "Modelos de línea corta, media y larga": 1,
+
+  // ---- Ingeniería Industrial Mecánica ----
+  "Vistas normalizadas, cortes y acotación de piezas mecánicas": 1,
+  "Modelado paramétrico 3D y planos de fabricación asistidos por computadora": 2,
+  "Estructura atómica, tabla periódica y tipos de enlace químico": 1,
+  "Estequiometría y reacciones químicas": 1,
+  "Propiedades de gases, líquidos y sólidos": 1,
+  "Termoquímica: entalpía de reacción y calorimetría": 1,
+  "Propiedades termodinámicas de sustancias puras y tablas de vapor": 2,
+  "Ciclo Rankine y sus variantes de mejora": 2,
+  "Ciclo Otto, Diesel y aire estándar": 1,
+  "Ciclo de refrigeración por compresión de vapor": 1,
+  "Instrumentos de medición dimensional: calibre, micrómetro y comparador": 1,
+  "Sistema de tolerancias y ajustes ISO, cotas funcionales": 1,
+  "Uniones roscadas, soldadas y remachadas: diseño y falla": 2,
+  "Ejes, chavetas y acoplamientos": 1,
+  "Engranajes rectos y helicoidales: diseño y relación de transmisión": 2,
+  "Selección y vida útil de rodamientos": 1,
+  "Estructura cristalina de metales y defectos cristalinos": 1,
+  "Diagramas de fase y diagrama hierro-carbono": 2,
+  "Ensayo de tracción, dureza e impacto": 1,
+  "Fatiga y mecanismos de falla de materiales": 2,
+  "Conducción de calor en régimen permanente y transitorio": 2,
+  "Convección forzada y natural: coeficiente de película": 2,
+  "Radiación térmica entre superficies": 1,
+  "Diseño térmico de intercambiadores de calor": 1,
+  "Curvas características de bombas centrífugas y punto de operación": 1,
+  "Cavitación y altura neta de succión positiva (NPSH)": 1,
+  "Clasificación y principio de funcionamiento de turbinas hidráulicas": 1,
+  "Semejanza y velocidad específica en turbomáquinas": 2,
+  "Fundición: procesos y defectos típicos": 1,
+  "Conformado por deformación plástica: laminado, forjado y extrusión": 1,
+  "Procesos de mecanizado por arranque de viruta: torneado y fresado": 1,
+  "Parámetros de corte y selección de herramientas": 1,
+  "Componentes y balance térmico de un generador de vapor": 1,
+  "Combustión y rendimiento de calderas industriales": 1,
+  "Turbinas de vapor: etapas de acción y de reacción": 1,
+  "Turbinas de gas y ciclo Brayton": 1,
+  "Vibración libre no amortiguada y amortiguada de sistemas mecánicos": 2,
+  "Vibración forzada y resonancia": 2,
+  "Transmisibilidad y aislamiento de vibraciones": 1,
+  "Balanceo estático y dinámico de rotores": 1,
+  "Mantenimiento preventivo, correctivo y predictivo": 1,
+  "Indicadores de mantenimiento: disponibilidad, MTBF y MTTR": 1,
+  "Valor del dinero en el tiempo y equivalencia de flujos de caja": 1,
+  "Valor actual neto y tasa interna de retorno para decisiones de inversión": 1,
 };
 // e permite sumar los días extra que el estudiante pidió vía el check-in
 // adaptativo ("seguir con este tema") -- ver resolverCheckin().
