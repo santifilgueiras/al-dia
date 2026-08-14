@@ -2246,7 +2246,7 @@
           <select id="correctorMateriaSelect" onchange="onCorrectorMateriaChange()"></select>
         </div>
         <div class="field">
-          <select id="correctorTemaSelect"></select>
+          <select id="correctorTemaSelect" onchange="renderEstudiarRail()"></select>
         </div>
         <label class="dropzone" id="correctorDropzone" for="correctorArchivoInput">
           <input type="file" id="correctorArchivoInput" accept=".pdf,.doc,.docx" onchange="actualizarBotonBorrarArchivo('correctorArchivoInput','correctorArchivoBorrarBtn'); actualizarNombreDropzone('correctorDropzoneTexto','correctorArchivoInput');" style="display:none;">
@@ -13869,6 +13869,7 @@ function onCorrectorMateriaChange() {
     materia.modulos.forEach(mod => mod.temas.forEach(t => correctorTemasDisponibles.push({ tema: t, materiaNombre: materia.nombre })));
     temaSel.innerHTML = correctorTemasDisponibles.map((it, i) => `<option value="${i}">${it.tema}</option>`).join('');
   }
+  renderEstudiarRail();
 }
 
 function renderCorrectorSelect() {
@@ -14208,10 +14209,26 @@ function cambiarVolumenSonido(valor) {
 }
 
 // ---- Columna derecha de Estudiar (rediseño) ----
-// El único lugar de la pantalla Estudiar donde se elige un tema puntual es
-// el selector de Fichas -- se reutiliza como "tema en foco" para la
-// bibliografía y las acciones rápidas de firme/flojo del panel derecho, en
-// vez de inventar un estado nuevo en paralelo.
+// Dos lugares de la pantalla Estudiar eligen un tema puntual: el selector de
+// Fichas y el de Corregir mi resumen (Simulacro/Resumen/Tiempo/Explícamelo no
+// tienen un tema único, trabajan con la materia entera o sin tema). La
+// bibliografía y las acciones de firme/flojo antes SIEMPRE leían el select de
+// Fichas sin importar qué pestaña estuviera activa -- reportado por Santiago:
+// entrando directo a Corregir mi resumen (o a cualquier otra pestaña) seguía
+// mostrando el tema viejo de Fichas. Ahora se lee según la pestaña activa.
+function temaEnFocoEstudiar() {
+  const activo = document.querySelector('.study-panel.active')?.dataset.sec;
+  if (activo === 'corrector') {
+    const sel = document.getElementById('correctorTemaSelect');
+    return (sel && sel.value && correctorTemasDisponibles[sel.value]) ? { tema: correctorTemasDisponibles[sel.value].tema, materiaNombre: correctorTemasDisponibles[sel.value].materiaNombre } : null;
+  }
+  if (activo === 'fichas') {
+    const sel = document.getElementById('fichasTemaSelect');
+    return (sel && sel.value && fichasTemasDisponibles[sel.value]) ? { tema: fichasTemasDisponibles[sel.value].tema, materiaNombre: fichasTemasDisponibles[sel.value].materiaNombre } : null;
+  }
+  return null; // Tiempo/Simulacro/Resumen/Explícamelo no tienen un tema único que mostrar acá.
+}
+
 function examenDelTemaFichasActual() {
   const sel = document.getElementById('fichasTemaSelect');
   if (!sel || !sel.value) return null;
@@ -14235,10 +14252,8 @@ function marcarDesdeEstudiar(estado) {
 }
 
 function renderEstudiarRail() {
-  const item = examenDelTemaFichasActual() || (() => {
-    const sel = document.getElementById('fichasTemaSelect');
-    return (sel && sel.value && fichasTemasDisponibles[sel.value]) ? { tema: fichasTemasDisponibles[sel.value].tema, materiaNombre: fichasTemasDisponibles[sel.value].materiaNombre } : null;
-  })();
+  const activo = document.querySelector('.study-panel.active')?.dataset.sec;
+  const item = temaEnFocoEstudiar();
   const sub = document.getElementById('estudiarSub');
   const biblioCard = document.getElementById('estudiarBiblioCard');
   const accionesCard = document.getElementById('estudiarAccionesCard');
@@ -14253,9 +14268,8 @@ function renderEstudiarRail() {
   if (sub) sub.innerHTML = `Estás con <strong>${tema}</strong> · ${nombreCorto(materiaNombre)}`;
   renderReferencia(tema, materiaNombre, 'estudiarBiblioBox');
   biblioCard.style.display = '';
-  const conExamen = examenDelTemaFichasActual();
-  const enFichas = document.querySelector('.study-panel.active')?.dataset.sec === 'fichas';
-  accionesCard.style.display = (conExamen && enFichas) ? '' : 'none';
+  const conExamen = activo === 'fichas' && examenDelTemaFichasActual();
+  accionesCard.style.display = conExamen ? '' : 'none';
   const tituloEl = document.getElementById('estudiarRailTema');
   if (tituloEl) tituloEl.textContent = tema;
 }
