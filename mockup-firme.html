@@ -125,6 +125,41 @@
        .screen ya tenían) por fin puede recortar/contener lo que sobra. */
     .app-shell { width: 100%; }
     .phone { width: 100%; }
+
+    /* El bottom-nav quedaba pegado al final de TODO el contenido en vez de
+       fijo abajo de la pantalla (reportado por Santiago probando en iPad,
+       2026-08-14) -- ej. en Calendario, con la grilla del mes ocupando
+       varias filas, había que deslizar toda la página para llegar al menú.
+       Causa real: .phone (arriba) solo tenía "min-height:720px" -- un PISO,
+       nunca un TOPE -- así que si el contenido de una pantalla pedía más
+       alto que la pantalla real, .phone/.screen crecían sin límite en vez
+       de scrollear ADENTRO de .screen-content (ver el comentario de esa
+       clase, la idea original YA era "el menú de abajo se queda fijo
+       porque .screen-content es lo único que scrollea" -- pero esa idea
+       nunca se cumplía en celular real porque nada obligaba a .screen a
+       tener una altura tope contra la cual encogerse). Un tope real
+       (height:100dvh, no min-height) en .phone -- + sacarle el padding a
+       body, mismo criterio que ya usaba el modo standalone más abajo --
+       hace que .screen-content sea lo único que scrollea de verdad y el
+       bottom-nav quede siempre a la vista, sin depender de
+       position:sticky/fixed (con problemas conocidos en WebKit, ver
+       comentario de más abajo sobre .screen-content). */
+    body { padding: 0; align-items: stretch; }
+    /* min-height:0 es necesario -- .phone tiene "min-height:720px" en la
+       regla base (arriba, sin media query) para la vidriera de compu, y un
+       min-height siempre le gana a un height más chico (así lo define CSS:
+       el alto final es el MAYOR entre los dos). Sin resetearlo acá, en un
+       celular en horizontal o un iPad en modo Split View angosto (donde el
+       alto real disponible es menor a 720px) height:100dvh quedaba anulado
+       igual, aunque estuviera declarado después -- confirmado achicando el
+       viewport de prueba a propósito. */
+    .phone { height: 100dvh; min-height: 0; }
+    /* Barra oscura decorativa que simula "un celular dentro del navegador"
+       -- tiene sentido en compu, pero en un celular real ya hay una barra
+       de estado real (la del sistema operativo) arriba: duplicarla acá
+       solo le resta 20px al alto disponible de .screen sin aportar nada.
+       Mismo criterio que ya se usaba en modo standalone (línea de abajo). */
+    .statusbar { display: none; }
   }
   .statusbar { height: 20px; background: #22333d; }
   .screen {
@@ -1498,7 +1533,7 @@
     body { padding: 0; align-items: stretch; }
     .app-shell { flex-direction: column; gap: 0; width: 100%; }
     .phone {
-      width: 100%; max-width: 100%; min-height: 100dvh;
+      width: 100%; max-width: 100%; height: 100dvh; min-height: 0;
       border: none; border-radius: 0; box-shadow: none;
     }
     .statusbar { display: none; }
