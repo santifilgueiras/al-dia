@@ -4719,6 +4719,383 @@ const CATALOGO_POR_CICLO_INGENIERIA_MECANICA = {
   ],
 };
 
+// Catálogo de Ingeniería Química (misma facultad que Computación/Civil/
+// Eléctrica/Mecánica, carrera distinta -- ver FACULTADES.ingenieria_quimica).
+// 35 materias en 8 semestres, construidos a partir de la CURRÍCULA SUGERIDA
+// real de fing.edu.uy ("Curr_sug 260220_FING.pdf", ingreso por Facultad de
+// Ingeniería) -- plan real de 10 semestres, compactado a 8: las unidades
+// numeradas (Química Orgánica 101/102/103, Química Analítica 1/2,
+// Fisicoquímica 101/103/104, Transferencia de Calor y Masa 1/2, Ingeniería
+// de las Reacciones Químicas 1/2, Tecnología y Servicios Industriales 1/2)
+// se agruparon en una materia por número de orden en vez de conservar la
+// numeración original de créditos de FING. "Proyecto Industrial 1/2" y
+// "Pasantía" (semestres 9-10 reales) se reemplazan por "Proyecto Final de
+// Ingeniería Química" (modulos: []), mismo criterio que los demás finales.
+// Las unidades curriculares realmente dictadas por la Facultad de Química
+// (no Ingeniería) se armaron con currícula estándar y bibliografía clásica
+// (Chang, McMurry, Skoog, Atkins, Bird-Stewart-Lightfoot, Fogler). El
+// núcleo común (Cálculo 1/2, GAL 1/2, Física 1/2, Cálculo Vectorial,
+// Probabilidad y Estadística, Ecuaciones Diferenciales, Termodinámica
+// Aplicada, Mecánica de Fluidos, Programación 1, Electrotécnica, Estática)
+// es LITERALMENTE el mismo curso que ya está cargado en las otras carreras
+// de Ingeniería -- se reusa el mismo contenido para no duplicar temas.
+const CATALOGO_POR_CICLO_INGENIERIA_QUIMICA = {
+  1: [
+    { nombre: "Cálculo Diferencial e Integral en Una Variable", modulos: [
+      { modulo: "Números reales y funciones", temas: [
+        "Axioma de completitud y supremo de un conjunto",
+        "Funciones reales: inyectividad, sobreyectividad y monotonía",
+        "Trigonometría: círculo trigonométrico y funciones inversas",
+      ] },
+      { modulo: "Límites y continuidad", temas: [
+        "Definición de límite y álgebra de límites",
+        "Continuidad y teorema de Bolzano",
+        "Teorema de Weierstrass y extremos globales",
+      ] },
+      { modulo: "Derivadas", temas: [
+        "Definición de derivada y regla de la cadena",
+        "Teoremas de Rolle, Lagrange y Cauchy",
+        "Derivadas, crecimiento y concavidad",
+        "Regla de L'Hôpital",
+      ] },
+      { modulo: "Integrales y desarrollo de Taylor", temas: [
+        "Integral de Riemann mediante sumas superiores e inferiores",
+        "Teorema fundamental del cálculo y regla de Barrow",
+        "Técnicas de integración: partes, sustitución y fracciones simples",
+        "Polinomio de Taylor y estimación del error",
+      ] },
+    ] },
+    { nombre: "Geometría y Álgebra Lineal 1", modulos: [
+      { modulo: "Sistemas de ecuaciones y matrices", temas: [
+        "Eliminación de Gauss y sistemas de ecuaciones lineales",
+        "Rango de una matriz y teorema de Rouché-Frobenius",
+        "Álgebra de matrices: suma, producto e inversa",
+      ] },
+      { modulo: "Determinantes", temas: [
+        "Determinantes de orden 2 y 3 y definición inductiva",
+        "Propiedades del determinante y matrices elementales",
+        "Regla de Cramer y cálculo del rango por determinantes",
+      ] },
+      { modulo: "Geometría del espacio", temas: [
+        "Rectas y planos en el espacio",
+        "Producto escalar: ángulos y distancias",
+        "Producto vectorial: áreas y volúmenes",
+      ] },
+      { modulo: "Espacios vectoriales y transformaciones lineales", temas: [
+        "Espacios y subespacios vectoriales",
+        "Generadores, independencia lineal, base y dimensión",
+        "Cambio de base de un espacio vectorial",
+        "Núcleo e imagen de una transformación lineal",
+        "Matriz asociada a una transformación lineal",
+      ] },
+    ] },
+    { nombre: "Física 1 (Mecánica)", modulos: [
+      { modulo: "Cinemática y dinámica de partículas", temas: [
+        "Cinemática: posición, velocidad y aceleración",
+        "Leyes de Newton y diagramas de cuerpo libre",
+      ] },
+      { modulo: "Trabajo, energía y sistemas de partículas", temas: [
+        "Trabajo, energía cinética y potencial, conservación de energía",
+        "Momento lineal, impulso y colisiones",
+      ] },
+    ] },
+    { nombre: "Química General 1", modulos: [
+      { modulo: "Estructura y enlace", temas: [
+        "Estructura atómica, tabla periódica y tipos de enlace químico",
+        "Estequiometría y reacciones químicas",
+      ] },
+    ] },
+    { nombre: "Prevención y Riesgos", modulos: [] },
+  ],
+  2: [
+    { nombre: "Cálculo Diferencial e Integral en Varias Variables", modulos: [
+      { modulo: "Sucesiones, series e integrales impropias", temas: [
+        "Sucesiones: límite, monotonía, acotación y subsucesiones",
+        "Series numéricas y criterios de convergencia",
+        "Convergencia condicional y absoluta",
+        "Integrales impropias y criterio serie-integral",
+      ] },
+      { modulo: "Topología y continuidad en Rⁿ", temas: [
+        "Normas y conjuntos abiertos y cerrados en Rⁿ",
+        "Sucesiones en Rⁿ y caracterización de conjuntos compactos",
+        "Límites y continuidad de funciones de varias variables",
+      ] },
+      { modulo: "Diferenciabilidad e integrales múltiples", temas: [
+        "Derivadas parciales y derivadas direccionales",
+        "Diferenciabilidad y plano tangente",
+        "Diferencial de la función compuesta",
+        "Integrales dobles y triples: teorema de Fubini",
+        "Teorema de cambio de variables: coordenadas polares, cilíndricas y esféricas",
+      ] },
+    ] },
+    { nombre: "Geometría y Álgebra Lineal 2", modulos: [
+      { modulo: "Valores y vectores propios", temas: [
+        "Valores y vectores propios, polinomio característico",
+        "Diagonalización de matrices",
+        "Multiplicidades algebraica y geométrica; teorema de Gershgorin",
+      ] },
+      { modulo: "Formas canónicas", temas: [
+        "Forma canónica de Jordan",
+        "Matrices semejantes y cambio de base para operadores",
+      ] },
+      { modulo: "Producto interno y ortogonalidad", temas: [
+        "Producto interno y norma en un espacio vectorial",
+        "Ortogonalidad, ortonormalidad y proceso de Gram-Schmidt",
+        "Descomposición QR",
+        "Complemento ortogonal y proyección ortogonal",
+        "Aproximación por mínimos cuadrados",
+      ] },
+      { modulo: "Transformaciones adjuntas e isometrías", temas: [
+        "Teorema de representación de Riesz y transformación adjunta",
+        "Operadores autoadjuntos y teorema espectral",
+        "Isometrías lineales",
+      ] },
+    ] },
+    { nombre: "Física 2 (Oscilaciones, Ondas y Termodinámica)", modulos: [
+      { modulo: "Oscilaciones y ondas mecánicas", temas: [
+        "Movimiento armónico simple y oscilador amortiguado",
+        "Ondas mecánicas: propagación, interferencia y ondas estacionarias",
+      ] },
+      { modulo: "Termodinámica", temas: [
+        "Temperatura, calor y primer principio de la termodinámica",
+        "Entropía y segundo principio de la termodinámica",
+      ] },
+    ] },
+    { nombre: "Química General 2", modulos: [
+      { modulo: "Estados de la materia y termoquímica", temas: [
+        "Propiedades de gases, líquidos y sólidos",
+        "Termoquímica: entalpía de reacción y calorimetría",
+      ] },
+    ] },
+  ],
+  3: [
+    { nombre: "Cálculo Vectorial", modulos: [
+      { modulo: "Campos escalares y vectoriales", temas: [
+        "Gradiente, divergencia y rotor",
+        "Campos conservativos y funciones potenciales",
+      ] },
+      { modulo: "Integrales de línea y de superficie", temas: [
+        "Integrales de línea de campos escalares y vectoriales",
+        "Integrales de superficie y flujo de un campo vectorial",
+        "Teoremas de Green, Stokes y de la divergencia (Gauss)",
+      ] },
+    ] },
+    { nombre: "Probabilidad y Estadística", modulos: [
+      { modulo: "Probabilidad básica", temas: [
+        "Espacios de probabilidad y probabilidad condicional",
+        "Variables aleatorias discretas y continuas",
+        "Distribuciones de probabilidad clásicas (binomial, Poisson, normal, exponencial)",
+        "Esperanza, varianza y funciones generadoras",
+      ] },
+      { modulo: "Vectores aleatorios y teoremas límite", temas: [
+        "Vectores aleatorios y distribuciones conjuntas",
+        "Covarianza y correlación",
+        "Ley de los grandes números",
+        "Teorema central del límite",
+      ] },
+      { modulo: "Estadística descriptiva e inferencial", temas: [
+        "Estadística descriptiva y análisis exploratorio de datos",
+        "Estimación puntual y por intervalos de confianza",
+        "Contraste de hipótesis",
+        "Regresión lineal simple y múltiple",
+      ] },
+    ] },
+    { nombre: "Química Orgánica 1", modulos: [
+      { modulo: "Estructura de compuestos orgánicos", temas: [
+        "Hibridación del carbono, isomería y grupos funcionales",
+        "Estereoquímica: quiralidad y proyecciones de Fischer",
+      ] },
+      { modulo: "Hidrocarburos y sus reacciones", temas: [
+        "Nomenclatura y reacciones de alcanos, alquenos y alquinos",
+        "Mecanismos de sustitución y eliminación (SN1, SN2, E1, E2)",
+      ] },
+    ] },
+    { nombre: "Química Analítica 1", modulos: [
+      { modulo: "Equilibrio químico en análisis", temas: [
+        "Equilibrio ácido-base y volumetría de neutralización",
+        "Equilibrio de solubilidad y precipitación",
+      ] },
+    ] },
+    { nombre: "Química Inorgánica", modulos: [
+      { modulo: "Estructura y reactividad de compuestos inorgánicos", temas: [
+        "Teoría de bandas y propiedades periódicas de los elementos",
+        "Química de coordinación: complejos metálicos y teoría del campo cristalino",
+      ] },
+    ] },
+  ],
+  4: [
+    { nombre: "Ecuaciones Diferenciales", modulos: [
+      { modulo: "Ecuaciones diferenciales ordinarias", temas: [
+        "Ecuaciones lineales de orden superior a coeficientes constantes",
+        "Sistemas de ecuaciones diferenciales lineales",
+      ] },
+      { modulo: "Transformada de Laplace", temas: [
+        "Transformada de Laplace y propiedades",
+        "Resolución de ecuaciones diferenciales mediante Laplace",
+      ] },
+    ] },
+    { nombre: "Fisicoquímica 1", modulos: [
+      { modulo: "Gases y primera ley", temas: [
+        "Ecuaciones de estado de gases ideales y reales",
+        "Primera ley de la termodinámica aplicada a sistemas químicos",
+      ] },
+      { modulo: "Equilibrio de fases", temas: [
+        "Segunda y tercera ley: entropía y energía libre de Gibbs",
+        "Diagramas de fase de sustancias puras",
+      ] },
+    ] },
+    { nombre: "Química Analítica 2", modulos: [
+      { modulo: "Métodos instrumentales de análisis", temas: [
+        "Espectrofotometría UV-visible y absorción atómica",
+        "Métodos electroquímicos: potenciometría y voltamperometría",
+      ] },
+    ] },
+    { nombre: "Química Orgánica 2", modulos: [
+      { modulo: "Grupos funcionales oxigenados y nitrogenados", temas: [
+        "Alcoholes, éteres, aldehídos y cetonas: síntesis y reacciones",
+        "Ácidos carboxílicos, ésteres y aminas",
+      ] },
+      { modulo: "Química de anillos aromáticos", temas: [
+        "Aromaticidad y sustitución electrofílica aromática",
+      ] },
+    ] },
+    { nombre: "Introducción a la Ingeniería Química y de Procesos", modulos: [
+      { modulo: "Balances de materia y energía", temas: [
+        "Balances de materia en procesos sin y con reacción química",
+        "Balances de energía en procesos industriales",
+      ] },
+    ] },
+  ],
+  5: [
+    { nombre: "Fisicoquímica 2", modulos: [
+      { modulo: "Equilibrio de fases en mezclas", temas: [
+        "Propiedades coligativas y diagramas de fase de mezclas binarias",
+        "Equilibrio líquido-vapor y destilación",
+      ] },
+      { modulo: "Equilibrio químico y electroquímica", temas: [
+        "Constante de equilibrio y su dependencia con la temperatura",
+        "Celdas electroquímicas y ecuación de Nernst",
+      ] },
+    ] },
+    { nombre: "Fenómenos de Transporte", modulos: [
+      { modulo: "Transporte de cantidad de movimiento", temas: [
+        "Ley de viscosidad de Newton y perfil de velocidades en flujo laminar",
+        "Ecuaciones de balance de cantidad de movimiento",
+      ] },
+      { modulo: "Analogías de transporte", temas: [
+        "Analogía entre transporte de momento, calor y masa",
+      ] },
+    ] },
+    { nombre: "Termodinámica Aplicada", modulos: [
+      { modulo: "Propiedades y ciclos de potencia de vapor", temas: [
+        "Propiedades termodinámicas de sustancias puras y tablas de vapor",
+        "Ciclo Rankine y sus variantes de mejora",
+      ] },
+      { modulo: "Ciclos de refrigeración y aire", temas: [
+        "Ciclo Otto, Diesel y aire estándar",
+        "Ciclo de refrigeración por compresión de vapor",
+      ] },
+    ] },
+    { nombre: "Física Experimental 1", modulos: [] },
+  ],
+  6: [
+    { nombre: "Fluidodinámica", modulos: [
+      { modulo: "Fluidos en reposo y en movimiento", temas: [
+        "Hidrostática: presión, empuje y estabilidad de cuerpos flotantes",
+        "Ecuación de Bernoulli y conservación de la energía en flujos",
+      ] },
+      { modulo: "Flujo en conductos", temas: [
+        "Flujo laminar y turbulento, número de Reynolds",
+        "Pérdidas de carga en tuberías y redes de conductos",
+      ] },
+    ] },
+    { nombre: "Transferencia de Calor y Masa 1", modulos: [
+      { modulo: "Conducción y convección", temas: [
+        "Conducción de calor en régimen permanente y transitorio",
+        "Convección forzada y natural: coeficiente de película",
+      ] },
+      { modulo: "Radiación e intercambiadores de calor", temas: [
+        "Radiación térmica entre superficies",
+        "Diseño térmico de intercambiadores de calor",
+      ] },
+    ] },
+    { nombre: "Computación 1", modulos: [
+      { modulo: "Fundamentos de la programación imperativa", temas: [
+        "Modelo de computación y concepto de algoritmo",
+        "Sintaxis y semántica de un lenguaje de programación",
+        "Compilación, ejecución y tipos de errores",
+        "Identificadores, variables, constantes y expresiones",
+      ] },
+      { modulo: "Estructuras de control", temas: [
+        "Estructuras de selección",
+        "Estructuras de iteración",
+        "Recursión: diseño de algoritmos recursivos simples",
+      ] },
+    ] },
+    { nombre: "Fisicoquímica 3", modulos: [
+      { modulo: "Cinética química", temas: [
+        "Velocidad de reacción y leyes de velocidad",
+        "Mecanismos de reacción y catálisis",
+      ] },
+    ] },
+  ],
+  7: [
+    { nombre: "Ingeniería de las Reacciones Químicas 1", modulos: [
+      { modulo: "Diseño de reactores ideales", temas: [
+        "Reactor discontinuo (batch) y reactor de flujo pistón (PFR)",
+        "Reactor de mezcla completa (CSTR) y comparación de reactores",
+      ] },
+    ] },
+    { nombre: "Tecnología y Servicios Industriales", modulos: [
+      { modulo: "Servicios auxiliares de planta", temas: [
+        "Generación y distribución de vapor y agua de servicios industriales",
+        "Sistemas de aire comprimido y tratamiento de efluentes industriales",
+      ] },
+    ] },
+    { nombre: "Transferencia de Calor y Masa 2", modulos: [
+      { modulo: "Transferencia de masa", temas: [
+        "Difusión molecular y primera ley de Fick",
+        "Transferencia de masa convectiva y coeficientes de transferencia",
+      ] },
+    ] },
+    { nombre: "Electrotécnica", modulos: [
+      { modulo: "Sistemas trifásicos", temas: [
+        "Circuitos trifásicos equilibrados: conexión estrella y triángulo",
+        "Potencia en sistemas trifásicos",
+      ] },
+      { modulo: "Transformadores", temas: [
+        "Principio de funcionamiento del transformador ideal",
+        "Circuito equivalente y ensayos de vacío y cortocircuito",
+      ] },
+    ] },
+  ],
+  8: [
+    { nombre: "Ingeniería de las Reacciones Químicas 2", modulos: [
+      { modulo: "Reactores no ideales y heterogéneos", temas: [
+        "Distribución de tiempos de residencia en reactores reales",
+        "Reactores catalíticos heterogéneos y catálisis sólida",
+      ] },
+    ] },
+    { nombre: "Introducción a la Ingeniería Bioquímica", modulos: [
+      { modulo: "Fundamentos de bioprocesos", temas: [
+        "Cinética de crecimiento microbiano y modelo de Monod",
+        "Diseño de biorreactores y esterilización",
+      ] },
+    ] },
+    { nombre: "Mecánica Aplicada", modulos: [
+      { modulo: "Equilibrio de cuerpos rígidos", temas: [
+        "Momento de una fuerza y equilibrio de cuerpos rígidos",
+        "Reacciones de apoyo y diagramas de cuerpo libre en estructuras",
+      ] },
+      { modulo: "Análisis de estructuras simples", temas: [
+        "Armaduras planas: método de nudos y de secciones",
+        "Centroides, centros de gravedad y momentos de inercia de áreas",
+      ] },
+    ] },
+    { nombre: "Proyecto Final de Ingeniería Química", modulos: [] },
+  ],
+};
+
 // Multi-facultad: cada facultad define su propio catálogo (por año o por
 // semestre, según cómo organice sus ciclos) y cómo nombrar/etiquetar ese
 // ciclo -- el resto de la app (S1/S9/S10) lee de acá en vez de asumir
@@ -4807,8 +5184,21 @@ const FACULTADES = {
     cicloLabel: (n) => `${n}º semestre`,
     iconoMateria: '⚙️',
   },
+  ingenieria_quimica: {
+    key: 'ingenieria_quimica',
+    label: 'Facultad de Ingeniería',
+    nombreCorto: 'Ing. Química',
+    grupo: 'Facultad de Ingeniería',
+    carrera: 'Ingeniería Química',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_INGENIERIA_QUIMICA,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '🧪',
+  },
 };
-const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica'];
+const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica'];
 
 // Exámenes guardados antes de este cambio no tienen `facultad` -- todos
 // eran de Medicina (la única que existía), así que ese es el default.
@@ -5274,6 +5664,28 @@ const MODULO_ICONS = {
   "Aislamiento y balanceo": "⚖️",
   "Estrategias de mantenimiento": "🔧",
   "Evaluación económica de proyectos": "💰",
+
+  // ---- Ingeniería Química ----
+  "Estructura de compuestos orgánicos": "🧬",
+  "Hidrocarburos y sus reacciones": "🛢️",
+  "Equilibrio químico en análisis": "⚗️",
+  "Estructura y reactividad de compuestos inorgánicos": "💠",
+  "Gases y primera ley": "💨",
+  "Equilibrio de fases": "🧊",
+  "Métodos instrumentales de análisis": "🔬",
+  "Grupos funcionales oxigenados y nitrogenados": "🧪",
+  "Química de anillos aromáticos": "⬡",
+  "Balances de materia y energía": "⚖️",
+  "Equilibrio de fases en mezclas": "🧊",
+  "Equilibrio químico y electroquímica": "🔋",
+  "Transporte de cantidad de movimiento": "🌊",
+  "Analogías de transporte": "🔀",
+  "Cinética química": "⏱️",
+  "Diseño de reactores ideales": "🧫",
+  "Servicios auxiliares de planta": "🏭",
+  "Transferencia de masa": "💨",
+  "Reactores no ideales y heterogéneos": "🧫",
+  "Fundamentos de bioprocesos": "🦠",
 };
 
 // Bibliografía real de la cátedra. Por tema: qué libro cubre mejor el
@@ -6857,6 +7269,46 @@ const TEXTOS = {
   "Indicadores de mantenimiento: disponibilidad, MTBF y MTTR": { libro: "García Garrido -- Ingeniería del Mantenimiento", seccion: "capítulo de indicadores de mantenimiento" },
   "Valor del dinero en el tiempo y equivalencia de flujos de caja": { libro: "Blank, Tarquin -- Ingeniería Económica", seccion: "capítulo de equivalencia y valor del dinero en el tiempo" },
   "Valor actual neto y tasa interna de retorno para decisiones de inversión": { libro: "Blank, Tarquin -- Ingeniería Económica", seccion: "capítulo de evaluación de alternativas de inversión" },
+
+  // ---- Ingeniería Química ----
+  "Hibridación del carbono, isomería y grupos funcionales": { libro: "McMurry -- Química Orgánica", seccion: "capítulo de estructura y enlace" },
+  "Estereoquímica: quiralidad y proyecciones de Fischer": { libro: "McMurry -- Química Orgánica", seccion: "capítulo de estereoquímica" },
+  "Nomenclatura y reacciones de alcanos, alquenos y alquinos": { libro: "McMurry -- Química Orgánica", seccion: "capítulo de hidrocarburos" },
+  "Mecanismos de sustitución y eliminación (SN1, SN2, E1, E2)": { libro: "McMurry -- Química Orgánica", seccion: "capítulo de reacciones de sustitución y eliminación" },
+  "Equilibrio ácido-base y volumetría de neutralización": { libro: "Skoog -- Fundamentos de Química Analítica", seccion: "capítulo de equilibrios ácido-base" },
+  "Equilibrio de solubilidad y precipitación": { libro: "Skoog -- Fundamentos de Química Analítica", seccion: "capítulo de equilibrios de solubilidad" },
+  "Teoría de bandas y propiedades periódicas de los elementos": { libro: "Housecroft, Sharpe -- Química Inorgánica", seccion: "capítulo de propiedades periódicas" },
+  "Química de coordinación: complejos metálicos y teoría del campo cristalino": { libro: "Housecroft, Sharpe -- Química Inorgánica", seccion: "capítulo de compuestos de coordinación" },
+  "Ecuaciones de estado de gases ideales y reales": { libro: "Atkins -- Química Física", seccion: "capítulo de propiedades de los gases" },
+  "Primera ley de la termodinámica aplicada a sistemas químicos": { libro: "Atkins -- Química Física", seccion: "capítulo de la primera ley" },
+  "Segunda y tercera ley: entropía y energía libre de Gibbs": { libro: "Atkins -- Química Física", seccion: "capítulo de la segunda ley" },
+  "Diagramas de fase de sustancias puras": { libro: "Atkins -- Química Física", seccion: "capítulo de cambios de estado en sustancias puras" },
+  "Espectrofotometría UV-visible y absorción atómica": { libro: "Skoog -- Principios de Análisis Instrumental", seccion: "capítulo de espectroscopía óptica" },
+  "Métodos electroquímicos: potenciometría y voltamperometría": { libro: "Skoog -- Principios de Análisis Instrumental", seccion: "capítulo de electroanálisis" },
+  "Alcoholes, éteres, aldehídos y cetonas: síntesis y reacciones": { libro: "McMurry -- Química Orgánica", seccion: "capítulo de alcoholes y compuestos carbonílicos" },
+  "Ácidos carboxílicos, ésteres y aminas": { libro: "McMurry -- Química Orgánica", seccion: "capítulo de ácidos carboxílicos y derivados" },
+  "Aromaticidad y sustitución electrofílica aromática": { libro: "McMurry -- Química Orgánica", seccion: "capítulo de compuestos aromáticos" },
+  "Balances de materia en procesos sin y con reacción química": { libro: "Felder, Rousseau -- Principios Elementales de los Procesos Químicos", seccion: "capítulo de balances de materia" },
+  "Balances de energía en procesos industriales": { libro: "Felder, Rousseau -- Principios Elementales de los Procesos Químicos", seccion: "capítulo de balances de energía" },
+  "Propiedades coligativas y diagramas de fase de mezclas binarias": { libro: "Atkins -- Química Física", seccion: "capítulo de mezclas simples" },
+  "Equilibrio líquido-vapor y destilación": { libro: "Atkins -- Química Física", seccion: "capítulo de diagramas de fase" },
+  "Constante de equilibrio y su dependencia con la temperatura": { libro: "Atkins -- Química Física", seccion: "capítulo de equilibrio químico" },
+  "Celdas electroquímicas y ecuación de Nernst": { libro: "Atkins -- Química Física", seccion: "capítulo de electroquímica de equilibrio" },
+  "Ley de viscosidad de Newton y perfil de velocidades en flujo laminar": { libro: "Bird, Stewart, Lightfoot -- Fenómenos de Transporte", seccion: "capítulo de viscosidad y mecanismos de transporte de cantidad de movimiento" },
+  "Ecuaciones de balance de cantidad de movimiento": { libro: "Bird, Stewart, Lightfoot -- Fenómenos de Transporte", seccion: "capítulo de distribuciones de velocidad en flujo laminar" },
+  "Analogía entre transporte de momento, calor y masa": { libro: "Bird, Stewart, Lightfoot -- Fenómenos de Transporte", seccion: "capítulo de analogías entre los transportes de momento, calor y masa" },
+  "Velocidad de reacción y leyes de velocidad": { libro: "Atkins -- Química Física", seccion: "capítulo de cinética química" },
+  "Mecanismos de reacción y catálisis": { libro: "Atkins -- Química Física", seccion: "capítulo de mecanismos de reacción" },
+  "Reactor discontinuo (batch) y reactor de flujo pistón (PFR)": { libro: "Fogler -- Elementos de Ingeniería de las Reacciones Químicas", seccion: "capítulo de reactores ideales para una reacción simple" },
+  "Reactor de mezcla completa (CSTR) y comparación de reactores": { libro: "Fogler -- Elementos de Ingeniería de las Reacciones Químicas", seccion: "capítulo de reactores ideales para una reacción simple" },
+  "Generación y distribución de vapor y agua de servicios industriales": { libro: "Apuntes de cátedra", seccion: "guías de servicios industriales de planta" },
+  "Sistemas de aire comprimido y tratamiento de efluentes industriales": { libro: "Apuntes de cátedra", seccion: "guías de servicios industriales de planta" },
+  "Difusión molecular y primera ley de Fick": { libro: "Incropera, DeWitt -- Fundamentos de Transferencia de Calor y Masa", seccion: "capítulo de difusión másica" },
+  "Transferencia de masa convectiva y coeficientes de transferencia": { libro: "Incropera, DeWitt -- Fundamentos de Transferencia de Calor y Masa", seccion: "capítulo de convección de masa" },
+  "Distribución de tiempos de residencia en reactores reales": { libro: "Fogler -- Elementos de Ingeniería de las Reacciones Químicas", seccion: "capítulo de distribución de tiempos de residencia" },
+  "Reactores catalíticos heterogéneos y catálisis sólida": { libro: "Fogler -- Elementos de Ingeniería de las Reacciones Químicas", seccion: "capítulo de catálisis y reactores catalíticos" },
+  "Cinética de crecimiento microbiano y modelo de Monod": { libro: "Shuler, Kargi -- Ingeniería de Biorreacciones", seccion: "capítulo de cinética de crecimiento microbiano" },
+  "Diseño de biorreactores y esterilización": { libro: "Shuler, Kargi -- Ingeniería de Biorreacciones", seccion: "capítulo de diseño de biorreactores" },
 };
 
 // ---- Estado de la materia/examen que se está EDITANDO (pantallas 1-3: elegir
@@ -8886,6 +9338,46 @@ const DURACIONES = {
   "Indicadores de mantenimiento: disponibilidad, MTBF y MTTR": 1,
   "Valor del dinero en el tiempo y equivalencia de flujos de caja": 1,
   "Valor actual neto y tasa interna de retorno para decisiones de inversión": 1,
+
+  // ---- Ingeniería Química ----
+  "Hibridación del carbono, isomería y grupos funcionales": 2,
+  "Estereoquímica: quiralidad y proyecciones de Fischer": 2,
+  "Nomenclatura y reacciones de alcanos, alquenos y alquinos": 1,
+  "Mecanismos de sustitución y eliminación (SN1, SN2, E1, E2)": 2,
+  "Equilibrio ácido-base y volumetría de neutralización": 1,
+  "Equilibrio de solubilidad y precipitación": 1,
+  "Teoría de bandas y propiedades periódicas de los elementos": 1,
+  "Química de coordinación: complejos metálicos y teoría del campo cristalino": 2,
+  "Ecuaciones de estado de gases ideales y reales": 1,
+  "Primera ley de la termodinámica aplicada a sistemas químicos": 1,
+  "Segunda y tercera ley: entropía y energía libre de Gibbs": 2,
+  "Diagramas de fase de sustancias puras": 1,
+  "Espectrofotometría UV-visible y absorción atómica": 1,
+  "Métodos electroquímicos: potenciometría y voltamperometría": 1,
+  "Alcoholes, éteres, aldehídos y cetonas: síntesis y reacciones": 1,
+  "Ácidos carboxílicos, ésteres y aminas": 1,
+  "Aromaticidad y sustitución electrofílica aromática": 1,
+  "Balances de materia en procesos sin y con reacción química": 2,
+  "Balances de energía en procesos industriales": 2,
+  "Propiedades coligativas y diagramas de fase de mezclas binarias": 1,
+  "Equilibrio líquido-vapor y destilación": 2,
+  "Constante de equilibrio y su dependencia con la temperatura": 1,
+  "Celdas electroquímicas y ecuación de Nernst": 1,
+  "Ley de viscosidad de Newton y perfil de velocidades en flujo laminar": 1,
+  "Ecuaciones de balance de cantidad de movimiento": 2,
+  "Analogía entre transporte de momento, calor y masa": 1,
+  "Velocidad de reacción y leyes de velocidad": 1,
+  "Mecanismos de reacción y catálisis": 1,
+  "Reactor discontinuo (batch) y reactor de flujo pistón (PFR)": 1,
+  "Reactor de mezcla completa (CSTR) y comparación de reactores": 1,
+  "Generación y distribución de vapor y agua de servicios industriales": 1,
+  "Sistemas de aire comprimido y tratamiento de efluentes industriales": 1,
+  "Difusión molecular y primera ley de Fick": 1,
+  "Transferencia de masa convectiva y coeficientes de transferencia": 1,
+  "Distribución de tiempos de residencia en reactores reales": 1,
+  "Reactores catalíticos heterogéneos y catálisis sólida": 1,
+  "Cinética de crecimiento microbiano y modelo de Monod": 1,
+  "Diseño de biorreactores y esterilización": 1,
 };
 // e permite sumar los días extra que el estudiante pidió vía el check-in
 // adaptativo ("seguir con este tema") -- ver resolverCheckin().
