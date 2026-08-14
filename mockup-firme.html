@@ -2199,6 +2199,14 @@
           <select id="simulacroMateriaSelect"></select>
         </div>
         <div class="field">
+          <label>📎 Recomendado: subí un parcial anterior real de esta materia</label>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <input type="file" id="simulacroArchivoInput" accept=".pdf,.doc,.docx" onchange="actualizarBotonBorrarArchivo('simulacroArchivoInput','simulacroArchivoBorrarBtn')" style="flex:1;">
+            <button type="button" id="simulacroArchivoBorrarBtn" class="btn secondary" style="display:none; margin-top:0; width:auto; padding:8px 12px;" onclick="borrarArchivo('simulacroArchivoInput','simulacroArchivoBorrarBtn')" title="Sacar el archivo">🗑️</button>
+          </div>
+          <p class="sub" style="margin:4px 0 0;">Si subís un parcial real, el simulacro imita su estilo, formato y nivel de dificultad (con preguntas nuevas, nunca copiadas) en vez de inventar todo desde el catálogo.</p>
+        </div>
+        <div class="field">
           <label for="simulacroCantidadSelect">Cantidad de preguntas</label>
           <select id="simulacroCantidadSelect">
             <option value="20" selected>20</option>
@@ -13661,18 +13669,25 @@ async function generarSimulacro() {
   const temas = [];
   materia.modulos.forEach(mod => mod.temas.forEach(t => temas.push(t)));
   const cantidad = +document.getElementById('simulacroCantidadSelect').value;
+  const archivo = document.getElementById('simulacroArchivoInput').files[0];
+  if (archivo) {
+    const ext = archivo.name.split('.').pop().toLowerCase();
+    if (!['pdf', 'doc', 'docx'].includes(ext)) { showToast('El parcial debe ser PDF o Word (.doc/.docx)'); return; }
+  }
   const btn = document.getElementById('simulacroGenerarBtn');
   const box = document.getElementById('simulacroBox');
   btn.disabled = true;
-  btn.textContent = '⏳ Armando el simulacro...';
+  btn.textContent = archivo ? '⏳ Leyendo el parcial y armando el simulacro...' : '⏳ Armando el simulacro...';
   box.innerHTML = '';
   clearInterval(simulacroTimerInt);
   try {
-    const r = await fetch('/api/simulacro', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ materiaNombre: materia.nombre, carrera: f.carrera, temas, cantidad }),
-    });
+    const form = new FormData();
+    form.append('materiaNombre', materia.nombre);
+    form.append('carrera', f.carrera);
+    form.append('temas', JSON.stringify(temas));
+    form.append('cantidad', cantidad);
+    if (archivo) form.append('archivo', archivo);
+    const r = await fetch('/api/simulacro', { method: 'POST', body: form });
     const data = await r.json();
     if (!r.ok) throw new Error(data.error || 'Error generando el simulacro');
     simulacroPreguntas = (data.preguntas || []).map(p => ({ ...p, correcta: Number(p.correcta) }));

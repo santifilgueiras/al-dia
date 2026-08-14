@@ -317,25 +317,57 @@ ${consigna}`;
 // temas del catálogo y se le pide que reparta las preguntas entre varios,
 // etiquetando cada una con el tema exacto al que corresponde para que el
 // front pueda armar el desglose de "temas flojos" al final.
-app.post('/api/simulacro', async (req, res) => {
+//
+// Si el estudiante sube un parcial real anterior, ESE es el ancla principal
+// (estilo, formato, nivel de dificultad, y qué temas priorizar) en vez de
+// inventar todo desde el catálogo -- sin un parcial real de referencia, un
+// simulacro "genérico" no se diferencia mucho de simplemente pedir más
+// fichas de varios temas.
+app.post('/api/simulacro', upload.single('archivo'), async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
   }
-  const { materiaNombre, carrera, temas, cantidad } = req.body || {};
+  const { materiaNombre, carrera, cantidad } = req.body || {};
+  let temas;
+  try {
+    temas = JSON.parse(req.body.temas || '[]');
+  } catch (e) {
+    return res.status(400).json({ error: 'Lista de temas inválida.' });
+  }
   if (!materiaNombre) return res.status(400).json({ error: 'Falta la materia.' });
   if (!Array.isArray(temas) || !temas.length) return res.status(400).json({ error: 'Faltan los temas de la materia.' });
   const n = Math.max(10, Math.min(30, parseInt(cantidad, 10) || 20));
 
+  let parcialTexto = '';
+  if (req.file) {
+    try {
+      parcialTexto = await extraerTextoArchivo(req.file);
+    } catch (e) {
+      return res.status(e.status || 400).json({ error: e.message });
+    }
+  }
+
+  const consignaParcial = parcialTexto
+    ? `El estudiante subió un PARCIAL REAL anterior de esta materia -- usalo como referencia PRINCIPAL de estilo, formato de pregunta, nivel de dificultad y qué temas priorizar (los que aparecen en el parcial real reflejan lo que la cátedra realmente toma). Generá preguntas NUEVAS que imiten ese estilo -- nunca copies una pregunta del parcial tal cual. Completá con otros temas de la lista del programa si hace falta llegar a la cantidad pedida.
+
+Parcial real de referencia:
+"""
+${parcialTexto}
+"""`
+    : 'Elegí una mezcla representativa de temas de la lista, no te concentres en pocos.';
+
   const prompt = `Sos un profesor armando un simulacro de examen final para un estudiante de ${carrera || 'grado'} (UDELAR) sobre la materia "${materiaNombre}".
 
-Estos son los temas del programa que hay que cubrir (elegí una mezcla representativa, no te concentres en pocos temas):
+Estos son los temas del programa (lista completa del catálogo, no necesariamente los que toma cada examen puntual):
 ${temas.map(t => `- ${t}`).join('\n')}
 
-Generá ${n} preguntas de opción múltiple de nivel de examen final de grado (ni trivial ni de sub-especialidad), repartidas entre la mayor cantidad posible de temas distintos de la lista (no repitas el mismo tema más de 2-3 veces si se puede evitar). Cada pregunta con 4 opciones (una correcta, tres distractores plausibles pero incorrectos, no absurdos). No repitas la misma pregunta de dos formas distintas.
+${consignaParcial}
+
+Generá ${n} preguntas de opción múltiple de nivel de examen final de grado (ni trivial ni de sub-especialidad), repartidas entre varios temas distintos (no repitas el mismo tema más de 2-3 veces si se puede evitar). Cada pregunta con 4 opciones (una correcta, tres distractores plausibles pero incorrectos, no absurdos). No repitas la misma pregunta de dos formas distintas.
 
 Respondé ÚNICAMENTE con un JSON válido, sin texto antes ni después, con este formato exacto:
 [{"pregunta": "...", "opciones": ["...", "...", "...", "..."], "correcta": 0, "tema": "..."}, ...]
-Donde "correcta" es el índice (0 a 3, como NÚMERO, nunca como string entre comillas) de la opción correcta, y "tema" es EXACTAMENTE uno de los nombres de tema de la lista de arriba (copiado tal cual, sin modificarlo).`;
+Donde "correcta" es el índice (0 a 3, como NÚMERO, nunca como string entre comillas) de la opción correcta, y "tema" es EXACTAMENTE uno de los nombres de tema de la lista de arriba (copiado tal cual, sin modificarlo, incluso si el estilo viene del parcial subido).`;
 
   try {
     const texto = await llamarClaude(prompt, Math.max(4500, n * 260 + 2000), undefined, FICHAS_MODEL);
