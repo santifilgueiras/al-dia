@@ -1756,7 +1756,7 @@
        Especificacion_Al_Dia_modificaciones_v2.docx) -->
   <div class="checkin-overlay" id="noLlegoOverlay">
     <div class="checkin-card">
-      <div class="checkin-icon">🧭</div>
+      <div class="checkin-icon" id="noLlegoIcon">🧭</div>
       <h3 id="noLlegoTitle">Reorganizamos tu plan</h3>
       <p id="noLlegoBody"></p>
       <div class="checkin-btns">
@@ -11656,13 +11656,41 @@ function generarCalendarioGlobal() {
 function noEstoyLlegando(examId) {
   const e = examenes.find(x => x.id === examId);
   if (!e || !e.fecha) return;
-  const dias = diasHasta(e.fecha);
   const pendientes = e.selected.filter(t => e.states[t] !== 'firme');
   const nAlta = pendientes.filter(t => (e.prioridadTema && e.prioridadTema[t]) === 'alta').length;
+  const totalTemas = e.selected.length;
+  const firmes = totalTemas - pendientes.length;
+  const pctFirme = totalTemas ? Math.round((firmes / totalTemas) * 100) : 0;
+
   generarCalendarioGlobal();
-  const cuerpo = pendientes.length
-    ? `Tenés ${pendientes.length} tema${pendientes.length === 1 ? '' : 's'} pendiente${pendientes.length === 1 ? '' : 's'} de <strong>${nombreCorto(e.materiaNombre)}</strong> y ${dias === 0 ? 'el examen es hoy' : `${dias} día${dias === 1 ? '' : 's'}`}. Reorganizamos tu plan para que puedas avanzar${nAlta ? ` sin perder los ${nAlta} tema${nAlta === 1 ? '' : 's'} que marcaste como prioridad alta` : ''}.`
-    : `Ya tenés todos los temas de <strong>${nombreCorto(e.materiaNombre)}</strong> firmes -- no hay nada pendiente para reorganizar.`;
+
+  const icon = document.getElementById('noLlegoIcon');
+  const title = document.getElementById('noLlegoTitle');
+  let cuerpo;
+
+  if (!pendientes.length) {
+    icon.textContent = '✅'; title.textContent = 'Ya estás al día';
+    cuerpo = `Ya tenés todos los temas de <strong>${nombreCorto(e.materiaNombre)}</strong> firmes -- no hay nada pendiente.`;
+  } else {
+    // Mismo cálculo de ritmo mínimo que usa "Ajustar ritmo" y el armado del
+    // calendario global (calcularRitmoDe), aplicado solo a lo que falta de
+    // ESTA materia desde HOY -- así el veredicto es un número real, no una
+    // frase de consuelo genérica.
+    const examDate = new Date(e.fecha + 'T00:00:00');
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const r = calcularRitmoDe(pendientes, examDate, today);
+    const margen = r.diasUtiles - r.totalDuracion;
+
+    if (margen >= 0) {
+      icon.textContent = '🧭'; title.textContent = 'Vas a tiempo';
+      cuerpo = `Llevás <strong style="color:var(--firme)">${pctFirme}% firme</strong> (${firmes}/${totalTemas}) de <strong>${nombreCorto(e.materiaNombre)}</strong>. Con los ${r.totalDuracion} día${r.totalDuracion === 1 ? '' : 's'} de estudio que quedan por delante, te sobran <strong>${margen} día${margen === 1 ? '' : 's'} de margen</strong> antes del examen.`;
+    } else {
+      const atraso = Math.abs(margen);
+      icon.textContent = '⚠️'; title.textContent = 'Vas atrasado';
+      cuerpo = `Llevás <strong style="color:var(--flojo)">${pctFirme}% firme</strong> (${firmes}/${totalTemas}) de <strong>${nombreCorto(e.materiaNombre)}</strong> y te faltan <strong style="color:var(--flojo)">${atraso} día${atraso === 1 ? '' : 's'} de estudio de margen</strong> para cubrir todo lo pendiente antes del examen. Necesitás arrancar ${r.minPace} tema${r.minPace === 1 ? '' : 's'} en paralelo desde hoy${nAlta ? `, priorizando los ${nAlta} que marcaste como prioridad alta` : ''}.`;
+    }
+  }
+
   document.getElementById('noLlegoBody').innerHTML = cuerpo;
   document.getElementById('noLlegoOverlay').classList.add('show');
 }
