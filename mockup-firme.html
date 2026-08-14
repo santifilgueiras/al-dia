@@ -2118,7 +2118,7 @@
         <div class="timer-card">
           <div class="timer-metodos" id="timerMetodoTabs">
             <span class="tab" data-metodo="pomodoro" onclick="seleccionarMetodoTimer('pomodoro')">Pomodoro 25/5</span>
-            <span class="tab" data-metodo="52-17" onclick="seleccionarMetodoTimer('52-17')">52/17</span>
+            <span class="tab" data-metodo="50-10" onclick="seleccionarMetodoTimer('50-10')">50/10</span>
             <span class="tab" data-metodo="90-20" onclick="seleccionarMetodoTimer('90-20')">90/20</span>
           </div>
           <div class="timer-clock">
@@ -13106,14 +13106,14 @@ async function renderRecordatorio() {
 
 // ---- Timer de estudio (pestaña "Estudiá con Al Día") ----
 // Dos métodos conocidos: Pomodoro clásico (25/5, descanso largo cada 4) y
-// 52/17 (bloques largos de foco, para quien ya tolera sesiones más
+// 50/10 (bloques largos de foco, para quien ya tolera sesiones más
 // extensas). Es de sesión pura, como el resto del mockup -- no persiste al
 // recargar. Completar un bloque de estudio cuenta como actividad real
 // (registrarActividadHoy), así usar el timer también alimenta la racha
 // diaria, no es una herramienta aislada del resto de la app.
 const METODOS_TIMER = {
   pomodoro: { nombre: 'Pomodoro', trabajo: 25 * 60, descanso: 5 * 60, descansoLargo: 15 * 60, ciclosParaLargo: 4, desc: '25 min de estudio enfocado, 5 de descanso. Cada 4 ciclos, un descanso largo de 15.' },
-  '52-17': { nombre: '52/17', trabajo: 52 * 60, descanso: 17 * 60, descansoLargo: 17 * 60, ciclosParaLargo: Infinity, desc: '52 min de estudio profundo, 17 de descanso. Pensado para sesiones largas de concentración.' },
+  '50-10': { nombre: '50/10', trabajo: 50 * 60, descanso: 10 * 60, descansoLargo: 10 * 60, ciclosParaLargo: Infinity, desc: '50 min de estudio profundo, 10 de descanso. Pensado para sesiones largas de concentración.' },
   '90-20': { nombre: '90/20', trabajo: 90 * 60, descanso: 20 * 60, descansoLargo: 20 * 60, ciclosParaLargo: Infinity, desc: '90 min de estudio siguiendo el ritmo ultradiano de atención, 20 de descanso. Para sesiones largas de estudio denso.' },
 };
 let timerMetodo = 'pomodoro';
