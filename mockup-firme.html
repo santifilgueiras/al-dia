@@ -3901,6 +3901,434 @@ const CATALOGO_POR_CICLO_INGENIERIA_CIVIL = {
   ],
 };
 
+// Catálogo de Ingeniería Eléctrica (misma facultad que Ingeniería en
+// Computación/Civil, carrera distinta -- ver FACULTADES.ingenieria_electrica).
+// 38 materias en 8 semestres, construidos a partir de la trayectoria
+// sugerida REAL de fing.edu.uy (PDF oficial "Plan de Estudios Carrera de
+// Ingeniería Eléctrica", perfil "Sistemas Eléctricos de Potencia" -- de los
+// 3 perfiles posibles desde 5º semestre, se cargó solo este, el más
+// tradicional/"corriente fuerte" de la carrera; Transmisión de la
+// Información y Electrónica quedan sin cargar, mismo criterio que las
+// orientaciones a elección no cargadas en Psicología). El semestre 8 real
+// tiene "Pasantía"+Proyecto que no son materias con temario -- se
+// reemplazan por "Proyecto Final de Ingeniería Eléctrica" (modulos: []),
+// mismo criterio que los demás finales de carrera. 4 materias del núcleo
+// común (Cálculo 1, GAL 1, GAL 2, Física 1, Programación 1, Probabilidad y
+// Estadística, Cálculo en Varias Variables) son LITERALMENTE el mismo curso
+// que ya está cargado en Computación/Civil -- se reusa el mismo contenido
+// para no duplicar temas (comparten TEXTOS/DURACIONES). El resto se armó
+// con currícula estándar internacional y bibliografía clásica reconocida
+// (Hayt, Nilsson, Chapman, Ogata, Sedra & Smith, Mohan, Glover, etc.).
+const CATALOGO_POR_CICLO_INGENIERIA_ELECTRICA = {
+  1: [
+    { nombre: "Cálculo Diferencial e Integral en Una Variable", modulos: [
+      { modulo: "Números reales y funciones", temas: [
+        "Axioma de completitud y supremo de un conjunto",
+        "Funciones reales: inyectividad, sobreyectividad y monotonía",
+        "Trigonometría: círculo trigonométrico y funciones inversas",
+      ] },
+      { modulo: "Límites y continuidad", temas: [
+        "Definición de límite y álgebra de límites",
+        "Continuidad y teorema de Bolzano",
+        "Teorema de Weierstrass y extremos globales",
+      ] },
+      { modulo: "Derivadas", temas: [
+        "Definición de derivada y regla de la cadena",
+        "Teoremas de Rolle, Lagrange y Cauchy",
+        "Derivadas, crecimiento y concavidad",
+        "Regla de L'Hôpital",
+      ] },
+      { modulo: "Integrales y desarrollo de Taylor", temas: [
+        "Integral de Riemann mediante sumas superiores e inferiores",
+        "Teorema fundamental del cálculo y regla de Barrow",
+        "Técnicas de integración: partes, sustitución y fracciones simples",
+        "Polinomio de Taylor y estimación del error",
+      ] },
+    ] },
+    { nombre: "Geometría y Álgebra Lineal 1", modulos: [
+      { modulo: "Sistemas de ecuaciones y matrices", temas: [
+        "Eliminación de Gauss y sistemas de ecuaciones lineales",
+        "Rango de una matriz y teorema de Rouché-Frobenius",
+        "Álgebra de matrices: suma, producto e inversa",
+      ] },
+      { modulo: "Determinantes", temas: [
+        "Determinantes de orden 2 y 3 y definición inductiva",
+        "Propiedades del determinante y matrices elementales",
+        "Regla de Cramer y cálculo del rango por determinantes",
+      ] },
+      { modulo: "Geometría del espacio", temas: [
+        "Rectas y planos en el espacio",
+        "Producto escalar: ángulos y distancias",
+        "Producto vectorial: áreas y volúmenes",
+      ] },
+      { modulo: "Espacios vectoriales y transformaciones lineales", temas: [
+        "Espacios y subespacios vectoriales",
+        "Generadores, independencia lineal, base y dimensión",
+        "Cambio de base de un espacio vectorial",
+        "Núcleo e imagen de una transformación lineal",
+        "Matriz asociada a una transformación lineal",
+      ] },
+    ] },
+    { nombre: "Física 1 (Mecánica)", modulos: [
+      { modulo: "Cinemática y dinámica de partículas", temas: [
+        "Cinemática: posición, velocidad y aceleración",
+        "Leyes de Newton y diagramas de cuerpo libre",
+      ] },
+      { modulo: "Trabajo, energía y sistemas de partículas", temas: [
+        "Trabajo, energía cinética y potencial, conservación de energía",
+        "Momento lineal, impulso y colisiones",
+      ] },
+    ] },
+    { nombre: "Tallerine", modulos: [] },
+  ],
+  2: [
+    { nombre: "Cálculo Diferencial e Integral en Varias Variables", modulos: [
+      { modulo: "Sucesiones, series e integrales impropias", temas: [
+        "Sucesiones: límite, monotonía, acotación y subsucesiones",
+        "Series numéricas y criterios de convergencia",
+        "Convergencia condicional y absoluta",
+        "Integrales impropias y criterio serie-integral",
+      ] },
+      { modulo: "Topología y continuidad en Rⁿ", temas: [
+        "Normas y conjuntos abiertos y cerrados en Rⁿ",
+        "Sucesiones en Rⁿ y caracterización de conjuntos compactos",
+        "Límites y continuidad de funciones de varias variables",
+      ] },
+      { modulo: "Diferenciabilidad e integrales múltiples", temas: [
+        "Derivadas parciales y derivadas direccionales",
+        "Diferenciabilidad y plano tangente",
+        "Diferencial de la función compuesta",
+        "Integrales dobles y triples: teorema de Fubini",
+        "Teorema de cambio de variables: coordenadas polares, cilíndricas y esféricas",
+      ] },
+    ] },
+    { nombre: "Geometría y Álgebra Lineal 2", modulos: [
+      { modulo: "Valores y vectores propios", temas: [
+        "Valores y vectores propios, polinomio característico",
+        "Diagonalización de matrices",
+        "Multiplicidades algebraica y geométrica; teorema de Gershgorin",
+      ] },
+      { modulo: "Formas canónicas", temas: [
+        "Forma canónica de Jordan",
+        "Matrices semejantes y cambio de base para operadores",
+      ] },
+      { modulo: "Producto interno y ortogonalidad", temas: [
+        "Producto interno y norma en un espacio vectorial",
+        "Ortogonalidad, ortonormalidad y proceso de Gram-Schmidt",
+        "Descomposición QR",
+        "Complemento ortogonal y proyección ortogonal",
+        "Aproximación por mínimos cuadrados",
+      ] },
+      { modulo: "Transformaciones adjuntas e isometrías", temas: [
+        "Teorema de representación de Riesz y transformación adjunta",
+        "Operadores autoadjuntos y teorema espectral",
+        "Isometrías lineales",
+      ] },
+    ] },
+    { nombre: "Física 2 (Oscilaciones, Ondas y Termodinámica)", modulos: [
+      { modulo: "Oscilaciones y ondas mecánicas", temas: [
+        "Movimiento armónico simple y oscilador amortiguado",
+        "Ondas mecánicas: propagación, interferencia y ondas estacionarias",
+      ] },
+      { modulo: "Termodinámica", temas: [
+        "Temperatura, calor y primer principio de la termodinámica",
+        "Entropía y segundo principio de la termodinámica",
+      ] },
+    ] },
+    { nombre: "Programación 1", modulos: [
+      { modulo: "Fundamentos de la programación imperativa", temas: [
+        "Modelo de computación y concepto de algoritmo",
+        "Sintaxis y semántica de un lenguaje de programación",
+        "Compilación, ejecución y tipos de errores",
+        "Identificadores, variables, constantes y expresiones",
+      ] },
+      { modulo: "Estructuras de control", temas: [
+        "Estructuras de selección",
+        "Estructuras de iteración",
+        "Recursión: diseño de algoritmos recursivos simples",
+      ] },
+      { modulo: "Tipos de datos y subprogramas", temas: [
+        "Tipos de datos elementales y estructurados: arreglos y registros",
+        "Procedimientos, funciones y pasaje de parámetros",
+        "Precondiciones, postcondiciones y reglas de alcance",
+      ] },
+      { modulo: "Algoritmos básicos", temas: [
+        "Búsqueda lineal y búsqueda binaria",
+        "Algoritmos de ordenación",
+        "Nociones elementales de análisis de algoritmos",
+        "Buenas prácticas de diseño, implementación y casos de prueba",
+      ] },
+    ] },
+  ],
+  3: [
+    { nombre: "Cálculo Vectorial", modulos: [
+      { modulo: "Campos escalares y vectoriales", temas: [
+        "Gradiente, divergencia y rotor",
+        "Campos conservativos y funciones potenciales",
+      ] },
+      { modulo: "Integrales de línea y de superficie", temas: [
+        "Integrales de línea de campos escalares y vectoriales",
+        "Integrales de superficie y flujo de un campo vectorial",
+        "Teoremas de Green, Stokes y de la divergencia (Gauss)",
+      ] },
+    ] },
+    { nombre: "Probabilidad y Estadística", modulos: [
+      { modulo: "Probabilidad básica", temas: [
+        "Espacios de probabilidad y probabilidad condicional",
+        "Variables aleatorias discretas y continuas",
+        "Distribuciones de probabilidad clásicas (binomial, Poisson, normal, exponencial)",
+        "Esperanza, varianza y funciones generadoras",
+      ] },
+      { modulo: "Vectores aleatorios y teoremas límite", temas: [
+        "Vectores aleatorios y distribuciones conjuntas",
+        "Covarianza y correlación",
+        "Ley de los grandes números",
+        "Teorema central del límite",
+      ] },
+      { modulo: "Estadística descriptiva e inferencial", temas: [
+        "Estadística descriptiva y análisis exploratorio de datos",
+        "Estimación puntual y por intervalos de confianza",
+        "Contraste de hipótesis",
+        "Regresión lineal simple y múltiple",
+      ] },
+    ] },
+    { nombre: "Física 3 (Ondas y Óptica)", modulos: [
+      { modulo: "Ondas electromagnéticas", temas: [
+        "Ecuación de ondas y espectro electromagnético",
+        "Polarización de ondas electromagnéticas",
+      ] },
+      { modulo: "Óptica geométrica y ondulatoria", temas: [
+        "Reflexión, refracción y lentes delgadas",
+        "Interferencia y difracción de la luz",
+      ] },
+    ] },
+    { nombre: "Mecánica Newtoniana", modulos: [
+      { modulo: "Dinámica de sistemas de partículas", temas: [
+        "Centro de masa y movimiento de sistemas de partículas",
+        "Momento angular y torque en sistemas de partículas",
+      ] },
+      { modulo: "Cuerpo rígido y oscilaciones", temas: [
+        "Cinemática y dinámica de rotación del cuerpo rígido",
+        "Momento de inercia y teorema de Steiner",
+        "Osciladores acoplados y modos normales",
+      ] },
+    ] },
+    { nombre: "Física Experimental 1", modulos: [] },
+  ],
+  4: [
+    { nombre: "Ecuaciones Diferenciales", modulos: [
+      { modulo: "Ecuaciones diferenciales ordinarias", temas: [
+        "Ecuaciones lineales de orden superior a coeficientes constantes",
+        "Sistemas de ecuaciones diferenciales lineales",
+      ] },
+      { modulo: "Transformada de Laplace", temas: [
+        "Transformada de Laplace y propiedades",
+        "Resolución de ecuaciones diferenciales mediante Laplace",
+      ] },
+    ] },
+    { nombre: "Electromagnetismo", modulos: [
+      { modulo: "Electrostática", temas: [
+        "Ley de Coulomb y campo eléctrico",
+        "Ley de Gauss y potencial eléctrico",
+        "Capacitores y energía electrostática",
+      ] },
+      { modulo: "Magnetostática y ecuaciones de Maxwell", temas: [
+        "Ley de Biot-Savart y ley de Ampère",
+        "Ley de Faraday e inducción electromagnética",
+        "Ecuaciones de Maxwell en forma integral y diferencial",
+      ] },
+    ] },
+    { nombre: "Física Experimental 2", modulos: [] },
+    { nombre: "Teoría de Circuitos", modulos: [
+      { modulo: "Análisis de circuitos resistivos", temas: [
+        "Leyes de Kirchhoff y métodos de mallas y nodos",
+        "Teoremas de circuitos: superposición, Thévenin y Norton",
+      ] },
+      { modulo: "Régimen senoidal y fasores", temas: [
+        "Representación fasorial de señales senoidales",
+        "Impedancia, potencia activa, reactiva y aparente",
+        "Circuitos resonantes y respuesta en frecuencia",
+      ] },
+    ] },
+    { nombre: "Diseño Lógico", modulos: [
+      { modulo: "Álgebra de Boole y minimización", temas: [
+        "Puertas lógicas y álgebra de Boole",
+        "Mapas de Karnaugh y minimización de funciones lógicas",
+      ] },
+      { modulo: "Circuitos digitales", temas: [
+        "Circuitos combinacionales: sumadores, multiplexores y decodificadores",
+        "Circuitos secuenciales: biestables, registros y contadores",
+      ] },
+    ] },
+  ],
+  5: [
+    { nombre: "Funciones de Variable Compleja", modulos: [
+      { modulo: "Funciones analíticas", temas: [
+        "Funciones holomorfas y ecuaciones de Cauchy-Riemann",
+        "Funciones elementales de variable compleja",
+      ] },
+      { modulo: "Integración compleja", temas: [
+        "Integral de contorno y teorema de Cauchy",
+        "Series de Laurent y teorema de los residuos",
+      ] },
+    ] },
+    { nombre: "Señales y Sistemas", modulos: [
+      { modulo: "Señales continuas y discretas", temas: [
+        "Clasificación de señales y operaciones básicas",
+        "Señales periódicas y series de Fourier",
+      ] },
+      { modulo: "Sistemas lineales e invariantes en el tiempo (LTI)", temas: [
+        "Convolución continua y discreta",
+        "Respuesta en frecuencia y función de transferencia",
+      ] },
+    ] },
+    { nombre: "Electrotécnica", modulos: [
+      { modulo: "Sistemas trifásicos", temas: [
+        "Circuitos trifásicos equilibrados: conexión estrella y triángulo",
+        "Potencia en sistemas trifásicos",
+      ] },
+      { modulo: "Transformadores", temas: [
+        "Principio de funcionamiento del transformador ideal",
+        "Circuito equivalente y ensayos de vacío y cortocircuito",
+      ] },
+    ] },
+    { nombre: "Programación para Ingeniería Eléctrica", modulos: [
+      { modulo: "Cálculo numérico aplicado", temas: [
+        "Programación de scripts para cálculo matricial y simulación",
+        "Visualización de datos y resultados de simulación",
+      ] },
+    ] },
+    { nombre: "Electrónica Fundamental", modulos: [
+      { modulo: "Dispositivos semiconductores", temas: [
+        "Diodos: polarización y circuitos rectificadores",
+        "Transistor bipolar (BJT): regiones de operación y polarización",
+        "Transistor de efecto de campo (MOSFET): características",
+      ] },
+      { modulo: "Amplificadores", temas: [
+        "Amplificadores operacionales: configuraciones básicas",
+        "Amplificadores a transistores: ganancia y punto de operación",
+      ] },
+    ] },
+  ],
+  6: [
+    { nombre: "Métodos Numéricos", modulos: [
+      { modulo: "Resolución numérica de ecuaciones y sistemas", temas: [
+        "Métodos de bisección, Newton-Raphson y punto fijo",
+        "Resolución numérica de sistemas de ecuaciones lineales",
+      ] },
+      { modulo: "Integración y ecuaciones diferenciales numéricas", temas: [
+        "Cuadratura numérica: trapecios y Simpson",
+        "Métodos de Euler y Runge-Kutta para EDO",
+      ] },
+    ] },
+    { nombre: "Sistemas y Control", modulos: [
+      { modulo: "Modelado de sistemas dinámicos", temas: [
+        "Función de transferencia y diagramas de bloques",
+        "Representación en espacio de estados",
+      ] },
+      { modulo: "Análisis y diseño de controladores", temas: [
+        "Estabilidad: criterio de Routh-Hurwitz y lugar de las raíces",
+        "Controladores PID y sintonización",
+      ] },
+    ] },
+    { nombre: "Taller Fourier", modulos: [
+      { modulo: "Análisis de Fourier", temas: [
+        "Serie de Fourier: coeficientes y convergencia",
+        "Transformada de Fourier y propiedades",
+      ] },
+    ] },
+    { nombre: "Señales Aleatorias y Modulación", modulos: [
+      { modulo: "Procesos estocásticos", temas: [
+        "Procesos aleatorios: estacionariedad y ergodicidad",
+        "Densidad espectral de potencia y ruido",
+      ] },
+      { modulo: "Técnicas de modulación", temas: [
+        "Modulación de amplitud (AM) y de frecuencia (FM)",
+        "Relación señal a ruido en sistemas de modulación",
+      ] },
+    ] },
+    { nombre: "Máquinas Eléctricas", modulos: [
+      { modulo: "Máquinas de corriente continua", temas: [
+        "Principio de funcionamiento del motor y generador de CC",
+        "Circuito equivalente y curvas características",
+      ] },
+      { modulo: "Máquinas de corriente alterna", temas: [
+        "Campo magnético rotante y motor de inducción",
+        "Máquina síncrona: funcionamiento como generador y motor",
+      ] },
+    ] },
+  ],
+  7: [
+    { nombre: "Medidas Eléctricas", modulos: [
+      { modulo: "Instrumentación de medida", temas: [
+        "Instrumentos analógicos y digitales de medida eléctrica",
+        "Errores de medición e incertidumbre",
+      ] },
+    ] },
+    { nombre: "Introducción a los Microprocesadores", modulos: [
+      { modulo: "Arquitectura de microprocesadores", temas: [
+        "Organización interna: CPU, memoria y buses",
+        "Ciclo de instrucción y modos de direccionamiento",
+      ] },
+      { modulo: "Programación e interfaces", temas: [
+        "Programación en lenguaje ensamblador",
+        "Interrupciones y periféricos de entrada/salida",
+      ] },
+    ] },
+    { nombre: "Electrónica de Potencia", modulos: [
+      { modulo: "Conversión DC-DC y AC-DC", temas: [
+        "Rectificadores no controlados y controlados",
+        "Convertidores DC-DC: reductor, elevador y reductor-elevador",
+      ] },
+      { modulo: "Inversores", temas: [
+        "Inversores monofásicos y trifásicos",
+        "Modulación por ancho de pulso (PWM)",
+      ] },
+    ] },
+    { nombre: "Redes Eléctricas", modulos: [
+      { modulo: "Análisis de redes de potencia", temas: [
+        "Modelado de líneas, transformadores y cargas en por unidad",
+        "Flujo de cargas: métodos de Gauss-Seidel y Newton-Raphson",
+      ] },
+      { modulo: "Fallas y protecciones", temas: [
+        "Análisis de cortocircuito simétrico y asimétrico",
+        "Coordinación de protecciones eléctricas",
+      ] },
+    ] },
+    { nombre: "Taller de Máquinas", modulos: [] },
+  ],
+  8: [
+    { nombre: "Instalaciones Eléctricas", modulos: [
+      { modulo: "Diseño de instalaciones de baja tensión", temas: [
+        "Normativa y reglamentación de instalaciones eléctricas",
+        "Cálculo de cargas y dimensionado de conductores",
+      ] },
+      { modulo: "Protecciones en baja tensión", temas: [
+        "Selección de protecciones termomagnéticas y diferenciales",
+        "Puesta a tierra y seguridad eléctrica",
+      ] },
+    ] },
+    { nombre: "Redes de Datos I", modulos: [
+      { modulo: "Arquitectura de redes", temas: [
+        "Modelo de capas OSI y TCP/IP",
+        "Protocolos de nivel de enlace y direccionamiento",
+      ] },
+      { modulo: "Nivel de red y transporte", temas: [
+        "Enrutamiento y protocolo IP",
+        "Protocolos de transporte: TCP y UDP",
+      ] },
+    ] },
+    { nombre: "Transporte de Energía Eléctrica", modulos: [
+      { modulo: "Líneas de transmisión", temas: [
+        "Parámetros eléctricos de líneas de transmisión (R, L, C)",
+        "Modelos de línea corta, media y larga",
+      ] },
+    ] },
+    { nombre: "Taller de Electrónica de Potencia", modulos: [] },
+    { nombre: "Proyecto Final de Ingeniería Eléctrica", modulos: [] },
+  ],
+};
+
 // Multi-facultad: cada facultad define su propio catálogo (por año o por
 // semestre, según cómo organice sus ciclos) y cómo nombrar/etiquetar ese
 // ciclo -- el resto de la app (S1/S9/S10) lee de acá en vez de asumir
@@ -3963,8 +4391,21 @@ const FACULTADES = {
     cicloLabel: (n) => `${n}º semestre`,
     iconoMateria: '🏗️',
   },
+  ingenieria_electrica: {
+    key: 'ingenieria_electrica',
+    label: 'Facultad de Ingeniería',
+    nombreCorto: 'Ing. Eléctrica',
+    grupo: 'Facultad de Ingeniería',
+    carrera: 'Ingeniería Eléctrica',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_INGENIERIA_ELECTRICA,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '⚡',
+  },
 };
-const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil'];
+const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica'];
 
 // Exámenes guardados antes de este cambio no tienen `facultad` -- todos
 // eran de Medicina (la única que existía), así que ese es el default.
@@ -4358,6 +4799,54 @@ const MODULO_ICONS = {
   "Impacto ambiental": "🌱",
   "Ciclo hidrológico y cuencas": "☔",
   "Hidrología aplicada al diseño": "🗺️",
+
+  // ---- Ingeniería Eléctrica ----
+  "Oscilaciones y ondas mecánicas": "🌊",
+  "Termodinámica": "🔥",
+  "Campos escalares y vectoriales": "🗺️",
+  "Integrales de línea y de superficie": "🌐",
+  "Ondas electromagnéticas": "📡",
+  "Óptica geométrica y ondulatoria": "🔭",
+  "Dinámica de sistemas de partículas": "🪐",
+  "Cuerpo rígido y oscilaciones": "🌀",
+  "Ecuaciones diferenciales ordinarias": "📉",
+  "Transformada de Laplace": "🔁",
+  "Electrostática": "⚡",
+  "Magnetostática y ecuaciones de Maxwell": "🧲",
+  "Análisis de circuitos resistivos": "🔌",
+  "Régimen senoidal y fasores": "〰️",
+  "Álgebra de Boole y minimización": "🔢",
+  "Circuitos digitales": "🖲️",
+  "Funciones analíticas": "🔷",
+  "Integración compleja": "➰",
+  "Señales continuas y discretas": "📶",
+  "Sistemas lineales e invariantes en el tiempo (LTI)": "🔊",
+  "Sistemas trifásicos": "🔺",
+  "Transformadores": "🔃",
+  "Cálculo numérico aplicado": "💻",
+  "Dispositivos semiconductores": "💎",
+  "Amplificadores": "📢",
+  "Resolución numérica de ecuaciones y sistemas": "🧮",
+  "Integración y ecuaciones diferenciales numéricas": "➗",
+  "Modelado de sistemas dinámicos": "⚙️",
+  "Análisis y diseño de controladores": "🎛️",
+  "Análisis de Fourier": "📊",
+  "Procesos estocásticos": "🎲",
+  "Técnicas de modulación": "📻",
+  "Máquinas de corriente continua": "🔋",
+  "Máquinas de corriente alterna": "🔄",
+  "Instrumentación de medida": "📏",
+  "Arquitectura de microprocesadores": "🖥️",
+  "Programación e interfaces": "🔌",
+  "Conversión DC-DC y AC-DC": "⚡",
+  "Inversores": "🔄",
+  "Análisis de redes de potencia": "🕸️",
+  "Fallas y protecciones": "🛡️",
+  "Diseño de instalaciones de baja tensión": "🏠",
+  "Protecciones en baja tensión": "🛡️",
+  "Arquitectura de redes": "📡",
+  "Nivel de red y transporte": "🔀",
+  "Líneas de transmisión": "🗼",
 };
 
 // Bibliografía real de la cátedra. Por tema: qué libro cubre mejor el
@@ -5795,6 +6284,106 @@ const TEXTOS = {
   "Análisis de cuencas hidrográficas y caudales de diseño": { libro: "Chow, Maidment, Mays -- Hidrología Aplicada", seccion: "capítulo de análisis de cuencas" },
   "Hidrogramas unitarios y tránsito de crecidas": { libro: "Chow, Maidment, Mays -- Hidrología Aplicada", seccion: "capítulo del hidrograma unitario" },
   "Diseño hidrológico de obras de drenaje pluvial": { libro: "Chow, Maidment, Mays -- Hidrología Aplicada", seccion: "capítulo de diseño de drenaje" },
+
+  // ---- Ingeniería Eléctrica ----
+  "Movimiento armónico simple y oscilador amortiguado": { libro: "Serway, Jewett -- Física para Ciencias e Ingeniería", seccion: "capítulo de movimiento oscilatorio" },
+  "Ondas mecánicas: propagación, interferencia y ondas estacionarias": { libro: "Serway, Jewett -- Física para Ciencias e Ingeniería", seccion: "capítulo de ondas mecánicas" },
+  "Temperatura, calor y primer principio de la termodinámica": { libro: "Serway, Jewett -- Física para Ciencias e Ingeniería", seccion: "capítulo de primera ley de la termodinámica" },
+  "Entropía y segundo principio de la termodinámica": { libro: "Serway, Jewett -- Física para Ciencias e Ingeniería", seccion: "capítulo de segunda ley de la termodinámica" },
+  "Gradiente, divergencia y rotor": { libro: "Marsden, Tromba -- Cálculo Vectorial", seccion: "capítulo de campos vectoriales" },
+  "Campos conservativos y funciones potenciales": { libro: "Marsden, Tromba -- Cálculo Vectorial", seccion: "capítulo de integrales de línea" },
+  "Integrales de línea de campos escalares y vectoriales": { libro: "Marsden, Tromba -- Cálculo Vectorial", seccion: "capítulo de integrales de línea" },
+  "Integrales de superficie y flujo de un campo vectorial": { libro: "Marsden, Tromba -- Cálculo Vectorial", seccion: "capítulo de integrales de superficie" },
+  "Teoremas de Green, Stokes y de la divergencia (Gauss)": { libro: "Marsden, Tromba -- Cálculo Vectorial", seccion: "capítulo de los grandes teoremas del cálculo vectorial" },
+  "Ecuación de ondas y espectro electromagnético": { libro: "Hayt, Buck -- Teoría Electromagnética", seccion: "capítulo de ondas electromagnéticas" },
+  "Polarización de ondas electromagnéticas": { libro: "Hayt, Buck -- Teoría Electromagnética", seccion: "capítulo de propagación de ondas planas" },
+  "Reflexión, refracción y lentes delgadas": { libro: "Hecht -- Óptica", seccion: "capítulo de óptica geométrica" },
+  "Interferencia y difracción de la luz": { libro: "Hecht -- Óptica", seccion: "capítulo de interferencia y difracción" },
+  "Centro de masa y movimiento de sistemas de partículas": { libro: "Hibbeler -- Ingeniería Mecánica: Dinámica", seccion: "capítulo de cinética de un sistema de partículas" },
+  "Momento angular y torque en sistemas de partículas": { libro: "Hibbeler -- Ingeniería Mecánica: Dinámica", seccion: "capítulo de impulso y cantidad de movimiento angular" },
+  "Cinemática y dinámica de rotación del cuerpo rígido": { libro: "Hibbeler -- Ingeniería Mecánica: Dinámica", seccion: "capítulo de cinemática plana del cuerpo rígido" },
+  "Momento de inercia y teorema de Steiner": { libro: "Hibbeler -- Ingeniería Mecánica: Dinámica", seccion: "capítulo de cinética plana del cuerpo rígido" },
+  "Osciladores acoplados y modos normales": { libro: "Hibbeler -- Ingeniería Mecánica: Dinámica", seccion: "capítulo de vibraciones mecánicas" },
+  "Ecuaciones lineales de orden superior a coeficientes constantes": { libro: "Zill -- Ecuaciones Diferenciales con Aplicaciones de Modelado", seccion: "capítulo de ecuaciones lineales de orden superior" },
+  "Sistemas de ecuaciones diferenciales lineales": { libro: "Zill -- Ecuaciones Diferenciales con Aplicaciones de Modelado", seccion: "capítulo de sistemas de ecuaciones diferenciales lineales" },
+  "Transformada de Laplace y propiedades": { libro: "Zill -- Ecuaciones Diferenciales con Aplicaciones de Modelado", seccion: "capítulo de la transformada de Laplace" },
+  "Resolución de ecuaciones diferenciales mediante Laplace": { libro: "Zill -- Ecuaciones Diferenciales con Aplicaciones de Modelado", seccion: "capítulo de la transformada de Laplace" },
+  "Ley de Coulomb y campo eléctrico": { libro: "Hayt, Buck -- Teoría Electromagnética", seccion: "capítulo de la ley de Coulomb y la intensidad de campo eléctrico" },
+  "Ley de Gauss y potencial eléctrico": { libro: "Hayt, Buck -- Teoría Electromagnética", seccion: "capítulo de la ley de Gauss y el potencial eléctrico" },
+  "Capacitores y energía electrostática": { libro: "Hayt, Buck -- Teoría Electromagnética", seccion: "capítulo de conductores, dieléctricos y capacitancia" },
+  "Ley de Biot-Savart y ley de Ampère": { libro: "Hayt, Buck -- Teoría Electromagnética", seccion: "capítulo del campo magnético estable" },
+  "Ley de Faraday e inducción electromagnética": { libro: "Hayt, Buck -- Teoría Electromagnética", seccion: "capítulo de campos variables en el tiempo" },
+  "Ecuaciones de Maxwell en forma integral y diferencial": { libro: "Hayt, Buck -- Teoría Electromagnética", seccion: "capítulo de las ecuaciones de Maxwell" },
+  "Leyes de Kirchhoff y métodos de mallas y nodos": { libro: "Nilsson, Riedel -- Circuitos Eléctricos", seccion: "capítulo de técnicas de análisis de circuitos" },
+  "Teoremas de circuitos: superposición, Thévenin y Norton": { libro: "Nilsson, Riedel -- Circuitos Eléctricos", seccion: "capítulo de técnicas de análisis de circuitos" },
+  "Representación fasorial de señales senoidales": { libro: "Nilsson, Riedel -- Circuitos Eléctricos", seccion: "capítulo del régimen senoidal permanente" },
+  "Impedancia, potencia activa, reactiva y aparente": { libro: "Nilsson, Riedel -- Circuitos Eléctricos", seccion: "capítulo de cálculos de potencia en régimen senoidal" },
+  "Circuitos resonantes y respuesta en frecuencia": { libro: "Nilsson, Riedel -- Circuitos Eléctricos", seccion: "capítulo de respuesta en frecuencia" },
+  "Puertas lógicas y álgebra de Boole": { libro: "Mano, Ciletti -- Diseño Digital", seccion: "capítulo de álgebra booleana y puertas lógicas" },
+  "Mapas de Karnaugh y minimización de funciones lógicas": { libro: "Mano, Ciletti -- Diseño Digital", seccion: "capítulo de simplificación de funciones booleanas" },
+  "Circuitos combinacionales: sumadores, multiplexores y decodificadores": { libro: "Mano, Ciletti -- Diseño Digital", seccion: "capítulo de lógica combinacional" },
+  "Circuitos secuenciales: biestables, registros y contadores": { libro: "Mano, Ciletti -- Diseño Digital", seccion: "capítulo de lógica secuencial" },
+  "Funciones holomorfas y ecuaciones de Cauchy-Riemann": { libro: "Churchill, Brown -- Variable Compleja y Aplicaciones", seccion: "capítulo de funciones analíticas" },
+  "Funciones elementales de variable compleja": { libro: "Churchill, Brown -- Variable Compleja y Aplicaciones", seccion: "capítulo de funciones elementales" },
+  "Integral de contorno y teorema de Cauchy": { libro: "Churchill, Brown -- Variable Compleja y Aplicaciones", seccion: "capítulo de integrales" },
+  "Series de Laurent y teorema de los residuos": { libro: "Churchill, Brown -- Variable Compleja y Aplicaciones", seccion: "capítulo de residuos y polos" },
+  "Clasificación de señales y operaciones básicas": { libro: "Oppenheim, Willsky -- Señales y Sistemas", seccion: "capítulo de señales y sistemas" },
+  "Señales periódicas y series de Fourier": { libro: "Oppenheim, Willsky -- Señales y Sistemas", seccion: "capítulo de representación de Fourier para señales periódicas" },
+  "Convolución continua y discreta": { libro: "Oppenheim, Willsky -- Señales y Sistemas", seccion: "capítulo de sistemas lineales invariantes en el tiempo" },
+  "Respuesta en frecuencia y función de transferencia": { libro: "Oppenheim, Willsky -- Señales y Sistemas", seccion: "capítulo de la transformada de Fourier" },
+  "Circuitos trifásicos equilibrados: conexión estrella y triángulo": { libro: "Fitzgerald, Kingsley -- Máquinas Eléctricas", seccion: "capítulo de circuitos trifásicos" },
+  "Potencia en sistemas trifásicos": { libro: "Fitzgerald, Kingsley -- Máquinas Eléctricas", seccion: "capítulo de circuitos trifásicos" },
+  "Principio de funcionamiento del transformador ideal": { libro: "Chapman -- Máquinas Eléctricas", seccion: "capítulo de transformadores" },
+  "Circuito equivalente y ensayos de vacío y cortocircuito": { libro: "Chapman -- Máquinas Eléctricas", seccion: "capítulo de transformadores" },
+  "Programación de scripts para cálculo matricial y simulación": { libro: "Apuntes de cátedra", seccion: "guías de programación científica para ingeniería eléctrica" },
+  "Visualización de datos y resultados de simulación": { libro: "Apuntes de cátedra", seccion: "guías de programación científica para ingeniería eléctrica" },
+  "Diodos: polarización y circuitos rectificadores": { libro: "Sedra, Smith -- Circuitos Microelectrónicos", seccion: "capítulo de diodos" },
+  "Transistor bipolar (BJT): regiones de operación y polarización": { libro: "Sedra, Smith -- Circuitos Microelectrónicos", seccion: "capítulo del transistor bipolar de unión" },
+  "Transistor de efecto de campo (MOSFET): características": { libro: "Sedra, Smith -- Circuitos Microelectrónicos", seccion: "capítulo de transistores de efecto de campo" },
+  "Amplificadores operacionales: configuraciones básicas": { libro: "Sedra, Smith -- Circuitos Microelectrónicos", seccion: "capítulo del amplificador operacional" },
+  "Amplificadores a transistores: ganancia y punto de operación": { libro: "Sedra, Smith -- Circuitos Microelectrónicos", seccion: "capítulo de amplificadores con transistores" },
+  "Métodos de bisección, Newton-Raphson y punto fijo": { libro: "Chapra, Canale -- Métodos Numéricos para Ingenieros", seccion: "capítulo de raíces de ecuaciones" },
+  "Resolución numérica de sistemas de ecuaciones lineales": { libro: "Chapra, Canale -- Métodos Numéricos para Ingenieros", seccion: "capítulo de sistemas de ecuaciones lineales" },
+  "Cuadratura numérica: trapecios y Simpson": { libro: "Chapra, Canale -- Métodos Numéricos para Ingenieros", seccion: "capítulo de integración numérica" },
+  "Métodos de Euler y Runge-Kutta para EDO": { libro: "Chapra, Canale -- Métodos Numéricos para Ingenieros", seccion: "capítulo de métodos de un paso para EDO" },
+  "Función de transferencia y diagramas de bloques": { libro: "Ogata -- Ingeniería de Control Moderna", seccion: "capítulo de modelado matemático de sistemas de control" },
+  "Representación en espacio de estados": { libro: "Ogata -- Ingeniería de Control Moderna", seccion: "capítulo de análisis en el espacio de estados" },
+  "Estabilidad: criterio de Routh-Hurwitz y lugar de las raíces": { libro: "Ogata -- Ingeniería de Control Moderna", seccion: "capítulo de análisis de estabilidad y lugar de las raíces" },
+  "Controladores PID y sintonización": { libro: "Ogata -- Ingeniería de Control Moderna", seccion: "capítulo de acciones básicas de control y controladores PID" },
+  "Serie de Fourier: coeficientes y convergencia": { libro: "Oppenheim, Willsky -- Señales y Sistemas", seccion: "capítulo de representación de Fourier para señales periódicas" },
+  "Transformada de Fourier y propiedades": { libro: "Oppenheim, Willsky -- Señales y Sistemas", seccion: "capítulo de la transformada de Fourier" },
+  "Procesos aleatorios: estacionariedad y ergodicidad": { libro: "Haykin -- Sistemas de Comunicación", seccion: "capítulo de procesos aleatorios" },
+  "Densidad espectral de potencia y ruido": { libro: "Haykin -- Sistemas de Comunicación", seccion: "capítulo de ruido en sistemas de comunicación" },
+  "Modulación de amplitud (AM) y de frecuencia (FM)": { libro: "Haykin -- Sistemas de Comunicación", seccion: "capítulo de modulación de amplitud y de modulación angular" },
+  "Relación señal a ruido en sistemas de modulación": { libro: "Haykin -- Sistemas de Comunicación", seccion: "capítulo de desempeño de sistemas de modulación en presencia de ruido" },
+  "Principio de funcionamiento del motor y generador de CC": { libro: "Chapman -- Máquinas Eléctricas", seccion: "capítulo de máquinas de corriente continua" },
+  "Circuito equivalente y curvas características": { libro: "Chapman -- Máquinas Eléctricas", seccion: "capítulo de máquinas de corriente continua" },
+  "Campo magnético rotante y motor de inducción": { libro: "Chapman -- Máquinas Eléctricas", seccion: "capítulo de motores de inducción" },
+  "Máquina síncrona: funcionamiento como generador y motor": { libro: "Chapman -- Máquinas Eléctricas", seccion: "capítulo de generadores y motores síncronos" },
+  "Instrumentos analógicos y digitales de medida eléctrica": { libro: "Sawhney -- A Course in Electrical and Electronic Measurements and Instrumentation", seccion: "capítulo de instrumentos de medida" },
+  "Errores de medición e incertidumbre": { libro: "Sawhney -- A Course in Electrical and Electronic Measurements and Instrumentation", seccion: "capítulo de errores en las medidas" },
+  "Organización interna: CPU, memoria y buses": { libro: "Hall -- Microprocesadores y Microcontroladores", seccion: "capítulo de arquitectura de microprocesadores" },
+  "Ciclo de instrucción y modos de direccionamiento": { libro: "Hall -- Microprocesadores y Microcontroladores", seccion: "capítulo de organización del procesador" },
+  "Programación en lenguaje ensamblador": { libro: "Hall -- Microprocesadores y Microcontroladores", seccion: "capítulo de programación en lenguaje ensamblador" },
+  "Interrupciones y periféricos de entrada/salida": { libro: "Hall -- Microprocesadores y Microcontroladores", seccion: "capítulo de entrada/salida e interrupciones" },
+  "Rectificadores no controlados y controlados": { libro: "Mohan, Undeland, Robbins -- Electrónica de Potencia", seccion: "capítulo de rectificadores" },
+  "Convertidores DC-DC: reductor, elevador y reductor-elevador": { libro: "Mohan, Undeland, Robbins -- Electrónica de Potencia", seccion: "capítulo de convertidores DC-DC" },
+  "Inversores monofásicos y trifásicos": { libro: "Mohan, Undeland, Robbins -- Electrónica de Potencia", seccion: "capítulo de inversores" },
+  "Modulación por ancho de pulso (PWM)": { libro: "Mohan, Undeland, Robbins -- Electrónica de Potencia", seccion: "capítulo de inversores" },
+  "Modelado de líneas, transformadores y cargas en por unidad": { libro: "Glover, Sarma -- Sistemas de Potencia: Análisis y Diseño", seccion: "capítulo del sistema en por unidad" },
+  "Flujo de cargas: métodos de Gauss-Seidel y Newton-Raphson": { libro: "Glover, Sarma -- Sistemas de Potencia: Análisis y Diseño", seccion: "capítulo de flujo de potencia" },
+  "Análisis de cortocircuito simétrico y asimétrico": { libro: "Glover, Sarma -- Sistemas de Potencia: Análisis y Diseño", seccion: "capítulo de fallas simétricas y asimétricas" },
+  "Coordinación de protecciones eléctricas": { libro: "Glover, Sarma -- Sistemas de Potencia: Análisis y Diseño", seccion: "capítulo de protección de sistemas de potencia" },
+  "Normativa y reglamentación de instalaciones eléctricas": { libro: "Enríquez Harper -- El ABC de las Instalaciones Eléctricas", seccion: "capítulo de normativa de instalaciones" },
+  "Cálculo de cargas y dimensionado de conductores": { libro: "Enríquez Harper -- El ABC de las Instalaciones Eléctricas", seccion: "capítulo de cálculo de cargas y conductores" },
+  "Selección de protecciones termomagnéticas y diferenciales": { libro: "Enríquez Harper -- El ABC de las Instalaciones Eléctricas", seccion: "capítulo de protecciones eléctricas" },
+  "Puesta a tierra y seguridad eléctrica": { libro: "Enríquez Harper -- El ABC de las Instalaciones Eléctricas", seccion: "capítulo de puesta a tierra" },
+  "Modelo de capas OSI y TCP/IP": { libro: "Tanenbaum, Wetherall -- Redes de Computadoras", seccion: "capítulo de la arquitectura de redes en capas" },
+  "Protocolos de nivel de enlace y direccionamiento": { libro: "Tanenbaum, Wetherall -- Redes de Computadoras", seccion: "capítulo de la subcapa de acceso al medio" },
+  "Enrutamiento y protocolo IP": { libro: "Tanenbaum, Wetherall -- Redes de Computadoras", seccion: "capítulo de la capa de red" },
+  "Protocolos de transporte: TCP y UDP": { libro: "Tanenbaum, Wetherall -- Redes de Computadoras", seccion: "capítulo de la capa de transporte" },
+  "Parámetros eléctricos de líneas de transmisión (R, L, C)": { libro: "Glover, Sarma -- Sistemas de Potencia: Análisis y Diseño", seccion: "capítulo de parámetros de líneas de transmisión" },
+  "Modelos de línea corta, media y larga": { libro: "Glover, Sarma -- Sistemas de Potencia: Análisis y Diseño", seccion: "capítulo del modelado de líneas de transmisión en estado estacionario" },
 };
 
 // ---- Estado de la materia/examen que se está EDITANDO (pantallas 1-3: elegir
@@ -7678,6 +8267,106 @@ const DURACIONES = {
   "Análisis de cuencas hidrográficas y caudales de diseño": 2,
   "Hidrogramas unitarios y tránsito de crecidas": 2,
   "Diseño hidrológico de obras de drenaje pluvial": 2,
+
+  // ---- Ingeniería Eléctrica ----
+  "Movimiento armónico simple y oscilador amortiguado": 1,
+  "Ondas mecánicas: propagación, interferencia y ondas estacionarias": 2,
+  "Temperatura, calor y primer principio de la termodinámica": 1,
+  "Entropía y segundo principio de la termodinámica": 1,
+  "Gradiente, divergencia y rotor": 2,
+  "Campos conservativos y funciones potenciales": 1,
+  "Integrales de línea de campos escalares y vectoriales": 2,
+  "Integrales de superficie y flujo de un campo vectorial": 2,
+  "Teoremas de Green, Stokes y de la divergencia (Gauss)": 2,
+  "Ecuación de ondas y espectro electromagnético": 1,
+  "Polarización de ondas electromagnéticas": 1,
+  "Reflexión, refracción y lentes delgadas": 1,
+  "Interferencia y difracción de la luz": 1,
+  "Centro de masa y movimiento de sistemas de partículas": 1,
+  "Momento angular y torque en sistemas de partículas": 2,
+  "Cinemática y dinámica de rotación del cuerpo rígido": 2,
+  "Momento de inercia y teorema de Steiner": 1,
+  "Osciladores acoplados y modos normales": 2,
+  "Ecuaciones lineales de orden superior a coeficientes constantes": 2,
+  "Sistemas de ecuaciones diferenciales lineales": 2,
+  "Transformada de Laplace y propiedades": 2,
+  "Resolución de ecuaciones diferenciales mediante Laplace": 2,
+  "Ley de Coulomb y campo eléctrico": 1,
+  "Ley de Gauss y potencial eléctrico": 2,
+  "Capacitores y energía electrostática": 1,
+  "Ley de Biot-Savart y ley de Ampère": 2,
+  "Ley de Faraday e inducción electromagnética": 2,
+  "Ecuaciones de Maxwell en forma integral y diferencial": 3,
+  "Leyes de Kirchhoff y métodos de mallas y nodos": 2,
+  "Teoremas de circuitos: superposición, Thévenin y Norton": 2,
+  "Representación fasorial de señales senoidales": 1,
+  "Impedancia, potencia activa, reactiva y aparente": 2,
+  "Circuitos resonantes y respuesta en frecuencia": 2,
+  "Puertas lógicas y álgebra de Boole": 1,
+  "Mapas de Karnaugh y minimización de funciones lógicas": 2,
+  "Circuitos combinacionales: sumadores, multiplexores y decodificadores": 2,
+  "Circuitos secuenciales: biestables, registros y contadores": 2,
+  "Funciones holomorfas y ecuaciones de Cauchy-Riemann": 2,
+  "Funciones elementales de variable compleja": 1,
+  "Integral de contorno y teorema de Cauchy": 2,
+  "Series de Laurent y teorema de los residuos": 2,
+  "Clasificación de señales y operaciones básicas": 1,
+  "Señales periódicas y series de Fourier": 2,
+  "Convolución continua y discreta": 2,
+  "Respuesta en frecuencia y función de transferencia": 2,
+  "Circuitos trifásicos equilibrados: conexión estrella y triángulo": 1,
+  "Potencia en sistemas trifásicos": 1,
+  "Principio de funcionamiento del transformador ideal": 1,
+  "Circuito equivalente y ensayos de vacío y cortocircuito": 2,
+  "Programación de scripts para cálculo matricial y simulación": 1,
+  "Visualización de datos y resultados de simulación": 1,
+  "Diodos: polarización y circuitos rectificadores": 1,
+  "Transistor bipolar (BJT): regiones de operación y polarización": 2,
+  "Transistor de efecto de campo (MOSFET): características": 2,
+  "Amplificadores operacionales: configuraciones básicas": 1,
+  "Amplificadores a transistores: ganancia y punto de operación": 2,
+  "Métodos de bisección, Newton-Raphson y punto fijo": 1,
+  "Resolución numérica de sistemas de ecuaciones lineales": 1,
+  "Cuadratura numérica: trapecios y Simpson": 1,
+  "Métodos de Euler y Runge-Kutta para EDO": 2,
+  "Función de transferencia y diagramas de bloques": 1,
+  "Representación en espacio de estados": 2,
+  "Estabilidad: criterio de Routh-Hurwitz y lugar de las raíces": 2,
+  "Controladores PID y sintonización": 1,
+  "Serie de Fourier: coeficientes y convergencia": 1,
+  "Transformada de Fourier y propiedades": 2,
+  "Procesos aleatorios: estacionariedad y ergodicidad": 2,
+  "Densidad espectral de potencia y ruido": 1,
+  "Modulación de amplitud (AM) y de frecuencia (FM)": 1,
+  "Relación señal a ruido en sistemas de modulación": 1,
+  "Principio de funcionamiento del motor y generador de CC": 1,
+  "Circuito equivalente y curvas características": 1,
+  "Campo magnético rotante y motor de inducción": 2,
+  "Máquina síncrona: funcionamiento como generador y motor": 2,
+  "Instrumentos analógicos y digitales de medida eléctrica": 1,
+  "Errores de medición e incertidumbre": 1,
+  "Organización interna: CPU, memoria y buses": 1,
+  "Ciclo de instrucción y modos de direccionamiento": 1,
+  "Programación en lenguaje ensamblador": 2,
+  "Interrupciones y periféricos de entrada/salida": 1,
+  "Rectificadores no controlados y controlados": 1,
+  "Convertidores DC-DC: reductor, elevador y reductor-elevador": 2,
+  "Inversores monofásicos y trifásicos": 1,
+  "Modulación por ancho de pulso (PWM)": 1,
+  "Modelado de líneas, transformadores y cargas en por unidad": 1,
+  "Flujo de cargas: métodos de Gauss-Seidel y Newton-Raphson": 2,
+  "Análisis de cortocircuito simétrico y asimétrico": 2,
+  "Coordinación de protecciones eléctricas": 1,
+  "Normativa y reglamentación de instalaciones eléctricas": 1,
+  "Cálculo de cargas y dimensionado de conductores": 1,
+  "Selección de protecciones termomagnéticas y diferenciales": 1,
+  "Puesta a tierra y seguridad eléctrica": 1,
+  "Modelo de capas OSI y TCP/IP": 1,
+  "Protocolos de nivel de enlace y direccionamiento": 1,
+  "Enrutamiento y protocolo IP": 1,
+  "Protocolos de transporte: TCP y UDP": 1,
+  "Parámetros eléctricos de líneas de transmisión (R, L, C)": 1,
+  "Modelos de línea corta, media y larga": 1,
 };
 // e permite sumar los días extra que el estudiante pidió vía el check-in
 // adaptativo ("seguir con este tema") -- ver resolverCheckin().
