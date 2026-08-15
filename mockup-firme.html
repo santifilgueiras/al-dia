@@ -1573,6 +1573,11 @@
 </style>
   <!-- supabase-js servido por nosotros mismos (server.js), no un CDN externo -->
   <script src="/vendor/supabase.js"></script>
+  <!-- Motor de repaso espaciado (addDays/duracionDe/calcularRitmoDe/
+       proximoFechaRepaso) -- separado a un archivo propio para poder
+       testearlo desde Node (ver test/scheduling.test.js). Va ANTES del
+       script principal porque ese lo usa como si fueran funciones propias. -->
+  <script src="/lib/scheduling.js"></script>
 </head>
 <body>
 
@@ -3284,11 +3289,8 @@ function ordenPointerUp(e) {
   renderOrden();
 }
 
-function addDays(date, n) {
-  const d = new Date(date);
-  d.setDate(d.getDate() + n);
-  return d;
-}
+// addDays vive en lib/scheduling.js (cargado como <script> antes que este
+// bloque, ver el <head>) -- se movió para poder testearlo desde Node.
 function fmt(d) {
   return d.toISOString().slice(0,10);
 }
@@ -3325,13 +3327,8 @@ function diasHastaExamen() {
 // estimación real basada en cuánto contenido efectivo tiene cada tema, en
 // vez de una estimación mía.
 
-// e permite sumar los días extra que el estudiante pidió vía el check-in
-// adaptativo ("seguir con este tema") -- ver resolverCheckin().
-function duracionDe(tema, e) {
-  const base = DURACIONES[tema] || 1; // 1 día default para temas propios, sin dato
-  const extra = (e && e.extraDias && e.extraDias[tema]) || 0;
-  return base + extra;
-}
+// duracionDe (con el check-in adaptativo -- e.extraDias, ver
+// resolverCheckin()) vive en lib/scheduling.js junto con addDays.
 
 // Estimación de minutos de estudio/repaso para un tema, para la pantalla
 // "Hoy" -- no hay un dato real de minutos en ningún lado (DURACIONES son
@@ -3354,19 +3351,10 @@ function diasHasta(fechaISO) {
 // materia sola (no cuántos por día en total, porque un tema puede ocupar
 // varios días). El mínimo se calcula sobre el total de días de estudio que
 // suman todos los temas, no sobre la cantidad de temas -- así un tema denso
-// "pesa" lo que realmente pesa. calcularRitmoDe() es la versión reutilizable
-// (recibe temas/fecha en vez de leer la pantalla) que usa tanto la pantalla
-// de "Ajustar ritmo" de una materia como el armado del calendario global.
-function diasUtilesEntre(examDate, today) {
-  const dias = Math.max(1, Math.round((examDate - today) / 86400000) + 1); // incluye hoy
-  return Math.max(1, dias - 1); // el último día se reserva para repaso final
-}
-function calcularRitmoDe(temas, examDate, today) {
-  const diasUtiles = diasUtilesEntre(examDate, today);
-  const totalDuracion = temas.reduce((s, t) => s + duracionDe(t), 0);
-  const minPace = Math.max(1, Math.ceil(totalDuracion / diasUtiles));
-  return { diasUtiles, totalDuracion, minPace };
-}
+// "pesa" lo que realmente pesa. calcularRitmoDe() (en lib/scheduling.js,
+// junto con diasUtilesEntre) es la versión reutilizable que usa tanto la
+// pantalla de "Ajustar ritmo" de una materia como el armado del calendario
+// global.
 function calcularRitmo() {
   const { examDate, today, dias } = diasHastaExamen();
   const r = calcularRitmoDe(selected, examDate, today);
@@ -3418,28 +3406,9 @@ function renderRitmo() {
   btn.disabled = false;
 }
 
-// Intervalos del repaso espaciado, en días desde el ÚLTIMO repaso real (no
-// desde una fecha fija). idx 0 = primer repaso (2 días), y cada vez que se
-// marca "firme" se avanza un escalón (más espaciado); "flojo" siempre
-// vuelve al escalón 0. Se usa tanto para inicializar el primer repaso de un
-// tema como para recalcularlo dinámicamente en marcar().
-const INTERVALOS_REPASO = [2, 5, 10, 20];
-
-// Nunca deja que un intervalo de repaso supere ~1/3 de los días que quedan
-// hasta el examen -- si no, para exámenes lejanos el intervalo máximo (20
-// días) puede dejar tramos larguísimos sin nada agendado, que es justo lo
-// que no queremos: sensación de "no hago nada durante semanas". Con esto la
-// frecuencia de repaso aumenta sola a medida que se acerca la fecha, como
-// estudiaría alguien de verdad, en vez de quedar fija en 20 aunque falten
-// dos meses.
-function proximoFechaRepaso(e, idx, desde) {
-  const base = INTERVALOS_REPASO[idx];
-  if (!e.fecha) return addDays(desde, base);
-  const examDate = new Date(e.fecha + 'T00:00:00');
-  const diasRestantes = Math.max(1, Math.round((examDate - desde) / 86400000));
-  const maxPermitido = Math.max(2, Math.floor(diasRestantes / 3));
-  return addDays(desde, Math.min(base, maxPermitido));
-}
+// INTERVALOS_REPASO y proximoFechaRepaso (el algoritmo de repaso espaciado
+// en sí, con el clamp de ~1/3 del tiempo restante hasta el examen) también
+// viven en lib/scheduling.js junto con addDays/duracionDe/calcularRitmoDe.
 
 // ---- Armado del calendario GLOBAL ----
 // construirSchedulePara() arma el calendario de UNA materia en dos fases:
