@@ -1127,7 +1127,7 @@
   .cal-cell.has-atrasado .cal-tema { color: var(--atrasado); }
   .cal-cell .cal-more { font-size: 7px; color: var(--muted); font-weight: 700; margin-top: 1px; }
   .cal-agenda-head { font-size: 12px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; margin: 16px 0 8px; }
-  .cal-agenda-hint { color: var(--muted); font-size: 12px; text-align: center; margin: 10px 0 0; }
+  .cal-agenda-hint { color: var(--ink); font-weight: 600; font-size: 14.5px; text-align: center; margin: 14px 0 0; padding: 10px 14px; background: var(--nuevo-soft); border-radius: 12px; }
   .cal-exam-caption { color: var(--muted); font-size: 11.5px; text-align: center; margin-top: 10px; }
   @media (min-width: 860px) {
     /* En compu sobra ancho -- separadas y con más aire adentro que en
@@ -2904,7 +2904,22 @@ function toggleMenu(show) {
   document.getElementById('navOverlay').classList.toggle('show', show);
 }
 
-function go(n) {
+// Historial real del navegador para la navegación entre pantallas: antes
+// go() nunca tocaba history, así que "atrás" del navegador (o el gesto de
+// deslizar desde el borde en iOS) no tenía ninguna pantalla propia a la que
+// volver -- saltaba directo al ÚNICO documento anterior real (landing.html
+// o la pantalla de login), sin importar cuántas pantallas se hubieran
+// visitado adentro de la app. Reportado por Santiago: solo la flechita ←
+// de cada pantalla volvía bien, el botón atrás del navegador no.
+// historialListo evita pushear una entrada extra en el primerísimo go() de
+// la sesión (reemplaza la entrada que ya puso el navegador al cargar la
+// página, en vez de sumar una al lado) -- de ahí en más cada go() suma una
+// entrada nueva. sinHistorial es exclusivo de manejarPopstate: cuando el
+// usuario ya apretó atrás, el navegador YA movió su propio historial solo,
+// así que ese go() vuelve a pintar la pantalla sin tocar el historial de nuevo.
+let historialListo = false;
+function go(n, opts) {
+  const sinHistorial = !!(opts && opts.sinHistorial);
   const aplicarPantalla = () => {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.querySelector(`.screen[data-screen="${n}"]`).classList.add('active');
@@ -2939,8 +2954,22 @@ function go(n) {
   } else {
     aplicarPantalla();
   }
+  if (!sinHistorial) {
+    if (!historialListo) { history.replaceState({ screen: n }, '', location.pathname); historialListo = true; }
+    else history.pushState({ screen: n }, '', location.pathname);
+  }
 }
 const PANTALLAS_CON_REBOTE = [0, 11];
+
+// Atrás/adelante del navegador (o el gesto de deslizar en iOS) dispara esto
+// -- el navegador YA movió su historial solo, acá solo hay que pintar la
+// pantalla que corresponde. Si el estado no tiene un número de pantalla
+// (entradas de antes de este cambio, o la entrada original sin tocar antes
+// del primer go()) no hay nada que hacer, se deja que el navegador siga de
+// largo con su comportamiento normal.
+window.addEventListener('popstate', (e) => {
+  if (e.state && typeof e.state.screen === 'number') go(e.state.screen, { sinHistorial: true });
+});
 
 // Menú lateral de compu (ver CSS .side-nav): se muestra en vez del
 // bottom-nav en pantallas anchas, solo en las mismas pantallas donde el
