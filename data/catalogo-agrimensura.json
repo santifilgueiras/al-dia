@@ -1,0 +1,557 @@
+{
+  "1": [
+    {
+      "nombre": "Cálculo Diferencial e Integral en Una Variable",
+      "modulos": [
+        {
+          "modulo": "Números reales y funciones",
+          "temas": [
+            "Axioma de completitud y supremo de un conjunto",
+            "Funciones reales: inyectividad, sobreyectividad y monotonía",
+            "Trigonometría: círculo trigonométrico y funciones inversas"
+          ]
+        },
+        {
+          "modulo": "Límites y continuidad",
+          "temas": [
+            "Definición de límite y álgebra de límites",
+            "Continuidad y teorema de Bolzano",
+            "Teorema de Weierstrass y extremos globales"
+          ]
+        },
+        {
+          "modulo": "Derivadas",
+          "temas": [
+            "Definición de derivada y regla de la cadena",
+            "Teoremas de Rolle, Lagrange y Cauchy",
+            "Derivadas, crecimiento y concavidad",
+            "Regla de L'Hôpital"
+          ]
+        },
+        {
+          "modulo": "Integrales y desarrollo de Taylor",
+          "temas": [
+            "Integral de Riemann mediante sumas superiores e inferiores",
+            "Teorema fundamental del cálculo y regla de Barrow",
+            "Técnicas de integración: partes, sustitución y fracciones simples",
+            "Polinomio de Taylor y estimación del error"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Geometría y Álgebra Lineal 1",
+      "modulos": [
+        {
+          "modulo": "Sistemas de ecuaciones y matrices",
+          "temas": [
+            "Eliminación de Gauss y sistemas de ecuaciones lineales",
+            "Rango de una matriz y teorema de Rouché-Frobenius",
+            "Álgebra de matrices: suma, producto e inversa"
+          ]
+        },
+        {
+          "modulo": "Determinantes",
+          "temas": [
+            "Determinantes de orden 2 y 3 y definición inductiva",
+            "Propiedades del determinante y matrices elementales",
+            "Regla de Cramer y cálculo del rango por determinantes"
+          ]
+        },
+        {
+          "modulo": "Geometría del espacio",
+          "temas": [
+            "Rectas y planos en el espacio",
+            "Producto escalar: ángulos y distancias",
+            "Producto vectorial: áreas y volúmenes"
+          ]
+        },
+        {
+          "modulo": "Espacios vectoriales y transformaciones lineales",
+          "temas": [
+            "Espacios y subespacios vectoriales",
+            "Generadores, independencia lineal, base y dimensión",
+            "Cambio de base de un espacio vectorial",
+            "Núcleo e imagen de una transformación lineal",
+            "Matriz asociada a una transformación lineal"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Física 1 (Mecánica)",
+      "modulos": [
+        {
+          "modulo": "Cinemática y dinámica de partículas",
+          "temas": [
+            "Cinemática: posición, velocidad y aceleración",
+            "Leyes de Newton y diagramas de cuerpo libre"
+          ]
+        },
+        {
+          "modulo": "Trabajo, energía y sistemas de partículas",
+          "temas": [
+            "Trabajo, energía cinética y potencial, conservación de energía",
+            "Momento lineal, impulso y colisiones"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Teoría Instrumental",
+      "modulos": [
+        {
+          "modulo": "Instrumentos topográficos",
+          "temas": [
+            "Instrumentos de medición angular y de distancias: teodolito y estación total",
+            "Nivelación y equipos de nivel"
+          ]
+        }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "nombre": "Cálculo Diferencial e Integral en Varias Variables",
+      "modulos": [
+        {
+          "modulo": "Sucesiones, series e integrales impropias",
+          "temas": [
+            "Sucesiones: límite, monotonía, acotación y subsucesiones",
+            "Series numéricas y criterios de convergencia",
+            "Convergencia condicional y absoluta",
+            "Integrales impropias y criterio serie-integral"
+          ]
+        },
+        {
+          "modulo": "Topología y continuidad en Rⁿ",
+          "temas": [
+            "Normas y conjuntos abiertos y cerrados en Rⁿ",
+            "Sucesiones en Rⁿ y caracterización de conjuntos compactos",
+            "Límites y continuidad de funciones de varias variables"
+          ]
+        },
+        {
+          "modulo": "Diferenciabilidad e integrales múltiples",
+          "temas": [
+            "Derivadas parciales y derivadas direccionales",
+            "Diferenciabilidad y plano tangente",
+            "Diferencial de la función compuesta",
+            "Integrales dobles y triples: teorema de Fubini",
+            "Teorema de cambio de variables: coordenadas polares, cilíndricas y esféricas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Geometría y Álgebra Lineal 2",
+      "modulos": [
+        {
+          "modulo": "Valores y vectores propios",
+          "temas": [
+            "Valores y vectores propios, polinomio característico",
+            "Diagonalización de matrices",
+            "Multiplicidades algebraica y geométrica; teorema de Gershgorin"
+          ]
+        },
+        {
+          "modulo": "Formas canónicas",
+          "temas": [
+            "Forma canónica de Jordan",
+            "Matrices semejantes y cambio de base para operadores"
+          ]
+        },
+        {
+          "modulo": "Producto interno y ortogonalidad",
+          "temas": [
+            "Producto interno y norma en un espacio vectorial",
+            "Ortogonalidad, ortonormalidad y proceso de Gram-Schmidt",
+            "Descomposición QR",
+            "Complemento ortogonal y proyección ortogonal",
+            "Aproximación por mínimos cuadrados"
+          ]
+        },
+        {
+          "modulo": "Transformaciones adjuntas e isometrías",
+          "temas": [
+            "Teorema de representación de Riesz y transformación adjunta",
+            "Operadores autoadjuntos y teorema espectral",
+            "Isometrías lineales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Física 2 (Oscilaciones, Ondas y Termodinámica)",
+      "modulos": [
+        {
+          "modulo": "Oscilaciones y ondas mecánicas",
+          "temas": [
+            "Movimiento armónico simple y oscilador amortiguado",
+            "Ondas mecánicas: propagación, interferencia y ondas estacionarias"
+          ]
+        },
+        {
+          "modulo": "Termodinámica",
+          "temas": [
+            "Temperatura, calor y primer principio de la termodinámica",
+            "Entropía y segundo principio de la termodinámica"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Computación 1",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la programación imperativa",
+          "temas": [
+            "Modelo de computación y concepto de algoritmo",
+            "Sintaxis y semántica de un lenguaje de programación",
+            "Compilación, ejecución y tipos de errores",
+            "Identificadores, variables, constantes y expresiones"
+          ]
+        },
+        {
+          "modulo": "Estructuras de control",
+          "temas": [
+            "Estructuras de selección",
+            "Estructuras de iteración",
+            "Recursión: diseño de algoritmos recursivos simples"
+          ]
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "nombre": "Cálculo Vectorial",
+      "modulos": [
+        {
+          "modulo": "Campos escalares y vectoriales",
+          "temas": [
+            "Gradiente, divergencia y rotor",
+            "Campos conservativos y funciones potenciales"
+          ]
+        },
+        {
+          "modulo": "Integrales de línea y de superficie",
+          "temas": [
+            "Integrales de línea de campos escalares y vectoriales",
+            "Integrales de superficie y flujo de un campo vectorial",
+            "Teoremas de Green, Stokes y de la divergencia (Gauss)"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Probabilidad y Estadística",
+      "modulos": [
+        {
+          "modulo": "Probabilidad básica",
+          "temas": [
+            "Espacios de probabilidad y probabilidad condicional",
+            "Variables aleatorias discretas y continuas",
+            "Distribuciones de probabilidad clásicas (binomial, Poisson, normal, exponencial)",
+            "Esperanza, varianza y funciones generadoras"
+          ]
+        },
+        {
+          "modulo": "Vectores aleatorios y teoremas límite",
+          "temas": [
+            "Vectores aleatorios y distribuciones conjuntas",
+            "Covarianza y correlación",
+            "Ley de los grandes números",
+            "Teorema central del límite"
+          ]
+        },
+        {
+          "modulo": "Estadística descriptiva e inferencial",
+          "temas": [
+            "Estadística descriptiva y análisis exploratorio de datos",
+            "Estimación puntual y por intervalos de confianza",
+            "Contraste de hipótesis",
+            "Regresión lineal simple y múltiple"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Física 3 (Ondas y Óptica)",
+      "modulos": [
+        {
+          "modulo": "Ondas electromagnéticas",
+          "temas": [
+            "Ecuación de ondas y espectro electromagnético",
+            "Polarización de ondas electromagnéticas"
+          ]
+        },
+        {
+          "modulo": "Óptica geométrica y ondulatoria",
+          "temas": [
+            "Reflexión, refracción y lentes delgadas",
+            "Interferencia y difracción de la luz"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Teoría de Errores 1",
+      "modulos": [
+        {
+          "modulo": "Teoría de errores y ajuste de observaciones",
+          "temas": [
+            "Propagación de errores y precisión de las mediciones",
+            "Ajuste de observaciones por mínimos cuadrados"
+          ]
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "nombre": "Introducción al Derecho",
+      "modulos": [
+        {
+          "modulo": "Fundamentos jurídicos",
+          "temas": [
+            "Nociones de derecho civil y derecho de propiedad",
+            "El agrimensor como profesional universitario: ética y responsabilidad legal"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Sistemas de Referencia",
+      "modulos": [
+        {
+          "modulo": "Sistemas de referencia geodésicos",
+          "temas": [
+            "Elipsoide de referencia y sistemas de coordenadas geodésicas",
+            "Sistemas de referencia terrestres y datums (WGS84, SIRGAS)"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Astronomía Geodésica",
+      "modulos": [
+        {
+          "modulo": "Astronomía de posición",
+          "temas": [
+            "Sistemas de coordenadas astronómicas y tiempo sidéreo",
+            "Determinación astronómica de posición y azimut"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Física Experimental 2",
+      "modulos": []
+    }
+  ],
+  "5": [
+    {
+      "nombre": "Topografía 1",
+      "modulos": [
+        {
+          "modulo": "Medición y levantamiento topográfico",
+          "temas": [
+            "Medición de ángulos y distancias en el terreno",
+            "Poligonales topográficas y cálculo de coordenadas"
+          ]
+        },
+        {
+          "modulo": "Nivelación",
+          "temas": [
+            "Nivelación geométrica y trigonométrica"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Geodesia 1",
+      "modulos": [
+        {
+          "modulo": "Geodesia geométrica",
+          "temas": [
+            "Forma de la Tierra: geoide y elipsoide de referencia",
+            "Cálculo geodésico sobre el elipsoide"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Economía",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de economía",
+          "temas": [
+            "Principios de economía política aplicados a la valuación de bienes"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Elementos de Geología",
+      "modulos": [
+        {
+          "modulo": "Geología aplicada",
+          "temas": [
+            "Formación y clasificación de rocas y suelos",
+            "Geología aplicada a obras de agrimensura"
+          ]
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "nombre": "Topografía 2",
+      "modulos": [
+        {
+          "modulo": "Levantamientos avanzados",
+          "temas": [
+            "Levantamientos con GNSS/GPS diferencial",
+            "Replanteo de obras y control topográfico"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Geodesia 2",
+      "modulos": [
+        {
+          "modulo": "Geodesia física y satelital",
+          "temas": [
+            "Campo gravitatorio terrestre y geoide gravimétrico",
+            "Posicionamiento satelital y redes geodésicas GNSS"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Cartografía",
+      "modulos": [
+        {
+          "modulo": "Proyecciones y representación cartográfica",
+          "temas": [
+            "Sistemas de proyección cartográfica y sus deformaciones",
+            "Elaboración de planos y mapas topográficos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Elementos de Hidrología",
+      "modulos": [
+        {
+          "modulo": "Hidrología aplicada",
+          "temas": [
+            "Ciclo hidrológico y cuencas hidrográficas",
+            "Delimitación de cursos de agua y su relevancia catastral"
+          ]
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "nombre": "Topografía 3",
+      "modulos": [
+        {
+          "modulo": "Aplicaciones especiales de topografía",
+          "temas": [
+            "Topografía de obras lineales: caminos y canales",
+            "Deformaciones y monitoreo de estructuras (auscultación)"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Fotogrametría y Percepción Remota",
+      "modulos": [
+        {
+          "modulo": "Fotogrametría",
+          "temas": [
+            "Principios de fotogrametría y restitución fotogramétrica",
+            "Fotointerpretación y ortofotos"
+          ]
+        },
+        {
+          "modulo": "Percepción remota",
+          "temas": [
+            "Sensores remotos y clasificación de imágenes satelitales",
+            "Sistemas de información geográfica (SIG) aplicados a agrimensura"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Catastro",
+      "modulos": [
+        {
+          "modulo": "Catastro",
+          "temas": [
+            "Catastro territorial: objetivos y organización en Uruguay",
+            "Deslinde, mensura y amojonamiento de parcelas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Agrimensura Legal 1",
+      "modulos": [
+        {
+          "modulo": "Régimen legal de la propiedad",
+          "temas": [
+            "Régimen de la propiedad inmueble y derechos reales",
+            "Servidumbres y limitaciones al dominio"
+          ]
+        }
+      ]
+    }
+  ],
+  "8": [
+    {
+      "nombre": "Avaluaciones",
+      "modulos": [
+        {
+          "modulo": "Tasación de inmuebles",
+          "temas": [
+            "Métodos de valuación de inmuebles urbanos y rurales",
+            "Valuación catastral y peritajes judiciales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Agrimensura Legal 2",
+      "modulos": [
+        {
+          "modulo": "Fraccionamientos y regularización",
+          "temas": [
+            "Fraccionamientos urbanos y rurales: normativa aplicable",
+            "Propiedad horizontal y regularización de la tenencia de la tierra"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Planificación",
+      "modulos": [
+        {
+          "modulo": "Planificación territorial",
+          "temas": [
+            "Ordenamiento territorial y uso del suelo",
+            "Planes de desarrollo urbano y catastro multifinalitario"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Proyecto Final de Agrimensura",
+      "modulos": []
+    }
+  ]
+}

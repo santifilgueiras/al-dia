@@ -1,0 +1,1646 @@
+{
+  "1": [
+    {
+      "nombre": "Introducción a la Biología Celular y Molecular (UC 1)",
+      "contexto": "UDELAR · 1er año",
+      "modulos": [
+        {
+          "modulo": "Estructuras celulares y microbiología",
+          "temas": [
+            "Estructura celular: procariotas y eucariotas",
+            "Microbiota humana",
+            "Biología viral: estructura y replicación",
+            "Relación hospedero-microorganismo: colonización, infección, transmisión y prevención"
+          ]
+        },
+        {
+          "modulo": "Bases químicas de la biología",
+          "temas": [
+            "Agua y soluciones: propiedades fisicoquímicas, concentración y ósmosis",
+            "Equilibrio ácido-base: pH, ácidos/bases y sistemas buffer",
+            "Equilibrio químico y termodinámica de las reacciones biológicas"
+          ]
+        },
+        {
+          "modulo": "Biomoléculas",
+          "temas": [
+            "Aminoácidos y péptidos",
+            "Proteínas: estructura, plegamiento y enfermedades conformacionales",
+            "Glúcidos y lípidos",
+            "Nucleótidos y ácidos nucleicos"
+          ]
+        },
+        {
+          "modulo": "División celular",
+          "temas": [
+            "Cromosomas y cariotipo humano",
+            "Mitosis y meiosis"
+          ]
+        },
+        {
+          "modulo": "Herencia mendeliana",
+          "temas": [
+            "Leyes de Mendel y modos de herencia monogénica",
+            "Ligamiento y recombinación genética"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Bioestadística (UC 2)",
+      "contexto": "UDELAR · 1er año",
+      "modulos": [
+        {
+          "modulo": "Estadística descriptiva",
+          "temas": [
+            "Variables: tipos, escalas de medición y operacionalización",
+            "Distribuciones de frecuencia: tablas y gráficos",
+            "Medidas de resumen: tendencia central, dispersión y posición",
+            "Percentiles y su interpretación clínica"
+          ]
+        },
+        {
+          "modulo": "Probabilidad y diagnóstico",
+          "temas": [
+            "Probabilidad: conceptos básicos, probabilidad condicionada y teorema de Bayes",
+            "Validez de procedimientos diagnósticos: sensibilidad, especificidad y valores predictivos"
+          ]
+        },
+        {
+          "modulo": "Epidemiología",
+          "temas": [
+            "Diseños de estudio en investigación epidemiológica y clínica",
+            "Medidas de frecuencia de enfermedad: proporciones, razones y tasas",
+            "Medidas de riesgo: riesgo relativo, odds ratio y razón de prevalencias"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Salud Pública y Humanidades (UC 3)",
+      "contexto": "UDELAR · 1er año",
+      "modulos": [
+        {
+          "modulo": "Dimensión sociocultural y determinación social de la salud",
+          "temas": [
+            "Concepto de salud y enfermedad: perspectiva individual y colectiva",
+            "Desigualdades en salud: determinación y producción social",
+            "Determinantes ambientales de la salud",
+            "Género, masculinidades y salud"
+          ]
+        },
+        {
+          "modulo": "Salud poblacional y epidemiología descriptiva",
+          "temas": [
+            "Demografía: estado y dinámica demográfica",
+            "Perfil sociodemográfico y epidemiológico del Uruguay"
+          ]
+        },
+        {
+          "modulo": "Sistemas de salud y atención sanitaria",
+          "temas": [
+            "Análisis de los sistemas de salud",
+            "Organización de la atención a la salud y Atención Primaria de la Salud"
+          ]
+        },
+        {
+          "modulo": "Problemas prioritarios de salud pública",
+          "temas": [
+            "Enfermedades no transmisibles",
+            "Enfermedades transmisibles, emergentes y reemergentes",
+            "Promoción de la salud y prevención de la enfermedad"
+          ]
+        },
+        {
+          "modulo": "Medicina como institución social",
+          "temas": [
+            "La profesión médica y la medicina como institución social"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Aprendizaje en Territorio 1 (UC 4)",
+      "contexto": "UDELAR · 1er año",
+      "modulos": [
+        {
+          "modulo": "Extensión universitaria",
+          "temas": [
+            "Extensión universitaria: conceptualización, dimensiones y proceso educativo transformador"
+          ]
+        },
+        {
+          "modulo": "Perspectiva ética y cultural de la intervención comunitaria",
+          "temas": [
+            "Comunidad, territorio y participación social",
+            "Ética de la intervención comunitaria: respeto, confidencialidad y consentimiento informado",
+            "Choque ético-cultural, alteridad y resiliencia comunitaria",
+            "Prejuicio, estigma y discriminación en la práctica médica"
+          ]
+        },
+        {
+          "modulo": "Proceso salud-enfermedad-atención",
+          "temas": [
+            "Concepciones históricas y sociales del proceso salud-enfermedad-atención",
+            "Salud como derecho humano y salud colectiva",
+            "Determinación social y ambiental de la salud",
+            "Estratificación social, exclusión y equidad en salud"
+          ]
+        },
+        {
+          "modulo": "Planificación local de salud y APS",
+          "temas": [
+            "Atención Primaria de la Salud: atributos y modelos",
+            "Diagnóstico y análisis de situación de salud (DSS/ASIS)",
+            "Técnicas de recolección de datos en el trabajo de campo",
+            "Intervención comunitaria: construcción de la demanda y priorización de problemas"
+          ]
+        },
+        {
+          "modulo": "Promoción de la salud y prevención",
+          "temas": [
+            "Promoción de la salud: definición, áreas de acción y entornos saludables",
+            "Prevención de la enfermedad y prevención cuaternaria"
+          ]
+        },
+        {
+          "modulo": "Educación para la salud y educación popular",
+          "temas": [
+            "Educación para la salud y educación popular: fundamentos",
+            "Grupos, proceso grupal y técnicas participativas"
+          ]
+        },
+        {
+          "modulo": "Habilidades comunicacionales",
+          "temas": [
+            "Teoría de la comunicación humana y estilos de comunicación",
+            "Escucha activa, empatía y manejo de barreras comunicacionales",
+            "La entrevista: tipos, etapas y planificación"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Biología Celular y Molecular (UC 5)",
+      "contexto": "UDELAR · 1er año",
+      "modulos": [
+        {
+          "modulo": "Citoesqueleto y superficie celular",
+          "temas": [
+            "Filamentos de actina y miosinas: estructura y función",
+            "Filamentos intermedios y microtúbulos",
+            "Biomembranas: estructura y organización molecular",
+            "Transporte de membrana, equilibrio electroquímico y potencial de reposo",
+            "Electrofisiología celular: potencial de acción y canales iónicos"
+          ]
+        },
+        {
+          "modulo": "Organización y flujo de la información genética",
+          "temas": [
+            "Organización del genoma y compactación del material hereditario",
+            "Replicación, reparación del ADN y recombinación",
+            "Transcripción, maduración del ARN y traducción",
+            "Regulación de la expresión génica",
+            "Bases genéticas del cáncer",
+            "Organelos intracelulares y transporte de proteínas"
+          ]
+        },
+        {
+          "modulo": "Ciclo celular y proliferación",
+          "temas": [
+            "Ciclo celular: regulación, puntos de control y muerte celular"
+          ]
+        },
+        {
+          "modulo": "Metabolismo intermediario",
+          "temas": [
+            "Enzimas: cinética y regulación (Michaelis-Menten, inhibición)",
+            "Glucólisis y vía de las pentosas fosfato",
+            "Oxidación de ácidos grasos y cuerpos cetónicos",
+            "Ciclo de Krebs",
+            "Cadena respiratoria y fosforilación oxidativa",
+            "Gluconeogénesis y síntesis de ácidos grasos",
+            "Integración del metabolismo intermediario"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Aprendizaje en Territorio 2 (UC 6)",
+      "contexto": "UDELAR · 1er año",
+      "modulos": [
+        {
+          "modulo": "Promoción de la salud y educación popular",
+          "temas": [
+            "Promoción de la salud: modelos, abogacía y entornos saludables",
+            "Educación para la salud y educación popular: técnicas participativas y metodología taller"
+          ]
+        },
+        {
+          "modulo": "Intervención comunitaria",
+          "temas": [
+            "Construcción de la demanda y planificación local en salud",
+            "Estructura funcional de la intervención comunitaria y priorización de problemas"
+          ]
+        },
+        {
+          "modulo": "Ética de la intervención comunitaria",
+          "temas": [
+            "Ética de la intervención comunitaria y choque ético-cultural"
+          ]
+        },
+        {
+          "modulo": "Relación profesional de la salud-paciente",
+          "temas": [
+            "Relación profesional de la salud-paciente: actitud técnica, encuadre y vínculo",
+            "La entrevista clínica: tipos, etapas y barreras comunicacionales"
+          ]
+        }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "nombre": "Anatomía Clínica y Bioética (UC 7)",
+      "contexto": "UDELAR · 2do año",
+      "modulos": [
+        {
+          "modulo": "Anatomía del Aparato Locomotor y Neuroanatomía",
+          "temas": [
+            "Sistema nervioso central (telencéfalo, diencéfalo, tronco encefálico, cerebelo, pares craneanos, meninges)",
+            "Sistema nervioso periférico y vegetativo",
+            "Sistema esquelético y artrología (esqueleto axial y apendicular)",
+            "Sistema muscular y anatomía funcional del aparato locomotor",
+            "Maniobras de exploración y bases semiológicas del aparato locomotor y sistema nervioso",
+            "Correlación anátomo-imagenológica del sistema músculo-esquelético y neuroimagen"
+          ]
+        },
+        {
+          "modulo": "Anatomía Esplácnica",
+          "temas": [
+            "Sistema tegumentario (piel y mamas)",
+            "Sistema hemolinfático (timo, ganglios, bazo, tejido linfoide asociado a mucosas)",
+            "Sistema cardiovascular (corazón, arterias, venas, linfáticos)",
+            "Aparato respiratorio",
+            "Aparato digestivo",
+            "Aparato urinario",
+            "Aparato reproductor masculino y femenino",
+            "Sistema endocrino",
+            "Maniobras de exploración y bases semiológicas de los aparatos esplácnicos",
+            "Bases anatómicas de técnicas y maniobras de uso clínico corriente (intubación, sondas, punciones, drenajes)",
+            "Correlación anátomo-radiológica e imagenológica esplácnica"
+          ]
+        },
+        {
+          "modulo": "Bioética",
+          "temas": [
+            "Dignidad humana: fundamentos, evolución histórica y aplicación normativa",
+            "Persona, agencia moral y estatuto moral del embrión/feto",
+            "Cuerpo humano vivo y muerto: propiedad del cuerpo y respeto al cadáver",
+            "Aspectos bioéticos de la genética humana",
+            "Estatuto moral de los animales no humanos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Biología del Desarrollo y de los Tejidos (UC 8)",
+      "contexto": "UDELAR · 2do año",
+      "modulos": [
+        {
+          "modulo": "Biología del Desarrollo",
+          "temas": [
+            "Fundamentos de la biología del desarrollo (regulación génica, comunicación celular, herramientas de estudio)",
+            "Gametogénesis, fecundación y primeros pasos del desarrollo (segmentación, blastocisto)",
+            "Diferenciación celular y regulación epigenética",
+            "Organización del plan corporal (gastrulación, ejes corporales, genes Hox)"
+          ]
+        },
+        {
+          "modulo": "Biología Tisular",
+          "temas": [
+            "Tejido epitelial (de revestimiento y secretor)",
+            "Tejido conjuntivo propiamente dicho y matriz extracelular",
+            "Sangre y hematopoyesis",
+            "Tejido adiposo",
+            "Tejido cartilaginoso",
+            "Tejido óseo y articulaciones",
+            "Tejido linfoideo",
+            "Tejido muscular (esquelético, cardíaco y liso)",
+            "Tejido nervioso (neurona, fibra nerviosa, glía y sinapsis)",
+            "Histología del corazón y vasos sanguíneos",
+            "Histología de piel, mucosas y receptores"
+          ]
+        },
+        {
+          "modulo": "Propiedades Biofísicas de la Contracción Muscular, Biomecánica y Locomoción",
+          "temas": [
+            "Contracción muscular: mecánica y bases ultraestructurales",
+            "Propiedades biofísicas del músculo cardíaco y del músculo liso",
+            "Biomecánica del movimiento humano",
+            "Locomoción humana: marcha y análisis energético"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Histología Neuro Cardio Respiratorio (UC 9)",
+      "contexto": "UDELAR · 2do año",
+      "modulos": [
+        {
+          "modulo": "Tejido Nervioso, Sistema Nervioso Periférico y Órganos de los Sentidos",
+          "temas": [
+            "Organización general del sistema nervioso (SNC, SNP, SNA, meninges)",
+            "Métodos de estudio histológico del tejido nervioso",
+            "Neurona, fibra nerviosa y glía",
+            "Nervio, ganglio nervioso y sinapsis",
+            "Receptores periféricos generales",
+            "Histología del ojo",
+            "Histología del oído"
+          ]
+        },
+        {
+          "modulo": "Sistema Nervioso Central, Cardiovascular y Respiratorio",
+          "temas": [
+            "Médula espinal",
+            "Corteza cerebelosa",
+            "Corteza cerebral",
+            "Histología del corazón",
+            "Arterias, venas y microcirculación",
+            "Vasos linfáticos y barreras (hematoencefálica, glinfática)",
+            "Vía aérea superior (fosas nasales, faringe, laringe, tráquea, bronquios)",
+            "Pulmón: vía aérea intrapulmonar, alvéolo y hematosis"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Neurociencia (UC 10)",
+      "contexto": "UDELAR · 2do año",
+      "modulos": [
+        {
+          "modulo": "Neurofisiología Celular y Sinapsis",
+          "temas": [
+            "Excitabilidad neuronal, potencial de acción y propiedades bioeléctricas de nervios y axones",
+            "Transmisión sináptica, neurotransmisores y plasticidad sináptica"
+          ]
+        },
+        {
+          "modulo": "Sistemas Sensoriales",
+          "temas": [
+            "Generalidades de los sistemas sensoriales: receptores, transducción y codificación",
+            "Quimiorrecepción: gusto y olfato",
+            "Somestesia: mecanorreceptores cutáneos y propiocepción",
+            "Nocicepción, dolor y sensibilidad térmica",
+            "Visión: fisiología y anatomía del ojo y la vía óptica",
+            "Audición: fisiología y anatomía del oído y la vía auditiva",
+            "Sistema vestibular"
+          ]
+        },
+        {
+          "modulo": "Sistemas Motores",
+          "temas": [
+            "Organización general de los sistemas motores y unidad motora",
+            "Médula espinal y reflejos segmentarios",
+            "Funciones motoras del tronco encefálico y control postural",
+            "Funciones motoras de la corteza cerebral y vía corticoespinal",
+            "Funciones motoras del cerebelo",
+            "Núcleos grises de la base"
+          ]
+        },
+        {
+          "modulo": "Mecanismos Homeostáticos Generales",
+          "temas": [
+            "Sistema nervioso autónomo",
+            "Hipotálamo y homeostasis",
+            "Ciclo sueño-vigilia y ritmos biológicos"
+          ]
+        },
+        {
+          "modulo": "Funciones Cognitivas",
+          "temas": [
+            "Aprendizaje y memoria",
+            "Sistema límbico: emociones y motivación",
+            "Funciones superiores: lenguaje y cortezas de asociación"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Cardiovascular y Respiratorio (UC 11)",
+      "contexto": "UDELAR · 2do año",
+      "modulos": [
+        {
+          "modulo": "Sistema Cardiovascular",
+          "temas": [
+            "Propiedades básicas del miocardio y electrofisiología celular",
+            "Electrocardiograma y activación eléctrica del corazón",
+            "Ciclo cardíaco, función de bomba y gasto cardíaco",
+            "Hemodinamia: presión, flujo y resistencia vascular",
+            "Microcirculación y sistema linfático",
+            "Regulación de la presión arterial (barorreflejo y control neurohumoral)",
+            "Circulación coronaria, cerebral, esplácnica y cutánea",
+            "Adaptación cardiovascular al ejercicio"
+          ]
+        },
+        {
+          "modulo": "Sistema Respiratorio",
+          "temas": [
+            "Mecánica tóraco-pulmonar: volúmenes, compliance y resistencia de la vía aérea",
+            "Ventilación alveolar y espacio muerto",
+            "Circulación pulmonar y relación ventilación/perfusión",
+            "Intercambio gaseoso y transporte de oxígeno y dióxido de carbono",
+            "Control del sistema respiratorio",
+            "Fisiología cardio-respiratoria en el embarazo y el envejecimiento",
+            "Fisiología cardio-respiratoria en el ejercicio y el sueño",
+            "Fisiología cardio-respiratoria en la altura y el buceo"
+          ]
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "nombre": "Digestivo, Renal, Endócrino, Metabolismo, Reproducción y Desarrollo (UC 12)",
+      "contexto": "UDELAR · 3er año",
+      "modulos": [
+        {
+          "modulo": "Biología del Desarrollo",
+          "temas": [
+            "Gametogénesis, fecundación y segmentación",
+            "Implantación, placenta y su fisiología",
+            "Regulación epigenética y diferenciación celular",
+            "Gastrulación y formación de capas germinales",
+            "Desarrollo del sistema cardiovascular",
+            "Desarrollo del sistema nervioso central y periférico",
+            "Desarrollo de cabeza, cuello y aparato digestivo",
+            "Desarrollo del aparato urogenital y determinación del sexo",
+            "Anomalías congénitas"
+          ]
+        },
+        {
+          "modulo": "Sistema Digestivo",
+          "temas": [
+            "Histología del tubo digestivo (boca, esófago, estómago, intestino)",
+            "Motilidad gastrointestinal",
+            "Histología y fisiología hepática",
+            "Vesícula biliar y secreción biliar",
+            "Páncreas exocrino: histología y secreción",
+            "Secreción gástrica",
+            "Digestión y absorción de macronutrientes"
+          ]
+        },
+        {
+          "modulo": "Nutrición y Metabolismo",
+          "temas": [
+            "Aspectos bioquímicos de la nutrición humana",
+            "Metabolismo de lípidos y lipoproteínas",
+            "Metabolismo proteico y destinos del nitrógeno"
+          ]
+        },
+        {
+          "modulo": "Sistema Endócrino",
+          "temas": [
+            "Mecanismos de acción hormonal",
+            "Eje hipotálamo-hipofisario (neuro y adenohipófisis)",
+            "Tiroides",
+            "Paratiroides y páncreas endócrino",
+            "Glándula suprarrenal: hormonas esteroideas y catecolaminas",
+            "Regulación de la glicemia y síndrome metabólico"
+          ]
+        },
+        {
+          "modulo": "Sistema Renal",
+          "temas": [
+            "Medio interno y compartimentos líquidos corporales",
+            "Histología renal (nefrona, vías urinarias)",
+            "Filtración glomerular y clearance renal",
+            "Mecanismo renal de concentración-dilución",
+            "Regulación de la volemia y la osmolaridad",
+            "Equilibrio ácido-base",
+            "Metabolismo fosfocálcico"
+          ]
+        },
+        {
+          "modulo": "Sistema Reproductor",
+          "temas": [
+            "Histología del aparato genital femenino (ovario, oviducto, útero, vagina)",
+            "Regulación del ciclo sexual femenino",
+            "Adaptaciones fisiológicas al embarazo",
+            "Parto, alumbramiento y lactancia",
+            "Histología y fisiología del aparato genital masculino",
+            "Fisiología de la actividad sexual"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Hematología-Inmunología (UC 13)",
+      "contexto": "UDELAR · 3er año",
+      "modulos": [
+        {
+          "modulo": "Hematología",
+          "temas": [
+            "Proteínas plasmáticas",
+            "Hemoglobina y metabolismo del hierro",
+            "Glóbulo rojo y eritropoyesis",
+            "Hematopoyesis general y médula ósea",
+            "Granulopoyesis y linfopoyesis",
+            "Trombopoyesis y hemostasia"
+          ]
+        },
+        {
+          "modulo": "Inmunología básica",
+          "temas": [
+            "Inmunidad innata",
+            "Antígenos, anticuerpos y su diversidad",
+            "Linfocitos T, TCR y presentación antigénica",
+            "Mecanismos efectores y regulación de la respuesta inmune",
+            "Inmunidad en mucosas, piel y reproducción (conflicto Rh)"
+          ]
+        },
+        {
+          "modulo": "Inmunointervención e Inmunopatología",
+          "temas": [
+            "Inmunidad antitumoral y anticuerpos monoclonales",
+            "Inflamación",
+            "Respuesta inmune frente a patógenos",
+            "Vacunas: aspectos inmunológicos",
+            "Reacciones de hipersensibilidad",
+            "Inmunodeficiencias",
+            "Trasplantes e inmunología del trasplante"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Metodología Científica I (UC 14)",
+      "contexto": "UDELAR · 3er año",
+      "modulos": [
+        {
+          "modulo": "Métodos Cuantitativos",
+          "temas": [
+            "Variables, estadística descriptiva y probabilidad básica",
+            "Distribuciones de probabilidad (Binomial, Poisson, Normal)",
+            "Inferencia estadística: estimación e intervalos de confianza",
+            "Pruebas diagnósticas y curvas ROC",
+            "Pruebas de hipótesis y contraste de medias",
+            "Medidas de asociación (riesgo relativo, odds ratio) y tests de asociación (Chi cuadrado, correlación)",
+            "Nociones de muestreo"
+          ]
+        },
+        {
+          "modulo": "Medicina Preventiva y Social",
+          "temas": [
+            "Diseños epidemiológicos: estudios descriptivos y de prevalencia",
+            "Estudios observacionales analíticos (cohorte y casos y controles)",
+            "Ensayos clínicos aleatorizados y revisiones sistemáticas",
+            "Análisis crítico de estudios de pruebas diagnósticas",
+            "Búsqueda bibliográfica"
+          ]
+        },
+        {
+          "modulo": "Bioética",
+          "temas": [
+            "Ética de la investigación en seres humanos: principios y normativa",
+            "Comités de ética y evaluación de protocolos de investigación",
+            "Ética en poblaciones vulnerables e investigación epidemiológica"
+          ]
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "nombre": "Medicina en el Primer Nivel de Atención (UC 15)",
+      "contexto": "UDELAR · 4to año",
+      "modulos": [
+        {
+          "modulo": "Método clínico y semiología",
+          "temas": [
+            "Historia clínica y método clínico",
+            "Examen físico por aparatos y sistemas"
+          ]
+        },
+        {
+          "modulo": "Enfermedades crónicas no transmisibles",
+          "temas": [
+            "Hipertensión arterial en el primer nivel de atención",
+            "Diabetes en el primer nivel de atención",
+            "Abordaje del tabaquismo"
+          ]
+        },
+        {
+          "modulo": "Patología respiratoria",
+          "temas": [
+            "Infecciones respiratorias altas",
+            "Infecciones respiratorias bajas",
+            "Enfermedades crónicas respiratorias (asma y EPOC)"
+          ]
+        },
+        {
+          "modulo": "Motivos de consulta frecuentes",
+          "temas": [
+            "Dolor: formas de presentación y tratamiento",
+            "Cefaleas",
+            "Síntomas urinarios"
+          ]
+        },
+        {
+          "modulo": "Prevención y aspectos transversales",
+          "temas": [
+            "Prevención clínica y screening",
+            "Uso racional de exámenes paraclínicos",
+            "Abordaje de la violencia doméstica y de género"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Bases Científicas de la Patología (UC 16)",
+      "contexto": "UDELAR · 4to año",
+      "modulos": [
+        {
+          "modulo": "Parasitología y Micología",
+          "temas": [
+            "Introducción a la parasitología y micología",
+            "Manifestaciones gastrointestinales por parásitos (enteroparasitosis)",
+            "Infecciones parasitarias y fúngicas de piel, partes blandas y mucosas",
+            "Zoonosis parasitarias (Chagas, Leishmaniasis, Malaria, Toxoplasmosis, Hidatidosis)",
+            "Infecciones parasitarias y fúngicas del SNC",
+            "Infecciones respiratorias parasitarias y fúngicas"
+          ]
+        },
+        {
+          "modulo": "Bacteriología y Virología",
+          "temas": [
+            "Generalidades: patogenicidad, diagnóstico microbiológico y antimicrobianos",
+            "Enteropatógenos bacterianos y virales (gastroenteritis)",
+            "Infecciones del tracto urinario",
+            "Infecciones de piel y tejidos blandos",
+            "Infecciones respiratorias (virales y bacterianas)",
+            "Infecciones del sistema nervioso central",
+            "Infecciones de transmisión sexual",
+            "Hepatitis virales y otros agentes (Epstein-Barr, Citomegalovirus)"
+          ]
+        },
+        {
+          "modulo": "Mecanismos de las Disfunciones Orgánicas",
+          "temas": [
+            "Repercusiones de la infección: inflamación y fiebre",
+            "Fisiopatología del dolor",
+            "Alteraciones del metabolismo hidrosalino",
+            "Alteraciones del metabolismo del potasio",
+            "Alteraciones del equilibrio ácido-base",
+            "Alteraciones de la nutrición (obesidad, desnutrición)",
+            "Insuficiencia cardíaca aguda y crónica",
+            "Insuficiencia coronaria",
+            "Fisiopatología de la hipertensión arterial",
+            "Fisiopatología de la circulación cerebral",
+            "Shock",
+            "Insuficiencia respiratoria y mecánica respiratoria",
+            "Injuria renal aguda y enfermedad renal crónica",
+            "Insuficiencia hepatocítica e ictericias",
+            "Hipertensión pulmonar"
+          ]
+        },
+        {
+          "modulo": "Farmacología y Terapéutica",
+          "temas": [
+            "Farmacología general: farmacodinamia y farmacocinética",
+            "Modulación de sistemas homeostáticos endógenos",
+            "Farmacología cardiovascular",
+            "Farmacología de la hemostasia (anticoagulantes y antiagregantes)",
+            "Farmacología respiratoria no infecciosa",
+            "Glucocorticoides",
+            "Farmacología del sistema endócrino (antidiabéticos, tiroides, hormonas y vitaminas)",
+            "Farmacología del dolor (AINE, opioides)",
+            "Antimicrobianos (antibióticos, antimicóticos, antiparasitarios, antivirales)",
+            "Inmunización: vacunas e inmunoglobulinas",
+            "Psicofármacos (benzodiacepinas, antiepilépticos, antipsicóticos, antidepresivos)"
+          ]
+        },
+        {
+          "modulo": "Bases Biofísicas de las Imágenes Médicas",
+          "temas": [
+            "Bases físicas de las radiaciones ionizantes",
+            "Bases físicas de la formación de imágenes médicas (Rx, TC, ecografía, RM)",
+            "Efectos biológicos de las radiaciones ionizantes y dosimetría",
+            "Radioprotección: principios y aplicación en la práctica médica"
+          ]
+        },
+        {
+          "modulo": "Anatomía Patológica",
+          "temas": [
+            "Introducción a la Anatomía Patológica",
+            "Lesión celular, muerte celular y adaptación",
+            "Inflamación aguda y crónica",
+            "Reparación y cicatrización"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Pediatría (UC 17)",
+      "contexto": "UDELAR · 4to año",
+      "modulos": [
+        {
+          "modulo": "Control en salud y desarrollo",
+          "temas": [
+            "Entrevista y examen físico pediátrico según edades",
+            "Crecimiento y desarrollo del niño",
+            "Derechos del niño, niña y adolescente y estrategia AIEPI",
+            "Inmunizaciones (PAI)",
+            "Salud bucal, ocular y auditiva",
+            "Síndrome de muerte súbita del lactante y pautas de sueño seguro",
+            "Lactancia y alimentación en la infancia y adolescencia"
+          ]
+        },
+        {
+          "modulo": "Respiratorio",
+          "temas": [
+            "Semiología respiratoria e infecciones respiratorias altas",
+            "Neumonía y bronquiolitis",
+            "Síndrome broncoobstructivo del lactante y asma",
+            "Tos convulsa y tuberculosis"
+          ]
+        },
+        {
+          "modulo": "Cardiovascular",
+          "temas": [
+            "Semiología cardiovascular",
+            "Cardiopatías congénitas e insuficiencia cardíaca",
+            "Hipertensión arterial en el niño"
+          ]
+        },
+        {
+          "modulo": "Nutrición y hematología",
+          "temas": [
+            "Desnutrición",
+            "Sobrepeso, obesidad y comorbilidades",
+            "Anemias"
+          ]
+        },
+        {
+          "modulo": "Digestivo",
+          "temas": [
+            "Semiología digestiva y gastroenteritis aguda",
+            "Parasitosis intestinales y ectoparasitosis",
+            "Reflujo gastroesofágico"
+          ]
+        },
+        {
+          "modulo": "Neurológico",
+          "temas": [
+            "Semiología neurológica",
+            "Meningitis",
+            "Crisis epilépticas y epilepsia"
+          ]
+        },
+        {
+          "modulo": "Piel, osteoarticular y nefrourológico",
+          "temas": [
+            "Semiología de piel e infecciones de piel y tejidos blandos",
+            "Enfermedades eruptivas de la infancia",
+            "Semiología osteoarticular e infecciones osteoarticulares",
+            "Semiología nefrourológica e infección urinaria"
+          ]
+        },
+        {
+          "modulo": "Violencia y maltrato",
+          "temas": [
+            "Violencia, maltrato infantil y abuso sexual"
+          ]
+        },
+        {
+          "modulo": "Emergencia pediátrica",
+          "temas": [
+            "Triángulo de evaluación pediátrica y evaluación primaria",
+            "Insuficiencia respiratoria y patología respiratoria en la urgencia",
+            "Fiebre sin foco clínico evidente",
+            "Lesiones no intencionales: intoxicaciones, quemados, mordeduras, injuria eléctrica, trauma de cráneo y politraumatizado",
+            "Deshidratación, disionías y alteraciones del metabolismo ácido-base",
+            "Shock hipovolémico y shock séptico",
+            "Convulsiones y falla cerebral aguda"
+          ]
+        },
+        {
+          "modulo": "Salud mental y desarrollo psicosocial",
+          "temas": [
+            "Apego",
+            "Desarrollo psicoevolutivo y adolescencia",
+            "Dificultades del aprendizaje",
+            "Control esfinteriano: enuresis y encopresis",
+            "Salud sexual y reproductiva y conductas de riesgo en la adolescencia"
+          ]
+        },
+        {
+          "modulo": "Psicología médica pediátrica",
+          "temas": [
+            "Técnica de entrevista y aspectos psicosociales del paciente pediátrico y su familia",
+            "Paciente pediátrico hospitalizado y habilidades comunicacionales en situaciones especiales"
+          ]
+        },
+        {
+          "modulo": "Cirugía pediátrica",
+          "temas": [
+            "Patología del conducto peritoneo vaginal, hernia umbilical, fimosis y testículo no descendido",
+            "Trauma en cirugía pediátrica",
+            "Dolor abdominal quirúrgico: apendicitis aguda e invaginación intestinal",
+            "Síndrome escrotal agudo",
+            "Estenosis hipertrófica del píloro y reflujo gastroesofágico"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Ginecología y Neonatología (UC 18)",
+      "contexto": "UDELAR · 4to año",
+      "modulos": [
+        {
+          "modulo": "Introducción a la Ginecología y Obstetricia",
+          "temas": [
+            "Anatomía, fisiología del aparato genital femenino y ciclo ovárico",
+            "Historia clínica gineco-obstétrica y razonamiento clínico",
+            "Control ginecológico y screening de cánceres genito-mamarios",
+            "Aspectos médico-legales, consentimiento informado y confidencialidad"
+          ]
+        },
+        {
+          "modulo": "Derechos sexuales y salud sexual y reproductiva",
+          "temas": [
+            "Desarrollo de la sexualidad en el ciclo vital",
+            "Métodos anticonceptivos",
+            "Violencia basada en género",
+            "Interrupción voluntaria del embarazo (IVE) y objeción de conciencia",
+            "Climaterio y menopausia"
+          ]
+        },
+        {
+          "modulo": "Embarazo y parto normal",
+          "temas": [
+            "Cambios fisiológicos del embarazo y control prenatal",
+            "Asistencia del parto normal y salud fetal intraparto",
+            "Puerperio normal y puericultura",
+            "Aspectos psicoemocionales del embarazo, parto y puerperio",
+            "Embarazo adolescente"
+          ]
+        },
+        {
+          "modulo": "Embarazo complicado",
+          "temas": [
+            "Estados hipertensivos del embarazo",
+            "Diabetes gestacional",
+            "Prematurez, rotura prematura de membranas y corioamnionitis",
+            "Restricción de crecimiento intrauterino",
+            "Metrorragias de la primera y segunda mitad del embarazo",
+            "Infecciones connatales (VIH, sífilis, toxoplasmosis)",
+            "Puerperio patológico y uso de fármacos en el embarazo",
+            "Psicopatología del embarazo, parto y puerperio"
+          ]
+        },
+        {
+          "modulo": "Patología ginecológica benigna y maligna",
+          "temas": [
+            "Infecciones genitales e infecciones de transmisión sexual",
+            "Manejo de la masa anexial",
+            "Sangrado uterino anormal",
+            "Lesiones premalignas de cuello uterino",
+            "Cánceres genito-mamarios (mama, endometrio, ovario)",
+            "Dolor pélvico crónico: dismenorrea y endometriosis"
+          ]
+        },
+        {
+          "modulo": "Emergencias ginecológicas y obstétricas",
+          "temas": [
+            "Eclampsia y hemorragia post parto",
+            "Rotura uterina y sufrimiento fetal agudo",
+            "Shock hipovolémico y sepsis en ginecología y obstetricia",
+            "Abdomen agudo ginecológico"
+          ]
+        },
+        {
+          "modulo": "Neonatología",
+          "temas": [
+            "Adaptación a la vida extrauterina",
+            "Alteraciones del crecimiento fetal e ictericia",
+            "Infecciones de transmisión vertical",
+            "Lactancia materna y puericultura neonatal",
+            "Reanimación neonatal y traslado",
+            "Cuidados del recién nacido de bajo riesgo y screening neonatal"
+          ]
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "nombre": "Clínica Médica (UC 19)",
+      "contexto": "UDELAR · 5to año",
+      "modulos": [
+        {
+          "modulo": "Cardiovascular",
+          "temas": [
+            "Insuficiencia cardíaca",
+            "Dolor torácico y cardiopatía isquémica",
+            "Arritmias cardíacas y fibrilación auricular",
+            "Hipertensión arterial y riesgo cardiovascular",
+            "Lectura sistemática de ECG",
+            "Estudios complementarios en cardiología (PEG, Holter, ecocardiograma, angiografía)",
+            "Farmacología cardiovascular",
+            "Paro cardiorrespiratorio"
+          ]
+        },
+        {
+          "modulo": "Respiratorio",
+          "temas": [
+            "Estudios de imagen y función respiratoria (RxTx, TC Tx, gasometría, espirometría)",
+            "Tromboembolismo pulmonar (TEP)",
+            "Neumonía aguda comunitaria y nosocomial",
+            "Asma",
+            "EPOC",
+            "Tabaquismo",
+            "Derrame pleural",
+            "Cáncer de pulmón (CBP)",
+            "Tuberculosis (TBC)",
+            "Enfermedad intersticial difusa pulmonar (EPID)",
+            "Insuficiencia respiratoria aguda y crónica"
+          ]
+        },
+        {
+          "modulo": "Nefrourología",
+          "temas": [
+            "Enfermedad renal crónica",
+            "Falla renal aguda",
+            "Estudio del paciente con nefropatía (orina, imagen, laboratorio)",
+            "Tratamientos sustitutivos y trasplante renal"
+          ]
+        },
+        {
+          "modulo": "Gastroenterología",
+          "temas": [
+            "Dolor abdominal, dispepsia y reflujo gastroesofágico",
+            "Síndrome ictérico e insuficiencia hepatocelular",
+            "Ascitis e hipertensión portal",
+            "Síndromes disabsortivos y enfermedad celíaca",
+            "Colopatías inflamatorias"
+          ]
+        },
+        {
+          "modulo": "Endocrinología",
+          "temas": [
+            "Diabetes mellitus: diagnóstico y control",
+            "Complicaciones agudas de la diabetes (cetoacidosis, hipoglicemia)",
+            "Tratamiento de la diabetes (hipoglucemiantes, insulina)",
+            "Dislipemias",
+            "Hipotiroidismo",
+            "Hipertiroidismo"
+          ]
+        },
+        {
+          "modulo": "Hematología",
+          "temas": [
+            "Interpretación del hemograma",
+            "Trastornos de la coagulación",
+            "Anemias",
+            "Pancitopenia y síndromes poliadenomegálicos",
+            "Gammapatías monoclonales (proteinograma)",
+            "Terapia tromboprofiláctica y manejo del paciente hipocoagulado"
+          ]
+        },
+        {
+          "modulo": "Infectología",
+          "temas": [
+            "Técnicas de estudio bacteriológico (urocultivo, hemocultivo, etc.)",
+            "Fiebre prolongada",
+            "Infección por VIH",
+            "COVID-19 (SARS-CoV-2)"
+          ]
+        },
+        {
+          "modulo": "Neurología",
+          "temas": [
+            "Examen físico neurológico",
+            "Síndrome meníngeo y punción lumbar",
+            "Imagenología neurológica (TAC/RNM): patología vascular y tumoral",
+            "Cefaleas",
+            "Enfermedad cerebrovascular (AIT, infarto, hemorragia)",
+            "Patologías neurológicas prevalentes (Parkinson, demencias, epilepsia)"
+          ]
+        },
+        {
+          "modulo": "Enfermedades autoinmunes",
+          "temas": [
+            "Enfermedades autoinmunes sistémicas (EAS): diagnóstico",
+            "Tratamiento inmunomodulador en EAS",
+            "Vasculitis"
+          ]
+        },
+        {
+          "modulo": "Reumatología",
+          "temas": [
+            "Semiología del aparato locomotor",
+            "Enfermedades reumatológicas prevalentes: diagnóstico y tratamiento"
+          ]
+        },
+        {
+          "modulo": "Oncología",
+          "temas": [
+            "Síndrome mediastinal e hipertensión endocraneana",
+            "Compresión medular oncológica",
+            "Estudio de metástasis de primitivo desconocido",
+            "Cuidados paliativos y tratamiento analgésico",
+            "Screening y detección precoz del cáncer"
+          ]
+        },
+        {
+          "modulo": "Psiquiatría",
+          "temas": [
+            "Patologías psiquiátricas prevalentes en medicina general"
+          ]
+        },
+        {
+          "modulo": "Psicología médica",
+          "temas": [
+            "Comunicación médico-paciente y aspectos psicosociales"
+          ]
+        },
+        {
+          "modulo": "Medicina legal",
+          "temas": [
+            "Ética y legislación sanitaria: consentimiento informado, confidencialidad, responsabilidad médica"
+          ]
+        },
+        {
+          "modulo": "Bioética",
+          "temas": [
+            "Bioética clínica y toma de decisiones"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Patología Médica y Terapéutica (UC 20)",
+      "contexto": "UDELAR · 5to año",
+      "modulos": [
+        {
+          "modulo": "Patología general y regeneración tisular",
+          "temas": [
+            "Infarto tisular y lesiones por isquemia-reperfusión",
+            "Disfunción endotelial y aterosclerosis",
+            "Regeneración y reparación tisular. Envejecimiento celular"
+          ]
+        },
+        {
+          "modulo": "Cardiovascular",
+          "temas": [
+            "Aterosclerosis y patología vascular hipertensiva",
+            "Valvulopatías",
+            "Cardiopatía isquémica y su farmacología",
+            "Patología aórtica: aneurismas y disección",
+            "Arritmias y farmacología antiarrítmica",
+            "Insuficiencia cardíaca, miocardiopatías, miocarditis y pericardio",
+            "Farmacología de la hipertensión arterial y del eje renina-angiotensina-aldosterona",
+            "Uso racional de diuréticos, betabloqueantes y antitrombóticos"
+          ]
+        },
+        {
+          "modulo": "Metabolismo, endocrino y nutrición",
+          "temas": [
+            "Dislipemias",
+            "Diabetes: bases metabólicas y farmacología (insulina y antidiabéticos orales)",
+            "Síndrome metabólico, sobrepeso y obesidad",
+            "Hipotiroidismo e hipertiroidismo y farmacología tiroidea",
+            "Insuficiencia suprarrenal (Addison) y síndrome de Cushing",
+            "Alteraciones del metabolismo fosfocálcico, óseo, ácido úrico y osteoporosis",
+            "Patología no tumoral del sistema endócrino (hipófisis, tiroides, paratiroides, páncreas, suprarrenales)"
+          ]
+        },
+        {
+          "modulo": "Respiratorio",
+          "temas": [
+            "Asma bronquial y su farmacología",
+            "EPOC, enfisema y bronquiectasias",
+            "Tuberculosis",
+            "Infecciones respiratorias y por virus respiratorios",
+            "Tumores broncopulmonares y pleurales",
+            "Patología pulmonar no tumoral (DAD, enfermedades intersticiales y vasculares)"
+          ]
+        },
+        {
+          "modulo": "Inmunología y alergia",
+          "temas": [
+            "Reacciones de hipersensibilidad",
+            "Inmunodeficiencias"
+          ]
+        },
+        {
+          "modulo": "Oncología general",
+          "temas": [
+            "Epidemiología y bases etiopatogénicas del cáncer",
+            "Biología tumoral, terapias dirigidas y fármacos biológicos en oncología",
+            "Prevención primaria y secundaria de los cánceres más frecuentes",
+            "Complicaciones médicas en el paciente oncológico",
+            "Conceptos generales sobre neoplasias (anatomía patológica)"
+          ]
+        },
+        {
+          "modulo": "Nefrourología",
+          "temas": [
+            "Injuria renal aguda y enfermedad renal crónica",
+            "Glomerulopatías primarias y secundarias",
+            "Riñón e hipertensión arterial",
+            "Trasplante renal",
+            "Patología renal no tumoral: enfermedades tubulointersticiales, vasculopatías y uropatía obstructiva"
+          ]
+        },
+        {
+          "modulo": "Piel y enfermedades autoinmunes",
+          "temas": [
+            "Cáncer de piel y trastornos de la pigmentación",
+            "Eczemas y dermatosis inflamatorias",
+            "Enfermedades ampollares de la piel",
+            "Enfermedades autoinmunes sistémicas: lupus, Sjögren y artritis reumatoide"
+          ]
+        },
+        {
+          "modulo": "Osteoarticular",
+          "temas": [
+            "Artritis y artrosis",
+            "Lumbalgias",
+            "Osteoporosis y su tratamiento"
+          ]
+        },
+        {
+          "modulo": "Digestivo",
+          "temas": [
+            "Enfermedad ácido-péptica y patología gastroduodenal",
+            "Alteraciones del tránsito intestinal: constipación y diarrea",
+            "Ictericia, hepatitis agudas y crónicas y cirrosis",
+            "Patología no tumoral gastrointestinal (esófago, estómago, intestino, colon)",
+            "Patología hepatobiliar: hepatopatía alcohólica, metabólica y colestasis",
+            "Uso racional de la medicación de la esfera digestiva"
+          ]
+        },
+        {
+          "modulo": "Neurológico",
+          "temas": [
+            "Epilepsias y farmacología antiepiléptica",
+            "Ataque cerebrovascular isquémico y hemorrágico",
+            "Demencias y enfermedades neurodegenerativas",
+            "Cefaleas",
+            "Enfermedades cerebrovasculares e hipóxico-isquémicas (anatomía patológica)",
+            "Procesos inflamatorios, desmielinizantes y enfermedades por priones"
+          ]
+        },
+        {
+          "modulo": "Infectología",
+          "temas": [
+            "Infecciones asociadas a la atención en salud y sepsis",
+            "VIH-SIDA",
+            "Sífilis",
+            "Infecciones por herpes virus y por virus del papiloma humano",
+            "Micosis sistémicas",
+            "Resistencia a antimicrobianos y uso racional de betalactámicos y macrólidos",
+            "Uso racional de aminoglucósidos, quinolonas y otros antibióticos",
+            "Uso racional de antivirales y antirretrovirales",
+            "Abordaje terapéutico de las infecciones prevalentes en la comunidad"
+          ]
+        },
+        {
+          "modulo": "Hematología",
+          "temas": [
+            "Bases etiopatogénicas de las anemias: origen medular y hemolíticas",
+            "Metabolismo del hierro y ácido fólico. Anemias carenciales",
+            "Alteraciones de la hemostasis: estados hipertrombóticos y coagulopatías",
+            "Síndromes linfoproliferativos y neoplasias mieloproliferativas",
+            "Gammapatías monoclonales"
+          ]
+        },
+        {
+          "modulo": "Toxicología y salud ocupacional",
+          "temas": [
+            "Patología general de las intoxicaciones agudas",
+            "Patología toxicológica del consumo de drogas",
+            "Patología de la exposición laboral y ambiental a contaminantes tóxicos",
+            "Patología toxicológica: mordeduras y picaduras",
+            "Salud ocupacional: historia clínico-laboral, enfermedades profesionales y accidentes de trabajo"
+          ]
+        },
+        {
+          "modulo": "Farmacología clínica general",
+          "temas": [
+            "Farmacocinética clínica y monitorización de la respuesta terapéutica",
+            "Desarrollo de medicamentos y fuentes de información",
+            "Uso racional de medicamentos, polifarmacia y medicamentos de alto riesgo",
+            "Farmacovigilancia y seguridad del medicamento",
+            "Medicina basada en la evidencia aplicada a la terapéutica",
+            "Toxicidad de fármacos por órganos y sistemas"
+          ]
+        },
+        {
+          "modulo": "Analgesia y psicofarmacología",
+          "temas": [
+            "Terapéutica de la analgesia: AINE, opioides y coadyuvantes",
+            "Uso racional de psicofármacos: antidepresivos",
+            "Uso racional de psicofármacos: hipnóticos, ansiolíticos y benzodiazepinas",
+            "Uso racional de psicofármacos: antipsicóticos",
+            "Glucocorticoides y antiinflamatorios de síntesis química"
+          ]
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "nombre": "Clínica Quirúrgica (UC 21)",
+      "contexto": "UDELAR · 6to año",
+      "modulos": [
+        {
+          "modulo": "Generalidades de la cirugía",
+          "temas": [
+            "Respuesta sistémica a la cirugía, riesgos y consentimiento informado",
+            "Infección en cirugía y complicaciones quirúrgicas postoperatorias"
+          ]
+        },
+        {
+          "modulo": "Trauma",
+          "temas": [
+            "Evaluación inicial y tratamiento integral del politraumatizado",
+            "Traumatismo torácico",
+            "Trauma abdominal abierto y cerrado, síndrome compartimental abdominal",
+            "Traumatismo hepático, esplénico y pancreático-duodenal",
+            "Traumatismo de intestino delgado, colon, recto y ano",
+            "Hematoma retroperitoneal y traumatismo de grandes vasos"
+          ]
+        },
+        {
+          "modulo": "Pared abdominal",
+          "temas": [
+            "Hernias inguinal, crural y umbilical",
+            "Eventración postoperatoria y sus complicaciones"
+          ]
+        },
+        {
+          "modulo": "Glándula mamaria",
+          "temas": [
+            "Semiología y métodos diagnósticos de la patología mamaria",
+            "Enfermedades benignas de la mama: fibroadenoma y mastopatías",
+            "Cáncer de mama: diagnóstico, clasificación y tratamiento multidisciplinario"
+          ]
+        },
+        {
+          "modulo": "Tórax",
+          "temas": [
+            "Semiología quirúrgica y estudios diagnósticos del tórax",
+            "Derrame pleural, empiema y neumotórax",
+            "Tumores de pared torácica, pulmonares, pleurales y de mediastino"
+          ]
+        },
+        {
+          "modulo": "Partes blandas",
+          "temas": [
+            "Tumoraciones benignas y malignas de partes blandas (sarcomas)",
+            "Infecciones agudas de la mano y de partes blandas",
+            "Infecciones graves de partes blandas"
+          ]
+        },
+        {
+          "modulo": "Enfermedades vasculares periféricas",
+          "temas": [
+            "Semiología y fisiopatología vascular periférica",
+            "Arteriopatías obstructivas crónicas y oclusión arterial aguda",
+            "Isquemia mesentérica y traumatismos vasculares periféricos",
+            "Pie diabético",
+            "Insuficiencia venosa crónica, trombosis venosa profunda y úlceras venosas",
+            "Aneurismas arteriales y disección aórtica",
+            "Patología cerebrovascular carotídea y sistema linfático"
+          ]
+        },
+        {
+          "modulo": "Enfermedades endocrinas quirúrgicas",
+          "temas": [
+            "Semiología del cuello y de la glándula tiroides",
+            "Enfermedades quirúrgicas de la tiroides: nódulo, bocio y cáncer diferenciado",
+            "Enfermedades de las glándulas paratiroides",
+            "Enfermedades quirúrgicas de las glándulas suprarrenales"
+          ]
+        },
+        {
+          "modulo": "Esófago y estómago",
+          "temas": [
+            "Semiología del aparato digestivo y síndromes digestivos",
+            "Patología esofágica: acalasia, divertículo de Zenker, cáncer de esófago y hernias diafragmáticas",
+            "Patología benigna gastroduodenal: úlcera péptica y sus complicaciones",
+            "Tumores gástricos malignos y cirugía de la obesidad mórbida"
+          ]
+        },
+        {
+          "modulo": "Intestino delgado, colon y recto",
+          "temas": [
+            "Patología del intestino delgado: oclusión intestinal, Crohn y tumores",
+            "Apendicitis aguda y enfermedades benignas del colon",
+            "Cáncer de colon y recto",
+            "Enfermedades benignas anales y cáncer de ano"
+          ]
+        },
+        {
+          "modulo": "Hígado, vía biliar y páncreas",
+          "temas": [
+            "Tumores hepáticos, enfermedad metastásica y quiste hidático",
+            "Cirrosis portal e hipertensión portal",
+            "Litiasis vesicular, colecistitis y colangitis",
+            "Tumores de la vía biliar y cáncer de vesícula",
+            "Pancreatitis aguda y crónica",
+            "Tumores del páncreas"
+          ]
+        },
+        {
+          "modulo": "Bazo y abdomen agudo",
+          "temas": [
+            "Enfermedades quirúrgicas del bazo",
+            "Abdomen agudo y peritonitis aguda"
+          ]
+        },
+        {
+          "modulo": "Urología",
+          "temas": [
+            "Semiología urológica e infecciones urinarias",
+            "Litiasis urinaria y hematuria",
+            "Tumores urogenitales y cáncer de próstata",
+            "Traumatismos urológicos y patología genital masculina"
+          ]
+        },
+        {
+          "modulo": "Oftalmología",
+          "temas": [
+            "Semiología oftalmológica y causas de ceguera",
+            "Glaucoma y cataratas",
+            "Retinopatía diabética",
+            "Ojo rojo y traumatismo ocular",
+            "Oftalmología pediátrica y estrabismo"
+          ]
+        },
+        {
+          "modulo": "Otorrinolaringología",
+          "temas": [
+            "Otitis media y externa",
+            "Patología rinosinusal y epistaxis",
+            "Patología oncológica ORL: cáncer de laringe y patología cervical",
+            "Complicaciones de amigdalitis y manejo de la vía aérea",
+            "Patología vestibular y vértigo"
+          ]
+        },
+        {
+          "modulo": "Ortopedia y traumatología",
+          "temas": [
+            "Semiología osteoarticular",
+            "Lumbalgias, artrosis, tendinitis e infecciones osteoarticulares",
+            "Tumores óseos y de partes blandas",
+            "Esguinces y fracturas: manejo inicial, férulas y vendajes"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Patología Quirúrgica (UC 22)",
+      "contexto": "UDELAR · 6to año",
+      "modulos": [
+        {
+          "modulo": "Patología quirúrgica: agudos",
+          "temas": [
+            "Oclusión intestinal y peritonitis aguda",
+            "Apendicitis aguda y colecistitis aguda",
+            "Colangitis aguda y pancreatitis aguda",
+            "Complicaciones de la úlcera péptica",
+            "Patología benigna anorrectal",
+            "Politraumatizado, traumatismo de tórax, abdomen, pelvis y miembros inferiores",
+            "Infecciones de la mano y de partes blandas graves",
+            "Oclusión arterial aguda",
+            "Tratamiento de heridas cutáneas"
+          ]
+        },
+        {
+          "modulo": "Patología quirúrgica: no agudos",
+          "temas": [
+            "Patología benigna mamaria y cáncer de mama",
+            "Cáncer de tiroides",
+            "Tumores de partes blandas",
+            "Cáncer de esófago, estómago y páncreas",
+            "Cáncer de colon",
+            "Hernias y eventraciones",
+            "Patología no tumoral del esófago y hernia hiatal",
+            "Hidatidosis hepática y sus complicaciones",
+            "Colopatía diverticular y sus complicaciones",
+            "Aneurisma de aorta abdominal",
+            "Arteriopatías obstructivas crónicas e insuficiencia venosa crónica de los MMII"
+          ]
+        },
+        {
+          "modulo": "Anatomía patológica",
+          "temas": [
+            "Interpretación del informe anátomo-patológico",
+            "Carcinoma de mama y de colon",
+            "Carcinoma de próstata y nódulo tiroideo",
+            "Carcinomas hepato-bilio-pancreáticos",
+            "Apendicitis aguda y colecistitis (anatomía patológica)"
+          ]
+        },
+        {
+          "modulo": "Medicina legal y ciencias forenses",
+          "temas": [
+            "Tipos de muerte violenta y aspectos periciales",
+            "Asfixias mecánicas",
+            "Lesiones contusas",
+            "Siniestros de tránsito, alcoholemia y drogas de abuso",
+            "Heridas por arma de fuego y por arma blanca",
+            "Quemaduras e intoxicación por monóxido de carbono"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Medicina Familiar y Comunitaria - Salud Mental en Comunidad - Psicología Médica (UC 23)",
+      "contexto": "UDELAR · 6to año",
+      "modulos": [
+        {
+          "modulo": "Medicina Familiar y Comunitaria: Fundamentos y determinantes de salud",
+          "temas": [
+            "Dimensión espiritual de la salud y cuidados espirituales",
+            "Promoción de salud y prevención en adolescencia, adultez y ancianidad; síndromes geriátricos, polifarmacia y prevención cuaternaria",
+            "Ciclo vital individual y familiar, tipología de hogar y abordaje familiar",
+            "Salud y discapacidad en el primer nivel de atención",
+            "Diversidad sexual y salud: atención integral centrada en la población LGTBIQ+"
+          ]
+        },
+        {
+          "modulo": "Medicina Familiar y Comunitaria: Riesgo cardiovascular y enfermedades crónicas",
+          "temas": [
+            "Hipertensión arterial y riesgo cardiovascular",
+            "Cardiopatía isquémica (angor estable e inestable)",
+            "Diabetes en el primer nivel de atención",
+            "Tabaquismo, consejería y entrevista motivacional",
+            "Dislipemias y riesgo cardiovascular"
+          ]
+        },
+        {
+          "modulo": "Medicina Familiar y Comunitaria: Respiratorio",
+          "temas": [
+            "Infecciones respiratorias agudas altas y bajas (resfrío, sinusitis, otitis, traqueobronquitis, neumonía, gripe, COVID)",
+            "EPOC en el primer nivel de atención",
+            "Asma en el primer nivel de atención"
+          ]
+        },
+        {
+          "modulo": "Medicina Familiar y Comunitaria: Renal, urinario, digestivo y endocrino",
+          "temas": [
+            "Nefroprevención, litiasis renal, uropatía obstructiva crónica e hipertrofia prostática benigna",
+            "Infecciones urinarias altas y bajas",
+            "Infecciones de transmisión sexual en el primer nivel de atención",
+            "Problemas gastroenterológicos prevalentes (RGE, dispepsia, constipación, diarrea, cáncer de colon)",
+            "Distiroidismos",
+            "Anemias"
+          ]
+        },
+        {
+          "modulo": "Medicina Familiar y Comunitaria: Osteoarticular y cefaleas",
+          "temas": [
+            "Patología osteoarticular traumática, degenerativa e inflamatoria (omalgia, lumbalgia, gonalgia)",
+            "Cefaleas: cefalea tensional y migraña, signos de alarma"
+          ]
+        },
+        {
+          "modulo": "Medicina Familiar y Comunitaria: Oftalmología, dermatología y patología vascular periférica",
+          "temas": [
+            "Patologías oftalmológicas frecuentes en el primer nivel de atención (ojo rojo, agudeza visual)",
+            "Lesiones elementales de piel y patologías dermatológicas frecuentes (incluye manifestaciones cutáneas de enfermedades sistémicas)",
+            "Insuficiencia venosa y arteriopatía obstructiva crónica de miembros inferiores"
+          ]
+        },
+        {
+          "modulo": "Medicina Familiar y Comunitaria: Violencia doméstica y salud mental",
+          "temas": [
+            "Violencia doméstica: identificación, asesoramiento y acompañamiento",
+            "Depresión y ansiedad en el primer nivel de atención"
+          ]
+        },
+        {
+          "modulo": "Salud Mental en Comunidad",
+          "temas": [
+            "Familias: devenir y transformaciones para el abordaje en el primer nivel de atención",
+            "Violencia basada en género y generaciones en el primer nivel de atención",
+            "Depresión",
+            "Ansiedad",
+            "Prevención del suicidio desde el primer nivel de atención",
+            "Consumo problemático de sustancias en el primer nivel de atención"
+          ]
+        },
+        {
+          "modulo": "Psicología Médica",
+          "temas": [
+            "Profesionalismo médico, comunicación terapéutica y toma de decisiones compartidas; autocuidado del profesional de la salud",
+            "Duelo en la práctica médica",
+            "El rol del cuidador en el proceso de enfermedad (sobrecarga y claudicación familiar)",
+            "Adhesión al tratamiento y entrevista motivacional",
+            "El paciente con dolor",
+            "El paciente quirúrgico: ansiedad pre y post operatoria",
+            "Comunicación de malas noticias en el pre y post operatorio"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Metodología Científica II (UC 24)",
+      "contexto": "UDELAR · 6to año",
+      "modulos": [
+        {
+          "modulo": "Métodos Cuantitativos (Bioestadística aplicada)",
+          "temas": [
+            "Repaso de tipos de estudio y tests estadísticos usuales; análisis de la varianza",
+            "Modelos de regresión lineal y logística",
+            "Análisis de sobrevida y modelo de Cox",
+            "Comunicación de resultados estadísticos"
+          ]
+        },
+        {
+          "modulo": "Medicina Preventiva y Social: diseño de estudios",
+          "temas": [
+            "Diseños de estudios epidemiológicos",
+            "Revisiones sistemáticas y narrativas",
+            "Elaboración de un protocolo de investigación",
+            "Niveles de evidencia y guías de práctica clínica"
+          ]
+        },
+        {
+          "modulo": "Bioética de la investigación",
+          "temas": [
+            "Ética de la investigación en seres humanos: normativa nacional e internacional, consentimiento informado y Comités de Ética (CEI)",
+            "Ética de la investigación con animales de experimentación (CEUA)",
+            "Reflexiones éticas sobre ciencia de datos, big data e inteligencia artificial en investigación en salud"
+          ]
+        },
+        {
+          "modulo": "Herramientas informáticas y comunicación científica",
+          "temas": [
+            "Bases de datos biomédicas y estrategias de búsqueda bibliográfica (PubMed, Scopus, Cochrane, Timbó, Lilacs, Scielo, etc.)",
+            "Gestores de referencias bibliográficas, indicadores de calidad y métricas científicas",
+            "Escritura de la monografía/artículo científico, proceso editorial y ética de la publicación (plagio, autoría)"
+          ]
+        },
+        {
+          "modulo": "Desarrollo del proyecto de investigación (trabajo grupal aplicado)",
+          "temas": [
+            "Elaboración del protocolo de investigación (modalidad investigación original o revisión bibliográfica)",
+            "Ejecución del trabajo, análisis de resultados y elaboración de la monografía",
+            "Comunicación de resultados en formato póster en las Jornadas Científicas del Ciclo"
+          ]
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "nombre": "Internado Rotatorio (UC 25)",
+      "contexto": "UDELAR · 7mo año",
+      "modulos": [
+        {
+          "modulo": "Rotaciones clínicas troncales (áreas polivalentes A)",
+          "temas": [
+            "Medicina Interna",
+            "Cirugía",
+            "Pediatría",
+            "Ginecología",
+            "Medicina Familiar y Comunitaria"
+          ]
+        },
+        {
+          "modulo": "Reanimación Cardiopulmonar Avanzada (RCA) de adultos",
+          "temas": [
+            "Ritmos de paro cardiorrespiratorio desfibrilables y no desfibrilables",
+            "Manejo básico y avanzado de la vía aérea",
+            "Síndromes coronarios agudos",
+            "Bradiarritmias y taquiarritmias en la emergencia"
+          ]
+        },
+        {
+          "modulo": "Reanimación Cardiopulmonar Pediátrica (RCP)",
+          "temas": [
+            "Causas de paro cardiorrespiratorio en edad pediátrica, cadena de supervivencia, soporte vital básico y uso de DEA",
+            "Manejo de vía aérea pediátrica, ventilación y desobstrucción por cuerpo extraño",
+            "Masaje cardíaco externo según edad (recién nacido, lactante, niño, adolescente), acceso vascular e intraóseo",
+            "Tratamiento farmacológico y eléctrico de los ritmos de paro (cardiodesfibrilador)"
+          ]
+        },
+        {
+          "modulo": "Profesionalismo, comunicación y gestión clínica (transversal a las rotaciones)",
+          "temas": [
+            "Comunicación médico-paciente y relación con el entorno del paciente en la práctica clínica",
+            "Consentimiento informado y confidencialidad de la información del paciente",
+            "Ética médica, profesionalismo y trabajo en equipo interdisciplinario",
+            "Gestión racional de recursos y legislación sanitaria nacional vinculada al ejercicio profesional"
+          ]
+        }
+      ]
+    }
+  ]
+}

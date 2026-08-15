@@ -1,0 +1,589 @@
+{
+  "1": [
+    {
+      "nombre": "Cálculo Diferencial e Integral en Una Variable",
+      "modulos": [
+        {
+          "modulo": "Números reales y funciones",
+          "temas": [
+            "Axioma de completitud y supremo de un conjunto",
+            "Funciones reales: inyectividad, sobreyectividad y monotonía",
+            "Trigonometría: círculo trigonométrico y funciones inversas"
+          ]
+        },
+        {
+          "modulo": "Límites y continuidad",
+          "temas": [
+            "Definición de límite y álgebra de límites",
+            "Continuidad y teorema de Bolzano",
+            "Teorema de Weierstrass y extremos globales"
+          ]
+        },
+        {
+          "modulo": "Derivadas",
+          "temas": [
+            "Definición de derivada y regla de la cadena",
+            "Teoremas de Rolle, Lagrange y Cauchy",
+            "Derivadas, crecimiento y concavidad",
+            "Regla de L'Hôpital"
+          ]
+        },
+        {
+          "modulo": "Integrales y desarrollo de Taylor",
+          "temas": [
+            "Integral de Riemann mediante sumas superiores e inferiores",
+            "Teorema fundamental del cálculo y regla de Barrow",
+            "Técnicas de integración: partes, sustitución y fracciones simples",
+            "Polinomio de Taylor y estimación del error"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Geometría y Álgebra Lineal 1",
+      "modulos": [
+        {
+          "modulo": "Sistemas de ecuaciones y matrices",
+          "temas": [
+            "Eliminación de Gauss y sistemas de ecuaciones lineales",
+            "Rango de una matriz y teorema de Rouché-Frobenius",
+            "Álgebra de matrices: suma, producto e inversa"
+          ]
+        },
+        {
+          "modulo": "Determinantes",
+          "temas": [
+            "Determinantes de orden 2 y 3 y definición inductiva",
+            "Propiedades del determinante y matrices elementales",
+            "Regla de Cramer y cálculo del rango por determinantes"
+          ]
+        },
+        {
+          "modulo": "Geometría del espacio",
+          "temas": [
+            "Rectas y planos en el espacio",
+            "Producto escalar: ángulos y distancias",
+            "Producto vectorial: áreas y volúmenes"
+          ]
+        },
+        {
+          "modulo": "Espacios vectoriales y transformaciones lineales",
+          "temas": [
+            "Espacios y subespacios vectoriales",
+            "Generadores, independencia lineal, base y dimensión",
+            "Cambio de base de un espacio vectorial",
+            "Núcleo e imagen de una transformación lineal",
+            "Matriz asociada a una transformación lineal"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Física 1 (Mecánica)",
+      "modulos": [
+        {
+          "modulo": "Cinemática y dinámica de partículas",
+          "temas": [
+            "Cinemática: posición, velocidad y aceleración",
+            "Leyes de Newton y diagramas de cuerpo libre"
+          ]
+        },
+        {
+          "modulo": "Trabajo, energía y sistemas de partículas",
+          "temas": [
+            "Trabajo, energía cinética y potencial, conservación de energía",
+            "Momento lineal, impulso y colisiones"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Química General 1",
+      "modulos": [
+        {
+          "modulo": "Estructura y enlace",
+          "temas": [
+            "Estructura atómica, tabla periódica y tipos de enlace químico",
+            "Estequiometría y reacciones químicas"
+          ]
+        }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "nombre": "Cálculo Diferencial e Integral en Varias Variables",
+      "modulos": [
+        {
+          "modulo": "Sucesiones, series e integrales impropias",
+          "temas": [
+            "Sucesiones: límite, monotonía, acotación y subsucesiones",
+            "Series numéricas y criterios de convergencia",
+            "Convergencia condicional y absoluta",
+            "Integrales impropias y criterio serie-integral"
+          ]
+        },
+        {
+          "modulo": "Topología y continuidad en Rⁿ",
+          "temas": [
+            "Normas y conjuntos abiertos y cerrados en Rⁿ",
+            "Sucesiones en Rⁿ y caracterización de conjuntos compactos",
+            "Límites y continuidad de funciones de varias variables"
+          ]
+        },
+        {
+          "modulo": "Diferenciabilidad e integrales múltiples",
+          "temas": [
+            "Derivadas parciales y derivadas direccionales",
+            "Diferenciabilidad y plano tangente",
+            "Diferencial de la función compuesta",
+            "Integrales dobles y triples: teorema de Fubini",
+            "Teorema de cambio de variables: coordenadas polares, cilíndricas y esféricas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Geometría y Álgebra Lineal 2",
+      "modulos": [
+        {
+          "modulo": "Valores y vectores propios",
+          "temas": [
+            "Valores y vectores propios, polinomio característico",
+            "Diagonalización de matrices",
+            "Multiplicidades algebraica y geométrica; teorema de Gershgorin"
+          ]
+        },
+        {
+          "modulo": "Formas canónicas",
+          "temas": [
+            "Forma canónica de Jordan",
+            "Matrices semejantes y cambio de base para operadores"
+          ]
+        },
+        {
+          "modulo": "Producto interno y ortogonalidad",
+          "temas": [
+            "Producto interno y norma en un espacio vectorial",
+            "Ortogonalidad, ortonormalidad y proceso de Gram-Schmidt",
+            "Descomposición QR",
+            "Complemento ortogonal y proyección ortogonal",
+            "Aproximación por mínimos cuadrados"
+          ]
+        },
+        {
+          "modulo": "Transformaciones adjuntas e isometrías",
+          "temas": [
+            "Teorema de representación de Riesz y transformación adjunta",
+            "Operadores autoadjuntos y teorema espectral",
+            "Isometrías lineales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Física 2 (Oscilaciones, Ondas y Termodinámica)",
+      "modulos": [
+        {
+          "modulo": "Oscilaciones y ondas mecánicas",
+          "temas": [
+            "Movimiento armónico simple y oscilador amortiguado",
+            "Ondas mecánicas: propagación, interferencia y ondas estacionarias"
+          ]
+        },
+        {
+          "modulo": "Termodinámica",
+          "temas": [
+            "Temperatura, calor y primer principio de la termodinámica",
+            "Entropía y segundo principio de la termodinámica"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Química General 2",
+      "modulos": [
+        {
+          "modulo": "Estados de la materia y termoquímica",
+          "temas": [
+            "Propiedades de gases, líquidos y sólidos",
+            "Termoquímica: entalpía de reacción y calorimetría"
+          ]
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "nombre": "Probabilidad y Estadística",
+      "modulos": [
+        {
+          "modulo": "Probabilidad básica",
+          "temas": [
+            "Espacios de probabilidad y probabilidad condicional",
+            "Variables aleatorias discretas y continuas",
+            "Distribuciones de probabilidad clásicas (binomial, Poisson, normal, exponencial)",
+            "Esperanza, varianza y funciones generadoras"
+          ]
+        },
+        {
+          "modulo": "Vectores aleatorios y teoremas límite",
+          "temas": [
+            "Vectores aleatorios y distribuciones conjuntas",
+            "Covarianza y correlación",
+            "Ley de los grandes números",
+            "Teorema central del límite"
+          ]
+        },
+        {
+          "modulo": "Estadística descriptiva e inferencial",
+          "temas": [
+            "Estadística descriptiva y análisis exploratorio de datos",
+            "Estimación puntual y por intervalos de confianza",
+            "Contraste de hipótesis",
+            "Regresión lineal simple y múltiple"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Química Orgánica 1",
+      "modulos": [
+        {
+          "modulo": "Estructura de compuestos orgánicos",
+          "temas": [
+            "Hibridación del carbono, isomería y grupos funcionales",
+            "Estereoquímica: quiralidad y proyecciones de Fischer"
+          ]
+        },
+        {
+          "modulo": "Hidrocarburos y sus reacciones",
+          "temas": [
+            "Nomenclatura y reacciones de alcanos, alquenos y alquinos",
+            "Mecanismos de sustitución y eliminación (SN1, SN2, E1, E2)"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Química Analítica 1",
+      "modulos": [
+        {
+          "modulo": "Equilibrio químico en análisis",
+          "temas": [
+            "Equilibrio ácido-base y volumetría de neutralización",
+            "Equilibrio de solubilidad y precipitación"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Biología y Bioquímica",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de biología celular",
+          "temas": [
+            "Estructura y función celular, membranas y transporte"
+          ]
+        },
+        {
+          "modulo": "Bioquímica básica",
+          "temas": [
+            "Estructura y función de proteínas, carbohidratos y lípidos",
+            "Enzimas: cinética y regulación de la actividad enzimática"
+          ]
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "nombre": "Ecuaciones Diferenciales",
+      "modulos": [
+        {
+          "modulo": "Ecuaciones diferenciales ordinarias",
+          "temas": [
+            "Ecuaciones lineales de orden superior a coeficientes constantes",
+            "Sistemas de ecuaciones diferenciales lineales"
+          ]
+        },
+        {
+          "modulo": "Transformada de Laplace",
+          "temas": [
+            "Transformada de Laplace y propiedades",
+            "Resolución de ecuaciones diferenciales mediante Laplace"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Fisicoquímica 1",
+      "modulos": [
+        {
+          "modulo": "Gases y primera ley",
+          "temas": [
+            "Ecuaciones de estado de gases ideales y reales",
+            "Primera ley de la termodinámica aplicada a sistemas químicos"
+          ]
+        },
+        {
+          "modulo": "Equilibrio de fases",
+          "temas": [
+            "Segunda y tercera ley: entropía y energía libre de Gibbs",
+            "Diagramas de fase de sustancias puras"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Microbiología General",
+      "modulos": [
+        {
+          "modulo": "Microorganismos y su metabolismo",
+          "temas": [
+            "Estructura y clasificación de bacterias, hongos y levaduras",
+            "Metabolismo microbiano y curvas de crecimiento"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Computación 1",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la programación imperativa",
+          "temas": [
+            "Modelo de computación y concepto de algoritmo",
+            "Sintaxis y semántica de un lenguaje de programación",
+            "Compilación, ejecución y tipos de errores",
+            "Identificadores, variables, constantes y expresiones"
+          ]
+        },
+        {
+          "modulo": "Estructuras de control",
+          "temas": [
+            "Estructuras de selección",
+            "Estructuras de iteración",
+            "Recursión: diseño de algoritmos recursivos simples"
+          ]
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "nombre": "Fenómenos de Transporte",
+      "modulos": [
+        {
+          "modulo": "Transporte de cantidad de movimiento",
+          "temas": [
+            "Ley de viscosidad de Newton y perfil de velocidades en flujo laminar",
+            "Ecuaciones de balance de cantidad de movimiento"
+          ]
+        },
+        {
+          "modulo": "Analogías de transporte",
+          "temas": [
+            "Analogía entre transporte de momento, calor y masa"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Química de los Alimentos",
+      "modulos": [
+        {
+          "modulo": "Constituyentes de los alimentos",
+          "temas": [
+            "Agua, actividad de agua y su rol en la estabilidad de los alimentos",
+            "Proteínas, lípidos y carbohidratos en los alimentos"
+          ]
+        },
+        {
+          "modulo": "Cambios químicos y deterioro",
+          "temas": [
+            "Reacciones de pardeamiento enzimático y no enzimático (Maillard)",
+            "Oxidación lipídica y rancidez"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Microbiología de los Alimentos",
+      "modulos": [
+        {
+          "modulo": "Microorganismos en alimentos",
+          "temas": [
+            "Microorganismos alterantes y patógenos transmitidos por alimentos",
+            "Puntos críticos de control y sistema HACCP"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Nutrición y Toxicología de Alimentos",
+      "modulos": [
+        {
+          "modulo": "Nutrición",
+          "temas": [
+            "Función biológica de macro y micronutrientes",
+            "Metabolismo de nutrientes y requerimientos nutricionales"
+          ]
+        },
+        {
+          "modulo": "Toxicología alimentaria",
+          "temas": [
+            "Contaminantes y riesgo toxicológico en alimentos",
+            "Aditivos alimentarios: clasificación y límites de uso"
+          ]
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "nombre": "Ingeniería de Procesos de Alimentos 1",
+      "modulos": [
+        {
+          "modulo": "Balances y operaciones unitarias",
+          "temas": [
+            "Balances de materia y energía en procesos alimentarios",
+            "Análisis dimensional y semejanza en operaciones de alimentos"
+          ]
+        },
+        {
+          "modulo": "Transporte en alimentos",
+          "temas": [
+            "Fluidodinámica aplicada al procesamiento de alimentos",
+            "Transferencia de calor en procesos de alimentos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Métodos Numéricos",
+      "modulos": [
+        {
+          "modulo": "Resolución numérica de ecuaciones y sistemas",
+          "temas": [
+            "Métodos de bisección, Newton-Raphson y punto fijo",
+            "Resolución numérica de sistemas de ecuaciones lineales"
+          ]
+        },
+        {
+          "modulo": "Integración y ecuaciones diferenciales numéricas",
+          "temas": [
+            "Cuadratura numérica: trapecios y Simpson",
+            "Métodos de Euler y Runge-Kutta para EDO"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Tecnología de Alimentos 1",
+      "modulos": [
+        {
+          "modulo": "Procesamiento de un producto alimentario",
+          "temas": [
+            "Materias primas, manipulación y acondicionamiento",
+            "Operaciones de procesado, transformación y envasado"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Calidad de Alimentos",
+      "modulos": [
+        {
+          "modulo": "Sistemas de calidad",
+          "temas": [
+            "Calidad total y gestión de la calidad en la industria alimentaria",
+            "Calidad nutricional y atributos higiénico-sanitarios"
+          ]
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "nombre": "Ingeniería de Procesos de Alimentos 2",
+      "modulos": [
+        {
+          "modulo": "Métodos de conservación",
+          "temas": [
+            "Métodos térmicos de conservación: pasteurización y esterilización",
+            "Métodos de conservación por frío, deshidratación y reducción de actividad de agua"
+          ]
+        },
+        {
+          "modulo": "Cinética de deterioro",
+          "temas": [
+            "Cinética de reacciones de deterioro y vida útil de los alimentos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Tecnología de Alimentos 2",
+      "modulos": [
+        {
+          "modulo": "Procesamiento de un segundo producto alimentario",
+          "temas": [
+            "Tecnología de procesamiento de cereales y derivados",
+            "Tecnología de procesamiento de frutas y hortalizas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Envasado y Conservación de Alimentos",
+      "modulos": [
+        {
+          "modulo": "Envasado",
+          "temas": [
+            "Materiales y sistemas de envasado de alimentos",
+            "Envasado en atmósfera modificada y al vacío"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Legislación Alimentaria",
+      "modulos": []
+    }
+  ],
+  "8": [
+    {
+      "nombre": "Organización Industrial y Gestión",
+      "modulos": [
+        {
+          "modulo": "Gestión de la producción alimentaria",
+          "temas": [
+            "Estructura organizacional y gestión de plantas de producción de alimentos",
+            "Costos y planificación de la producción industrial"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Análisis Sensorial",
+      "modulos": [
+        {
+          "modulo": "Evaluación sensorial",
+          "temas": [
+            "Fundamentos de análisis sensorial y atributos organolépticos",
+            "Pruebas sensoriales discriminativas, descriptivas y afectivas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Taller de Alimentos",
+      "modulos": []
+    },
+    {
+      "nombre": "Proyecto Final de Ingeniería de Alimentos",
+      "modulos": []
+    }
+  ]
+}

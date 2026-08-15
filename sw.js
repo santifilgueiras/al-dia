@@ -2,7 +2,7 @@
 // para que abra rápido y funcione con conexión mala o sin conexión.
 // Las llamadas a /api/* (fichas, resumen) siempre van a la red -- nunca
 // tiene sentido servir una respuesta vieja de la IA desde el cache.
-const CACHE_NAME = 'al-dia-v3';
+const CACHE_NAME = 'al-dia-v4';
 const APP_SHELL = [
   '/mockup-firme.html',
   '/manifest.json',
@@ -10,6 +10,23 @@ const APP_SHELL = [
   '/icons/icon-512.png',
   '/icons/apple-touch-icon.png',
   '/sounds/ambiente.mp3',
+  // Catálogos/bibliografía/duraciones (antes hardcodeados en mockup-firme.html,
+  // ver scripts/extraer-datos.js) -- precargados acá para que la app funcione
+  // offline con todo el catálogo disponible desde la primera visita.
+  '/data/catalogo-medicina.json',
+  '/data/catalogo-psicologia.json',
+  '/data/catalogo-ingenieria.json',
+  '/data/catalogo-ingenieria-civil.json',
+  '/data/catalogo-ingenieria-electrica.json',
+  '/data/catalogo-ingenieria-mecanica.json',
+  '/data/catalogo-ingenieria-quimica.json',
+  '/data/catalogo-ingenieria-naval.json',
+  '/data/catalogo-ingenieria-alimentos.json',
+  '/data/catalogo-ingenieria-produccion.json',
+  '/data/catalogo-agrimensura.json',
+  '/data/modulo-icons.json',
+  '/data/textos.json',
+  '/data/duraciones.json',
 ];
 
 self.addEventListener('install', (event) => {

@@ -1,0 +1,642 @@
+{
+  "1": [
+    {
+      "nombre": "Cálculo Diferencial e Integral en Una Variable",
+      "modulos": [
+        {
+          "modulo": "Números reales y funciones",
+          "temas": [
+            "Axioma de completitud y supremo de un conjunto",
+            "Funciones reales: inyectividad, sobreyectividad y monotonía",
+            "Trigonometría: círculo trigonométrico y funciones inversas"
+          ]
+        },
+        {
+          "modulo": "Límites y continuidad",
+          "temas": [
+            "Definición de límite y álgebra de límites",
+            "Continuidad y teorema de Bolzano",
+            "Teorema de Weierstrass y extremos globales"
+          ]
+        },
+        {
+          "modulo": "Derivadas",
+          "temas": [
+            "Definición de derivada y regla de la cadena",
+            "Teoremas de Rolle, Lagrange y Cauchy",
+            "Derivadas, crecimiento y concavidad",
+            "Regla de L'Hôpital"
+          ]
+        },
+        {
+          "modulo": "Integrales y desarrollo de Taylor",
+          "temas": [
+            "Integral de Riemann mediante sumas superiores e inferiores",
+            "Teorema fundamental del cálculo y regla de Barrow",
+            "Técnicas de integración: partes, sustitución y fracciones simples",
+            "Polinomio de Taylor y estimación del error"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Geometría y Álgebra Lineal 1",
+      "modulos": [
+        {
+          "modulo": "Sistemas de ecuaciones y matrices",
+          "temas": [
+            "Eliminación de Gauss y sistemas de ecuaciones lineales",
+            "Rango de una matriz y teorema de Rouché-Frobenius",
+            "Álgebra de matrices: suma, producto e inversa"
+          ]
+        },
+        {
+          "modulo": "Determinantes",
+          "temas": [
+            "Determinantes de orden 2 y 3 y definición inductiva",
+            "Propiedades del determinante y matrices elementales",
+            "Regla de Cramer y cálculo del rango por determinantes"
+          ]
+        },
+        {
+          "modulo": "Geometría del espacio",
+          "temas": [
+            "Rectas y planos en el espacio",
+            "Producto escalar: ángulos y distancias",
+            "Producto vectorial: áreas y volúmenes"
+          ]
+        },
+        {
+          "modulo": "Espacios vectoriales y transformaciones lineales",
+          "temas": [
+            "Espacios y subespacios vectoriales",
+            "Generadores, independencia lineal, base y dimensión",
+            "Cambio de base de un espacio vectorial",
+            "Núcleo e imagen de una transformación lineal",
+            "Matriz asociada a una transformación lineal"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Física 1 (Mecánica)",
+      "modulos": [
+        {
+          "modulo": "Cinemática y dinámica de partículas",
+          "temas": [
+            "Cinemática: posición, velocidad y aceleración",
+            "Leyes de Newton y diagramas de cuerpo libre"
+          ]
+        },
+        {
+          "modulo": "Trabajo, energía y sistemas de partículas",
+          "temas": [
+            "Trabajo, energía cinética y potencial, conservación de energía",
+            "Momento lineal, impulso y colisiones"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Principios de Química General",
+      "modulos": [
+        {
+          "modulo": "Estructura y enlace",
+          "temas": [
+            "Estructura atómica, tabla periódica y tipos de enlace químico",
+            "Estequiometría y reacciones químicas"
+          ]
+        }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "nombre": "Cálculo Diferencial e Integral en Varias Variables",
+      "modulos": [
+        {
+          "modulo": "Sucesiones, series e integrales impropias",
+          "temas": [
+            "Sucesiones: límite, monotonía, acotación y subsucesiones",
+            "Series numéricas y criterios de convergencia",
+            "Convergencia condicional y absoluta",
+            "Integrales impropias y criterio serie-integral"
+          ]
+        },
+        {
+          "modulo": "Topología y continuidad en Rⁿ",
+          "temas": [
+            "Normas y conjuntos abiertos y cerrados en Rⁿ",
+            "Sucesiones en Rⁿ y caracterización de conjuntos compactos",
+            "Límites y continuidad de funciones de varias variables"
+          ]
+        },
+        {
+          "modulo": "Diferenciabilidad e integrales múltiples",
+          "temas": [
+            "Derivadas parciales y derivadas direccionales",
+            "Diferenciabilidad y plano tangente",
+            "Diferencial de la función compuesta",
+            "Integrales dobles y triples: teorema de Fubini",
+            "Teorema de cambio de variables: coordenadas polares, cilíndricas y esféricas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Geometría y Álgebra Lineal 2",
+      "modulos": [
+        {
+          "modulo": "Valores y vectores propios",
+          "temas": [
+            "Valores y vectores propios, polinomio característico",
+            "Diagonalización de matrices",
+            "Multiplicidades algebraica y geométrica; teorema de Gershgorin"
+          ]
+        },
+        {
+          "modulo": "Formas canónicas",
+          "temas": [
+            "Forma canónica de Jordan",
+            "Matrices semejantes y cambio de base para operadores"
+          ]
+        },
+        {
+          "modulo": "Producto interno y ortogonalidad",
+          "temas": [
+            "Producto interno y norma en un espacio vectorial",
+            "Ortogonalidad, ortonormalidad y proceso de Gram-Schmidt",
+            "Descomposición QR",
+            "Complemento ortogonal y proyección ortogonal",
+            "Aproximación por mínimos cuadrados"
+          ]
+        },
+        {
+          "modulo": "Transformaciones adjuntas e isometrías",
+          "temas": [
+            "Teorema de representación de Riesz y transformación adjunta",
+            "Operadores autoadjuntos y teorema espectral",
+            "Isometrías lineales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Física 2 (Oscilaciones, Ondas y Termodinámica)",
+      "modulos": [
+        {
+          "modulo": "Oscilaciones y ondas mecánicas",
+          "temas": [
+            "Movimiento armónico simple y oscilador amortiguado",
+            "Ondas mecánicas: propagación, interferencia y ondas estacionarias"
+          ]
+        },
+        {
+          "modulo": "Termodinámica",
+          "temas": [
+            "Temperatura, calor y primer principio de la termodinámica",
+            "Entropía y segundo principio de la termodinámica"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Programación 1",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la programación imperativa",
+          "temas": [
+            "Modelo de computación y concepto de algoritmo",
+            "Sintaxis y semántica de un lenguaje de programación",
+            "Compilación, ejecución y tipos de errores",
+            "Identificadores, variables, constantes y expresiones"
+          ]
+        },
+        {
+          "modulo": "Estructuras de control",
+          "temas": [
+            "Estructuras de selección",
+            "Estructuras de iteración",
+            "Recursión: diseño de algoritmos recursivos simples"
+          ]
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "nombre": "Cálculo Vectorial",
+      "modulos": [
+        {
+          "modulo": "Campos escalares y vectoriales",
+          "temas": [
+            "Gradiente, divergencia y rotor",
+            "Campos conservativos y funciones potenciales"
+          ]
+        },
+        {
+          "modulo": "Integrales de línea y de superficie",
+          "temas": [
+            "Integrales de línea de campos escalares y vectoriales",
+            "Integrales de superficie y flujo de un campo vectorial",
+            "Teoremas de Green, Stokes y de la divergencia (Gauss)"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Probabilidad y Estadística",
+      "modulos": [
+        {
+          "modulo": "Probabilidad básica",
+          "temas": [
+            "Espacios de probabilidad y probabilidad condicional",
+            "Variables aleatorias discretas y continuas",
+            "Distribuciones de probabilidad clásicas (binomial, Poisson, normal, exponencial)",
+            "Esperanza, varianza y funciones generadoras"
+          ]
+        },
+        {
+          "modulo": "Vectores aleatorios y teoremas límite",
+          "temas": [
+            "Vectores aleatorios y distribuciones conjuntas",
+            "Covarianza y correlación",
+            "Ley de los grandes números",
+            "Teorema central del límite"
+          ]
+        },
+        {
+          "modulo": "Estadística descriptiva e inferencial",
+          "temas": [
+            "Estadística descriptiva y análisis exploratorio de datos",
+            "Estimación puntual y por intervalos de confianza",
+            "Contraste de hipótesis",
+            "Regresión lineal simple y múltiple"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Física 3 (Ondas y Óptica)",
+      "modulos": [
+        {
+          "modulo": "Ondas electromagnéticas",
+          "temas": [
+            "Ecuación de ondas y espectro electromagnético",
+            "Polarización de ondas electromagnéticas"
+          ]
+        },
+        {
+          "modulo": "Óptica geométrica y ondulatoria",
+          "temas": [
+            "Reflexión, refracción y lentes delgadas",
+            "Interferencia y difracción de la luz"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Mecánica Newtoniana",
+      "modulos": [
+        {
+          "modulo": "Dinámica de sistemas de partículas",
+          "temas": [
+            "Centro de masa y movimiento de sistemas de partículas",
+            "Momento angular y torque en sistemas de partículas"
+          ]
+        },
+        {
+          "modulo": "Cuerpo rígido y oscilaciones",
+          "temas": [
+            "Cinemática y dinámica de rotación del cuerpo rígido",
+            "Momento de inercia y teorema de Steiner",
+            "Osciladores acoplados y modos normales"
+          ]
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "nombre": "Ecuaciones Diferenciales",
+      "modulos": [
+        {
+          "modulo": "Ecuaciones diferenciales ordinarias",
+          "temas": [
+            "Ecuaciones lineales de orden superior a coeficientes constantes",
+            "Sistemas de ecuaciones diferenciales lineales"
+          ]
+        },
+        {
+          "modulo": "Transformada de Laplace",
+          "temas": [
+            "Transformada de Laplace y propiedades",
+            "Resolución de ecuaciones diferenciales mediante Laplace"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Materiales y Ensayos",
+      "modulos": [
+        {
+          "modulo": "Estructura y propiedades de los materiales",
+          "temas": [
+            "Estructura cristalina de metales y defectos cristalinos",
+            "Diagramas de fase y diagrama hierro-carbono"
+          ]
+        },
+        {
+          "modulo": "Propiedades mecánicas y ensayos",
+          "temas": [
+            "Ensayo de tracción, dureza e impacto",
+            "Fatiga y mecanismos de falla de materiales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Estática Aplicada",
+      "modulos": [
+        {
+          "modulo": "Equilibrio de cuerpos rígidos",
+          "temas": [
+            "Momento de una fuerza y equilibrio de cuerpos rígidos",
+            "Reacciones de apoyo y diagramas de cuerpo libre en estructuras"
+          ]
+        },
+        {
+          "modulo": "Análisis de estructuras simples",
+          "temas": [
+            "Armaduras planas: método de nudos y de secciones",
+            "Centroides, centros de gravedad y momentos de inercia de áreas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Investigación de Operaciones",
+      "modulos": [
+        {
+          "modulo": "Programación matemática",
+          "temas": [
+            "Programación lineal: formulación y método símplex",
+            "Programación entera y modelos de redes"
+          ]
+        },
+        {
+          "modulo": "Modelos estocásticos",
+          "temas": [
+            "Teoría de colas y modelos de líneas de espera"
+          ]
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "nombre": "Métodos Numéricos",
+      "modulos": [
+        {
+          "modulo": "Resolución numérica de ecuaciones y sistemas",
+          "temas": [
+            "Métodos de bisección, Newton-Raphson y punto fijo",
+            "Resolución numérica de sistemas de ecuaciones lineales"
+          ]
+        },
+        {
+          "modulo": "Integración y ecuaciones diferenciales numéricas",
+          "temas": [
+            "Cuadratura numérica: trapecios y Simpson",
+            "Métodos de Euler y Runge-Kutta para EDO"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Estática de Sólidos Deformables",
+      "modulos": [
+        {
+          "modulo": "Esfuerzo y deformación",
+          "temas": [
+            "Esfuerzo axial, deformación y la ley de Hooke",
+            "Esfuerzo cortante y torsión en elementos estructurales"
+          ]
+        },
+        {
+          "modulo": "Flexión y pandeo",
+          "temas": [
+            "Flexión de vigas: esfuerzos normales y diagramas de momento",
+            "Pandeo de columnas y carga crítica de Euler"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Administración de Empresas",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de administración",
+          "temas": [
+            "Funciones administrativas: planificación, organización, dirección y control",
+            "Estados financieros y análisis de costos para la toma de decisiones"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Microeconomía",
+      "modulos": [
+        {
+          "modulo": "Teoría del consumidor y la firma",
+          "temas": [
+            "Oferta, demanda y equilibrio de mercado",
+            "Estructuras de mercado: competencia perfecta, monopolio y oligopolio"
+          ]
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "nombre": "Gestión de Operaciones",
+      "modulos": [
+        {
+          "modulo": "Planificación y control de la producción",
+          "temas": [
+            "Pronóstico de la demanda y planificación agregada de la producción",
+            "Gestión de inventarios y planificación de requerimientos de materiales (MRP)"
+          ]
+        },
+        {
+          "modulo": "Diseño de procesos productivos",
+          "temas": [
+            "Distribución en planta (layout) y balanceo de líneas",
+            "Cadena de suministro y logística"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Gestión de Calidad y Productividad",
+      "modulos": [
+        {
+          "modulo": "Sistemas de gestión de calidad",
+          "temas": [
+            "Control estadístico de procesos y cartas de control",
+            "Normas ISO 9001 y mejora continua (Kaizen)"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Electrotecnia 1",
+      "modulos": [
+        {
+          "modulo": "Sistemas trifásicos",
+          "temas": [
+            "Circuitos trifásicos equilibrados: conexión estrella y triángulo",
+            "Potencia en sistemas trifásicos"
+          ]
+        },
+        {
+          "modulo": "Transformadores",
+          "temas": [
+            "Principio de funcionamiento del transformador ideal",
+            "Circuito equivalente y ensayos de vacío y cortocircuito"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Organizaciones y su Administración",
+      "modulos": [
+        {
+          "modulo": "Comportamiento organizacional",
+          "temas": [
+            "Estructura organizacional y diseño de organizaciones",
+            "Liderazgo, trabajo en equipo y gestión de recursos humanos"
+          ]
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "nombre": "Gestión de Proyectos",
+      "modulos": [
+        {
+          "modulo": "Planificación y control de proyectos",
+          "temas": [
+            "Estructura de desglose de trabajo (EDT) y cronograma de proyecto",
+            "Método de la ruta crítica (CPM) y PERT"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Desarrollo de Productos",
+      "modulos": [
+        {
+          "modulo": "Ingeniería y diseño de producto",
+          "temas": [
+            "Proceso de desarrollo de nuevos productos",
+            "Diseño para manufactura y ensamble (DFMA)"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Control e Instrumentación Industrial",
+      "modulos": [
+        {
+          "modulo": "Modelado de sistemas dinámicos",
+          "temas": [
+            "Función de transferencia y diagramas de bloques",
+            "Representación en espacio de estados"
+          ]
+        },
+        {
+          "modulo": "Análisis y diseño de controladores",
+          "temas": [
+            "Estabilidad: criterio de Routh-Hurwitz y lugar de las raíces",
+            "Controladores PID y sintonización"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Ingeniería Química y de Procesos",
+      "modulos": [
+        {
+          "modulo": "Balances de materia y energía",
+          "temas": [
+            "Balances de materia en procesos sin y con reacción química",
+            "Balances de energía en procesos industriales"
+          ]
+        }
+      ]
+    }
+  ],
+  "8": [
+    {
+      "nombre": "Elementos de Ingeniería Ambiental",
+      "modulos": [
+        {
+          "modulo": "Gestión ambiental industrial",
+          "temas": [
+            "Impacto ambiental y evaluación de impacto ambiental de procesos industriales",
+            "Gestión de residuos y efluentes industriales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Servicios Industriales",
+      "modulos": [
+        {
+          "modulo": "Servicios auxiliares de planta",
+          "temas": [
+            "Generación y distribución de vapor y agua de servicios industriales",
+            "Sistemas de aire comprimido y tratamiento de efluentes industriales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Bases de Datos y Sistemas de Información",
+      "modulos": [
+        {
+          "modulo": "Sistemas de información para la gestión",
+          "temas": [
+            "Modelo entidad-relación y diseño de bases de datos",
+            "Sistemas ERP y CRM para la gestión empresarial"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Entorno Empresarial",
+      "modulos": [
+        {
+          "modulo": "Marco legal y social del trabajo",
+          "temas": [
+            "Derecho laboral: contratación y relaciones de trabajo",
+            "Higiene y seguridad laboral en la industria"
+          ]
+        },
+        {
+          "modulo": "Economía y sociedad",
+          "temas": [
+            "Economía nacional y regional aplicada a la producción industrial",
+            "Responsabilidad social empresarial y tecnología y sociedad"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Proyecto Final de Ingeniería de Producción",
+      "modulos": []
+    }
+  ]
+}

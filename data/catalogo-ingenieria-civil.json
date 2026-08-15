@@ -1,0 +1,421 @@
+{
+  "1": [
+    {
+      "nombre": "Cálculo 1",
+      "modulos": [
+        {
+          "modulo": "Límites y derivadas",
+          "temas": [
+            "Límites, continuidad y asíntotas de funciones reales",
+            "Derivada: definición, reglas y aplicaciones a razones de cambio"
+          ]
+        },
+        {
+          "modulo": "Integrales de una variable",
+          "temas": [
+            "Integral definida e indefinida, teorema fundamental del cálculo",
+            "Técnicas de integración y aplicaciones a áreas y volúmenes"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Álgebra Lineal y Geometría",
+      "modulos": [
+        {
+          "modulo": "Vectores y matrices",
+          "temas": [
+            "Vectores en el plano y el espacio, producto escalar y vectorial",
+            "Matrices, sistemas de ecuaciones lineales y eliminación gaussiana"
+          ]
+        },
+        {
+          "modulo": "Geometría analítica aplicada",
+          "temas": [
+            "Rectas, planos y cónicas en el espacio",
+            "Transformaciones lineales y cambio de coordenadas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Física 1 (Mecánica)",
+      "modulos": [
+        {
+          "modulo": "Cinemática y dinámica de partículas",
+          "temas": [
+            "Cinemática: posición, velocidad y aceleración",
+            "Leyes de Newton y diagramas de cuerpo libre"
+          ]
+        },
+        {
+          "modulo": "Trabajo, energía y sistemas de partículas",
+          "temas": [
+            "Trabajo, energía cinética y potencial, conservación de energía",
+            "Momento lineal, impulso y colisiones"
+          ]
+        }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "nombre": "Cálculo 2",
+      "modulos": [
+        {
+          "modulo": "Series y ecuaciones diferenciales",
+          "temas": [
+            "Sucesiones y series numéricas, criterios de convergencia",
+            "Ecuaciones diferenciales ordinarias de primer y segundo orden"
+          ]
+        },
+        {
+          "modulo": "Cálculo en varias variables",
+          "temas": [
+            "Derivadas parciales y optimización de funciones de varias variables",
+            "Integrales dobles y triples aplicadas al cálculo de volúmenes y masas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Estática",
+      "modulos": [
+        {
+          "modulo": "Equilibrio de cuerpos rígidos",
+          "temas": [
+            "Momento de una fuerza y equilibrio de cuerpos rígidos",
+            "Reacciones de apoyo y diagramas de cuerpo libre en estructuras"
+          ]
+        },
+        {
+          "modulo": "Análisis de estructuras simples",
+          "temas": [
+            "Armaduras planas: método de nudos y de secciones",
+            "Centroides, centros de gravedad y momentos de inercia de áreas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Química Aplicada a la Construcción",
+      "modulos": [
+        {
+          "modulo": "Fundamentos químicos de materiales",
+          "temas": [
+            "Estructura atómica y enlaces químicos en materiales de construcción",
+            "Reacciones químicas del cemento y del hormigón (hidratación)"
+          ]
+        },
+        {
+          "modulo": "Corrosión y durabilidad",
+          "temas": [
+            "Corrosión de armaduras metálicas en el hormigón",
+            "Química del agua y su efecto sobre estructuras y suelos"
+          ]
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "nombre": "Mecánica de Materiales",
+      "modulos": [
+        {
+          "modulo": "Esfuerzo y deformación",
+          "temas": [
+            "Esfuerzo axial, deformación y la ley de Hooke",
+            "Esfuerzo cortante y torsión en elementos estructurales"
+          ]
+        },
+        {
+          "modulo": "Flexión y pandeo",
+          "temas": [
+            "Flexión de vigas: esfuerzos normales y diagramas de momento",
+            "Pandeo de columnas y carga crítica de Euler"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Topografía",
+      "modulos": [
+        {
+          "modulo": "Medición y nivelación",
+          "temas": [
+            "Métodos de medición de distancias y ángulos en el terreno",
+            "Nivelación geométrica y trigonométrica"
+          ]
+        },
+        {
+          "modulo": "Levantamientos y sistemas de posicionamiento",
+          "temas": [
+            "Levantamientos topográficos y cálculo de superficies",
+            "Sistemas de posicionamiento global (GPS/GNSS) aplicados a obra"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Probabilidad y Estadística (Civil)",
+      "modulos": [
+        {
+          "modulo": "Probabilidad aplicada a la ingeniería civil",
+          "temas": [
+            "Variables aleatorias y distribuciones de probabilidad en fenómenos de carga",
+            "Confiabilidad estructural y análisis de riesgo"
+          ]
+        },
+        {
+          "modulo": "Estadística aplicada",
+          "temas": [
+            "Estimación y contraste de hipótesis en datos de ensayos de materiales",
+            "Regresión lineal aplicada a hidrología y geotecnia"
+          ]
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "nombre": "Análisis Estructural",
+      "modulos": [
+        {
+          "modulo": "Estructuras isostáticas",
+          "temas": [
+            "Vigas y pórticos isostáticos: diagramas de esfuerzos",
+            "Líneas de influencia para cargas móviles"
+          ]
+        },
+        {
+          "modulo": "Estructuras hiperestáticas",
+          "temas": [
+            "Método de las fuerzas para estructuras hiperestáticas",
+            "Método de la rigidez y análisis matricial de estructuras"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Mecánica de Fluidos",
+      "modulos": [
+        {
+          "modulo": "Fluidos en reposo y en movimiento",
+          "temas": [
+            "Hidrostática: presión, empuje y estabilidad de cuerpos flotantes",
+            "Ecuación de Bernoulli y conservación de la energía en flujos"
+          ]
+        },
+        {
+          "modulo": "Flujo en conductos",
+          "temas": [
+            "Flujo laminar y turbulento, número de Reynolds",
+            "Pérdidas de carga en tuberías y redes de conductos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Mecánica de Suelos",
+      "modulos": [
+        {
+          "modulo": "Propiedades index y clasificación",
+          "temas": [
+            "Origen de los suelos y propiedades índice (granulometría, límites de Atterberg)",
+            "Clasificación de suelos (SUCS) y compactación"
+          ]
+        },
+        {
+          "modulo": "Comportamiento mecánico del suelo",
+          "temas": [
+            "Esfuerzos efectivos y presión de poros",
+            "Consolidación y asentamientos en suelos finos"
+          ]
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "nombre": "Hormigón Armado",
+      "modulos": [
+        {
+          "modulo": "Fundamentos del hormigón armado",
+          "temas": [
+            "Propiedades mecánicas del hormigón y del acero de refuerzo",
+            "Diseño a flexión de vigas de hormigón armado"
+          ]
+        },
+        {
+          "modulo": "Diseño de elementos de hormigón armado",
+          "temas": [
+            "Diseño a corte y anclaje de armaduras",
+            "Diseño de columnas y losas de hormigón armado"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Hidráulica Aplicada",
+      "modulos": [
+        {
+          "modulo": "Hidráulica de canales",
+          "temas": [
+            "Flujo uniforme y gradualmente variado en canales abiertos",
+            "Resaltos hidráulicos y estructuras de control"
+          ]
+        },
+        {
+          "modulo": "Obras hidráulicas",
+          "temas": [
+            "Diseño de vertederos y obras de toma",
+            "Redes de distribución de agua potable"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Materiales de Construcción",
+      "modulos": [
+        {
+          "modulo": "Materiales pétreos y aglomerantes",
+          "temas": [
+            "Áridos y agregados: propiedades y ensayos",
+            "Cementos y cales: propiedades y tipos"
+          ]
+        },
+        {
+          "modulo": "Materiales industrializados",
+          "temas": [
+            "Aceros estructurales: propiedades y ensayos mecánicos",
+            "Maderas y materiales compuestos en la construcción"
+          ]
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "nombre": "Estructuras Metálicas y de Madera",
+      "modulos": [
+        {
+          "modulo": "Diseño en acero",
+          "temas": [
+            "Diseño de elementos a tracción y compresión en acero",
+            "Conexiones soldadas y apernadas en estructuras metálicas"
+          ]
+        },
+        {
+          "modulo": "Diseño en madera",
+          "temas": [
+            "Propiedades estructurales de la madera",
+            "Diseño de elementos y uniones en estructuras de madera"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Geotecnia y Cimentaciones",
+      "modulos": [
+        {
+          "modulo": "Capacidad portante",
+          "temas": [
+            "Capacidad de carga de fundaciones superficiales",
+            "Empuje de tierras y estabilidad de muros de contención"
+          ]
+        },
+        {
+          "modulo": "Fundaciones profundas",
+          "temas": [
+            "Diseño de pilotes y fundaciones profundas",
+            "Estabilidad de taludes y análisis de deslizamientos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Vías de Comunicación",
+      "modulos": [
+        {
+          "modulo": "Diseño geométrico de carreteras",
+          "temas": [
+            "Diseño geométrico en planta y perfil de carreteras",
+            "Curvas horizontales y verticales, peraltes"
+          ]
+        },
+        {
+          "modulo": "Pavimentos",
+          "temas": [
+            "Diseño de pavimentos flexibles y rígidos",
+            "Materiales y capas de la estructura de pavimento"
+          ]
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "nombre": "Construcción y Gestión de Obras",
+      "modulos": [
+        {
+          "modulo": "Procedimientos constructivos",
+          "temas": [
+            "Procesos constructivos de estructuras de hormigón y encofrados",
+            "Seguridad e higiene en obras de construcción"
+          ]
+        },
+        {
+          "modulo": "Gestión de proyectos de construcción",
+          "temas": [
+            "Planificación de obra: cronogramas y ruta crítica (CPM/PERT)",
+            "Presupuesto, cómputo métrico y control de costos de obra"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Ingeniería Sanitaria y Ambiental",
+      "modulos": [
+        {
+          "modulo": "Saneamiento",
+          "temas": [
+            "Redes de saneamiento y alcantarillado",
+            "Tratamiento de aguas residuales"
+          ]
+        },
+        {
+          "modulo": "Impacto ambiental",
+          "temas": [
+            "Evaluación de impacto ambiental de obras civiles",
+            "Gestión de residuos de construcción y demolición"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Hidrología",
+      "modulos": [
+        {
+          "modulo": "Ciclo hidrológico y cuencas",
+          "temas": [
+            "Ciclo hidrológico, precipitación y escorrentía",
+            "Análisis de cuencas hidrográficas y caudales de diseño"
+          ]
+        },
+        {
+          "modulo": "Hidrología aplicada al diseño",
+          "temas": [
+            "Hidrogramas unitarios y tránsito de crecidas",
+            "Diseño hidrológico de obras de drenaje pluvial"
+          ]
+        }
+      ]
+    }
+  ],
+  "8": [
+    {
+      "nombre": "Proyecto Final de Ingeniería Civil",
+      "modulos": []
+    }
+  ]
+}

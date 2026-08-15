@@ -1,0 +1,1118 @@
+{
+  "1": [
+    {
+      "nombre": "Fundamentos de la Combinatoria",
+      "modulos": [
+        {
+          "modulo": "Inducción y buen orden",
+          "temas": [
+            "Principio del buen orden y principio de inducción completa",
+            "Inducción fuerte y demostraciones por casos",
+            "Aplicaciones de la inducción a sumas y desigualdades"
+          ]
+        },
+        {
+          "modulo": "Numerabilidad y conjuntos infinitos",
+          "temas": [
+            "Funciones inyectivas, sobreyectivas y biyectivas",
+            "Conjuntos finitos, numerables y no numerables",
+            "Teorema de la diagonal de Cantor",
+            "El problema de la parada y sus implicancias en computación"
+          ]
+        },
+        {
+          "modulo": "Elementos de conteo",
+          "temas": [
+            "Reglas de la suma y del producto",
+            "Permutaciones, arreglos y combinaciones",
+            "Permutaciones y combinaciones con repetición",
+            "Principio de inclusión-exclusión y principio del palomar",
+            "Resolución de recurrencias por sustitución"
+          ]
+        },
+        {
+          "modulo": "Relaciones binarias y órdenes",
+          "temas": [
+            "Relaciones de orden parcial y de orden total",
+            "Diagrama de Hasse y orden lexicográfico",
+            "Teoremas de Dilworth y Mirsky",
+            "Relaciones de equivalencia y conjunto cociente",
+            "Congruencias y exponenciación módulo n"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Geometría y Álgebra Lineal 1",
+      "modulos": [
+        {
+          "modulo": "Sistemas de ecuaciones y matrices",
+          "temas": [
+            "Eliminación de Gauss y sistemas de ecuaciones lineales",
+            "Rango de una matriz y teorema de Rouché-Frobenius",
+            "Álgebra de matrices: suma, producto e inversa"
+          ]
+        },
+        {
+          "modulo": "Determinantes",
+          "temas": [
+            "Determinantes de orden 2 y 3 y definición inductiva",
+            "Propiedades del determinante y matrices elementales",
+            "Regla de Cramer y cálculo del rango por determinantes"
+          ]
+        },
+        {
+          "modulo": "Geometría del espacio",
+          "temas": [
+            "Rectas y planos en el espacio",
+            "Producto escalar: ángulos y distancias",
+            "Producto vectorial: áreas y volúmenes"
+          ]
+        },
+        {
+          "modulo": "Espacios vectoriales y transformaciones lineales",
+          "temas": [
+            "Espacios y subespacios vectoriales",
+            "Generadores, independencia lineal, base y dimensión",
+            "Cambio de base de un espacio vectorial",
+            "Núcleo e imagen de una transformación lineal",
+            "Matriz asociada a una transformación lineal"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Computación",
+      "modulos": [
+        {
+          "modulo": "Historia y panorama de la disciplina",
+          "temas": [
+            "Historia de la computación y de la informática en Uruguay",
+            "El Instituto de Computación de la Facultad de Ingeniería"
+          ]
+        },
+        {
+          "modulo": "Ingeniería de software y ciencia de la computación",
+          "temas": [
+            "Fases del desarrollo de software: especificación, diseño, construcción y prueba",
+            "Ética profesional en la ingeniería de software",
+            "Estructuras de datos, algoritmos y paradigmas de programación"
+          ]
+        },
+        {
+          "modulo": "Sistemas, datos y seguridad",
+          "temas": [
+            "Arquitectura de computadoras y sistemas operativos",
+            "Redes de computadoras y seguridad computacional",
+            "Computación paralela y distribuida",
+            "Bases de datos y calidad de la información"
+          ]
+        },
+        {
+          "modulo": "Tendencias y orientación profesional",
+          "temas": [
+            "Inteligencia artificial y aprendizaje automático",
+            "Carreras, plan de estudios y ética en la formación en computación"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Cálculo Diferencial e Integral en Una Variable",
+      "modulos": [
+        {
+          "modulo": "Números reales y funciones",
+          "temas": [
+            "Axioma de completitud y supremo de un conjunto",
+            "Funciones reales: inyectividad, sobreyectividad y monotonía",
+            "Trigonometría: círculo trigonométrico y funciones inversas"
+          ]
+        },
+        {
+          "modulo": "Límites y continuidad",
+          "temas": [
+            "Definición de límite y álgebra de límites",
+            "Continuidad y teorema de Bolzano",
+            "Teorema de Weierstrass y extremos globales"
+          ]
+        },
+        {
+          "modulo": "Derivadas",
+          "temas": [
+            "Definición de derivada y regla de la cadena",
+            "Teoremas de Rolle, Lagrange y Cauchy",
+            "Derivadas, crecimiento y concavidad",
+            "Regla de L'Hôpital"
+          ]
+        },
+        {
+          "modulo": "Integrales y desarrollo de Taylor",
+          "temas": [
+            "Integral de Riemann mediante sumas superiores e inferiores",
+            "Teorema fundamental del cálculo y regla de Barrow",
+            "Técnicas de integración: partes, sustitución y fracciones simples",
+            "Polinomio de Taylor y estimación del error"
+          ]
+        }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "nombre": "Programación Imperativa",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la programación imperativa",
+          "temas": [
+            "Modelo de computación y concepto de algoritmo",
+            "Sintaxis y semántica de un lenguaje de programación",
+            "Compilación, ejecución y tipos de errores",
+            "Identificadores, variables, constantes y expresiones"
+          ]
+        },
+        {
+          "modulo": "Estructuras de control",
+          "temas": [
+            "Estructuras de selección",
+            "Estructuras de iteración",
+            "Recursión: diseño de algoritmos recursivos simples"
+          ]
+        },
+        {
+          "modulo": "Tipos de datos y subprogramas",
+          "temas": [
+            "Tipos de datos elementales y estructurados: arreglos y registros",
+            "Procedimientos, funciones y pasaje de parámetros",
+            "Precondiciones, postcondiciones y reglas de alcance"
+          ]
+        },
+        {
+          "modulo": "Algoritmos básicos",
+          "temas": [
+            "Búsqueda lineal y búsqueda binaria",
+            "Algoritmos de ordenación",
+            "Nociones elementales de análisis de algoritmos",
+            "Buenas prácticas de diseño, implementación y casos de prueba"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Geometría y Álgebra Lineal 2",
+      "modulos": [
+        {
+          "modulo": "Valores y vectores propios",
+          "temas": [
+            "Valores y vectores propios, polinomio característico",
+            "Diagonalización de matrices",
+            "Multiplicidades algebraica y geométrica; teorema de Gershgorin"
+          ]
+        },
+        {
+          "modulo": "Formas canónicas",
+          "temas": [
+            "Forma canónica de Jordan",
+            "Matrices semejantes y cambio de base para operadores"
+          ]
+        },
+        {
+          "modulo": "Producto interno y ortogonalidad",
+          "temas": [
+            "Producto interno y norma en un espacio vectorial",
+            "Ortogonalidad, ortonormalidad y proceso de Gram-Schmidt",
+            "Descomposición QR",
+            "Complemento ortogonal y proyección ortogonal",
+            "Aproximación por mínimos cuadrados"
+          ]
+        },
+        {
+          "modulo": "Transformaciones adjuntas e isometrías",
+          "temas": [
+            "Teorema de representación de Riesz y transformación adjunta",
+            "Operadores autoadjuntos y teorema espectral",
+            "Isometrías lineales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Herramientas de Modelización y Análisis",
+      "modulos": [
+        {
+          "modulo": "Teoría de conjuntos",
+          "temas": [
+            "Formas de definir conjuntos: extensión y comprensión",
+            "Operaciones entre conjuntos y producto cartesiano",
+            "Funciones y su aplicación al modelado de sistemas"
+          ]
+        },
+        {
+          "modulo": "Inducción y recursión estructural",
+          "temas": [
+            "Definición inductiva de conjuntos y estructuras de datos",
+            "Principio de inducción estructural",
+            "Esquema de recursión estructural"
+          ]
+        },
+        {
+          "modulo": "Lógica proposicional",
+          "temas": [
+            "Sintaxis y semántica de las fórmulas proposicionales",
+            "Tablas de verdad y equivalencias lógicas",
+            "Deducción natural",
+            "Álgebra de Boole"
+          ]
+        },
+        {
+          "modulo": "Máquinas de estado",
+          "temas": [
+            "Definición formal de una máquina de estados",
+            "Modelado de procesos de computación con máquinas de estado",
+            "Propiedades de invarianza"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Cálculo Diferencial e Integral en Varias Variables",
+      "modulos": [
+        {
+          "modulo": "Números complejos y ecuaciones diferenciales",
+          "temas": [
+            "Número complejo: notación binómica, trigonométrica y exponencial",
+            "Ecuaciones diferenciales de variables separables y lineales de primer orden",
+            "Ecuaciones diferenciales lineales de segundo orden a coeficientes constantes"
+          ]
+        },
+        {
+          "modulo": "Sucesiones, series e integrales impropias",
+          "temas": [
+            "Sucesiones: límite, monotonía, acotación y subsucesiones",
+            "Series numéricas y criterios de convergencia",
+            "Convergencia condicional y absoluta",
+            "Integrales impropias y criterio serie-integral"
+          ]
+        },
+        {
+          "modulo": "Topología y continuidad en Rⁿ",
+          "temas": [
+            "Normas y conjuntos abiertos y cerrados en Rⁿ",
+            "Sucesiones en Rⁿ y caracterización de conjuntos compactos",
+            "Límites y continuidad de funciones de varias variables"
+          ]
+        },
+        {
+          "modulo": "Diferenciabilidad e integrales múltiples",
+          "temas": [
+            "Derivadas parciales y derivadas direccionales",
+            "Diferenciabilidad y plano tangente",
+            "Diferencial de la función compuesta",
+            "Integrales dobles y triples: teorema de Fubini",
+            "Teorema de cambio de variables: coordenadas polares, cilíndricas y esféricas"
+          ]
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "nombre": "Teoría de Grafos",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de grafos",
+          "temas": [
+            "Definiciones básicas: grafos simples, dirigidos y ponderados",
+            "Isomorfismo y subgrafos",
+            "Grados, caminos, ciclos y conectividad",
+            "Representación computacional de grafos (matrices y listas de adyacencia)"
+          ]
+        },
+        {
+          "modulo": "Árboles y recorridos",
+          "temas": [
+            "Árboles y árboles generadores mínimos",
+            "Algoritmo de Kruskal",
+            "Algoritmo de Prim",
+            "Recorridos BFS y DFS"
+          ]
+        },
+        {
+          "modulo": "Grafos eulerianos, hamiltonianos y planares",
+          "temas": [
+            "Circuitos eulerianos y el problema de los puentes de Königsberg",
+            "Ciclos hamiltonianos y el problema del viajante",
+            "Grafos planares y la fórmula de Euler"
+          ]
+        },
+        {
+          "modulo": "Coloreo, flujos y emparejamientos en grafos",
+          "temas": [
+            "Coloreo de vértices y el teorema de los cuatro colores",
+            "Coloreo de aristas y el teorema de Vizing",
+            "Flujo máximo y el teorema de Ford-Fulkerson",
+            "Emparejamientos bipartitos y el teorema de Hall"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Estructuras de Datos y Algoritmos",
+      "modulos": [
+        {
+          "modulo": "Estructuras lineales",
+          "temas": [
+            "Listas enlazadas simples y doblemente enlazadas",
+            "Pilas y su implementación",
+            "Colas y colas de doble extremo (deques)",
+            "Análisis de complejidad temporal y espacial (notación O)"
+          ]
+        },
+        {
+          "modulo": "Árboles de búsqueda balanceados",
+          "temas": [
+            "Árboles binarios de búsqueda",
+            "Árboles balanceados AVL",
+            "Árboles rojo-negro",
+            "Árboles B y B+"
+          ]
+        },
+        {
+          "modulo": "Tablas de dispersión y colas de prioridad",
+          "temas": [
+            "Funciones de dispersión (hashing) y resolución de colisiones",
+            "Tablas de dispersión abiertas y cerradas",
+            "Montículos binarios (heaps)",
+            "Colas de prioridad"
+          ]
+        },
+        {
+          "modulo": "Ordenamiento y estructuras avanzadas",
+          "temas": [
+            "Algoritmos de ordenamiento por comparación (quicksort, mergesort, heapsort)",
+            "Algoritmos de ordenamiento no comparativos (counting sort, radix sort)",
+            "Estructuras union-find (conjuntos disjuntos)",
+            "Tries y estructuras para cadenas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Lógica de Primer Orden",
+      "modulos": [
+        {
+          "modulo": "Lógica proposicional formal",
+          "temas": [
+            "Sintaxis y semántica de la lógica proposicional",
+            "Tablas de verdad y formas normales (CNF, DNF)",
+            "Resolución proposicional"
+          ]
+        },
+        {
+          "modulo": "Sintaxis y semántica de primer orden",
+          "temas": [
+            "Sintaxis: términos, fórmulas, cuantificadores",
+            "Semántica: estructuras, interpretaciones y satisfacción",
+            "Validez, satisfacibilidad y consecuencia lógica"
+          ]
+        },
+        {
+          "modulo": "Deducción y demostración formal",
+          "temas": [
+            "Sistemas de deducción natural",
+            "Forma normal prenexa y skolemización",
+            "Resolución en lógica de primer orden y unificación"
+          ]
+        },
+        {
+          "modulo": "Teoría de la computabilidad lógica",
+          "temas": [
+            "Teorema de completitud de Gödel",
+            "Teorema de compacidad",
+            "Indecidibilidad de la lógica de primer orden"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Probabilidad y Estadística",
+      "modulos": [
+        {
+          "modulo": "Probabilidad básica",
+          "temas": [
+            "Espacios de probabilidad y probabilidad condicional",
+            "Variables aleatorias discretas y continuas",
+            "Distribuciones de probabilidad clásicas (binomial, Poisson, normal, exponencial)",
+            "Esperanza, varianza y funciones generadoras"
+          ]
+        },
+        {
+          "modulo": "Vectores aleatorios y teoremas límite",
+          "temas": [
+            "Vectores aleatorios y distribuciones conjuntas",
+            "Covarianza y correlación",
+            "Ley de los grandes números",
+            "Teorema central del límite"
+          ]
+        },
+        {
+          "modulo": "Estadística descriptiva e inferencial",
+          "temas": [
+            "Estadística descriptiva y análisis exploratorio de datos",
+            "Estimación puntual y por intervalos de confianza",
+            "Contraste de hipótesis",
+            "Regresión lineal simple y múltiple"
+          ]
+        },
+        {
+          "modulo": "Estadística aplicada a la computación",
+          "temas": [
+            "Pruebas de bondad de ajuste (chi-cuadrado)",
+            "Análisis de varianza (ANOVA)",
+            "Simulación de variables aleatorias (Monte Carlo)"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Métodos Experimentales en Computación",
+      "modulos": [
+        {
+          "modulo": "Diseño de experimentos en computación",
+          "temas": [
+            "Formulación de hipótesis y preguntas de investigación en computación",
+            "Variables independientes, dependientes y de control",
+            "Diseño de experimentos factoriales",
+            "Validez interna y externa de un experimento"
+          ]
+        },
+        {
+          "modulo": "Medición y análisis de desempeño",
+          "temas": [
+            "Métricas de desempeño de sistemas y algoritmos",
+            "Benchmarking y cargas de trabajo representativas",
+            "Análisis estadístico de resultados experimentales",
+            "Detección de outliers y control de varianza"
+          ]
+        },
+        {
+          "modulo": "Reproducibilidad y comunicación científica",
+          "temas": [
+            "Reproducibilidad y replicabilidad de experimentos",
+            "Redacción de artículos científicos en computación",
+            "Revisión por pares y ética en la investigación"
+          ]
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "nombre": "Laboratorio de Programación",
+      "modulos": [
+        {
+          "modulo": "Herramientas de desarrollo colaborativo",
+          "temas": [
+            "Control de versiones distribuido con Git",
+            "Flujos de trabajo colaborativos (branching, pull requests, code review)",
+            "Integración continua y entrega continua (CI/CD)"
+          ]
+        },
+        {
+          "modulo": "Calidad de software en el laboratorio",
+          "temas": [
+            "Pruebas unitarias y frameworks de testing",
+            "Depuración sistemática y herramientas de profiling",
+            "Refactorización de código",
+            "Estándares de estilo y análisis estático de código"
+          ]
+        },
+        {
+          "modulo": "Gestión de proyectos en el laboratorio",
+          "temas": [
+            "Metodologías ágiles (Scrum, Kanban)",
+            "Documentación técnica de proyectos",
+            "Trabajo en equipo y planificación de tareas de desarrollo"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Algoritmos",
+      "modulos": [
+        {
+          "modulo": "Técnicas de diseño de algoritmos",
+          "temas": [
+            "Divide y vencerás",
+            "Algoritmos greedy (voraces)",
+            "Programación dinámica",
+            "Backtracking y ramificación y poda (branch and bound)"
+          ]
+        },
+        {
+          "modulo": "Análisis avanzado de algoritmos",
+          "temas": [
+            "Resolución de recurrencias y el teorema maestro",
+            "Análisis amortizado",
+            "Cotas inferiores y optimalidad de algoritmos"
+          ]
+        },
+        {
+          "modulo": "Algoritmos de caminos mínimos sobre grafos",
+          "temas": [
+            "Caminos mínimos: algoritmo de Dijkstra",
+            "Caminos mínimos con pesos negativos: algoritmo de Bellman-Ford",
+            "Caminos mínimos entre todos los pares: algoritmo de Floyd-Warshall",
+            "Componentes fuertemente conexas"
+          ]
+        },
+        {
+          "modulo": "Complejidad computacional de algoritmos",
+          "temas": [
+            "Clases de complejidad P y NP",
+            "NP-completitud y reducciones polinomiales",
+            "Algoritmos de aproximación para problemas NP-difíciles"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Diseño y Programación Orientados a Objetos",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la orientación a objetos",
+          "temas": [
+            "Clases, objetos y encapsulamiento",
+            "Herencia y polimorfismo",
+            "Interfaces y clases abstractas",
+            "Sobrecarga y enlace dinámico"
+          ]
+        },
+        {
+          "modulo": "Principios de diseño orientado a objetos",
+          "temas": [
+            "Principios SOLID",
+            "Acoplamiento, cohesión y diseño por contrato",
+            "Diagramas UML de clases y de secuencia"
+          ]
+        },
+        {
+          "modulo": "Patrones de diseño de software",
+          "temas": [
+            "Patrones creacionales (Factory Method, Singleton, Builder)",
+            "Patrones estructurales (Adapter, Decorator, Composite)",
+            "Patrones de comportamiento (Observer, Strategy, Template Method)"
+          ]
+        },
+        {
+          "modulo": "Manejo de excepciones y programación genérica",
+          "temas": [
+            "Manejo de excepciones y programación defensiva",
+            "Programación genérica y tipos parametrizados",
+            "Colecciones genéricas y su uso en diseño orientado a objetos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Arquitectura de Computadoras",
+      "modulos": [
+        {
+          "modulo": "Organización del procesador",
+          "temas": [
+            "Representación de datos y aritmética en punto flotante (IEEE 754)",
+            "Repertorio de instrucciones (ISA) y modos de direccionamiento",
+            "Camino de datos monociclo y multiciclo",
+            "Segmentación (pipelining) de instrucciones"
+          ]
+        },
+        {
+          "modulo": "Riesgos y control en el pipeline de instrucciones",
+          "temas": [
+            "Riesgos de datos y técnicas de adelantamiento (forwarding)",
+            "Riesgos de control y predicción de saltos",
+            "Ejecución fuera de orden y especulativa"
+          ]
+        },
+        {
+          "modulo": "Jerarquía de memoria del computador",
+          "temas": [
+            "Memoria caché: organización y políticas de reemplazo",
+            "Coherencia de caché en sistemas multiprocesador",
+            "Memoria virtual: soporte de hardware (TLB y tablas de páginas)"
+          ]
+        },
+        {
+          "modulo": "Paralelismo hardware y entrada/salida",
+          "temas": [
+            "Arquitecturas multinúcleo y multiprocesador",
+            "Taxonomía de Flynn (SISD, SIMD, MIMD)",
+            "Buses, controladores y entrada/salida"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Bases de Datos",
+      "modulos": [
+        {
+          "modulo": "Modelado de datos relacional",
+          "temas": [
+            "Modelo entidad-relación y diagramas ER",
+            "Modelo relacional y álgebra relacional",
+            "Normalización y formas normales"
+          ]
+        },
+        {
+          "modulo": "Lenguaje SQL",
+          "temas": [
+            "Definición y manipulación de datos en SQL (DDL y DML)",
+            "Consultas SQL avanzadas: subconsultas y funciones de agregación",
+            "Vistas, disparadores (triggers) y procedimientos almacenados"
+          ]
+        },
+        {
+          "modulo": "Diseño y optimización de bases de datos",
+          "temas": [
+            "Dependencias funcionales y descomposición de esquemas",
+            "Índices y optimización de consultas",
+            "Transacciones y propiedades ACID",
+            "Control de concurrencia y bloqueos"
+          ]
+        },
+        {
+          "modulo": "Recuperación y bases de datos no relacionales",
+          "temas": [
+            "Recuperación ante fallos y bitácoras (logging)",
+            "Bases de datos NoSQL: modelos clave-valor, documentales y de grafos",
+            "Introducción a bases de datos distribuidas"
+          ]
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "nombre": "Teoría de la Computación",
+      "modulos": [
+        {
+          "modulo": "Lenguajes regulares y autómatas finitos",
+          "temas": [
+            "Autómatas finitos deterministas y no deterministas",
+            "Expresiones regulares y su equivalencia con autómatas",
+            "Lema del bombeo para lenguajes regulares",
+            "Minimización de autómatas finitos"
+          ]
+        },
+        {
+          "modulo": "Lenguajes libres de contexto",
+          "temas": [
+            "Gramáticas libres de contexto y árboles de derivación",
+            "Autómatas de pila",
+            "Forma normal de Chomsky",
+            "Lema del bombeo para lenguajes libres de contexto"
+          ]
+        },
+        {
+          "modulo": "Computabilidad",
+          "temas": [
+            "Máquinas de Turing y variantes equivalentes",
+            "Tesis de Church-Turing",
+            "El problema de la parada y la indecidibilidad",
+            "Reducciones y el teorema de Rice"
+          ]
+        },
+        {
+          "modulo": "Complejidad computacional teórica",
+          "temas": [
+            "Las clases P y NP",
+            "NP-completitud y el teorema de Cook-Levin",
+            "Reducciones polinomiales y problemas NP-completos clásicos",
+            "Jerarquía de complejidad: PSPACE y más allá"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Análisis de Problemas Computacionales",
+      "modulos": [
+        {
+          "modulo": "Fundamentos del análisis de algoritmos",
+          "temas": [
+            "Notación asintótica: O, Ω y Θ",
+            "Análisis de algoritmos recursivos y el teorema maestro",
+            "Análisis amortizado de estructuras de datos"
+          ]
+        },
+        {
+          "modulo": "Paradigmas de diseño de algoritmos",
+          "temas": [
+            "Divide y vencerás aplicado a problemas computacionales",
+            "Programación dinámica aplicada a problemas computacionales",
+            "Algoritmos golosos (greedy)",
+            "Backtracking y ramificación y poda"
+          ]
+        },
+        {
+          "modulo": "Estructuras de datos para problemas complejos",
+          "temas": [
+            "Árboles balanceados: AVL y rojo-negro aplicados",
+            "Estructuras de conjuntos disjuntos (union-find) en problemas",
+            "Grafos: representación y algoritmos de recorrido aplicados",
+            "Colas de prioridad y heaps avanzados en problemas"
+          ]
+        },
+        {
+          "modulo": "Complejidad y problemas difíciles",
+          "temas": [
+            "Problemas NP-completos y técnicas de reducción",
+            "Algoritmos de aproximación para problemas computacionales",
+            "Heurísticas y metaheurísticas para problemas complejos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Sistemas Operativos",
+      "modulos": [
+        {
+          "modulo": "Procesos y concurrencia",
+          "temas": [
+            "Procesos, hilos y su ciclo de vida",
+            "Planificación de procesos (scheduling)",
+            "Sincronización: semáforos, monitores y exclusión mutua",
+            "Interbloqueos: detección, prevención y recuperación"
+          ]
+        },
+        {
+          "modulo": "Gestión de memoria del sistema operativo",
+          "temas": [
+            "Memoria virtual y paginación",
+            "Segmentación y espacios de direcciones",
+            "Algoritmos de reemplazo de páginas"
+          ]
+        },
+        {
+          "modulo": "Sistemas de archivos y entrada/salida",
+          "temas": [
+            "Estructura y organización de sistemas de archivos",
+            "Gestión de dispositivos de entrada/salida",
+            "Planificación de acceso a disco"
+          ]
+        },
+        {
+          "modulo": "Protección y seguridad del sistema operativo",
+          "temas": [
+            "Mecanismos de protección y control de acceso",
+            "Virtualización de sistemas operativos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Principios de Ingeniería de Software",
+      "modulos": [
+        {
+          "modulo": "Procesos de desarrollo de software",
+          "temas": [
+            "Modelos de ciclo de vida: cascada, iterativo e incremental",
+            "Metodologías ágiles: Scrum y Kanban",
+            "Gestión de requisitos de software"
+          ]
+        },
+        {
+          "modulo": "Diseño de software",
+          "temas": [
+            "Principios de diseño orientado a objetos (SOLID) en ingeniería de software",
+            "Patrones de diseño de software (Gang of Four)",
+            "Arquitectura de software y estilos arquitectónicos"
+          ]
+        },
+        {
+          "modulo": "Calidad y verificación de software",
+          "temas": [
+            "Pruebas de software: unitarias, de integración y de sistema",
+            "Métricas de calidad de software",
+            "Revisión de código e inspecciones de software"
+          ]
+        },
+        {
+          "modulo": "Gestión de proyectos de ingeniería de software",
+          "temas": [
+            "Estimación de esfuerzo y planificación de proyectos",
+            "Gestión de riesgos en proyectos de software",
+            "Mantenimiento y evolución del software"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Computación Paralela y Distribuida",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de programación paralela",
+          "temas": [
+            "Arquitecturas paralelas: memoria compartida y memoria distribuida",
+            "Ley de Amdahl y ley de Gustafson",
+            "Programación con hilos y memoria compartida (OpenMP)"
+          ]
+        },
+        {
+          "modulo": "Paso de mensajes y GPU",
+          "temas": [
+            "Paso de mensajes con el estándar MPI",
+            "Programación en GPU y arquitecturas SIMD"
+          ]
+        },
+        {
+          "modulo": "Sistemas distribuidos",
+          "temas": [
+            "Modelos de comunicación cliente-servidor y RPC",
+            "Coordinación y consenso distribuido",
+            "Relojes lógicos y ordenamiento de eventos",
+            "Tolerancia a fallos y replicación"
+          ]
+        },
+        {
+          "modulo": "Big data y cómputo distribuido a gran escala",
+          "temas": [
+            "El modelo de programación MapReduce",
+            "Sistemas de archivos distribuidos",
+            "Consistencia en sistemas distribuidos y el teorema CAP"
+          ]
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "nombre": "Redes de Computadoras",
+      "modulos": [
+        {
+          "modulo": "Fundamentos y capa de aplicación",
+          "temas": [
+            "Arquitectura de capas: modelo OSI y modelo TCP/IP",
+            "El protocolo HTTP y la World Wide Web",
+            "El sistema de nombres de dominio (DNS)",
+            "Correo electrónico y protocolos de aplicación"
+          ]
+        },
+        {
+          "modulo": "Capa de transporte de redes",
+          "temas": [
+            "El protocolo UDP y transporte no orientado a conexión",
+            "El protocolo TCP: control de flujo y control de congestión",
+            "Establecimiento y cierre de conexiones confiables"
+          ]
+        },
+        {
+          "modulo": "Capa de red de redes",
+          "temas": [
+            "Direccionamiento IP y subredes",
+            "Enrutamiento: vector distancia y estado de enlace",
+            "El protocolo IPv6"
+          ]
+        },
+        {
+          "modulo": "Capa de enlace y redes locales",
+          "temas": [
+            "Control de acceso al medio: Ethernet y CSMA/CD",
+            "Conmutación y redes de área local",
+            "Redes inalámbricas y móviles"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Taller de Desarrollo",
+      "modulos": [
+        {
+          "modulo": "Control de versiones y colaboración en el taller",
+          "temas": [
+            "Control de versiones distribuido con Git en proyectos de taller",
+            "Flujos de trabajo colaborativos: branching y pull requests en equipo",
+            "Buenas prácticas de trabajo en equipo de desarrollo"
+          ]
+        },
+        {
+          "modulo": "Calidad y pruebas de software del taller",
+          "temas": [
+            "Testing automatizado: unitario, integración y end-to-end en el taller",
+            "Prácticas de código limpio y refactorización en el taller",
+            "Revisión de código entre pares (code review) en el taller"
+          ]
+        },
+        {
+          "modulo": "Integración y entrega continua del taller",
+          "temas": [
+            "Integración continua (CI) y pipelines de build",
+            "Despliegue continuo (CD) y automatización de releases",
+            "Contenedores y entornos reproducibles con Docker"
+          ]
+        },
+        {
+          "modulo": "Gestión ágil de proyectos del taller",
+          "temas": [
+            "Metodologías ágiles aplicadas: Scrum en la práctica del taller",
+            "Planificación y seguimiento de tareas: backlog y sprints"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Aprendizaje Automático",
+      "modulos": [
+        {
+          "modulo": "Fundamentos y aprendizaje supervisado",
+          "temas": [
+            "Regresión lineal y regresión logística",
+            "Árboles de decisión y métodos de ensamble",
+            "Máquinas de vectores de soporte (SVM)",
+            "Evaluación de modelos: validación cruzada y métricas"
+          ]
+        },
+        {
+          "modulo": "Redes neuronales y aprendizaje profundo",
+          "temas": [
+            "Perceptrón multicapa y retropropagación",
+            "Redes neuronales convolucionales",
+            "Redes neuronales recurrentes"
+          ]
+        },
+        {
+          "modulo": "Aprendizaje no supervisado",
+          "temas": [
+            "Clustering: k-means y clustering jerárquico",
+            "Reducción de dimensionalidad: análisis de componentes principales (PCA)"
+          ]
+        },
+        {
+          "modulo": "Teoría y práctica del aprendizaje automático",
+          "temas": [
+            "Sesgo-varianza y sobreajuste (overfitting)",
+            "Regularización de modelos",
+            "Fundamentos de aprendizaje por refuerzo"
+          ]
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "nombre": "Introducción a la Investigación de Operaciones",
+      "modulos": [
+        {
+          "modulo": "Programación Lineal",
+          "temas": [
+            "Formulación de modelos de programación lineal",
+            "Método simplex",
+            "Dualidad y análisis de sensibilidad"
+          ]
+        },
+        {
+          "modulo": "Optimización en Redes",
+          "temas": [
+            "Problema de flujo máximo y corte mínimo",
+            "Camino más corto y árbol de expansión mínima",
+            "Problemas de transporte y asignación"
+          ]
+        },
+        {
+          "modulo": "Programación Entera y Combinatoria",
+          "temas": [
+            "Formulación de modelos con variables enteras",
+            "Método de ramificación y acotamiento (branch and bound)",
+            "Heurísticas y metaheurísticas (búsqueda local, algoritmos genéticos)"
+          ]
+        },
+        {
+          "modulo": "Programación Dinámica y Teoría de Colas",
+          "temas": [
+            "Programación dinámica determinística",
+            "Modelos de líneas de espera (teoría de colas)",
+            "Simulación de eventos discretos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Seguridad Computacional",
+      "modulos": [
+        {
+          "modulo": "Criptografía aplicada",
+          "temas": [
+            "Criptografía simétrica y asimétrica",
+            "Funciones hash y firmas digitales",
+            "Infraestructura de clave pública (PKI) y certificados digitales"
+          ]
+        },
+        {
+          "modulo": "Seguridad de redes",
+          "temas": [
+            "Protocolos seguros (TLS/SSL, IPsec)",
+            "Firewalls, VPN y sistemas de detección de intrusiones",
+            "Ataques de red (DoS/DDoS, spoofing, sniffing)"
+          ]
+        },
+        {
+          "modulo": "Seguridad de aplicaciones y sistemas",
+          "temas": [
+            "Vulnerabilidades web (OWASP Top 10)",
+            "Control de acceso y gestión de identidad",
+            "Seguridad en sistemas operativos y hardening"
+          ]
+        },
+        {
+          "modulo": "Gestión de riesgos y respuesta a incidentes",
+          "temas": [
+            "Análisis y gestión de riesgos informáticos",
+            "Ingeniería social y concientización en seguridad",
+            "Respuesta a incidentes y análisis forense digital"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Ingeniería de Software Avanzada",
+      "modulos": [
+        {
+          "modulo": "Arquitectura de software avanzada",
+          "temas": [
+            "Estilos y patrones arquitectónicos (capas, microservicios, event-driven)",
+            "Documentación de arquitectura y registros de decisiones (ADR)",
+            "Atributos de calidad y tácticas arquitectónicas"
+          ]
+        },
+        {
+          "modulo": "Diseño y refactorización avanzados",
+          "temas": [
+            "Principios SOLID y patrones de diseño avanzados",
+            "Refactorización y manejo de deuda técnica",
+            "Code smells y análisis estático de código"
+          ]
+        },
+        {
+          "modulo": "Calidad y pruebas de software a gran escala",
+          "temas": [
+            "Estrategias de testing (unitario, integración, end-to-end) a gran escala",
+            "Test-driven development y pruebas automatizadas",
+            "Métricas de calidad y gestión de la calidad del software"
+          ]
+        },
+        {
+          "modulo": "Procesos ágiles y DevOps avanzados",
+          "temas": [
+            "Metodologías ágiles avanzadas (Scrum, Kanban a escala)",
+            "Integración y entrega continua (CI/CD) a escala",
+            "Gestión de la configuración y despliegue de software"
+          ]
+        }
+      ]
+    }
+  ],
+  "8": [
+    {
+      "nombre": "Proyecto de Ingeniería de Software",
+      "modulos": []
+    }
+  ]
+}
