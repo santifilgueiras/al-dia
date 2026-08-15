@@ -31,7 +31,11 @@
     --bg-2: #faf9f6;
     --frame: var(--surface);
     --ink: #14201d;
-    --muted: rgba(20, 32, 29, .6);
+    /* .6 daba ~4.35:1 de contraste sobre --paper -- por debajo del umbral
+       WCAG AA (4.5:1) para texto chico. .65 da ~5.1:1 (verificado a mano con
+       la fórmula de luminancia relativa de WCAG), suficiente margen sin
+       oscurecer de más el texto de apoyo. */
+    --muted: rgba(20, 32, 29, .65);
     --text-tertiary: rgba(20, 32, 29, .42);
     --line: rgba(20, 32, 29, .10);
     --line-strong: rgba(20, 32, 29, .15);
