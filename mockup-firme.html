@@ -6582,18 +6582,30 @@ function hidratarEstado(estado) {
 // accidente lo que ya estaba guardado en el server.
 let estadoHidratado = false;
 
+// Recuerda el updated_at que tenía la fila cuando este dispositivo la cargó
+// -- guardarEstadoSiHaceFalta() lo usa para detectar si OTRO dispositivo/
+// pestaña con la misma cuenta guardó algo más nuevo antes de pisar la fila
+// (control de concurrencia optimista). Sin esto, con dos dispositivos
+// abiertos a la vez (el caso más común: celular + compu) cada uno guardaba
+// ciegamente lo que tenía en memoria cada 15s, y el que guardaba último
+// pisaba por completo el progreso real que el otro ya había guardado, sin
+// ningún aviso -- confirmado perdiendo datos en producción (Santiago, con
+// compu+iPad+iPhone abiertos a la vez el mismo día).
+let estadoUpdatedAtConocido = null;
+
 async function cargarEstadoUsuario() {
   estadoCargando = true;
   estadoHidratado = false;
   try {
     const { data, error } = await supabaseClient
       .from('app_state')
-      .select('estado')
+      .select('estado, updated_at')
       .eq('user_id', sesionUsuario.id)
       .maybeSingle();
     if (error) throw error;
     if (data && data.estado && Object.keys(data.estado).length) {
       hidratarEstado(data.estado);
+      estadoUpdatedAtConocido = data.updated_at;
     } else {
       // Primera vez de este usuario -- arranca vacío, sin exámenes demo.
       examenes = examenesBaseVacio();
@@ -6602,6 +6614,7 @@ async function cargarEstadoUsuario() {
       ultimoDiaActivo = '';
       recordatorioActivo = false;
       actividadDiaria = {};
+      estadoUpdatedAtConocido = null; // todavía no existe fila para este usuario
     }
     estadoHidratado = true;
   } catch (e) {
@@ -6628,11 +6641,49 @@ async function guardarEstadoSiHaceFalta() {
   estadoSucio = false;
   const estado = { examenes, nextExamenId, racha, ultimoDiaActivo, recordatorioActivo, actividadDiaria };
   try {
-    const { error } = await supabaseClient.from('app_state').upsert({ user_id: sesionUsuario.id, estado });
-    if (error) {
-      console.error('Error guardando el progreso', error);
-      estadoSucio = true; // reintenta en el próximo ciclo
+    if (estadoUpdatedAtConocido === null) {
+      // Todavía no existe fila para este usuario -- primer guardado real,
+      // acá sí corresponde upsert (no hay nada que pueda pisar).
+      const { data, error } = await supabaseClient
+        .from('app_state')
+        .upsert({ user_id: sesionUsuario.id, estado })
+        .select('updated_at')
+        .single();
+      if (error) throw error;
+      estadoUpdatedAtConocido = data.updated_at;
+      return;
     }
+
+    // Update condicionado a que nadie haya tocado la fila desde la última
+    // vez que este dispositivo la cargó -- si otro dispositivo guardó algo
+    // en el medio, updated_at ya cambió, la condición no matchea ninguna
+    // fila y data vuelve vacío (conflicto).
+    const { data, error } = await supabaseClient
+      .from('app_state')
+      .update({ estado })
+      .eq('user_id', sesionUsuario.id)
+      .eq('updated_at', estadoUpdatedAtConocido)
+      .select('updated_at');
+    if (error) throw error;
+
+    if (!data || !data.length) {
+      // Conflicto real: otro dispositivo guardó algo más nuevo mientras
+      // tanto. No pisamos nada -- se recarga la versión real del server
+      // (la más nueva) y se re-renderiza la pantalla actual con ese estado.
+      // El cambio local de ESTE dispositivo que todavía no se había
+      // guardado se pierde -- preferible a perder en silencio el cambio del
+      // OTRO dispositivo, que es lo que pasaba antes.
+      showToast('Tu progreso se actualizó desde otro dispositivo -- actualizando esta pantalla');
+      await cargarEstadoUsuario();
+      renderOwnList();
+      const pantallaActivaEl = document.querySelector('.screen.active');
+      if (pantallaActivaEl) go(+pantallaActivaEl.dataset.screen);
+      return;
+    }
+    estadoUpdatedAtConocido = data[0].updated_at;
+  } catch (e) {
+    console.error('Error guardando el progreso', e);
+    estadoSucio = true; // reintenta en el próximo ciclo
   } finally {
     guardadoEnCurso = false;
   }
