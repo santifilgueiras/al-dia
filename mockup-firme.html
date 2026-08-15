@@ -1127,6 +1127,7 @@
   .cal-cell.has-atrasado .cal-tema { color: var(--atrasado); }
   .cal-cell .cal-more { font-size: 7px; color: var(--muted); font-weight: 700; margin-top: 1px; }
   .cal-agenda-head { font-size: 12px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; margin: 16px 0 8px; }
+  .cal-agenda-hint { color: var(--muted); font-size: 12px; text-align: center; margin: 10px 0 0; }
   .cal-exam-caption { color: var(--muted); font-size: 11.5px; text-align: center; margin-top: 10px; }
   @media (min-width: 860px) {
     /* En compu sobra ancho -- separadas y con más aire adentro que en
@@ -2235,7 +2236,6 @@
         </div>
         <div id="fichasBox"></div>
         <button class="btn" id="fichasGenerarBtn" onclick="generarFichas()">✨ Generar fichas</button>
-        <button type="button" class="btn secondary" id="fichasTTSBtn" onclick="toggleTTSFichas()" style="margin-top:8px;">🔊 Escuchar fichas</button>
     </div>
 
     <div class="study-panel" id="sec-simulacro" data-sec="simulacro">
@@ -3855,7 +3855,7 @@ function renderCalGrid() {
     else if (entries.length) cls += ' has-repaso';
     const first = entries[0];
     const label = first ? (first.action === 'final' ? `Final ${nombreCorto(first.materiaNombre)}` : `${first.atrasado ? '⏰ ' : ''}${first.name}`) : '';
-    html += `<div class="${cls}" tabindex="0" role="button" onclick="selectCalDay('${key}')">
+    html += `<div class="${cls}" tabindex="0" role="button" onclick="selectCalDay('${key}')" ondblclick="abrirDetalleDelDia('${key}')">
       <span class="cal-daynum">${day}</span>
       ${first ? `<span class="cal-tema">${label}</span>` : ''}
       ${entries.length > 1 ? `<span class="cal-more">+${entries.length - 1}</span>` : ''}
@@ -3870,6 +3870,21 @@ function selectCalDay(key) {
   calSelectedKey = key;
   renderCalGrid();
   renderCalAgenda();
+}
+
+// Doble click/doble tap en una celda del calendario: en vez de solo
+// seleccionar el día y mostrar su agenda abajo (selectCalDay), va directo al
+// detalle del tema (S5, donde están los botones Firme/Flojo) -- un atajo
+// para no tener que primero tocar el día y después tocar el tema en la
+// agenda. Va al primer tema marcable del día (se salta las entradas
+// "repaso final", que no tienen detalle propio -- ver renderCalAgenda). Si
+// el día está vacío o solo tiene "repaso final", no hace nada (mismo criterio
+// que un click simple en un día sin nada agendado).
+function abrirDetalleDelDia(key) {
+  const entries = (planGlobal && planGlobal.schedule[key]) || [];
+  const marcable = entries.find(t => t.action !== 'final');
+  if (!marcable) return;
+  abrirDetalle(marcable.examId, marcable.name);
 }
 
 function calPrevMonth() {
@@ -3889,7 +3904,8 @@ function renderCalAgenda() {
   const isToday = calSelectedKey === fmt(new Date());
   head.textContent = (isToday ? 'HOY · ' : '') + fmtLabel(d);
   const entries = (planGlobal && planGlobal.schedule[calSelectedKey]) || [];
-  box.innerHTML = entries.length ? entries.map(t => {
+  const hayMarcables = entries.some(t => t.action !== 'final');
+  box.innerHTML = (entries.length ? entries.map(t => {
     if (t.action === 'final') {
       return `<div class="tema-item" style="cursor:default;">
         <span>${t.name}</span>
@@ -3905,7 +3921,13 @@ function renderCalAgenda() {
       <span>${t.atrasado ? '⏰ ' : ''}${t.name}<small style="display:block; color:var(--muted); font-weight:400; font-size:11px; margin-top:2px;">${nombreCorto(t.materiaNombre)}</small></span>
       <span class="tag ${tagClass}">${tagText}</span>
     </div>`;
-  }).join('') : '<div class="empty-state" style="padding:24px 10px;">Nada programado este día.</div>';
+  }).join('') : '<div class="empty-state" style="padding:24px 10px;">Nada programado este día.</div>')
+    // Los temas de la agenda son clickeables (llevan al detalle donde se
+    // marca Firme/Flojo) pero no se veía obvio a simple vista -- pedido de
+    // Santiago tras probar la app, sentía que no quedaba claro que había que
+    // tocarlos. Doble click/doble tap en el día del calendario (ver
+    // abrirDetalleDelDia) hace el mismo salto de un tirón.
+    + (hayMarcables ? '<p class="cal-agenda-hint">👆 Tocá un tema cuando termines de estudiarlo, para marcar cómo te fue.</p>' : '');
 }
 
 function abrirDetalle(examId, name, fromRepaso) {
@@ -5461,59 +5483,6 @@ function cambiarFicha(delta) {
   fichaIndexActual = Math.max(0, Math.min(fichasActuales.length - 1, fichaIndexActual + delta));
   fichaFlipped = false;
   renderFichaActual();
-}
-
-// ---- Fichas con audio (texto a voz del navegador) ----
-// Usa la Web Speech API del navegador (SpeechSynthesis) en vez de un
-// servicio de TTS pago -- Anthropic no ofrece texto-a-voz, y sintetizar del
-// lado del cliente es gratis y no necesita ningún endpoint nuevo. Lee las
-// fichas YA generadas (fichasActuales) en orden, pregunta + respuesta.
-let ttsQueue = [];
-let ttsIndex = 0;
-
-function toggleTTSFichas() {
-  if (!('speechSynthesis' in window)) { showToast('Tu navegador no soporta lectura en voz alta'); return; }
-  const synth = window.speechSynthesis;
-  const btn = document.getElementById('fichasTTSBtn');
-  // synth.paused/.speaking no se actualizan de forma sincrónica apenas se
-  // llama pause()/resume() en todos los navegadores -- leerlos de nuevo acá
-  // para pintar el botón daba texto viejo por un instante (reportado al
-  // probar). Se pinta directo según la acción que ACABAMOS de tomar, en vez
-  // de volver a preguntarle a synth su estado.
-  if (synth.speaking && !synth.paused) {
-    synth.pause();
-    if (btn) btn.textContent = '▶️ Reanudar lectura';
-    return;
-  }
-  if (synth.paused) {
-    synth.resume();
-    if (btn) btn.textContent = '⏸️ Pausar lectura';
-    return;
-  }
-  if (!fichasActuales.length) { showToast('Generá fichas primero'); return; }
-  ttsQueue = fichasActuales.map(f => Array.isArray(f.opciones)
-    ? `${f.pregunta}. Respuesta correcta: ${f.opciones[f.correcta]}.`
-    : `${f.pregunta}. Respuesta: ${f.respuesta}.`);
-  ttsIndex = 0;
-  hablarSiguienteFicha();
-  if (btn) btn.textContent = '⏸️ Pausar lectura';
-}
-
-function hablarSiguienteFicha() {
-  if (ttsIndex >= ttsQueue.length) { ttsIndex = 0; actualizarBotonTTS(); return; }
-  const u = new SpeechSynthesisUtterance(ttsQueue[ttsIndex]);
-  u.lang = 'es-UY';
-  u.rate = 0.98;
-  u.onstart = actualizarBotonTTS;
-  u.onend = () => { ttsIndex++; hablarSiguienteFicha(); };
-  window.speechSynthesis.speak(u);
-}
-
-function actualizarBotonTTS() {
-  const btn = document.getElementById('fichasTTSBtn');
-  if (!btn) return;
-  const synth = window.speechSynthesis;
-  btn.textContent = (synth.speaking && !synth.paused) ? '⏸️ Pausar lectura' : synth.paused ? '▶️ Reanudar lectura' : '🔊 Escuchar fichas';
 }
 
 // ---- Simulacro de examen completo ----
