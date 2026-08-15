@@ -840,7 +840,7 @@
     /* Materias (S8) */
     .screen[data-screen="8"] .materia-badge { font-size: 12px; padding: 5px 11px; }
     .screen[data-screen="8"] .materia-card-nombre { font-size: 19px; }
-    .screen[data-screen="8"] .materia-card-fecha { font-size: 14px; }
+    .screen[data-screen="8"] .materia-card-fecha { font-size: 15px; }
     .screen[data-screen="8"] .materia-card-stats { font-size: 15px; }
     .screen[data-screen="8"] .materia-progress { height: 9px; }
     .screen[data-screen="8"] .materia-card-breakdown { font-size: 13px; }
@@ -907,7 +907,7 @@
   .materia-badge.prioritaria { background: var(--teal-tint); color: var(--teal); }
   .materia-badge.priorizar { background: var(--paper-2); color: var(--muted); }
   .materia-card-nombre { font-weight: 700; font-size: 15.5px; margin-top: 10px; padding-right: 22px; line-height: 1.25; }
-  .materia-card-fecha { font-size: 11.5px; color: var(--muted); margin-top: 5px; }
+  .materia-card-fecha { font-size: 13px; font-weight: 700; color: var(--ink); margin-top: 5px; }
   .materia-card-stats { display: flex; justify-content: space-between; align-items: baseline; margin-top: 14px; font-size: 12.5px; color: var(--muted); }
   .materia-card-pct { color: var(--teal); font-weight: 700; }
   .materia-progress { display: flex; height: 7px; border-radius: 4px; background: var(--line); overflow: hidden; margin-top: 6px; }
@@ -1591,7 +1591,9 @@
   <div class="side-nav-submenu" id="sideNavEstudiarSub">
     <button type="button" class="side-nav-subitem" onclick="irAEstudiar('tiempo')"><span class="ic">⏱️</span>Tiempo de estudio</button>
     <button type="button" class="side-nav-subitem" onclick="irAEstudiar('fichas')"><span class="ic">🧠</span>Fichas de repaso</button>
+    <button type="button" class="side-nav-subitem" onclick="irAEstudiar('simulacro')"><span class="ic">🎯</span>Simulacro de examen</button>
     <button type="button" class="side-nav-subitem" onclick="irAEstudiar('resumen')"><span class="ic">📄</span>Resumen de apuntes</button>
+    <button type="button" class="side-nav-subitem" onclick="irAEstudiar('corrector')"><span class="ic">🔎</span>Corregir mi resumen</button>
     <button type="button" class="side-nav-subitem" onclick="irAEstudiar('explicar')"><span class="ic">💡</span>Explícamelo</button>
   </div>
   <div class="side-nav-racha" id="sideNavRacha">
@@ -4854,7 +4856,7 @@ function renderExamenes() {
       <div style="cursor:pointer;" tabindex="0" role="button" onclick="abrirExamen(${e.id})">
         ${badge}
         <div class="materia-card-nombre">${e.materiaNombre || 'Sin nombre'}</div>
-        <div class="materia-card-fecha mono">${e.fecha ? `${fmtFecha(e.fecha)} · ${dias === 0 ? 'es hoy' : `en ${dias} días`}` : 'sin fecha'}</div>
+        <div class="materia-card-fecha mono">🗓️ ${e.fecha ? `${fmtFecha(e.fecha)} · ${dias === 0 ? 'es hoy' : `en ${dias} días`}` : 'sin fecha'}</div>
         ${faltaConfig ? '<div class="sub" style="margin-top:8px;">Todavía no armaste el calendario</div>' : `
         <div class="materia-card-stats">
           <span>${total} temas</span>
@@ -6825,10 +6827,17 @@ async function iniciarApp() {
       }
     });
 
+    // Supabase dispara 'SIGNED_IN' (vía _recoverAndRefresh al construir el
+    // cliente) para una sesión YA guardada, en paralelo con este getSession()
+    // -- la doc oficial lo advierte explícitamente ("this may occur even
+    // when the user is already signed in"). Sin este chequeo, las dos vías
+    // llaman a manejarSesionActiva() a la vez y corren dos hidrataciones
+    // concurrentes, causando temas duplicados/contadores mal en la primera
+    // pintura de "Hoy" que se autocorregían solo en el próximo reload.
     const { data: { session } } = await supabaseClient.auth.getSession();
-    if (session) {
+    if (session && (!sesionUsuario || sesionUsuario.id !== session.user.id)) {
       await manejarSesionActiva(session);
-    } else {
+    } else if (!session) {
       mostrarPantallaAuth();
     }
   } catch (e) {
