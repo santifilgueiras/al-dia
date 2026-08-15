@@ -2869,6 +2869,16 @@ function examenesRendidos() { return examenes.filter(esRendido); }
 // al calendario/repaso/resumen globales.
 function examenesConCalendario() { return examenesEnCurso().filter(e => e.selected && e.selected.length && e.selectedPace); }
 
+// Evita el caso real encontrado en QA: dos exámenes en curso de la MISMA
+// materia (mismo nombre), indistinguibles en la tarjeta salvo por la fecha,
+// creados sin querer al armar el calendario dos veces. Solo compara contra
+// materias EN CURSO -- rendir de nuevo la misma materia (otro llamado) más
+// adelante es un caso legítimo, no un duplicado.
+function materiaYaEnCurso(nombre) {
+  const norm = (nombre || '').trim().toLowerCase();
+  return examenesEnCurso().some(e => (e.materiaNombre || '').trim().toLowerCase() === norm);
+}
+
 // Una vez que una materia queda rendida (a mano, o porque ya pasó la fecha
 // del examen) se guarda una foto de cuántos temas quedaron firmes (para el
 // historial). Los temas elegidos (selected) se mantienen, solo para poder
@@ -4648,15 +4658,19 @@ function renderMateriasDelAnio() {
   const materias = (anio && f.catalogoPorCiclo[anio]) || [];
   materiasSeleccionadasIdx = [];
   const box = document.getElementById('materiasDelAnio');
-  box.innerHTML = materias.length ? materias.map((m, i) => `
-    <label class="card" style="border-color:var(--accent); background:var(--accent-soft); cursor:pointer; display:flex; align-items:flex-start; gap:10px;">
-      <input type="checkbox" style="margin-top:3px; width:17px; height:17px; flex-shrink:0; accent-color:var(--accent);" onchange="toggleMateriaDelAnio(${i}, this.checked)">
+  box.innerHTML = materias.length ? materias.map((m, i) => {
+    const yaAgregada = materiaYaEnCurso(m.nombre);
+    return `
+    <label class="card" style="border-color:var(--accent); background:${yaAgregada ? 'var(--line)' : 'var(--accent-soft)'}; cursor:${yaAgregada ? 'default' : 'pointer'}; display:flex; align-items:flex-start; gap:10px; opacity:${yaAgregada ? '.6' : '1'};">
+      <input type="checkbox" style="margin-top:3px; width:17px; height:17px; flex-shrink:0; accent-color:var(--accent);" onchange="toggleMateriaDelAnio(${i}, this.checked)" ${yaAgregada ? 'disabled' : ''}>
       <div style="flex:1; min-width:0;">
         <span class="pill">${contextoFor(f.key, anio)}</span>
+        ${yaAgregada ? '<span class="pill" style="margin-left:6px;">✓ ya la agregaste</span>' : ''}
         <div style="font-weight:800; font-size:16px; margin-top:8px;">${f.iconoMateria} ${m.nombre}</div>
         <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${m.modulos.length} módulos · ${m.modulos.reduce((s,mo)=>s+mo.temas.length,0)} temas en el catálogo</div>
       </div>
-    </label>`).join('') : '<div class="empty-state">Todavía no tenemos materias cargadas para este ' + f.cicloNombre + ' -- agregá la tuya abajo con tus propios temas.</div>';
+    </label>`;
+  }).join('') : '<div class="empty-state">Todavía no tenemos materias cargadas para este ' + f.cicloNombre + ' -- agregá la tuya abajo con tus propios temas.</div>';
   actualizarBarraMaterias();
 }
 
@@ -4680,7 +4694,10 @@ function confirmarMateriasElegidas() {
   if (!borradorExamen || !materiasSeleccionadasIdx.length) return;
   const f = facultadDe(borradorExamen.facultad);
   const materias = f.catalogoPorCiclo[borradorExamen.anio] || [];
-  const elegidas = materiasSeleccionadasIdx.map(i => materias[i]).filter(Boolean);
+  // Filtro defensivo por si algo dejó tildada una materia ya en curso (el
+  // checkbox debería venir deshabilitado, ver renderMateriasDelAnio) --
+  // nunca se debe poder terminar acá con un duplicado.
+  const elegidas = materiasSeleccionadasIdx.map(i => materias[i]).filter(Boolean).filter(m => !materiaYaEnCurso(m.nombre));
   if (!elegidas.length) return;
   colaContexto = { facultad: borradorExamen.facultad, anio: borradorExamen.anio };
   colaMaterias = elegidas.slice(1);
@@ -4743,6 +4760,10 @@ function elegirMateriaPropia() {
   if (!borradorExamen) return;
   const v = document.getElementById('materiaPropiaInput').value.trim();
   if (!v) return;
+  if (materiaYaEnCurso(v)) {
+    showToast(`Ya tenés "${v}" en curso -- entrá a esa materia en vez de agregarla de nuevo`);
+    return;
+  }
   borradorExamen.materiaNombre = v;
   borradorExamen.usaCatalogo = false;
   borradorExamen.modulos = [];
