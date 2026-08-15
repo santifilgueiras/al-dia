@@ -73,6 +73,57 @@ app.get('/api/config', (req, res) => {
   res.json({ supabaseUrl: SUPABASE_URL, supabaseAnonKey: SUPABASE_ANON_KEY, vapidPublicKey: VAPID_PUBLIC_KEY });
 });
 
+// Exige un JWT de Supabase válido en Authorization: Bearer <token>. Usa
+// supabaseAdmin (service role) para validar el token porque ya existe en
+// este archivo y evita crear un segundo cliente solo para esto -- validar
+// un token ajeno con la service role es seguro, lo único que hace es
+// confirmar de quién es. Deja el id del usuario en req.userId para que la
+// ruta y el rate limiter lo usen. Protege los endpoints que llaman a la API
+// de Claude (fichas/simulacro/explicar/resumen/corregir-resumen) -- antes
+// eran POST públicos, cualquiera con la URL podía gastar la API key del
+// server sin pasar por la app ni tener cuenta.
+async function requireAuth(req, res, next) {
+  if (!supabaseAdmin) {
+    return res.status(500).json({ error: 'Falta configurar Supabase en el server.' });
+  }
+  const header = req.get('authorization') || '';
+  const token = header.startsWith('Bearer ') ? header.slice(7) : null;
+  if (!token) {
+    return res.status(401).json({ error: 'No autenticado. Iniciá sesión de nuevo.' });
+  }
+  try {
+    const { data, error } = await supabaseAdmin.auth.getUser(token);
+    if (error || !data || !data.user) {
+      return res.status(401).json({ error: 'Sesión inválida o vencida. Iniciá sesión de nuevo.' });
+    }
+    req.userId = data.user.id;
+    next();
+  } catch (e) {
+    console.error('Error validando token en requireAuth', e);
+    return res.status(401).json({ error: 'No se pudo validar la sesión. Iniciá sesión de nuevo.' });
+  }
+}
+
+// Límite simple por usuario (no por IP -- varios estudiantes reales pueden
+// compartir red de facultad) para los endpoints que llaman a Claude --
+// ventana fija de 1 hora, tope conservador. En memoria del proceso: alcanza
+// para una sola instancia (Render free tier hoy). Si esto pasa a correr en
+// más de una instancia, hay que mover el contador a Supabase o similar.
+const LIMITE_IA_POR_HORA = 20;
+const usoIAPorUsuario = new Map(); // userId -> [timestamps de la última hora]
+
+function rateLimitIA(req, res, next) {
+  const ahora = Date.now();
+  const unaHora = 60 * 60 * 1000;
+  const historial = (usoIAPorUsuario.get(req.userId) || []).filter(t => ahora - t < unaHora);
+  if (historial.length >= LIMITE_IA_POR_HORA) {
+    return res.status(429).json({ error: 'Llegaste al límite de usos de IA por hora. Probá de nuevo en un rato.' });
+  }
+  historial.push(ahora);
+  usoIAPorUsuario.set(req.userId, historial);
+  next();
+}
+
 // Modelos que soportan la variante 20260209 de la tool de búsqueda web (con
 // filtrado dinámico). Los demás -- incluido Haiku -- necesitan la variante
 // básica 20250305; pedirles la nueva devuelve error.
@@ -206,7 +257,7 @@ function mezclarOpcionesMultiple(fichas) {
   });
 }
 
-app.post('/api/fichas', upload.single('archivo'), async (req, res) => {
+app.post('/api/fichas', requireAuth, rateLimitIA, upload.single('archivo'), async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
   }
@@ -323,7 +374,7 @@ ${consigna}`;
 // inventar todo desde el catálogo -- sin un parcial real de referencia, un
 // simulacro "genérico" no se diferencia mucho de simplemente pedir más
 // fichas de varios temas.
-app.post('/api/simulacro', upload.single('archivo'), async (req, res) => {
+app.post('/api/simulacro', requireAuth, rateLimitIA, upload.single('archivo'), async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
   }
@@ -397,7 +448,7 @@ Donde "correcta" es el índice (0 a 3, como NÚMERO, nunca como string entre com
 //                       de la correcta).
 // Usa JSON normal (no multipart) -- a diferencia de fichas/resumen, acá no
 // hay archivo que subir.
-app.post('/api/explicar', async (req, res) => {
+app.post('/api/explicar', requireAuth, rateLimitIA, async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
   }
@@ -483,7 +534,7 @@ Donde "correcta" es el índice (0 a 3, como NÚMERO, nunca como string entre com
   }
 });
 
-app.post('/api/resumen', upload.single('archivo'), async (req, res) => {
+app.post('/api/resumen', requireAuth, rateLimitIA, upload.single('archivo'), async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
   }
@@ -546,7 +597,7 @@ ${texto}
 // (mismo libro/sección que usa /api/fichas) y devuelve qué cubre bien, qué le
 // falta y qué tiene mal. Responde JSON (no PDF) porque es feedback para
 // reaccionar en el momento, no algo para guardar y leer después.
-app.post('/api/corregir-resumen', upload.single('archivo'), async (req, res) => {
+app.post('/api/corregir-resumen', requireAuth, rateLimitIA, upload.single('archivo'), async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
   }
