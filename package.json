@@ -4,7 +4,8 @@
   "private": true,
   "description": "Server local para el mockup de Al Día: sirve el HTML y expone endpoints que llaman a la API de Claude.",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node --test"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.2",
