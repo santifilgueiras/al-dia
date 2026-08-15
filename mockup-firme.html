@@ -209,9 +209,21 @@
     60%  { opacity: 1; transform: translateY(-2px) scale(1.012); }
     100% { opacity: 1; transform: translateY(0)    scale(1); }
   }
+  /* Entrar a Fichas de repaso desde el botón "🧠 Fichas" de un tema flojo
+     (Hoy/Repaso) -- ver irAEstudiar() -- tiene su propio acercamiento, más
+     marcado que el fade genérico de arriba, para que "entrar a estudiar" se
+     sienta como un momento distinto de simplemente cambiar de pestaña. */
+  html.vt-fichas::view-transition-new(root) {
+    animation: al-dia-fichas-in .32s cubic-bezier(.22, 1, .36, 1) both;
+  }
+  @keyframes al-dia-fichas-in {
+    from { opacity: 0; transform: scale(.96) translateY(4px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
   @media (prefers-reduced-motion: reduce) {
     ::view-transition-old(root), ::view-transition-new(root),
-    html.vt-rebote::view-transition-new(root) { animation: none !important; }
+    html.vt-rebote::view-transition-new(root),
+    html.vt-fichas::view-transition-new(root) { animation: none !important; }
   }
 
   /* Reset de estilos nativos del elemento button: estos ítems de navegación
@@ -2976,8 +2988,18 @@ function irAEstudiarPicker() {
 }
 
 // Desde un ítem del submenú (tiempo/fichas/resumen): va directo a esa
-// pestaña.
+// pestaña. Entrar puntualmente a "fichas" (el botón "🧠 Fichas" de un tema
+// flojo en Hoy/Repaso es el camino más común) usa un acercamiento propio en
+// vez del fade genérico de go() -- ver html.vt-fichas en el CSS. La clase se
+// agrega ANTES de go() para que la transición que go() ya arma la herede, y
+// se saca sola con un margen prudente sobre la duración de la animación (no
+// hay forma de "engancharse" al final de la transición de go() desde afuera
+// sin cambiar esa función, que es compartida por TODA la navegación).
 function irAEstudiar(name) {
+  if (name === 'fichas') {
+    document.documentElement.classList.add('vt-fichas');
+    setTimeout(() => document.documentElement.classList.remove('vt-fichas'), 500);
+  }
   go(10);
   document.getElementById('sideNavEstudiarSub').classList.add('open');
   document.getElementById('sideNavEstudiarChevron').classList.add('open');
