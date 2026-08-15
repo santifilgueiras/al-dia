@@ -391,8 +391,12 @@
      debajo de la lista, mismos colores que los botones activos para que se
      entienda de un vistazo cuál es cuál. */
   .orden-prioridad-legend {
+    /* Ahora va ANTES de #ordenList (pedido de Santiago -- que la explicación
+       de B/M/A se vea antes de llegar a los botones, no después) -- el
+       margin-top ya no necesita ser negativo para "pegarse" a la lista de
+       arriba, alcanza con un poco de aire debajo del título de sección. */
     display: flex; gap: 20px; flex-wrap: wrap; font-size: 14px; color: var(--muted);
-    margin: -8px 0 18px; padding: 13px 16px; background: var(--nuevo-soft); border-radius: 10px;
+    margin: 10px 0 14px; padding: 13px 16px; background: var(--nuevo-soft); border-radius: 10px;
   }
   .orden-prioridad-legend b { font-weight: 800; margin-right: 6px; }
   .orden-prioridad-legend .baja-lbl b { color: var(--ink); }
@@ -1953,12 +1957,12 @@
     <div id="ritmoTexto" class="mono" style="font-size:12.5px; color:var(--teal); font-weight:600; margin:2px 0 18px;"></div>
 
     <div class="section-label-mono">ORDEN DE LOS TEMAS</div>
-    <div id="ordenList" style="margin-bottom:10px;"></div>
     <div class="orden-prioridad-legend">
       <span class="baja-lbl"><b>B</b>Baja</span>
       <span class="media-lbl"><b>M</b>Media</span>
       <span class="alta-lbl"><b>A</b>Alta</span>
     </div>
+    <div id="ordenList" style="margin-bottom:10px;"></div>
 
     <div class="spacer"></div>
     <div style="display:flex; gap:10px;">
