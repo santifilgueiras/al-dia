@@ -602,6 +602,16 @@
   .ficha-hint { font-size: 13px; color: var(--muted); margin-top: 18px; }
   .ficha-nav { display: flex; gap: 8px; margin-top: 0; }
   .ficha-nav .btn { margin-top: 0; flex: 1; }
+  .ficha-feedback {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin-top: 12px; font-size: 12.5px; color: var(--muted); font-weight: 600;
+  }
+  .ficha-feedback.dado { color: var(--firme); }
+  .ficha-feedback-btn {
+    border: 1px solid var(--line); background: #fff; border-radius: 999px;
+    width: 34px; height: 34px; font-size: 15px; cursor: pointer; line-height: 1;
+  }
+  .ficha-feedback-btn:hover { background: var(--paper-2); }
   .ficha-card.mc { cursor: default; text-align: left; }
   .ficha-opciones { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
   .ficha-opcion {
@@ -748,6 +758,20 @@
   .hoy-item-min { font-size: 11px; color: var(--muted); white-space: nowrap; }
   .hoy-item-btn { display: inline-flex; align-items: center; gap: 5px; margin-top: 0; width: auto; padding: 8px 14px; font-size: 12px; white-space: nowrap; }
   .hoy-item-btn .ic { font-size: 13px; }
+  /* Onboarding de primer uso (sin ninguna materia agregada todavía) --
+     ocupa el lugar de la lista de "Hoy" en vez del empty-state genérico,
+     porque acá el usuario no está "al día", nunca empezó. */
+  .hoy-onboarding { text-align: center; padding: 26px 20px; }
+  .hoy-onboarding-icon { font-size: 34px; margin-bottom: 6px; }
+  .hoy-onboarding h2 { font-size: 17px; margin: 4px 0 6px; }
+  .hoy-onboarding .sub { font-size: 13px; line-height: 1.5; margin: 0 auto 16px; max-width: 380px; }
+  .hoy-onboarding-steps { display: flex; flex-direction: column; gap: 8px; text-align: left; margin-bottom: 18px; }
+  .hoy-onboarding-step { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; background: var(--paper-2); border-radius: 10px; padding: 9px 12px; }
+  .hoy-onboarding-step-n {
+    width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: #fff;
+    font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .hoy-onboarding .btn { max-width: 320px; margin-left: auto; margin-right: auto; }
   .hoy-cols { display: flex; flex-direction: column; gap: 14px; }
   .hoy-card-head { display: flex; justify-content: space-between; align-items: center; }
   .hoy-card-head h2, .hoy-semana-card h2 { margin: 0 0 10px; display: flex; align-items: center; gap: 7px; }
@@ -1659,6 +1683,16 @@
         <div id="hoySemana"></div>
       </div>
     </div>
+    <div class="install-banner" id="installBanner" style="margin-top:14px;">
+      <div class="install-banner-row">
+        <div class="install-banner-icon">📲</div>
+        <div class="install-banner-text">
+          <b>Instalá Al Día en tu celular</b>
+          <span id="installBannerTexto"></span>
+        </div>
+      </div>
+      <button class="btn secondary" id="installBannerBtn" onclick="accionInstalar()"></button>
+    </div>
     </div>
     <div class="bottom-nav">
       <div class="nav-item active"><span class="ic">🏠</span>Inicio</div>
@@ -1729,16 +1763,6 @@
       <div class="deco-icons">📚 🧠 🎓 ✏️ 📝</div>
     </div>
     <button class="btn" id="homeCta" style="margin-top:28px;" onclick="irACalendarioDesdeHome()">📚 Empezar</button>
-    <div class="install-banner" id="installBanner" style="margin-top:14px;">
-      <div class="install-banner-row">
-        <div class="install-banner-icon">📲</div>
-        <div class="install-banner-text">
-          <b>Instalá Al Día en tu celular</b>
-          <span id="installBannerTexto"></span>
-        </div>
-      </div>
-      <button class="btn secondary" id="installBannerBtn" onclick="accionInstalar()"></button>
-    </div>
     <div class="spacer"></div>
   </div>
 
@@ -4224,9 +4248,14 @@ function itemsRepasoGlobal() {
 }
 
 function renderHoyStats() {
-  const c = contarEstadosGlobal();
   const el = document.getElementById('hoyStats');
   if (!el) return;
+  // Sin ninguna materia agregada todavía, "0% firme" no es una métrica --
+  // es ruido que además usa un vocabulario (firme/flojo/nuevo) que el
+  // usuario todavía no vivió. Se oculta del todo hasta que exista al menos
+  // una materia real.
+  if (examenes.length === 0) { el.innerHTML = ''; return; }
+  const c = contarEstadosGlobal();
   const total = c.firme + c.flojo + c.nuevo;
   const pct = total > 0 ? Math.round((c.firme / total) * 100) : 0;
   el.innerHTML = `
@@ -4268,15 +4297,36 @@ function renderHoy() {
   const fechaEl = document.getElementById('hoyFecha');
   if (fechaEl) fechaEl.textContent = FORMATO_FECHA_HOY.format(hoy).toUpperCase();
 
-  const entries = ((planGlobal && planGlobal.schedule[todayKey]) || []).filter(t => t.action !== 'final');
+  // Primer uso real (nunca agregó ninguna materia, ni siquiera una ya
+  // rendida) -- distinto de "está al día": acá no hay nada que celebrar
+  // todavía, hay que guiarlo al primer paso. Ver hoy-onboarding en el CSS.
+  const esPrimerUso = examenes.length === 0;
+
+  const entries = esPrimerUso ? [] : ((planGlobal && planGlobal.schedule[todayKey]) || []).filter(t => t.action !== 'final');
   const tituloEl = document.getElementById('hoyTitulo');
   if (tituloEl) {
-    tituloEl.textContent = entries.length
-      ? `${entries.length} tema${entries.length === 1 ? '' : 's'} para hoy`
-      : 'Nada agendado para hoy';
+    tituloEl.textContent = esPrimerUso
+      ? 'Bienvenido a Al Día'
+      : (entries.length
+        ? `${entries.length} tema${entries.length === 1 ? '' : 's'} para hoy`
+        : 'Nada agendado para hoy');
   }
 
   const listBox = document.getElementById('hoyLista');
+  if (esPrimerUso) {
+    listBox.innerHTML = `
+    <div class="card hoy-onboarding">
+      <div class="hoy-onboarding-icon">📚</div>
+      <h2>Armemos tu primer calendario</h2>
+      <p class="sub">Elegís la materia, marcás los temas que tenés que dar y le decís cuándo es el examen -- armamos un calendario día por día que programa cuándo repasar cada tema, para que no se te pase nada.</p>
+      <div class="hoy-onboarding-steps">
+        <div class="hoy-onboarding-step"><span class="hoy-onboarding-step-n">1</span>Elegís tu facultad y la materia</div>
+        <div class="hoy-onboarding-step"><span class="hoy-onboarding-step-n">2</span>Marcás los temas que tenés que estudiar</div>
+        <div class="hoy-onboarding-step"><span class="hoy-onboarding-step-n">3</span>Le decís la fecha del examen y arrancás</div>
+      </div>
+      <button type="button" class="btn" onclick="agregarExamen()">+ Agregar tu primera materia</button>
+    </div>`;
+  } else {
   listBox.innerHTML = entries.length ? entries.map(t => {
     const estado = estadoDeEntry(t);
     const esc = t.name.replace(/'/g, "\\'");
@@ -4298,6 +4348,7 @@ function renderHoy() {
       </div>
     </div>`;
   }).join('') : '<div class="empty-state">No tenés nada agendado para hoy. 🎉</div>';
+  }
 
   const activos = examenesConCalendario().slice().sort((a, b) => (a.fecha || '').localeCompare(b.fecha || ''));
   const proximo = activos.find(e => e.prioridad) || activos[0];
@@ -5200,6 +5251,11 @@ let fichaFlipped = false;
 // no una sola variable global, para que ir y volver con Anterior/Siguiente
 // no borre lo que ya habías contestado. undefined = todavía no contestada.
 let fichaRespuestas = [];
+// Feedback 👍/👎 por ficha, guardado por posición igual que fichaRespuestas
+// -- 'up' | 'down' | undefined (todavía sin calificar). Se manda al server
+// apenas se toca un botón (POST /api/feedback) y acá solo queda la marca
+// visual de que ya se mandó, para no dejar mandar dos veces la misma.
+let fichaFeedback = [];
 let fichasTipo = 'normal'; // 'normal' | 'multiple'
 // Tema/materia de la tanda actual -- solo para mostrar contexto en la
 // versión mobile de pantalla completa (encabezado + bibliografía). La
@@ -5342,6 +5398,7 @@ async function generarFichas() {
     fichaIndexActual = 0;
     fichaFlipped = false;
     fichaRespuestas = [];
+    fichaFeedback = [];
     fichasContexto = { tema: item.tema, materiaNombre: item.materiaNombre };
     renderFichaActual();
   } catch (e) {
@@ -5397,7 +5454,8 @@ function renderFichaEscritorio() {
     <div class="ficha-nav">
       <button class="btn secondary" onclick="cambiarFicha(-1)" ${fichaIndexActual === 0 ? 'disabled' : ''}>‹ Anterior</button>
       <button class="btn secondary" onclick="cambiarFicha(1)" ${fichaIndexActual === fichasActuales.length - 1 ? 'disabled' : ''}>Siguiente ›</button>
-    </div>`;
+    </div>
+    ${fichaFeedbackHTML()}`;
 }
 
 // Puntitos de progreso de la versión mobile -- uno por ficha, clickeable
@@ -5477,7 +5535,8 @@ function renderFichaFullscreen(fsBox) {
     </div>
     <div class="ficha-fs-dots">${fichaDotsHTML()}</div>
     <div class="ficha-fs-tema">${nombreCorto(fichasContexto ? fichasContexto.materiaNombre : '')}${tema ? ' · ' + tema.toUpperCase() : ''}</div>
-    ${cuerpo}`;
+    ${cuerpo}
+    ${fichaFeedbackHTML()}`;
 }
 
 // "No me la sé" (mobile, opción múltiple): registra -1 -- un índice que
@@ -5492,6 +5551,7 @@ function noMeLaSeFicha() {
 function cerrarFichaFullscreen() {
   fichasActuales = [];
   fichaRespuestas = [];
+  fichaFeedback = [];
   fichasContexto = null;
   renderFichaActual();
 }
@@ -5499,6 +5559,48 @@ function cerrarFichaFullscreen() {
 function elegirOpcionFicha(i) {
   fichaRespuestas[fichaIndexActual] = i;
   renderFichaActual();
+}
+
+// Helper compartido por fichas y resumen -- POST fire-and-forget (no bloquea
+// la UI ni rompe el flujo si falla, es solo una señal de calidad). onDone se
+// llama optimistamente ANTES de esperar la respuesta del server, porque lo
+// único que le importa al estudiante es "ya mandé mi opinión", no si la fila
+// terminó de guardarse.
+async function darFeedback(tipoContenido, tema, materiaNombre, contenido, valor) {
+  try {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) return;
+    fetch('/api/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+      body: JSON.stringify({ tipoContenido, tema, materiaNombre, contenido, valor }),
+    }).catch(e => console.error('Error mandando feedback', e));
+  } catch (e) {
+    console.error('Error mandando feedback', e);
+  }
+}
+
+function darFeedbackFicha(valor) {
+  if (fichaFeedback[fichaIndexActual]) return; // ya calificada, un solo voto por ficha
+  const f = fichasActuales[fichaIndexActual];
+  if (!f) return;
+  fichaFeedback[fichaIndexActual] = valor;
+  const tipoContenido = Array.isArray(f.opciones) ? 'ficha_multiple' : 'ficha';
+  const tema = fichasContexto ? fichasContexto.tema : '';
+  const materiaNombre = fichasContexto ? fichasContexto.materiaNombre : '';
+  darFeedback(tipoContenido, tema, materiaNombre, f.pregunta, valor);
+  renderFichaActual();
+}
+
+function fichaFeedbackHTML() {
+  const val = fichaFeedback[fichaIndexActual];
+  if (val) return `<div class="ficha-feedback dado">${val === 'up' ? '👍 Gracias por el feedback' : '👎 Gracias, lo vamos a revisar'}</div>`;
+  return `
+    <div class="ficha-feedback">
+      <span>¿Te sirvió esta ficha?</span>
+      <button type="button" class="ficha-feedback-btn" onclick="darFeedbackFicha('up')" aria-label="Me sirvió">👍</button>
+      <button type="button" class="ficha-feedback-btn" onclick="darFeedbackFicha('down')" aria-label="No me sirvió">👎</button>
+    </div>`;
 }
 
 function toggleFicha() {
@@ -5671,7 +5773,31 @@ function elegirOpcionSimulacro(i) {
 // se lo pasa a Claude y arma un PDF con el resumen del lado del server
 // (pdfkit) -- la respuesta es el PDF mismo, no JSON, así que se descarga
 // directo en vez de mostrarse en la pantalla.
+let resumenFeedbackContexto = null;
+let resumenFeedbackDado = false;
+
+function resumenFeedbackHTML() {
+  if (resumenFeedbackDado) {
+    return `<div class="ficha-feedback dado">${resumenFeedbackDado === 'up' ? '👍 Gracias por el feedback' : '👎 Gracias, lo vamos a revisar'}</div>`;
+  }
+  return `
+    <div class="ficha-feedback">
+      <span>¿Te sirvió este resumen?</span>
+      <button type="button" class="ficha-feedback-btn" onclick="darFeedbackResumen('up')" aria-label="Me sirvió">👍</button>
+      <button type="button" class="ficha-feedback-btn" onclick="darFeedbackResumen('down')" aria-label="No me sirvió">👎</button>
+    </div>`;
+}
+
+function darFeedbackResumen(valor) {
+  if (resumenFeedbackDado || !resumenFeedbackContexto) return;
+  resumenFeedbackDado = valor;
+  darFeedback('resumen', resumenFeedbackContexto.tema, resumenFeedbackContexto.materiaNombre, resumenFeedbackContexto.archivo, valor);
+  const box = document.getElementById('resumenFeedbackBox');
+  if (box) box.innerHTML = resumenFeedbackHTML();
+}
+
 async function generarResumen() {
+  resumenFeedbackDado = false;
   const input = document.getElementById('resumenFileInput');
   const file = input.files[0];
   if (!file) { showToast('Elegí un archivo primero'); return; }
@@ -5716,7 +5842,9 @@ async function generarResumen() {
       info.exam.resumenesPorTema[info.tema].push({ fecha: fmt(new Date()), nombreArchivo: a.download });
       marcarEstadoSucio();
     }
-    box.innerHTML = `<div class="empty-state" style="color:var(--firme);">✅ Resumen descargado como PDF.${info ? ` Queda asociado a <strong>${info.tema}</strong>.` : ''}</div>`;
+    resumenFeedbackContexto = { tema: info ? info.tema : null, materiaNombre: info ? info.materiaNombre : null, archivo: a.download };
+    box.innerHTML = `<div class="empty-state" style="color:var(--firme);">✅ Resumen descargado como PDF.${info ? ` Queda asociado a <strong>${info.tema}</strong>.` : ''}</div>
+    <div id="resumenFeedbackBox">${resumenFeedbackHTML()}</div>`;
   } catch (e) {
     const msg = e.message === 'Failed to fetch'
       ? 'No se pudo conectar con el server -- ¿está corriendo "npm start"?'

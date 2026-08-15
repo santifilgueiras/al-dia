@@ -115,3 +115,23 @@ create table if not exists public.fichas_cache (
 -- accede, con SUPABASE_SERVICE_ROLE_KEY (bypassea RLS a propósito), igual
 -- que con el cron de push.
 alter table public.fichas_cache enable row level security;
+
+-- Feedback 👍/👎 de fichas y resúmenes generados por IA (agregado para tener
+-- una señal barata de qué temas la IA responde flojo). El cliente nunca
+-- escribe acá directo -- pasa siempre por POST /api/feedback (requireAuth),
+-- que arma la fila con supabaseAdmin (service role). RLS activado sin
+-- políticas para el cliente, mismo patrón que fichas_cache: ni siquiera con
+-- la anon key se puede leer o escribir esta tabla desde el navegador. Se
+-- revisa a mano desde el SQL Editor del dashboard.
+create table if not exists public.ficha_feedback (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id) on delete set null,
+  tema text,
+  materia_nombre text,
+  tipo_contenido text not null check (tipo_contenido in ('ficha', 'ficha_multiple', 'resumen')),
+  contenido text,
+  valor text not null check (valor in ('up', 'down')),
+  created_at timestamptz not null default now()
+);
+
+alter table public.ficha_feedback enable row level security;

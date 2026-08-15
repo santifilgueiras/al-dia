@@ -111,24 +111,29 @@ async function requireAuth(req, res, next) {
 }
 
 // Límite simple por usuario (no por IP -- varios estudiantes reales pueden
-// compartir red de facultad) para los endpoints que llaman a Claude --
-// ventana fija de 1 hora, tope conservador. En memoria del proceso: alcanza
-// para una sola instancia (Render free tier hoy). Si esto pasa a correr en
-// más de una instancia, hay que mover el contador a Supabase o similar.
-const LIMITE_IA_POR_HORA = 20;
-const usoIAPorUsuario = new Map(); // userId -> [timestamps de la última hora]
-
-function rateLimitIA(req, res, next) {
-  const ahora = Date.now();
-  const unaHora = 60 * 60 * 1000;
-  const historial = (usoIAPorUsuario.get(req.userId) || []).filter(t => ahora - t < unaHora);
-  if (historial.length >= LIMITE_IA_POR_HORA) {
-    return res.status(429).json({ error: 'Llegaste al límite de usos de IA por hora. Probá de nuevo en un rato.' });
-  }
-  historial.push(ahora);
-  usoIAPorUsuario.set(req.userId, historial);
-  next();
+// compartir red de facultad), ventana fija de 1 hora. En memoria del
+// proceso: alcanza para una sola instancia (Render free tier hoy). Si esto
+// pasa a correr en más de una instancia, hay que mover el contador a
+// Supabase o similar. Fábrica reutilizada para los endpoints que llaman a
+// Claude (tope conservador) y para el feedback de fichas (tope más
+// generoso -- no gasta la API key, solo escribe una fila).
+function crearLimitadorPorHora(limite, mensaje) {
+  const usoPorUsuario = new Map(); // userId -> [timestamps de la última hora]
+  return function limitador(req, res, next) {
+    const ahora = Date.now();
+    const unaHora = 60 * 60 * 1000;
+    const historial = (usoPorUsuario.get(req.userId) || []).filter(t => ahora - t < unaHora);
+    if (historial.length >= limite) {
+      return res.status(429).json({ error: mensaje });
+    }
+    historial.push(ahora);
+    usoPorUsuario.set(req.userId, historial);
+    next();
+  };
 }
+
+const rateLimitIA = crearLimitadorPorHora(20, 'Llegaste al límite de usos de IA por hora. Probá de nuevo en un rato.');
+const rateLimitFeedback = crearLimitadorPorHora(60, 'Demasiado feedback por ahora. Probá de nuevo en un rato.');
 
 // Modelos que soportan la variante 20260209 de la tool de búsqueda web (con
 // filtrado dinámico). Los demás -- incluido Haiku -- necesitan la variante
@@ -604,6 +609,34 @@ Donde:
   } catch (e) {
     res.status(e.status || 500).json({ error: e.message || 'Error de conexión con la API de Claude.' });
   }
+});
+
+// ---- Feedback de fichas/resumen generados por IA ----
+// Señal barata de calidad: 👍/👎 en cada ficha o resumen, sin la cual la
+// única forma de enterarse de que un tema generó contenido flojo es que un
+// estudiante se dé cuenta solo y no diga nada. No gasta la API key -- solo
+// escribe una fila en ficha_feedback (ver supabase_schema.sql) para
+// revisarla después a mano.
+const TIPOS_FEEDBACK_VALIDOS = new Set(['ficha', 'ficha_multiple', 'resumen']);
+
+app.post('/api/feedback', requireAuth, rateLimitFeedback, async (req, res) => {
+  if (!supabaseAdmin) return res.status(500).json({ error: 'Falta configurar Supabase en el server.' });
+  const { tema, materiaNombre, tipoContenido, contenido, valor } = req.body || {};
+  if (!TIPOS_FEEDBACK_VALIDOS.has(tipoContenido)) return res.status(400).json({ error: 'tipoContenido inválido.' });
+  if (valor !== 'up' && valor !== 'down') return res.status(400).json({ error: 'valor inválido.' });
+  const { error } = await supabaseAdmin.from('ficha_feedback').insert({
+    user_id: req.userId,
+    tema: tema || null,
+    materia_nombre: materiaNombre || null,
+    tipo_contenido: tipoContenido,
+    contenido: (contenido || '').slice(0, 300),
+    valor,
+  });
+  if (error) {
+    console.error('Error guardando ficha_feedback', error);
+    return res.status(500).json({ error: 'No se pudo guardar el feedback.' });
+  }
+  res.json({ ok: true });
 });
 
 // ---- Recordatorio diario (push real) ----
