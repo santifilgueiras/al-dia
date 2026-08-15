@@ -2143,12 +2143,12 @@
          switchStudyTab() son el único punto de entrada para cambiar de
          pestaña; el contenido interno de cada una no cambió. -->
     <div class="tabs study-tabs" id="studyMainTabs">
-      <div class="tab" data-sec="tiempo" onclick="switchStudyTab('tiempo')"><span class="ic">⏱️</span>Tiempo de estudio</div>
-      <div class="tab" data-sec="fichas" onclick="switchStudyTab('fichas')"><span class="ic">🧠</span>Fichas de repaso</div>
-      <div class="tab" data-sec="simulacro" onclick="switchStudyTab('simulacro')"><span class="ic">🎯</span>Simulacro de examen</div>
-      <div class="tab" data-sec="resumen" onclick="switchStudyTab('resumen')"><span class="ic">📄</span>Resumen de apuntes</div>
-      <div class="tab" data-sec="corrector" onclick="switchStudyTab('corrector')"><span class="ic">🔎</span>Corregir mi resumen</div>
-      <div class="tab" data-sec="explicar" onclick="switchStudyTab('explicar')"><span class="ic">💡</span>Explícamelo</div>
+      <div class="tab" data-sec="tiempo" tabindex="0" role="button" onclick="switchStudyTab('tiempo')"><span class="ic">⏱️</span>Tiempo de estudio</div>
+      <div class="tab" data-sec="fichas" tabindex="0" role="button" onclick="switchStudyTab('fichas')"><span class="ic">🧠</span>Fichas de repaso</div>
+      <div class="tab" data-sec="simulacro" tabindex="0" role="button" onclick="switchStudyTab('simulacro')"><span class="ic">🎯</span>Simulacro de examen</div>
+      <div class="tab" data-sec="resumen" tabindex="0" role="button" onclick="switchStudyTab('resumen')"><span class="ic">📄</span>Resumen de apuntes</div>
+      <div class="tab" data-sec="corrector" tabindex="0" role="button" onclick="switchStudyTab('corrector')"><span class="ic">🔎</span>Corregir mi resumen</div>
+      <div class="tab" data-sec="explicar" tabindex="0" role="button" onclick="switchStudyTab('explicar')"><span class="ic">💡</span>Explícamelo</div>
     </div>
 
     <div class="study-layout">
@@ -2156,9 +2156,9 @@
     <div class="study-panel" id="sec-tiempo" data-sec="tiempo">
         <div class="timer-card">
           <div class="timer-metodos" id="timerMetodoTabs">
-            <span class="tab" data-metodo="pomodoro" onclick="seleccionarMetodoTimer('pomodoro')">Pomodoro 25/5</span>
-            <span class="tab" data-metodo="50-10" onclick="seleccionarMetodoTimer('50-10')">50/10</span>
-            <span class="tab" data-metodo="90-20" onclick="seleccionarMetodoTimer('90-20')">90/20</span>
+            <span class="tab" data-metodo="pomodoro" tabindex="0" role="button" onclick="seleccionarMetodoTimer('pomodoro')">Pomodoro 25/5</span>
+            <span class="tab" data-metodo="50-10" tabindex="0" role="button" onclick="seleccionarMetodoTimer('50-10')">50/10</span>
+            <span class="tab" data-metodo="90-20" tabindex="0" role="button" onclick="seleccionarMetodoTimer('90-20')">90/20</span>
           </div>
           <div class="timer-clock">
             <div class="timer-fase" id="timerFaseLabel">ESTUDIO</div>
@@ -2204,8 +2204,8 @@
           <p class="sub" style="margin:4px 0 0;">Si subís un PDF o Word, las fichas se basan en TU apunte en vez del libro de cátedra.</p>
         </div>
         <div class="tabs" id="fichasTipoTabs">
-          <div class="tab active" data-tipo="normal" onclick="seleccionarTipoFicha('normal')">📝 Normal</div>
-          <div class="tab" data-tipo="multiple" onclick="seleccionarTipoFicha('multiple')">☑️ Opción múltiple</div>
+          <div class="tab active" data-tipo="normal" tabindex="0" role="button" onclick="seleccionarTipoFicha('normal')">📝 Normal</div>
+          <div class="tab" data-tipo="multiple" tabindex="0" role="button" onclick="seleccionarTipoFicha('multiple')">☑️ Opción múltiple</div>
         </div>
         <div class="field" style="display:flex; align-items:center; gap:8px;">
           <input type="checkbox" id="fichasBusquedaCheckbox" style="width:auto;">
@@ -3004,12 +3004,12 @@ function renderCatalogo() {
     div.className = 'modulo';
     const icon = MODULO_ICONS[mod.modulo] || '📘';
     div.innerHTML = `
-      <div class="modulo-head" onclick="this.parentElement.classList.toggle('open')">
+      <div class="modulo-head" tabindex="0" role="button" onclick="this.parentElement.classList.toggle('open')">
         <span>${icon} ${mod.modulo} <span class="count">(${mod.temas.length})</span></span>
         <span class="chev">›</span>
       </div>
       <div class="modulo-body">
-        <span class="modulo-select-all" onclick="seleccionarTodoModulo(${mi})">Seleccionar todos</span>
+        <span class="modulo-select-all" tabindex="0" role="button" onclick="seleccionarTodoModulo(${mi})">Seleccionar todos</span>
         ${mod.temas.map((t,ti) => {
           const checked = selected.includes(t);
           return `
@@ -3833,7 +3833,7 @@ function renderCalGrid() {
     else if (entries.length) cls += ' has-repaso';
     const first = entries[0];
     const label = first ? (first.action === 'final' ? `Final ${nombreCorto(first.materiaNombre)}` : `${first.atrasado ? '⏰ ' : ''}${first.name}`) : '';
-    html += `<div class="${cls}" onclick="selectCalDay('${key}')">
+    html += `<div class="${cls}" tabindex="0" role="button" onclick="selectCalDay('${key}')">
       <span class="cal-daynum">${day}</span>
       ${first ? `<span class="cal-tema">${label}</span>` : ''}
       ${entries.length > 1 ? `<span class="cal-more">+${entries.length - 1}</span>` : ''}
@@ -3879,7 +3879,7 @@ function renderCalAgenda() {
     if (t.action === 'nuevo') { tagText = t.totalDias > 1 ? `nuevo · día ${t.dia}/${t.totalDias}` : 'nuevo'; tagClass = 'nuevo-tag'; }
     else if (t.atrasado) { tagText = 'atrasado'; tagClass = 'atrasado-tag'; }
     return `
-    <div class="tema-item" onclick="abrirDetalle(${t.examId}, '${t.name.replace(/'/g,"\\'")}')">
+    <div class="tema-item" tabindex="0" role="button" onclick="abrirDetalle(${t.examId}, '${t.name.replace(/'/g,"\\'")}')">
       <span>${t.atrasado ? '⏰ ' : ''}${t.name}<small style="display:block; color:var(--muted); font-weight:400; font-size:11px; margin-top:2px;">${nombreCorto(t.materiaNombre)}</small></span>
       <span class="tag ${tagClass}">${tagText}</span>
     </div>`;
@@ -4226,7 +4226,7 @@ function renderHoy() {
       ? `<span class="tag repaso-tag">FLOJO</span><button type="button" class="btn secondary hoy-item-btn" onclick="event.stopPropagation(); irAEstudiar('fichas')"><span class="ic">🧠</span>Fichas</button>`
       : `<button type="button" class="btn hoy-item-btn" onclick="event.stopPropagation(); abrirDetalle(${t.examId}, '${esc}')">Empezar</button>`;
     return `
-    <div class="card hoy-item" onclick="abrirDetalle(${t.examId}, '${esc}')">
+    <div class="card hoy-item" tabindex="0" role="button" onclick="abrirDetalle(${t.examId}, '${esc}')">
       <div class="hoy-item-check ${estado === 'firme' ? 'checked' : ''}"></div>
       <div class="hoy-item-info">
         <div class="hoy-item-title">${t.atrasado ? '⏰ ' : ''}${t.name}</div>
@@ -4258,7 +4258,7 @@ function renderHoy() {
     const top3 = items.slice(0, 3);
     repasoBox.innerHTML = top3.length
       ? top3.map(it => `
-        <div class="hoy-repaso-row ${it.atrasado ? 'atrasado' : ''}" onclick="abrirDetalle(${it.examId}, '${it.name.replace(/'/g, "\\'")}', true)">
+        <div class="hoy-repaso-row ${it.atrasado ? 'atrasado' : ''}" tabindex="0" role="button" onclick="abrirDetalle(${it.examId}, '${it.name.replace(/'/g, "\\'")}', true)">
           <div><div class="hoy-repaso-nombre">${it.name}</div><div class="hoy-repaso-materia">${nombreCorto(it.materiaNombre)}</div></div>
           <span class="hoy-repaso-tag mono">${it.atrasado ? 'VENCIÓ' : 'HOY'}</span>
         </div>`).join('') + (vencidos > 0 ? `<button type="button" class="btn" style="margin-top:10px; width:100%;" onclick="go(7)">Repasar los ${vencidos} vencidos</button>` : '')
@@ -4374,7 +4374,7 @@ function renderRepaso() {
     const subPartes = [nombreCorto(it.materiaNombre), `repaso ${it.ordinal}°`];
     if (it.atrasado) subPartes.push(`hace ${diasVencido} día${diasVencido === 1 ? '' : 's'}`);
     return `
-    <div class="repaso-item ${cls}" onclick="abrirDetalle(${it.examId}, '${esc}', true)">
+    <div class="repaso-item ${cls}" tabindex="0" role="button" onclick="abrirDetalle(${it.examId}, '${esc}', true)">
       <div class="repaso-item-info">
         <div class="repaso-item-title">${it.name}</div>
         <div class="repaso-item-sub">${subPartes.join(' · ')}</div>
@@ -4391,7 +4391,7 @@ function renderRepaso() {
     const esc = it.name.replace(/'/g, "\\'");
     const dias = it.prox ? diasHasta(it.prox) : null;
     return `
-    <div class="repaso-plain-row" onclick="abrirDetalle(${it.examId}, '${esc}', true)">
+    <div class="repaso-plain-row" tabindex="0" role="button" onclick="abrirDetalle(${it.examId}, '${esc}', true)">
       <div class="repaso-plain-title">${it.name}</div>
       <div class="repaso-plain-right">
         <span class="repaso-plain-materia">${nombreCorto(it.materiaNombre)}</span>
@@ -4481,14 +4481,14 @@ function renderFacultades() {
   box.innerHTML = gruposVistos.map(g => {
     if (g.miembros.length === 1) {
       const f = FACULTADES[g.miembros[0]];
-      return `<div class="card" style="border-color:var(--accent); background:var(--accent-soft); cursor:pointer;" onclick="elegirFacultad('${g.miembros[0]}')">
+      return `<div class="card" style="border-color:var(--accent); background:var(--accent-soft); cursor:pointer;" tabindex="0" role="button" onclick="elegirFacultad('${g.miembros[0]}')">
         <div style="font-weight:800; font-size:16px;">${f.iconoMateria} ${f.label}</div>
         <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${f.universidad} · ${f.carrera}</div>
       </div>`;
     }
     const primero = FACULTADES[g.miembros[0]];
     return `<div class="card" style="border-color:var(--accent); padding:0; overflow:hidden;">
-      <div style="padding:14px; background:var(--accent-soft); cursor:pointer; display:flex; justify-content:space-between; align-items:center;" onclick="toggleGrupoFacultad(this)">
+      <div style="padding:14px; background:var(--accent-soft); cursor:pointer; display:flex; justify-content:space-between; align-items:center;" tabindex="0" role="button" onclick="toggleGrupoFacultad(this)">
         <div>
           <div style="font-weight:800; font-size:16px;">${primero.iconoMateria} ${g.nombreGrupo}</div>
           <div style="color:var(--muted); font-size:12.5px; margin-top:4px;">${primero.universidad} · elegí tu carrera</div>
@@ -4498,7 +4498,7 @@ function renderFacultades() {
       <div style="display:none;">
         ${g.miembros.map(k => {
           const f = FACULTADES[k];
-          return `<div style="padding:13px 14px; border-top:1px solid var(--line); cursor:pointer;" onclick="elegirFacultad('${k}')">
+          return `<div style="padding:13px 14px; border-top:1px solid var(--line); cursor:pointer;" tabindex="0" role="button" onclick="elegirFacultad('${k}')">
             <div style="font-weight:700; font-size:14.5px;">${f.iconoMateria} ${f.carrera}</div>
           </div>`;
         }).join('')}
@@ -4545,7 +4545,7 @@ function renderAnios() {
   const box = document.getElementById('aniosList');
   box.innerHTML = f.ciclos.map(a => {
     const disponible = !!(f.catalogoPorCiclo[a] && f.catalogoPorCiclo[a].length);
-    return `<div class="pace-pill" style="flex:0 0 30%;" onclick="elegirAnio(${a})">${f.cicloLabel(a)}${disponible ? '' : '<small style="display:block; font-weight:400; opacity:.6;">agregá tus temas</small>'}</div>`;
+    return `<div class="pace-pill" style="flex:0 0 30%;" tabindex="0" role="button" onclick="elegirAnio(${a})">${f.cicloLabel(a)}${disponible ? '' : '<small style="display:block; font-weight:400; opacity:.6;">agregá tus temas</small>'}</div>`;
   }).join('');
 }
 
@@ -4772,7 +4772,7 @@ function renderExamenes() {
     return `
     <div class="card materia-card">
       <button class="card-delete-btn" title="Borrar" onclick="event.stopPropagation(); pedirBorrarMateria(${e.id})">🗑️</button>
-      <div style="cursor:pointer;" onclick="abrirExamen(${e.id})">
+      <div style="cursor:pointer;" tabindex="0" role="button" onclick="abrirExamen(${e.id})">
         ${badge}
         <div class="materia-card-nombre">${e.materiaNombre || 'Sin nombre'}</div>
         <div class="materia-card-fecha mono">${e.fecha ? `${fmtFecha(e.fecha)} · ${dias === 0 ? 'es hoy' : `en ${dias} días`}` : 'sin fecha'}</div>
@@ -5317,7 +5317,7 @@ function renderFichaEscritorio() {
         }).join('')}
       </div>
     </div>` : `
-    <div class="ficha-card ${fichaFlipped ? 'flipped' : ''}" onclick="toggleFicha()">
+    <div class="ficha-card ${fichaFlipped ? 'flipped' : ''}" tabindex="0" role="button" onclick="toggleFicha()">
       <div class="ficha-count">${fichaIndexActual + 1} / ${fichasActuales.length}</div>
       <div class="ficha-texto">${fichaFlipped ? f.respuesta : f.pregunta}</div>
       <div class="ficha-hint">${fichaFlipped ? '↺ Tocá para ver la pregunta' : '🔎 Tocá para ver la respuesta'}</div>
@@ -5389,8 +5389,8 @@ function renderFichaFullscreen(fsBox) {
       <button class="btn" ${yaContestada ? '' : 'disabled'} onclick="${esUltima ? 'cerrarFichaFullscreen()' : 'cambiarFicha(1)'}">${esUltima ? 'Continuar' : 'Confirmar'}</button>
       ${yaContestada || esUltima ? '' : '<button class="btn secondary" onclick="noMeLaSeFicha()">No me la sé</button>'}
     </div>` : `
-    <div class="ficha-fs-pregunta" onclick="toggleFicha()" style="cursor:pointer;">${fichaFlipped ? f.respuesta : f.pregunta}</div>
-    <div class="ficha-fs-hint" onclick="toggleFicha()" style="cursor:pointer;">${fichaFlipped ? '↺ Tocá para ver la pregunta' : '🔎 Tocá para ver la respuesta'}</div>
+    <div class="ficha-fs-pregunta" tabindex="0" role="button" onclick="toggleFicha()" style="cursor:pointer;">${fichaFlipped ? f.respuesta : f.pregunta}</div>
+    <div class="ficha-fs-hint" tabindex="0" role="button" onclick="toggleFicha()" style="cursor:pointer;">${fichaFlipped ? '↺ Tocá para ver la pregunta' : '🔎 Tocá para ver la respuesta'}</div>
     <div class="ficha-fs-bottom">
       ${biblio}
       <div class="ficha-fs-nav">
@@ -6226,7 +6226,7 @@ function abrirResumen() {
     const total = ce.firme + ce.flojo + ce.nuevo;
     const pct = total ? Math.round(ce.firme / total * 100) : 0;
     return `
-    <div class="resumen-materia-row" style="cursor:pointer;" onclick="abrirExamen(${e.id})">
+    <div class="resumen-materia-row" style="cursor:pointer;" tabindex="0" role="button" onclick="abrirExamen(${e.id})">
       <div class="resumen-materia-head">
         ${e.prioridad ? '<span class="tag materia-badge prioritaria">PRIORITARIA</span>' : ''}
         <div class="resumen-materia-nombre">${nombreCorto(e.materiaNombre)}</div>
@@ -6625,6 +6625,21 @@ async function guardarEstadoSiHaceFalta() {
 setInterval(guardarEstadoSiHaceFalta, 15000);
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden') guardarEstadoSiHaceFalta();
+});
+
+// Accesibilidad de teclado: ~28 elementos clickeables de la app (tabs,
+// tarjetas de tema/materia, fichas con flip, etc.) son <div>/<span> con
+// onclick en vez de <button> nativo -- cambiar el tag rompería estilos ya
+// afinados a mano en cada uno (son ~30 casos distintos), así que en cambio
+// cada uno tiene tabindex="0" role="button" en su propio markup, y este
+// único listener delegado hace que Enter/Espacio los "clickeen" igual que
+// el mouse/touch -- sin agregar un manejador de teclado a cada uno.
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const el = e.target.closest('[role="button"][tabindex]');
+  if (!el) return;
+  e.preventDefault(); // Espacio no debe scrollear la página
+  el.click();
 });
 
 async function manejarSesionActiva(session) {
