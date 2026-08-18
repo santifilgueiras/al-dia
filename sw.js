@@ -2,7 +2,7 @@
 // para que abra rápido y funcione con conexión mala o sin conexión.
 // Las llamadas a /api/* (fichas, resumen) siempre van a la red -- nunca
 // tiene sentido servir una respuesta vieja de la IA desde el cache.
-const CACHE_NAME = 'al-dia-v5';
+const CACHE_NAME = 'al-dia-v6';
 const APP_SHELL = [
   '/mockup-firme.html',
   '/manifest.json',

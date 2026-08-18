@@ -948,7 +948,13 @@
             "Lectura sistemática de ECG",
             "Estudios complementarios en cardiología (PEG, Holter, ecocardiograma, angiografía)",
             "Farmacología cardiovascular",
-            "Paro cardiorrespiratorio"
+            "Paro cardiorrespiratorio",
+            "Miocardiopatías",
+            "Cardiopatías valvulares",
+            "Endocarditis infecciosa",
+            "Enfermedades del pericardio",
+            "Síncope",
+            "Trastornos de la conducción cardíaca"
           ]
         },
         {
@@ -964,7 +970,9 @@
             "Cáncer de pulmón (CBP)",
             "Tuberculosis (TBC)",
             "Enfermedad intersticial difusa pulmonar (EPID)",
-            "Insuficiencia respiratoria aguda y crónica"
+            "Insuficiencia respiratoria aguda y crónica",
+            "Síndrome mediastinal",
+            "Supuraciones pulmonares"
           ]
         },
         {
@@ -973,7 +981,11 @@
             "Enfermedad renal crónica",
             "Falla renal aguda",
             "Estudio del paciente con nefropatía (orina, imagen, laboratorio)",
-            "Tratamientos sustitutivos y trasplante renal"
+            "Tratamientos sustitutivos y trasplante renal",
+            "Glomerulopatías",
+            "Uropatía obstructiva",
+            "Neoplasma de próstata",
+            "Infecciones del tracto genitourinario"
           ]
         },
         {
@@ -983,7 +995,8 @@
             "Síndrome ictérico e insuficiencia hepatocelular",
             "Ascitis e hipertensión portal",
             "Síndromes disabsortivos y enfermedad celíaca",
-            "Colopatías inflamatorias"
+            "Colopatías inflamatorias",
+            "Síndrome de intestino irritable"
           ]
         },
         {
@@ -994,7 +1007,11 @@
             "Tratamiento de la diabetes (hipoglucemiantes, insulina)",
             "Dislipemias",
             "Hipotiroidismo",
-            "Hipertiroidismo"
+            "Hipertiroidismo",
+            "Bocio y nódulo tiroideo",
+            "Enfermedad de la adenohipófisis",
+            "Síndrome de Cushing",
+            "Insuficiencia suprarrenal"
           ]
         },
         {
@@ -1002,10 +1019,15 @@
           "temas": [
             "Interpretación del hemograma",
             "Trastornos de la coagulación",
-            "Anemias",
             "Pancitopenia y síndromes poliadenomegálicos",
             "Gammapatías monoclonales (proteinograma)",
-            "Terapia tromboprofiláctica y manejo del paciente hipocoagulado"
+            "Terapia tromboprofiláctica y manejo del paciente hipocoagulado",
+            "Anemia ferropénica",
+            "Anemia megaloblástica",
+            "Anemia inflamatoria",
+            "Anemia hemolítica",
+            "Trombocitopenia inmune",
+            "Síndromes mieloproliferativos"
           ]
         },
         {
@@ -1014,7 +1036,8 @@
             "Técnicas de estudio bacteriológico (urocultivo, hemocultivo, etc.)",
             "Fiebre prolongada",
             "Infección por VIH",
-            "COVID-19 (SARS-CoV-2)"
+            "COVID-19 (SARS-CoV-2)",
+            "Infección de piel y partes blandas"
           ]
         },
         {
@@ -1025,7 +1048,14 @@
             "Imagenología neurológica (TAC/RNM): patología vascular y tumoral",
             "Cefaleas",
             "Enfermedad cerebrovascular (AIT, infarto, hemorragia)",
-            "Patologías neurológicas prevalentes (Parkinson, demencias, epilepsia)"
+            "Patologías neurológicas prevalentes (Parkinson, demencias, epilepsia)",
+            "Meningitis en el adulto",
+            "Tumores del sistema nervioso central",
+            "Enfermedades desmielinizantes",
+            "Polineuropatías y polirradiculopatías",
+            "Parálisis facial periférica",
+            "Compresión medular",
+            "Vértigo"
           ]
         },
         {
@@ -1040,7 +1070,14 @@
           "modulo": "Reumatología",
           "temas": [
             "Semiología del aparato locomotor",
-            "Enfermedades reumatológicas prevalentes: diagnóstico y tratamiento"
+            "Lupus eritematoso sistémico",
+            "Artritis reumatoide",
+            "Esclerosis sistémica",
+            "Espondiloartropatías",
+            "Osteoporosis",
+            "Artrosis",
+            "Artritis infecciosa",
+            "Artritis microcristalina"
           ]
         },
         {

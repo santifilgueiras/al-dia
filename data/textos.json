@@ -6702,5 +6702,161 @@
   "Planes de desarrollo urbano y catastro multifinalitario": {
     "libro": "Erba -- Catastro Multifinalitario",
     "seccion": "capítulo de catastro multifinalitario"
+  },
+  "Miocardiopatías": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Miocardiopatías (también en Farreras-Rozman)"
+  },
+  "Cardiopatías valvulares": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Cardiopatías valvulares (también en Farreras-Rozman)"
+  },
+  "Endocarditis infecciosa": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Endocarditis infecciosa (también en Farreras-Rozman)"
+  },
+  "Enfermedades del pericardio": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Enfermedades del pericardio (también en Farreras-Rozman)"
+  },
+  "Síncope": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Síncope (también en Farreras-Rozman)"
+  },
+  "Trastornos de la conducción cardíaca": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Trastornos de la conducción cardíaca (bloqueos AV, de rama) (también en Farreras-Rozman)"
+  },
+  "Síndrome mediastinal": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Síndrome mediastinal (también en Farreras-Rozman)"
+  },
+  "Supuraciones pulmonares": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Supuraciones pulmonares (absceso de pulmón) (también en Farreras-Rozman)"
+  },
+  "Glomerulopatías": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Glomerulopatías (también en Farreras-Rozman)"
+  },
+  "Uropatía obstructiva": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Uropatía obstructiva (también en Farreras-Rozman)"
+  },
+  "Neoplasma de próstata": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Cáncer de próstata (también en Farreras-Rozman)"
+  },
+  "Infecciones del tracto genitourinario": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Infecciones urinarias (también en Farreras-Rozman)"
+  },
+  "Síndrome de intestino irritable": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Síndrome de intestino irritable (también en Farreras-Rozman)"
+  },
+  "Bocio y nódulo tiroideo": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Bocio y nódulo tiroideo (también en Farreras-Rozman)"
+  },
+  "Enfermedad de la adenohipófisis": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Enfermedades de la hipófisis anterior (también en Farreras-Rozman)"
+  },
+  "Síndrome de Cushing": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Síndrome de Cushing (también en Farreras-Rozman)"
+  },
+  "Insuficiencia suprarrenal": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Insuficiencia suprarrenal (Addison) (también en Farreras-Rozman)"
+  },
+  "Anemia ferropénica": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Anemia ferropénica (también en Farreras-Rozman)"
+  },
+  "Anemia megaloblástica": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Anemia megaloblástica (también en Farreras-Rozman)"
+  },
+  "Anemia inflamatoria": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Anemia de los trastornos crónicos/inflamatoria (también en Farreras-Rozman)"
+  },
+  "Anemia hemolítica": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Anemias hemolíticas (también en Farreras-Rozman)"
+  },
+  "Trombocitopenia inmune": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Trombocitopenia inmune (PTI) (también en Farreras-Rozman)"
+  },
+  "Síndromes mieloproliferativos": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Neoplasias mieloproliferativas (también en Farreras-Rozman)"
+  },
+  "Infección de piel y partes blandas": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Infecciones de piel y partes blandas (también en Farreras-Rozman)"
+  },
+  "Tumores del sistema nervioso central": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Tumores del sistema nervioso central (también en Farreras-Rozman)"
+  },
+  "Enfermedades desmielinizantes": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Enfermedades desmielinizantes (esclerosis múltiple) (también en Farreras-Rozman)"
+  },
+  "Polineuropatías y polirradiculopatías": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Polineuropatías y polirradiculopatías (incl. Guillain-Barré) (también en Farreras-Rozman)"
+  },
+  "Parálisis facial periférica": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Parálisis facial periférica (de Bell) (también en Farreras-Rozman)"
+  },
+  "Compresión medular": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Compresión medular (también en Farreras-Rozman)"
+  },
+  "Vértigo": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Vértigo (también en Farreras-Rozman)"
+  },
+  "Lupus eritematoso sistémico": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Lupus eritematoso sistémico (también en Farreras-Rozman)"
+  },
+  "Artritis reumatoide": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Artritis reumatoide (también en Farreras-Rozman)"
+  },
+  "Esclerosis sistémica": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Esclerosis sistémica (esclerodermia) (también en Farreras-Rozman)"
+  },
+  "Espondiloartropatías": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Espondiloartropatías (también en Farreras-Rozman)"
+  },
+  "Osteoporosis": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Osteoporosis (también en Farreras-Rozman)"
+  },
+  "Artrosis": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Artrosis (también en Farreras-Rozman)"
+  },
+  "Artritis infecciosa": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Artritis infecciosa (séptica) (también en Farreras-Rozman)"
+  },
+  "Artritis microcristalina": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Artritis microcristalina (gota, pseudogota) (también en Farreras-Rozman)"
+  },
+  "Meningitis en el adulto": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Meningitis (también en Farreras-Rozman)"
   }
 }
