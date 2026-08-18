@@ -61,6 +61,9 @@
     --atrasado-soft: rgba(194, 65, 12, .12);
     --pink: #db4f8f;
     --pink-tint: rgba(219, 79, 143, .12);
+    --examen: #7c5cbf;
+    --examen-deep: #5f4494;
+    --examen-soft: rgba(124, 92, 191, .14);
   }
   * { box-sizing: border-box; }
   /* iOS Safari (no iPadOS, tienen heurísticas distintas) a veces "infla"
@@ -957,6 +960,7 @@
   .tag.nuevo-tag { background: var(--nuevo-soft); color: var(--muted); }
   .tag.repaso-tag { background: var(--accent-soft); color: var(--accent); }
   .tag.atrasado-tag { background: var(--atrasado-soft); color: var(--atrasado); }
+  .tag.examen-tag { background: var(--examen-soft); color: var(--examen-deep); }
   .final-note { background: var(--flojo-soft); border: 1px solid #f0d3ac; border-radius: 14px; padding: 12px 14px; font-size: 12.5px; color: #8a5a24; margin-top: 4px; }
 
   /* ---- Repaso (S7) ---- */
@@ -1122,6 +1126,12 @@
      seleccionado) no se veía: el fondo ya era ese mismo verde antes de
      marcar nada. */
   .cal-cell.selected { border-color: var(--accent); }
+  /* El día del examen en sí (no el último repaso, que sigue siendo
+     .has-final) -- lila para que se distinga a simple vista de cualquier
+     otro color del calendario (repaso/firme/flojo/atrasado ya usan
+     teal/amber/rust). */
+  .cal-cell.has-examen { background: var(--examen-soft); border-color: var(--examen); }
+  .cal-cell.has-examen .cal-daynum { color: var(--examen-deep); }
   .cal-cell.has-final { background: var(--flojo-soft); }
   /* Estado real de autoevaluación (firme/flojo) pesa más que el tipo de
      acción agendada -- así un día "de repaso" que ya quedó firme se ve
@@ -1150,6 +1160,7 @@
     max-height: 2.35em; overflow: hidden; word-break: break-word;
   }
   .cal-cell.has-repaso .cal-tema { color: var(--muted); }
+  .cal-cell.has-examen .cal-tema { color: var(--examen-deep); font-weight: 800; }
   .cal-cell.has-final .cal-tema { color: #8a5a24; }
   .cal-cell.has-firme .cal-tema { color: var(--firme); }
   .cal-cell.has-flojo .cal-tema { color: var(--flojo); }
@@ -1963,7 +1974,7 @@
 
   <!-- S2 Elegir temas (Paso 3 de 4: Temas) -->
   <div class="screen" data-screen="2">
-    <div class="topbar"><button class="back" onclick="go(1)">←</button></div>
+    <div class="topbar"><button class="back" onclick="volverDesdeElegirTemas()">←</button></div>
     <div class="paso-indicador"><div class="paso-label mono">PASO 3 DE 4</div><div class="paso-bars"><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar filled"></span><span class="paso-bar"></span></div></div>
     <div class="section-label-mono" id="colaBannerS2" style="display:none; border-bottom:none; margin-bottom:8px;"></div>
     <h1>Elegí tus temas</h1>
@@ -2872,6 +2883,11 @@ let examenes = examenesBaseVacio();
 let nextExamenId = 1;
 let examenActualId = null;
 let borradorExamen = null; // examen que se está creando, todavía no confirmado (ver agregarExamen)
+// true cuando se entró a "Elegí tus temas"/"Fecha y orden" desde "Ver temas"
+// de un examen YA creado (abrirExamen), no desde la alta de una materia
+// nueva -- cambia a dónde vuelve el botón "←" y evita que ordenarYContinuar()
+// reordene temas que el usuario ya venía arrastrando a mano.
+let editandoExamenExistente = false;
 
 function hoy0() { const h = new Date(); h.setHours(0,0,0,0); return h; }
 
@@ -3257,8 +3273,24 @@ function ordenPorDefecto() {
   });
 }
 
+// "←" de Elegí tus temas (S2): en el alta de una materia nueva sigue
+// yendo un paso atrás en el wizard (año); si se llegó acá desde "Ver
+// temas" de un examen ya existente (abrirExamen), un solo "←" tiene que
+// devolver directo al hub de Materias -- ir al selector de año de un
+// wizard que ni siquiera está en curso sería un callejón sin salida.
+function volverDesdeElegirTemas() {
+  if (editandoExamenExistente) go(8);
+  else go(1);
+}
+
 function ordenarYContinuar() {
-  ordenPorDefecto();
+  // Al editar un examen ya existente (ver abrirExamen/editandoExamenExistente)
+  // NO se reordena -- el usuario puede haber arrastrado el orden a mano en
+  // Fecha y orden en una visita anterior, y ordenPorDefecto() lo pisaría
+  // sin avisar. Los temas nuevos que se acaban de tildar simplemente quedan
+  // al final (selected ya los tiene ahí, ver toggleTema), se pueden
+  // arrastrar a su lugar en el paso siguiente igual que cualquier otro.
+  if (!editandoExamenExistente) ordenPorDefecto();
   go(3);
 }
 
@@ -3561,7 +3593,18 @@ function construirSchedulePara(e, temas, examDate, today, numCarriles, startFrom
 
   const finalKey = fmt(finalReviewDay < today ? today : finalReviewDay);
   schedule[finalKey] = schedule[finalKey] || [];
-  schedule[finalKey].push({ name: `Repaso final de ${materiaNombre}`, action: 'final', examId, materiaNombre, tituloExamen: e.tituloExamen || 'Final' });
+  schedule[finalKey].push({ name: `Repaso final de ${materiaNombre}`, action: 'final', examId, materiaNombre });
+
+  // El día del examen en sí (no el último repaso de arriba, que puede caer
+  // días antes) -- entrada propia para que se vea marcado en el calendario
+  // con el nombre que el usuario eligió (#examTitulo, ver Fecha y orden).
+  // Va directo al schedule, no por addToDay(), porque esa función descarta
+  // cualquier día >= finalReviewDay y el examen siempre es posterior (o
+  // igual) a esa fecha.
+  const tituloExamen = e.tituloExamen || 'Final';
+  const examKey = fmt(examDate);
+  schedule[examKey] = schedule[examKey] || [];
+  schedule[examKey].push({ name: materiaNombre, action: 'examen', examId, materiaNombre, tituloExamen });
   return { schedule, finFase1 };
 }
 
@@ -3889,9 +3932,10 @@ window.addEventListener('orientationchange', () => setTimeout(ajustarAlturaCalen
 // El estado real del tema (firme/flojo/nuevo) pesa más que el tipo de
 // acción agendada para decidir el color de la celda -- así un día que ya
 // quedó firme se ve verde de un vistazo, aunque haya sido agendado como
-// "nuevo" o "repaso". Entradas de tipo 'final' no tienen tema propio.
+// "nuevo" o "repaso". Entradas de tipo 'final'/'examen' no tienen tema
+// propio (su "name" es una etiqueta, no un tema real de e.states).
 function estadoDeEntry(entry) {
-  if (entry.action === 'final') return null;
+  if (entry.action === 'final' || entry.action === 'examen') return null;
   const e = examenes.find(x => x.id === entry.examId);
   if (!e) return null;
   return e.states[entry.name] || 'nuevo';
@@ -3912,14 +3956,22 @@ function renderCalGrid() {
     let cls = 'cal-cell';
     if (key === todayKey) cls += ' today';
     if (key === calSelectedKey) cls += ' selected';
-    if (entries.some(t => t.action === 'final')) cls += ' has-final';
+    // El día del examen en sí pesa más que cualquier otra cosa agendada ese
+    // día (de otra materia, por ejemplo) -- es el día más importante del
+    // calendario, tiene que notarse aunque haya más entradas mezcladas.
+    if (entries.some(t => t.action === 'examen')) cls += ' has-examen';
+    else if (entries.some(t => t.action === 'final')) cls += ' has-final';
     else if (hayAtrasado) cls += ' has-atrasado';
     else if (estados.length && estados.every(s => s === 'firme')) cls += ' has-firme';
     else if (estados.some(s => s === 'flojo')) cls += ' has-flojo';
     else if (entries.some(t => t.action === 'nuevo')) cls += ' has-nuevo';
     else if (entries.length) cls += ' has-repaso';
-    const first = entries[0];
-    const label = first ? (first.action === 'final' ? `${first.tituloExamen || 'Final'} ${nombreCorto(first.materiaNombre)}` : `${first.atrasado ? '⏰ ' : ''}${first.name}`) : '';
+    const first = entries.find(t => t.action === 'examen') || entries.find(t => t.action === 'final') || entries[0];
+    const label = first ? (
+      first.action === 'examen' ? `${first.tituloExamen} ${nombreCorto(first.materiaNombre)}` :
+      first.action === 'final' ? `Repaso final · ${nombreCorto(first.materiaNombre)}` :
+      `${first.atrasado ? '⏰ ' : ''}${first.name}`
+    ) : '';
     html += `<div class="${cls}" tabindex="0" role="button" onclick="selectCalDay('${key}')" ondblclick="abrirDetalleDelDia('${key}')">
       <span class="cal-daynum">${day}</span>
       ${first ? `<span class="cal-tema">${label}</span>` : ''}
@@ -3947,7 +3999,7 @@ function selectCalDay(key) {
 // que un click simple en un día sin nada agendado).
 function abrirDetalleDelDia(key) {
   const entries = (planGlobal && planGlobal.schedule[key]) || [];
-  const marcable = entries.find(t => t.action !== 'final');
+  const marcable = entries.find(t => t.action !== 'final' && t.action !== 'examen');
   if (!marcable) return;
   abrirDetalle(marcable.examId, marcable.name);
 }
@@ -3969,11 +4021,17 @@ function renderCalAgenda() {
   const isToday = calSelectedKey === fmt(new Date());
   head.textContent = (isToday ? 'HOY · ' : '') + fmtLabel(d);
   const entries = (planGlobal && planGlobal.schedule[calSelectedKey]) || [];
-  const hayMarcables = entries.some(t => t.action !== 'final');
+  const hayMarcables = entries.some(t => t.action !== 'final' && t.action !== 'examen');
   box.innerHTML = (entries.length ? entries.map(t => {
+    if (t.action === 'examen') {
+      return `<div class="tema-item" style="cursor:default; background:var(--examen-soft);">
+        <span>${t.tituloExamen}<small style="display:block; color:var(--examen-deep); font-weight:600; font-size:11px; margin-top:2px;">${nombreCorto(t.materiaNombre)}</small></span>
+        <span class="tag examen-tag">el examen</span>
+      </div>`;
+    }
     if (t.action === 'final') {
       return `<div class="tema-item" style="cursor:default;">
-        <span>${t.tituloExamen || 'Final'}<small style="display:block; color:var(--muted); font-weight:400; font-size:11px; margin-top:2px;">${nombreCorto(t.materiaNombre)}</small></span>
+        <span>Repaso final<small style="display:block; color:var(--muted); font-weight:400; font-size:11px; margin-top:2px;">${nombreCorto(t.materiaNombre)}</small></span>
         <span class="tag repaso-tag">repaso final</span>
       </div>`;
     }
@@ -4598,6 +4656,7 @@ function agregarExamen() {
   colaMaterias = [];
   colaContexto = null;
   colaMateriasTotal = 0;
+  editandoExamenExistente = false;
   go(12);
 }
 
@@ -4823,9 +4882,11 @@ function abrirExamen(id) {
   // Editar una materia ya existente nunca es parte de una tanda de alta
   // múltiple en curso -- corta cualquier cola/cartel que hubiera quedado.
   colaMaterias = []; colaContexto = null; colaMateriasTotal = 0;
-  const e = examActual();
-  if (e.selected.length) go(3);
-  else go(1);
+  editandoExamenExistente = true;
+  // "Ver temas" lleva directo a elegir/agregar temas (S2, ya sea del
+  // catálogo o "Tus temas" a mano) -- de ahí "Continuar" sigue el camino
+  // normal a Fecha y orden (S3).
+  go(2);
 }
 
 // Marca/desmarca una materia como prioritaria (solo puede haber una a la
