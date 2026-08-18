@@ -2016,6 +2016,12 @@
       <div id="examDateError" style="display:none; color:var(--atrasado); font-size:12px; font-weight:700; margin-top:6px;"></div>
     </div>
     <div class="field">
+      <label for="examInicio">¿Cuándo querés empezar a estudiar?</label>
+      <input type="date" id="examInicio" onchange="renderRitmo()" autocomplete="off">
+      <div id="examInicioError" style="display:none; color:var(--atrasado); font-size:12px; font-weight:700; margin-top:6px;"></div>
+      <div class="sub" style="margin-top:6px;">Por defecto arranca hoy. Si el examen está lejos y preferís empezar otro día (o ya sabés que hoy no vas a poder), elegilo acá -- el ritmo se recalcula para que igual llegues a tiempo.</div>
+    </div>
+    <div class="field">
       <label for="examTitulo">¿Cómo querés que se llame en el calendario?</label>
       <input type="text" id="examTitulo" maxlength="40" autocomplete="off">
       <div class="sub" style="margin-top:6px;">Útil si tu facultad usa otro nombre (ej. "Encuentro 1") y tenés más de un examen de la misma materia. Dejalo así o borralo y poné el tuyo.</div>
@@ -2979,6 +2985,14 @@ function guardarExamenActual() {
   if (dateInput && dateInput.value) e.fecha = dateInput.value;
   const tituloInput = document.getElementById('examTitulo');
   if (tituloInput) e.tituloExamen = (tituloInput.value || '').trim() || 'Final';
+  const inicioInput = document.getElementById('examInicio');
+  if (inicioInput) {
+    // Solo se guarda si es una fecha futura real (comparación de strings
+    // ISO, ya viene en yyyy-mm-dd) -- si quedó en hoy o vacío, se guarda ''
+    // para que se comporte igual que "sin elegir nada" (default de siempre).
+    const hoyStr = fmt(hoy0());
+    e.fechaInicio = (inicioInput.value && inicioInput.value > hoyStr) ? inicioInput.value : '';
+  }
   archivarSiRendido(e);
 }
 
@@ -3393,11 +3407,22 @@ function fmtFecha(iso) {
   return formatearFecha(d);
 }
 
+// "dias" (para el texto "en N días") siempre es un conteo real desde HOY --
+// es información objetiva, no cambia si elegís arrancar más tarde. "inicio"
+// en cambio es desde dónde arranca a contar el ritmo (calcularRitmo()):
+// hoy por defecto, o la fecha elegida en #examInicio si es una fecha futura
+// válida (nunca antes de hoy -- no se puede "empezar" en el pasado).
 function diasHastaExamen() {
   const examDate = new Date(document.getElementById('examDate').value + 'T00:00:00');
   const today = new Date(); today.setHours(0,0,0,0);
   const dias = Math.max(1, Math.round((examDate - today) / 86400000) + 1); // incluye hoy
-  return { examDate, today, dias };
+  let inicio = today;
+  const inicioInput = document.getElementById('examInicio');
+  if (inicioInput && inicioInput.value) {
+    const elegido = new Date(inicioInput.value + 'T00:00:00');
+    if (elegido > today) inicio = elegido;
+  }
+  return { examDate, today, inicio, dias };
 }
 
 // Cuántos días de estudio inicial estima que lleva CADA tema -- no todos los
@@ -3437,8 +3462,8 @@ function diasHasta(fechaISO) {
 // pantalla de "Ajustar ritmo" de una materia como el armado del calendario
 // global.
 function calcularRitmo() {
-  const { examDate, today, dias } = diasHastaExamen();
-  const r = calcularRitmoDe(selected, examDate, today);
+  const { examDate, inicio, dias } = diasHastaExamen();
+  const r = calcularRitmoDe(selected, examDate, inicio);
   const maxPace = Math.min(r.minPace + 2, 6);
   return { dias, diasUtiles: r.diasUtiles, N: selected.length, totalDuracion: r.totalDuracion, minPace: r.minPace, maxPace };
 }
@@ -3461,6 +3486,31 @@ function validarFechaExamen() {
   return true;
 }
 
+// Mismo criterio que validarFechaExamen(): no tiene sentido "empezar" en el
+// pasado, ni empezar el mismo día del examen o después.
+function validarFechaInicio() {
+  const input = document.getElementById('examInicio');
+  const errBox = document.getElementById('examInicioError');
+  if (!input.value) { errBox.style.display = 'none'; return true; }
+  const elegida = new Date(input.value + 'T00:00:00');
+  if (elegida < hoy0()) {
+    errBox.textContent = 'No podés elegir un día que ya pasó.';
+    errBox.style.display = 'block';
+    return false;
+  }
+  const dateInput = document.getElementById('examDate');
+  if (dateInput.value) {
+    const examDate = new Date(dateInput.value + 'T00:00:00');
+    if (elegida >= examDate) {
+      errBox.textContent = 'Tiene que ser antes de la fecha del examen.';
+      errBox.style.display = 'block';
+      return false;
+    }
+  }
+  errBox.style.display = 'none';
+  return true;
+}
+
 // Rediseño: ya no hay picker manual de ritmo (paralelo de temas) -- se usa
 // siempre el mínimo necesario para llegar a tiempo (r.minPace), que además
 // ya era el default de facto de la versión anterior en el caso común. El
@@ -3474,15 +3524,17 @@ function renderRitmo() {
   const btn = document.getElementById('btnGenerar');
   btn.textContent = (eActual && eActual.selectedPace) ? 'Actualizar el plan de repaso' : 'Crear el plan de repaso';
   const texto = document.getElementById('ritmoTexto');
-  if (!validarFechaExamen()) {
+  if (!validarFechaExamen() || !validarFechaInicio()) {
     btn.disabled = true;
     texto.textContent = '';
     return;
   }
   const r = calcularRitmo();
-  const { dias } = diasHastaExamen();
+  const { dias, today, inicio } = diasHastaExamen();
   const minutosPorDia = Math.round((r.totalDuracion * 20) / Math.max(1, r.diasUtiles));
-  texto.textContent = `en ${dias} día${dias === 1 ? '' : 's'} · ~${minutosPorDia} min de repaso por día`;
+  const empiezaMasTarde = inicio > today;
+  texto.textContent = (empiezaMasTarde ? `empezás el ${fmtFecha(fmt(inicio))} · ` : '')
+    + `en ${dias} día${dias === 1 ? '' : 's'} · ~${minutosPorDia} min de repaso por día`;
   selectedPace = r.minPace;
   btn.disabled = false;
 }
@@ -3614,7 +3666,7 @@ function construirSchedulePara(e, temas, examDate, today, numCarriles, startFrom
 // global -- ya no arma un calendario propio, solo aporta sus datos al de
 // todas las materias.
 function generarCalendario() {
-  if (!validarFechaExamen()) return;
+  if (!validarFechaExamen() || !validarFechaInicio()) return;
   // Estado de carga breve: el cálculo en sí es instantáneo, pero un click
   // sin ningún feedback se siente roto -- esto también evita el doble click
   // mientras se procesa.
@@ -3665,6 +3717,8 @@ function generarCalendario() {
 // plazo de una materia por prolijidad.
 let planGlobal = null;
 
+function maxFecha(a, b) { return a > b ? a : b; }
+
 function generarCalendarioGlobal() {
   const hoy = hoy0();
   const activos = examenesConCalendario();
@@ -3677,14 +3731,24 @@ function generarCalendarioGlobal() {
   let cursor = new Date(hoy);
   ordenados.forEach(e => {
     const examDate = new Date(e.fecha + 'T00:00:00');
-    const r = calcularRitmoDe(e.selected, examDate, hoy);
+    // Piso real de arranque de ESTA materia: hoy, salvo que el usuario haya
+    // elegido empezar más tarde (e.fechaInicio, ver "Fecha y orden" -- nunca
+    // puede ser anterior a hoy, guardarExamenActual() ya lo garantiza). El
+    // ritmo (cuántos temas en paralelo hacen falta) se calcula sobre los
+    // días REALES que van a estar disponibles desde ese piso, no desde hoy
+    // -- si no, con un inicio elegido más tarde el ritmo calculado sería más
+    // lento del que realmente hace falta y algún tema podría quedar sin
+    // agendar (construirSchedulePara descarta lo que caiga on/después del
+    // último repaso).
+    const piso = e.fechaInicio ? maxFecha(new Date(e.fechaInicio + 'T00:00:00'), hoy) : hoy;
+    const r = calcularRitmoDe(e.selected, examDate, piso);
     const diasNecesarios = Math.ceil(r.totalDuracion / r.minPace);
     const margen = Math.max(0, r.diasUtiles - diasNecesarios);
-    let start = new Date(hoy);
-    if (cursor > hoy && margen > 0) {
-      const delayDeseado = Math.round((cursor - hoy) / 86400000);
+    let start = new Date(piso);
+    if (cursor > piso && margen > 0) {
+      const delayDeseado = Math.round((cursor - piso) / 86400000);
       const delayReal = Math.min(delayDeseado, margen);
-      start = addDays(hoy, delayReal);
+      start = addDays(piso, delayReal);
     }
     const { schedule, finFase1 } = construirSchedulePara(e, ordenarPorPrioridad(e, e.selected), examDate, hoy, r.minPace, start);
     Object.entries(schedule).forEach(([key, entries]) => {
@@ -6556,6 +6620,7 @@ go = function(n) {
   if (n === 3) {
     const e = examActual();
     document.getElementById('examDate').value = (e && e.fecha) || defaultExamDate();
+    document.getElementById('examInicio').value = (e && e.fechaInicio) || fmt(hoy0());
     document.getElementById('examTitulo').value = (e && e.tituloExamen) || 'Final';
     document.getElementById('materiaConfigNombre').textContent = (e && e.materiaNombre) || 'tu examen';
     renderRitmo();
