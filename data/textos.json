@@ -6862,5 +6862,25 @@
   "Infección urinaria durante el embarazo": {
     "libro": "Nozar, L. Briozzo — Manual de Ginecología y Obstetricia",
     "seccion": "capítulo de infecciones urinarias en el embarazo"
+  },
+  "Mecanismos celulares y señalización en el desarrollo": {
+    "libro": "Gilbert, Biología del desarrollo",
+    "seccion": "capítulo de señalización celular en el desarrollo (inducción, comunicación paracrina/autocrina, vías de señalización)"
+  },
+  "Embrión somítico y desarrollo del sistema músculo-esquelético": {
+    "libro": "Moore, Embriología clínica",
+    "seccion": "capítulo de somitas, mesodermo axial/paraxial/lateral y desarrollo del sistema muscular y esquelético"
+  },
+  "Genes y desarrollo: regulación génica y ejes corporales": {
+    "libro": "Gilbert, Biología del desarrollo",
+    "seccion": "capítulo de cascadas de regulación génica, ejes corporales, genes homeóticos (Drosophila y mamíferos)"
+  },
+  "Particularidades metabólicas de tejidos (hepático, muscular y adiposo)": {
+    "libro": "Devlin, Bioquímica",
+    "seccion": "capítulo de metabolismo específico de tejido hepático, muscular cardíaco/esquelético y adiposo"
+  },
+  "Histología de la glándula mamaria": {
+    "libro": "Ross-Pawlina, Histología",
+    "seccion": "capítulo de glándula mamaria (organización histológica, glándula activa y en reposo)"
   }
 }

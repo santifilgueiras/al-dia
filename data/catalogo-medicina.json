@@ -475,7 +475,10 @@
             "Desarrollo del sistema nervioso central y periférico",
             "Desarrollo de cabeza, cuello y aparato digestivo",
             "Desarrollo del aparato urogenital y determinación del sexo",
-            "Anomalías congénitas"
+            "Anomalías congénitas",
+            "Mecanismos celulares y señalización en el desarrollo",
+            "Embrión somítico y desarrollo del sistema músculo-esquelético",
+            "Genes y desarrollo: regulación génica y ejes corporales"
           ]
         },
         {
@@ -495,7 +498,8 @@
           "temas": [
             "Aspectos bioquímicos de la nutrición humana",
             "Metabolismo de lípidos y lipoproteínas",
-            "Metabolismo proteico y destinos del nitrógeno"
+            "Metabolismo proteico y destinos del nitrógeno",
+            "Particularidades metabólicas de tejidos (hepático, muscular y adiposo)"
           ]
         },
         {
@@ -529,7 +533,8 @@
             "Adaptaciones fisiológicas al embarazo",
             "Parto, alumbramiento y lactancia",
             "Histología y fisiología del aparato genital masculino",
-            "Fisiología de la actividad sexual"
+            "Fisiología de la actividad sexual",
+            "Histología de la glándula mamaria"
           ]
         }
       ]
