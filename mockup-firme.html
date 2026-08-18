@@ -1840,6 +1840,24 @@
     </div>
   </div>
 
+  <!-- Overlay: renombrar el examen (cómo se llama en el calendario) desde
+       el hub de Materias, sin tener que reabrir todo el wizard de alta. -->
+  <div class="checkin-overlay" id="renombrarExamenOverlay">
+    <div class="checkin-card">
+      <div class="checkin-icon">✏️</div>
+      <h3>¿Cómo querés que se llame?</h3>
+      <p id="renombrarExamenSub"></p>
+      <div class="field">
+        <label for="renombrarExamenInput">Nombre en el calendario</label>
+        <input type="text" id="renombrarExamenInput" maxlength="40" autocomplete="off">
+      </div>
+      <div class="checkin-btns">
+        <button class="btn" onclick="confirmarRenombrarMateria()">Guardar</button>
+        <button class="btn secondary" onclick="cancelarRenombrarMateria()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Overlay: confirmación de "No estoy llegando" (punto 10 de
        Especificacion_Al_Dia_modificaciones_v2.docx) -->
   <div class="checkin-overlay" id="noLlegoOverlay">
@@ -1985,6 +2003,11 @@
       <label for="examDate">Fecha del examen</label>
       <input type="date" id="examDate" onchange="renderRitmo()" autocomplete="off">
       <div id="examDateError" style="display:none; color:var(--atrasado); font-size:12px; font-weight:700; margin-top:6px;"></div>
+    </div>
+    <div class="field">
+      <label for="examTitulo">¿Cómo querés que se llame en el calendario?</label>
+      <input type="text" id="examTitulo" maxlength="40" autocomplete="off">
+      <div class="sub" style="margin-top:6px;">Útil si tu facultad usa otro nombre (ej. "Encuentro 1") y tenés más de un examen de la misma materia. Dejalo así o borralo y poné el tuyo.</div>
     </div>
     <div id="ritmoTexto" class="mono" style="font-size:12.5px; color:var(--teal); font-weight:600; margin:2px 0 18px;"></div>
 
@@ -2938,6 +2961,8 @@ function guardarExamenActual() {
   e.selectedPace = selectedPace;
   const dateInput = document.getElementById('examDate');
   if (dateInput && dateInput.value) e.fecha = dateInput.value;
+  const tituloInput = document.getElementById('examTitulo');
+  if (tituloInput) e.tituloExamen = (tituloInput.value || '').trim() || 'Final';
   archivarSiRendido(e);
 }
 
@@ -3536,7 +3561,7 @@ function construirSchedulePara(e, temas, examDate, today, numCarriles, startFrom
 
   const finalKey = fmt(finalReviewDay < today ? today : finalReviewDay);
   schedule[finalKey] = schedule[finalKey] || [];
-  schedule[finalKey].push({ name: `Repaso final de ${materiaNombre}`, action: 'final', examId, materiaNombre });
+  schedule[finalKey].push({ name: `Repaso final de ${materiaNombre}`, action: 'final', examId, materiaNombre, tituloExamen: e.tituloExamen || 'Final' });
   return { schedule, finFase1 };
 }
 
@@ -3770,7 +3795,7 @@ function renderCalendario() {
   if (calYear === null) initCalView();
   const activos = examenesConCalendario().slice().sort((a, b) => (a.fecha || '').localeCompare(b.fecha || ''));
   document.getElementById('calExamCaption').textContent = activos.length
-    ? `Próximos exámenes: ${activos.map(e => `${e.prioridad ? '★ ' : ''}${nombreCorto(e.materiaNombre)} (${fmtFecha(e.fecha)})`).join(' · ')}`
+    ? `Próximos exámenes: ${activos.map(e => `${e.prioridad ? '★ ' : ''}${nombreCorto(e.materiaNombre)}${e.tituloExamen && e.tituloExamen !== 'Final' ? ` — ${e.tituloExamen}` : ''} (${fmtFecha(e.fecha)})`).join(' · ')}`
     : 'Agregá un examen y elegí sus temas para armar el calendario.';
   renderCalGrid();
   renderCalAgenda();
@@ -3894,7 +3919,7 @@ function renderCalGrid() {
     else if (entries.some(t => t.action === 'nuevo')) cls += ' has-nuevo';
     else if (entries.length) cls += ' has-repaso';
     const first = entries[0];
-    const label = first ? (first.action === 'final' ? `Final ${nombreCorto(first.materiaNombre)}` : `${first.atrasado ? '⏰ ' : ''}${first.name}`) : '';
+    const label = first ? (first.action === 'final' ? `${first.tituloExamen || 'Final'} ${nombreCorto(first.materiaNombre)}` : `${first.atrasado ? '⏰ ' : ''}${first.name}`) : '';
     html += `<div class="${cls}" tabindex="0" role="button" onclick="selectCalDay('${key}')" ondblclick="abrirDetalleDelDia('${key}')">
       <span class="cal-daynum">${day}</span>
       ${first ? `<span class="cal-tema">${label}</span>` : ''}
@@ -3948,7 +3973,7 @@ function renderCalAgenda() {
   box.innerHTML = (entries.length ? entries.map(t => {
     if (t.action === 'final') {
       return `<div class="tema-item" style="cursor:default;">
-        <span>${t.name}</span>
+        <span>${t.tituloExamen || 'Final'}<small style="display:block; color:var(--muted); font-weight:400; font-size:11px; margin-top:2px;">${nombreCorto(t.materiaNombre)}</small></span>
         <span class="tag repaso-tag">repaso final</span>
       </div>`;
     }
@@ -4845,7 +4870,7 @@ function pedirBorrarMateria(id) {
   const e = examenes.find(x => x.id === id);
   if (!e) return;
   materiaABorrarId = id;
-  document.getElementById('confirmDeleteTitle').textContent = `¿Borrar "${e.materiaNombre}"?`;
+  document.getElementById('confirmDeleteTitle').textContent = `¿Borrar "${e.materiaNombre}${e.tituloExamen && e.tituloExamen !== 'Final' ? ` — ${e.tituloExamen}` : ''}"?`;
   document.getElementById('confirmDeleteBody').textContent = 'Se va a borrar junto con todo su progreso guardado (calendario, temas marcados). No se puede deshacer.';
   document.getElementById('confirmDeleteOverlay').classList.add('show');
 }
@@ -4867,6 +4892,38 @@ function confirmarBorrarMateria() {
   // Un borrado es destructivo -- no vale la pena esperar el guardado
   // periódico de 15s ni a que la app pase a segundo plano, se guarda ya.
   guardarEstadoSiHaceFalta();
+}
+
+// Renombrar el examen (cómo se llama en el calendario, ver #examTitulo en
+// Fecha y orden) sin tener que reabrir todo el wizard -- mismo overlay que
+// borrar/check-in, con un input de texto en vez de solo confirmar.
+let materiaARenombrarId = null;
+
+function pedirRenombrarMateria(id) {
+  const e = examenes.find(x => x.id === id);
+  if (!e) return;
+  materiaARenombrarId = id;
+  document.getElementById('renombrarExamenSub').textContent = e.materiaNombre || '';
+  document.getElementById('renombrarExamenInput').value = e.tituloExamen || 'Final';
+  document.getElementById('renombrarExamenOverlay').classList.add('show');
+}
+
+function cancelarRenombrarMateria() {
+  materiaARenombrarId = null;
+  document.getElementById('renombrarExamenOverlay').classList.remove('show');
+}
+
+function confirmarRenombrarMateria() {
+  if (materiaARenombrarId === null) return;
+  const e = examenes.find(x => x.id === materiaARenombrarId);
+  if (!e) { cancelarRenombrarMateria(); return; }
+  const input = document.getElementById('renombrarExamenInput');
+  e.tituloExamen = (input.value || '').trim() || 'Final';
+  materiaARenombrarId = null;
+  document.getElementById('renombrarExamenOverlay').classList.remove('show');
+  renderExamenes();
+  updateBadges();
+  showToast('Nombre actualizado');
 }
 
 // Exámenes (S8): "En curso" muestra cada examen con fecha y progreso, y deja
@@ -4893,10 +4950,11 @@ function renderExamenes() {
       : `<button type="button" class="tag materia-badge priorizar" onclick="event.stopPropagation(); toggleMateriaPrioritaria(${e.id})">☆ PRIORIZAR</button>`;
     return `
     <div class="card materia-card">
+      <button class="card-delete-btn" style="right:38px;" title="Renombrar" onclick="event.stopPropagation(); pedirRenombrarMateria(${e.id})">✏️</button>
       <button class="card-delete-btn" title="Borrar" onclick="event.stopPropagation(); pedirBorrarMateria(${e.id})">🗑️</button>
       <div style="cursor:pointer;" tabindex="0" role="button" onclick="abrirExamen(${e.id})">
         ${badge}
-        <div class="materia-card-nombre">${e.materiaNombre || 'Sin nombre'}</div>
+        <div class="materia-card-nombre">${e.materiaNombre || 'Sin nombre'}${e.tituloExamen && e.tituloExamen !== 'Final' ? ` <span class="tag" style="background:var(--paper); border:1px solid var(--line); color:var(--muted); vertical-align:middle;">${e.tituloExamen}</span>` : ''}</div>
         <div class="materia-card-fecha mono">🗓️ ${e.fecha ? `${fmtFecha(e.fecha)} · ${dias === 0 ? 'es hoy' : `en ${dias} días`}` : 'sin fecha'}</div>
         ${faltaConfig ? '<div class="sub" style="margin-top:8px;">Todavía no armaste el calendario</div>' : `
         <div class="materia-card-stats">
@@ -4930,7 +4988,7 @@ function renderExamenes() {
         <div class="materia-rendida-chip">
           <span class="ic">🎓</span>
           <div style="flex:1; min-width:0;">
-            <div class="materia-rendida-nombre">${e.materiaNombre}</div>
+            <div class="materia-rendida-nombre">${e.materiaNombre}${e.tituloExamen && e.tituloExamen !== 'Final' ? ` · ${e.tituloExamen}` : ''}</div>
             <div class="materia-rendida-sub mono">${fmtFecha(e.fecha)} · ${firmes}/${total}${e.ejemplo ? ' (ejemplo)' : ''}</div>
           </div>
           <button class="card-delete-btn" style="position:static;" title="Borrar" onclick="pedirBorrarMateria(${e.id})">🗑️</button>
@@ -6437,6 +6495,7 @@ go = function(n) {
   if (n === 3) {
     const e = examActual();
     document.getElementById('examDate').value = (e && e.fecha) || defaultExamDate();
+    document.getElementById('examTitulo').value = (e && e.tituloExamen) || 'Final';
     document.getElementById('materiaConfigNombre').textContent = (e && e.materiaNombre) || 'tu examen';
     renderRitmo();
   }
