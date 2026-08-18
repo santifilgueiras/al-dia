@@ -563,11 +563,17 @@
     font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; font-weight: 600;
     color: var(--teal); letter-spacing: .14em; margin-bottom: 8px;
   }
-  .timer-fase.descanso { color: var(--firme); }
+  /* Antes usaba var(--firme), que desde el rediseño (Ronda 11) es un alias
+     de var(--teal) -- el MISMO color que ya usa .timer-fase por defecto, así
+     que "DESCANSO" nunca se distinguía de "ESTUDIO" más que por la palabra
+     en sí. Ámbar (mismo color que ya usa la app para "pausa/atención" en
+     otras pantallas) para que se note de un vistazo, sin mirar el texto. */
+  .timer-fase.descanso { color: var(--amber-deep); }
   .timer-display {
     font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 72px; line-height: 1; font-weight: 600;
     color: var(--ink); letter-spacing: -.03em; font-variant-numeric: tabular-nums;
   }
+  .timer-display.descanso { color: var(--amber-deep); }
   .timer-ciclos { font-size: 12.5px; color: rgba(0,0,0,.45); margin-top: 10px; }
   /* Chicos, uno al lado del otro, con el ancho que les da el padding --
      no full-width como el resto de los .btn de la app. */
@@ -5290,6 +5296,16 @@ let timerSegundos = METODOS_TIMER.pomodoro.trabajo;
 let timerCorriendo = false;
 let timerIntervalId = null;
 let timerCiclosHoy = 0;
+// Cuándo tiene que llegar a 0 (Date.now() + ms), no cuánto falta -- un
+// setInterval que solo resta 1 por tick se desincroniza (o directamente dejar
+// de tickear del todo) en cuanto el navegador empieza a limitarlo, que es
+// justo lo que hacen todos los navegadores con los timers de una pestaña en
+// segundo plano/minimizada después de un rato (reportado por Santiago: el
+// timer "deja de funcionar" al cambiar de pestaña). Con una fecha de
+// referencia real, no importa que algún tick se salte o llegue tarde -- el
+// PRÓXIMO tick que sí llegue a correr recalcula el tiempo real que pasó y se
+// pone al día solo, en vez de arrastrar el error. null = pausado.
+let timerFinEn = null;
 
 function seleccionarMetodoTimer(key) {
   if (timerCorriendo) pausarTimer();
@@ -5311,13 +5327,23 @@ function toggleTimer() {
 
 function arrancarTimer() {
   timerCorriendo = true;
-  timerIntervalId = setInterval(tickTimer, 1000);
+  timerFinEn = Date.now() + timerSegundos * 1000;
+  timerIntervalId = setInterval(tickTimer, 250);
+  // Gestos reales del usuario (este click) -- el único momento en que el
+  // navegador deja arrancar/reanudar audio y pedir permiso de notificaciones
+  // sin quejarse. Si algo de esto falla (sin permiso, audio bloqueado en
+  // iOS silencioso, etc.) el aviso de fin de fase sigue mostrando el toast
+  // igual -- ver avisarFinDeFase().
+  pedirPermisoNotificacionTimer();
+  prepararAudioTimer();
   renderTimer();
 }
 
 function pausarTimer() {
   timerCorriendo = false;
   clearInterval(timerIntervalId);
+  timerIntervalId = null;
+  timerFinEn = null;
   renderTimer();
 }
 
@@ -5328,14 +5354,28 @@ function resetearTimer() {
   renderTimer();
 }
 
+// Recalcula desde timerFinEn en vez de solo restar 1 (ver comentario en
+// timerFinEn). También se llama a mano cuando la pestaña vuelve a estar
+// visible (ver el listener de visibilitychange más abajo), para que el
+// tiempo se ponga al día apenas se vuelve a mirar, sin esperar el próximo
+// tick del setInterval.
 function tickTimer() {
-  timerSegundos--;
-  if (timerSegundos <= 0) cambiarFaseTimer(); else renderTimer();
+  if (!timerCorriendo || timerFinEn === null) return;
+  const restante = Math.round((timerFinEn - Date.now()) / 1000);
+  if (restante <= 0) cambiarFaseTimer();
+  else { timerSegundos = restante; renderTimer(); }
 }
 
-// Al completar un bloque de estudio, pasa solo al descanso (no arranca
-// el descanso automáticamente) -- pero si el descanso se termina, sí vuelve
-// a arrancar el estudio solo, para no perder el ritmo de la sesión.
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && timerCorriendo) tickTimer();
+});
+
+// Al completar cualquiera de las dos fases, la siguiente arranca sola
+// (antes el descanso quedaba pausado esperando que el usuario tocara
+// "Empezar" a mano -- confuso, porque un timer parado en "05:00" es fácil
+// de no registrar como "ya terminaste, ahora es momento de descansar"). Con
+// las dos fases encadenadas, todo el ciclo Pomodoro fluye solo mientras el
+// usuario no lo pause a propósito.
 function cambiarFaseTimer() {
   const m = METODOS_TIMER[timerMetodo];
   if (timerFase === 'trabajo') {
@@ -5345,24 +5385,91 @@ function cambiarFaseTimer() {
     const tocaDescansoLargo = timerCiclosHoy % m.ciclosParaLargo === 0;
     timerFase = 'descanso';
     timerSegundos = tocaDescansoLargo ? m.descansoLargo : m.descanso;
-    pausarTimer();
-    showToast(`¡Bloque de estudio completo! Descanso de ${Math.round(timerSegundos / 60)} min`);
+    avisarFinDeFase('¡Bloque de estudio completo!', `Arrancó tu descanso de ${Math.round(timerSegundos / 60)} min.`);
   } else {
     timerFase = 'trabajo';
     timerSegundos = m.trabajo;
-    showToast('Descanso terminado -- a seguir estudiando');
+    avisarFinDeFase('Descanso terminado', 'A seguir estudiando.');
   }
+  timerFinEn = Date.now() + timerSegundos * 1000;
   renderTimer();
+}
+
+// Tres avisos en simultáneo para que sea imposible no darse cuenta de que
+// una fase terminó, sin depender de que el estudiante esté mirando la
+// pantalla en ese momento exacto: toast (si la pestaña está al frente),
+// sonido corto sintetizado (funciona con la pestaña de fondo, no solo
+// minimizada -- audio sigue sonando igual) y notificación real del sistema
+// (funciona incluso con el celular bloqueado, si dio el permiso). Ninguna
+// depende de que las otras dos funcionen -- si el audio está bloqueado o no
+// se dio permiso de notificaciones, el toast se muestra igual.
+function avisarFinDeFase(titulo, cuerpo) {
+  showToast(`${titulo} ${cuerpo}`);
+  reproducirBeepFinDeFase();
+  mostrarNotificacionTimer(titulo, cuerpo);
+}
+
+async function pedirPermisoNotificacionTimer() {
+  if (typeof Notification === 'undefined') return;
+  if (Notification.permission === 'default') {
+    try { await Notification.requestPermission(); } catch (e) { /* el usuario cerró el prompt, no es un error real */ }
+  }
+}
+
+async function mostrarNotificacionTimer(titulo, cuerpo) {
+  if (typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
+  try {
+    if ('serviceWorker' in navigator) {
+      const reg = await navigator.serviceWorker.ready;
+      reg.showNotification(`⏱️ ${titulo}`, { body: cuerpo, icon: 'icons/icon-192.png', tag: 'al-dia-timer', renotify: true });
+    } else {
+      new Notification(`⏱️ ${titulo}`, { body: cuerpo, icon: 'icons/icon-192.png' });
+    }
+  } catch (e) { /* ya se avisó con el toast + el sonido, no hace falta más */ }
+}
+
+// AudioContext se crea/reanuda en arrancarTimer() (gesto real del usuario),
+// no acá -- si se creara recién al terminar la fase (disparado por el
+// propio setInterval, sin gesto del usuario) la mayoría de los navegadores
+// lo dejarían "suspended" y el beep no sonaría nunca.
+async function prepararAudioTimer() {
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') await audioCtx.resume();
+  } catch (e) { /* si falla, el beep de fin de fase no suena pero el toast + la notificación sí avisan igual */ }
+}
+
+function reproducirBeepFinDeFase() {
+  if (!audioCtx || audioCtx.state !== 'running') return;
+  try {
+    const t0 = audioCtx.currentTime;
+    [880, 1320].forEach((freq, i) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      const inicio = t0 + i * 0.18;
+      gain.gain.setValueAtTime(0, inicio);
+      gain.gain.linearRampToValueAtTime(0.25, inicio + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, inicio + 0.35);
+      osc.connect(gain).connect(audioCtx.destination);
+      osc.start(inicio);
+      osc.stop(inicio + 0.4);
+    });
+  } catch (e) { /* no bloquea el resto de los avisos */ }
 }
 
 function renderTimer() {
   const tabs = document.getElementById('timerMetodoTabs');
   if (!tabs) return;
   tabs.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.metodo === timerMetodo));
+  const enDescanso = timerFase === 'descanso';
   const faseEl = document.getElementById('timerFaseLabel');
-  faseEl.textContent = timerFase === 'trabajo' ? 'ESTUDIO' : 'DESCANSO';
-  faseEl.classList.toggle('descanso', timerFase === 'descanso');
-  document.getElementById('timerDisplay').textContent = fmtTimer(timerSegundos);
+  faseEl.textContent = enDescanso ? 'DESCANSO' : 'ESTUDIO';
+  faseEl.classList.toggle('descanso', enDescanso);
+  const displayEl = document.getElementById('timerDisplay');
+  displayEl.textContent = fmtTimer(timerSegundos);
+  displayEl.classList.toggle('descanso', enDescanso);
   const metodo = METODOS_TIMER[timerMetodo];
   const minFoco = Math.round(metodo.trabajo / 60);
   const minDescanso = Math.round(metodo.descanso / 60);
