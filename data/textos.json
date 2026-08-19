@@ -6747,10 +6747,6 @@
     "libro": "Harrison",
     "seccion": "capítulo de Cáncer de próstata (también en Farreras-Rozman)"
   },
-  "Infecciones del tracto genitourinario": {
-    "libro": "Harrison",
-    "seccion": "capítulo de Infecciones urinarias (también en Farreras-Rozman)"
-  },
   "Síndrome de intestino irritable": {
     "libro": "Harrison",
     "seccion": "capítulo de Síndrome de intestino irritable (también en Farreras-Rozman)"
@@ -6882,5 +6878,9 @@
   "Histología de la glándula mamaria": {
     "libro": "Ross-Pawlina, Histología",
     "seccion": "capítulo de glándula mamaria (organización histológica, glándula activa y en reposo)"
+  },
+  "Infección urinaria (ITU) y otras infecciones genitourinarias": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Infecciones urinarias (también en Farreras-Rozman)"
   }
 }
