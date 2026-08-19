@@ -972,6 +972,12 @@
   /* ---- Repaso (S7) ---- */
   .repaso-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap; }
   .repaso-cta { width: auto; margin-top: 0; display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; white-space: nowrap; }
+  .repaso-add-tema-btn {
+    display: inline-block; margin: 12px 0 0; background: none; border: 1.5px dashed var(--line);
+    border-radius: 10px; color: var(--accent); font-family: inherit; font-weight: 700; font-size: 12.5px;
+    padding: 8px 14px; cursor: pointer;
+  }
+  .repaso-add-tema-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
   .repaso-pills { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 20px; }
   .repaso-pill {
     border: 1px solid var(--line); background: #fff; color: var(--ink); font-family: inherit;
@@ -1919,6 +1925,32 @@
     </div>
   </div>
 
+  <!-- Overlay: agregar un tema propio a la cola de Repaso (botón "+ Agregar
+       tema para repasar" de S7) -- nombre libre + el día en que se quiere
+       repasar, sin depender de que sea de una materia con calendario
+       armado. Comparte almacenamiento con las notas del calendario (mismo
+       notasCalendario, tipo:'tema' en vez de 'nota') así que también
+       aparece en el calendario de ese día. -->
+  <div class="checkin-overlay" id="agregarTemaRepasoOverlay">
+    <div class="checkin-card">
+      <div class="checkin-icon">🧠</div>
+      <h3>Agregar tema para repasar</h3>
+      <p>No hace falta que sea de una materia con calendario armado -- se suma a tu cola de Repaso el día que elijas.</p>
+      <div class="field">
+        <label for="agregarTemaRepasoNombre">Nombre del tema</label>
+        <input type="text" id="agregarTemaRepasoNombre" maxlength="80" autocomplete="off" placeholder="Ej: Repasar apuntes de anatomía">
+      </div>
+      <div class="field">
+        <label for="agregarTemaRepasoFecha">Cuándo querés repasarlo</label>
+        <input type="date" id="agregarTemaRepasoFecha">
+      </div>
+      <div class="checkin-btns">
+        <button class="btn" onclick="confirmarAgregarTemaRepaso()">Agregar</button>
+        <button class="btn secondary" onclick="cerrarAgregarTemaRepaso()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Overlay: confirmación de "No estoy llegando" (punto 10 de
        Especificacion_Al_Dia_modificaciones_v2.docx) -->
   <div class="checkin-overlay" id="noLlegoOverlay">
@@ -2235,6 +2267,7 @@
       </div>
       <button type="button" class="btn repaso-cta" id="repasoCta" style="display:none;">📋 Repasar lo de hoy</button>
     </div>
+    <button type="button" class="repaso-add-tema-btn" onclick="abrirAgregarTemaRepaso()">+ Agregar tema para repasar</button>
     <div class="repaso-pills" id="repasoPills"></div>
     <div id="repasoList"></div>
     </div>
@@ -4184,11 +4217,14 @@ function renderCalAgenda() {
   }).join('');
   // Notas sueltas del día (botón + de la celda) -- no llevan a ningún
   // detalle (no son un tema real de ninguna materia), solo se pueden borrar.
-  const notasHtml = notas.map(n => `
+  const notasHtml = notas.map(n => {
+    const etiquetas = [n.tipo === 'tema' ? 'tema para repasar' : null, n.prioritario ? 'prioritario' : null].filter(Boolean).join(' · ');
+    return `
     <div class="tema-item" style="cursor:default; background:var(--pink-tint);">
-      <span>📌 ${escapeHtml(n.texto)}${n.prioritario ? '<small style="display:block; color:var(--pink); font-weight:700; font-size:11px; margin-top:2px;">prioritario</small>' : ''}</span>
+      <span>📌 ${escapeHtml(n.texto)}${etiquetas ? `<small style="display:block; color:var(--pink); font-weight:700; font-size:11px; margin-top:2px;">${etiquetas}</small>` : ''}</span>
       <button type="button" class="repaso-fichas-btn" style="background:transparent; color:var(--pink); padding:6px;" onclick="eliminarNotaCalendario('${calSelectedKey}', '${n.id}')" aria-label="Borrar nota">🗑️</button>
-    </div>`).join('');
+    </div>`;
+  }).join('');
   box.innerHTML = (entries.length || notas.length ? (entriesHtml + notasHtml) : '<div class="empty-state" style="padding:24px 10px;">Nada programado este día.</div>')
     // Los temas de la agenda son clickeables (llevan al detalle donde se
     // marca Firme/Flojo) pero no se veía obvio a simple vista -- pedido de
@@ -4222,7 +4258,7 @@ function confirmarAgregarNota(prioritario) {
   // Solo una nota "prioritaria" por día -- es la que gana el texto mostrado
   // en la celda (ver renderCalGrid), no tendría sentido que compitan varias.
   if (prioritario) notasCalendario[key].forEach(n => { n.prioritario = false; });
-  notasCalendario[key].push({ id: Date.now() + '_' + Math.random().toString(36).slice(2, 7), texto, prioritario: !!prioritario });
+  notasCalendario[key].push({ id: Date.now() + '_' + Math.random().toString(36).slice(2, 7), texto, prioritario: !!prioritario, tipo: 'nota' });
   marcarEstadoSucio();
   cerrarAgregarNota();
   renderCalGrid();
@@ -4242,8 +4278,45 @@ function eliminarNotaCalendario(key, id) {
   notasCalendario[key] = notasCalendario[key].filter(n => n.id !== id);
   if (!notasCalendario[key].length) delete notasCalendario[key];
   marcarEstadoSucio();
+  // Este mismo borrado se usa desde la agenda del calendario Y desde la
+  // lista de Repaso (ver renderNotaCard/renderNotaPlain) -- se refresca la
+  // que esté activa en cada caso, sin romper si la otra pantalla ni existe
+  // en el DOM en este momento (los elementos de Repaso son opcionales acá).
   renderCalGrid();
   renderCalAgenda();
+  if (document.getElementById('repasoList')) renderRepaso();
+  guardarEstadoSiHaceFalta();
+}
+
+// ---- Temas propios agregados desde la pantalla de Repaso ----
+function abrirAgregarTemaRepaso() {
+  document.getElementById('agregarTemaRepasoNombre').value = '';
+  const fechaInput = document.getElementById('agregarTemaRepasoFecha');
+  fechaInput.value = fmt(new Date());
+  fechaInput.min = fmt(new Date());
+  document.getElementById('agregarTemaRepasoOverlay').classList.add('show');
+  setTimeout(() => document.getElementById('agregarTemaRepasoNombre').focus(), 50);
+}
+
+function cerrarAgregarTemaRepaso() {
+  document.getElementById('agregarTemaRepasoOverlay').classList.remove('show');
+}
+
+function confirmarAgregarTemaRepaso() {
+  const nombre = document.getElementById('agregarTemaRepasoNombre').value.trim();
+  const fecha = document.getElementById('agregarTemaRepasoFecha').value;
+  if (!nombre || !fecha) { showToast('Completá el nombre y la fecha'); return; }
+  if (!notasCalendario[fecha]) notasCalendario[fecha] = [];
+  // Mismo criterio de "una sola prioritaria por día" que las notas del
+  // calendario (ver confirmarAgregarNota) -- un tema para repasar sí vale
+  // la pena que se vea en la celda del día que se eligió, a diferencia de
+  // una nota libre que no siempre se marca así.
+  notasCalendario[fecha].forEach(n => { n.prioritario = false; });
+  notasCalendario[fecha].push({ id: Date.now() + '_' + Math.random().toString(36).slice(2, 7), texto: nombre, prioritario: true, tipo: 'tema' });
+  marcarEstadoSucio();
+  cerrarAgregarTemaRepaso();
+  renderRepaso();
+  showToast('Agregado a tu cola de repaso');
   guardarEstadoSiHaceFalta();
 }
 
@@ -4700,6 +4773,15 @@ function moduloDeTema(e, tema) {
 function agruparPorModulo(arr) {
   const mapa = new Map();
   arr.forEach(it => {
+    // Temas propios agregados a mano desde Repaso (ver
+    // confirmarAgregarTemaRepaso) no pertenecen a ninguna materia -- van
+    // todos juntos en un grupo fijo propio, sin buscar módulo real.
+    if (it.esNota) {
+      const key = 'notas';
+      if (!mapa.has(key)) mapa.set(key, { icon: '📌', modulo: 'Temas propios', materiaNombre: '', items: [] });
+      mapa.get(key).items.push(it);
+      return;
+    }
     const e = examenes.find(x => x.id === it.examId);
     const info = e && moduloDeTema(e, it.name);
     const modulo = info ? info.modulo : 'Otros temas';
@@ -4720,7 +4802,7 @@ function renderModuloAccordion(g, itemRenderer, abiertoPorDefecto) {
   return `
   <div class="modulo repaso-modulo ${abiertoPorDefecto ? 'open' : ''}">
     <div class="modulo-head" tabindex="0" role="button" onclick="this.parentElement.classList.toggle('open')">
-      <span>${g.icon} ${g.modulo} <span class="count">${nombreCorto(g.materiaNombre)} · ${g.items.length}</span></span>
+      <span>${g.icon} ${g.modulo} <span class="count">${g.materiaNombre ? nombreCorto(g.materiaNombre) + ' · ' : ''}${g.items.length}</span></span>
       <span class="chev">›</span>
     </div>
     <div class="modulo-body">${g.items.map(itemRenderer).join('')}</div>
@@ -4733,8 +4815,13 @@ function renderRepaso() {
   const cta = document.getElementById('repasoCta');
   const pillsBox = document.getElementById('repasoPills');
   const activos = examenesConCalendario();
-  if (!activos.length) {
-    list.innerHTML = '<div class="empty-state">Todavía no armaste ningún calendario.</div>';
+  // Temas propios agregados a mano (ver confirmarAgregarTemaRepaso) -- no
+  // dependen de tener ninguna materia con calendario armado, así que
+  // cuentan aparte para decidir si la pantalla está realmente vacía.
+  const todayKeyGuard = fmt(new Date());
+  const hayTemasPropios = Object.values(notasCalendario).some(arr => arr.some(n => n.tipo === 'tema'));
+  if (!activos.length && !hayTemasPropios) {
+    list.innerHTML = '<div class="empty-state">Todavía no armaste ningún calendario ni agregaste temas propios.</div>';
     sub.textContent = ''; cta.style.display = 'none'; pillsBox.innerHTML = '';
     return;
   }
@@ -4760,6 +4847,19 @@ function renderRepaso() {
       }
     });
   });
+  // Temas propios: se bucketean por la fecha que el usuario eligió al
+  // agregarlos, igual que un tema real por su proximoRepaso -- así se
+  // mezclan en la sección de urgencia que corresponda (VENCIDOS/HOY/MÁS
+  // ADELANTE), no aparte.
+  Object.keys(notasCalendario).forEach(key => {
+    notasCalendario[key].forEach(n => {
+      if (n.tipo !== 'tema') return;
+      const item = { esNota: true, key, id: n.id, texto: n.texto, prox: key };
+      if (key < todayKey) grupos.atrasadas.push({ ...item, atrasado: true });
+      else if (key === todayKey) grupos.hoy.push(item);
+      else grupos.proximas.push(item);
+    });
+  });
   grupos.proximas.sort((a, b) => (a.prox || '9999').localeCompare(b.prox || '9999'));
   const totalItems = grupos.atrasadas.length + grupos.hoy.length + grupos.proximas.length;
 
@@ -4782,13 +4882,18 @@ function renderRepaso() {
   }
 
   // CTA "Repasar lo de hoy": suma de vencidos+hoy (lo que hay que resolver
-  // ya) -- lleva directo al primero de la cola, no marca nada solo.
+  // ya) -- lleva directo al primero de la cola, no marca nada solo. Los
+  // temas propios (esNota) no tienen pantalla de detalle ni duración
+  // estimada real -- se cuentan en la cola pero no entran en los minutos ni
+  // pueden ser el destino del salto directo.
   const colaHoy = gAtrasadas.concat(gHoy);
+  const colaHoyReal = colaHoy.filter(i => !i.esNota);
   if (colaHoy.length) {
-    const minTotal = colaHoy.reduce((s, i) => s + minutosEstimados(i.name), 0);
+    const minTotal = colaHoyReal.reduce((s, i) => s + minutosEstimados(i.name), 0);
     cta.style.display = 'inline-flex';
     cta.textContent = `📋 Repasar lo de hoy · ${minTotal} min`;
-    cta.onclick = () => abrirDetalle(colaHoy[0].examId, colaHoy[0].name, true);
+    if (colaHoyReal.length) cta.onclick = () => abrirDetalle(colaHoyReal[0].examId, colaHoyReal[0].name, true);
+    else cta.onclick = () => showToast('Son todos temas propios -- borralos de la lista de abajo cuando los repases');
   } else {
     cta.style.display = 'none';
   }
@@ -4801,7 +4906,29 @@ function renderRepaso() {
   }
   if (totalFiltrado === 0) { list.innerHTML = '<div class="empty-state">Nada pendiente de esa materia por ahora.</div>'; return; }
 
+  // Un tema propio (esNota) no tiene detalle de materia ni estado
+  // firme/flojo -- no hay nada útil que abrir al tocarlo, solo se puede
+  // borrar (queda repasado) con el 🗑️, mismo ícono/acción que las notas del
+  // calendario (ver eliminarNotaCalendario).
+  const renderNotaCard = (it, cls) => `
+    <div class="repaso-item ${cls}" style="cursor:default;">
+      <div class="repaso-item-info">
+        <div class="repaso-item-title">📌 ${escapeHtml(it.texto)}</div>
+        <div class="repaso-item-sub">tema propio</div>
+      </div>
+      <button type="button" class="repaso-fichas-btn" style="background:var(--pink-tint); color:var(--pink);" onclick="eliminarNotaCalendario('${it.key}', '${it.id}')" aria-label="Borrar">🗑️ Repasado</button>
+    </div>`;
+  const renderNotaPlain = (it) => `
+    <div class="repaso-plain-row" style="cursor:default;">
+      <div class="repaso-plain-title">📌 ${escapeHtml(it.texto)}</div>
+      <div class="repaso-plain-right">
+        <span class="repaso-plain-dias">EN ${diasHasta(it.key)} D</span>
+        <button type="button" class="repaso-fichas-btn" style="background:var(--pink-tint); color:var(--pink); padding:5px 8px;" onclick="eliminarNotaCalendario('${it.key}', '${it.id}')" aria-label="Borrar">🗑️</button>
+      </div>
+    </div>`;
+
   const renderCard = (it, cls) => {
+    if (it.esNota) return renderNotaCard(it, cls);
     const esc = it.name.replace(/'/g, "\\'");
     const min = minutosEstimados(it.name);
     const diasVencido = it.atrasado ? Math.round((hoy - new Date(it.prox + 'T00:00:00')) / 86400000) : 0;
@@ -4824,6 +4951,7 @@ function renderRepaso() {
     </div>`;
   };
   const renderPlain = (it) => {
+    if (it.esNota) return renderNotaPlain(it);
     const esc = it.name.replace(/'/g, "\\'");
     const dias = it.prox ? diasHasta(it.prox) : null;
     return `
