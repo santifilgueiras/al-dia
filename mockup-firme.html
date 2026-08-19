@@ -4083,6 +4083,11 @@ function renderCalGrid() {
     // El día del examen en sí pesa más que cualquier otra cosa agendada ese
     // día (de otra materia, por ejemplo) -- es el día más importante del
     // calendario, tiene que notarse aunque haya más entradas mezcladas.
+    // Una nota "prioritaria" (ver confirmarAgregarNota) es la única que se
+    // nota en la celda -- una nota sin marcar queda solo guardada (visible
+    // al tocar el día) sin pintar ni escribir nada, tal cual se explica en
+    // el modal de agregar ("prioritario" = lo que se va a mostrar escrito).
+    const notaPrioritaria = notas.find(n => n.prioritario);
     if (entries.some(t => t.action === 'examen')) cls += ' has-examen';
     else if (entries.some(t => t.action === 'final')) cls += ' has-final';
     else if (hayAtrasado) cls += ' has-atrasado';
@@ -4090,16 +4095,11 @@ function renderCalGrid() {
     else if (estados.some(s => s === 'flojo')) cls += ' has-flojo';
     else if (entries.some(t => t.action === 'nuevo')) cls += ' has-nuevo';
     else if (entries.length) cls += ' has-repaso';
-    else if (notas.length) cls += ' has-nota';
-    // Una nota "prioritaria" (ver confirmarAgregarNota) gana el texto de la
-    // celda por encima de cualquier repaso/nuevo agendado -- pero nunca por
-    // encima del día del examen en sí, que sigue siendo lo más importante.
-    const notaPrioritaria = notas.find(n => n.prioritario);
+    else if (notaPrioritaria) cls += ' has-nota';
     const first = entries.find(t => t.action === 'examen')
       || (notaPrioritaria ? { esNota: true, name: notaPrioritaria.texto } : null)
       || entries.find(t => t.action === 'final')
-      || entries[0]
-      || (notas[0] ? { esNota: true, name: notas[0].texto } : null);
+      || entries[0];
     const label = first ? (
       first.esNota ? `📌 ${escapeHtml(first.name)}` :
       first.action === 'examen' ? `${first.tituloExamen} ${nombreCorto(first.materiaNombre)}` :
