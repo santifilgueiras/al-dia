@@ -571,7 +571,7 @@
             "Inflamación",
             "Respuesta inmune frente a patógenos",
             "Vacunas: aspectos inmunológicos",
-            "Reacciones de hipersensibilidad",
+            "Reacciones de hipersensibilidad (alergias)",
             "Inmunodeficiencias",
             "Trasplantes e inmunología del trasplante"
           ]
@@ -990,7 +990,7 @@
             "Tratamientos sustitutivos y trasplante renal",
             "Glomerulopatías",
             "Uropatía obstructiva",
-            "Neoplasma de próstata",
+            "Cáncer de próstata",
             "Infección urinaria (ITU) y otras infecciones genitourinarias"
           ]
         },
@@ -1173,7 +1173,7 @@
         {
           "modulo": "Inmunología y alergia",
           "temas": [
-            "Reacciones de hipersensibilidad",
+            "Reacciones de hipersensibilidad (alergias)",
             "Inmunodeficiencias"
           ]
         },
@@ -1541,7 +1541,7 @@
             "Infecciones urinarias altas y bajas",
             "Infecciones de transmisión sexual en el primer nivel de atención",
             "Problemas gastroenterológicos prevalentes (RGE, dispepsia, constipación, diarrea, cáncer de colon)",
-            "Distiroidismos",
+            "Distiroidismos (hipotiroidismo e hipertiroidismo)",
             "Anemias"
           ]
         },

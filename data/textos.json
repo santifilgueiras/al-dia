@@ -987,10 +987,6 @@
     "libro": "Abbas - Inmunología Celular y Molecular",
     "seccion": "capítulo de Inmunidad activa: vacunación"
   },
-  "Reacciones de hipersensibilidad": {
-    "libro": "Robbins y Cotran",
-    "seccion": "capítulo de Enfermedades del sistema inmunitario: hipersensibilidad"
-  },
   "Inmunodeficiencias": {
     "libro": "Robbins y Cotran",
     "seccion": "capítulo de Enfermedades del sistema inmunitario: inmunodeficiencias"
@@ -2578,10 +2574,6 @@
   "Problemas gastroenterológicos prevalentes (RGE, dispepsia, constipación, diarrea, cáncer de colon)": {
     "libro": "Harrison",
     "seccion": "capítulos de Enfermedad por reflujo, Dispepsia, Constipación, Diarrea y Cáncer colorrectal"
-  },
-  "Distiroidismos": {
-    "libro": "Harrison",
-    "seccion": "capítulo de Enfermedades del tiroides"
   },
   "Patología osteoarticular traumática, degenerativa e inflamatoria (omalgia, lumbalgia, gonalgia)": {
     "libro": "Harrison",
@@ -6743,10 +6735,6 @@
     "libro": "Harrison",
     "seccion": "capítulo de Uropatía obstructiva (también en Farreras-Rozman)"
   },
-  "Neoplasma de próstata": {
-    "libro": "Harrison",
-    "seccion": "capítulo de Cáncer de próstata (también en Farreras-Rozman)"
-  },
   "Síndrome de intestino irritable": {
     "libro": "Harrison",
     "seccion": "capítulo de Síndrome de intestino irritable (también en Farreras-Rozman)"
@@ -6882,5 +6870,17 @@
   "Infección urinaria (ITU) y otras infecciones genitourinarias": {
     "libro": "Harrison",
     "seccion": "capítulo de Infecciones urinarias (también en Farreras-Rozman)"
+  },
+  "Cáncer de próstata": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Cáncer de próstata (también en Farreras-Rozman)"
+  },
+  "Distiroidismos (hipotiroidismo e hipertiroidismo)": {
+    "libro": "Harrison",
+    "seccion": "capítulo de Enfermedades del tiroides"
+  },
+  "Reacciones de hipersensibilidad (alergias)": {
+    "libro": "Robbins y Cotran",
+    "seccion": "capítulo de Enfermedades del sistema inmunitario: hipersensibilidad"
   }
 }

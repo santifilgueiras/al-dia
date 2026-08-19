@@ -246,7 +246,6 @@
   "Inflamación": 1,
   "Respuesta inmune frente a patógenos": 1,
   "Vacunas: aspectos inmunológicos": 1,
-  "Reacciones de hipersensibilidad": 1,
   "Inmunodeficiencias": 1,
   "Trasplantes e inmunología del trasplante": 1,
   "Variables, estadística descriptiva y probabilidad básica": 1,
@@ -644,7 +643,6 @@
   "Infecciones urinarias altas y bajas": 1,
   "Infecciones de transmisión sexual en el primer nivel de atención": 2,
   "Problemas gastroenterológicos prevalentes (RGE, dispepsia, constipación, diarrea, cáncer de colon)": 3,
-  "Distiroidismos": 1,
   "Patología osteoarticular traumática, degenerativa e inflamatoria (omalgia, lumbalgia, gonalgia)": 2,
   "Cefaleas: cefalea tensional y migraña, signos de alarma": 1,
   "Patologías oftalmológicas frecuentes en el primer nivel de atención (ojo rojo, agudeza visual)": 1,
@@ -1685,7 +1683,6 @@
   "Supuraciones pulmonares": 1,
   "Glomerulopatías": 2,
   "Uropatía obstructiva": 1,
-  "Neoplasma de próstata": 1,
   "Síndrome de intestino irritable": 1,
   "Bocio y nódulo tiroideo": 1,
   "Enfermedad de la adenohipófisis": 2,
@@ -1719,5 +1716,8 @@
   "Genes y desarrollo: regulación génica y ejes corporales": 2,
   "Particularidades metabólicas de tejidos (hepático, muscular y adiposo)": 1,
   "Histología de la glándula mamaria": 1,
-  "Infección urinaria (ITU) y otras infecciones genitourinarias": 2
+  "Infección urinaria (ITU) y otras infecciones genitourinarias": 2,
+  "Cáncer de próstata": 1,
+  "Distiroidismos (hipotiroidismo e hipertiroidismo)": 1,
+  "Reacciones de hipersensibilidad (alergias)": 1
 }
