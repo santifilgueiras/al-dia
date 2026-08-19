@@ -1110,6 +1110,7 @@
   .cal-weekday { text-align: center; font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; padding-bottom: 6px; }
   .cal-grid.days { margin-bottom: 4px; }
   .cal-cell {
+    position: relative;
     aspect-ratio: 1 / 1.05; border-radius: 9px; border: 1px solid var(--line);
     padding: 3px 4px; display: flex; flex-direction: column; cursor: pointer; overflow: hidden;
     transition: background-color .3s ease, border-color .3s ease;
@@ -1149,6 +1150,28 @@
   .cal-cell.has-flojo .cal-daynum { color: var(--flojo); }
   .cal-cell.has-atrasado { background: var(--atrasado-soft); border-color: var(--atrasado); }
   .cal-cell.has-atrasado .cal-daynum { color: var(--atrasado); }
+  /* Nota personal agregada a mano (botón + de la celda) -- solo pinta la
+     celda entera cuando NO hay ningún otro estado real ese día (repaso,
+     firme, flojo, etc. siguen pesando más, ver renderCalGrid); si conviven
+     los dos, la nota igual puede ganar el texto mostrado si se agregó "como
+     prioritaria". Rosa para no pisar ninguno de los colores ya usados
+     (teal/amber/rust/lila). */
+  .cal-cell.has-nota { background: var(--pink-tint); border-color: var(--pink); }
+  .cal-cell.has-nota .cal-daynum { color: var(--pink); }
+  .cal-cell.has-nota .cal-tema { color: var(--pink); }
+  /* Botón "+" para agregar algo al día a mano, sin depender de que el
+     calendario ya te haya agendado algo ahí. Arriba a la derecha (el número
+     del día ocupa arriba a la izquierda, y el "+N" de más entradas vive
+     abajo) para no superponerse con nada. stopPropagation en el onclick de
+     este botón evita que también dispare selectCalDay() de la celda. */
+  .cal-cell-add {
+    position: absolute; top: 1px; right: 1px; width: 14px; height: 14px; border-radius: 50%;
+    border: none; background: rgba(20,32,29,.08); color: var(--muted); font-family: inherit;
+    font-size: 10px; font-weight: 800; line-height: 1; padding: 0; cursor: pointer; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cal-cell-add:hover, .cal-cell-add:active { background: var(--pink); color: #fff; }
+  .cal-cell.empty .cal-cell-add { display: none; }
   /* Las celdas superpuestas que reportó Santiago (2026-08-13, varias veces,
      mismo patrón desde el primer reporte) coinciden con un problema
      conocido de WebKit: la técnica vieja de recorte a 2 líneas
@@ -1182,6 +1205,7 @@
        apretadas entre sí. */
     .cal-grid.days { gap: 8px; }
     .cal-cell { padding: 8px 9px; border-radius: 12px; }
+    .cal-cell-add { top: 3px; right: 3px; width: 19px; height: 19px; font-size: 13px; }
     .cal-cell .cal-tema { font-size: 11.5px; max-height: 2.35em; margin-top: 4px; }
     .cal-cell .cal-daynum { font-size: 14px; }
     .cal-cell .cal-more { font-size: 8.5px; }
@@ -1872,6 +1896,26 @@
         <button class="btn" onclick="confirmarRenombrarMateria()">Guardar</button>
         <button class="btn secondary" onclick="cancelarRenombrarMateria()">Cancelar</button>
       </div>
+    </div>
+  </div>
+
+  <!-- Overlay: agregar una nota suelta a un día del calendario (botón + de
+       la celda) -- no es un tema de ninguna materia, texto libre. -->
+  <div class="checkin-overlay" id="agregarNotaOverlay">
+    <div class="checkin-card">
+      <div class="checkin-icon">📌</div>
+      <h3 id="agregarNotaTitulo">Agregar al día</h3>
+      <p>Escribí lo que quieras que aparezca ese día -- un tema, un recordatorio, lo que sea.</p>
+      <div class="field">
+        <label for="agregarNotaInput">Qué agregar</label>
+        <input type="text" id="agregarNotaInput" maxlength="80" autocomplete="off" placeholder="Ej: entregar informe de laboratorio">
+      </div>
+      <div class="checkin-btns">
+        <button class="btn" onclick="confirmarAgregarNota(false)">Agregar</button>
+        <button class="btn secondary" onclick="confirmarAgregarNota(true)">Agregar como prioritario</button>
+        <button class="btn secondary" onclick="cerrarAgregarNota()">Cancelar</button>
+      </div>
+      <p style="margin:12px 0 0; font-size:11.5px;">"Prioritario" es lo que se va a mostrar escrito en la celda del día, aunque ya hubiera otra cosa agendada.</p>
     </div>
   </div>
 
@@ -2894,6 +2938,15 @@ function examenesBaseVacio() {
 let examenes = examenesBaseVacio();
 let nextExamenId = 1;
 let examenActualId = null;
+// Notas sueltas del calendario -- cosas que el usuario quiere anotar en un
+// día sin que sean un tema real de ninguna materia ("entregar informe",
+// "repasar lo mío para el parcial", etc.). Van aparte de planGlobal.schedule
+// (que generarCalendarioGlobal() recalcula entero en cada render, así que
+// cualquier cosa metida ahí adentro se perdería) -- viven en su propio
+// objeto { 'yyyy-mm-dd': [{ id, texto, prioritario }] } y se mezclan recién
+// al pintar la grilla/agenda (ver renderCalGrid/renderCalAgenda).
+let notasCalendario = {};
+let notaCalendarioDiaKey = null;
 let borradorExamen = null; // examen que se está creando, todavía no confirmado (ver agregarExamen)
 // true cuando se entró a "Elegí tus temas"/"Fecha y orden" desde "Ver temas"
 // de un examen YA creado (abrirExamen), no desde la alta de una materia
@@ -4021,6 +4074,7 @@ function renderCalGrid() {
   for (let day = 1; day <= totalDays; day++) {
     const key = fmt(new Date(calYear, calMonth, day));
     const entries = (planGlobal && planGlobal.schedule[key]) || [];
+    const notas = notasCalendario[key] || [];
     const estados = entries.map(estadoDeEntry).filter(Boolean);
     const hayAtrasado = entries.some(t => t.atrasado);
     let cls = 'cal-cell';
@@ -4036,16 +4090,28 @@ function renderCalGrid() {
     else if (estados.some(s => s === 'flojo')) cls += ' has-flojo';
     else if (entries.some(t => t.action === 'nuevo')) cls += ' has-nuevo';
     else if (entries.length) cls += ' has-repaso';
-    const first = entries.find(t => t.action === 'examen') || entries.find(t => t.action === 'final') || entries[0];
+    else if (notas.length) cls += ' has-nota';
+    // Una nota "prioritaria" (ver confirmarAgregarNota) gana el texto de la
+    // celda por encima de cualquier repaso/nuevo agendado -- pero nunca por
+    // encima del día del examen en sí, que sigue siendo lo más importante.
+    const notaPrioritaria = notas.find(n => n.prioritario);
+    const first = entries.find(t => t.action === 'examen')
+      || (notaPrioritaria ? { esNota: true, name: notaPrioritaria.texto } : null)
+      || entries.find(t => t.action === 'final')
+      || entries[0]
+      || (notas[0] ? { esNota: true, name: notas[0].texto } : null);
     const label = first ? (
+      first.esNota ? `📌 ${escapeHtml(first.name)}` :
       first.action === 'examen' ? `${first.tituloExamen} ${nombreCorto(first.materiaNombre)}` :
       first.action === 'final' ? `Repaso final · ${nombreCorto(first.materiaNombre)}` :
       `${first.atrasado ? '⏰ ' : ''}${first.name}`
     ) : '';
+    const totalCount = entries.length + notas.length;
     html += `<div class="${cls}" tabindex="0" role="button" onclick="selectCalDay('${key}')" ondblclick="abrirDetalleDelDia('${key}')">
+      <button type="button" class="cal-cell-add" onclick="event.stopPropagation(); abrirAgregarNota('${key}')" aria-label="Agregar algo este día">+</button>
       <span class="cal-daynum">${day}</span>
       ${first ? `<span class="cal-tema">${label}</span>` : ''}
-      ${entries.length > 1 ? `<span class="cal-more">+${entries.length - 1}</span>` : ''}
+      ${totalCount > 1 ? `<span class="cal-more">+${totalCount - 1}</span>` : ''}
     </div>`;
   }
   const remainder = (startOffset + totalDays) % 7;
@@ -4091,8 +4157,9 @@ function renderCalAgenda() {
   const isToday = calSelectedKey === fmt(new Date());
   head.textContent = (isToday ? 'HOY · ' : '') + fmtLabel(d);
   const entries = (planGlobal && planGlobal.schedule[calSelectedKey]) || [];
+  const notas = notasCalendario[calSelectedKey] || [];
   const hayMarcables = entries.some(t => t.action !== 'final' && t.action !== 'examen');
-  box.innerHTML = (entries.length ? entries.map(t => {
+  const entriesHtml = entries.map(t => {
     if (t.action === 'examen') {
       return `<div class="tema-item" style="cursor:default; background:var(--examen-soft);">
         <span>${t.tituloExamen}<small style="display:block; color:var(--examen-deep); font-weight:600; font-size:11px; margin-top:2px;">${nombreCorto(t.materiaNombre)}</small></span>
@@ -4114,13 +4181,62 @@ function renderCalAgenda() {
       <span>${t.atrasado ? '⏰ ' : ''}${t.name}<small style="display:block; color:var(--muted); font-weight:400; font-size:11px; margin-top:2px;">${nombreCorto(t.materiaNombre)}</small></span>
       <span class="tag ${tagClass}">${tagText}</span>
     </div>`;
-  }).join('') : '<div class="empty-state" style="padding:24px 10px;">Nada programado este día.</div>')
+  }).join('');
+  // Notas sueltas del día (botón + de la celda) -- no llevan a ningún
+  // detalle (no son un tema real de ninguna materia), solo se pueden borrar.
+  const notasHtml = notas.map(n => `
+    <div class="tema-item" style="cursor:default; background:var(--pink-tint);">
+      <span>📌 ${escapeHtml(n.texto)}${n.prioritario ? '<small style="display:block; color:var(--pink); font-weight:700; font-size:11px; margin-top:2px;">prioritario</small>' : ''}</span>
+      <button type="button" class="repaso-fichas-btn" style="background:transparent; color:var(--pink); padding:6px;" onclick="eliminarNotaCalendario('${calSelectedKey}', '${n.id}')" aria-label="Borrar nota">🗑️</button>
+    </div>`).join('');
+  box.innerHTML = (entries.length || notas.length ? (entriesHtml + notasHtml) : '<div class="empty-state" style="padding:24px 10px;">Nada programado este día.</div>')
     // Los temas de la agenda son clickeables (llevan al detalle donde se
     // marca Firme/Flojo) pero no se veía obvio a simple vista -- pedido de
     // Santiago tras probar la app, sentía que no quedaba claro que había que
     // tocarlos. Doble click/doble tap en el día del calendario (ver
     // abrirDetalleDelDia) hace el mismo salto de un tirón.
     + (hayMarcables ? '<p class="cal-agenda-hint">👆 Tocá un tema cuando termines de estudiarlo, para marcar cómo te fue.</p>' : '');
+}
+
+// ---- Notas sueltas del calendario (botón + de cada celda) ----
+function abrirAgregarNota(key) {
+  notaCalendarioDiaKey = key;
+  const d = new Date(key + 'T00:00:00');
+  document.getElementById('agregarNotaTitulo').textContent = `Agregar al ${fmtLabel(d)}`;
+  document.getElementById('agregarNotaInput').value = '';
+  document.getElementById('agregarNotaOverlay').classList.add('show');
+  setTimeout(() => document.getElementById('agregarNotaInput').focus(), 50);
+}
+
+function cerrarAgregarNota() {
+  document.getElementById('agregarNotaOverlay').classList.remove('show');
+  notaCalendarioDiaKey = null;
+}
+
+function confirmarAgregarNota(prioritario) {
+  const input = document.getElementById('agregarNotaInput');
+  const texto = input.value.trim();
+  if (!texto || !notaCalendarioDiaKey) { cerrarAgregarNota(); return; }
+  const key = notaCalendarioDiaKey;
+  if (!notasCalendario[key]) notasCalendario[key] = [];
+  // Solo una nota "prioritaria" por día -- es la que gana el texto mostrado
+  // en la celda (ver renderCalGrid), no tendría sentido que compitan varias.
+  if (prioritario) notasCalendario[key].forEach(n => { n.prioritario = false; });
+  notasCalendario[key].push({ id: Date.now() + '_' + Math.random().toString(36).slice(2, 7), texto, prioritario: !!prioritario });
+  marcarEstadoSucio();
+  cerrarAgregarNota();
+  renderCalGrid();
+  renderCalAgenda();
+  showToast(prioritario ? 'Agregado como prioritario' : 'Agregado al día');
+}
+
+function eliminarNotaCalendario(key, id) {
+  if (!notasCalendario[key]) return;
+  notasCalendario[key] = notasCalendario[key].filter(n => n.id !== id);
+  if (!notasCalendario[key].length) delete notasCalendario[key];
+  marcarEstadoSucio();
+  renderCalGrid();
+  renderCalAgenda();
 }
 
 function abrirDetalle(examId, name, fromRepaso) {
@@ -4557,6 +4673,52 @@ function filtrarRepasoPorMateria(examId) {
   renderRepaso();
 }
 
+// A qué módulo (el "tema grande" del catálogo, ej. "Cardiovascular")
+// pertenece un subtema puntual dentro de un examen -- null si la materia
+// no usa catálogo o el tema es uno propio ("ownTemas") sin módulo real.
+function moduloDeTema(e, tema) {
+  if (!e || !e.modulos) return null;
+  const mod = e.modulos.find(m => m.temas.includes(tema));
+  return mod ? { modulo: mod.modulo, icon: MODULO_ICONS[mod.modulo] || '📘' } : null;
+}
+
+// Agrupa una lista de items de Repaso (cada uno con examId/materiaNombre/
+// name) por materia+módulo -- pedido explícito de Santiago para que Repaso
+// no muestre decenas de subtemas sueltos uno por uno, sino organizados por
+// "tema grande" (ver renderModuloAccordion). La clave incluye examId
+// porque dos materias distintas pueden compartir nombre de módulo. Temas
+// sin módulo real (materia sin catálogo) caen en "Otros temas" de esa
+// materia.
+function agruparPorModulo(arr) {
+  const mapa = new Map();
+  arr.forEach(it => {
+    const e = examenes.find(x => x.id === it.examId);
+    const info = e && moduloDeTema(e, it.name);
+    const modulo = info ? info.modulo : 'Otros temas';
+    const icon = info ? info.icon : '📘';
+    const key = it.examId + '||' + modulo;
+    if (!mapa.has(key)) mapa.set(key, { icon, modulo, materiaNombre: it.materiaNombre, items: [] });
+    mapa.get(key).items.push(it);
+  });
+  return [...mapa.values()];
+}
+
+// Un módulo = un acordeón .modulo/.modulo-head (mismo componente que ya se
+// usa al elegir temas en S3) -- tocar el título expande/colapsa la lista de
+// subtemas de abajo. Si la sección tiene un solo grupo, arranca abierto (no
+// tiene sentido esconder la única categoría); con varios, arranca cerrado
+// para que la sección se vea compacta hasta que el usuario elija cuál mirar.
+function renderModuloAccordion(g, itemRenderer, abiertoPorDefecto) {
+  return `
+  <div class="modulo repaso-modulo ${abiertoPorDefecto ? 'open' : ''}">
+    <div class="modulo-head" tabindex="0" role="button" onclick="this.parentElement.classList.toggle('open')">
+      <span>${g.icon} ${g.modulo} <span class="count">${nombreCorto(g.materiaNombre)} · ${g.items.length}</span></span>
+      <span class="chev">›</span>
+    </div>
+    <div class="modulo-body">${g.items.map(itemRenderer).join('')}</div>
+  </div>`;
+}
+
 function renderRepaso() {
   const list = document.getElementById('repasoList');
   const sub = document.getElementById('repasoSub');
@@ -4635,7 +4797,9 @@ function renderRepaso() {
     const esc = it.name.replace(/'/g, "\\'");
     const min = minutosEstimados(it.name);
     const diasVencido = it.atrasado ? Math.round((hoy - new Date(it.prox + 'T00:00:00')) / 86400000) : 0;
-    const subPartes = [nombreCorto(it.materiaNombre), `repaso ${it.ordinal}°`];
+    // La materia ya no va acá -- queda en el encabezado del acordeón del
+    // módulo (ver renderModuloAccordion), no hace falta repetirla en cada tarjeta.
+    const subPartes = [`repaso ${it.ordinal}°`];
     if (it.atrasado) subPartes.push(`hace ${diasVencido} día${diasVencido === 1 ? '' : 's'}`);
     return `
     <div class="repaso-item ${cls}" tabindex="0" role="button" onclick="abrirDetalle(${it.examId}, '${esc}', true)">
@@ -4658,25 +4822,37 @@ function renderRepaso() {
     <div class="repaso-plain-row" tabindex="0" role="button" onclick="abrirDetalle(${it.examId}, '${esc}', true)">
       <div class="repaso-plain-title">${it.name}</div>
       <div class="repaso-plain-right">
-        <span class="repaso-plain-materia">${nombreCorto(it.materiaNombre)}</span>
         <span class="repaso-plain-dias">${dias === null ? 'primera vez' : `EN ${dias} D`}</span>
       </div>
     </div>`;
   };
 
-  const grupoConCards = (dotCls, titulo, arr, note) => !arr.length ? '' : `
+  // Cada sección de urgencia ya no lista sus subtemas uno por uno -- los
+  // agrupa por módulo (el "tema grande") en acordeones colapsables, para
+  // que se vea más limpio con muchos temas pendientes.
+  const grupoConCards = (dotCls, titulo, arr, note) => {
+    if (!arr.length) return '';
+    const grupos = agruparPorModulo(arr);
+    const abiertoPorDefecto = grupos.length <= 1;
+    return `
     <div class="repaso-group-head">
       <span class="repaso-group-dot ${dotCls}"></span>
       <span class="repaso-group-title ${dotCls}">${titulo} · ${arr.length}</span>
       ${note ? `<span class="repaso-group-note">${note}</span>` : ''}
     </div>
-    ${arr.map(it => renderCard(it, dotCls === 'vencidos' ? 'vencido' : 'hoy')).join('')}`;
-  const grupoPlano = (arr) => !arr.length ? '' : `
+    ${grupos.map(g => renderModuloAccordion(g, it => renderCard(it, dotCls === 'vencidos' ? 'vencido' : 'hoy'), abiertoPorDefecto)).join('')}`;
+  };
+  const grupoPlano = (arr) => {
+    if (!arr.length) return '';
+    const grupos = agruparPorModulo(arr);
+    const abiertoPorDefecto = grupos.length <= 1;
+    return `
     <div class="repaso-group-head">
       <span class="repaso-group-dot proximas"></span>
       <span class="repaso-group-title proximas">MÁS ADELANTE · ${arr.length}</span>
     </div>
-    <div class="card" style="padding:4px 18px;">${arr.map(renderPlain).join('')}</div>`;
+    ${grupos.map(g => renderModuloAccordion(g, renderPlain, abiertoPorDefecto)).join('')}`;
+  };
 
   list.innerHTML =
     grupoConCards('vencidos', 'VENCIDOS', gAtrasadas, 'se reprograman solos si no los tocás hoy') +
@@ -6993,6 +7169,7 @@ function hidratarEstado(estado) {
   ultimoDiaActivo = estado.ultimoDiaActivo || '';
   recordatorioActivo = !!estado.recordatorioActivo;
   actividadDiaria = estado.actividadDiaria || {};
+  notasCalendario = estado.notasCalendario || {};
 }
 
 // Recién en true después de cargar (o inicializar de cero) el estado real
@@ -7034,6 +7211,7 @@ async function cargarEstadoUsuario() {
       ultimoDiaActivo = '';
       recordatorioActivo = false;
       actividadDiaria = {};
+      notasCalendario = {};
       estadoUpdatedAtConocido = null; // todavía no existe fila para este usuario
     }
     estadoHidratado = true;
@@ -7059,7 +7237,7 @@ async function guardarEstadoSiHaceFalta() {
   if (!sesionUsuario || !estadoHidratado || !estadoSucio || guardadoEnCurso) return;
   guardadoEnCurso = true;
   estadoSucio = false;
-  const estado = { examenes, nextExamenId, racha, ultimoDiaActivo, recordatorioActivo, actividadDiaria };
+  const estado = { examenes, nextExamenId, racha, ultimoDiaActivo, recordatorioActivo, actividadDiaria, notasCalendario };
   try {
     if (estadoUpdatedAtConocido === null) {
       // Todavía no existe fila para este usuario -- primer guardado real,
