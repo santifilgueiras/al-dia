@@ -2,7 +2,7 @@
 // para que abra rápido y funcione con conexión mala o sin conexión.
 // Las llamadas a /api/* (fichas, resumen) siempre van a la red -- nunca
 // tiene sentido servir una respuesta vieja de la IA desde el cache.
-const CACHE_NAME = 'al-dia-v6';
+const CACHE_NAME = 'al-dia-v7';
 const APP_SHELL = [
   '/mockup-firme.html',
   '/manifest.json',
@@ -47,6 +47,16 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
+  // Bug real encontrado (2026-08-19): este handler solo excluía /api/, así
+  // que las lecturas del progreso guardado a supabase.co (otro origen,
+  // GET) caían en la rama de stale-while-revalidate de más abajo, pensada
+  // para íconos/manifest -- el usuario podía ver una versión VIEJA de su
+  // propio progreso (ej. una nota recién agregada, desaparecida) porque
+  // cargarEstadoUsuario() recibía la respuesta cacheada en vez de ir
+  // siempre a la red. Cualquier pedido a otro origen (Supabase, o lo que
+  // sea) tiene que pasar de largo del todo -- este service worker solo
+  // cachea SU PROPIO origen (el shell de la app).
+  if (url.origin !== self.location.origin) return;
   if (url.pathname.startsWith('/api/')) return;
   if (event.request.method !== 'GET') return;
 

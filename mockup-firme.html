@@ -4228,6 +4228,13 @@ function confirmarAgregarNota(prioritario) {
   renderCalGrid();
   renderCalAgenda();
   showToast(prioritario ? 'Agregado como prioritario' : 'Agregado al día');
+  // Una nota es una acción explícita y puntual (no un tildado rápido de
+  // muchos temas seguidos como firme/flojo) -- no vale la pena esperar el
+  // guardado periódico de 15s: si el usuario recarga la página o cierra la
+  // app antes de ese ciclo, la nota se perdía en silencio (bug real
+  // reportado por Santiago, 2026-08-19). Mismo patrón que
+  // confirmarBorrarMateria().
+  guardarEstadoSiHaceFalta();
 }
 
 function eliminarNotaCalendario(key, id) {
@@ -4237,6 +4244,7 @@ function eliminarNotaCalendario(key, id) {
   marcarEstadoSucio();
   renderCalGrid();
   renderCalAgenda();
+  guardarEstadoSiHaceFalta();
 }
 
 function abrirDetalle(examId, name, fromRepaso) {
