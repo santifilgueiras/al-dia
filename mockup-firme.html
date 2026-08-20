@@ -643,15 +643,41 @@
     width: 34px; height: 34px; font-size: 15px; cursor: pointer; line-height: 1;
   }
   .ficha-feedback-btn:hover { background: var(--paper-2); }
-  .ficha-card.mc { cursor: default; text-align: left; }
+  /* Opción múltiple de escritorio (mockup 4b, corrección Ronda 25): antes
+     era una tarjeta clara sin letras, distinta de la versión mobile
+     (.ficha-fs-*, más abajo) que ya tenía el tema oscuro + letras A/B/C/D
+     desde el rediseño F -- se empareja acá con el mismo lenguaje visual. */
+  .ficha-card.mc { cursor: default; text-align: left; background: var(--ink); border: none; }
+  .ficha-card.mc .ficha-count { color: rgba(255,255,255,.55); }
+  .ficha-card.mc .ficha-texto { color: #fff; }
   .ficha-opciones { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
   .ficha-opcion {
-    text-align: left; padding: 15px 18px; border-radius: 12px; border: 1.5px solid var(--line);
-    background: #fff; font-size: 15.5px; font-family: inherit; cursor: pointer; color: var(--ink);
+    display: flex; align-items: center; gap: 12px; text-align: left; background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.14); color: #fff; border-radius: 12px; padding: 14px 18px;
+    font-family: inherit; font-size: 15px; cursor: pointer;
+  }
+  .ficha-opcion .letra {
+    width: 26px; height: 26px; border-radius: 7px; background: rgba(255,255,255,.1); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700;
   }
   .ficha-opcion:disabled { cursor: default; }
-  .ficha-opcion.correcta { border-color: var(--firme); background: var(--firme-soft); font-weight: 700; }
-  .ficha-opcion.incorrecta { border-color: var(--flojo); background: var(--flojo-soft); }
+  .ficha-opcion.correcta { border-color: var(--teal); background: rgba(15,118,110,.35); font-weight: 700; }
+  .ficha-opcion.correcta .letra { background: var(--teal); }
+  .ficha-opcion.incorrecta { border-color: var(--amber); background: rgba(224,163,60,.25); }
+  /* Barra de progreso en segmentos (mockup 4b) arriba de la tarjeta --
+     mismos estados que fichaDotsHTML() ya usaba solo en mobile
+     (.ficha-dot), en versión clara para el fondo blanco de escritorio. */
+  .ficha-progreso-dots { display: flex; gap: 4px; margin: 10px 0 16px; flex-wrap: wrap; flex-shrink: 0; }
+  .ficha-progreso-dot { width: 20px; height: 4px; border-radius: 2px; background: var(--line); cursor: pointer; border: none; padding: 0; }
+  .ficha-progreso-dot.actual { background: var(--ink); }
+  .ficha-progreso-dot.ok { background: var(--teal); }
+  .ficha-progreso-dot.mal { background: var(--amber); }
+  .ficha-progreso-dot.skip { background: var(--muted); }
+  .ficha-nav-mc { display: flex; align-items: center; gap: 14px; margin-top: 0; }
+  .ficha-nav-mc .btn { margin-top: 0; flex: 1; }
+  .ficha-nav-mc .ficha-saltear { background: none; border: none; color: var(--muted); font-size: 13.5px; font-weight: 600; cursor: pointer; flex: none; }
+  .ficha-nav-mc .ficha-feedback { margin-top: 0; flex: none; }
+  .ficha-nota { font-size: 12px; color: var(--muted); line-height: 1.5; margin-top: 12px; }
 
   /* Estudiar > Explícamelo (tutor de IA, ver
      Especificacion_Al_Dia_modificaciones_v2.docx punto 4). */
@@ -1632,6 +1658,26 @@
   .estudiar-tema-hoy-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
   .estudiar-tema-hoy-cambiar { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .04em; color: var(--teal); margin-top: 9px; text-decoration: none; }
   .estudiar-tema-hoy-cambiar:hover { text-decoration: underline; }
+  /* "HERRAMIENTAS" (mockup 4b, corrección Ronda 25): reemplaza la doble
+     navegación que había en Estudiar (pestañas horizontales arriba del
+     contenido + submenú del sidebar, las dos visibles a la vez) por una
+     sola columna a la derecha con indicador de punto. Solo se muestra en
+     el layout de escritorio (ver media query 860px más abajo) -- en
+     celular NO existe .estudiar-rail como columna aparte (queda apilada al
+     final de la pantalla), así que ahí .study-tabs sigue siendo la única
+     forma de cambiar de herramienta y no se toca. */
+  .estudiar-herramientas-card { display: none; }
+  .estudiar-herramientas-label { font-size: 9.5px; font-weight: 700; letter-spacing: .09em; color: var(--muted); margin-bottom: 8px; }
+  .estudiar-herramienta-item {
+    display: flex; align-items: center; gap: 9px; width: 100%; text-align: left;
+    background: none; border: none; padding: 7px 4px; border-radius: 8px;
+    font-size: 13.5px; font-weight: 600; color: var(--muted); cursor: pointer;
+  }
+  .estudiar-herramienta-item:hover { background: rgba(0,0,0,.04); color: var(--ink); }
+  .estudiar-herramienta-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--line); flex-shrink: 0; }
+  .estudiar-herramienta-item.active { color: var(--ink); }
+  .estudiar-herramienta-item.active .dot { background: var(--teal); }
+  .estudiar-herramientas-nota { font-size: 11.5px; color: var(--muted); line-height: 1.5; margin: 10px 4px 0; }
   /* Grilla de dos columnas (armada según CORRECCION-tiempo-de-estudio.md):
      1.35fr/1fr, con .study-layout como flex:1 dentro de .screen-content
      para que tenga alto real que repartir -- sin esto la grilla no tiene
@@ -1643,6 +1689,8 @@
       align-items: stretch; flex: 1; min-height: 0;
     }
     .estudiar-rail { width: auto; min-height: 0; }
+    .estudiar-herramientas-card { display: block; }
+    #studyMainTabs { display: none; }
     /* Card 1 ("Al terminar el bloque") a su alto natural; card 2
        ("Bibliografía del tema") absorbe el resto con flex:1, así las dos
        columnas de la grilla terminan a la misma altura. */
@@ -2735,6 +2783,18 @@
           <a href="#" class="estudiar-tema-hoy-cambiar mono" onclick="event.preventDefault(); cambiarTemaEstudiar();">CAMBIAR TEMA</a>
         </div>
       </div>
+      <div id="estudiarHerramientasCard" class="estudiar-herramientas-card">
+        <div class="estudiar-herramientas-label mono">HERRAMIENTAS</div>
+        <div class="estudiar-herramientas-list" id="estudiarHerramientasList">
+          <button type="button" class="estudiar-herramienta-item" data-sec="tiempo" onclick="switchStudyTab('tiempo')"><span class="dot"></span>Tiempo de estudio</button>
+          <button type="button" class="estudiar-herramienta-item" data-sec="fichas" onclick="switchStudyTab('fichas')"><span class="dot"></span>Fichas de repaso</button>
+          <button type="button" class="estudiar-herramienta-item" data-sec="simulacro" onclick="switchStudyTab('simulacro')"><span class="dot"></span>Simulacro de examen</button>
+          <button type="button" class="estudiar-herramienta-item" data-sec="resumen" onclick="switchStudyTab('resumen')"><span class="dot"></span>Resumen de apuntes</button>
+          <button type="button" class="estudiar-herramienta-item" data-sec="corrector" onclick="switchStudyTab('corrector')"><span class="dot"></span>Corregir mi resumen</button>
+          <button type="button" class="estudiar-herramienta-item" data-sec="explicar" onclick="switchStudyTab('explicar')"><span class="dot"></span>Explícamelo</button>
+        </div>
+        <p class="estudiar-herramientas-nota">Cada herramienta sigue siendo su propia pantalla, como ahora: esta columna solo cambia de una a otra.</p>
+      </div>
       <div id="estudiarAccionesCard" style="display:none;">
         <h3>Al terminar el bloque</h3>
         <p class="sub">Marcá cómo te fue con <strong id="estudiarRailTema">este tema</strong> para reprogramar el próximo repaso.</p>
@@ -3442,8 +3502,20 @@ function toggleEstudiarSubmenu(event) {
 // acordeón de antes (toggleStudySection abría/cerraba con display:none).
 function switchStudyTab(name) {
   document.querySelectorAll('#studyMainTabs .tab').forEach(t => t.classList.toggle('active', t.dataset.sec === name));
+  document.querySelectorAll('#estudiarHerramientasList .estudiar-herramienta-item').forEach(t => t.classList.toggle('active', t.dataset.sec === name));
   document.querySelectorAll('.study-panel').forEach(p => p.classList.toggle('active', p.dataset.sec === name));
   renderEstudiarRail();
+  // Bug real (Ronda 25, capturas de Santiago): las tarjetas de modo de
+  // Explícamelo solo se pintaban DESPUÉS del primer pedido, porque
+  // explicarModosHTML() solo se llama desde adentro de las funciones de
+  // render de resultado (pedirExplicacion() y las de test/preguntas) -- el
+  // HTML estático de sec-explicar arranca con #explicarBox vacío. Si todavía
+  // no hay nada pedido (box vacío), las mostramos ni bien se entra a la
+  // pestaña, igual que en el mockup.
+  if (name === 'explicar') {
+    const box = document.getElementById('explicarBox');
+    if (box && !box.innerHTML.trim()) box.innerHTML = `<div class="explicar-modos">${explicarModosHTML()}</div>`;
+  }
 }
 
 // Desde el ítem "Estudiar" del menú, sin elegir submenú: va a la pantalla y
@@ -3451,8 +3523,6 @@ function switchStudyTab(name) {
 // (switchStudyTab dentro de go() ya elige "Tiempo" la primera vez).
 function irAEstudiarPicker() {
   go(10);
-  document.getElementById('sideNavEstudiarSub').classList.add('open');
-  document.getElementById('sideNavEstudiarChevron').classList.add('open');
 }
 
 // Desde un ítem del submenú (tiempo/fichas/resumen): va directo a esa
@@ -3479,8 +3549,6 @@ function irAEstudiar(name) {
     setTimeout(() => document.documentElement.classList.remove('vt-fichas'), 500);
   }
   go(10);
-  document.getElementById('sideNavEstudiarSub').classList.add('open');
-  document.getElementById('sideNavEstudiarChevron').classList.add('open');
   switchStudyTab(name);
 }
 
@@ -6443,9 +6511,10 @@ function renderFichaEscritorio() {
   const esMultiple = Array.isArray(f.opciones);
   const elegida = fichaRespuestas[fichaIndexActual];
   const yaContestada = elegida !== undefined;
+  const esUltima = fichaIndexActual === fichasActuales.length - 1;
   const cardHTML = esMultiple ? `
     <div class="ficha-card mc">
-      <div class="ficha-count">${fichaIndexActual + 1} / ${fichasActuales.length}</div>
+      <div class="ficha-count mono">PREGUNTA ${fichaIndexActual + 1}</div>
       <div class="ficha-texto" style="margin-bottom:10px;">${f.pregunta}</div>
       <div class="ficha-opciones">
         ${f.opciones.map((op, i) => {
@@ -6454,7 +6523,7 @@ function renderFichaEscritorio() {
             if (i === f.correcta) cls = 'correcta';
             else if (i === elegida) cls = 'incorrecta';
           }
-          return `<button class="ficha-opcion ${cls}" onclick="elegirOpcionFicha(${i})" ${yaContestada ? 'disabled' : ''}>${op}</button>`;
+          return `<button class="ficha-opcion ${cls}" onclick="elegirOpcionFicha(${i})" ${yaContestada ? 'disabled' : ''}><span class="letra">${FICHA_LETRAS[i] || i + 1}</span>${op}</button>`;
         }).join('')}
       </div>
     </div>` : `
@@ -6463,20 +6532,43 @@ function renderFichaEscritorio() {
       <div class="ficha-texto">${fichaFlipped ? f.respuesta : f.pregunta}</div>
       <div class="ficha-hint">${fichaFlipped ? '↺ Tocá para ver la pregunta' : '🔎 Tocá para ver la respuesta'}</div>
     </div>`;
-  box.innerHTML = cardHTML + `
+  // Opción múltiple (mockup 4b): barra de progreso en segmentos arriba de
+  // la tarjeta + fila "Confirmar" (avanza, deshabilitado hasta contestar) /
+  // "Saltear" (mismo -1 centinela que "No me la sé" en mobile) en vez del
+  // Anterior/Siguiente genérico -- ese se deja igual para el modo ficha
+  // simple (pregunta/respuesta), que no cambió en el mockup.
+  const navHTML = esMultiple ? `
+    <div class="ficha-nav-mc">
+      <button class="btn" ${yaContestada ? '' : 'disabled'} onclick="${esUltima ? 'cerrarFichaEscritorio()' : 'cambiarFicha(1)'}">${esUltima ? 'Terminar' : 'Confirmar'}</button>
+      ${yaContestada || esUltima ? '' : '<button type="button" class="ficha-saltear" onclick="noMeLaSeFicha()">Saltear</button>'}
+    </div>` : `
     <div class="ficha-nav">
       <button class="btn secondary" onclick="cambiarFicha(-1)" ${fichaIndexActual === 0 ? 'disabled' : ''}>‹ Anterior</button>
-      <button class="btn secondary" onclick="cambiarFicha(1)" ${fichaIndexActual === fichasActuales.length - 1 ? 'disabled' : ''}>Siguiente ›</button>
-    </div>
-    ${esMultiple && fichaIndexActual === fichasActuales.length - 1 ? ajusteObjetivoHTML(fichaAjusteObjetivo) : ''}
-    ${fichaFeedbackHTML()}`;
+      <button class="btn secondary" onclick="cambiarFicha(1)" ${esUltima ? 'disabled' : ''}>Siguiente ›</button>
+    </div>`;
+  box.innerHTML = (esMultiple ? `<div class="ficha-progreso-dots">${fichaDotsHTML('ficha-progreso-dot')}</div>` : '') + cardHTML + navHTML + `
+    ${esMultiple && esUltima && yaContestada ? ajusteObjetivoHTML(fichaAjusteObjetivo) : ''}
+    ${fichaFeedbackHTML()}
+    ${esMultiple ? '<p class="ficha-nota">Al terminar, el resultado se guarda en el tema: si sale menos de la mitad, vuelve a la cola de repaso corto solo.</p>' : ''}`;
+}
+
+// "Terminar" en la última ficha de opción múltiple (equivalente de escritorio
+// a cerrarFichaFullscreen(), que hace lo mismo en mobile): limpia el estado
+// de la tanda actual, la tarjeta desaparece sola (fichasActuales vacío).
+function cerrarFichaEscritorio() {
+  fichasActuales = [];
+  fichaRespuestas = [];
+  fichaFeedback = [];
+  fichasContexto = null;
+  renderFichaActual();
 }
 
 // Puntitos de progreso de la versión mobile -- uno por ficha, clickeable
 // para saltar directo. Color: actual (teal claro), contestada bien
 // (teal), contestada mal (ámbar), "no me la sé" (gris más marcado que las
 // pendientes), pendiente (gris tenue).
-function fichaDotsHTML() {
+function fichaDotsHTML(claseBase) {
+  claseBase = claseBase || 'ficha-dot';
   return fichasActuales.map((f, i) => {
     let cls = '';
     if (i === fichaIndexActual) cls = 'actual';
@@ -6487,7 +6579,7 @@ function fichaDotsHTML() {
         cls = 'ok';
       }
     }
-    return `<button type="button" class="ficha-dot ${cls}" onclick="irAFicha(${i})" aria-label="Ir a la ficha ${i + 1}"></button>`;
+    return `<button type="button" class="${claseBase} ${cls}" onclick="irAFicha(${i})" aria-label="Ir a la ficha ${i + 1}"></button>`;
   }).join('');
 }
 
