@@ -1,6 +1,6 @@
 const { test, describe } = require('node:test');
 const assert = require('node:assert/strict');
-const { mergearEstados } = require('../lib/estado');
+const { mergearEstados, mergearMapa } = require('../lib/estado');
 
 // Examen base mínimo para no repetir todos los campos en cada caso.
 const examenBase = (over) => ({
@@ -54,5 +54,61 @@ describe('mergearEstados (conflicto de guardado entre dos dispositivos)', () => 
   test('sin examenes de ningún lado no explota', () => {
     const m = mergearEstados({ examenes: [] }, { examenes: [] });
     assert.deepEqual(m.examenes, []);
+  });
+});
+
+describe('mergearMapa (base/local/remoto -- el fix del bug real de 2026-08-20)', () => {
+  test('local cambió una clave que ya existía en remoto (sin cambios ahí) -- gana local', () => {
+    // Este es EXACTAMENTE el bug encontrado con un smoke test de dos
+    // pestañas reales: antes de tener `base`, `{...l, ...r}` hacía ganar
+    // al remoto en cualquier clave presente en los dos lados -- y como
+    // `states` siempre tiene TODOS los temas (tocados o no), una marca
+    // nueva en un tema que el remoto ya "conocía" (aunque sin cambios) se
+    // perdía en silencio.
+    const base = { A: 'nuevo', B: 'nuevo' };
+    const l = { A: 'nuevo', B: 'firme' }; // este dispositivo acaba de marcar B firme
+    const r = { A: 'nuevo', B: 'nuevo' }; // el remoto no tocó nada
+    assert.deepEqual(mergearMapa(base, l, r), { A: 'nuevo', B: 'firme' });
+  });
+
+  test('los dos cambiaron la MISMA clave a valores distintos -- gana remoto (conflicto real)', () => {
+    const base = { A: 'nuevo' };
+    const l = { A: 'flojo' };
+    const r = { A: 'firme' };
+    assert.deepEqual(mergearMapa(base, l, r), { A: 'firme' });
+  });
+
+  test('los dos cambiaron claves DISTINTAS -- ninguna se pierde', () => {
+    const base = { A: 'nuevo', B: 'nuevo' };
+    const l = { A: 'flojo', B: 'nuevo' };
+    const r = { A: 'nuevo', B: 'firme' };
+    assert.deepEqual(mergearMapa(base, l, r), { A: 'flojo', B: 'firme' });
+  });
+
+  test('sin base (undefined), se comporta exactamente como el spread viejo -- remoto gana en lo compartido', () => {
+    assert.deepEqual(mergearMapa(undefined, { A: 'flojo' }, { A: 'firme' }), { A: 'firme' });
+    assert.deepEqual(mergearMapa(undefined, { A: 'flojo' }, {}), { A: 'flojo' }); // clave nueva, solo local la tiene
+  });
+});
+
+describe('mergearEstados con base -- 3 vías (regresión del bug real)', () => {
+  test('dos pestañas marcando temas DISTINTOS del mismo examen -- las dos marcas sobreviven', () => {
+    // Reproduce el smoke test manual de Chrome real: pestaña 1 marca "A"
+    // flojo, pestaña 2 marca "B" firme, las dos partiendo del mismo
+    // estado base con A y B ya en 'nuevo'.
+    const base = { examenes: [examenBase({ states: { A: 'nuevo', B: 'nuevo' } })] };
+    const local = { examenes: [examenBase({ states: { A: 'flojo', B: 'nuevo' } })] }; // esta pestaña marcó A
+    const remoto = { examenes: [examenBase({ states: { A: 'nuevo', B: 'firme' } })] }; // la otra ya guardó B
+    const m = mergearEstados(local, remoto, base);
+    assert.equal(m.examenes[0].states.A, 'flojo'); // antes se perdía
+    assert.equal(m.examenes[0].states.B, 'firme');
+  });
+
+  test('sin pasar base, mergearEstados sigue funcionando como antes (compatibilidad hacia atrás)', () => {
+    const local = { examenes: [examenBase({ states: { A: 'firme' } })] };
+    const remoto = { examenes: [examenBase({ states: { B: 'flojo' } })] };
+    const m = mergearEstados(local, remoto); // sin 3er argumento
+    assert.equal(m.examenes[0].states.A, 'firme');
+    assert.equal(m.examenes[0].states.B, 'flojo');
   });
 });

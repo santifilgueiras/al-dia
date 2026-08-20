@@ -7931,6 +7931,12 @@ let estadoHidratado = false;
 // ningún aviso -- confirmado perdiendo datos en producción (Santiago, con
 // compu+iPad+iPhone abiertos a la vez el mismo día).
 let estadoUpdatedAtConocido = null;
+// Última foto de lo que ESTE dispositivo supo sincronizado -- necesaria
+// para que mergearEstados() pueda distinguir "esta clave la cambié yo
+// recién" de "esta clave ya existía antes, no la toqué" (ver el comentario
+// largo en lib/estado.js sobre el bug real que esto arregla). Se
+// actualiza junto con estadoUpdatedAtConocido, en los mismos puntos.
+let estadoBaseConocido = null;
 
 async function cargarEstadoUsuario() {
   estadoCargando = true;
@@ -7945,6 +7951,7 @@ async function cargarEstadoUsuario() {
     if (data && data.estado && Object.keys(data.estado).length) {
       hidratarEstado(data.estado);
       estadoUpdatedAtConocido = data.updated_at;
+      estadoBaseConocido = JSON.parse(JSON.stringify(data.estado));
     } else {
       // Primera vez de este usuario -- arranca vacío, sin exámenes demo.
       examenes = examenesBaseVacio();
@@ -7955,6 +7962,7 @@ async function cargarEstadoUsuario() {
       actividadDiaria = {};
       notasCalendario = {};
       estadoUpdatedAtConocido = null; // todavía no existe fila para este usuario
+      estadoBaseConocido = null;
     }
     estadoHidratado = true;
   } catch (e) {
@@ -7991,6 +7999,7 @@ async function guardarEstadoSiHaceFalta(opts) {
         .single();
       if (error) throw error;
       estadoUpdatedAtConocido = data.updated_at;
+      estadoBaseConocido = JSON.parse(JSON.stringify(estado));
       return;
     }
 
@@ -8029,15 +8038,28 @@ async function guardarEstadoSiHaceFalta(opts) {
         showToast('Tu progreso se actualizó desde otro dispositivo -- actualizando esta pantalla');
         hidratarEstado(fresco.estado);
         estadoUpdatedAtConocido = fresco.updated_at;
+        estadoBaseConocido = JSON.parse(JSON.stringify(fresco.estado));
         renderOwnList();
         const pantallaActivaEl = document.querySelector('.screen.active');
         if (pantallaActivaEl) go(+pantallaActivaEl.dataset.screen);
         return;
       }
 
-      const merged = mergearEstados(estado, fresco.estado);
+      // estadoBaseConocido (lo último que este dispositivo supo
+      // sincronizado, ANTES de este conflicto) es lo que le permite a
+      // mergearEstados() distinguir una edición local real de un valor
+      // que ya venía de antes -- sin esto, cualquier clave que el remoto
+      // también tenga gana siempre el remoto, y se pierde la marca que se
+      // acababa de hacer acá (bug real encontrado con un smoke test de
+      // dos pestañas, ver el comentario largo en lib/estado.js).
+      const merged = mergearEstados(estado, fresco.estado, estadoBaseConocido);
       hidratarEstado(merged); // hidrata examenes/racha/notasCalendario/etc en memoria con el resultado mergeado
       estadoUpdatedAtConocido = fresco.updated_at;
+      // El merge ya reconcilió local contra remoto -- pasa a ser la nueva
+      // base conocida, así una edición HECHA DESPUÉS de este merge (antes
+      // de que el reintento de abajo termine de guardar) se sigue
+      // detectando bien si hiciera falta un segundo merge.
+      estadoBaseConocido = JSON.parse(JSON.stringify(merged));
       estadoSucio = true; // el merge puede traer datos que el server todavía no tiene (ej. lo creado acá)
       showToast('Sincronizamos con tu otro dispositivo.');
       renderOwnList();
@@ -8047,6 +8069,7 @@ async function guardarEstadoSiHaceFalta(opts) {
       return guardarEstadoSiHaceFalta({ reintento: true });
     }
     estadoUpdatedAtConocido = data[0].updated_at;
+    estadoBaseConocido = JSON.parse(JSON.stringify(estado));
   } catch (e) {
     console.error('Error guardando el progreso', e);
     estadoSucio = true; // reintenta en el próximo ciclo
