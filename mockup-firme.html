@@ -659,13 +659,20 @@
     width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px;
     font-family: inherit; font-size: 14px; resize: vertical;
   }
-  .explicar-modos { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+  /* Grilla de 4 tarjetas (mockup 5c) en vez de pastillas de tab -- la
+     elección de modo es una decisión real (cada uno pide algo distinto a
+     la IA), no una pestaña más. */
+  .explicar-modos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
   .explicar-modo-btn {
-    padding: 8px 14px; border-radius: 20px; border: 1px solid var(--line); background: #fff;
-    font-size: 12.5px; font-weight: 600; font-family: inherit; color: var(--muted); cursor: pointer;
+    display: block; text-align: left; padding: 14px 15px; border-radius: 11px; border: 1px solid var(--line); background: #fff;
+    font-family: inherit; color: var(--ink); cursor: pointer;
   }
-  .explicar-modo-btn.active { background: var(--teal); border-color: var(--teal); color: #fff; }
-  .explicar-modo-btn:hover:not(.active) { border-color: var(--teal); color: var(--teal); }
+  .explicar-modo-btn-titulo { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .explicar-modo-btn-desc { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+  .explicar-modo-btn.active { border: 1.5px solid var(--teal); }
+  .explicar-modo-btn.active .explicar-modo-btn-titulo::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex: none; }
+  .explicar-modo-btn:hover:not(.active) { border-color: var(--teal); }
+  @media (max-width: 639px) { .explicar-modos { grid-template-columns: 1fr; } }
   .explicar-respuesta { font-size: 14px; line-height: 1.6; color: var(--ink); }
   .explicar-respuesta p { margin: 0 0 12px; }
   .explicar-respuesta p:last-child { margin-bottom: 0; }
@@ -746,6 +753,19 @@
   .corrector-acciones { display: flex; gap: 10px; margin-top: 18px; }
   .corrector-acciones .btn { width: auto; flex: 1; margin-top: 0; }
   .corrector-acciones .btn.secondary { flex: none; }
+
+  /* Espera de "Resumir un apunte" (mockup 5e) -- un botón quieto 30
+     segundos parece colgado con un apunte largo; esta tarjeta deja claro
+     que sigue en curso. */
+  .resumen-espera-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; margin-top: 14px; }
+  .resumen-espera-top { display: flex; align-items: center; gap: 11px; font-size: 14px; font-weight: 700; color: var(--ink); }
+  .resumen-espera-spinner {
+    width: 16px; height: 16px; border-radius: 50%; flex: none;
+    border: 2px solid var(--teal-tint); border-top-color: var(--teal);
+    animation: espera-spin .8s linear infinite;
+  }
+  @keyframes espera-spin { to { transform: rotate(360deg); } }
+  .resumen-espera-sub { font-size: 12.5px; color: var(--muted); margin-top: 11px; line-height: 1.5; }
 
   /* Fichas en mobile (rediseño, <860px): pantalla completa oscura -- ver
      #fichaFullscreen, fuera de .app-shell en el HTML. Reusa el mismo
@@ -6877,7 +6897,15 @@ async function generarResumen() {
   const box = document.getElementById('resumenBox');
   btn.disabled = true;
   btn.textContent = '⏳ Leyendo y resumiendo...';
-  box.innerHTML = '';
+  // Antes el único indicio de que algo pasaba era el texto del botón --
+  // con un apunte largo (20-40s reales) un botón quieto se lee como
+  // colgado (mockup 5e). Una tarjeta con spinner + tiempo esperado deja
+  // claro que sigue en curso y que se puede cambiar de pantalla mientras.
+  box.innerHTML = `
+    <div class="resumen-espera-card">
+      <div class="resumen-espera-top"><span class="resumen-espera-spinner"></span>Leyendo y resumiendo…</div>
+      <div class="resumen-espera-sub">Suele tardar entre 20 y 40 segundos con un apunte de este tamaño. Podés cambiar de pantalla, no se corta.</div>
+    </div>`;
   try {
     const fd = new FormData();
     fd.append('archivo', file);
@@ -7126,12 +7154,16 @@ let explicarTestEvaluado = false; // ver evaluación objetiva en renderExplicarT
 
 function explicarModosHTML() {
   const modos = [
-    ['simple', '💡 Explicación simple'],
-    ['examen', '🎓 Explicación nivel examen'],
-    ['preguntas', '❓ Preguntame sobre esto'],
-    ['test', '✅ Poneme a prueba'],
+    ['simple', '💡 Explicación simple', 'Como si lo vieras por primera vez, con una analogía.'],
+    ['examen', '🎓 Explicación nivel examen', 'Mecanismos, clasificaciones y lo que suele tomarse.'],
+    ['preguntas', '❓ Preguntame sobre esto', 'Te pregunta y sube la dificultad según cómo respondas.'],
+    ['test', '✅ Poneme a prueba', '5 preguntas para comprobar si lo entendiste.'],
   ];
-  return modos.map(([m, label]) => `<button type="button" class="explicar-modo-btn ${m === explicarModoActual ? 'active' : ''}" onclick="pedirExplicacion('${m}')">${label}</button>`).join('');
+  return modos.map(([m, label, desc]) => `
+    <button type="button" class="explicar-modo-btn ${m === explicarModoActual ? 'active' : ''}" onclick="pedirExplicacion('${m}')">
+      <div class="explicar-modo-btn-titulo">${label}</div>
+      <div class="explicar-modo-btn-desc">${desc}</div>
+    </button>`).join('');
 }
 
 async function pedirExplicacion(modo) {
