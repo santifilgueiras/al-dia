@@ -954,11 +954,53 @@
     .hoy-racha-badge { display: flex; }
     .hoy-header-mobile-actions { display: flex; }
   }
+  /* Calendario (S4) y Materias (S8) -- SIN TOCAR (alcance de F, ver
+     INSTRUCCIONES-CODE.md del patch de Cowork). Separado del resto del
+     bloque de 1800px a propósito (F.4): antes vivían mezcladas con Hoy/
+     Resumen/Repaso/Estudiar en un solo bloque gigante, y esas 4 pantallas
+     cambian con cada rediseño -- tenerlas juntas era el riesgo real de
+     tocar Calendario/Materias sin querer. Acá adentro, cada regla es
+     byte-idéntica a como estaba antes de este split. */
+  @media (min-width: 1800px) {
+    .screen[data-screen="4"] h1, .screen[data-screen="8"] h1 { font-size: 26px; }
+    .screen[data-screen="4"] p.sub, .screen[data-screen="8"] p.sub { font-size: 15px; }
+    .screen[data-screen="4"] h2, .screen[data-screen="8"] h2 { font-size: 19px; }
+    .screen[data-screen="4"] .stat .n { font-size: 24px; }
+    .screen[data-screen="4"] .stat .l { font-size: 12px; }
+    .screen[data-screen="4"] .stat { padding: 14px 6px; }
+    .screen[data-screen="4"] .racha-mini { font-size: 14px; padding: 7px 15px 7px 10px; }
+    .screen[data-screen="4"] .cal-nav .label { font-size: 18px; }
+    .screen[data-screen="4"] .cal-nav button { width: 36px; height: 36px; font-size: 18px; }
+    .screen[data-screen="4"] .cal-weekday { font-size: 12px; }
+    .screen[data-screen="4"] .cal-cell .cal-daynum { font-size: 13px; }
+    .screen[data-screen="4"] .cal-cell .cal-tema { font-size: 11px; }
+    .screen[data-screen="4"] .cal-agenda-head { font-size: 14px; }
+    .screen[data-screen="4"] .cal-exam-caption { font-size: 13px; }
+    .screen[data-screen="4"] .tema-item { font-size: 16px; padding: 14px 16px; }
+    .screen[data-screen="4"] .tag, .screen[data-screen="7"] .tag { font-size: 12px; padding: 4px 10px; }
+    .screen[data-screen="8"] .materia-badge { font-size: 12px; padding: 5px 11px; }
+    .screen[data-screen="8"] .materia-card-nombre { font-size: 19px; }
+    .screen[data-screen="8"] .materia-card-fecha { font-size: 15px; }
+    .screen[data-screen="8"] .materia-card-stats { font-size: 15px; }
+    .screen[data-screen="8"] .materia-progress { height: 9px; }
+    .screen[data-screen="8"] .materia-card-breakdown { font-size: 13px; }
+    .screen[data-screen="8"] .materia-card { padding: 20px; }
+    .screen[data-screen="8"] .section-label-mono { font-size: 14px; }
+    .screen[data-screen="8"] .materia-rendida-nombre { font-size: 15px; }
+    .screen[data-screen="8"] .materia-rendida-sub { font-size: 12px; }
+  }
+  /* .tag vive también en S7 (Repaso) -- FLOJO y "SE ESCAPA" siguen usando
+     la clase base .tag además de su modificador, y esa regla de S4 era
+     compartida con S7 desde antes -- se queda, S4 nunca la usó para nada
+     que S7 no tuviera también. */
+
   /* Monitor bien ancho (decisión de Santiago, 2026-08-12): con el tope de
      1000px sacado, en una pantalla de 2560px+ el contenido de Hoy usa todo
      el ancho pero queda corto de alto -- sube texto y paddings ~25-30% acá
      para que también ocupe más alto, en vez de dejar un colchón de blanco
-     grande debajo de las dos cards. */
+     grande debajo de las dos cards. Hoy/Resumen/Repaso/Estudiar -- las 4
+     pantallas que sí cambian con cada rediseño de F, separadas de
+     Calendario/Materias arriba. */
   @media (min-width: 1800px) {
     .screen[data-screen="13"] .hoy-header h1 { font-size: 30px; }
     .screen[data-screen="13"] .hoy-saludo { font-size: 16px; }
@@ -984,69 +1026,26 @@
     .screen[data-screen="13"] .hoy-proximo-nombre { font-size: 17px; }
     .screen[data-screen="13"] .hoy-proximo-dias { font-size: 15px; }
 
-    /* Mismo criterio en el resto de las pantallas con sidebar (pedido de
-       Santiago, 2026-08-12): que también "estiren hacia abajo" en vez de
-       dejar el contenido corto con blanco debajo. */
-    .screen[data-screen="4"] h1, .screen[data-screen="6"] h1, .screen[data-screen="7"] h1,
-    .screen[data-screen="8"] h1, .screen[data-screen="10"] h1 { font-size: 26px; }
-    .screen[data-screen="4"] p.sub, .screen[data-screen="6"] p.sub, .screen[data-screen="7"] p.sub,
-    .screen[data-screen="8"] p.sub, .screen[data-screen="10"] p.sub { font-size: 15px; }
-    .screen[data-screen="4"] h2, .screen[data-screen="6"] h2, .screen[data-screen="8"] h2 { font-size: 19px; }
+    .screen[data-screen="6"] h1, .screen[data-screen="7"] h1, .screen[data-screen="10"] h1 { font-size: 26px; }
+    .screen[data-screen="6"] p.sub, .screen[data-screen="7"] p.sub, .screen[data-screen="10"] p.sub { font-size: 15px; }
+    .screen[data-screen="6"] h2 { font-size: 19px; }
 
-    /* Calendario (S4) */
-    .screen[data-screen="4"] .stat .n { font-size: 24px; }
-    .screen[data-screen="4"] .stat .l { font-size: 12px; }
-    .screen[data-screen="4"] .stat { padding: 14px 6px; }
-    .screen[data-screen="4"] .racha-mini { font-size: 14px; padding: 7px 15px 7px 10px; }
-    .screen[data-screen="4"] .cal-nav .label { font-size: 18px; }
-    .screen[data-screen="4"] .cal-nav button { width: 36px; height: 36px; font-size: 18px; }
-    .screen[data-screen="4"] .cal-weekday { font-size: 12px; }
-    .screen[data-screen="4"] .cal-cell .cal-daynum { font-size: 13px; }
-    .screen[data-screen="4"] .cal-cell .cal-tema { font-size: 11px; }
-    .screen[data-screen="4"] .cal-agenda-head { font-size: 14px; }
-    .screen[data-screen="4"] .cal-exam-caption { font-size: 13px; }
-
-    /* Calendario + Repaso comparten .tema-item/.day-card/.tag */
-    .screen[data-screen="4"] .tema-item, .screen[data-screen="7"] .tema-item { font-size: 16px; padding: 14px 16px; }
-    .screen[data-screen="4"] .tag, .screen[data-screen="7"] .tag { font-size: 12px; padding: 4px 10px; }
-    .screen[data-screen="7"] .section-label-mono { font-size: 14px; }
+    /* Repaso (S7) -- pills de filtro, módulos con mini barra, y la
+       sección "se te sigue escapando" son todas nuevas desde el rediseño
+       contra el mockup real, sin cobertura de 1800px hasta ahora. */
+    .screen[data-screen="7"] .repaso-pill { font-size: 13.5px; padding: 0 18px; min-height: 40px; }
+    .screen[data-screen="7"] .modulo-head-nombre { font-size: 16px; }
+    .screen[data-screen="7"] .modulo-head-detalle { font-size: 13px; }
+    .screen[data-screen="7"] .repaso-escapando-title { font-size: 18px; }
+    .screen[data-screen="7"] .repaso-escapando-sub { font-size: 13.5px; }
 
     /* Materias (S8) */
-    .screen[data-screen="8"] .materia-badge { font-size: 12px; padding: 5px 11px; }
-    .screen[data-screen="8"] .materia-card-nombre { font-size: 19px; }
-    .screen[data-screen="8"] .materia-card-fecha { font-size: 15px; }
-    .screen[data-screen="8"] .materia-card-stats { font-size: 15px; }
-    .screen[data-screen="8"] .materia-progress { height: 9px; }
-    .screen[data-screen="8"] .materia-card-breakdown { font-size: 13px; }
-    .screen[data-screen="8"] .materia-card { padding: 20px; }
-    .screen[data-screen="8"] .section-label-mono { font-size: 14px; }
-    .screen[data-screen="8"] .materia-rendida-nombre { font-size: 15px; }
-    .screen[data-screen="8"] .materia-rendida-sub { font-size: 12px; }
+    /* (ver bloque protegido arriba -- S8 no se toca en esta sección) */
 
     /* Resumen (S6) */
-    .screen[data-screen="6"] .racha-card { padding: 16px 18px; }
-    .screen[data-screen="6"] .racha-num { font-size: 18px; }
-    .screen[data-screen="6"] .racha-sub { font-size: 13.5px; }
-    .screen[data-screen="6"] .stat .n { font-size: 24px; }
-    .screen[data-screen="6"] .stat .l { font-size: 12px; }
-    .screen[data-screen="6"] .stat { padding: 14px 6px; }
     .screen[data-screen="6"] .card { padding: 20px; }
     .screen[data-screen="6"] .resumen-cuenta-email { font-size: 13px; }
     .screen[data-screen="6"] .resumen-logout { font-size: 15px; }
-
-    /* Estudiar (S10) -- ver bloque dedicado más abajo (grilla de dos
-       columnas, .timer-card, .estudiar-rail) para la implementación
-       completa, armada siguiendo CORRECCION-tiempo-de-estudio.md al pie
-       de la letra. Acá solo quedan los campos de Fichas/Resumen, que no
-       cambiaron. */
-    .screen[data-screen="10"] .field label { font-size: 14.5px; }
-    .screen[data-screen="10"] .field input, .screen[data-screen="10"] .field select { font-size: 15px; padding: 13px 14px; }
-    .screen[data-screen="10"] .dropzone-ic { font-size: 30px; }
-
-    /* Resumen (S6) -- los widgets nuevos (stats/por materia/constancia/
-       escapando) se sumaron después de este bloque y quedaron con su
-       tamaño de letra base, más chico que el resto de la pantalla ya
-       agrandada. */
     .screen[data-screen="6"] .resumen-hero-num { font-size: 52px; }
     .screen[data-screen="6"] .resumen-hero-total { font-size: 18px; }
     .screen[data-screen="6"] .resumen-hero-sub { font-size: 14px; }
@@ -1063,6 +1062,19 @@
     .screen[data-screen="6"] .escapando-nombre { font-size: 15px; }
     .screen[data-screen="6"] .escapando-materia { font-size: 12.5px; }
     .screen[data-screen="6"] .escapando-badge { font-size: 13px; }
+
+    /* Estudiar (S10) -- campos de Fichas/Simulacro/Corrector, sin cambios
+       del rediseño F. Los paneles nuevos (hero de Simulacro/Corrector,
+       Timer oscuro, riel "Tema") también agrandan acá. */
+    .screen[data-screen="10"] .field label { font-size: 14.5px; }
+    .screen[data-screen="10"] .field input, .screen[data-screen="10"] .field select { font-size: 15px; padding: 13px 14px; }
+    .screen[data-screen="10"] .dropzone-ic { font-size: 30px; }
+    .screen[data-screen="10"] .resumen-hero-num { font-size: 52px; }
+    .screen[data-screen="10"] .resumen-hero-total { font-size: 18px; }
+    .screen[data-screen="10"] .resumen-hero-sub { font-size: 14px; }
+    .screen[data-screen="10"] .timer-display { font-size: 92px; }
+    .screen[data-screen="10"] .estudiar-tema-hoy-nombre { font-size: 16px; }
+    .screen[data-screen="10"] .simulacro-desglose-tema, .screen[data-screen="10"] .corrector-item { font-size: 15.5px; }
   }
 
   /* Encabezado mono en mayúsculas reutilizado por Materias (RENDIDAS) y
