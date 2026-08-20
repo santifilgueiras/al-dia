@@ -791,6 +791,7 @@
   .hoy-card-head { display: flex; justify-content: space-between; align-items: center; }
   .hoy-card-head h2, .hoy-semana-card h2 { margin: 0 0 10px; display: flex; align-items: center; gap: 7px; }
   .hoy-card-head h2 .ic, .hoy-semana-card h2 .ic { font-size: 15px; }
+  .hoy-card-head h2 .ic-svg, .hoy-semana-card h2 .ic-svg { width: 17px; height: 17px; color: var(--muted); }
   .hoy-card-head-sub { font-weight: 500; color: var(--muted); font-size: 12.5px; }
   .hoy-repaso-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); cursor: pointer; }
   .hoy-repaso-row:first-child { border-top: none; padding-top: 0; }
@@ -1274,6 +1275,7 @@
   }
   .nav-item { flex: 1; text-align: center; padding: 10px 0 12px; font-size: 10.5px; color: var(--muted); cursor: pointer; }
   .nav-item .ic { display: block; font-size: 16px; margin-bottom: 2px; }
+  .nav-item .ic-svg { width: 18px; height: 18px; margin: 0 auto 3px; }
   .nav-item.active { color: var(--accent); font-weight: 800; }
   .toast {
     position: absolute; left: 20px; right: 20px; bottom: 90px; background: var(--ink); color: #fff;
@@ -1291,6 +1293,12 @@
      tarjeta/sombra/margen -- así se ve como el panel lateral de una app de
      verdad (tipo Supabase/Notion) en vez de un widget flotando arriba de
      la página. */
+  /* Iconos SVG de la navegación (ver sprite al principio de <body>, F.1) --
+     tamaño base para el sidebar; .nav-item y los encabezados de Hoy pisan
+     el tamaño con su propia regla más abajo. Sin `color` acá a propósito:
+     el <svg> hereda el color del texto de su contenedor (currentColor), así
+     el estado ".active" lo tiñe solo sin tocar nada más. */
+  .ic-svg { width: 20px; height: 20px; flex: none; }
   .side-nav {
     display: none; flex-direction: column; gap: 2px; width: 196px; flex-shrink: 0;
     background: var(--ink); padding: 20px 10px; position: sticky; top: 0; min-height: 100vh;
@@ -1666,16 +1674,33 @@
 </head>
 <body>
 
+<!-- Sprite de iconos de la navegación (sidebar + bottom-nav + encabezados de
+     Hoy) -- un solo trazo con currentColor, para que el estado activo tiña
+     el ícono solo, sin depender de cómo cada sistema operativo dibuje un
+     emoji. Los emoji de MODULO_ICONS (catálogo de materias) y los de
+     Materias/Calendario NO se tocan -- ahí son contenido, no interfaz (ver
+     PATCH-2026-08-19.md sección F.1). -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="ic-hoy" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6.5 8 6.5"/><path d="M6.5 9.8V19h11V9.8"/></g>
+    <g id="ic-calendario" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="5.5" width="16" height="14.5" rx="2.5"/><path d="M4 10h16M9 4v3M15 4v3"/></g>
+    <g id="ic-repaso" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v4h-4"/></g>
+    <g id="ic-materias" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5.5h6.5A2.5 2.5 0 0 1 14 8v11H7.5A2.5 2.5 0 0 1 5 16.5z"/><path d="M19 5.5h-4.5A2.5 2.5 0 0 0 12 8v11"/></g>
+    <g id="ic-resumen" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 19V11M12 19V6M19 19v-5"/></g>
+    <g id="ic-estudiar" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5.5" width="17" height="11" rx="2"/><path d="M2 19.5h20"/></g>
+  </defs>
+</svg>
+
 <div class="app-shell">
 <nav class="side-nav" id="sideNav">
   <div class="side-nav-logo"><span class="ic-logo"><img src="/icons/icon-192.png" alt=""></span>Al Día</div>
-  <button type="button" class="side-nav-item" data-nav="13" onclick="go(13)"><span class="ic">🏠</span>Inicio</button>
-  <button type="button" class="side-nav-item" data-nav="4" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
-  <button type="button" class="side-nav-item" data-nav="7" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-  <button type="button" class="side-nav-item" data-nav="8" onclick="go(8)"><span class="ic">📚</span>Materias</button>
-  <button type="button" class="side-nav-item" data-nav="6" onclick="go(6)"><span class="ic">📊</span>Resumen</button>
+  <button type="button" class="side-nav-item" data-nav="13" onclick="go(13)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-hoy"></use></svg>Inicio</button>
+  <button type="button" class="side-nav-item" data-nav="4" onclick="go(4)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-calendario"></use></svg>Calendario</button>
+  <button type="button" class="side-nav-item" data-nav="7" onclick="go(7)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-repaso"></use></svg>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+  <button type="button" class="side-nav-item" data-nav="8" onclick="go(8)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-materias"></use></svg>Materias</button>
+  <button type="button" class="side-nav-item" data-nav="6" onclick="go(6)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-resumen"></use></svg>Resumen</button>
   <div class="side-nav-item side-nav-parent" data-nav="10">
-    <button type="button" class="side-nav-item-label" onclick="irAEstudiarPicker()"><span class="ic">📖</span>Estudiar</button>
+    <button type="button" class="side-nav-item-label" onclick="irAEstudiarPicker()"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-estudiar"></use></svg>Estudiar</button>
     <button type="button" class="side-nav-chevron" id="sideNavEstudiarChevron" onclick="toggleEstudiarSubmenu(event)" aria-label="Mostrar submenú de Estudiar">▸</button>
   </div>
   <div class="side-nav-submenu" id="sideNavEstudiarSub">
@@ -1734,13 +1759,13 @@
     <div class="hoy-cols">
       <div class="card hoy-repaso-card">
         <div class="hoy-card-head">
-          <h2><span class="ic">🔁</span>Repaso <span class="hoy-card-head-sub">· cola de refuerzo</span></h2>
+          <h2><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-repaso"></use></svg>Repaso <span class="hoy-card-head-sub">· cola de refuerzo</span></h2>
           <a href="#" class="ref-link" onclick="event.preventDefault(); go(7);">Ver todo</a>
         </div>
         <div id="hoyRepasoPreview"></div>
       </div>
       <div class="card hoy-semana-card">
-        <h2><span class="ic">🗓️</span>Esta semana</h2>
+        <h2><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-calendario"></use></svg>Esta semana</h2>
         <div id="hoySemana"></div>
       </div>
     </div>
@@ -1756,11 +1781,11 @@
     </div>
     </div>
     <div class="bottom-nav">
-      <div class="nav-item active"><span class="ic">🏠</span>Inicio</div>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
-      <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
-      <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
+      <div class="nav-item active"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-hoy"></use></svg>Inicio</div>
+      <button type="button" class="nav-item" onclick="go(4)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-calendario"></use></svg>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(7)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-repaso"></use></svg>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+      <button type="button" class="nav-item" onclick="go(8)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-materias"></use></svg>Materias</button>
+      <button type="button" class="nav-item" onclick="go(10)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-estudiar"></use></svg>Estudiar</button>
     </div>
   </div>
 
@@ -1804,11 +1829,11 @@
     <div class="spacer"></div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">🏠</span>Inicio</button>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
-      <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
-      <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
+      <button type="button" class="nav-item" onclick="go(13)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-hoy"></use></svg>Inicio</button>
+      <button type="button" class="nav-item" onclick="go(4)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-calendario"></use></svg>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(7)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-repaso"></use></svg>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+      <button type="button" class="nav-item" onclick="go(8)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-materias"></use></svg>Materias</button>
+      <button type="button" class="nav-item" onclick="go(10)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-estudiar"></use></svg>Estudiar</button>
     </div>
   </div>
 
@@ -2161,11 +2186,11 @@
     <div id="calAgenda"></div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">🏠</span>Inicio</button>
-      <div class="nav-item active"><span class="ic">🗓️</span>Calendario</div>
-      <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
-      <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
+      <button type="button" class="nav-item" onclick="go(13)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-hoy"></use></svg>Inicio</button>
+      <div class="nav-item active"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-calendario"></use></svg>Calendario</div>
+      <button type="button" class="nav-item" onclick="go(7)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-repaso"></use></svg>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+      <button type="button" class="nav-item" onclick="go(8)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-materias"></use></svg>Materias</button>
+      <button type="button" class="nav-item" onclick="go(10)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-estudiar"></use></svg>Estudiar</button>
     </div>
   </div>
 
@@ -2190,11 +2215,11 @@
     <div class="spacer"></div>
     <button class="btn secondary" id="volverBtn" onclick="volverDeDetalle()">Volver al calendario</button>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">🏠</span>Inicio</button>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
-      <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
-      <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
+      <button type="button" class="nav-item" onclick="go(13)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-hoy"></use></svg>Inicio</button>
+      <button type="button" class="nav-item" onclick="go(4)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-calendario"></use></svg>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(7)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-repaso"></use></svg>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+      <button type="button" class="nav-item" onclick="go(8)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-materias"></use></svg>Materias</button>
+      <button type="button" class="nav-item" onclick="go(10)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-estudiar"></use></svg>Estudiar</button>
     </div>
   </div>
 
@@ -2263,11 +2288,11 @@
     </div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">🏠</span>Inicio</button>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
-      <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
-      <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
+      <button type="button" class="nav-item" onclick="go(13)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-hoy"></use></svg>Inicio</button>
+      <button type="button" class="nav-item" onclick="go(4)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-calendario"></use></svg>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(7)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-repaso"></use></svg>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+      <button type="button" class="nav-item" onclick="go(8)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-materias"></use></svg>Materias</button>
+      <button type="button" class="nav-item" onclick="go(10)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-estudiar"></use></svg>Estudiar</button>
     </div>
   </div>
 
@@ -2286,11 +2311,11 @@
     <div id="repasoList"></div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">🏠</span>Inicio</button>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
-      <div class="nav-item active"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></div>
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
-      <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
+      <button type="button" class="nav-item" onclick="go(13)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-hoy"></use></svg>Inicio</button>
+      <button type="button" class="nav-item" onclick="go(4)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-calendario"></use></svg>Calendario</button>
+      <div class="nav-item active"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-repaso"></use></svg>Repaso<span class="badge badge-repaso" style="display:none;">0</span></div>
+      <button type="button" class="nav-item" onclick="go(8)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-materias"></use></svg>Materias</button>
+      <button type="button" class="nav-item" onclick="go(10)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-estudiar"></use></svg>Estudiar</button>
     </div>
   </div>
 
@@ -2311,11 +2336,11 @@
     <div class="materias-rendidas-grid" id="examenesRendidos"></div>
     </div>
     <div class="bottom-nav" id="materiasBottomNav">
-      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">🏠</span>Inicio</button>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
-      <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <div class="nav-item active"><span class="ic">📚</span>Materias</div>
-      <button type="button" class="nav-item" onclick="go(10)"><span class="ic">📖</span>Estudiar</button>
+      <button type="button" class="nav-item" onclick="go(13)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-hoy"></use></svg>Inicio</button>
+      <button type="button" class="nav-item" onclick="go(4)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-calendario"></use></svg>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(7)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-repaso"></use></svg>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+      <div class="nav-item active"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-materias"></use></svg>Materias</div>
+      <button type="button" class="nav-item" onclick="go(10)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-estudiar"></use></svg>Estudiar</button>
     </div>
   </div>
 
@@ -2510,11 +2535,11 @@
     </div>
     </div>
     <div class="bottom-nav">
-      <button type="button" class="nav-item" onclick="go(13)"><span class="ic">🏠</span>Inicio</button>
-      <button type="button" class="nav-item" onclick="go(4)"><span class="ic">🗓️</span>Calendario</button>
-      <button type="button" class="nav-item" onclick="go(7)"><span class="ic">🔁</span>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
-      <button type="button" class="nav-item" onclick="go(8)"><span class="ic">📚</span>Materias</button>
-      <div class="nav-item active"><span class="ic">📖</span>Estudiar</div>
+      <button type="button" class="nav-item" onclick="go(13)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-hoy"></use></svg>Inicio</button>
+      <button type="button" class="nav-item" onclick="go(4)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-calendario"></use></svg>Calendario</button>
+      <button type="button" class="nav-item" onclick="go(7)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-repaso"></use></svg>Repaso<span class="badge badge-repaso" style="display:none;">0</span></button>
+      <button type="button" class="nav-item" onclick="go(8)"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-materias"></use></svg>Materias</button>
+      <div class="nav-item active"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-estudiar"></use></svg>Estudiar</div>
     </div>
   </div>
 
