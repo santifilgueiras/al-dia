@@ -723,6 +723,30 @@
     .simulacro-desglose-tema { flex-basis: 100%; }
   }
 
+  /* Corregir mi resumen (mockup 5d) -- mismo hero oscuro que Simulacro,
+     3 cajas con el peso invertido (errores primero, lo que está bien al
+     final y colapsado -- no hace falta ver 6 elogios en un resumen que ya
+     está mayormente bien). */
+  .corrector-hero { background: var(--ink); border-radius: 12px; padding: 20px; margin-top: 14px; text-align: left; }
+  .corrector-hero .simulacro-resultado-bar { background: rgba(255,255,255,.12); }
+  .corrector-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 17px 19px; margin-top: 12px; }
+  .corrector-card.mal { border-color: rgba(194,65,12,.30); }
+  .corrector-card-label { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 9.5px; font-weight: 700; letter-spacing: .09em; color: var(--muted); }
+  .corrector-card-label.mal { color: var(--atrasado); }
+  .corrector-card-label.falta { color: var(--amber-deep); }
+  .corrector-card-label.bien { display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--teal); }
+  .corrector-card.bien .corrector-lista { display: none; }
+  .corrector-card.bien.open .corrector-lista { display: block; }
+  .corrector-card.bien.open .corrector-card-label .chev { transform: rotate(90deg); }
+  .corrector-lista { display: flex; flex-direction: column; gap: 9px; margin-top: 11px; }
+  .corrector-item { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; line-height: 1.5; color: var(--ink); }
+  .corrector-item .hoy-item-dot { margin-top: 6px; background: rgba(20,32,29,.3); }
+  .corrector-card.mal .hoy-item-dot { background: var(--atrasado); }
+  .corrector-card.falta .hoy-item-dot { background: var(--amber); }
+  .corrector-acciones { display: flex; gap: 10px; margin-top: 18px; }
+  .corrector-acciones .btn { width: auto; flex: 1; margin-top: 0; }
+  .corrector-acciones .btn.secondary { flex: none; }
+
   /* Fichas en mobile (rediseño, <860px): pantalla completa oscura -- ver
      #fichaFullscreen, fuera de .app-shell en el HTML. Reusa el mismo
      estado (fichasActuales/fichaIndexActual/fichaRespuestas) que la
@@ -6994,31 +7018,50 @@ async function generarCorrector() {
   }
 }
 
+// Corregir mi resumen (mockup 5d) -- el % de cobertura como número
+// protagonista (mismo lenguaje que .resumen-hero/simulacro), y las 3
+// listas con el peso visual invertido: errores primero, lo que falta
+// después, lo que está bien al final y colapsado (un resumen que está
+// mayormente bien no necesita 6 líneas de elogios ocupando pantalla).
 function renderCorrector(data) {
   const box = document.getElementById('correctorBox');
   const cobertura = Math.max(0, Math.min(100, Number(data.cobertura) || 0));
-  const listaHTML = (arr, vacio) => (arr && arr.length)
-    ? `<ul style="margin:6px 0 0; padding-left:18px;">${arr.map(x => `<li>${escapeHtml(x)}</li>`).join('')}</ul>`
-    : `<p class="sub" style="margin:6px 0 0;">${vacio}</p>`;
+  const errores = data.errores || [], faltantes = data.faltantes || [], bien = data.bien || [];
+  const frase = cobertura >= 80
+    ? 'Buen resumen, cubre bastante del tema.'
+    : cobertura >= 50
+      ? 'Buen resumen para aprobar, corto para una pregunta de desarrollo.'
+      : 'Cobertura baja todavía -- conviene reforzar antes del examen.';
+  const listaHTML = (arr) => `<div class="corrector-lista">${arr.map(x => `
+    <div class="corrector-item"><span class="hoy-item-dot"></span><div>${escapeHtml(x)}</div></div>`).join('')}</div>`;
   box.innerHTML = `
-    <div class="card" style="text-align:center;">
-      <div class="explicar-resultado-num mono">${cobertura}%</div>
-      <div class="explicar-resultado-label">de cobertura estimada del tema</div>
-      <div class="stat-progress" role="progressbar" aria-valuenow="${cobertura}" aria-valuemin="0" aria-valuemax="100" style="margin-top:10px;">
-        <div class="stat-progress-fill" style="width:${cobertura}%"></div>
+    <div class="corrector-hero">
+      <div class="resumen-hero-label">COBERTURA DEL TEMA</div>
+      <div class="resumen-hero-value">
+        <div class="resumen-hero-num">${cobertura}<span style="font-size:22px;">%</span></div>
+        <div class="resumen-hero-sub" style="flex:1; margin-top:0; padding-bottom:6px;">${frase}</div>
       </div>
+      <div class="simulacro-resultado-bar"><div style="width:${cobertura}%"></div></div>
     </div>
-    <div class="card" style="margin-top:12px;">
-      <h3 style="margin-top:0; color:var(--firme);">✅ Bien cubierto</h3>
-      ${listaHTML(data.bien, 'No se identificaron puntos claros -- probá con un resumen más desarrollado.')}
+    ${errores.length ? `
+    <div class="corrector-card mal">
+      <div class="corrector-card-label mal">ESTO ESTÁ MAL · ${errores.length}</div>
+      ${listaHTML(errores)}
+    </div>` : ''}
+    ${faltantes.length ? `
+    <div class="corrector-card falta">
+      <div class="corrector-card-label falta">TE FALTA · ${faltantes.length}</div>
+      ${listaHTML(faltantes)}
+    </div>` : ''}
+    <div class="corrector-card bien" id="correctorBienCard">
+      <div class="corrector-card-label bien" tabindex="0" role="button" onclick="this.parentElement.classList.toggle('open')">
+        <span>ESTO ESTÁ BIEN · ${bien.length}</span><span class="chev">›</span>
+      </div>
+      ${bien.length ? listaHTML(bien) : '<div class="sub" style="margin-top:8px;">No se identificaron puntos claros -- probá con un resumen más desarrollado.</div>'}
     </div>
-    <div class="card" style="margin-top:12px;">
-      <h3 style="margin-top:0; color:var(--flojo);">📌 Te falta</h3>
-      ${listaHTML(data.faltantes, 'No se detectó nada importante faltando -- buen resumen.')}
-    </div>
-    <div class="card" style="margin-top:12px;">
-      <h3 style="margin-top:0; color:var(--flojo);">⚠️ Revisar (posibles errores)</h3>
-      ${listaHTML(data.errores, 'No se detectaron errores.')}
+    <div class="corrector-acciones">
+      <button type="button" class="btn" onclick="irAEstudiar('fichas')">Fichas de lo que falta</button>
+      <button type="button" class="btn secondary" onclick="borrarArchivo('correctorArchivoInput','correctorArchivoBorrarBtn'); actualizarNombreDropzone('correctorDropzoneTexto','correctorArchivoInput'); document.getElementById('correctorBox').innerHTML='';">Subir otro</button>
     </div>`;
 }
 
