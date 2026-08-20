@@ -2786,7 +2786,7 @@
         <div class="field">
           <textarea id="explicarInput" class="explicar-textarea" rows="2" placeholder="Ej: no entiendo bien la diferencia entre mitosis y meiosis"></textarea>
         </div>
-        <button class="btn" id="explicarBtn" onclick="pedirExplicacion('simple')">💡 Explicámelo</button>
+        <button class="btn" id="explicarBtn" onclick="pedirExplicacion(explicarModoActual || 'simple')">💡 Explicámelo</button>
     </div>
     </div>
 
@@ -7280,7 +7280,7 @@ function contextoAcademicoExplicar() {
 }
 
 let explicarTemaActual = '';
-let explicarModoActual = null;
+let explicarModoActual = 'simple';
 let explicarHistorialPreguntas = []; // [{pregunta, respuesta, estado, explicacion}]
 let explicarPreguntaPendiente = '';
 let explicarTestPreguntas = [];
@@ -7296,10 +7296,23 @@ function explicarModosHTML() {
     ['test', '✅ Poneme a prueba', '5 preguntas para comprobar si lo entendiste.'],
   ];
   return modos.map(([m, label, desc]) => `
-    <button type="button" class="explicar-modo-btn ${m === explicarModoActual ? 'active' : ''}" onclick="pedirExplicacion('${m}')">
+    <button type="button" class="explicar-modo-btn ${m === explicarModoActual ? 'active' : ''}" data-modo="${m}" onclick="seleccionarModoExplicar('${m}')">
       <div class="explicar-modo-btn-titulo">${label}</div>
       <div class="explicar-modo-btn-desc">${desc}</div>
     </button>`).join('');
+}
+
+// Elegir una tarjeta de modo SOLO la marca seleccionada -- no dispara el
+// pedido a la IA (pedido de Santiago, 2026-08-20: tocar una tarjeta
+// contestaba directo y de paso anulaba el botón "Explícamelo" de abajo,
+// que quedaba sin ningún efecto real). El botón sigue siendo el único
+// disparador; esta función solo actualiza el estado + la clase .active de
+// las 4 tarjetas ya pintadas, sin tocar el resto de #explicarBox (una
+// respuesta/chat/test ya mostrado se queda como está hasta que se vuelva a
+// apretar el botón).
+function seleccionarModoExplicar(modo) {
+  explicarModoActual = modo;
+  document.querySelectorAll('#explicarBox .explicar-modo-btn').forEach(b => b.classList.toggle('active', b.dataset.modo === modo));
 }
 
 async function pedirExplicacion(modo) {
