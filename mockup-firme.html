@@ -283,6 +283,10 @@
   }
   .btn:disabled { background: #c3d3da; cursor: default; box-shadow: none; }
   .btn.secondary { background: var(--accent-soft); color: var(--accent); box-shadow: none; }
+  /* Variante oscura -- "Explicámelo" desde un tema leech (ver Repaso 4a):
+     no es la acción de repaso de siempre (teal), es una salida distinta a
+     propósito para que se note que es "cambiar de estrategia". */
+  .btn.ink { background: var(--ink); color: #fff; box-shadow: none; }
   .btn.danger { background: var(--flojo); box-shadow: 0 8px 18px rgba(226,147,79,.3); }
   .card-delete-btn {
     position: absolute; top: 8px; right: 8px; background: none; border: none;
@@ -332,6 +336,16 @@
     padding: 12px 14px; cursor: pointer; font-size: 14px; font-weight: 700;
   }
   .modulo-head .count { font-weight: 400; color: var(--muted); font-size: 12.5px; }
+  /* Estado del módulo visible con el acordeón CERRADO (mockup 4a) -- antes
+     había que abrirlo para saber si valía la pena. Escapado a
+     .repaso-modulo específicamente (no al .modulo-head genérico, que
+     también usa S3 para elegir temas sin barra de progreso ni detalle). */
+  .repaso-modulo .modulo-head { justify-content: flex-start; gap: 14px; flex-wrap: wrap; }
+  .modulo-head-nombre { flex: none; }
+  .modulo-head-barra { flex: 1; min-width: 60px; max-width: 180px; }
+  .modulo-head-detalle { flex: 1; font-size: 11.5px; font-weight: 500; color: var(--muted); white-space: nowrap; }
+  .repaso-modulo .modulo-head .count { margin-left: auto; }
+  @media (max-width: 640px) { .modulo-head-detalle { display: none; } }
   .modulo-body { display: none; padding: 0 14px 10px; }
   .modulo.open .modulo-body { display: block; }
   .modulo.open .chev { transform: rotate(90deg); }
@@ -1018,18 +1032,26 @@
   /* ---- Repaso (S7) ---- */
   .repaso-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap; }
   .repaso-cta { width: auto; margin-top: 0; display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; white-space: nowrap; }
+  /* Fila de filtro de urgencia + "Tema propio" (mockup 4a) -- antes el
+     botón de tema propio era su propia fila arriba de los pills, ahora
+     comparten fila (el botón se corre a la derecha con flex-wrap). */
+  .repaso-filtros { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 16px 0 20px; }
+  .repaso-pills { display: flex; gap: 8px; flex-wrap: wrap; }
   .repaso-add-tema-btn {
-    display: inline-block; margin: 12px 0 0; background: none; border: 1.5px dashed var(--line);
-    border-radius: 10px; color: var(--accent); font-family: inherit; font-weight: 700; font-size: 12.5px;
-    padding: 8px 14px; cursor: pointer;
+    display: inline-flex; align-items: center; margin-left: auto; background: none; border: 1.5px dashed var(--line);
+    border-radius: 999px; color: var(--accent); font-family: inherit; font-weight: 700; font-size: 12.5px;
+    padding: 0 15px; cursor: pointer; white-space: nowrap; min-height: 36px;
   }
   .repaso-add-tema-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
-  .repaso-pills { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 20px; }
   .repaso-pill {
-    border: 1px solid var(--line); background: #fff; color: var(--ink); font-family: inherit;
-    font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 999px; cursor: pointer; white-space: nowrap;
+    display: inline-flex; align-items: center; border: 1px solid var(--line); background: #fff; color: var(--ink); font-family: inherit;
+    font-size: 12.5px; font-weight: 700; padding: 0 15px; min-height: 36px; border-radius: 999px; cursor: pointer; white-space: nowrap;
   }
   .repaso-pill.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  /* "Vencidos" queda marcado en rojo siempre (no solo cuando está
+     seleccionado) -- es la urgencia real, no un filtro más entre iguales. */
+  .repaso-pill.vencidos { border-color: rgba(194,65,12,.35); background: var(--atrasado-soft); color: var(--atrasado); }
+  .repaso-pill.vencidos.active { background: var(--atrasado); color: #fff; border-color: var(--atrasado); }
   .repaso-group-head { display: flex; align-items: baseline; gap: 8px; margin: 24px 0 10px; }
   .repaso-group-head:first-of-type { margin-top: 0; }
   .repaso-group-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
@@ -1044,6 +1066,23 @@
   .repaso-group-title.hoy { color: var(--teal); }
   .repaso-group-title.proximas { color: var(--muted); }
   .repaso-group-note { color: var(--muted); font-weight: 500; font-size: 12px; }
+  /* "Se te sigue escapando" (mockup 4a) -- separado de las 3 colas de
+     urgencia, con el rojo de atrasado (mismo lenguaje que "vencido": esto
+     también es un problema que no se resuelve solo repitiendo el repaso). */
+  .repaso-escapando-head {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10.5px; font-weight: 700;
+    letter-spacing: .09em; color: var(--atrasado); margin: 28px 0 14px; padding-bottom: 9px;
+    border-bottom: 1px solid var(--atrasado-soft);
+  }
+  .repaso-escapando-card {
+    display: flex; align-items: center; gap: 16px; background: #fff; border: 1px solid var(--line);
+    border-radius: 12px; padding: 17px 19px; margin-bottom: 10px;
+  }
+  .repaso-escapando-info { flex: 1; min-width: 0; }
+  .repaso-escapando-title { font-size: 16px; font-weight: 700; }
+  .repaso-escapando-sub { font-size: 12.5px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+  .repaso-escapando-card .btn { flex: none; width: auto; margin-top: 0; padding: 0 18px; min-height: 42px; }
+  @media (max-width: 639px) { .repaso-escapando-card { flex-direction: column; align-items: stretch; } }
   .repaso-item {
     display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--line);
     border-left: 3px solid transparent; border-radius: 12px; padding: 16px 18px; margin-bottom: 10px; cursor: pointer;
@@ -2362,8 +2401,10 @@
       </div>
       <button type="button" class="btn repaso-cta" id="repasoCta" style="display:none;">📋 Repasar lo de hoy</button>
     </div>
-    <button type="button" class="repaso-add-tema-btn" onclick="abrirAgregarTemaRepaso()">+ Agregar tema para repasar</button>
-    <div class="repaso-pills" id="repasoPills"></div>
+    <div class="repaso-filtros">
+      <div class="repaso-pills" id="repasoPills"></div>
+      <button type="button" class="repaso-add-tema-btn" onclick="abrirAgregarTemaRepaso()">+ Tema propio</button>
+    </div>
     <div id="repasoList"></div>
     </div>
     <div class="bottom-nav">
@@ -3303,6 +3344,16 @@ function irAEstudiarPicker() {
 // se saca sola con un margen prudente sobre la duración de la animación (no
 // hay forma de "engancharse" al final de la transición de go() desde afuera
 // sin cambiar esa función, que es compartida por TODA la navegación).
+// Salto directo a "Explícamelo" con el tema de un leech ya escrito (ver
+// "Se te sigue escapando" en Repaso, mockup 4a) -- evita que la persona
+// tenga que volver a tipear el nombre del tema que la app ya sabe.
+function irAExplicarConTema(tema) {
+  explicarTemaActual = tema;
+  const input = document.getElementById('explicarInput');
+  if (input) input.value = tema;
+  irAEstudiar('explicar');
+}
+
 function irAEstudiar(name) {
   if (name === 'fichas') {
     document.documentElement.classList.add('vt-fichas');
@@ -4883,10 +4934,16 @@ function renderHoy() {
 
 // Repaso (S7): junta los temas pendientes (no firmes) de TODAS las materias
 // en curso que ya armaron calendario, cada uno etiquetado con su materia.
-let repasoFiltroMateria = null;
+// Antes eran 3 listas SIEMPRE apiladas (vencidos/hoy/más adelante) --
+// ahora es un filtro (mockup 4a): con muchos temas pendientes, ver todo
+// junto es ruido; el filtro deja elegir qué urgencia mirar. El filtro por
+// materia (pills, versión anterior) se sacó -- el nombre de materia ya se
+// ve en el encabezado de cada módulo (ver renderModuloAccordion) cuando
+// hay más de una mezclada.
+let repasoFiltroUrgencia = 'todo';
 
-function filtrarRepasoPorMateria(examId) {
-  repasoFiltroMateria = examId;
+function filtrarRepasoPorUrgencia(filtro) {
+  repasoFiltroUrgencia = filtro;
   renderRepaso();
 }
 
@@ -4923,10 +4980,24 @@ function agruparPorModulo(arr) {
     const modulo = info ? info.modulo : 'Otros temas';
     const icon = info ? info.icon : '📘';
     const key = it.examId + '||' + modulo;
-    if (!mapa.has(key)) mapa.set(key, { icon, modulo, materiaNombre: it.materiaNombre, items: [] });
+    if (!mapa.has(key)) mapa.set(key, { icon, modulo, materiaNombre: it.materiaNombre, examId: it.examId, items: [] });
     mapa.get(key).items.push(it);
   });
   return [...mapa.values()];
+}
+
+// Progreso REAL de un módulo (todos sus temas seleccionados, no solo los
+// pendientes que trae `arr` en agruparPorModulo) -- para la mini barra de
+// 3 segmentos del acordeón cerrado (mockup 4a): "estado con el acordeón
+// cerrado" es justo lo que faltaba, había que abrirlo para saber si valía
+// la pena.
+function contarModulo(examId, moduloNombre) {
+  const e = examenes.find(x => x.id === examId);
+  if (!e || !e.modulos) return null;
+  const mod = e.modulos.find(m => m.modulo === moduloNombre);
+  if (!mod) return null;
+  const temas = mod.temas.filter(t => e.selected.includes(t));
+  return contarEstados(Object.fromEntries(temas.map(t => [t, e.states[t]])));
 }
 
 // Un módulo = un acordeón .modulo/.modulo-head (mismo componente que ya se
@@ -4935,10 +5006,16 @@ function agruparPorModulo(arr) {
 // tiene sentido esconder la única categoría); con varios, arranca cerrado
 // para que la sección se vea compacta hasta que el usuario elija cuál mirar.
 function renderModuloAccordion(g, itemRenderer, abiertoPorDefecto) {
+  const prog = g.examId ? contarModulo(g.examId, g.modulo) : null;
+  const progTotal = prog ? prog.firme + prog.flojo + prog.nuevo : 0;
   return `
   <div class="modulo repaso-modulo ${abiertoPorDefecto ? 'open' : ''}">
     <div class="modulo-head" tabindex="0" role="button" onclick="this.parentElement.classList.toggle('open')">
-      <span>${g.icon} ${g.modulo} <span class="count">${g.materiaNombre ? nombreCorto(g.materiaNombre) + ' · ' : ''}${g.items.length}</span></span>
+      <span class="modulo-head-nombre">${g.icon} ${g.modulo}</span>
+      ${prog && progTotal ? `
+      <div class="modulo-head-barra">${barraEstadoHTML(prog.firme, prog.flojo, progTotal)}</div>
+      <span class="modulo-head-detalle mono">${prog.firme} firmes · ${prog.flojo} flojos · ${prog.nuevo} sin ver</span>` : ''}
+      <span class="count">${g.materiaNombre ? nombreCorto(g.materiaNombre) + ' · ' : ''}${g.items.length}</span>
       <span class="chev">›</span>
     </div>
     <div class="modulo-body">${g.items.map(itemRenderer).join('')}</div>
@@ -4999,16 +5076,24 @@ function renderRepaso() {
   grupos.proximas.sort((a, b) => (a.prox || '9999').localeCompare(b.prox || '9999'));
   const totalItems = grupos.atrasadas.length + grupos.hoy.length + grupos.proximas.length;
 
-  // Pills de filtro por materia -- solo materias con algo pendiente en la cola.
-  const idsConPendientes = new Set([...grupos.atrasadas, ...grupos.hoy, ...grupos.proximas].map(i => i.examId));
-  const materiasConPendientes = activos.filter(e => idsConPendientes.has(e.id));
-  if (repasoFiltroMateria !== null && !idsConPendientes.has(repasoFiltroMateria)) repasoFiltroMateria = null;
-  pillsBox.innerHTML = materiasConPendientes.length < 2 ? '' :
-    `<button type="button" class="repaso-pill ${repasoFiltroMateria === null ? 'active' : ''}" onclick="filtrarRepasoPorMateria(null)">Todas</button>` +
-    materiasConPendientes.map(e => `<button type="button" class="repaso-pill ${repasoFiltroMateria === e.id ? 'active' : ''}" onclick="filtrarRepasoPorMateria(${e.id})">${nombreCorto(e.materiaNombre)}</button>`).join('');
+  // Pills de filtro por urgencia (mockup 4a) -- reemplaza las 3 secciones
+  // siempre apiladas. "Todo" siempre está; las otras solo si tienen algo
+  // (no tiene sentido un filtro a una cola vacía). Si el filtro activo
+  // quedó sin nada (ej. se resolvió el último vencido), vuelve a "todo".
+  if (repasoFiltroUrgencia === 'vencidos' && !grupos.atrasadas.length) repasoFiltroUrgencia = 'todo';
+  if (repasoFiltroUrgencia === 'hoy' && !grupos.hoy.length) repasoFiltroUrgencia = 'todo';
+  if (repasoFiltroUrgencia === 'proximas' && !grupos.proximas.length) repasoFiltroUrgencia = 'todo';
+  const pill = (key, label, n, claseExtra) => n === 0 ? '' :
+    `<button type="button" class="repaso-pill ${claseExtra || ''} ${repasoFiltroUrgencia === key ? 'active' : ''}" onclick="filtrarRepasoPorUrgencia('${key}')">${label} · ${n}</button>`;
+  pillsBox.innerHTML =
+    `<button type="button" class="repaso-pill ${repasoFiltroUrgencia === 'todo' ? 'active' : ''}" onclick="filtrarRepasoPorUrgencia('todo')">Todo · ${totalItems}</button>` +
+    pill('vencidos', 'Vencidos', grupos.atrasadas.length, 'vencidos') +
+    pill('hoy', 'Hoy', grupos.hoy.length) +
+    pill('proximas', 'Más adelante', grupos.proximas.length);
 
-  const filtrar = arr => repasoFiltroMateria === null ? arr : arr.filter(i => i.examId === repasoFiltroMateria);
-  const gAtrasadas = filtrar(grupos.atrasadas), gHoy = filtrar(grupos.hoy), gProximas = filtrar(grupos.proximas);
+  const gAtrasadas = repasoFiltroUrgencia === 'todo' || repasoFiltroUrgencia === 'vencidos' ? grupos.atrasadas : [];
+  const gHoy = repasoFiltroUrgencia === 'todo' || repasoFiltroUrgencia === 'hoy' ? grupos.hoy : [];
+  const gProximas = repasoFiltroUrgencia === 'todo' || repasoFiltroUrgencia === 'proximas' ? grupos.proximas : [];
   const totalFiltrado = gAtrasadas.length + gHoy.length + gProximas.length;
 
   if (totalFaltanVer > 0) {
@@ -5040,7 +5125,7 @@ function renderRepaso() {
       : '<div class="empty-state">Tenés todo firme. No te queda nada pendiente de repaso por ahora.</div>';
     return;
   }
-  if (totalFiltrado === 0) { list.innerHTML = '<div class="empty-state">Nada pendiente de esa materia por ahora.</div>'; return; }
+  if (totalFiltrado === 0) { list.innerHTML = '<div class="empty-state">Nada pendiente en ese filtro por ahora.</div>'; return; }
 
   // Un tema propio (esNota) no tiene detalle de materia ni estado
   // firme/flojo -- no hay nada útil que abrir al tocarlo, solo se puede
@@ -5127,10 +5212,35 @@ function renderRepaso() {
     ${grupos.map(g => renderModuloAccordion(g, renderPlain, abiertoPorDefecto)).join('')}`;
   };
 
+  // "Se te sigue escapando" (mockup 4a) -- separado de las 3 colas de
+  // urgencia (no depende del filtro activo: un leech sigue siendo un
+  // problema aparte esté vencido, hoy o lejos). Mismo umbral que Resumen
+  // (LEECH_RECAIDAS, ver esLeech en lib/scheduling.js).
+  const escapandoRepaso = [];
+  activos.forEach(e => {
+    Object.entries(e.flojoCount || {}).forEach(([tema, n]) => {
+      if (n >= LEECH_RECAIDAS && e.states[tema] !== 'firme' && e.selected.includes(tema)) {
+        escapandoRepaso.push({ examId: e.id, name: tema, materiaNombre: e.materiaNombre, n });
+      }
+    });
+  });
+  escapandoRepaso.sort((a, b) => b.n - a.n);
+  const escapandoHTML = !escapandoRepaso.length ? '' : `
+    <div class="repaso-escapando-head">SE TE SIGUE ESCAPANDO · ${escapandoRepaso.length}</div>
+    ${escapandoRepaso.map(it => `
+      <div class="repaso-escapando-card">
+        <div class="repaso-escapando-info">
+          <div class="repaso-escapando-title">${it.name}</div>
+          <div class="repaso-escapando-sub">Volvió a flojo ${it.n} veces. Repetir el mismo repaso no está funcionando: probá una explicación distinta o partilo en dos temas.</div>
+        </div>
+        <button type="button" class="btn ink" onclick="irAExplicarConTema('${it.name.replace(/'/g, "\\'")}')">Explicámelo</button>
+      </div>`).join('')}`;
+
   list.innerHTML =
     grupoConCards('vencidos', 'VENCIDOS', gAtrasadas, 'se reprograman solos si no los tocás hoy') +
     grupoConCards('hoy', 'HOY', gHoy, '') +
-    grupoPlano(gProximas);
+    grupoPlano(gProximas) +
+    escapandoHTML;
 }
 
 // Home (S0): el botón principal lleva al hub de Calendario/Exámenes, donde
