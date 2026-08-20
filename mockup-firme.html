@@ -751,9 +751,22 @@
   .hoy-stats-nums b.flojo { color: var(--amber-deep); }
   .hoy-stats-nums b.nuevo { color: var(--muted); }
   .hoy-stats-pct { font-weight: 700; font-size: 13px; color: var(--teal); }
-  .hoy-stats-bar { display: flex; height: 7px; border-radius: 4px; background: var(--line); overflow: hidden; }
-  .hoy-stats-bar-firme { background: var(--teal); }
-  .hoy-stats-bar-flojo { background: var(--amber); }
+  /* Barra de estado de 3 segmentos (ver barraEstadoHTML, F.2 del patch de
+     Cowork) -- el total es el total de temas seleccionados, no la suma de
+     firmes+flojos: con 2 firmes y 1 flojo de 12 temas, antes la barra se
+     veía "llena" con el resto del ancho en el mismo gris neutro del fondo
+     (indistinguible de "no hay nada acá"). Los 9 "sin ver" ahora se dibujan
+     con un rayado -- se leen como "todavía falta", no como espacio vacío.
+     Usada en Hoy y Resumen (ver abrirResumen) -- NO en las tarjetas de
+     Materias, que quedan con su barra de 2 segmentos de siempre (decisión
+     de alcance F, no un olvido). */
+  .barra-estado { display: flex; height: 7px; border-radius: 4px; overflow: hidden; background: var(--line); }
+  .barra-estado .firme { background: var(--teal); }
+  .barra-estado .flojo { background: var(--amber); }
+  .barra-estado .sinver {
+    flex: 1;
+    background: repeating-linear-gradient(135deg, rgba(20,32,29,.10) 0 3px, rgba(20,32,29,.04) 3px 7px);
+  }
   .hoy-saludo { font-size: 13.5px; font-weight: 700; color: var(--teal); margin-bottom: 2px; }
   .hoy-fecha { font-size: 11px; font-weight: 600; letter-spacing: .08em; color: var(--muted); }
   .hoy-racha-badge { display: none; align-items: center; gap: 5px; background: var(--amber-tint); color: var(--amber-deep); font-weight: 700; font-size: 13px; padding: 6px 10px; border-radius: 20px; height: fit-content; }
@@ -773,6 +786,17 @@
   .hoy-item-min { font-size: 11px; color: var(--muted); white-space: nowrap; }
   .hoy-item-btn { display: inline-flex; align-items: center; gap: 5px; margin-top: 0; width: auto; padding: 8px 14px; font-size: 12px; white-space: nowrap; }
   .hoy-item-btn .ic { font-size: 13px; }
+  /* En 390px el título competía con el tag FLOJO + "~N min" + el botón
+     Fichas todos en la misma fila -- se superponían o se cortaban (F.6 del
+     patch de Cowork). En vez de reescribir el marcado, .hoy-item-right pasa
+     a su propia línea completa cuando no entra al lado del título (flex-wrap),
+     con los botones/tags alineados a la derecha y una altura táctil
+     >=44px. Desde 860px sigue siendo una sola fila, como siempre. */
+  @media (max-width: 859px) {
+    .hoy-item { flex-wrap: wrap; row-gap: 10px; }
+    .hoy-item-right { flex-basis: 100%; justify-content: flex-end; }
+    .hoy-item-btn { min-height: 44px; padding: 10px 16px; }
+  }
   /* Onboarding de primer uso (sin ninguna materia agregada todavía) --
      ocupa el lugar de la lista de "Hoy" en vez del empty-state genérico,
      porque acá el usuario no está "al día", nunca empezó. */
@@ -829,7 +853,7 @@
     .screen[data-screen="13"] .hoy-fecha { font-size: 13px; }
     .screen[data-screen="13"] .hoy-stats-nums { font-size: 15px; gap: 22px; }
     .screen[data-screen="13"] .hoy-stats-pct { font-size: 16px; }
-    .screen[data-screen="13"] .hoy-stats-bar { height: 9px; }
+    .screen[data-screen="13"] .barra-estado { height: 9px; }
     .screen[data-screen="13"] .hoy-lista { gap: 12px; margin: 20px 0; }
     .screen[data-screen="13"] .hoy-item { padding: 20px 22px; gap: 16px; }
     .screen[data-screen="13"] .hoy-item-check { width: 24px; height: 24px; }
@@ -1018,8 +1042,15 @@
   .repaso-item-sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
   .repaso-item-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
   .repaso-item-min { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  /* Rosa por defecto -- el color no significaba nada en el lenguaje del
+     resto de la app (teal=firme, ámbar=flojo, naranja=atrasado) y competía
+     con el estado real por la atención (F.5 del patch). Botón secundario
+     teal, mismo look que ".btn.secondary" en el resto de la app. Las
+     acciones de borrar nota/tema propio siguen pisándolo con estilo inline
+     rosa (ver eliminarNotaCalendario) -- ahí el rosa sí tiene un
+     significado propio, heredado de las notas del calendario. */
   .repaso-fichas-btn {
-    background: var(--pink-tint); color: var(--pink); border: none; font-family: inherit; font-weight: 700;
+    background: #fff; color: var(--teal); border: 1px solid var(--line); font-family: inherit; font-weight: 700;
     font-size: 12.5px; padding: 9px 14px; border-radius: 8px; cursor: pointer;
     display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
   }
@@ -1067,8 +1098,10 @@
   .resumen-stat-value { font-size: 26px; font-weight: 800; margin-top: 6px; line-height: 1.15; }
   .resumen-stat-value small { font-size: 14px; font-weight: 600; color: var(--muted); }
   .resumen-stat-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
-  .resumen-stat-bar { display: flex; height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; margin-top: 10px; }
-  .resumen-stat-bar span { background: var(--teal); }
+  /* Barra de 3 segmentos (ver .barra-estado/barraEstadoHTML, F.2) -- el
+     margin-top propio de este contexto puntual, el resto viene del estilo
+     compartido. */
+  .resumen-stat-card .barra-estado { margin-top: 10px; height: 6px; }
 
   .resumen-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; align-items: start; margin-bottom: 18px; }
   .resumen-card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
@@ -1079,9 +1112,6 @@
   .resumen-materia-head { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
   .resumen-materia-nombre { font-weight: 700; font-size: 14px; flex: 1; min-width: 0; }
   .resumen-materia-pct { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-weight: 700; font-size: 13px; color: var(--teal); flex-shrink: 0; }
-  .resumen-materia-bar { display: flex; height: 7px; border-radius: 4px; background: var(--line); overflow: hidden; }
-  .resumen-materia-bar-firme { background: var(--teal); }
-  .resumen-materia-bar-flojo { background: var(--amber); }
   .resumen-legend { display: flex; gap: 16px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); }
   .resumen-legend .dot { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; }
   .resumen-legend .dot.firme { background: var(--teal); }
@@ -3950,6 +3980,20 @@ function contarEstadosGlobal() {
   return c;
 }
 
+// Barra de estado de 3 segmentos (ver .barra-estado, F.2 del patch de
+// Cowork) -- usada en Hoy y Resumen. El "sin ver" se dibuja rayado en vez
+// de dejarlo como el mismo gris de fondo, para que se lea "todavía falta"
+// y no "no hay nada acá". NO se usa en las tarjetas de Materias (fuera de
+// alcance del rediseño F).
+function barraEstadoHTML(firmes, flojos, total) {
+  const pct = (n) => total ? (n / total * 100) : 0;
+  return `<div class="barra-estado" role="img" aria-label="${firmes} firmes, ${flojos} flojos, ${total - firmes - flojos} sin ver, de ${total} temas">
+    <div class="firme" style="width:${pct(firmes)}%"></div>
+    <div class="flojo" style="width:${pct(flojos)}%"></div>
+    <div class="sinver"></div>
+  </div>`;
+}
+
 // Muestra los contadores y, si alguno cambió desde el último render, hace
 // un pulso corto en ese número -- así marcar un tema como firme/flojo se
 // siente como una acción con consecuencia inmediata, no un dato mudo.
@@ -4642,7 +4686,6 @@ function renderHoyStats() {
   if (examenes.length === 0) { el.innerHTML = ''; return; }
   const c = contarEstadosGlobal();
   const total = c.firme + c.flojo + c.nuevo;
-  const pct = total > 0 ? Math.round((c.firme / total) * 100) : 0;
   el.innerHTML = `
     <div class="hoy-stats-row">
       <div class="hoy-stats-nums mono">
@@ -4650,12 +4693,11 @@ function renderHoyStats() {
         <span><b class="flojo">${c.flojo}</b> flojos</span>
         <span><b class="nuevo">${c.nuevo}</b> sin ver</span>
       </div>
-      <span class="hoy-stats-pct mono">${pct}% firme</span>
+      <!-- Un % sobre pocos temas aporta ruido, no precisión (F.2) -- el
+           conteo real ya está arriba, acá alcanza con firmes/total. -->
+      <span class="hoy-stats-pct mono">${c.firme}/${total} firmes</span>
     </div>
-    <div class="hoy-stats-bar">
-      <div class="hoy-stats-bar-firme" style="width:${total ? (c.firme / total * 100) : 0}%"></div>
-      <div class="hoy-stats-bar-flojo" style="width:${total ? (c.flojo / total * 100) : 0}%"></div>
-    </div>
+    ${barraEstadoHTML(c.firme, c.flojo, total)}
   `;
 }
 
@@ -4666,6 +4708,31 @@ function saludoSegunHora() {
   if (h >= 6 && h < 12) return 'Buenos días';
   if (h >= 12 && h < 20) return 'Buenas tardes';
   return 'Buenas noches';
+}
+
+// "Insuficiencia cardíaca · primera vez" e "Insuficiencia cardíaca ·
+// repaso" el mismo día se leen como un bug, no como dos avisos útiles (F.3
+// del patch de Cowork) -- agrupa las entradas de Hoy por tema+materia antes
+// de pintarlas, así un tema que cae dos veces el mismo día (recién
+// agendado Y con un repaso proyectado encima) es UNA sola fila. minutosEstimados()
+// es un estimado fijo por tema (no por sesión), así que NO se suma entre
+// entradas agrupadas -- se toma una sola vez.
+function agruparEntradasDelDia(entradas) {
+  const porTema = new Map();
+  for (const t of entradas) {
+    const clave = `${t.examId}::${t.name}`;
+    const contexto = t.action === 'nuevo' ? 'primera vez' : (t.atrasado ? 'atrasado' : (t.totalDias > 1 ? `repaso · día ${t.dia}/${t.totalDias}` : 'repaso'));
+    if (!porTema.has(clave)) {
+      porTema.set(clave, { ...t, contextos: [], atrasado: false });
+    }
+    const g = porTema.get(clave);
+    g.contextos.push(contexto);
+    g.atrasado = g.atrasado || !!t.atrasado;
+  }
+  return [...porTema.values()].map(g => ({
+    ...g,
+    contexto: g.contextos.length > 1 ? [...new Set(g.contextos)].join(' · también ') : g.contextos[0],
+  }));
 }
 
 function renderHoy() {
@@ -4687,7 +4754,8 @@ function renderHoy() {
   // todavía, hay que guiarlo al primer paso. Ver hoy-onboarding en el CSS.
   const esPrimerUso = examenes.length === 0;
 
-  const entries = esPrimerUso ? [] : ((planGlobal && planGlobal.schedule[todayKey]) || []).filter(t => t.action !== 'final');
+  const entriesCrudas = esPrimerUso ? [] : ((planGlobal && planGlobal.schedule[todayKey]) || []).filter(t => t.action !== 'final');
+  const entries = agruparEntradasDelDia(entriesCrudas);
   const tituloEl = document.getElementById('hoyTitulo');
   if (tituloEl) {
     tituloEl.textContent = esPrimerUso
@@ -4716,7 +4784,7 @@ function renderHoy() {
     const estado = estadoDeEntry(t);
     const esc = t.name.replace(/'/g, "\\'");
     const min = minutosEstimados(t.name);
-    const contexto = t.action === 'nuevo' ? 'primera vez' : (t.atrasado ? 'atrasado' : (t.totalDias > 1 ? `repaso · día ${t.dia}/${t.totalDias}` : 'repaso'));
+    const contexto = t.contexto;
     const accion = estado === 'flojo'
       ? `<span class="tag repaso-tag">FLOJO</span><button type="button" class="btn secondary hoy-item-btn" onclick="event.stopPropagation(); irAEstudiar('fichas')"><span class="ic">🧠</span>Fichas</button>`
       : `<button type="button" class="btn hoy-item-btn" onclick="event.stopPropagation(); abrirDetalle(${t.examId}, '${esc}')">Empezar</button>`;
@@ -7086,7 +7154,7 @@ function abrirResumen() {
     <div class="resumen-stat-card">
       <div class="resumen-stat-label">Temas firmes</div>
       <div class="resumen-stat-value">${c.firme} <small>/ ${totalTemas}</small></div>
-      <div class="resumen-stat-bar"><span style="width:${totalTemas ? (c.firme/totalTemas*100) : 0}%"></span></div>
+      ${barraEstadoHTML(c.firme, c.flojo, totalTemas)}
     </div>
     <div class="resumen-stat-card">
       <div class="resumen-stat-label">Próximo examen</div>
@@ -7100,7 +7168,7 @@ function abrirResumen() {
       ${promedioMin !== null ? `
       <div class="resumen-stat-value">${promedioMin} <small>min promedio</small></div>
       <div class="resumen-stat-sub">últimas 4 semanas</div>` : `
-      <div class="resumen-stat-value"><small>Todavía sin datos</small></div>`}
+      <div class="resumen-stat-value"><small>Cuando termines un repaso vas a ver acá tu promedio diario</small></div>`}
     </div>`;
 
   // ---- Por materia ----
@@ -7117,10 +7185,7 @@ function abrirResumen() {
         <div class="resumen-materia-nombre">${nombreCorto(e.materiaNombre)}</div>
         <div class="resumen-materia-pct">${pct}%</div>
       </div>
-      <div class="resumen-materia-bar">
-        <div class="resumen-materia-bar-firme" style="width:${total ? (ce.firme/total*100) : 0}%"></div>
-        <div class="resumen-materia-bar-flojo" style="width:${total ? (ce.flojo/total*100) : 0}%"></div>
-      </div>
+      ${barraEstadoHTML(ce.firme, ce.flojo, total)}
     </div>`;
   }).join('') : '<div class="empty-state">Todavía no armaste el calendario de ninguna materia.</div>';
 
@@ -7136,7 +7201,19 @@ function abrirResumen() {
   }).join('');
   const dias40 = []; for (let i = 39; i >= 0; i--) dias40.push(fmt(addDays(new Date(), -i)));
   const activos40 = dias40.filter(k => actividadDiaria[k]).length;
-  document.getElementById('constanciaCaption').textContent = `Repasaste ${activos40} de los últimos 40 días.`;
+  // "Repasaste 0 de los últimos 40 días" en una cuenta de 6 días de racha
+  // contradice el propio número de racha que se ve al lado -- no es que
+  // fallaste 34 días, es que la cuenta no existía todavía (F.7 del patch).
+  // Se ancla la ventana al primer día real de actividad, no a una fecha
+  // fija de 40 días atrás.
+  const fechasConActividad = Object.keys(actividadDiaria).filter(k => actividadDiaria[k]).sort();
+  const primerDia = fechasConActividad[0];
+  const diasDesdeArranque = primerDia ? Math.round((new Date() - new Date(primerDia + 'T00:00:00')) / 86400000) + 1 : 0;
+  document.getElementById('constanciaCaption').textContent = !primerDia
+    ? 'Cuando repases algo vas a ver acá tu constancia.'
+    : diasDesdeArranque < 40
+      ? `Repasaste ${activos40} de los últimos ${diasDesdeArranque} días -- arrancaste hace ${diasDesdeArranque}, el resto no cuenta en contra.`
+      : `Repasaste ${activos40} de los últimos 40 días.`;
 
   // ---- Se te sigue escapando (temas "leech", ver esLeech en lib/scheduling.js) ----
   // Mismo umbral que la detección de leech (3+ recaídas) -- antes era un
@@ -7160,7 +7237,7 @@ function abrirResumen() {
         </div>
         <span class="escapando-badge">${it.n}x</span>
       </div>`).join('')
-    : '<div class="empty-state" style="padding:20px 4px;">Nada se te sigue escapando -- ningún tema volvió a flojo tres veces todavía.</div>';
+    : '<div class="empty-state" style="padding:20px 4px;">Nada todavía: hace falta que un tema vuelva a flojo tres veces para aparecer acá. Es una buena noticia.</div>';
 
   updateBadges();
 }
@@ -7806,9 +7883,29 @@ async function iniciarApp() {
     }
   } catch (e) {
     console.error('Error iniciando la app', e);
-    document.getElementById('authLoading').innerHTML =
-      '<div style="padding:20px; text-align:center; color:var(--flojo); font-size:13px;">No se pudo conectar -- revisá tu conexión y refrescá.</div>';
+    // Antes era una línea naranja centrada en blanco, sin logo ni botón --
+    // con Render free durmiéndose (spin-down tras 15 min sin tráfico) esto
+    // es una pantalla FRECUENTE, no un caso raro, así que necesita explicar
+    // qué pasa y ofrecer una salida real en vez de un callejón sin salida
+    // (F.8 del patch de Cowork). "Reintentar" vuelve a correr iniciarApp()
+    // entero -- si ya era solo que el server estaba despertando, la segunda
+    // vuelta entra directo. El progreso real vive en Supabase, no se pierde
+    // nunca por esto -- es información, no una promesa vacía.
+    document.getElementById('authLoading').innerHTML = `
+      <div class="logo" style="width:64px; height:64px; font-size:28px; margin:0 auto 14px;">📚</div>
+      <div style="color:var(--ink); font-weight:700; font-size:14px; margin-bottom:6px;">No se pudo conectar</div>
+      <div style="color:var(--muted); font-size:13px; max-width:260px; margin:0 auto 16px;">El servidor puede estar despertándose -- suele tardar unos 30 segundos. Tu progreso está guardado.</div>
+      <button type="button" class="btn" style="width:auto; padding:11px 22px;" onclick="reintentarArranque()">Reintentar</button>
+    `;
   }
+}
+
+function reintentarArranque() {
+  document.getElementById('authLoading').innerHTML = `
+    <div class="logo" style="width:64px; height:64px; font-size:28px; margin:0 auto 14px;">📚</div>
+    <div style="color:var(--muted); font-size:13px;">Cargando…</div>
+  `;
+  iniciarApp();
 }
 
 iniciarApp();
