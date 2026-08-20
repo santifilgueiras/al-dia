@@ -1718,6 +1718,10 @@
       align-items: stretch; flex: 1; min-height: 0;
     }
     .estudiar-rail { width: auto; min-height: 0; }
+    /* HOY/PROMEDIO en una sola columna acá -- la grilla de 2 columnas por
+       default (.resumen-stats-row, pensada para el ancho completo de
+       Resumen) queda apretada en el riel angosto. */
+    .estudiar-rail .resumen-stats-row { grid-template-columns: 1fr; }
     /* Card 1 ("Al terminar el bloque") a su alto natural; card 2
        ("Bibliografía del tema") absorbe el resto con flex:1, así las dos
        columnas de la grilla terminan a la misma altura. */
@@ -2678,9 +2682,6 @@
             <span>🔊</span>
           </div>
         </div>
-        <!-- HOY/PROMEDIO (mockup 5b) -- el promedio diario se muda acá desde
-             Resumen (Ronda F), tiene más contexto al lado del reloj. -->
-        <div class="resumen-stats-row" id="timerStatsRow" style="margin-top:12px;"></div>
     </div>
 
     <div class="study-panel" id="sec-fichas" data-sec="fichas">
@@ -2814,6 +2815,16 @@
     </div>
 
     <aside class="estudiar-rail" id="estudiarRail">
+      <!-- HOY/PROMEDIO del timer (pedido de Santiago, 2026-08-20): en
+           escritorio quedaba una columna vacía al lado del reloj mientras
+           Estudiar > Tiempo de estudio está activo (Timer no usa
+           Tema/Bibliografía/Acciones, las únicas cards que esta columna
+           mostraba antes) -- se mueve acá para llenar ese espacio en vez
+           de apilarse abajo del reloj. renderEstudiarRail() decide si se
+           muestra (activo === 'tiempo'); el contenido lo sigue llenando
+           renderTimer() como siempre, sin importar dónde viva el div en
+           el DOM. -->
+      <div class="resumen-stats-row" id="timerStatsRow" style="display:none;"></div>
       <!-- Arriba del todo en la columna, antes que "Tema"/Bibliografía
            (pedido de Santiago, 2026-08-20, con captura puntual): la lista
            de herramientas siempre visible primero, con los mismos íconos
@@ -7647,6 +7658,8 @@ function renderEstudiarRail() {
   const biblioCard = document.getElementById('estudiarBiblioCard');
   const accionesCard = document.getElementById('estudiarAccionesCard');
   const temaHoyCard = document.getElementById('estudiarTemaHoyCard');
+  const timerStatsRow = document.getElementById('timerStatsRow');
+  if (timerStatsRow) timerStatsRow.style.display = activo === 'tiempo' ? '' : 'none';
   if (!biblioCard || !accionesCard) return;
   if (!item) {
     biblioCard.style.display = 'none'; accionesCard.style.display = 'none';
