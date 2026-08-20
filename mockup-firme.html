@@ -558,37 +558,45 @@
      min-height: se estira sola como hija de la grilla de dos columnas
      (ver .study-layout más abajo) y justify-content:center la centra
      verticalmente sea cual sea el alto real. */
+  /* Card oscura (mockup 5b) -- el reloj como único protagonista, mismo
+     lenguaje visual que .resumen-hero/el resultado de Simulacro. */
   .timer-card {
-    background: #fff; border: 1px solid rgba(0,0,0,.1); border-radius: 11px;
-    padding: 24px 26px 26px; display: flex; flex-direction: column;
+    background: var(--ink); border-radius: 14px;
+    padding: 32px 26px 26px; display: flex; flex-direction: column;
     align-items: center; justify-content: center; gap: 18px;
   }
   /* Selector de método: pastillas compactas (mide lo que miden sus 3
      pastillas, no 100% de ancho) -- clase propia en vez de reusar .tabs,
      que en el resto de la app es un segmented control full-width. */
-  .timer-metodos { display: flex; gap: 3px; padding: 3px; background: rgba(0,0,0,.05); border-radius: 8px; }
+  .timer-metodos { display: flex; gap: 3px; padding: 3px; background: rgba(255,255,255,.08); border-radius: 8px; }
   .timer-metodos .tab {
     padding: 6px 15px; border-radius: 6px; font-size: 12px; font-weight: 500;
-    color: rgba(0,0,0,.5); cursor: pointer; white-space: nowrap;
+    color: rgba(255,255,255,.5); cursor: pointer; white-space: nowrap;
   }
-  .timer-metodos .tab.active { background: #fff; color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .timer-metodos .tab.active { background: rgba(255,255,255,.14); color: #fff; font-weight: 600; }
   .timer-clock { text-align: center; }
   .timer-fase {
     font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; font-weight: 600;
-    color: var(--teal); letter-spacing: .14em; margin-bottom: 8px;
+    color: var(--teal-light); letter-spacing: .14em; margin-bottom: 8px;
   }
   /* Antes usaba var(--firme), que desde el rediseño (Ronda 11) es un alias
      de var(--teal) -- el MISMO color que ya usa .timer-fase por defecto, así
      que "DESCANSO" nunca se distinguía de "ESTUDIO" más que por la palabra
      en sí. Ámbar (mismo color que ya usa la app para "pausa/atención" en
      otras pantallas) para que se note de un vistazo, sin mirar el texto. */
-  .timer-fase.descanso { color: var(--amber-deep); }
+  .timer-fase.descanso { color: var(--amber); }
   .timer-display {
     font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 72px; line-height: 1; font-weight: 600;
-    color: var(--ink); letter-spacing: -.03em; font-variant-numeric: tabular-nums;
+    color: #fff; letter-spacing: -.03em; font-variant-numeric: tabular-nums;
   }
-  .timer-display.descanso { color: var(--amber-deep); }
-  .timer-ciclos { font-size: 12.5px; color: rgba(0,0,0,.45); margin-top: 10px; }
+  .timer-display.descanso { color: var(--amber); }
+  .timer-ciclos { font-size: 12.5px; color: rgba(255,255,255,.55); margin-top: 10px; }
+  /* Ticks de bloques del ciclo (mockup 5b) -- mismo patrón que la racha
+     del sidebar (side-nav-racha-ticks), acá con el total real del método
+     elegido en vez de un tope fijo de 7. */
+  .timer-ticks { display: flex; gap: 5px; justify-content: center; }
+  .timer-tick { width: 30px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.18); }
+  .timer-tick.filled { background: var(--teal-light); }
   /* Chicos, uno al lado del otro, con el ancho que les da el padding --
      no full-width como el resto de los .btn de la app. */
   .timer-btns { display: flex; gap: 10px; align-items: center; }
@@ -598,17 +606,17 @@
   }
   .timer-btns .btn:not(.secondary) { padding: 12px 34px; font-size: 14px; font-weight: 700; background: var(--teal); }
   .timer-btns .btn:not(.secondary):hover { background: var(--teal-hover); }
-  .timer-btns .btn.secondary { padding: 12px 20px; font-size: 13px; font-weight: 600; background: none; border: 1px solid rgba(0,0,0,.15); color: rgba(0,0,0,.6); }
-  .timer-btns .btn.secondary:hover { border-color: var(--teal); color: var(--teal); }
-  .timer-sonido-row { display: flex; align-items: center; justify-content: center; gap: 16px; }
+  .timer-btns .btn.secondary { padding: 12px 20px; font-size: 13px; font-weight: 600; background: none; border: 1px solid rgba(255,255,255,.18); color: rgba(255,255,255,.75); }
+  .timer-btns .btn.secondary:hover { border-color: var(--teal-light); color: var(--teal-light); }
+  .timer-sonido-row { display: flex; align-items: center; justify-content: center; gap: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.10); width: 100%; }
   .timer-sonido-row button, .timer-sonido-row a {
-    background: none; border: none; color: rgba(0,0,0,.45); font-family: inherit;
+    background: none; border: none; color: rgba(255,255,255,.5); font-family: inherit;
     font-size: 12px; font-weight: 500; cursor: pointer; text-decoration: none;
     display: inline-flex; align-items: center; gap: 5px; padding: 0;
   }
-  .timer-sonido-row button:hover, .timer-sonido-row a:hover { color: var(--teal); }
+  .timer-sonido-row button:hover, .timer-sonido-row a:hover { color: var(--teal-light); }
   .timer-sonido-volumen { display: flex; align-items: center; gap: 8px; }
-  .timer-sonido-volumen span { font-size: 11px; color: var(--muted); }
+  .timer-sonido-volumen span { font-size: 11px; color: rgba(255,255,255,.5); }
   /* #fichasBox (Estudiar > Fichas de repaso) crece para ocupar el espacio
      que sobra debajo del formulario, y la propia tarjeta se estira dentro
      -- "Generar fichas" quedó reubicado después en el HTML, así que cae
@@ -680,6 +688,40 @@
   .ajuste-objetivo { margin-top: 14px; padding: 10px 14px; border-radius: 10px; font-size: 13px; text-align: left; line-height: 1.4; }
   .ajuste-objetivo.bajada { background: var(--flojo-soft); color: var(--amber-deep); }
   .ajuste-objetivo.subida { background: var(--firme-soft); color: var(--firme); }
+
+  /* Resultado de Simulacro (mockup 5a) -- hero oscuro (mismo lenguaje que
+     .resumen-hero de Resumen) + panel "qué cambió en tu plan" al lado, y
+     el desglose por tema abajo con la etiqueta real de lo que pasó (BAJÓ A
+     FLOJO/SIN CAMBIO/FIRME) en vez de solo el número de aciertos. */
+  .simulacro-resultado-row { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+  .simulacro-resultado-hero { flex: 1.2; min-width: 220px; background: var(--ink); border-radius: 12px; padding: 20px; text-align: left; }
+  .simulacro-resultado-hero .resumen-hero-sub { color: rgba(255,255,255,.65); }
+  .simulacro-resultado-bar { height: 8px; border-radius: 5px; overflow: hidden; background: rgba(255,255,255,.12); margin-top: 16px; }
+  .simulacro-resultado-bar div { height: 100%; background: #7fe6d0; }
+  .simulacro-resultado-plan { flex: 1; min-width: 220px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px; text-align: left; }
+  .simulacro-plan-lista { display: flex; flex-direction: column; gap: 11px; margin-top: 13px; }
+  .simulacro-plan-item { display: flex; gap: 9px; align-items: flex-start; font-size: 12.5px; line-height: 1.45; color: var(--ink); }
+  .simulacro-plan-item .hoy-item-dot { margin-top: 5px; }
+  .simulacro-plan-item.atrasado .hoy-item-dot { background: var(--atrasado); }
+  .simulacro-plan-item.firme .hoy-item-dot { background: var(--teal); }
+  .simulacro-desglose { display: flex; flex-direction: column; margin-top: 18px; }
+  .simulacro-desglose-row { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-top: 1px solid var(--line); }
+  .simulacro-desglose-row:first-child { border-top: none; }
+  .simulacro-desglose-tema { font-size: 14px; font-weight: 600; flex: 1; min-width: 0; text-align: left; }
+  .simulacro-desglose-frac { font-size: 12px; font-weight: 600; width: 50px; text-align: right; flex: none; color: var(--muted); }
+  .simulacro-desglose-frac.flojo { color: var(--atrasado); }
+  .simulacro-desglose-frac.firme { color: var(--teal); }
+  .simulacro-desglose-bar { flex: none; width: 90px; height: 6px; border-radius: 3px; overflow: hidden; background: var(--line); }
+  .simulacro-desglose-bar div { height: 100%; background: var(--muted); }
+  .simulacro-desglose-bar div.flojo { background: var(--atrasado); }
+  .simulacro-desglose-bar div.firme { background: var(--teal); }
+  .simulacro-desglose-label { font-size: 9.5px; font-weight: 700; letter-spacing: .08em; width: 90px; text-align: right; flex: none; color: var(--muted); }
+  .simulacro-desglose-label.flojo { color: var(--atrasado); }
+  .simulacro-desglose-label.firme { color: var(--teal); }
+  @media (max-width: 639px) {
+    .simulacro-desglose-row { flex-wrap: wrap; }
+    .simulacro-desglose-tema { flex-basis: 100%; }
+  }
 
   /* Fichas en mobile (rediseño, <860px): pantalla completa oscura -- ver
      #fichaFullscreen, fuera de .app-shell en el HTML. Reusa el mismo
@@ -1525,6 +1567,15 @@
   .study-panel.active { display: flex; flex-direction: column; flex: 1; min-height: 0; }
   .estudiar-rail { display: flex; flex-direction: column; gap: 14px; }
   .estudiar-rail h3 { margin: 0 0 4px; font-size: 14px; }
+  /* "TEMA DE HOY" (mockup 4b) -- de qué tema puntual habla la columna de
+     abajo (bibliografía, firme/flojo rápido). Mismo tema que ya elige el
+     selector de Fichas/Corrector, solo mostrado con más jerarquía acá. */
+  .estudiar-tema-hoy-label { font-size: 9.5px; font-weight: 700; letter-spacing: .09em; color: var(--muted); }
+  .estudiar-tema-hoy-box { background: #fff; border: 1px solid var(--line); border-radius: 11px; padding: 14px; margin-top: 8px; }
+  .estudiar-tema-hoy-nombre { font-size: 14px; font-weight: 700; }
+  .estudiar-tema-hoy-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .estudiar-tema-hoy-cambiar { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .04em; color: var(--teal); margin-top: 9px; text-decoration: none; }
+  .estudiar-tema-hoy-cambiar:hover { text-decoration: underline; }
   /* Grilla de dos columnas (armada según CORRECCION-tiempo-de-estudio.md):
      1.35fr/1fr, con .study-layout como flex:1 dentro de .screen-content
      para que tenga alto real que repartir -- sin esto la grilla no tiene
@@ -2472,6 +2523,7 @@
           <div class="timer-clock">
             <div class="timer-fase" id="timerFaseLabel">ESTUDIO</div>
             <div class="timer-display" id="timerDisplay">25:00</div>
+            <div class="timer-ticks" id="timerTicks" style="display:none;"></div>
             <div class="timer-ciclos" id="timerCiclosLabel">0 bloques completados hoy · 25 min de foco, 5 de descanso</div>
           </div>
           <div class="timer-btns">
@@ -2488,6 +2540,9 @@
             <span>🔊</span>
           </div>
         </div>
+        <!-- HOY/PROMEDIO (mockup 5b) -- el promedio diario se muda acá desde
+             Resumen (Ronda F), tiene más contexto al lado del reloj. -->
+        <div class="resumen-stats-row" id="timerStatsRow" style="margin-top:12px;"></div>
     </div>
 
     <div class="study-panel" id="sec-fichas" data-sec="fichas">
@@ -2616,6 +2671,14 @@
     </div>
 
     <aside class="estudiar-rail" id="estudiarRail">
+      <div id="estudiarTemaHoyCard" style="display:none;">
+        <div class="estudiar-tema-hoy-label mono">TEMA</div>
+        <div class="estudiar-tema-hoy-box">
+          <div class="estudiar-tema-hoy-nombre" id="estudiarTemaHoyNombre"></div>
+          <div class="estudiar-tema-hoy-sub" id="estudiarTemaHoySub"></div>
+          <a href="#" class="estudiar-tema-hoy-cambiar mono" onclick="event.preventDefault(); cambiarTemaEstudiar();">CAMBIAR TEMA</a>
+        </div>
+      </div>
       <div id="estudiarAccionesCard" style="display:none;">
         <h3>Al terminar el bloque</h3>
         <p class="sub">Marcá cómo te fue con <strong id="estudiarRailTema">este tema</strong> para reprogramar el próximo repaso.</p>
@@ -6031,6 +6094,45 @@ function renderTimer() {
   const minDescanso = Math.round(metodo.descanso / 60);
   document.getElementById('timerCiclosLabel').textContent = `${timerCiclosHoy} ${timerCiclosHoy === 1 ? 'bloque completado' : 'bloques completados'} hoy · ${minFoco} min de foco, ${minDescanso} de descanso`;
   document.getElementById('timerStartBtn').textContent = timerCorriendo ? '⏸ Pausar' : '▶ Empezar';
+
+  // Ticks de bloques (mockup 5b) -- solo tiene sentido con un método que
+  // agrupe en un número finito de ciclos (Pomodoro); 50/10 y 90/20 son
+  // sesiones largas sin ese agrupamiento, así que se ocultan ahí.
+  const ticksEl = document.getElementById('timerTicks');
+  if (ticksEl) {
+    if (Number.isFinite(metodo.ciclosParaLargo)) {
+      const enEsteGrupo = timerCiclosHoy % metodo.ciclosParaLargo;
+      ticksEl.style.display = 'flex';
+      ticksEl.innerHTML = Array.from({ length: metodo.ciclosParaLargo }, (_, i) =>
+        `<span class="timer-tick${i < enEsteGrupo ? ' filled' : ''}"></span>`).join('');
+    } else {
+      ticksEl.style.display = 'none';
+    }
+  }
+
+  // HOY/PROMEDIO DIARIO -- mismo cálculo que antes vivía en Resumen (F.2),
+  // mudado acá porque tiene más contexto al lado del reloj real.
+  const statsRow = document.getElementById('timerStatsRow');
+  if (statsRow) {
+    const hoyKey = fmt(new Date());
+    const minHoy = actividadDiaria[hoyKey] || 0;
+    const desde = addDays(new Date(), -27);
+    let sumaMin = 0, diasConDatos = 0;
+    for (let d = new Date(desde); d <= new Date(); d.setDate(d.getDate() + 1)) {
+      const k = fmt(d);
+      if (actividadDiaria[k]) { sumaMin += actividadDiaria[k]; diasConDatos++; }
+    }
+    const promedioMin = diasConDatos ? Math.round(sumaMin / diasConDatos) : null;
+    statsRow.innerHTML = `
+      <div class="resumen-stat-card">
+        <div class="resumen-stat-label">Hoy</div>
+        <div class="resumen-stat-value">${minHoy} <small>min</small></div>
+      </div>
+      <div class="resumen-stat-card">
+        <div class="resumen-stat-label">Promedio diario</div>
+        <div class="resumen-stat-value">${promedioMin !== null ? `${promedioMin} <small>min</small>` : '<small>Sin datos todavía</small>'}</div>
+      </div>`;
+  }
 }
 
 // Compartido por los inputs de archivo de fichas y resúmenes -- muestra/
@@ -6618,9 +6720,9 @@ function renderSimulacro() {
     // que pertenecen a una materia EN CURSO -- un simulacro de una materia
     // sin examen armado se muestra igual pero no toca ningún estado.
     let cambios = [];
+    const examen = examenesEnCurso().find(x => x.materiaNombre === (simulacroContexto && simulacroContexto.materiaNombre));
     if (!simulacroEvaluado) {
       simulacroEvaluado = true;
-      const examen = examenesEnCurso().find(x => x.materiaNombre === (simulacroContexto && simulacroContexto.materiaNombre));
       if (examen) {
         // Solo temas que realmente están en el calendario de esta materia --
         // "Sin clasificar" (preguntas sin tema asignado por la IA) u otra
@@ -6632,20 +6734,57 @@ function renderSimulacro() {
         if (cambios.length) updateBadges();
       }
     }
+    // Mensaje con contexto real (mockup 5a) -- si la materia tiene fecha de
+    // examen, ancla el resultado a cuánto tiempo queda, no solo al %.
+    const diasExamen = examen && examen.fecha ? diasHasta(examen.fecha) : null;
+    const mensaje = diasExamen !== null
+      ? `${pct}% en ${tiempoSimulacroTexto().replace('⏱️ ', '')}. Con ${diasExamen} día${diasExamen === 1 ? '' : 's'} por delante, ${pct >= 60 ? 'alcanza para llegar bien' : 'conviene reforzar pronto'} si los ${flacos.length} tema${flacos.length === 1 ? '' : 's'} flojo${flacos.length === 1 ? '' : 's'} no ${flacos.length === 1 ? 'se vuelve' : 'se vuelven'} a escapar.`
+      : `${pct}% correctas · terminado en ${tiempoSimulacroTexto().replace('⏱️ ', '')}.`;
+    // "Qué cambió en tu plan" -- agrupa los ajustes reales por dirección en
+    // vez de listar uno por uno (mockup 5a): "N temas bajaron a flojo" /
+    // "N temas quedaron confirmados firmes".
+    const bajaron = cambios.filter(c => c.a === 'flojo').length;
+    const subieron = cambios.filter(c => c.a === 'firme').length;
     box.innerHTML = `
-      <div class="explicar-resultado">
-        <div class="explicar-resultado-num mono">${correctas} / ${simulacroPreguntas.length}</div>
-        <div class="explicar-resultado-label">${pct}% correctas · terminado en ${tiempoSimulacroTexto().replace('⏱️ ', '')}</div>
-        ${cambios.map(ajusteObjetivoHTML).join('')}
-        ${flacos.length ? `
-          <div class="sub" style="margin-top:14px; text-align:left;"><strong>Temas para reforzar:</strong></div>
-          <ul style="text-align:left; margin:6px 0 0; padding-left:18px;">
-            ${flacos.map(([tema, v]) => `<li>${escapeHtml(tema)} (${v.ok}/${v.total})</li>`).join('')}
-          </ul>` : '<div class="sub" style="margin-top:14px;">Ningún tema flojo -- ¡buen resultado!</div>'}
-        <div class="explicar-resultado-btns">
-          <button type="button" class="btn secondary" onclick="simulacroIndex=0; renderSimulacro();">👀 Revisar respuestas</button>
-          <button type="button" class="btn" onclick="simulacroPreguntas=[]; renderSimulacro();">✕ Cerrar</button>
+      <div class="simulacro-resultado-row">
+        <div class="simulacro-resultado-hero">
+          <div class="resumen-hero-label">RESULTADO</div>
+          <div class="resumen-hero-value">
+            <div class="resumen-hero-num">${correctas}</div>
+            <div class="resumen-hero-total">de ${simulacroPreguntas.length}</div>
+          </div>
+          <div class="simulacro-resultado-bar"><div style="width:${pct}%"></div></div>
+          <div class="resumen-hero-sub">${mensaje}</div>
         </div>
+        ${cambios.length ? `
+        <div class="simulacro-resultado-plan">
+          <div class="resumen-stat-label">QUÉ CAMBIÓ EN TU PLAN</div>
+          <div class="simulacro-plan-lista">
+            ${bajaron ? `<div class="simulacro-plan-item atrasado"><span class="hoy-item-dot"></span><span><strong>${bajaron} tema${bajaron === 1 ? '' : 's'}</strong> baj${bajaron === 1 ? 'ó' : 'aron'} a flojo y se reagend${bajaron === 1 ? 'ó' : 'aron'} para pasado mañana.</span></div>` : ''}
+            ${subieron ? `<div class="simulacro-plan-item firme"><span class="hoy-item-dot"></span><span><strong>${subieron} tema${subieron === 1 ? '' : 's'}</strong> qued${subieron === 1 ? 'ó' : 'aron'} confirmado${subieron === 1 ? '' : 's'} firme${subieron === 1 ? '' : 's'}: su próximo repaso se espació.</span></div>` : ''}
+          </div>
+          <button type="button" class="btn secondary" style="margin-top:15px;" onclick="go(4);">Ver el calendario</button>
+        </div>` : ''}
+      </div>
+      ${Object.keys(porTema).length ? `
+      <div class="simulacro-desglose">
+        ${Object.entries(porTema).map(([tema, v]) => {
+          const cambio = cambios.find(c => c.tema === tema);
+          const etiqueta = cambio ? (cambio.a === 'flojo' ? 'BAJÓ A FLOJO' : 'FIRME') : 'SIN CAMBIO';
+          const claseEtiqueta = cambio ? cambio.a : 'sinver';
+          const pctTema = v.total ? Math.round(v.ok / v.total * 100) : 0;
+          return `
+          <div class="simulacro-desglose-row">
+            <span class="simulacro-desglose-tema">${escapeHtml(tema)}</span>
+            <span class="simulacro-desglose-frac mono ${claseEtiqueta}">${v.ok} / ${v.total}</span>
+            <div class="simulacro-desglose-bar"><div class="${claseEtiqueta}" style="width:${pctTema}%"></div></div>
+            <span class="simulacro-desglose-label mono ${claseEtiqueta}">${etiqueta}</span>
+          </div>`;
+        }).join('')}
+      </div>` : ''}
+      <div class="explicar-resultado-btns" style="margin-top:18px;">
+        <button type="button" class="btn secondary" onclick="simulacroIndex=0; renderSimulacro();">👀 Revisar respuestas</button>
+        <button type="button" class="btn" onclick="simulacroPreguntas=[]; renderSimulacro();">✕ Cerrar</button>
       </div>`;
     return;
   }
@@ -7243,21 +7382,39 @@ function marcarDesdeEstudiar(estado) {
   renderEstudiarRail();
 }
 
+// "CAMBIAR TEMA" en la tarjeta "Tema" del riel (mockup 4b) -- el selector
+// real ya vive en el panel principal de Fichas/Corrector (único lugar de
+// la app donde se elige un tema puntual para Estudiar); acá solo lo hace
+// visible y le pone el foco, no duplica la lógica de selección.
+function cambiarTemaEstudiar() {
+  const activo = document.querySelector('.study-panel.active')?.dataset.sec;
+  const selId = activo === 'corrector' ? 'correctorTemaSelect' : 'fichasTemaSelect';
+  const sel = document.getElementById(selId);
+  if (sel) { sel.scrollIntoView({ block: 'center', behavior: 'smooth' }); sel.focus(); }
+}
+
 function renderEstudiarRail() {
   const activo = document.querySelector('.study-panel.active')?.dataset.sec;
   const item = temaEnFocoEstudiar();
   const sub = document.getElementById('estudiarSub');
   const biblioCard = document.getElementById('estudiarBiblioCard');
   const accionesCard = document.getElementById('estudiarAccionesCard');
+  const temaHoyCard = document.getElementById('estudiarTemaHoyCard');
   if (!biblioCard || !accionesCard) return;
   if (!item) {
     biblioCard.style.display = 'none'; accionesCard.style.display = 'none';
+    if (temaHoyCard) temaHoyCard.style.display = 'none';
     if (sub) sub.textContent = 'Elegí qué querés usar ahora.';
     return;
   }
   const tema = item.tema;
   const materiaNombre = item.materiaNombre;
   if (sub) sub.innerHTML = `Estás con <strong>${tema}</strong> · ${nombreCorto(materiaNombre)}`;
+  if (temaHoyCard) {
+    temaHoyCard.style.display = '';
+    document.getElementById('estudiarTemaHoyNombre').textContent = tema;
+    document.getElementById('estudiarTemaHoySub').textContent = nombreCorto(materiaNombre);
+  }
   renderReferencia(tema, materiaNombre, 'estudiarBiblioBox');
   biblioCard.style.display = '';
   const conExamen = activo === 'fichas' && examenDelTemaFichasActual();
