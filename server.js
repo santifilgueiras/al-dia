@@ -10,7 +10,16 @@ const { createClient } = require('@supabase/supabase-js');
 const {
   extraerJSON, extraerJSONObjeto, mezclarOpcionesMultiple,
   fechaHoyMontevideo, horaAhoraMontevideo, bucket15, pendingCountFromEstado,
+  validarFichas,
 } = require('./lib/server-utils');
+
+// Se genera y se guarda siempre esta cantidad en la cache, sirviendo las
+// primeras `n`: pedir 15 y pedir 16 del mismo tema antes eran dos entradas
+// de cache DISTINTAS (la clave incluía "cantidad" tal cual) -- eso
+// fragmentaba la cache al punto de casi no pegarle nunca, porque el front
+// deja elegir la cantidad libremente. Con una sola tanda grande por
+// tema/materia, cualquier cantidad pedida ≤30 sale de ahí.
+const CACHE_TANDA = 30;
 
 const app = express();
 const PORT = process.env.PORT || 5173;
@@ -277,13 +286,16 @@ app.post('/api/fichas', requireAuth, rateLimitIA, topeDiarioIA, upload.single('a
   const esMultiple = tipo === 'multiple';
   const n = Math.max(4, Math.min(30, parseInt(cantidad, 10) || 15)); // clamp defensivo -- el front ya limita a 6-30
   const tipoCache = esMultiple ? 'multiple' : 'normal';
+  // Solo se cachea (ni se lee la cache) cuando hay un apunte propio subido
+  // -- ese contenido es único de esa persona, no tiene sentido compartirlo.
+  const vaACache = !apuntePropio && !!supabaseAdmin;
 
-  // Cache compartida entre TODOS los estudiantes -- si alguien ya pidió
-  // exactamente este tema/tipo/cantidad/con-búsqueda, se sirve esa copia sin
-  // gastar un solo token de la API key. Nunca se cachea (ni se lee la cache)
-  // cuando hay un apunte propio subido, porque ese contenido es único de esa
-  // persona.
-  if (!apuntePropio && supabaseAdmin) {
+  // Cache compartida entre TODOS los estudiantes de esa materia -- siempre
+  // se busca/guarda la TANDA GRANDE (CACHE_TANDA), nunca la cantidad puntual
+  // pedida, y se recorta a `n` acá. Antes la clave incluía la cantidad
+  // exacta, así que pedir 15 y pedir 16 del mismo tema eran dos cache-misses
+  // distintos -- con esto, cualquier cantidad ≤ CACHE_TANDA sale de la misma fila.
+  if (vaACache) {
     try {
       const { data: cacheada, error: errCache } = await supabaseAdmin
         .from('fichas_cache')
@@ -291,18 +303,27 @@ app.post('/api/fichas', requireAuth, rateLimitIA, topeDiarioIA, upload.single('a
         .eq('materia_nombre', materiaNombre)
         .eq('tema', tema)
         .eq('tipo', tipoCache)
-        .eq('cantidad', n)
+        .eq('cantidad', CACHE_TANDA)
         .eq('con_busqueda', conBusqueda)
         .maybeSingle();
       if (errCache) console.error('Error leyendo fichas_cache (sigue sin cache)', errCache);
-      if (cacheada) {
-        const fichasServidas = esMultiple ? mezclarOpcionesMultiple(cacheada.fichas) : cacheada.fichas;
-        return res.json({ fichas: fichasServidas, cache: true });
+      if (cacheada && Array.isArray(cacheada.fichas) && cacheada.fichas.length >= n) {
+        // Recortar a n, y mezclar el ORDEN de las fichas DESPUÉS de
+        // recortar (no antes) -- así dos estudiantes que piden 10 del mismo
+        // tema no reciben exactamente las mismas 10 fichas siempre.
+        const barajadas = cacheada.fichas.slice().sort(() => Math.random() - 0.5).slice(0, n);
+        const servidas = esMultiple ? mezclarOpcionesMultiple(barajadas) : barajadas;
+        return res.json({ fichas: servidas, cache: true });
       }
     } catch (e) {
       console.error('Error leyendo fichas_cache (sigue sin cache)', e);
     }
   }
+
+  // Si va a cache, se le pide a la IA la tanda grande completa (así la
+  // cache queda armada para cualquier cantidad futura ≤ CACHE_TANDA);
+  // si no (apunte propio, o sin Supabase en local), solo lo que se pidió.
+  const nGenerar = vaACache ? CACHE_TANDA : n;
 
   // Si el estudiante subió su propio apunte, las fichas se anclan a ESE
   // contenido en vez de la bibliografía genérica de cátedra -- así quedan
@@ -314,12 +335,12 @@ app.post('/api/fichas', requireAuth, rateLimitIA, topeDiarioIA, upload.single('a
       : 'No hay una referencia bibliográfica específica cargada -- usá el contenido estándar de la materia.';
 
   const consigna = esMultiple
-    ? `Generá ${n} preguntas de opción múltiple sobre este tema, de nivel de examen de grado -- ni trivial ni de sub-especialidad. Cada una con 4 opciones (una correcta, tres distractores plausibles pero incorrectos, no absurdos). No repitas la misma pregunta de dos formas distintas.
+    ? `Generá ${nGenerar} preguntas de opción múltiple sobre este tema, de nivel de examen de grado -- ni trivial ni de sub-especialidad. Cada una con 4 opciones (una correcta, tres distractores plausibles pero incorrectos, no absurdos). No repitas la misma pregunta de dos formas distintas.
 
 Respondé ÚNICAMENTE con un JSON válido, sin texto antes ni después, con este formato exacto:
 [{"pregunta": "...", "opciones": ["...", "...", "...", "..."], "correcta": 0}, ...]
 Donde "correcta" es el índice (0 a 3, como NÚMERO, nunca como string entre comillas) de la opción correcta dentro de "opciones".`
-    : `Generá ${n} fichas de estudio (pregunta y respuesta) tipo flashcard sobre este tema, de nivel de examen de grado -- ni trivial ni de sub-especialidad. Las respuestas deben ser concisas (2-4 líneas) y precisas. No repitas la misma pregunta de dos formas distintas.
+    : `Generá ${nGenerar} fichas de estudio (pregunta y respuesta) tipo flashcard sobre este tema, de nivel de examen de grado -- ni trivial ni de sub-especialidad. Las respuestas deben ser concisas (2-4 líneas) y precisas. No repitas la misma pregunta de dos formas distintas.
 
 Respondé ÚNICAMENTE con un JSON válido, sin texto antes ni después, con este formato exacto:
 [{"pregunta": "...", "respuesta": "..."}, ...]`;
@@ -336,24 +357,29 @@ ${consigna}`;
   try {
     const texto = await llamarClaude(
       prompt,
-      Math.max(3000, n * 220 + 1500),
+      Math.max(3000, nGenerar * 220 + 1500),
       conBusqueda ? [toolBusquedaWebPara(FICHAS_MODEL)] : undefined,
       FICHAS_MODEL,
     );
-    const fichas = extraerJSON(texto);
+    const crudas = extraerJSON(texto);
+    const fichas = crudas && validarFichas(crudas, esMultiple);
     if (!fichas) {
-      console.error('Respuesta sin JSON reconocible:', texto);
+      console.error('Fichas inválidas o sin JSON reconocible:', texto.slice(0, 800));
       return res.status(502).json({ error: 'No se pudo interpretar la respuesta de la IA. Probá de nuevo.' });
     }
-    res.json({ fichas: esMultiple ? mezclarOpcionesMultiple(fichas) : fichas });
+
+    const paraServir = fichas.slice(0, n);
+    res.json({ fichas: esMultiple ? mezclarOpcionesMultiple(paraServir) : paraServir });
+
     // Guardar en la cache DESPUÉS de responder -- el estudiante no tiene que
-    // esperar a que termine de escribirse. Se guarda el original SIN mezclar
-    // (mezclarOpcionesMultiple ya corre de nuevo en cada lectura de la cache,
-    // así cada estudiante ve un orden distinto). Igual que la lectura, nunca
-    // se guarda contenido generado a partir de un apunte propio.
-    if (!apuntePropio && supabaseAdmin) {
+    // esperar a que termine de escribirse. Se guarda la tanda COMPLETA y ya
+    // VALIDADA (nunca contenido de un apunte propio), y solo si salió
+    // razonablemente completa -- si la IA devolvió bastante menos que
+    // CACHE_TANDA (varias se cayeron en validarFichas), mejor no cachear una
+    // tanda chica bajo la clave de la tanda grande.
+    if (vaACache && fichas.length >= CACHE_TANDA * 0.8) {
       supabaseAdmin.from('fichas_cache').upsert({
-        tema, materia_nombre: materiaNombre, tipo: tipoCache, cantidad: n, con_busqueda: conBusqueda, fichas,
+        tema, materia_nombre: materiaNombre, tipo: tipoCache, cantidad: CACHE_TANDA, con_busqueda: conBusqueda, fichas,
       }, { onConflict: 'materia_nombre,tema,tipo,cantidad,con_busqueda' }).then(({ error }) => {
         if (error) console.error('Error guardando fichas_cache', error);
       }).catch(e => console.error('Error guardando fichas_cache', e));
@@ -423,9 +449,10 @@ Donde "correcta" es el índice (0 a 3, como NÚMERO, nunca como string entre com
 
   try {
     const texto = await llamarClaude(prompt, Math.max(4500, n * 260 + 2000), undefined, FICHAS_MODEL);
-    const preguntas = extraerJSON(texto);
+    const crudas = extraerJSON(texto);
+    const preguntas = crudas && validarFichas(crudas, true);
     if (!preguntas) {
-      console.error('Respuesta sin JSON reconocible (simulacro):', texto);
+      console.error('Preguntas inválidas o sin JSON reconocible (simulacro):', texto.slice(0, 800));
       return res.status(502).json({ error: 'No se pudo interpretar la respuesta de la IA. Probá de nuevo.' });
     }
     res.json({ preguntas: mezclarOpcionesMultiple(preguntas) });
@@ -524,9 +551,10 @@ Respondé ÚNICAMENTE con un JSON válido, sin texto antes ni después, con este
 [{"pregunta": "...", "opciones": ["...", "...", "...", "..."], "correcta": 0}, ...]
 Donde "correcta" es el índice (0 a 3, como NÚMERO, nunca como string entre comillas) de la opción correcta dentro de "opciones".`;
     const texto = await llamarClaude(prompt, 2200, undefined, FICHAS_MODEL);
-    const preguntas = extraerJSON(texto);
+    const crudas = extraerJSON(texto);
+    const preguntas = crudas && validarFichas(crudas, true);
     if (!preguntas) {
-      console.error('Respuesta sin JSON reconocible (explicar/test):', texto);
+      console.error('Preguntas inválidas o sin JSON reconocible (explicar/test):', texto.slice(0, 800));
       return res.status(502).json({ error: 'No se pudo interpretar la respuesta de la IA. Probá de nuevo.' });
     }
     res.json({ preguntas: mezclarOpcionesMultiple(preguntas) });
@@ -674,6 +702,27 @@ app.post('/api/feedback', requireAuth, rateLimitFeedback, async (req, res) => {
     return res.status(500).json({ error: 'No se pudo guardar el feedback.' });
   }
   res.json({ ok: true });
+
+  // 3 pulgares abajo del mismo tema/materia = la tanda cacheada es mala de
+  // verdad -- se borra para que el próximo estudiante la regenere en vez de
+  // seguir recibiendo lo mismo. Antes el feedback era de solo escritura (se
+  // revisaba a mano en el SQL Editor), así que un 👎 no cambiaba nada.
+  // Restringido a fichas (fichas_cache no guarda resúmenes) -- correr
+  // DESPUÉS de responder, no bloquea el ack al estudiante.
+  if (valor === 'down' && tema && materiaNombre && (tipoContenido === 'ficha' || tipoContenido === 'ficha_multiple')) {
+    try {
+      const { count } = await supabaseAdmin
+        .from('ficha_feedback')
+        .select('id', { count: 'exact', head: true })
+        .eq('tema', tema).eq('materia_nombre', materiaNombre).eq('valor', 'down');
+      if ((count || 0) >= 3) {
+        await supabaseAdmin.from('fichas_cache').delete().eq('tema', tema).eq('materia_nombre', materiaNombre);
+        console.warn('Cache de fichas invalidada por feedback negativo:', materiaNombre, tema);
+      }
+    } catch (e) {
+      console.error('Error invalidando cache por feedback', e);
+    }
+  }
 });
 
 // ---- Recordatorio diario (push real) ----

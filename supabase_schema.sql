@@ -190,3 +190,17 @@ create table if not exists public.ficha_feedback (
 );
 
 alter table public.ficha_feedback enable row level security;
+
+-- Antes ficha_feedback era de solo escritura (se revisaba a mano en el SQL
+-- Editor) -- esta vista resume rápido lo peor calificado. El server además
+-- invalida (borra) la fila de fichas_cache correspondiente apenas un
+-- tema/materia junta 3 pulgares abajo (ver POST /api/feedback en
+-- server.js), así que esto queda como tablero de revisión, no como el único
+-- mecanismo de reacción.
+create or replace view public.fichas_flojas as
+select materia_nombre, tema, count(*) as pulgares_abajo
+from public.ficha_feedback
+where valor = 'down' and tipo_contenido in ('ficha', 'ficha_multiple')
+group by 1, 2
+having count(*) >= 3
+order by 3 desc;

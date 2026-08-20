@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const {
   extraerJSON, extraerJSONObjeto, mezclarOpcionesMultiple,
   fechaHoyMontevideo, horaAhoraMontevideo, bucket15, pendingCountFromEstado,
+  validarFichas,
 } = require('../lib/server-utils');
 
 describe('extraerJSON (respuestas de la IA con array)', () => {
@@ -188,5 +189,52 @@ describe('pendingCountFromEstado', () => {
   test('sin examenes / estado vacío da 0, no explota', () => {
     assert.equal(pendingCountFromEstado({}), 0);
     assert.equal(pendingCountFromEstado({ examenes: [] }), 0);
+  });
+});
+
+describe('validarFichas (una ficha malformada no puede quedar cacheada)', () => {
+  const preguntaMultiple = (i, correcta) => ({
+    pregunta: `Pregunta de prueba número ${i}`,
+    opciones: ['a', 'b', 'c', 'd'],
+    correcta,
+  });
+  const preguntaNormal = (i) => ({ pregunta: `Pregunta de prueba número ${i}`, respuesta: 'una respuesta cualquiera' });
+
+  test('rechaza toda la tanda si "correcta" está fuera de rango', () => {
+    const malas = Array.from({ length: 6 }, (_, i) => preguntaMultiple(i, 7));
+    assert.equal(validarFichas(malas, true), null);
+  });
+
+  test('normaliza "correcta" cuando viene como string', () => {
+    const ok = Array.from({ length: 6 }, (_, i) => preguntaMultiple(i, '2'));
+    const limpias = validarFichas(ok, true);
+    assert.ok(limpias);
+    assert.equal(limpias[0].correcta, 2);
+    assert.equal(typeof limpias[0].correcta, 'number');
+  });
+
+  test('descarta preguntas duplicadas (mismo texto normalizado)', () => {
+    const conRepetidas = Array.from({ length: 8 }, () => preguntaNormal(1)); // misma pregunta 8 veces
+    assert.equal(validarFichas(conRepetidas, false), null);
+  });
+
+  test('descarta una ficha de opción múltiple con menos de 4 opciones', () => {
+    const buenas = Array.from({ length: 5 }, (_, i) => preguntaMultiple(i, 0));
+    const conUnaMala = [...buenas, { pregunta: 'Pregunta rara', opciones: ['a', 'b'], correcta: 0 }];
+    // Una sola mala entre 6 buenas no tira toda la tanda -- se descarta esa y siguen las demás.
+    const limpias = validarFichas(conUnaMala, true);
+    assert.equal(limpias.length, 5);
+  });
+
+  test('tanda normal (pregunta/respuesta) válida pasa entera', () => {
+    const buenas = Array.from({ length: 6 }, (_, i) => preguntaNormal(i));
+    const limpias = validarFichas(buenas, false);
+    assert.equal(limpias.length, 6);
+  });
+
+  test('array vacío o sin forma de array da null', () => {
+    assert.equal(validarFichas([], true), null);
+    assert.equal(validarFichas(null, true), null);
+    assert.equal(validarFichas(undefined, false), null);
   });
 });
