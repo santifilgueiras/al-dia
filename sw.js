@@ -2,7 +2,7 @@
 // para que abra rápido y funcione con conexión mala o sin conexión.
 // Las llamadas a /api/* (fichas, resumen) siempre van a la red -- nunca
 // tiene sentido servir una respuesta vieja de la IA desde el cache.
-const CACHE_NAME = 'al-dia-v7';
+const CACHE_NAME = 'al-dia-v8';
 const APP_SHELL = [
   '/mockup-firme.html',
   '/manifest.json',
@@ -10,10 +10,12 @@ const APP_SHELL = [
   '/icons/icon-512.png',
   '/icons/apple-touch-icon.png',
   '/sounds/ambiente.mp3',
-  // Motor de repaso espaciado (ver lib/scheduling.js) -- se carga como
-  // <script src> antes del script principal, así que tiene que estar
-  // precacheado para que la app funcione offline sin romper.
+  // Motor de repaso espaciado y merge de estados en conflicto (ver
+  // lib/scheduling.js y lib/estado.js) -- se cargan como <script src> antes
+  // del script principal, así que tienen que estar precacheados para que la
+  // app funcione offline sin romper.
   '/lib/scheduling.js',
+  '/lib/estado.js',
   // Catálogos/bibliografía/duraciones (antes hardcodeados en mockup-firme.html,
   // ver scripts/extraer-datos.js) -- precargados acá para que la app funcione
   // offline con todo el catálogo disponible desde la primera visita.

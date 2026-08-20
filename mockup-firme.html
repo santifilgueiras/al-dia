@@ -1649,6 +1649,7 @@
        testearlo desde Node (ver test/scheduling.test.js). Va ANTES del
        script principal porque ese lo usa como si fueran funciones propias. -->
   <script src="/lib/scheduling.js"></script>
+  <script src="/lib/estado.js"></script>
 </head>
 <body>
 
@@ -7351,7 +7352,7 @@ async function cargarEstadoUsuario() {
 // próximo tick del intervalo agarra la versión más actual igual.
 let guardadoEnCurso = false;
 
-async function guardarEstadoSiHaceFalta() {
+async function guardarEstadoSiHaceFalta(opts) {
   if (!sesionUsuario || !estadoHidratado || !estadoSucio || guardadoEnCurso) return;
   guardadoEnCurso = true;
   estadoSucio = false;
@@ -7384,17 +7385,43 @@ async function guardarEstadoSiHaceFalta() {
 
     if (!data || !data.length) {
       // Conflicto real: otro dispositivo guardó algo más nuevo mientras
-      // tanto. No pisamos nada -- se recarga la versión real del server
-      // (la más nueva) y se re-renderiza la pantalla actual con ese estado.
-      // El cambio local de ESTE dispositivo que todavía no se había
-      // guardado se pierde -- preferible a perder en silencio el cambio del
-      // OTRO dispositivo, que es lo que pasaba antes.
-      showToast('Tu progreso se actualizó desde otro dispositivo -- actualizando esta pantalla');
-      await cargarEstadoUsuario();
+      // tanto. Antes esto descartaba TODO el estado local y recargaba el
+      // del server -- si la marca que acababas de hacer en el celular
+      // todavía no se había guardado, se perdía en silencio (tercer bug
+      // real de este tipo, ver mergearEstados en lib/estado.js). Ahora se
+      // mergea por tema con el estado remoto fresco y se reintenta UNA vez
+      // -- si esa segunda vuelta TAMBIÉN conflictúa (muy raro, un tercer
+      // dispositivo guardando en el medio), recién ahí se rinde y solo
+      // recarga, para no encadenar reintentos para siempre.
+      const { data: fresco, error: errFresco } = await supabaseClient
+        .from('app_state')
+        .select('estado, updated_at')
+        .eq('user_id', sesionUsuario.id)
+        .maybeSingle();
+      if (errFresco || !fresco) throw errFresco || new Error('No se pudo leer el estado remoto para mergear.');
+
+      if (opts && opts.reintento) {
+        // Ya se había mergeado y reintentado una vez -- no encadenar de
+        // nuevo, mismo comportamiento de antes como último recurso.
+        showToast('Tu progreso se actualizó desde otro dispositivo -- actualizando esta pantalla');
+        hidratarEstado(fresco.estado);
+        estadoUpdatedAtConocido = fresco.updated_at;
+        renderOwnList();
+        const pantallaActivaEl = document.querySelector('.screen.active');
+        if (pantallaActivaEl) go(+pantallaActivaEl.dataset.screen);
+        return;
+      }
+
+      const merged = mergearEstados(estado, fresco.estado);
+      hidratarEstado(merged); // hidrata examenes/racha/notasCalendario/etc en memoria con el resultado mergeado
+      estadoUpdatedAtConocido = fresco.updated_at;
+      estadoSucio = true; // el merge puede traer datos que el server todavía no tiene (ej. lo creado acá)
+      showToast('Sincronizamos con tu otro dispositivo.');
       renderOwnList();
       const pantallaActivaEl = document.querySelector('.screen.active');
       if (pantallaActivaEl) go(+pantallaActivaEl.dataset.screen);
-      return;
+      guardadoEnCurso = false; // liberar ANTES de reintentar, si no el guard de arriba bloquea la llamada recursiva
+      return guardarEstadoSiHaceFalta({ reintento: true });
     }
     estadoUpdatedAtConocido = data[0].updated_at;
   } catch (e) {
