@@ -1628,6 +1628,18 @@
        borde inferior marcando el límite visual. */
     flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    /* Bug real distinto, encontrado en un iPhone real (Ronda 25g,
+       2026-08-20): con 6 pestañas (antes eran 3-4) la fila entera
+       desaparecía en Safari/iOS -- ni se veía ni respondía al toque, así
+       que no era solo un problema de color/visibilidad sino que ocupaba
+       0 de alto. .tabs (la clase base) no fija align-items, así que hereda
+       el default "stretch": la altura de cada .tab dependía de la altura
+       de .study-tabs, que a su vez depende del contenido de sus .tab --
+       una dependencia circular que Safari, con overflow-x:auto de por
+       medio, a veces resuelve mal y colapsa todo a 0. align-items:center
+       le da a cada .tab su alto real (el del texto/ícono) sin depender
+       de que el contenedor ya sepa el suyo. */
+    align-items: center;
     /* LA causa real del "zoom"/recorte que reportó Santiago en iPhone
        (confirmado con el panel de diagnóstico, 2026-08-13): .study-tabs es
        hijo de .screen-content (flex-direction:column), y como sus 4
@@ -1645,6 +1657,11 @@
        el mismo patrón que ya se usó en .cal-grid/.study-main para el mismo
        tipo de bug de flexbox. */
     min-width: 0;
+    /* Red de seguridad además de align-items:center de arriba -- si por lo
+       que sea el contenido igual no alcanza a darle alto a la fila, esto
+       reserva uno fijo (suficiente para ícono+texto de una línea) en vez
+       de dejar que colapse a 0 de nuevo. */
+    min-height: 40px;
   }
   .study-tabs::-webkit-scrollbar { display: none; }
   .study-tabs .tab {
