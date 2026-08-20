@@ -661,6 +661,12 @@
   .explicar-resultado-btns { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
   .explicar-resultado-btns .btn { width: auto; margin-top: 0; }
 
+  /* Ver ajusteObjetivoHTML() -- cuando un resultado real (fichas/simulacro/
+     test) contradice el estado autodeclarado de un tema. */
+  .ajuste-objetivo { margin-top: 14px; padding: 10px 14px; border-radius: 10px; font-size: 13px; text-align: left; line-height: 1.4; }
+  .ajuste-objetivo.bajada { background: var(--flojo-soft); color: var(--amber-deep); }
+  .ajuste-objetivo.subida { background: var(--firme-soft); color: var(--firme); }
+
   /* Fichas en mobile (rediseño, <860px): pantalla completa oscura -- ver
      #fichaFullscreen, fuera de .app-shell en el HTML. Reusa el mismo
      estado (fichasActuales/fichaIndexActual/fichaRespuestas) que la
@@ -947,6 +953,8 @@
   .materia-progress-firme { background: var(--teal); }
   .materia-progress-flojo { background: var(--amber); }
   .materia-card-breakdown { font-size: 11px; color: var(--muted); margin-top: 6px; }
+  .materia-card-proyeccion { font-size: 11px; color: var(--teal); margin-top: 4px; }
+  .materia-card-proyeccion strong { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
   .materia-card-actions { display: flex; gap: 8px; margin-top: 13px; }
   /* "No estoy llegando" (punto 10 del documento de especificación) --
      acción secundaria, chica, no compite con "Ver temas"/"Rendida". */
@@ -1650,6 +1658,11 @@
        script principal porque ese lo usa como si fueran funciones propias. -->
   <script src="/lib/scheduling.js"></script>
   <script src="/lib/estado.js"></script>
+  <!-- registrarEvaluacion/aplicarSeñalObjetiva/proyeccionFirmes -- conecta
+       los aciertos reales de fichas/simulacro/test al estado firme/flojo
+       (ver PATCH-2026-08-19.md sección E). Depende de scheduling.js, por
+       eso va después. -->
+  <script src="/lib/evaluacion.js"></script>
 </head>
 <body>
 
@@ -4429,13 +4442,19 @@ function marcar(estado) {
       const nuevoIdx = Math.min((idxActual === undefined ? -1 : idxActual) + 1, INTERVALOS_REPASO.length - 1);
       e.intervaloIdx[activeDetailTema] = nuevoIdx;
       e.proximoRepaso[activeDetailTema] = fmt(proximoFechaRepaso(e, nuevoIdx, hoy0()));
+      // Alimenta ritmoObservado()/proyeccionFirmes() (ver lib/evaluacion.js)
+      // -- cuántos temas por día se vienen marcando firme de verdad en los
+      // últimos 7 días, más honesto que el ritmo mínimo teórico.
+      if (!e.firmeFechas) e.firmeFechas = {};
+      e.firmeFechas[activeDetailTema] = fmt(hoy0());
     } else {
       e.intervaloIdx[activeDetailTema] = 0;
       e.proximoRepaso[activeDetailTema] = fmt(proximoFechaRepaso(e, 0, hoy0()));
-      // Cuenta de "se te sigue escapando" (Resumen) -- cuántas veces este
-      // tema puntual quedó flojo, no cuántas veces se tocó en total.
-      if (!e.flojoCount) e.flojoCount = {};
-      e.flojoCount[activeDetailTema] = (e.flojoCount[activeDetailTema] || 0) + 1;
+      // Recaída (mismo contador que "se te sigue escapando" en Resumen y
+      // esLeech() en lib/scheduling.js) -- cuántas veces este tema puntual
+      // volvió al escalón 0, sea por marcarlo flojo a mano o porque
+      // aplicarSeñalObjetiva() lo bajó solo por un mal resultado real.
+      registrarRecaida(e, activeDetailTema);
     }
     registrarMinutosHoy(minutosEstimados(activeDetailTema));
   }
@@ -4934,6 +4953,7 @@ function renderRepaso() {
         <div class="repaso-item-sub">${subPartes.join(' · ')}</div>
       </div>
       ${it.state === 'flojo' ? '<span class="tag repaso-tag">FLOJO</span>' : ''}
+      ${esLeech(examenes.find(x => x.id === it.examId), it.name) ? '<span class="tag repaso-tag" style="background:var(--pink-tint); color:var(--pink);" title="Volvió a flojo 3 o más veces -- puede necesitar otra estrategia, no más del mismo repaso">🔁 SE ESCAPA</span>' : ''}
       <div class="repaso-item-right">
         <span class="repaso-item-min mono">~${min} min</span>
         <button type="button" class="repaso-fichas-btn" onclick="event.stopPropagation(); irAEstudiar('fichas');">🧠 Fichas</button>
@@ -5371,6 +5391,10 @@ function renderExamenes() {
     const total = c ? c.firme + c.flojo + c.nuevo : 0;
     const pct = total > 0 ? Math.round((c.firme / total) * 100) : 0;
     const dias = e.fecha ? diasHasta(e.fecha) : null;
+    // "A este ritmo llegás con X/Y firmes" (ver proyeccionFirmes en
+    // lib/evaluacion.js) -- más honesto que el % firme crudo, que arranca
+    // en 0 y cuenta en contra todo lo que todavía no se vio.
+    const proy = !faltaConfig ? proyeccionFirmes(e, hoy0()) : null;
     const badge = e.prioridad
       ? `<span class="tag materia-badge prioritaria">★ PRIORITARIA</span>`
       : `<button type="button" class="tag materia-badge priorizar" onclick="event.stopPropagation(); toggleMateriaPrioritaria(${e.id})">☆ PRIORIZAR</button>`;
@@ -5391,7 +5415,8 @@ function renderExamenes() {
           <div class="materia-progress-firme" style="width:${total ? (c.firme / total * 100) : 0}%"></div>
           <div class="materia-progress-flojo" style="width:${total ? (c.flojo / total * 100) : 0}%"></div>
         </div>
-        <div class="materia-card-breakdown mono">${c.firme} firmes · ${c.flojo} flojos · ${c.nuevo} sin ver</div>`}
+        <div class="materia-card-breakdown mono">${c.firme} firmes · ${c.flojo} flojos · ${c.nuevo} sin ver</div>
+        ${proy && proy.total ? `<div class="materia-card-proyeccion">A este ritmo llegás con <strong>${proy.alcanzables}/${proy.total}</strong> firmes</div>` : ''}`}
       </div>
       <div class="materia-card-actions">
         <button type="button" class="btn ${e.prioridad ? '' : 'secondary'}" style="flex:1; margin-top:0;" onclick="event.stopPropagation(); abrirExamen(${e.id})">Ver temas</button>
@@ -5841,6 +5866,13 @@ let fichaRespuestas = [];
 // apenas se toca un botón (POST /api/feedback) y acá solo queda la marca
 // visual de que ya se mandó, para no dejar mandar dos veces la misma.
 let fichaFeedback = [];
+// Ajuste de estado objetivo (ver lib/evaluacion.js) al terminar de contestar
+// la tanda de opción múltiple -- fichaEvaluacionAplicada evita aplicarlo
+// más de una vez si el usuario vuelve a la última ficha después de ya
+// evaluada. Solo aplica a opción múltiple (las de "dar vuelta" no tienen
+// aciertos/total reales, son autoevaluación).
+let fichaAjusteObjetivo = null;
+let fichaEvaluacionAplicada = false;
 let fichasTipo = 'normal'; // 'normal' | 'multiple'
 // Tema/materia de la tanda actual -- solo para mostrar contexto en la
 // versión mobile de pantalla completa (encabezado + bibliografía). La
@@ -5984,6 +6016,8 @@ async function generarFichas() {
     fichaFlipped = false;
     fichaRespuestas = [];
     fichaFeedback = [];
+    fichaAjusteObjetivo = null;
+    fichaEvaluacionAplicada = false;
     fichasContexto = { tema: item.tema, materiaNombre: item.materiaNombre };
     renderFichaActual();
   } catch (e) {
@@ -6040,6 +6074,7 @@ function renderFichaEscritorio() {
       <button class="btn secondary" onclick="cambiarFicha(-1)" ${fichaIndexActual === 0 ? 'disabled' : ''}>‹ Anterior</button>
       <button class="btn secondary" onclick="cambiarFicha(1)" ${fichaIndexActual === fichasActuales.length - 1 ? 'disabled' : ''}>Siguiente ›</button>
     </div>
+    ${esMultiple && fichaIndexActual === fichasActuales.length - 1 ? ajusteObjetivoHTML(fichaAjusteObjetivo) : ''}
     ${fichaFeedbackHTML()}`;
 }
 
@@ -6098,6 +6133,7 @@ function renderFichaFullscreen(fsBox) {
         return `<button class="ficha-fs-opcion ${cls}" onclick="elegirOpcionFicha(${i})" ${yaContestada ? 'disabled' : ''}><span class="letra">${FICHA_LETRAS[i] || i + 1}</span>${op}</button>`;
       }).join('')}
     </div>
+    ${esUltima && yaContestada ? ajusteObjetivoHTML(fichaAjusteObjetivo) : ''}
     <div class="ficha-fs-bottom">
       ${biblio}
       <button class="btn" ${yaContestada ? '' : 'disabled'} onclick="${esUltima ? 'cerrarFichaFullscreen()' : 'cambiarFicha(1)'}">${esUltima ? 'Continuar' : 'Confirmar'}</button>
@@ -6143,7 +6179,28 @@ function cerrarFichaFullscreen() {
 
 function elegirOpcionFicha(i) {
   fichaRespuestas[fichaIndexActual] = i;
+  if (fichaIndexActual === fichasActuales.length - 1) evaluarTandaFichas();
   renderFichaActual();
+}
+
+// Al contestar la última ficha de una tanda de opción múltiple, conecta el
+// resultado real al estado firme/flojo del tema (ver lib/evaluacion.js).
+// total = fichas realmente contestadas (fichaRespuestas puede tener huecos
+// si el usuario saltó alguna con "Siguiente" sin responder en escritorio).
+// Solo ajusta si el tema pertenece a una materia EN CURSO -- Fichas se
+// puede generar para cualquier tema del catálogo completo, no solo de un
+// examen armado (mismo criterio que Simulacro).
+function evaluarTandaFichas() {
+  if (fichaEvaluacionAplicada) return;
+  if (!fichasActuales.length || !Array.isArray(fichasActuales[0].opciones)) return;
+  const total = fichaRespuestas.filter(r => r !== undefined).length;
+  if (!total) return;
+  const examen = fichasContexto && examenParaTema(fichasContexto.materiaNombre, fichasContexto.tema);
+  if (!examen) return;
+  const aciertos = fichaRespuestas.reduce((s, r, i) => s + (r !== undefined && r === fichasActuales[i].correcta ? 1 : 0), 0);
+  fichaEvaluacionAplicada = true;
+  fichaAjusteObjetivo = registrarEvaluacion(examen, fichasContexto.tema, aciertos, total, 'fichas', hoy0());
+  if (fichaAjusteObjetivo) updateBadges();
 }
 
 // Helper compartido por fichas y resumen -- POST fire-and-forget (no bloquea
@@ -6209,6 +6266,12 @@ let simulacroIndex = 0;
 let simulacroRespuestas = [];
 let simulacroInicio = null;
 let simulacroTimerInt = null;
+// Materia del simulacro actual (ver examenParaTema) + guard para que
+// registrarEvaluacion() se aplique una sola vez por simulacro, aunque el
+// usuario vuelva a ver el resultado con "Revisar respuestas" y navegue de
+// nuevo hasta el final.
+let simulacroContexto = null;
+let simulacroEvaluado = false;
 
 function onSimulacroFacultadChange() {
   const f = facultadDe(document.getElementById('simulacroFacultadSelect').value);
@@ -6273,6 +6336,8 @@ async function generarSimulacro() {
     simulacroPreguntas = (data.preguntas || []).map(p => ({ ...p, correcta: Number(p.correcta) }));
     simulacroIndex = 0;
     simulacroRespuestas = [];
+    simulacroContexto = { materiaNombre: materia.nombre };
+    simulacroEvaluado = false;
     simulacroInicio = Date.now();
     simulacroTimerInt = setInterval(() => {
       const el = document.getElementById('simulacroTimer');
@@ -6311,10 +6376,31 @@ function renderSimulacro() {
     const flacos = Object.entries(porTema)
       .filter(([, v]) => v.ok < v.total)
       .sort((a, b) => (a[1].ok / a[1].total) - (b[1].ok / b[1].total));
+    // Conecta el desglose real por tema al estado firme/flojo (ver
+    // lib/evaluacion.js) -- una sola vez por simulacro, aunque el usuario
+    // revise las respuestas y vuelva a este resultado. Solo ajusta temas
+    // que pertenecen a una materia EN CURSO -- un simulacro de una materia
+    // sin examen armado se muestra igual pero no toca ningún estado.
+    let cambios = [];
+    if (!simulacroEvaluado) {
+      simulacroEvaluado = true;
+      const examen = examenesEnCurso().find(x => x.materiaNombre === (simulacroContexto && simulacroContexto.materiaNombre));
+      if (examen) {
+        // Solo temas que realmente están en el calendario de esta materia --
+        // "Sin clasificar" (preguntas sin tema asignado por la IA) u otra
+        // variación de nombre no debe crear entradas nuevas en states/etc.
+        cambios = Object.entries(porTema)
+          .filter(([tema]) => examen.selected && examen.selected.includes(tema))
+          .map(([tema, v]) => registrarEvaluacion(examen, tema, v.ok, v.total, 'simulacro', hoy0()))
+          .filter(Boolean);
+        if (cambios.length) updateBadges();
+      }
+    }
     box.innerHTML = `
       <div class="explicar-resultado">
         <div class="explicar-resultado-num mono">${correctas} / ${simulacroPreguntas.length}</div>
         <div class="explicar-resultado-label">${pct}% correctas · terminado en ${tiempoSimulacroTexto().replace('⏱️ ', '')}</div>
+        ${cambios.map(ajusteObjetivoHTML).join('')}
         ${flacos.length ? `
           <div class="sub" style="margin-top:14px; text-align:left;"><strong>Temas para reforzar:</strong></div>
           <ul style="text-align:left; margin:6px 0 0; padding-left:18px;">
@@ -6576,6 +6662,30 @@ function formatExplicacionHTML(texto) {
   return texto.split(/\n\s*\n/).filter(p => p.trim()).map(p => `<p>${escapeHtml(p.trim()).replace(/\n/g, '<br>')}</p>`).join('');
 }
 
+// ---- Evaluación objetiva (ver lib/evaluacion.js, PATCH sección E) ----
+// Un tema solo tiene estado real que ajustar si pertenece a una materia EN
+// CURSO -- Fichas y Simulacro se pueden generar para cualquier tema del
+// catálogo completo (no solo de un examen armado), y "Explícamelo" ni
+// siquiera pasa por el catálogo (tema libre tipeado a mano). Si no hay
+// coincidencia, el resultado se muestra igual pero no ajusta nada --
+// decisión de alcance ya tomada con Santiago, no un caso sin resolver.
+function examenParaTema(materiaNombre, tema) {
+  if (!materiaNombre || !tema) return null;
+  return examenesEnCurso().find(e => e.materiaNombre === materiaNombre && e.selected && e.selected.includes(tema));
+}
+
+// Mensaje explicando por qué se movió un tema, para no sentirse arbitrario
+// (ver el ejemplo de copy en la sección E.2 del patch). Se inserta en la
+// pantalla de resultado de fichas/simulacro/test, no como toast (el mensaje
+// es demasiado largo para un toast de 1.4s).
+function ajusteObjetivoHTML(cambio) {
+  if (!cambio) return '';
+  const pct = Math.round(cambio.ratio * 100);
+  return cambio.a === 'flojo'
+    ? `<div class="ajuste-objetivo bajada">📉 Bajamos <strong>${escapeHtml(cambio.tema)}</strong> a flojo -- salió ${pct}% en esta evaluación. Lo agendamos de nuevo para dentro de 2 días.</div>`
+    : `<div class="ajuste-objetivo subida">📈 Subimos <strong>${escapeHtml(cambio.tema)}</strong> a firme -- salió ${pct}% en esta evaluación.</div>`;
+}
+
 // Contexto académico real (nunca inventado, punto 4.6): reusa la misma
 // cascada carrera/año/materia que ya completó el estudiante en Fichas de
 // repaso, si la completó -- si no, se manda vacío y el server no asume nada.
@@ -6594,6 +6704,7 @@ let explicarPreguntaPendiente = '';
 let explicarTestPreguntas = [];
 let explicarTestIndex = 0;
 let explicarTestRespuestas = [];
+let explicarTestEvaluado = false; // ver evaluación objetiva en renderExplicarTest
 
 function explicarModosHTML() {
   const modos = [
@@ -6616,6 +6727,7 @@ async function pedirExplicacion(modo) {
   explicarTestPreguntas = [];
   explicarTestIndex = 0;
   explicarTestRespuestas = [];
+  explicarTestEvaluado = false;
 
   const box = document.getElementById('explicarBox');
   const btn = document.getElementById('explicarBtn');
@@ -6709,14 +6821,31 @@ function renderExplicarTest() {
   }
   if (explicarTestIndex >= explicarTestPreguntas.length) {
     const correctas = explicarTestRespuestas.filter((r, i) => r === explicarTestPreguntas[i].correcta).length;
+    // Conecta el resultado al estado firme/flojo (ver lib/evaluacion.js) --
+    // solo si el tema libre que escribió coincide con un tema real de una
+    // materia EN CURSO (mismo criterio que Fichas/Simulacro). El contexto
+    // de materia es el mismo "mejor esfuerzo" que ya usa el prompt de la
+    // IA (contextoAcademicoExplicar) -- si no hay coincidencia, el
+    // resultado se muestra igual pero no ajusta nada.
+    let cambio = null;
+    if (!explicarTestEvaluado) {
+      explicarTestEvaluado = true;
+      const { materiaNombre } = contextoAcademicoExplicar();
+      const examen = examenParaTema(materiaNombre, explicarTemaActual);
+      if (examen) {
+        cambio = registrarEvaluacion(examen, explicarTemaActual, correctas, explicarTestPreguntas.length, 'test', hoy0());
+        if (cambio) updateBadges();
+      }
+    }
     box.innerHTML = `
       <div class="explicar-modos">${explicarModosHTML()}</div>
       <div class="explicar-resultado">
         <div class="explicar-resultado-num mono">${correctas} / ${explicarTestPreguntas.length}</div>
         <div class="explicar-resultado-label">respuestas correctas</div>
+        ${ajusteObjetivoHTML(cambio)}
         <div class="explicar-resultado-btns">
           <button type="button" class="btn secondary" onclick="explicarTestIndex=0; renderExplicarTest();">👀 Revisar respuestas</button>
-          <button type="button" class="btn" onclick="explicarTestRespuestas=[]; explicarTestIndex=0; renderExplicarTest();">↺ Volver a intentar</button>
+          <button type="button" class="btn" onclick="explicarTestRespuestas=[]; explicarTestIndex=0; explicarTestEvaluado=false; renderExplicarTest();">↺ Volver a intentar</button>
         </div>
       </div>`;
     return;
@@ -6984,11 +7113,16 @@ function abrirResumen() {
   const activos40 = dias40.filter(k => actividadDiaria[k]).length;
   document.getElementById('constanciaCaption').textContent = `Repasaste ${activos40} de los últimos 40 días.`;
 
-  // ---- Se te sigue escapando (temas fallados 2+ veces) ----
+  // ---- Se te sigue escapando (temas "leech", ver esLeech en lib/scheduling.js) ----
+  // Mismo umbral que la detección de leech (3+ recaídas) -- antes era un
+  // umbral propio de esta pantalla (2+), ahora es el mismo dato con el
+  // mismo significado en toda la app: un tema que volvió al escalón 0 más
+  // de LEECH_RECAIDAS veces no necesita otro repaso igual, necesita otra
+  // estrategia (fichas nuevas, cambiar de fuente, "Explícamelo").
   const escapando = [];
   activos.forEach(e => {
     Object.entries(e.flojoCount || {}).forEach(([tema, n]) => {
-      if (n >= 2) escapando.push({ tema, n, materia: nombreCorto(e.materiaNombre) });
+      if (n >= LEECH_RECAIDAS) escapando.push({ tema, n, materia: nombreCorto(e.materiaNombre) });
     });
   });
   escapando.sort((a, b) => b.n - a.n);
@@ -7001,7 +7135,7 @@ function abrirResumen() {
         </div>
         <span class="escapando-badge">${it.n}x</span>
       </div>`).join('')
-    : '<div class="empty-state" style="padding:20px 4px;">Nada se te sigue escapando -- ningún tema te falló dos veces todavía.</div>';
+    : '<div class="empty-state" style="padding:20px 4px;">Nada se te sigue escapando -- ningún tema volvió a flojo tres veces todavía.</div>';
 
   updateBadges();
 }
