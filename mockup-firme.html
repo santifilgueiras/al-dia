@@ -1680,6 +1680,7 @@
   }
   .estudiar-herramienta-item:hover { background: rgba(0,0,0,.04); color: var(--ink); }
   .estudiar-herramienta-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--line); flex-shrink: 0; }
+  .estudiar-herramienta-item .ic { font-size: 15px; line-height: 1; flex-shrink: 0; }
   .estudiar-herramienta-item.active { color: var(--ink); }
   .estudiar-herramienta-item.active .dot { background: var(--teal); }
   .estudiar-herramientas-nota { font-size: 11.5px; color: var(--muted); line-height: 1.5; margin: 10px 4px 0; }
@@ -2792,6 +2793,23 @@
     </div>
 
     <aside class="estudiar-rail" id="estudiarRail">
+      <!-- Arriba del todo en la columna, antes que "Tema"/Bibliografía
+           (pedido de Santiago, 2026-08-20, con captura puntual): la lista
+           de herramientas siempre visible primero, con los mismos íconos
+           que tenían las pestañas horizontales viejas -- no solo el punto
+           de color, así se reconoce cada una de un vistazo igual que antes. -->
+      <div id="estudiarHerramientasCard" class="estudiar-herramientas-card">
+        <div class="estudiar-herramientas-label mono">HERRAMIENTAS</div>
+        <div class="estudiar-herramientas-list" id="estudiarHerramientasList">
+          <button type="button" class="estudiar-herramienta-item" data-sec="tiempo" onclick="switchStudyTab('tiempo')"><span class="dot"></span><span class="ic">⏱️</span>Tiempo de estudio</button>
+          <button type="button" class="estudiar-herramienta-item" data-sec="fichas" onclick="switchStudyTab('fichas')"><span class="dot"></span><span class="ic">🧠</span>Fichas de repaso</button>
+          <button type="button" class="estudiar-herramienta-item" data-sec="simulacro" onclick="switchStudyTab('simulacro')"><span class="dot"></span><span class="ic">🎯</span>Simulacro de examen</button>
+          <button type="button" class="estudiar-herramienta-item" data-sec="resumen" onclick="switchStudyTab('resumen')"><span class="dot"></span><span class="ic">📄</span>Resumen de apuntes</button>
+          <button type="button" class="estudiar-herramienta-item" data-sec="corrector" onclick="switchStudyTab('corrector')"><span class="dot"></span><span class="ic">🔎</span>Corregir mi resumen</button>
+          <button type="button" class="estudiar-herramienta-item" data-sec="explicar" onclick="switchStudyTab('explicar')"><span class="dot"></span><span class="ic">💡</span>Explícamelo</button>
+        </div>
+        <p class="estudiar-herramientas-nota">Cada herramienta sigue siendo su propia pantalla, como ahora: esta columna solo cambia de una a otra.</p>
+      </div>
       <div id="estudiarTemaHoyCard" style="display:none;">
         <div class="estudiar-tema-hoy-label mono">TEMA</div>
         <div class="estudiar-tema-hoy-box">
@@ -2799,18 +2817,6 @@
           <div class="estudiar-tema-hoy-sub" id="estudiarTemaHoySub"></div>
           <a href="#" class="estudiar-tema-hoy-cambiar mono" onclick="event.preventDefault(); cambiarTemaEstudiar();">CAMBIAR TEMA</a>
         </div>
-      </div>
-      <div id="estudiarHerramientasCard" class="estudiar-herramientas-card">
-        <div class="estudiar-herramientas-label mono">HERRAMIENTAS</div>
-        <div class="estudiar-herramientas-list" id="estudiarHerramientasList">
-          <button type="button" class="estudiar-herramienta-item" data-sec="tiempo" onclick="switchStudyTab('tiempo')"><span class="dot"></span>Tiempo de estudio</button>
-          <button type="button" class="estudiar-herramienta-item" data-sec="fichas" onclick="switchStudyTab('fichas')"><span class="dot"></span>Fichas de repaso</button>
-          <button type="button" class="estudiar-herramienta-item" data-sec="simulacro" onclick="switchStudyTab('simulacro')"><span class="dot"></span>Simulacro de examen</button>
-          <button type="button" class="estudiar-herramienta-item" data-sec="resumen" onclick="switchStudyTab('resumen')"><span class="dot"></span>Resumen de apuntes</button>
-          <button type="button" class="estudiar-herramienta-item" data-sec="corrector" onclick="switchStudyTab('corrector')"><span class="dot"></span>Corregir mi resumen</button>
-          <button type="button" class="estudiar-herramienta-item" data-sec="explicar" onclick="switchStudyTab('explicar')"><span class="dot"></span>Explícamelo</button>
-        </div>
-        <p class="estudiar-herramientas-nota">Cada herramienta sigue siendo su propia pantalla, como ahora: esta columna solo cambia de una a otra.</p>
       </div>
       <div id="estudiarAccionesCard" style="display:none;">
         <h3>Al terminar el bloque</h3>
