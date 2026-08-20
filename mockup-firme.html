@@ -776,26 +776,38 @@
   .hoy-proximo-nombre { font-size: 13.5px; font-weight: 700; margin-top: 2px; }
   .hoy-proximo-dias { font-size: 12px; font-weight: 600; color: var(--amber-deep); margin-top: 1px; }
   .hoy-lista { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
-  .hoy-item { display: flex; align-items: center; gap: 12px; padding: 13px 14px; cursor: pointer; }
-  .hoy-item-check { width: 18px; height: 18px; border-radius: 6px; border: 1.5px solid var(--line-strong); flex-shrink: 0; }
-  .hoy-item-check.checked { background: var(--teal); border-color: var(--teal); }
+  /* Tarjeta de tema de Hoy (ver `Al Dia — Revision de diseno.dc.html` 1a/2c) --
+     antes tenía un check circle sin mucho significado (no se puede "tildar"
+     un tema desde acá, se marca desde el detalle); ahora un punto+etiqueta
+     de estado (mismo lenguaje que Repaso: rojo=atrasado, gris=primera vez,
+     ámbar=flojo, teal=repaso normal) es lo que realmente comunica qué es
+     cada fila de un vistazo. */
+  .hoy-item { display: flex; align-items: center; gap: 18px; padding: 14px 15px; cursor: pointer; }
   .hoy-item-info { flex: 1; min-width: 0; }
-  .hoy-item-title { font-size: 13.5px; font-weight: 600; }
-  .hoy-item-sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .hoy-item-eyebrow { display: flex; align-items: center; gap: 8px; font: 700 9.5px/1 'IBM Plex Mono', monospace; letter-spacing: .09em; color: var(--muted); }
+  .hoy-item-dot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: rgba(20,32,29,.25); }
+  .hoy-item-eyebrow.atrasado { color: var(--atrasado); }
+  .hoy-item-eyebrow.atrasado .hoy-item-dot { background: var(--atrasado); }
+  .hoy-item-eyebrow.flojo { color: var(--amber-deep); }
+  .hoy-item-eyebrow.flojo .hoy-item-dot { background: var(--amber); }
+  .hoy-item-eyebrow.repaso { color: var(--teal); }
+  .hoy-item-eyebrow.repaso .hoy-item-dot { background: var(--teal); }
+  .hoy-item-title { font-size: 16px; font-weight: 700; line-height: 1.3; margin-top: 7px; }
+  .hoy-item-sub { font-size: 13px; color: var(--muted); margin-top: 3px; }
   .hoy-item-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-  .hoy-item-min { font-size: 11px; color: var(--muted); white-space: nowrap; }
-  .hoy-item-btn { display: inline-flex; align-items: center; gap: 5px; margin-top: 0; width: auto; padding: 8px 14px; font-size: 12px; white-space: nowrap; }
-  .hoy-item-btn .ic { font-size: 13px; }
-  /* En 390px el título competía con el tag FLOJO + "~N min" + el botón
-     Fichas todos en la misma fila -- se superponían o se cortaban (F.6 del
-     patch de Cowork). En vez de reescribir el marcado, .hoy-item-right pasa
-     a su propia línea completa cuando no entra al lado del título (flex-wrap),
-     con los botones/tags alineados a la derecha y una altura táctil
-     >=44px. Desde 860px sigue siendo una sola fila, como siempre. */
+  .hoy-item-btn { display: inline-flex; align-items: center; gap: 5px; margin-top: 0; width: auto; padding: 0 16px; min-height: 42px; font-size: 13.5px; white-space: nowrap; }
+  .hoy-item-btn.secondary { color: var(--teal); }
+  /* En 390px el título competía con el punto de estado + el botón Fichas +
+     el botón primario todos en la misma fila -- se superponían o se
+     cortaban (F.6 del patch de Cowork). En vez de reescribir el marcado,
+     .hoy-item-right pasa a su propia línea completa cuando no entra al lado
+     del título (flex-wrap), con los botones alineados a la derecha y una
+     altura táctil >=44px. Desde 860px sigue siendo una sola fila, como
+     pide el mockup en modo compu (2c). */
   @media (max-width: 859px) {
-    .hoy-item { flex-wrap: wrap; row-gap: 10px; }
-    .hoy-item-right { flex-basis: 100%; justify-content: flex-end; }
-    .hoy-item-btn { min-height: 44px; padding: 10px 16px; }
+    .hoy-item { flex-wrap: wrap; row-gap: 12px; }
+    .hoy-item-right { flex-basis: 100%; }
+    .hoy-item-btn { flex: 1; min-height: 44px; }
   }
   /* Onboarding de primer uso (sin ninguna materia agregada todavía) --
      ocupa el lugar de la lista de "Hoy" en vez del empty-state genérico,
@@ -856,11 +868,9 @@
     .screen[data-screen="13"] .barra-estado { height: 9px; }
     .screen[data-screen="13"] .hoy-lista { gap: 12px; margin: 20px 0; }
     .screen[data-screen="13"] .hoy-item { padding: 20px 22px; gap: 16px; }
-    .screen[data-screen="13"] .hoy-item-check { width: 24px; height: 24px; }
-    .screen[data-screen="13"] .hoy-item-title { font-size: 17px; }
-    .screen[data-screen="13"] .hoy-item-sub { font-size: 14px; }
-    .screen[data-screen="13"] .hoy-item-min { font-size: 13.5px; }
-    .screen[data-screen="13"] .hoy-item-btn { font-size: 14px; padding: 11px 20px; }
+    .screen[data-screen="13"] .hoy-item-title { font-size: 18px; }
+    .screen[data-screen="13"] .hoy-item-sub { font-size: 14.5px; }
+    .screen[data-screen="13"] .hoy-item-btn { font-size: 14px; padding: 0 20px; min-height: 44px; }
     .screen[data-screen="13"] .hoy-cols { gap: 20px; }
     .screen[data-screen="13"] .card { padding: 22px; }
     .screen[data-screen="13"] .hoy-card-head h2 { font-size: 20px; }
@@ -937,6 +947,9 @@
        escapando) se sumaron después de este bloque y quedaron con su
        tamaño de letra base, más chico que el resto de la pantalla ya
        agrandada. */
+    .screen[data-screen="6"] .resumen-hero-num { font-size: 52px; }
+    .screen[data-screen="6"] .resumen-hero-total { font-size: 18px; }
+    .screen[data-screen="6"] .resumen-hero-sub { font-size: 14px; }
     .screen[data-screen="6"] .resumen-stat-label { font-size: 12px; }
     .screen[data-screen="6"] .resumen-stat-value { font-size: 32px; }
     .screen[data-screen="6"] .resumen-stat-value small { font-size: 16px; }
@@ -1089,19 +1102,29 @@
     margin-top: 8px; width: 100%; padding: 7px 10px; border: 1px solid var(--line);
     border-radius: 8px; font-family: inherit; font-size: 12.5px;
   }
-  .resumen-stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0; }
-  .resumen-stat-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  /* "Temas firmes" era una tarjeta más, igual de peso que "Próximo examen"
+     y "Repaso diario" -- pasa a ser el número protagonista (mockup 2b), con
+     "Repaso diario" mudándose al Timer (5b, donde el promedio tiene más
+     contexto al lado del reloj) y solo Racha+Próximo examen quedando como
+     el par secundario abajo. */
+  .resumen-hero { background: var(--ink); border-radius: 12px; padding: 20px; margin: 18px 0 14px; }
+  .resumen-hero-label { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: .10em; color: rgba(255,255,255,.5); }
+  .resumen-hero-value { display: flex; align-items: flex-end; gap: 10px; margin-top: 10px; }
+  .resumen-hero-num { font-size: 42px; font-weight: 800; color: #fff; line-height: 1; letter-spacing: -.03em; }
+  .resumen-hero-total { font-size: 16px; font-weight: 600; color: rgba(255,255,255,.5); padding-bottom: 6px; }
+  .resumen-hero .barra-estado { background: rgba(255,255,255,.12); margin-top: 16px; height: 8px; }
+  .resumen-hero .barra-estado .sinver { background: repeating-linear-gradient(135deg, rgba(255,255,255,.14) 0 3px, rgba(255,255,255,.04) 3px 7px); }
+  .resumen-hero-sub { font-size: 12.5px; color: rgba(255,255,255,.65); margin-top: 14px; line-height: 1.5; }
+
+  .resumen-stats-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 0 0 18px; }
+  .resumen-stat-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 15px; }
   .resumen-stat-label {
-    font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10.5px; font-weight: 700;
-    letter-spacing: .06em; color: var(--muted); text-transform: uppercase;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 9.5px; font-weight: 700;
+    letter-spacing: .08em; color: var(--muted); text-transform: uppercase;
   }
-  .resumen-stat-value { font-size: 26px; font-weight: 800; margin-top: 6px; line-height: 1.15; }
+  .resumen-stat-value { font-size: 26px; font-weight: 800; margin-top: 9px; line-height: 1; letter-spacing: -.03em; }
   .resumen-stat-value small { font-size: 14px; font-weight: 600; color: var(--muted); }
-  .resumen-stat-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
-  /* Barra de 3 segmentos (ver .barra-estado/barraEstadoHTML, F.2) -- el
-     margin-top propio de este contexto puntual, el resto viene del estilo
-     compartido. */
-  .resumen-stat-card .barra-estado { margin-top: 10px; height: 6px; }
+  .resumen-stat-sub { font-size: 12px; color: var(--muted); margin-top: 5px; }
 
   .resumen-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; align-items: start; margin-bottom: 18px; }
   .resumen-card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
@@ -1119,16 +1142,18 @@
   .resumen-legend .dot.sinver { background: var(--line-strong); }
 
   .resumen-side { display: flex; flex-direction: column; gap: 14px; }
-  /* Celdas de tamaño fijo (no 1fr fluido) a propósito -- con el ancho de
-     pantalla completo (sin max-width global) un grid fluido de 8 columnas
-     quedaba con cuadrados enormes, muy distinto de la referencia (celdas
-     chicas tipo mapa de calor de GitHub, con aire alrededor). */
-  .constancia-grid { display: grid; grid-template-rows: repeat(7, 16px); grid-auto-flow: column; grid-auto-columns: 16px; gap: 3px; margin: 10px 0; }
-  .constancia-cell { width: 16px; height: 16px; border-radius: 3px; background: var(--line); }
+  /* Una sola fila de 14 días (2 semanas), no un mapa de calor de 7x8 --
+     línea de tiempo simple, igual a la referencia (mockup 2b). */
+  .constancia-grid { display: grid; grid-template-columns: repeat(14, 1fr); gap: 4px; margin: 14px 0 0; }
+  .constancia-cell { aspect-ratio: 1; border-radius: 3px; background: var(--line); }
   .constancia-cell.lvl1 { background: var(--teal-tint); }
   .constancia-cell.lvl2 { background: rgba(15,118,110,.45); }
   .constancia-cell.lvl3 { background: var(--teal); }
-  .resumen-constancia-caption { font-size: 12px; color: var(--muted); margin: 4px 0 0; }
+  .resumen-constancia-caption { font-size: 12px; color: var(--muted); margin: 12px 0 0; }
+  /* Card de "Se te sigue escapando" con borde punteado SOLO cuando está
+     vacía -- invita a algo, no reporta algo (F.7); con temas reales adentro
+     pasa a borde sólido, como el resto de las tarjetas. */
+  #escapandoCard.vacio { border-style: dashed; }
   .escapando-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
   .escapando-row:first-child { border-top: none; padding-top: 6px; }
   .escapando-nombre { font-weight: 700; font-size: 13.5px; }
@@ -2272,6 +2297,7 @@
       </div>
     </div>
 
+    <div class="resumen-hero" id="resumenHero"></div>
     <div class="resumen-stats-row" id="resumenStatsRow"></div>
 
     <div class="resumen-grid">
@@ -4693,9 +4719,10 @@ function renderHoyStats() {
         <span><b class="flojo">${c.flojo}</b> flojos</span>
         <span><b class="nuevo">${c.nuevo}</b> sin ver</span>
       </div>
-      <!-- Un % sobre pocos temas aporta ruido, no precisión (F.2) -- el
-           conteo real ya está arriba, acá alcanza con firmes/total. -->
-      <span class="hoy-stats-pct mono">${c.firme}/${total} firmes</span>
+      <!-- "Vistos" (firme+flojo, ver mockup 1a/2c) en vez de un % sobre
+           pocos temas -- responde "¿cuánto ya arranqué?", más útil que
+           "¿qué porcentaje ya está firme?" cuando la mayoría es "sin ver". -->
+      <span class="hoy-stats-pct mono">${c.firme + c.flojo}/${total} vistos</span>
     </div>
     ${barraEstadoHTML(c.firme, c.flojo, total)}
   `;
@@ -4784,20 +4811,26 @@ function renderHoy() {
     const estado = estadoDeEntry(t);
     const esc = t.name.replace(/'/g, "\\'");
     const min = minutosEstimados(t.name);
-    const contexto = t.contexto;
-    const accion = estado === 'flojo'
-      ? `<span class="tag repaso-tag">FLOJO</span><button type="button" class="btn secondary hoy-item-btn" onclick="event.stopPropagation(); irAEstudiar('fichas')"><span class="ic">🧠</span>Fichas</button>`
-      : `<button type="button" class="btn hoy-item-btn" onclick="event.stopPropagation(); abrirDetalle(${t.examId}, '${esc}')">Empezar</button>`;
+    const esPrimeraVez = t.action === 'nuevo';
+    // Ordinal de repaso real (mismo dato que ya usa Repaso, ver ordinal en
+    // renderRepaso) -- "2º repaso" es más útil que solo "repaso".
+    const ex = examenes.find(x => x.id === t.examId);
+    const ordinal = ((ex && ex.intervaloIdx && ex.intervaloIdx[t.name]) || 0) + 1;
+    let eyebrowClass, eyebrowLabel;
+    if (t.atrasado) { eyebrowClass = 'atrasado'; eyebrowLabel = 'ATRASADO'; }
+    else if (esPrimeraVez) { eyebrowClass = ''; eyebrowLabel = t.contexto.includes(' · también ') ? 'PRIMERA VEZ · Y REPASO HOY' : 'PRIMERA VEZ'; }
+    else if (estado === 'flojo') { eyebrowClass = 'flojo'; eyebrowLabel = `FLOJO · ${ordinal}º REPASO`; }
+    else { eyebrowClass = 'repaso'; eyebrowLabel = `${ordinal}º REPASO`; }
     return `
     <div class="card hoy-item" tabindex="0" role="button" onclick="abrirDetalle(${t.examId}, '${esc}')">
-      <div class="hoy-item-check ${estado === 'firme' ? 'checked' : ''}"></div>
       <div class="hoy-item-info">
-        <div class="hoy-item-title">${t.atrasado ? '⏰ ' : ''}${t.name}</div>
-        <div class="hoy-item-sub">${nombreCorto(t.materiaNombre)} · ${contexto}</div>
+        <div class="hoy-item-eyebrow ${eyebrowClass}"><span class="hoy-item-dot"></span>${eyebrowLabel}</div>
+        <div class="hoy-item-title">${t.name}</div>
+        <div class="hoy-item-sub">${nombreCorto(t.materiaNombre)} · ~${min} min</div>
       </div>
       <div class="hoy-item-right">
-        <span class="hoy-item-min mono">~${min} min</span>
-        ${accion}
+        <button type="button" class="btn secondary hoy-item-btn" onclick="event.stopPropagation(); irAEstudiar('fichas')">Fichas</button>
+        <button type="button" class="btn hoy-item-btn" onclick="event.stopPropagation(); abrirDetalle(${t.examId}, '${esc}')">${esPrimeraVez ? 'Empezar' : 'Repasar'}</button>
       </div>
     </div>`;
   }).join('') : '<div class="empty-state">No tenés nada agendado para hoy. 🎉</div>';
@@ -7142,33 +7175,33 @@ function abrirResumen() {
   const proximo = activos.filter(e => e.fecha).sort((a,b) => a.fecha.localeCompare(b.fecha))[0];
   const diasProximo = proximo ? diasHasta(proximo.fecha) : null;
 
-  const desde = addDays(new Date(), -27);
-  let sumaMin = 0, diasConDatos = 0;
-  for (let d = new Date(desde); d <= new Date(); d.setDate(d.getDate() + 1)) {
-    const k = fmt(d);
-    if (actividadDiaria[k]) { sumaMin += actividadDiaria[k]; diasConDatos++; }
-  }
-  const promedioMin = diasConDatos ? Math.round(sumaMin / diasConDatos) : null;
+  // Temas sin ver todavía -- el número protagonista (ver .resumen-hero)
+  // necesita esto para no sonar a "no sabés nada": la mayoría de lo que
+  // falta es simplemente lo que no le tocó el turno todavía, no memoria.
+  const sinVer = c.nuevo;
+  document.getElementById('resumenHero').innerHTML = `
+    <div class="resumen-hero-label">TEMAS FIRMES</div>
+    <div class="resumen-hero-value">
+      <div class="resumen-hero-num">${c.firme}</div>
+      <div class="resumen-hero-total">de ${totalTemas}</div>
+    </div>
+    ${barraEstadoHTML(c.firme, c.flojo, totalTemas)}
+    <div class="resumen-hero-sub">${sinVer > 0
+      ? `Faltan ${sinVer} tema${sinVer === 1 ? '' : 's'} sin ver. Sentir que no sabés nada es esperable con esos números -- no es memoria, es que todavía no les tocó el turno.`
+      : 'Ya viste todos los temas al menos una vez -- lo que queda es afirmar los flojos.'}</div>`;
 
   document.getElementById('resumenStatsRow').innerHTML = `
     <div class="resumen-stat-card">
-      <div class="resumen-stat-label">Temas firmes</div>
-      <div class="resumen-stat-value">${c.firme} <small>/ ${totalTemas}</small></div>
-      ${barraEstadoHTML(c.firme, c.flojo, totalTemas)}
+      <div class="resumen-stat-label">Racha</div>
+      <div class="resumen-stat-value">${racha}</div>
+      <div class="resumen-stat-sub">día${racha === 1 ? '' : 's'} seguido${racha === 1 ? '' : 's'}</div>
     </div>
     <div class="resumen-stat-card">
       <div class="resumen-stat-label">Próximo examen</div>
       ${proximo ? `
       <div class="resumen-stat-value">${diasProximo} <small>día${diasProximo === 1 ? '' : 's'}</small></div>
-      <div class="resumen-stat-sub">${nombreCorto(proximo.materiaNombre)} · ${fmtFecha(proximo.fecha)}</div>` : `
+      <div class="resumen-stat-sub">${nombreCorto(proximo.materiaNombre)}</div>` : `
       <div class="resumen-stat-value"><small>Sin materias en curso</small></div>`}
-    </div>
-    <div class="resumen-stat-card">
-      <div class="resumen-stat-label">Repaso diario</div>
-      ${promedioMin !== null ? `
-      <div class="resumen-stat-value">${promedioMin} <small>min promedio</small></div>
-      <div class="resumen-stat-sub">últimas 4 semanas</div>` : `
-      <div class="resumen-stat-value"><small>Cuando termines un repaso vas a ver acá tu promedio diario</small></div>`}
     </div>`;
 
   // ---- Por materia ----
@@ -7189,31 +7222,30 @@ function abrirResumen() {
     </div>`;
   }).join('') : '<div class="empty-state">Todavía no armaste el calendario de ninguna materia.</div>';
 
-  // ---- Constancia (últimas 8 semanas, 56 días) ----
-  const SEMANAS = 8;
-  const dias56 = [];
-  for (let i = SEMANAS * 7 - 1; i >= 0; i--) dias56.push(fmt(addDays(new Date(), -i)));
+  // ---- Constancia (últimas 2 semanas, 14 días -- ver mockup 2b) ----
+  const SEMANAS = 2;
+  const diasVentana = SEMANAS * 7;
+  const diasGrid = [];
+  for (let i = diasVentana - 1; i >= 0; i--) diasGrid.push(fmt(addDays(new Date(), -i)));
   document.getElementById('constanciaSemanasLabel').textContent = `${SEMANAS} SEMANAS`;
-  document.getElementById('constanciaGrid').innerHTML = dias56.map(k => {
+  document.getElementById('constanciaGrid').innerHTML = diasGrid.map(k => {
     const min = actividadDiaria[k] || 0;
     const lvl = min === 0 ? '' : min < 20 ? ' lvl1' : min < 45 ? ' lvl2' : ' lvl3';
     return `<div class="constancia-cell${lvl}" title="${k}${min ? ` · ${min} min` : ''}"></div>`;
   }).join('');
-  const dias40 = []; for (let i = 39; i >= 0; i--) dias40.push(fmt(addDays(new Date(), -i)));
-  const activos40 = dias40.filter(k => actividadDiaria[k]).length;
-  // "Repasaste 0 de los últimos 40 días" en una cuenta de 6 días de racha
+  const activosVentana = diasGrid.filter(k => actividadDiaria[k]).length;
+  // "Repasaste 0 de los últimos N días" en una cuenta de 6 días de racha
   // contradice el propio número de racha que se ve al lado -- no es que
-  // fallaste 34 días, es que la cuenta no existía todavía (F.7 del patch).
-  // Se ancla la ventana al primer día real de actividad, no a una fecha
-  // fija de 40 días atrás.
+  // fallaste, es que la cuenta no existía todavía (F.7 del patch). Se
+  // ancla la ventana al primer día real de actividad, no a una fecha fija.
   const fechasConActividad = Object.keys(actividadDiaria).filter(k => actividadDiaria[k]).sort();
   const primerDia = fechasConActividad[0];
   const diasDesdeArranque = primerDia ? Math.round((new Date() - new Date(primerDia + 'T00:00:00')) / 86400000) + 1 : 0;
   document.getElementById('constanciaCaption').textContent = !primerDia
     ? 'Cuando repases algo vas a ver acá tu constancia.'
-    : diasDesdeArranque < 40
-      ? `Repasaste ${activos40} de los últimos ${diasDesdeArranque} días -- arrancaste hace ${diasDesdeArranque}, el resto no cuenta en contra.`
-      : `Repasaste ${activos40} de los últimos 40 días.`;
+    : diasDesdeArranque < diasVentana
+      ? `Repasaste ${activosVentana} de los últimos ${diasDesdeArranque} días -- arrancaste hace ${diasDesdeArranque}, el resto no cuenta en contra.`
+      : `Repasaste ${activosVentana} de los últimos ${diasVentana} días.`;
 
   // ---- Se te sigue escapando (temas "leech", ver esLeech en lib/scheduling.js) ----
   // Mismo umbral que la detección de leech (3+ recaídas) -- antes era un
@@ -7228,6 +7260,7 @@ function abrirResumen() {
     });
   });
   escapando.sort((a, b) => b.n - a.n);
+  document.getElementById('escapandoCard').classList.toggle('vacio', !escapando.length);
   document.getElementById('escapandoList').innerHTML = escapando.length
     ? escapando.slice(0, 6).map(it => `
       <div class="escapando-row">
