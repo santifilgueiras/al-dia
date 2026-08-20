@@ -1498,7 +1498,13 @@
   }
   .nav-item { flex: 1; text-align: center; padding: 10px 0 12px; font-size: 10.5px; color: var(--muted); cursor: pointer; }
   .nav-item .ic { display: block; font-size: 16px; margin-bottom: 2px; }
-  .nav-item .ic-svg { width: 18px; height: 18px; margin: 0 auto 3px; }
+  /* display:block hace falta para que "margin:auto" centre el ícono
+     horizontalmente Y empuje el texto de la etiqueta a su propia línea
+     debajo -- sin esto (bug real, Ronda 25f) el <svg> queda inline por
+     default y el ícono termina al lado del texto en vez de arriba, roto
+     desde F.1 (migración de emoji a sprite SVG) porque el <span class="ic">
+     viejo sí tenía display:block y el <svg class="ic-svg"> nuevo no. */
+  .nav-item .ic-svg { display: block; width: 18px; height: 18px; margin: 0 auto 3px; }
   .nav-item.active { color: var(--accent); font-weight: 800; }
   .toast {
     position: absolute; left: 20px; right: 20px; bottom: 90px; background: var(--ink); color: #fff;
