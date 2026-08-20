@@ -7584,6 +7584,27 @@ async function cargarDatosEstaticos() {
   construirFacultades();
 }
 
+// Clave de catálogo: los nombres de tema NO son únicos entre facultades
+// (Ingeniería reusa a propósito el núcleo común -- Cálculo, GAL, Física --
+// entre sus 9 carreras) -- la clave real es facultad + materia + tema.
+// TEXTOS/DURACIONES/MODULO_ICONS siguen siendo diccionarios planos por
+// nombre de tema (nadie migró ningún JSON todavía, ver
+// test/catalogo.test.js para el chequeo de colisiones reales entre
+// dominios sin relación) -- por eso `buscarEnTabla` prueba la clave
+// compuesta primero y cae a la clave vieja (tema pelado) si no la
+// encuentra, así los JSON se pueden migrar de a una facultad sin romper
+// nada mientras tanto.
+function claveTema(facultad, materiaNombre, tema) {
+  return `${facultad || '?'}::${materiaNombre || '?'}::${tema}`;
+}
+function buscarEnTabla(tabla, facultad, materiaNombre, tema) {
+  const compuesta = tabla[claveTema(facultad, materiaNombre, tema)];
+  if (compuesta !== undefined) return compuesta;
+  return tabla[tema]; // fallback: JSON todavía sin migrar (el caso de hoy, siempre)
+}
+function textoDe(e, tema) { return buscarEnTabla(TEXTOS, e && e.facultad, e && e.materiaNombre, tema); }
+function duracionBaseDe(e, tema) { return buscarEnTabla(DURACIONES, e && e.facultad, e && e.materiaNombre, tema) || 1; }
+
 async function iniciarApp() {
   try {
     await cargarDatosEstaticos();

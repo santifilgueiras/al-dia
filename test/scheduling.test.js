@@ -44,6 +44,16 @@ describe('duracionDe', () => {
   test('sin tabla ni DURACIONES global no explota -- cae a 1 día default', () => {
     assert.equal(duracionDe('cualquier tema'), 1);
   });
+
+  test('prefiere la clave compuesta facultad::materia::tema sobre el nombre pelado', () => {
+    const tabla = { 'Anatomía I': 1, 'medicina::Anatomía I::Anatomía I': 3 };
+    const e = { facultad: 'medicina', materiaNombre: 'Anatomía I' };
+    assert.equal(duracionDe('Anatomía I', e, tabla), 3);
+  });
+
+  test('cae al nombre pelado si no hay clave compuesta para esa materia (caso de hoy, nada migrado)', () => {
+    assert.equal(duracionDe('Anatomía I', { facultad: 'x', materiaNombre: 'y' }, { 'Anatomía I': 2 }), 2);
+  });
 });
 
 describe('diasUtilesEntre', () => {
