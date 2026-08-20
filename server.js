@@ -227,6 +227,11 @@ app.post('/api/fichas', requireAuth, rateLimitIA, upload.single('archivo'), asyn
   }
   const { tema, materiaNombre, carrera, libro, seccion, tipo, cantidad } = req.body || {};
   if (!tema) return res.status(400).json({ error: 'Falta el tema.' });
+  // La clave de cache incluye la materia (ver fichas_cache en
+  // supabase_schema.sql) -- sin esto, dos carreras que comparten un tema con
+  // el mismo nombre (ej. "Cálculo I" en varias Ingenierías) podían recibir
+  // fichas cruzadas de la otra.
+  if (!materiaNombre) return res.status(400).json({ error: 'Falta la materia.' });
   const conBusqueda = req.body.conBusqueda === 'true';
 
   let apuntePropio = '';
@@ -252,6 +257,7 @@ app.post('/api/fichas', requireAuth, rateLimitIA, upload.single('archivo'), asyn
       const { data: cacheada, error: errCache } = await supabaseAdmin
         .from('fichas_cache')
         .select('fichas')
+        .eq('materia_nombre', materiaNombre)
         .eq('tema', tema)
         .eq('tipo', tipoCache)
         .eq('cantidad', n)
@@ -316,8 +322,8 @@ ${consigna}`;
     // se guarda contenido generado a partir de un apunte propio.
     if (!apuntePropio && supabaseAdmin) {
       supabaseAdmin.from('fichas_cache').upsert({
-        tema, materia_nombre: materiaNombre || null, tipo: tipoCache, cantidad: n, con_busqueda: conBusqueda, fichas,
-      }, { onConflict: 'tema,tipo,cantidad,con_busqueda' }).then(({ error }) => {
+        tema, materia_nombre: materiaNombre, tipo: tipoCache, cantidad: n, con_busqueda: conBusqueda, fichas,
+      }, { onConflict: 'materia_nombre,tema,tipo,cantidad,con_busqueda' }).then(({ error }) => {
         if (error) console.error('Error guardando fichas_cache', error);
       }).catch(e => console.error('Error guardando fichas_cache', e));
     }

@@ -93,22 +93,48 @@ create policy "delete propia"
 -- de la API key de Santiago). La primera vez que se pide un tema/tipo/
 -- cantidad/con-búsqueda, se guarda acá; la próxima persona que pida
 -- exactamente lo mismo recibe la copia guardada sin volver a llamar a
--- Claude. Los nombres de tema son globales y únicos en el catálogo (ya
--- verificado sin duplicados entre Medicina y Psicología), así que alcanza
--- como clave junto con tipo/cantidad/con_busqueda. Nunca se cachean fichas
--- generadas a partir de un apunte propio subido por un estudiante (ese
--- contenido es único de esa persona, no tiene sentido compartirlo).
+-- Claude. Los nombres de tema NO son globalmente únicos (Ingeniería reusa
+-- agresivamente el núcleo común -- Cálculo, GAL, Física -- entre sus 9
+-- carreras, con el mismo nombre de tema y bibliografía distinta) -- la
+-- clave real incluye materia_nombre, si no dos carreras podían recibir
+-- fichas cruzadas de la otra (bug real, corregido 2026-08-19). Nunca se
+-- cachean fichas generadas a partir de un apunte propio subido por un
+-- estudiante (ese contenido es único de esa persona, no tiene sentido
+-- compartirlo).
 create table if not exists public.fichas_cache (
   id uuid primary key default gen_random_uuid(),
   tema text not null,
-  materia_nombre text,
+  materia_nombre text not null,
   tipo text not null default 'normal',
   cantidad int not null,
   con_busqueda boolean not null default false,
   fichas jsonb not null,
   created_at timestamptz not null default now(),
-  unique (tema, tipo, cantidad, con_busqueda)
+  unique (materia_nombre, tema, tipo, cantidad, con_busqueda)
 );
+
+-- MIGRACIÓN 2026-08-19 -- para una instalación de Supabase que YA tenía
+-- fichas_cache creada con la clave vieja (sin materia_nombre). Si es una
+-- instalación nueva, el create table de arriba ya crea la tabla bien y este
+-- bloque no hace nada. Guardado con un chequeo de la constraint vieja para
+-- que sea seguro re-correr el archivo entero las veces que haga falta --
+-- sin el guard, el "delete" de acá abajo borraría la cache real en CADA
+-- re-ejecución, no solo la primera vez que hace falta migrar.
+do $$
+begin
+  if exists (
+    select 1 from pg_constraint
+    where conname = 'fichas_cache_tema_tipo_cantidad_con_busqueda_key'
+  ) then
+    -- Se vacía la cache vieja a propósito: las filas de antes no tienen
+    -- materia_nombre y no se pueden atribuir a una con certeza.
+    delete from public.fichas_cache;
+    alter table public.fichas_cache alter column materia_nombre set not null;
+    alter table public.fichas_cache drop constraint fichas_cache_tema_tipo_cantidad_con_busqueda_key;
+    alter table public.fichas_cache add constraint fichas_cache_clave_unica
+      unique (materia_nombre, tema, tipo, cantidad, con_busqueda);
+  end if;
+end $$;
 
 -- RLS activado pero SIN políticas: nadie con la anon key (pública, vive en
 -- el navegador) puede leer ni escribir esta tabla directo. Solo el server
