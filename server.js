@@ -135,6 +135,37 @@ function crearLimitadorPorHora(limite, mensaje) {
 const rateLimitIA = crearLimitadorPorHora(20, 'Llegaste al límite de usos de IA por hora. Probá de nuevo en un rato.');
 const rateLimitFeedback = crearLimitadorPorHora(60, 'Demasiado feedback por ahora. Probá de nuevo en un rato.');
 
+// Techo GLOBAL de llamadas a la API de Claude por día, contra la base (no en
+// memoria como rateLimitIA): el contador de rateLimitIA vive en el proceso
+// y Render free duerme/reinicia la instancia con cada spin-down, así que ese
+// límite por hora es evadible con solo esperar a que el server se reinicie.
+// Sin paywall, este es el freno de mano real contra una cuenta de la API de
+// Anthropic inesperada. IA_HABILITADA es un kill switch total sin tener que
+// tocar código ni redeployar -- alcanza con cambiar la variable en Render.
+const IA_TOPE_DIARIO = parseInt(process.env.IA_TOPE_DIARIO || '400', 10);
+const IA_HABILITADA = process.env.IA_HABILITADA !== 'false';
+
+async function topeDiarioIA(req, res, next) {
+  if (!IA_HABILITADA) {
+    return res.status(503).json({ error: 'Las funciones de IA están pausadas por hoy. Volvé más tarde.' });
+  }
+  if (!supabaseAdmin) return next(); // en local sin Supabase no bloquea
+  try {
+    const { data, error } = await supabaseAdmin.rpc('incrementar_uso_ia', {
+      p_dia: fechaHoyMontevideo(), p_tope: IA_TOPE_DIARIO,
+    });
+    if (error) { console.error('Error contando uso de IA (deja pasar)', error); return next(); }
+    if (data === -1) {
+      console.warn('TOPE DIARIO DE IA ALCANZADO', IA_TOPE_DIARIO);
+      return res.status(503).json({ error: 'Hoy se llegó al límite de uso de IA de la app. Mañana vuelve a estar disponible.' });
+    }
+    next();
+  } catch (e) {
+    console.error('Error contando uso de IA (deja pasar)', e);
+    next();
+  }
+}
+
 // Modelos que soportan la variante 20260209 de la tool de búsqueda web (con
 // filtrado dinámico). Los demás -- incluido Haiku -- necesitan la variante
 // básica 20250305; pedirles la nueva devuelve error.
@@ -221,7 +252,7 @@ async function extraerTextoArchivo(file) {
   return texto.slice(0, MAX_CHARS_APUNTE);
 }
 
-app.post('/api/fichas', requireAuth, rateLimitIA, upload.single('archivo'), async (req, res) => {
+app.post('/api/fichas', requireAuth, rateLimitIA, topeDiarioIA, upload.single('archivo'), async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
   }
@@ -344,7 +375,7 @@ ${consigna}`;
 // inventar todo desde el catálogo -- sin un parcial real de referencia, un
 // simulacro "genérico" no se diferencia mucho de simplemente pedir más
 // fichas de varios temas.
-app.post('/api/simulacro', requireAuth, rateLimitIA, upload.single('archivo'), async (req, res) => {
+app.post('/api/simulacro', requireAuth, rateLimitIA, topeDiarioIA, upload.single('archivo'), async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
   }
@@ -418,7 +449,7 @@ Donde "correcta" es el índice (0 a 3, como NÚMERO, nunca como string entre com
 //                       de la correcta).
 // Usa JSON normal (no multipart) -- a diferencia de fichas/resumen, acá no
 // hay archivo que subir.
-app.post('/api/explicar', requireAuth, rateLimitIA, async (req, res) => {
+app.post('/api/explicar', requireAuth, rateLimitIA, topeDiarioIA, async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
   }
@@ -504,7 +535,7 @@ Donde "correcta" es el índice (0 a 3, como NÚMERO, nunca como string entre com
   }
 });
 
-app.post('/api/resumen', requireAuth, rateLimitIA, upload.single('archivo'), async (req, res) => {
+app.post('/api/resumen', requireAuth, rateLimitIA, topeDiarioIA, upload.single('archivo'), async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
   }
@@ -567,7 +598,7 @@ ${texto}
 // (mismo libro/sección que usa /api/fichas) y devuelve qué cubre bien, qué le
 // falta y qué tiene mal. Responde JSON (no PDF) porque es feedback para
 // reaccionar en el momento, no algo para guardar y leer después.
-app.post('/api/corregir-resumen', requireAuth, rateLimitIA, upload.single('archivo'), async (req, res) => {
+app.post('/api/corregir-resumen', requireAuth, rateLimitIA, topeDiarioIA, upload.single('archivo'), async (req, res) => {
   if (!ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
   }

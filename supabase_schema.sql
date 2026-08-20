@@ -136,6 +136,35 @@ begin
   end if;
 end $$;
 
+-- Techo diario global de llamadas a la API de Claude (server.js,
+-- topeDiarioIA). rateLimitIA (20/hora por usuario) vive en memoria del
+-- proceso Node -- Render free duerme/reinicia la instancia con cada
+-- spin-down, así que ese límite por hora es evadible solo con esperar. Este
+-- contador vive acá en la base para sobrevivir a los reinicios. Sin
+-- políticas para el cliente -- solo el server (service role) lee/escribe,
+-- vía la función de abajo.
+create table if not exists public.ia_uso_diario (
+  dia date primary key,
+  llamadas int not null default 0
+);
+alter table public.ia_uso_diario enable row level security;
+
+-- Incremento atómico: dos requests simultáneos no se pisan (a diferencia de
+-- un select+update desde el server, que sí tendría una carrera real).
+create or replace function public.incrementar_uso_ia(p_dia date, p_tope int)
+returns int as $$
+declare nuevo int;
+begin
+  insert into public.ia_uso_diario (dia, llamadas) values (p_dia, 1)
+  on conflict (dia) do update set llamadas = public.ia_uso_diario.llamadas + 1
+  returning llamadas into nuevo;
+  if nuevo > p_tope then
+    return -1; -- pasó el techo
+  end if;
+  return nuevo;
+end;
+$$ language plpgsql;
+
 -- RLS activado pero SIN políticas: nadie con la anon key (pública, vive en
 -- el navegador) puede leer ni escribir esta tabla directo. Solo el server
 -- accede, con SUPABASE_SERVICE_ROLE_KEY (bypassea RLS a propósito), igual
