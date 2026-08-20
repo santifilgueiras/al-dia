@@ -1098,7 +1098,12 @@
     .screen[data-screen="10"] .resumen-hero-num { font-size: 52px; }
     .screen[data-screen="10"] .resumen-hero-total { font-size: 18px; }
     .screen[data-screen="10"] .resumen-hero-sub { font-size: 14px; }
-    .screen[data-screen="10"] .timer-display { font-size: 92px; }
+    /* .timer-display NO se fija acá a propósito (2026-08-20): con más
+       especificidad que el clamp de la sección 860px, un valor fijo acá
+       terminaba ganándole al clamp y el número quedaba MÁS CHICO en
+       pantallas anchas de verdad (92px fijo vs. hasta 240px del clamp) --
+       exactamente lo contrario de "que ocupe más espacio". El clamp de
+       abajo ya escala solo hasta pantallas grandes, no hace falta pisarlo. */
     .screen[data-screen="10"] .estudiar-tema-hoy-nombre { font-size: 16px; }
     .screen[data-screen="10"] .simulacro-desglose-tema, .screen[data-screen="10"] .corrector-item { font-size: 15.5px; }
   }
@@ -1712,7 +1717,14 @@
        de su tarjeta (reportado por Santiago, 2026-08-13). El clamp lo deja
        chico en anchos "de escritorio" angostos y solo llega a 210px en
        pantallas realmente anchas. */
-    .timer-display { font-size: clamp(48px, 10vw, 210px); }
+    /* Pedido de Santiago (2026-08-20): que el número domine la tarjeta, no
+       solo que quepa -- .timer-clock pasa a flex:1 así absorbe el alto
+       sobrante de .timer-card (los métodos/ciclos/botones quedan a su
+       tamaño natural arriba/abajo) y el clamp sube un poco el piso y el
+       techo, sin tocar el mínimo de 48px que evita el desborde real en
+       iPhone Pro Max horizontal (ver comentario arriba). */
+    .timer-clock { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .timer-display { font-size: clamp(52px, 13vw, 240px); }
     .timer-ciclos { font-size: 18px; margin-top: 20px; }
     .timer-btns { gap: 18px; }
     .timer-btns .btn { gap: 10px; border-radius: 12px; }
@@ -2599,7 +2611,7 @@
   <!-- S10 Estudiar -->
   <div class="screen" data-screen="10">
     <div class="screen-content">
-    <h1 style="margin-top:4px;">Estudiar</h1>
+    <h1 style="margin-top:4px;" id="estudiarTitulo">Estudiar</h1>
     <p class="sub" id="estudiarSub">Elegí qué querés usar ahora.</p>
 
     <!-- Pestañas reales (rediseño) -- una sola sección visible a la vez, en
@@ -2766,11 +2778,16 @@
 
     <div class="study-panel" id="sec-explicar" data-sec="explicar">
         <p class="sub" style="margin-top:0;">¿Qué tema no entendés? Decímelo y te lo explico.</p>
+        <!-- Las tarjetas de modo van ARRIBA del campo de texto (pedido de
+             Santiago, 2026-08-20): son lo primero que tiene que ver el
+             estudiante al entrar, antes de escribir nada -- switchStudyTab()
+             ya las pinta acá apenas se entra a la pestaña (ver el fix de la
+             Ronda 25 más arriba en el script). -->
+        <div id="explicarBox"></div>
         <div class="field">
           <textarea id="explicarInput" class="explicar-textarea" rows="2" placeholder="Ej: no entiendo bien la diferencia entre mitosis y meiosis"></textarea>
         </div>
         <button class="btn" id="explicarBtn" onclick="pedirExplicacion('simple')">💡 Explicámelo</button>
-        <div id="explicarBox"></div>
     </div>
     </div>
 
@@ -3500,7 +3517,18 @@ function toggleEstudiarSubmenu(event) {
 
 // Muestra solo el panel elegido (pestañas reales, rediseño) -- reemplaza al
 // acordeón de antes (toggleStudySection abría/cerraba con display:none).
+// Título de cada herramienta (mockup 4b/5a-5e): el mockup real muestra el
+// nombre puntual de la herramienta activa como título ("Fichas", "Corregir
+// mi resumen", etc.), no el genérico "Estudiar" fijo -- pedido explícito de
+// Santiago tras comparar contra sus capturas, para que sea obvio en qué
+// pantalla está sin tener que leer la columna de la derecha.
+const ESTUDIAR_TITULOS = {
+  tiempo: 'Tiempo de estudio', fichas: 'Fichas', simulacro: 'Simulacro de examen',
+  resumen: 'Resumir un apunte', corrector: 'Corregir mi resumen', explicar: 'Explícamelo',
+};
 function switchStudyTab(name) {
+  const titulo = document.getElementById('estudiarTitulo');
+  if (titulo && ESTUDIAR_TITULOS[name]) titulo.textContent = ESTUDIAR_TITULOS[name];
   document.querySelectorAll('#studyMainTabs .tab').forEach(t => t.classList.toggle('active', t.dataset.sec === name));
   document.querySelectorAll('#estudiarHerramientasList .estudiar-herramienta-item').forEach(t => t.classList.toggle('active', t.dataset.sec === name));
   document.querySelectorAll('.study-panel').forEach(p => p.classList.toggle('active', p.dataset.sec === name));
