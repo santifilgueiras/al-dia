@@ -2922,6 +2922,7 @@ let CATALOGO_POR_ANIO, CATALOGO_POR_CICLO_PSICOLOGIA, CATALOGO_POR_CICLO_INGENIE
     CATALOGO_POR_CICLO_INGENIERIA_PRODUCCION, CATALOGO_POR_CICLO_AGRIMENSURA,
     CATALOGO_POR_CICLO_AGRONOMIA,
     CATALOGO_POR_CICLO_CONTADOR_PUBLICO, CATALOGO_POR_CICLO_ECONOMIA, CATALOGO_POR_CICLO_ADMINISTRACION,
+    CATALOGO_POR_CICLO_ESTADISTICA,
     MODULO_ICONS, TEXTOS, DURACIONES, FACULTADES;
 // Los catálogos, la bibliografía y las duraciones de arriba viven ahora en
 // data/*.json (ver scripts/extraer-datos.js) -- se cargan con fetch en
@@ -3433,9 +3434,22 @@ function construirFacultades() {
     cicloLabel: (n) => `${n}º semestre`,
     iconoMateria: '💼',
   },
+  estadistica: {
+    key: 'estadistica',
+    label: 'Facultad de Ciencias Económicas y de Administración',
+    nombreCorto: 'Estadística',
+    grupo: 'Facultad de Ciencias Económicas y de Administración',
+    carrera: 'Licenciatura en Estadística',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_ESTADISTICA,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '🎲',
+  },
 };
 }
-const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica', 'ingenieria_naval', 'ingenieria_alimentos', 'ingenieria_produccion', 'agrimensura', 'agronomia', 'contador_publico', 'economia', 'administracion'];
+const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica', 'ingenieria_naval', 'ingenieria_alimentos', 'ingenieria_produccion', 'agrimensura', 'agronomia', 'contador_publico', 'economia', 'administracion', 'estadistica'];
 
 // Exámenes guardados antes de este cambio no tienen `facultad` -- todos
 // eran de Medicina (la única que existía), así que ese es el default.
@@ -8611,7 +8625,7 @@ async function cargarDatosEstaticos() {
     'catalogo-ingenieria-civil', 'catalogo-ingenieria-electrica', 'catalogo-ingenieria-mecanica',
     'catalogo-ingenieria-quimica', 'catalogo-ingenieria-naval', 'catalogo-ingenieria-alimentos',
     'catalogo-ingenieria-produccion', 'catalogo-agrimensura', 'catalogo-agronomia',
-    'catalogo-contador-publico', 'catalogo-economia', 'catalogo-administracion',
+    'catalogo-contador-publico', 'catalogo-economia', 'catalogo-administracion', 'catalogo-estadistica',
     'modulo-icons', 'textos', 'duraciones',
   ];
   const resultados = await Promise.all(archivos.map(a => fetch(`/data/${a}.json`).then(r => r.json())));
@@ -8623,6 +8637,7 @@ async function cargarDatosEstaticos() {
     CATALOGO_POR_CICLO_INGENIERIA_PRODUCCION, CATALOGO_POR_CICLO_AGRIMENSURA,
     CATALOGO_POR_CICLO_AGRONOMIA,
     CATALOGO_POR_CICLO_CONTADOR_PUBLICO, CATALOGO_POR_CICLO_ECONOMIA, CATALOGO_POR_CICLO_ADMINISTRACION,
+    CATALOGO_POR_CICLO_ESTADISTICA,
     MODULO_ICONS, TEXTOS, DURACIONES,
   ] = resultados;
   construirFacultades();

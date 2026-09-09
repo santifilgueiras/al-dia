@@ -1,0 +1,262 @@
+{
+  "1": [
+    {
+      "nombre": "Cálculo I",
+      "modulos": [
+        {
+          "modulo": "Límites y derivadas",
+          "temas": [
+            "Límites, continuidad y su aplicación a funciones económicas",
+            "Derivadas y su interpretación económica: costo e ingreso marginal"
+          ]
+        },
+        {
+          "modulo": "Optimización e integrales",
+          "temas": [
+            "Optimización de funciones de una variable",
+            "Integrales y su aplicación al cálculo de excedentes"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Álgebra Lineal",
+      "modulos": [
+        {
+          "modulo": "Vectores y matrices",
+          "temas": [
+            "Vectores, matrices y operaciones matriciales",
+            "Determinantes y matriz inversa"
+          ]
+        },
+        {
+          "modulo": "Sistemas de ecuaciones lineales",
+          "temas": [
+            "Sistemas de ecuaciones lineales y método de Gauss",
+            "Aplicaciones del álgebra lineal a modelos económicos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Estadística Descriptiva",
+      "modulos": [
+        {
+          "modulo": "Organización y resumen de datos",
+          "temas": [
+            "Tablas de frecuencia y representaciones gráficas de datos",
+            "Medidas de tendencia central: media, mediana y moda"
+          ]
+        },
+        {
+          "modulo": "Dispersión y relación entre variables",
+          "temas": [
+            "Medidas de dispersión: varianza, desvío estándar y coeficiente de variación",
+            "Correlación y coeficiente de determinación (enfoque descriptivo)"
+          ]
+        }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "nombre": "Cálculo II",
+      "modulos": [
+        {
+          "modulo": "Cálculo en varias variables",
+          "temas": [
+            "Funciones de varias variables y optimización aplicada a economía",
+            "Derivadas parciales y multiplicadores de Lagrange"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Programación I",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de programación imperativa",
+          "temas": [
+            "Variables, tipos de datos y estructuras de control",
+            "Funciones y estructuras de datos básicas (listas, diccionarios)"
+          ]
+        },
+        {
+          "modulo": "Programación aplicada a datos",
+          "temas": [
+            "Lectura y manipulación de datos con librerías estadísticas",
+            "Buenas prácticas de código y control de versiones básico"
+          ]
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "nombre": "Probabilidad I",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de probabilidad",
+          "temas": [
+            "Espacios de probabilidad, axiomas y probabilidad condicional",
+            "Independencia de eventos y teorema de Bayes"
+          ]
+        },
+        {
+          "modulo": "Variables aleatorias",
+          "temas": [
+            "Variables aleatorias discretas y sus distribuciones (Binomial, Poisson)",
+            "Variables aleatorias continuas y sus distribuciones (Normal, Exponencial)"
+          ]
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "nombre": "Cálculo III",
+      "modulos": [
+        {
+          "modulo": "Cálculo vectorial",
+          "temas": [
+            "Campos vectoriales, gradiente, divergencia y rotor",
+            "Integrales de línea y de superficie"
+          ]
+        },
+        {
+          "modulo": "Series y ecuaciones diferenciales",
+          "temas": [
+            "Series numéricas y series de potencias",
+            "Ecuaciones diferenciales ordinarias de primer orden"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Inferencia I",
+      "modulos": [
+        {
+          "modulo": "Estimación puntual",
+          "temas": [
+            "Estimadores puntuales: sesgo, varianza y error cuadrático medio",
+            "Métodos de estimación: máxima verosimilitud y momentos"
+          ]
+        },
+        {
+          "modulo": "Estimación por intervalos y contraste",
+          "temas": [
+            "Intervalos de confianza para media y proporción",
+            "Contraste de hipótesis: errores tipo I y tipo II, valor p"
+          ]
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "nombre": "Muestreo y Planificación de Encuestas I",
+      "modulos": [
+        {
+          "modulo": "Diseño muestral",
+          "temas": [
+            "Muestreo aleatorio simple y estimación de parámetros poblacionales",
+            "Muestreo estratificado y por conglomerados"
+          ]
+        },
+        {
+          "modulo": "Planificación de encuestas",
+          "temas": [
+            "Diseño de cuestionarios y fuentes de error no muestral",
+            "Estimación del tamaño de muestra y cálculo de precisión"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Modelos Lineales",
+      "modulos": [
+        {
+          "modulo": "Regresión lineal múltiple",
+          "temas": [
+            "Estimación por mínimos cuadrados en regresión múltiple",
+            "Diagnóstico del modelo: residuos, multicolinealidad y heterocedasticidad"
+          ]
+        },
+        {
+          "modulo": "Modelo lineal general",
+          "temas": [
+            "Análisis de varianza (ANOVA) como caso particular del modelo lineal",
+            "Selección de modelos y criterios de bondad de ajuste"
+          ]
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "nombre": "Inferencia II",
+      "modulos": [
+        {
+          "modulo": "Inferencia no paramétrica",
+          "temas": [
+            "Pruebas de bondad de ajuste (Chi-cuadrado, Kolmogorov-Smirnov)",
+            "Pruebas no paramétricas de comparación de grupos"
+          ]
+        },
+        {
+          "modulo": "Inferencia bayesiana introductoria",
+          "temas": [
+            "Distribución a priori y a posteriori",
+            "Estimación bayesiana y su comparación con el enfoque frecuentista"
+          ]
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "nombre": "Análisis Multivariado I",
+      "modulos": [
+        {
+          "modulo": "Reducción de dimensión",
+          "temas": [
+            "Análisis de componentes principales",
+            "Análisis factorial exploratorio"
+          ]
+        },
+        {
+          "modulo": "Clasificación y agrupamiento",
+          "temas": [
+            "Análisis de conglomerados (cluster analysis)",
+            "Análisis discriminante"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Series Cronológicas I",
+      "modulos": [
+        {
+          "modulo": "Componentes de una serie temporal",
+          "temas": [
+            "Tendencia, estacionalidad y componente cíclico",
+            "Suavizamiento exponencial y medias móviles"
+          ]
+        },
+        {
+          "modulo": "Modelos ARIMA",
+          "temas": [
+            "Procesos estacionarios, autocorrelación y autocorrelación parcial",
+            "Modelos ARIMA: identificación, estimación y diagnóstico"
+          ]
+        }
+      ]
+    }
+  ],
+  "8": [
+    {
+      "nombre": "Trabajo Final de Grado",
+      "modulos": []
+    }
+  ]
+}

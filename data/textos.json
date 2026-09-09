@@ -7950,5 +7950,165 @@
   "Análisis de sensibilidad y riesgo en proyectos": {
     "libro": "Ross, Westerfield & Jaffe - Finanzas Corporativas",
     "seccion": "Análisis de sensibilidad y riesgo"
+  },
+  "Tablas de frecuencia y representaciones gráficas de datos": {
+    "libro": "Walpole, Myers & Myers -- Probabilidad y Estadística para Ingeniería y Ciencias",
+    "seccion": "cap. de estadística descriptiva"
+  },
+  "Medidas de tendencia central: media, mediana y moda": {
+    "libro": "Walpole, Myers & Myers -- Probabilidad y Estadística para Ingeniería y Ciencias",
+    "seccion": "cap. de estadística descriptiva"
+  },
+  "Medidas de dispersión: varianza, desvío estándar y coeficiente de variación": {
+    "libro": "Walpole, Myers & Myers -- Probabilidad y Estadística para Ingeniería y Ciencias",
+    "seccion": "cap. de estadística descriptiva"
+  },
+  "Correlación y coeficiente de determinación (enfoque descriptivo)": {
+    "libro": "Walpole, Myers & Myers -- Probabilidad y Estadística para Ingeniería y Ciencias",
+    "seccion": "cap. de regresión y correlación"
+  },
+  "Variables, tipos de datos y estructuras de control": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Funciones y estructuras de datos básicas (listas, diccionarios)": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Lectura y manipulación de datos con librerías estadísticas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Buenas prácticas de código y control de versiones básico": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Espacios de probabilidad, axiomas y probabilidad condicional": {
+    "libro": "Ross -- A First Course in Probability",
+    "seccion": "cap. de axiomas de probabilidad"
+  },
+  "Independencia de eventos y teorema de Bayes": {
+    "libro": "Ross -- A First Course in Probability",
+    "seccion": "cap. de probabilidad condicional"
+  },
+  "Variables aleatorias discretas y sus distribuciones (Binomial, Poisson)": {
+    "libro": "Ross -- A First Course in Probability",
+    "seccion": "cap. de variables aleatorias discretas"
+  },
+  "Variables aleatorias continuas y sus distribuciones (Normal, Exponencial)": {
+    "libro": "Ross -- A First Course in Probability",
+    "seccion": "cap. de variables aleatorias continuas"
+  },
+  "Campos vectoriales, gradiente, divergencia y rotor": {
+    "libro": "Stewart -- Cálculo de varias variables",
+    "seccion": "cap. de cálculo vectorial"
+  },
+  "Integrales de línea y de superficie": {
+    "libro": "Stewart -- Cálculo de varias variables",
+    "seccion": "cap. de integrales de línea y superficie"
+  },
+  "Series numéricas y series de potencias": {
+    "libro": "Stewart -- Cálculo de varias variables",
+    "seccion": "cap. de series"
+  },
+  "Ecuaciones diferenciales ordinarias de primer orden": {
+    "libro": "Stewart -- Cálculo de varias variables",
+    "seccion": "cap. de ecuaciones diferenciales"
+  },
+  "Estimadores puntuales: sesgo, varianza y error cuadrático medio": {
+    "libro": "Casella & Berger -- Statistical Inference",
+    "seccion": "cap. de estimación puntual"
+  },
+  "Métodos de estimación: máxima verosimilitud y momentos": {
+    "libro": "Casella & Berger -- Statistical Inference",
+    "seccion": "cap. de métodos de estimación"
+  },
+  "Intervalos de confianza para media y proporción": {
+    "libro": "Casella & Berger -- Statistical Inference",
+    "seccion": "cap. de estimación por intervalos"
+  },
+  "Contraste de hipótesis: errores tipo I y tipo II, valor p": {
+    "libro": "Casella & Berger -- Statistical Inference",
+    "seccion": "cap. de contraste de hipótesis"
+  },
+  "Muestreo aleatorio simple y estimación de parámetros poblacionales": {
+    "libro": "Cochran -- Sampling Techniques",
+    "seccion": "cap. de muestreo aleatorio simple"
+  },
+  "Muestreo estratificado y por conglomerados": {
+    "libro": "Cochran -- Sampling Techniques",
+    "seccion": "cap. de muestreo estratificado y por conglomerados"
+  },
+  "Diseño de cuestionarios y fuentes de error no muestral": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Estimación del tamaño de muestra y cálculo de precisión": {
+    "libro": "Cochran -- Sampling Techniques",
+    "seccion": "cap. de tamaño de muestra"
+  },
+  "Estimación por mínimos cuadrados en regresión múltiple": {
+    "libro": "Montgomery, Peck & Vining -- Introducción al análisis de regresión lineal",
+    "seccion": "cap. de regresión lineal múltiple"
+  },
+  "Diagnóstico del modelo: residuos, multicolinealidad y heterocedasticidad": {
+    "libro": "Montgomery, Peck & Vining -- Introducción al análisis de regresión lineal",
+    "seccion": "cap. de diagnóstico del modelo"
+  },
+  "Análisis de varianza (ANOVA) como caso particular del modelo lineal": {
+    "libro": "Montgomery, Peck & Vining -- Introducción al análisis de regresión lineal",
+    "seccion": "cap. de ANOVA y modelo lineal"
+  },
+  "Selección de modelos y criterios de bondad de ajuste": {
+    "libro": "Montgomery, Peck & Vining -- Introducción al análisis de regresión lineal",
+    "seccion": "cap. de selección de modelos"
+  },
+  "Pruebas de bondad de ajuste (Chi-cuadrado, Kolmogorov-Smirnov)": {
+    "libro": "Casella & Berger -- Statistical Inference",
+    "seccion": "cap. de pruebas de bondad de ajuste"
+  },
+  "Pruebas no paramétricas de comparación de grupos": {
+    "libro": "Casella & Berger -- Statistical Inference",
+    "seccion": "cap. de inferencia no paramétrica"
+  },
+  "Distribución a priori y a posteriori": {
+    "libro": "Casella & Berger -- Statistical Inference",
+    "seccion": "cap. de inferencia bayesiana"
+  },
+  "Estimación bayesiana y su comparación con el enfoque frecuentista": {
+    "libro": "Casella & Berger -- Statistical Inference",
+    "seccion": "cap. de inferencia bayesiana"
+  },
+  "Análisis de componentes principales": {
+    "libro": "Johnson & Wichern -- Applied Multivariate Statistical Analysis",
+    "seccion": "cap. de componentes principales"
+  },
+  "Análisis factorial exploratorio": {
+    "libro": "Johnson & Wichern -- Applied Multivariate Statistical Analysis",
+    "seccion": "cap. de análisis factorial"
+  },
+  "Análisis de conglomerados (cluster analysis)": {
+    "libro": "Johnson & Wichern -- Applied Multivariate Statistical Analysis",
+    "seccion": "cap. de análisis de conglomerados"
+  },
+  "Análisis discriminante": {
+    "libro": "Johnson & Wichern -- Applied Multivariate Statistical Analysis",
+    "seccion": "cap. de análisis discriminante"
+  },
+  "Tendencia, estacionalidad y componente cíclico": {
+    "libro": "Brockwell & Davis -- Introduction to Time Series and Forecasting",
+    "seccion": "cap. de descomposición de series temporales"
+  },
+  "Suavizamiento exponencial y medias móviles": {
+    "libro": "Brockwell & Davis -- Introduction to Time Series and Forecasting",
+    "seccion": "cap. de suavizamiento y medias móviles"
+  },
+  "Procesos estacionarios, autocorrelación y autocorrelación parcial": {
+    "libro": "Brockwell & Davis -- Introduction to Time Series and Forecasting",
+    "seccion": "cap. de estacionariedad y autocorrelación"
+  },
+  "Modelos ARIMA: identificación, estimación y diagnóstico": {
+    "libro": "Brockwell & Davis -- Introduction to Time Series and Forecasting",
+    "seccion": "cap. de modelos ARIMA"
   }
 }
