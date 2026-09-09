@@ -1,0 +1,636 @@
+{
+  "1": [
+    {
+      "nombre": "Biología General",
+      "modulos": [
+        {
+          "modulo": "Organización celular",
+          "temas": [
+            "Estructura y organización celular",
+            "Procesos biológicos que mantienen y perpetúan la vida"
+          ]
+        },
+        {
+          "modulo": "Biología aplicada y método científico",
+          "temas": [
+            "Biología aplicada a sistemas de producción agropecuaria",
+            "Método científico en las ciencias biológicas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Matemáticas",
+      "modulos": [
+        {
+          "modulo": "Cálculo aplicado a fenómenos biológicos",
+          "temas": [
+            "Funciones de varias variables aplicadas a modelos biológicos",
+            "Cálculo integral aplicado a modelos biológicos"
+          ]
+        },
+        {
+          "modulo": "Álgebra lineal aplicada a la agronomía",
+          "temas": [
+            "Álgebra lineal: vectores, matrices y sistemas de ecuaciones aplicados a la agronomía"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "AFO I: Competencias para el Abordaje de Situaciones Agrarias",
+      "modulos": [
+        {
+          "modulo": "Herramientas para el trabajo académico",
+          "temas": [
+            "Tipos de conocimiento y método científico",
+            "Búsqueda de información académica, integridad y citación"
+          ]
+        },
+        {
+          "modulo": "El agrónomo y el sistema agropecuario uruguayo",
+          "temas": [
+            "Rol de la universidad y la profesión en los problemas agrarios nacionales",
+            "Sistema estadístico agropecuario de Uruguay",
+            "Inserción profesional del Ingeniero Agrónomo"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Física (Agronomía)",
+      "modulos": [
+        {
+          "modulo": "Mecánica clásica aplicada a la agronomía",
+          "temas": [
+            "Cinemática y dinámica aplicadas a sistemas agronómicos",
+            "Trabajo, energía y potencia en sistemas mecánicos agrícolas"
+          ]
+        },
+        {
+          "modulo": "Mecánica de fluidos aplicada",
+          "temas": [
+            "Hidrostática e hidrodinámica aplicadas al manejo del agua"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Química (Agronomía)",
+      "modulos": [
+        {
+          "modulo": "Fundamentos físico-químicos aplicados a la agronomía",
+          "temas": [
+            "Cálculos estequiométricos y concentración de soluciones",
+            "Equilibrio ácido-base y reacciones redox en sistemas naturales"
+          ]
+        },
+        {
+          "modulo": "Termodinámica de procesos naturales",
+          "temas": [
+            "Termodinámica de reacciones químicas naturales"
+          ]
+        }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "nombre": "Botánica",
+      "modulos": [
+        {
+          "modulo": "Morfología y clasificación vegetal",
+          "temas": [
+            "Morfología externa e interna de las plantas",
+            "Terminología botánica y clasificación taxonómica",
+            "Nomenclatura botánica"
+          ]
+        },
+        {
+          "modulo": "Reproducción vegetal",
+          "temas": [
+            "Reproducción sexual y asexual en plantas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Bioquímica (Agronomía)",
+      "modulos": [
+        {
+          "modulo": "Biomoléculas de interés agronómico",
+          "temas": [
+            "Estructura y función de proteínas y enzimas",
+            "Estructura y función de lípidos y ácidos nucleicos"
+          ]
+        },
+        {
+          "modulo": "Metabolismo y genética molecular",
+          "temas": [
+            "Vías metabólicas: catabolismo y anabolismo en vegetales y animales",
+            "Herencia, expresión y traducción de la información genética"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Biología Animal",
+      "modulos": [
+        {
+          "modulo": "Anatomía y fisiología de animales productivos",
+          "temas": [
+            "Organización anatómica de animales de producción",
+            "Digestión en animales productivos"
+          ]
+        },
+        {
+          "modulo": "Reproducción y homeostasis animal",
+          "temas": [
+            "Reproducción en animales de producción",
+            "Homeostasis frente a perturbaciones ambientales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a las Geociencias",
+      "modulos": [
+        {
+          "modulo": "Sistema climático y geología",
+          "temas": [
+            "Sistema climático y variabilidad climática",
+            "Geología general y geomorfología"
+          ]
+        },
+        {
+          "modulo": "Hidrología y edafología general",
+          "temas": [
+            "Hidrología superficial y subterránea y cuencas hidrográficas",
+            "Edafología general y ecorregiones de Uruguay"
+          ]
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "nombre": "Fisiología Vegetal",
+      "modulos": [
+        {
+          "modulo": "Ciclo biológico y desarrollo vegetal",
+          "temas": [
+            "Crecimiento y desarrollo vegetal a lo largo del ciclo biológico",
+            "Interacción planta-ambiente"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Microbiología General (Agronomía)",
+      "modulos": [
+        {
+          "modulo": "Microorganismos y ambientes agropecuarios",
+          "temas": [
+            "Características estructurales y funcionales de los microorganismos",
+            "Rol de los microorganismos en el sistema suelo-planta"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Estadística I: Probabilidad e Inferencia (Agronomía)",
+      "modulos": [
+        {
+          "modulo": "Probabilidad aplicada a la agronomía",
+          "temas": [
+            "Probabilidad y variables aleatorias en problemas agronómicos",
+            "Distribuciones de probabilidad y modelos teóricos"
+          ]
+        },
+        {
+          "modulo": "Inferencia estadística agronómica",
+          "temas": [
+            "Inferencia estadística aplicada a problemas agronómicos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Teoría Económica",
+      "modulos": [
+        {
+          "modulo": "Microeconomía aplicada a la producción agropecuaria",
+          "temas": [
+            "Microeconomía aplicada a problemas productivos agropecuarios"
+          ]
+        },
+        {
+          "modulo": "Contexto macroeconómico agropecuario",
+          "temas": [
+            "Contexto macroeconómico y comportamiento de empresas agropecuarias"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Agrometeorología",
+      "modulos": [
+        {
+          "modulo": "Clima y producción agropecuaria",
+          "temas": [
+            "Interdependencias entre el clima y las actividades agropecuarias",
+            "Variabilidad climática y regionalización agroclimática de Uruguay"
+          ]
+        },
+        {
+          "modulo": "Riesgo climático agropecuario",
+          "temas": [
+            "Eventos meteorológicos extremos y cambio climático"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Edafología",
+      "modulos": [
+        {
+          "modulo": "Ciencia del suelo",
+          "temas": [
+            "Descripción y clasificación de suelos",
+            "Propiedades agronómicas del suelo y capacidad de uso"
+          ]
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "nombre": "Genética I (Agronomía)",
+      "modulos": [
+        {
+          "modulo": "Bases de la herencia en plantas y animales",
+          "temas": [
+            "Mecanismos físico-químicos de la diversidad en plantas y animales",
+            "Patrones de herencia en plantas y animales"
+          ]
+        },
+        {
+          "modulo": "Genoma y herramientas moleculares",
+          "temas": [
+            "Organización del genoma en células eucarióticas",
+            "Herramientas moleculares aplicadas al mejoramiento genético"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Estadística II: Diseño y Regresión",
+      "modulos": [
+        {
+          "modulo": "Diseño experimental agronómico",
+          "temas": [
+            "Diseño experimental en ensayos agronómicos"
+          ]
+        },
+        {
+          "modulo": "Modelos de regresión agronómicos",
+          "temas": [
+            "Modelos lineales de regresión y clasificación",
+            "Análisis de datos experimentales con software estadístico"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Economía Agraria",
+      "modulos": [
+        {
+          "modulo": "Competitividad agroindustrial uruguaya",
+          "temas": [
+            "Competitividad de la agricultura y agroindustria uruguaya",
+            "Cadenas agroindustriales y desarrollo tecnológico"
+          ]
+        },
+        {
+          "modulo": "Mercado agropecuario mundial",
+          "temas": [
+            "Competitividad en el mercado agropecuario mundial"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Fisiología y Metabolismo Animal",
+      "modulos": [
+        {
+          "modulo": "Digestión y metabolismo de animales productivos",
+          "temas": [
+            "Ingestión, digestión y metabolismo de animales productivos",
+            "Consumo y eficiencia digestiva y metabólica"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Ecología de Agroecosistemas",
+      "modulos": [
+        {
+          "modulo": "Estructura y funcionamiento de agroecosistemas",
+          "temas": [
+            "Componentes físico-biológicos de agroecosistemas e interacciones bióticas",
+            "Flujo energético y ciclos biogeoquímicos en agroecosistemas"
+          ]
+        },
+        {
+          "modulo": "Manejo y sustentabilidad de agroecosistemas",
+          "temas": [
+            "Efectos del manejo agronómico sobre el agroecosistema"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Fertilidad de Suelos y Fertilizantes",
+      "modulos": [
+        {
+          "modulo": "Nutrientes en el sistema suelo-planta",
+          "temas": [
+            "Dinámica de nutrientes en el sistema suelo-planta",
+            "Diagnóstico del nivel de fertilidad del suelo"
+          ]
+        },
+        {
+          "modulo": "Corrección tecnológica de la fertilidad",
+          "temas": [
+            "Medidas tecnológicas de corrección de la fertilidad: fertilizantes y enmiendas"
+          ]
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "nombre": "Genética de Poblaciones y Genética Cuantitativa",
+      "modulos": [
+        {
+          "modulo": "Genética de poblaciones",
+          "temas": [
+            "Base genética de la variación de caracteres a nivel poblacional"
+          ]
+        },
+        {
+          "modulo": "Genética cuantitativa y mejoramiento",
+          "temas": [
+            "Enfoque genómico de la variación cuantitativa",
+            "Bases genéticas del mejoramiento animal y vegetal"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Reproducción y Nutrición Animal",
+      "modulos": [
+        {
+          "modulo": "Ciclo reproductivo de especies productivas",
+          "temas": [
+            "Ciclo reproductivo en especies de interés productivo"
+          ]
+        },
+        {
+          "modulo": "Interrelación nutricional y ambiental",
+          "temas": [
+            "Interrelación entre sistemas biológicos, nutricionales y ambientales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Ecofisiología de Cultivos",
+      "modulos": [
+        {
+          "modulo": "Bases fisiológicas del rendimiento de cultivos",
+          "temas": [
+            "Bases fisiológicas y ecológicas del crecimiento y desarrollo de cultivos",
+            "Determinación ecofisiológica del rendimiento"
+          ]
+        },
+        {
+          "modulo": "Respuesta de los cultivos a factores ambientales",
+          "temas": [
+            "Respuesta de los cultivos a la radiación, la temperatura y el agua",
+            "Respuesta de los cultivos al manejo de nutrientes"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Manejo y Conservación de Suelos",
+      "modulos": [
+        {
+          "modulo": "Degradación y conservación de suelos",
+          "temas": [
+            "Procesos de degradación de suelos y estrategias de mitigación",
+            "Herramientas de manejo de suelos, aguas y vegetación"
+          ]
+        },
+        {
+          "modulo": "Manejo mecanizado de suelos",
+          "temas": [
+            "Manejo mecanizado de suelos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "AFO II: Sustentabilidad de Sistemas Agrarios",
+      "modulos": [
+        {
+          "modulo": "Sustentabilidad de sistemas agrarios",
+          "temas": [
+            "Dimensiones de la sustentabilidad de sistemas agrarios",
+            "Diagnóstico de sustentabilidad de un sistema agrario mediante indicadores"
+          ]
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "nombre": "Fitotecnia",
+      "modulos": [
+        {
+          "modulo": "Mejoramiento genético vegetal",
+          "temas": [
+            "Mejoramiento genético de especies cultivadas",
+            "Recursos genéticos vegetales"
+          ]
+        },
+        {
+          "modulo": "Producción de semilla y cultivares",
+          "temas": [
+            "Producción de semilla de calidad",
+            "Obtención de cultivares y multiplicación comercial"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Procesos Sociales y Herramientas de Intervención en el Territorio",
+      "modulos": [
+        {
+          "modulo": "Sociología rural",
+          "temas": [
+            "Sociología rural y configuraciones sociales del agro"
+          ]
+        },
+        {
+          "modulo": "Intervención en territorios rurales",
+          "temas": [
+            "Actores sociales del medio rural",
+            "Herramientas de intervención profesional en territorios rurales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Entomología",
+      "modulos": [
+        {
+          "modulo": "Biología de insectos",
+          "temas": [
+            "Morfología, fisiología y hábitos de los insectos",
+            "Ciclos de vida de los insectos e interacción con el ambiente"
+          ]
+        },
+        {
+          "modulo": "Manejo de plagas",
+          "temas": [
+            "Manejo integrado de plagas de importancia agronómica"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Fitopatología",
+      "modulos": [
+        {
+          "modulo": "Patología vegetal",
+          "temas": [
+            "Diagnóstico de enfermedades de las plantas",
+            "Ciclos de las enfermedades vegetales"
+          ]
+        },
+        {
+          "modulo": "Manejo de enfermedades vegetales",
+          "temas": [
+            "Manejo integrado y gestión sustentable de enfermedades vegetales"
+          ]
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "nombre": "Bovinos de Carne",
+      "modulos": [
+        {
+          "modulo": "Producción de bovinos de carne",
+          "temas": [
+            "Sistemas de producción y manejo de bovinos para carne",
+            "Tecnologías de producción de carne bovina"
+          ]
+        },
+        {
+          "modulo": "Impacto económico de la ganadería de carne",
+          "temas": [
+            "Impacto económico de la producción de carne a nivel de empresa ganadera"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Producción de Granos: Cultivos de Verano",
+      "modulos": [
+        {
+          "modulo": "Bases fisiológicas de cultivos de verano",
+          "temas": [
+            "Bases fisiológicas de la respuesta de los cultivos de verano al manejo"
+          ]
+        },
+        {
+          "modulo": "Manejo de cultivos de verano",
+          "temas": [
+            "Manejo de cultivos de verano en secano",
+            "Manejo de malezas, enfermedades y plagas en cultivos de verano"
+          ]
+        }
+      ]
+    }
+  ],
+  "8": [
+    {
+      "nombre": "Producción de Granos: Cultivos de Invierno",
+      "modulos": [
+        {
+          "modulo": "Ecofisiología y manejo de cultivos de invierno",
+          "temas": [
+            "Ecofisiología de cultivos de invierno",
+            "Manejo agronómico de cultivos de invierno"
+          ]
+        },
+        {
+          "modulo": "Paquetes tecnológicos de invierno",
+          "temas": [
+            "Formulación de paquetes tecnológicos para cultivos de invierno"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Gestión de Empresas Agrarias",
+      "modulos": [
+        {
+          "modulo": "Análisis económico-financiero de la empresa agraria",
+          "temas": [
+            "Resultados económico-financieros y patrimoniales de sistemas productivos agrarios",
+            "Indicadores técnicos, económicos y financieros de la empresa agraria"
+          ]
+        },
+        {
+          "modulo": "Planificación y organización de la empresa agraria",
+          "temas": [
+            "Niveles de planificación de la empresa agraria",
+            "Formas de organización empresarial agraria"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "AFO III: Agrícola-ganadero",
+      "modulos": [
+        {
+          "modulo": "Diagnóstico predial agrícola-ganadero",
+          "temas": [
+            "Diagnóstico de sistemas de producción de pasto y grano a escala predial",
+            "Caracterización de los recursos naturales del predio"
+          ]
+        },
+        {
+          "modulo": "Clínica agronómica agrícola-ganadera",
+          "temas": [
+            "Clínica agronómica: producción animal, agricultura en rotación con pasturas y campo natural",
+            "Análisis de resultados productivos, socioeconómicos y ambientales",
+            "Propuesta de cambio del sistema de producción"
+          ]
+        }
+      ]
+    }
+  ],
+  "9": [
+    {
+      "nombre": "Trabajo Final de Grado",
+      "modulos": []
+    }
+  ],
+  "10": []
+}

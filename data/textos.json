@@ -6882,5 +6882,449 @@
   "Reacciones de hipersensibilidad (alergias)": {
     "libro": "Robbins y Cotran",
     "seccion": "capítulo de Enfermedades del sistema inmunitario: hipersensibilidad"
+  },
+  "Estructura y organización celular": {
+    "libro": "Raven/Johnson - Biología",
+    "seccion": "Cap. estructura y organización celular"
+  },
+  "Procesos biológicos que mantienen y perpetúan la vida": {
+    "libro": "Raven/Johnson - Biología",
+    "seccion": "Cap. metabolismo, reproducción y herencia"
+  },
+  "Biología aplicada a sistemas de producción agropecuaria": {
+    "libro": "Raven/Johnson - Biología",
+    "seccion": "Cap. biología aplicada a sistemas productivos"
+  },
+  "Método científico en las ciencias biológicas": {
+    "libro": "Raven/Johnson - Biología",
+    "seccion": "Introducción: el método científico"
+  },
+  "Funciones de varias variables aplicadas a modelos biológicos": {
+    "libro": "Stewart - Cálculo",
+    "seccion": "Funciones de varias variables"
+  },
+  "Cálculo integral aplicado a modelos biológicos": {
+    "libro": "Stewart - Cálculo",
+    "seccion": "Integrales aplicadas a modelos de crecimiento"
+  },
+  "Álgebra lineal: vectores, matrices y sistemas de ecuaciones aplicados a la agronomía": {
+    "libro": "Grossman - Álgebra Lineal",
+    "seccion": "Vectores, matrices y sistemas de ecuaciones"
+  },
+  "Tipos de conocimiento y método científico": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO I: tipos de conocimiento y método científico"
+  },
+  "Búsqueda de información académica, integridad y citación": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO I: búsqueda de información, integridad y citas"
+  },
+  "Rol de la universidad y la profesión en los problemas agrarios nacionales": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO I: rol de la Universidad y la Facultad de Agronomía"
+  },
+  "Sistema estadístico agropecuario de Uruguay": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO I: sistema estadístico agropecuario uruguayo"
+  },
+  "Inserción profesional del Ingeniero Agrónomo": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO I: inserción laboral del Ingeniero Agrónomo"
+  },
+  "Cinemática y dinámica aplicadas a sistemas agronómicos": {
+    "libro": "Serway/Jewett - Física para ciencias e ingeniería",
+    "seccion": "Cinemática y leyes de Newton"
+  },
+  "Trabajo, energía y potencia en sistemas mecánicos agrícolas": {
+    "libro": "Serway/Jewett - Física para ciencias e ingeniería",
+    "seccion": "Trabajo, energía y potencia"
+  },
+  "Hidrostática e hidrodinámica aplicadas al manejo del agua": {
+    "libro": "Serway/Jewett - Física para ciencias e ingeniería",
+    "seccion": "Mecánica de fluidos"
+  },
+  "Cálculos estequiométricos y concentración de soluciones": {
+    "libro": "Chang - Química",
+    "seccion": "Estequiometría y soluciones"
+  },
+  "Equilibrio ácido-base y reacciones redox en sistemas naturales": {
+    "libro": "Chang - Química",
+    "seccion": "Equilibrio ácido-base y electroquímica"
+  },
+  "Termodinámica de reacciones químicas naturales": {
+    "libro": "Chang - Química",
+    "seccion": "Termodinámica química"
+  },
+  "Morfología externa e interna de las plantas": {
+    "libro": "Raven - Biología de las Plantas",
+    "seccion": "Morfología vegetal externa e interna"
+  },
+  "Terminología botánica y clasificación taxonómica": {
+    "libro": "Raven - Biología de las Plantas",
+    "seccion": "Taxonomía y clasificación vegetal"
+  },
+  "Nomenclatura botánica": {
+    "libro": "Raven - Biología de las Plantas",
+    "seccion": "Nomenclatura botánica"
+  },
+  "Reproducción sexual y asexual en plantas": {
+    "libro": "Raven - Biología de las Plantas",
+    "seccion": "Reproducción en plantas"
+  },
+  "Estructura y función de proteínas y enzimas": {
+    "libro": "Lehninger - Principios de Bioquímica",
+    "seccion": "Proteínas y enzimas"
+  },
+  "Estructura y función de lípidos y ácidos nucleicos": {
+    "libro": "Lehninger - Principios de Bioquímica",
+    "seccion": "Lípidos y ácidos nucleicos"
+  },
+  "Vías metabólicas: catabolismo y anabolismo en vegetales y animales": {
+    "libro": "Lehninger - Principios de Bioquímica",
+    "seccion": "Catabolismo y anabolismo"
+  },
+  "Herencia, expresión y traducción de la información genética": {
+    "libro": "Lehninger - Principios de Bioquímica",
+    "seccion": "Expresión y traducción de la información genética"
+  },
+  "Organización anatómica de animales de producción": {
+    "libro": "Church - Fundamentos de Nutrición de Rumiantes",
+    "seccion": "Anatomía de animales de producción"
+  },
+  "Digestión en animales productivos": {
+    "libro": "Church - Fundamentos de Nutrición de Rumiantes",
+    "seccion": "Fisiología de la digestión"
+  },
+  "Reproducción en animales de producción": {
+    "libro": "Hafez - Reproducción e Inseminación Artificial en Animales",
+    "seccion": "Fisiología de la reproducción animal"
+  },
+  "Homeostasis frente a perturbaciones ambientales": {
+    "libro": "Church - Fundamentos de Nutrición de Rumiantes",
+    "seccion": "Homeostasis y adaptación ambiental"
+  },
+  "Sistema climático y variabilidad climática": {
+    "libro": "Rosenberg - Microclimate: The Biological Environment",
+    "seccion": "Sistema climático y variabilidad"
+  },
+  "Geología general y geomorfología": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Geología general y geomorfología"
+  },
+  "Hidrología superficial y subterránea y cuencas hidrográficas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Hidrología superficial y subterránea"
+  },
+  "Edafología general y ecorregiones de Uruguay": {
+    "libro": "Porta/López-Acevedo - Edafología",
+    "seccion": "Introducción a la edafología y ecorregiones"
+  },
+  "Crecimiento y desarrollo vegetal a lo largo del ciclo biológico": {
+    "libro": "Taiz & Zeiger - Fisiología Vegetal",
+    "seccion": "Crecimiento y desarrollo vegetal"
+  },
+  "Interacción planta-ambiente": {
+    "libro": "Taiz & Zeiger - Fisiología Vegetal",
+    "seccion": "Respuesta de las plantas al ambiente"
+  },
+  "Características estructurales y funcionales de los microorganismos": {
+    "libro": "Madigan - Brock, Biología de los Microorganismos",
+    "seccion": "Estructura y función microbiana"
+  },
+  "Rol de los microorganismos en el sistema suelo-planta": {
+    "libro": "Madigan - Brock, Biología de los Microorganismos",
+    "seccion": "Microbiología del suelo"
+  },
+  "Probabilidad y variables aleatorias en problemas agronómicos": {
+    "libro": "Walpole/Myers - Probabilidad y Estadística para Ingeniería y Ciencias",
+    "seccion": "Probabilidad y variables aleatorias"
+  },
+  "Distribuciones de probabilidad y modelos teóricos": {
+    "libro": "Walpole/Myers - Probabilidad y Estadística para Ingeniería y Ciencias",
+    "seccion": "Distribuciones de probabilidad"
+  },
+  "Inferencia estadística aplicada a problemas agronómicos": {
+    "libro": "Walpole/Myers - Probabilidad y Estadística para Ingeniería y Ciencias",
+    "seccion": "Estimación y contraste de hipótesis"
+  },
+  "Microeconomía aplicada a problemas productivos agropecuarios": {
+    "libro": "Mankiw - Principios de Economía",
+    "seccion": "Microeconomía aplicada"
+  },
+  "Contexto macroeconómico y comportamiento de empresas agropecuarias": {
+    "libro": "Mankiw - Principios de Economía",
+    "seccion": "Macroeconomía y contexto empresarial"
+  },
+  "Interdependencias entre el clima y las actividades agropecuarias": {
+    "libro": "Rosenberg - Microclimate: The Biological Environment",
+    "seccion": "Clima y actividad agropecuaria"
+  },
+  "Variabilidad climática y regionalización agroclimática de Uruguay": {
+    "libro": "Rosenberg - Microclimate: The Biological Environment",
+    "seccion": "Regionalización agroclimática"
+  },
+  "Eventos meteorológicos extremos y cambio climático": {
+    "libro": "Rosenberg - Microclimate: The Biological Environment",
+    "seccion": "Extremos climáticos y cambio climático"
+  },
+  "Descripción y clasificación de suelos": {
+    "libro": "Porta/López-Acevedo - Edafología",
+    "seccion": "Descripción y clasificación de suelos"
+  },
+  "Propiedades agronómicas del suelo y capacidad de uso": {
+    "libro": "Porta/López-Acevedo - Edafología",
+    "seccion": "Propiedades agronómicas y capacidad de uso"
+  },
+  "Mecanismos físico-químicos de la diversidad en plantas y animales": {
+    "libro": "Griffiths - Genética",
+    "seccion": "Bases moleculares de la variación genética"
+  },
+  "Patrones de herencia en plantas y animales": {
+    "libro": "Griffiths - Genética",
+    "seccion": "Patrones de herencia mendeliana y no mendeliana"
+  },
+  "Organización del genoma en células eucarióticas": {
+    "libro": "Griffiths - Genética",
+    "seccion": "Organización del genoma eucariótico"
+  },
+  "Herramientas moleculares aplicadas al mejoramiento genético": {
+    "libro": "Griffiths - Genética",
+    "seccion": "Herramientas moleculares en genética aplicada"
+  },
+  "Diseño experimental en ensayos agronómicos": {
+    "libro": "Walpole/Myers - Probabilidad y Estadística para Ingeniería y Ciencias",
+    "seccion": "Diseño de experimentos"
+  },
+  "Modelos lineales de regresión y clasificación": {
+    "libro": "Walpole/Myers - Probabilidad y Estadística para Ingeniería y Ciencias",
+    "seccion": "Regresión lineal"
+  },
+  "Análisis de datos experimentales con software estadístico": {
+    "libro": "Walpole/Myers - Probabilidad y Estadística para Ingeniería y Ciencias",
+    "seccion": "Análisis de datos experimentales"
+  },
+  "Competitividad de la agricultura y agroindustria uruguaya": {
+    "libro": "Barry/Ellinger - Financial Management in Agriculture",
+    "seccion": "Competitividad agroindustrial"
+  },
+  "Cadenas agroindustriales y desarrollo tecnológico": {
+    "libro": "Barry/Ellinger - Financial Management in Agriculture",
+    "seccion": "Cadenas agroindustriales y tecnología"
+  },
+  "Competitividad en el mercado agropecuario mundial": {
+    "libro": "Barry/Ellinger - Financial Management in Agriculture",
+    "seccion": "Mercado agropecuario mundial"
+  },
+  "Ingestión, digestión y metabolismo de animales productivos": {
+    "libro": "Church - Fundamentos de Nutrición de Rumiantes",
+    "seccion": "Ingestión, digestión y metabolismo"
+  },
+  "Consumo y eficiencia digestiva y metabólica": {
+    "libro": "Church - Fundamentos de Nutrición de Rumiantes",
+    "seccion": "Eficiencia digestiva y metabólica"
+  },
+  "Componentes físico-biológicos de agroecosistemas e interacciones bióticas": {
+    "libro": "Gliessman - Agroecología",
+    "seccion": "Componentes e interacciones del agroecosistema"
+  },
+  "Flujo energético y ciclos biogeoquímicos en agroecosistemas": {
+    "libro": "Gliessman - Agroecología",
+    "seccion": "Flujo de energía y ciclos biogeoquímicos"
+  },
+  "Efectos del manejo agronómico sobre el agroecosistema": {
+    "libro": "Gliessman - Agroecología",
+    "seccion": "Manejo agronómico y sustentabilidad"
+  },
+  "Dinámica de nutrientes en el sistema suelo-planta": {
+    "libro": "Porta/López-Acevedo - Edafología",
+    "seccion": "Dinámica de nutrientes suelo-planta"
+  },
+  "Diagnóstico del nivel de fertilidad del suelo": {
+    "libro": "Porta/López-Acevedo - Edafología",
+    "seccion": "Diagnóstico de fertilidad"
+  },
+  "Medidas tecnológicas de corrección de la fertilidad: fertilizantes y enmiendas": {
+    "libro": "Porta/López-Acevedo - Edafología",
+    "seccion": "Fertilizantes y enmiendas"
+  },
+  "Base genética de la variación de caracteres a nivel poblacional": {
+    "libro": "Griffiths - Genética",
+    "seccion": "Genética de poblaciones"
+  },
+  "Enfoque genómico de la variación cuantitativa": {
+    "libro": "Griffiths - Genética",
+    "seccion": "Genética cuantitativa: enfoque genómico"
+  },
+  "Bases genéticas del mejoramiento animal y vegetal": {
+    "libro": "Griffiths - Genética",
+    "seccion": "Bases del mejoramiento genético"
+  },
+  "Ciclo reproductivo en especies de interés productivo": {
+    "libro": "Hafez - Reproducción e Inseminación Artificial en Animales",
+    "seccion": "Ciclo reproductivo en especies productivas"
+  },
+  "Interrelación entre sistemas biológicos, nutricionales y ambientales": {
+    "libro": "Church - Fundamentos de Nutrición de Rumiantes",
+    "seccion": "Interacción nutrición-ambiente-reproducción"
+  },
+  "Bases fisiológicas y ecológicas del crecimiento y desarrollo de cultivos": {
+    "libro": "Loomis & Connor - Crop Ecology",
+    "seccion": "Bases fisiológicas del crecimiento de cultivos"
+  },
+  "Determinación ecofisiológica del rendimiento": {
+    "libro": "Loomis & Connor - Crop Ecology",
+    "seccion": "Determinación del rendimiento"
+  },
+  "Respuesta de los cultivos a la radiación, la temperatura y el agua": {
+    "libro": "Loomis & Connor - Crop Ecology",
+    "seccion": "Respuesta a radiación, temperatura y agua"
+  },
+  "Respuesta de los cultivos al manejo de nutrientes": {
+    "libro": "Loomis & Connor - Crop Ecology",
+    "seccion": "Respuesta al manejo de nutrientes"
+  },
+  "Procesos de degradación de suelos y estrategias de mitigación": {
+    "libro": "Brady & Weil - The Nature and Properties of Soils",
+    "seccion": "Degradación de suelos y mitigación"
+  },
+  "Herramientas de manejo de suelos, aguas y vegetación": {
+    "libro": "Brady & Weil - The Nature and Properties of Soils",
+    "seccion": "Manejo de suelos, aguas y vegetación"
+  },
+  "Manejo mecanizado de suelos": {
+    "libro": "Brady & Weil - The Nature and Properties of Soils",
+    "seccion": "Manejo mecanizado de suelos"
+  },
+  "Dimensiones de la sustentabilidad de sistemas agrarios": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO II: dimensiones de la sustentabilidad"
+  },
+  "Diagnóstico de sustentabilidad de un sistema agrario mediante indicadores": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO II: indicadores de sustentabilidad"
+  },
+  "Mejoramiento genético de especies cultivadas": {
+    "libro": "Poehlman - Breeding Field Crops",
+    "seccion": "Mejoramiento genético de cultivos"
+  },
+  "Recursos genéticos vegetales": {
+    "libro": "Poehlman - Breeding Field Crops",
+    "seccion": "Recursos genéticos vegetales"
+  },
+  "Producción de semilla de calidad": {
+    "libro": "Poehlman - Breeding Field Crops",
+    "seccion": "Producción de semilla"
+  },
+  "Obtención de cultivares y multiplicación comercial": {
+    "libro": "Poehlman - Breeding Field Crops",
+    "seccion": "Obtención y multiplicación de cultivares"
+  },
+  "Sociología rural y configuraciones sociales del agro": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Sociología rural"
+  },
+  "Actores sociales del medio rural": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Actores sociales del medio rural"
+  },
+  "Herramientas de intervención profesional en territorios rurales": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Intervención profesional en el territorio"
+  },
+  "Morfología, fisiología y hábitos de los insectos": {
+    "libro": "Triplehorn & Johnson - Borror and DeLong's Introduction to the Study of Insects",
+    "seccion": "Morfología y fisiología de insectos"
+  },
+  "Ciclos de vida de los insectos e interacción con el ambiente": {
+    "libro": "Triplehorn & Johnson - Borror and DeLong's Introduction to the Study of Insects",
+    "seccion": "Ciclos de vida e interacción ambiental"
+  },
+  "Manejo integrado de plagas de importancia agronómica": {
+    "libro": "Triplehorn & Johnson - Borror and DeLong's Introduction to the Study of Insects",
+    "seccion": "Manejo integrado de plagas"
+  },
+  "Diagnóstico de enfermedades de las plantas": {
+    "libro": "Agrios - Plant Pathology",
+    "seccion": "Diagnóstico fitopatológico"
+  },
+  "Ciclos de las enfermedades vegetales": {
+    "libro": "Agrios - Plant Pathology",
+    "seccion": "Ciclos de las enfermedades"
+  },
+  "Manejo integrado y gestión sustentable de enfermedades vegetales": {
+    "libro": "Agrios - Plant Pathology",
+    "seccion": "Manejo integrado de enfermedades"
+  },
+  "Sistemas de producción y manejo de bovinos para carne": {
+    "libro": "Church - Fundamentos de Nutrición de Rumiantes",
+    "seccion": "Sistemas de producción de carne bovina"
+  },
+  "Tecnologías de producción de carne bovina": {
+    "libro": "Church - Fundamentos de Nutrición de Rumiantes",
+    "seccion": "Tecnologías de producción de carne"
+  },
+  "Impacto económico de la producción de carne a nivel de empresa ganadera": {
+    "libro": "Barry/Ellinger - Financial Management in Agriculture",
+    "seccion": "Impacto económico de la ganadería de carne"
+  },
+  "Bases fisiológicas de la respuesta de los cultivos de verano al manejo": {
+    "libro": "Loomis & Connor - Crop Ecology",
+    "seccion": "Ecofisiología de cultivos de verano"
+  },
+  "Manejo de cultivos de verano en secano": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Manejo de cultivos de verano en secano"
+  },
+  "Manejo de malezas, enfermedades y plagas en cultivos de verano": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Manejo de malezas, enfermedades y plagas en verano"
+  },
+  "Ecofisiología de cultivos de invierno": {
+    "libro": "Loomis & Connor - Crop Ecology",
+    "seccion": "Ecofisiología de cultivos de invierno"
+  },
+  "Manejo agronómico de cultivos de invierno": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Manejo agronómico de cultivos de invierno"
+  },
+  "Formulación de paquetes tecnológicos para cultivos de invierno": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Paquetes tecnológicos de invierno"
+  },
+  "Resultados económico-financieros y patrimoniales de sistemas productivos agrarios": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Resultados económico-financieros de la empresa agraria"
+  },
+  "Indicadores técnicos, económicos y financieros de la empresa agraria": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Indicadores técnicos y económico-financieros"
+  },
+  "Niveles de planificación de la empresa agraria": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Niveles de planificación"
+  },
+  "Formas de organización empresarial agraria": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Formas de organización empresarial"
+  },
+  "Diagnóstico de sistemas de producción de pasto y grano a escala predial": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO III: diagnóstico predial pasto-grano"
+  },
+  "Caracterización de los recursos naturales del predio": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO III: caracterización de recursos naturales"
+  },
+  "Clínica agronómica: producción animal, agricultura en rotación con pasturas y campo natural": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO III: clínica agronómica integrada"
+  },
+  "Análisis de resultados productivos, socioeconómicos y ambientales": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO III: análisis de resultados"
+  },
+  "Propuesta de cambio del sistema de producción": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO III: propuesta de cambio del sistema"
   }
 }

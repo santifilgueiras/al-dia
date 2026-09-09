@@ -2914,6 +2914,7 @@ let CATALOGO_POR_ANIO, CATALOGO_POR_CICLO_PSICOLOGIA, CATALOGO_POR_CICLO_INGENIE
     CATALOGO_POR_CICLO_INGENIERIA_MECANICA, CATALOGO_POR_CICLO_INGENIERIA_QUIMICA,
     CATALOGO_POR_CICLO_INGENIERIA_NAVAL, CATALOGO_POR_CICLO_INGENIERIA_ALIMENTOS,
     CATALOGO_POR_CICLO_INGENIERIA_PRODUCCION, CATALOGO_POR_CICLO_AGRIMENSURA,
+    CATALOGO_POR_CICLO_AGRONOMIA,
     MODULO_ICONS, TEXTOS, DURACIONES, FACULTADES;
 // Los catálogos, la bibliografía y las duraciones de arriba viven ahora en
 // data/*.json (ver scripts/extraer-datos.js) -- se cargan con fetch en
@@ -3128,6 +3129,44 @@ let CATALOGO_POR_ANIO, CATALOGO_POR_CICLO_PSICOLOGIA, CATALOGO_POR_CICLO_INGENIE
 // Chow/Maidment/Mays, Chuvieco).
 
 
+// Catálogo de Agronomía (facultad propia, una sola carrera -- "Ingeniería
+// Agronómica", como Medicina/Psicología, sin `grupo`). Fuente: Facultad de
+// Agronomía UDELAR, "Catálogo de cursos - Ingeniería Agronómica" (Plan de
+// Estudios 2020, portal.fagro.edu.uy). 36 materias, 65 módulos, 111 temas
+// en 10 semestres (5 años). Semestres 1-6 cargan la trayectoria obligatoria
+// real del Ciclo I (Ciclo Básico General) y Ciclo II (Ciclo Básico
+// Agronómico) tal como figura en el catálogo oficial. El 4to año (Ciclo
+// III) real se ramifica en 7 orientaciones de AFO III con materias
+// asociadas propias -- se cargó solo la orientación "Agrícola-ganadero" (la
+// más tradicional/general) como trayectoria de 4to año, mismo criterio ya
+// usado para las orientaciones a elección de Psicología y de Ingeniería
+// Eléctrica: se documenta acá y no se cargan las otras 6 (Producción de
+// leche, Sistemas pastoriles, Campo natural, Producción intensiva, Forestal,
+// Fruticultura, Horticultura). El PDF oficial lista las materias de "Cuarto
+// año" juntas sin separar semestre 7 de semestre 8 -- se repartieron con
+// criterio razonable: semestre 7 = Bovinos de Carne + Producción de granos
+// (cultivos de verano); semestre 8 = Producción de granos (cultivos de
+// invierno) + Gestión de Empresas Agrarias + AFO III Agrícola-ganadero. El
+// 5to año (semestres 9-10) NO tiene materias obligatorias reales según el
+// diagrama oficial de la carrera (solo optativas/electivas + Trabajo Final
+// de Grado, que se puede empezar desde 4to año) -- se cargó únicamente
+// "Trabajo Final de Grado" (modulos: []) en el semestre 9, mismo patrón que
+// "Proyecto Final de Ingeniería X" en las demás carreras; el semestre 10
+// queda como array vacío. Las decenas de optativas/electivas del catálogo
+// oficial (Producción avícola, Fruticultura, Horticultura, Silvicultura,
+// Agroecología, etc.) NO se cargaron como materias propias, mismo criterio
+// que el resto del catálogo: se carga la trayectoria obligatoria real, no
+// el menú completo de optativas. Las descripciones oficiales de Agronomía
+// no citan libros de texto (son párrafos de objetivos, no programas
+// numerados) -- se usó bibliografía clásica reconocida internacionalmente
+// por área (Raven/Johnson, Taiz & Zeiger, Lehninger, Griffiths, Madigan,
+// Porta/López-Acevedo, Brady & Weil, Rosenberg, Gliessman, Triplehorn &
+// Johnson, Agrios, Poehlman, Church, Hafez, Loomis & Connor) y "Apuntes de
+// cátedra" para AFO I/II y Gestión de Empresas Agrarias/Procesos Sociales
+// (formación general y contexto uruguayo específico, sin libro de texto
+// clásico obvio), mismo criterio ya usado en Medicina/Ingeniería.
+
+
 // Multi-facultad: cada facultad define su propio catálogo (por año o por
 // semestre, según cómo organice sus ciclos) y cómo nombrar/etiquetar ese
 // ciclo -- el resto de la app (S1/S9/S10) lee de acá en vez de asumir
@@ -3282,9 +3321,21 @@ function construirFacultades() {
     cicloLabel: (n) => `${n}º semestre`,
     iconoMateria: '📐',
   },
+  agronomia: {
+    key: 'agronomia',
+    label: 'Facultad de Agronomía',
+    nombreCorto: 'Agronomía',
+    carrera: 'Ingeniería Agronómica',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_AGRONOMIA,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '🌾',
+  },
 };
 }
-const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica', 'ingenieria_naval', 'ingenieria_alimentos', 'ingenieria_produccion', 'agrimensura'];
+const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica', 'ingenieria_naval', 'ingenieria_alimentos', 'ingenieria_produccion', 'agrimensura', 'agronomia'];
 
 // Exámenes guardados antes de este cambio no tienen `facultad` -- todos
 // eran de Medicina (la única que existía), así que ese es el default.
@@ -8389,7 +8440,8 @@ async function cargarDatosEstaticos() {
     'catalogo-medicina', 'catalogo-psicologia', 'catalogo-ingenieria',
     'catalogo-ingenieria-civil', 'catalogo-ingenieria-electrica', 'catalogo-ingenieria-mecanica',
     'catalogo-ingenieria-quimica', 'catalogo-ingenieria-naval', 'catalogo-ingenieria-alimentos',
-    'catalogo-ingenieria-produccion', 'catalogo-agrimensura', 'modulo-icons', 'textos', 'duraciones',
+    'catalogo-ingenieria-produccion', 'catalogo-agrimensura', 'catalogo-agronomia',
+    'modulo-icons', 'textos', 'duraciones',
   ];
   const resultados = await Promise.all(archivos.map(a => fetch(`/data/${a}.json`).then(r => r.json())));
   [
@@ -8398,6 +8450,7 @@ async function cargarDatosEstaticos() {
     CATALOGO_POR_CICLO_INGENIERIA_MECANICA, CATALOGO_POR_CICLO_INGENIERIA_QUIMICA,
     CATALOGO_POR_CICLO_INGENIERIA_NAVAL, CATALOGO_POR_CICLO_INGENIERIA_ALIMENTOS,
     CATALOGO_POR_CICLO_INGENIERIA_PRODUCCION, CATALOGO_POR_CICLO_AGRIMENSURA,
+    CATALOGO_POR_CICLO_AGRONOMIA,
     MODULO_ICONS, TEXTOS, DURACIONES,
   ] = resultados;
   construirFacultades();
