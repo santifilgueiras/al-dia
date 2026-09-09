@@ -2923,6 +2923,7 @@ let CATALOGO_POR_ANIO, CATALOGO_POR_CICLO_PSICOLOGIA, CATALOGO_POR_CICLO_INGENIE
     CATALOGO_POR_CICLO_AGRONOMIA,
     CATALOGO_POR_CICLO_CONTADOR_PUBLICO, CATALOGO_POR_CICLO_ECONOMIA, CATALOGO_POR_CICLO_ADMINISTRACION,
     CATALOGO_POR_CICLO_ESTADISTICA,
+    CATALOGO_POR_CICLO_COMUNICACION, CATALOGO_POR_CICLO_ARCHIVOLOGIA, CATALOGO_POR_CICLO_BIBLIOTECOLOGIA,
     MODULO_ICONS, TEXTOS, DURACIONES, FACULTADES;
 // Los catálogos, la bibliografía y las duraciones de arriba viven ahora en
 // data/*.json (ver scripts/extraer-datos.js) -- se cargan con fetch en
@@ -3226,6 +3227,60 @@ let CATALOGO_POR_ANIO, CATALOGO_POR_CICLO_PSICOLOGIA, CATALOGO_POR_CICLO_INGENIE
 // carrera.
 
 
+// Catálogo de la Facultad de Información y Comunicación (FIC, UDELAR) -- 3
+// de sus 4 carreras reales, agrupadas bajo el mismo `grupo` (ver
+// FACULTADES.comunicacion/archivologia/bibliotecologia): Licenciatura en
+// Comunicación, Licenciatura en Archivología y Licenciatura en
+// Bibliotecología, las 3 de 360 créditos y 8 semestres. Fuente: mallas
+// curriculares oficiales de mallas-curriculares.fic.edu.uy (una página por
+// carrera, verificadas con WebFetch dirigido para distinguir obligatorio de
+// optativo real). Las páginas de malla no traen programa temático detallado
+// (solo nombre de UC y a qué semestre pertenece) -- los 2-4 temas por
+// materia se destilaron con currícula estándar de cada disciplina y
+// bibliografía clásica reconocida por área (Mattelart & Mattelart/Wolf para
+// teoría de la comunicación, Eco para semiótica, Aumont/Bordwell & Thompson
+// para cine y audiovisual, Kovach & Rosenstiel/Martínez Albertos para
+// periodismo, Frascara para diseño, Cruz Mundet para archivología, Ogden
+// para preservación/conservación, Gil Urdiciain/Chaumier para organización
+// del conocimiento en bibliotecología, Gómez Hernández para administración
+// de unidades de información, Russell & Norvig para IA, Tanenbaum para
+// redes, Silberschatz/Korth/Sudarshan para bases de datos; ver
+// scripts/agregar-catalogo-fic.js) y "Apuntes de cátedra" para las materias
+// de formación general sin libro de texto único (epistemología, historia,
+// pensamiento social, legislación, etc.), mismo criterio ya usado en el
+// resto del catálogo. Comunicación tiene 7 orientaciones reales en su Ciclo
+// de Graduación -- se cargó UNA como representativa (Periodismo), mismo
+// criterio ya usado en Agronomía (AFO III Agrícola-ganadero) y Psicología
+// (seminarios a elección); las otras 6 (Audiovisual, Comunicación Educativa
+// y Comunitaria, Investigación y Análisis de la Comunicación, Comunicación
+// Organizacional, Publicidad, Multimedia y Tecnologías Digitales) quedan sin
+// cargar. 14 UC son el mismo curso real compartido entre 2 o las 3 carreras
+// (Curso Introductorio, Introducción a la Epistemología, Historia de las
+// Ideas, Metodología de la Investigación en Información y Comunicación,
+// Fundamentos de Inteligencia Artificial, Diseño Asistido de Software,
+// Diseño y Análisis, Estadística Básica, Administración en Unidades de
+// Información I/II, Documentación Audiovisual, Introducción a la
+// Preservación Digital, Redes y Sistemas, Bases de Datos) y se cargaron con
+// contenido byte a byte idéntico en cada catálogo donde aparecen --
+// test/catalogo.test.js tiene una familia `fic` nueva (comunicacion/
+// archivologia/bibliotecologia) para que esa reutilización intencional no se
+// marque como colisión entre dominios sin relación. No se cargaron los
+// idiomas extranjeros a elección (Comunicación), las pasantías/prácticas
+// preprofesionales sin programa de examen (Archivología/Bibliotecología) ni
+// ninguna optativa -- mismo criterio de alcance del resto de la app.
+//
+// La 4ta carrera de FIC, Ingeniería de Medios, NO está cargada: arrancó en
+// marzo de 2026 (primera generación, joint con Facultad de Ingeniería) y
+// todavía no tiene malla curricular pública detallada -- lo único publicado
+// son áreas de crédito generales (Ingeniería ~90 créditos, Información/
+// Comunicación/Medios ~90, Creatividad e Innovación ~150, mínimo 25 en
+// matemática), sin nombres de unidades curriculares por semestre. Cargarla
+// con ese nivel de detalle implicaría inventar nombres de materias, lo que
+// va contra el estándar de este catálogo (solo fuentes reales, nunca
+// inventadas) -- se puede agregar en una ronda aparte si fing.edu.uy o
+// fic.edu.uy publican la malla completa en el futuro.
+
+
 // Multi-facultad: cada facultad define su propio catálogo (por año o por
 // semestre, según cómo organice sus ciclos) y cómo nombrar/etiquetar ese
 // ciclo -- el resto de la app (S1/S9/S10) lee de acá en vez de asumir
@@ -3447,9 +3502,53 @@ function construirFacultades() {
     cicloLabel: (n) => `${n}º semestre`,
     iconoMateria: '🎲',
   },
+  // Facultad de Información y Comunicación (FIC) tiene MÁS DE UNA carrera
+  // cargada (mismo patrón que Facultad de Ingeniería y FCEA) -- las 3
+  // comparten `grupo` para que renderFacultades() las agrupe en un
+  // acordeón. Ingeniería de Medios (4ta carrera real de FIC) no está acá --
+  // ver el comentario arriba de construirFacultades() para el motivo.
+  comunicacion: {
+    key: 'comunicacion',
+    label: 'Facultad de Información y Comunicación',
+    nombreCorto: 'Comunicación',
+    grupo: 'Facultad de Información y Comunicación',
+    carrera: 'Licenciatura en Comunicación',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_COMUNICACION,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '📡',
+  },
+  archivologia: {
+    key: 'archivologia',
+    label: 'Facultad de Información y Comunicación',
+    nombreCorto: 'Archivología',
+    grupo: 'Facultad de Información y Comunicación',
+    carrera: 'Licenciatura en Archivología',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_ARCHIVOLOGIA,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '🗂️',
+  },
+  bibliotecologia: {
+    key: 'bibliotecologia',
+    label: 'Facultad de Información y Comunicación',
+    nombreCorto: 'Bibliotecología',
+    grupo: 'Facultad de Información y Comunicación',
+    carrera: 'Licenciatura en Bibliotecología',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_BIBLIOTECOLOGIA,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '📚',
+  },
 };
 }
-const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica', 'ingenieria_naval', 'ingenieria_alimentos', 'ingenieria_produccion', 'agrimensura', 'agronomia', 'contador_publico', 'economia', 'administracion', 'estadistica'];
+const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica', 'ingenieria_naval', 'ingenieria_alimentos', 'ingenieria_produccion', 'agrimensura', 'agronomia', 'contador_publico', 'economia', 'administracion', 'estadistica', 'comunicacion', 'archivologia', 'bibliotecologia'];
 
 // Exámenes guardados antes de este cambio no tienen `facultad` -- todos
 // eran de Medicina (la única que existía), así que ese es el default.
@@ -8610,7 +8709,7 @@ window.addEventListener('appinstalled', () => {
 });
 renderInstallBanner();
 
-// Los 14 bloques de datos puros (catálogos por facultad, bibliografía,
+// Los 22 bloques de datos puros (catálogos por facultad, bibliografía,
 // duraciones) se sirven como JSON estáticos en vez de venir hardcodeados en
 // este script (ver scripts/extraer-datos.js) -- así el service worker puede
 // cachearlos aparte con stale-while-revalidate en vez de re-bajar ~669 KB en
@@ -8626,6 +8725,7 @@ async function cargarDatosEstaticos() {
     'catalogo-ingenieria-quimica', 'catalogo-ingenieria-naval', 'catalogo-ingenieria-alimentos',
     'catalogo-ingenieria-produccion', 'catalogo-agrimensura', 'catalogo-agronomia',
     'catalogo-contador-publico', 'catalogo-economia', 'catalogo-administracion', 'catalogo-estadistica',
+    'catalogo-comunicacion', 'catalogo-archivologia', 'catalogo-bibliotecologia',
     'modulo-icons', 'textos', 'duraciones',
   ];
   const resultados = await Promise.all(archivos.map(a => fetch(`/data/${a}.json`).then(r => r.json())));
@@ -8638,6 +8738,7 @@ async function cargarDatosEstaticos() {
     CATALOGO_POR_CICLO_AGRONOMIA,
     CATALOGO_POR_CICLO_CONTADOR_PUBLICO, CATALOGO_POR_CICLO_ECONOMIA, CATALOGO_POR_CICLO_ADMINISTRACION,
     CATALOGO_POR_CICLO_ESTADISTICA,
+    CATALOGO_POR_CICLO_COMUNICACION, CATALOGO_POR_CICLO_ARCHIVOLOGIA, CATALOGO_POR_CICLO_BIBLIOTECOLOGIA,
     MODULO_ICONS, TEXTOS, DURACIONES,
   ] = resultados;
   construirFacultades();

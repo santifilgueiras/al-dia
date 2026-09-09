@@ -1,0 +1,649 @@
+{
+  "1": [
+    {
+      "nombre": "Introducción a la Bibliotecología y Ciencia de la Información",
+      "modulos": [
+        {
+          "modulo": "El campo disciplinar de la bibliotecología",
+          "temas": [
+            "Objeto de estudio y evolución histórica de la bibliotecología",
+            "La bibliotecología en el marco de las ciencias de la información"
+          ]
+        },
+        {
+          "modulo": "La biblioteca como institución",
+          "temas": [
+            "Tipología de bibliotecas y su función social",
+            "Bibliotecas y sociedad de la información"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Epistemología",
+      "modulos": [
+        {
+          "modulo": "Qué es la ciencia y el conocimiento científico",
+          "temas": [
+            "Criterios de demarcación entre ciencia y no-ciencia",
+            "Corrientes epistemológicas clásicas: positivismo, falsacionismo y paradigmas"
+          ]
+        },
+        {
+          "modulo": "Epistemología de las ciencias sociales y humanas",
+          "temas": [
+            "Particularidades del conocimiento en las ciencias sociales",
+            "Debates contemporáneos sobre la construcción social del conocimiento"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Historia de los Documentos",
+      "modulos": [
+        {
+          "modulo": "Del documento manuscrito al libro impreso",
+          "temas": [
+            "Historia del libro manuscrito y la escritura",
+            "La imprenta y la transformación de la circulación del conocimiento"
+          ]
+        },
+        {
+          "modulo": "El documento en la era contemporánea",
+          "temas": [
+            "Evolución de los soportes documentales en los siglos XIX y XX",
+            "El documento digital y sus transformaciones recientes"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Curso Introductorio",
+      "modulos": [
+        {
+          "modulo": "La universidad y la vida académica",
+          "temas": [
+            "Organización de la Universidad de la República y la vida estudiantil",
+            "Herramientas y estrategias para el estudio universitario"
+          ]
+        },
+        {
+          "modulo": "Introducción al campo de la información y la comunicación",
+          "temas": [
+            "Panorama de las disciplinas de la información y la comunicación en la FIC",
+            "La sociedad de la información y el conocimiento"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Historia de las Ideas",
+      "modulos": [
+        {
+          "modulo": "Del pensamiento clásico a la modernidad",
+          "temas": [
+            "Ideas filosóficas y políticas de la Antigüedad y el mundo clásico",
+            "La Ilustración y el pensamiento moderno"
+          ]
+        },
+        {
+          "modulo": "Pensamiento contemporáneo",
+          "temas": [
+            "Corrientes del pensamiento social y político de los siglos XIX y XX",
+            "Recepción y circulación de las ideas en América Latina"
+          ]
+        }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "nombre": "Metodología de la Investigación en Información y Comunicación",
+      "modulos": [
+        {
+          "modulo": "Diseño de la investigación",
+          "temas": [
+            "El proceso de investigación: planteamiento del problema y objetivos",
+            "Enfoques cuantitativo y cualitativo en información y comunicación"
+          ]
+        },
+        {
+          "modulo": "Técnicas de recolección y análisis",
+          "temas": [
+            "Técnicas de recolección de datos: encuesta, entrevista y análisis documental",
+            "Elaboración del proyecto de investigación y del informe final"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Taller la Biblioteca y la Comunidad",
+      "modulos": [
+        {
+          "modulo": "La biblioteca en su entorno social",
+          "temas": [
+            "La biblioteca pública y su rol en la comunidad",
+            "Extensión bibliotecaria y programas de fomento a la lectura"
+          ]
+        },
+        {
+          "modulo": "Vínculos institucionales",
+          "temas": [
+            "Articulación de la biblioteca con instituciones educativas y sociales",
+            "Inclusión social y accesibilidad en bibliotecas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Fundamentos de Inteligencia Artificial",
+      "modulos": [
+        {
+          "modulo": "Fundamentos y técnicas de IA",
+          "temas": [
+            "Historia y fundamentos de la inteligencia artificial",
+            "Aprendizaje automático: conceptos básicos y tipos de aprendizaje"
+          ]
+        },
+        {
+          "modulo": "IA aplicada a la información y la sociedad",
+          "temas": [
+            "Procesamiento del lenguaje natural y recuperación de información",
+            "Ética y sesgos en sistemas de inteligencia artificial"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Metodología del Trabajo Bibliográfico",
+      "modulos": [
+        {
+          "modulo": "Fundamentos del trabajo bibliográfico",
+          "temas": [
+            "Elaboración de bibliografías y repertorios bibliográficos",
+            "Normas de citación y referencia bibliográfica"
+          ]
+        },
+        {
+          "modulo": "Fuentes y control bibliográfico",
+          "temas": [
+            "Control bibliográfico universal y nacional",
+            "Bases de datos bibliográficas y su uso en la investigación"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Referencia y Servicios al Usuario",
+      "modulos": [
+        {
+          "modulo": "El servicio de referencia",
+          "temas": [
+            "La entrevista de referencia y el proceso de búsqueda de información",
+            "Tipología de servicios de referencia presenciales y virtuales"
+          ]
+        },
+        {
+          "modulo": "Atención al usuario",
+          "temas": [
+            "Alfabetización informacional de usuarios",
+            "Evaluación de la calidad de los servicios de referencia"
+          ]
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "nombre": "Estadística Básica",
+      "modulos": [
+        {
+          "modulo": "Estadística descriptiva aplicada a información y comunicación",
+          "temas": [
+            "Organización y presentación de datos: tablas y gráficos",
+            "Medidas de tendencia central y de dispersión aplicadas a estudios de usuarios"
+          ]
+        },
+        {
+          "modulo": "Nociones de probabilidad y muestreo",
+          "temas": [
+            "Nociones básicas de probabilidad y variables aleatorias",
+            "Diseño de muestras para estudios de usuarios y bibliotecas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Organización del Conocimiento I",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la organización del conocimiento",
+          "temas": [
+            "Lenguajes documentales: clasificación, tesauros y encabezamientos de materia",
+            "Sistemas de clasificación bibliográfica (CDU, LCC, Dewey)"
+          ]
+        },
+        {
+          "modulo": "Indización y representación temática",
+          "temas": [
+            "Principios de indización de documentos",
+            "Representación temática y análisis de contenido documental"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Descripción y Acceso I",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la catalogación",
+          "temas": [
+            "Principios de la descripción bibliográfica",
+            "Normas de catalogación (ISBD, RDA)"
+          ]
+        },
+        {
+          "modulo": "Puntos de acceso",
+          "temas": [
+            "Puntos de acceso: autor, título y materia",
+            "Catálogos y su función en la recuperación de información"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Diseño Asistido de Software",
+      "modulos": [
+        {
+          "modulo": "Herramientas de diseño asistido por computadora",
+          "temas": [
+            "Software de diseño gráfico y edición para unidades de información",
+            "Principios de usabilidad y diseño de interfaces"
+          ]
+        },
+        {
+          "modulo": "Diseño de flujos y procesos con software",
+          "temas": [
+            "Modelado de procesos y diagramación con herramientas digitales",
+            "Buenas prácticas de documentación técnica de un proyecto de software"
+          ]
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "nombre": "Diseño y Análisis",
+      "modulos": [
+        {
+          "modulo": "Fundamentos del diseño gráfico",
+          "temas": [
+            "Elementos y principios de composición visual",
+            "Tipografía, color y retícula en el diseño de piezas gráficas"
+          ]
+        },
+        {
+          "modulo": "Diseño para la comunicación de información",
+          "temas": [
+            "Diseño de información y visualización de datos",
+            "Análisis crítico de piezas de diseño gráfico y comunicacional"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Taller Integrador de Análisis de la Información",
+      "modulos": [
+        {
+          "modulo": "Análisis documental integrado",
+          "temas": [
+            "Análisis formal y de contenido de distintos tipos documentales",
+            "Integración de procesos técnicos en la cadena documental"
+          ]
+        },
+        {
+          "modulo": "Aplicación práctica",
+          "temas": [
+            "Elaboración de productos documentales integrados (resúmenes, índices)",
+            "Evaluación de la calidad del análisis documental"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Fuentes de Información Especializada",
+      "modulos": [
+        {
+          "modulo": "Tipología de fuentes de información",
+          "temas": [
+            "Fuentes primarias, secundarias y terciarias de información",
+            "Fuentes de información especializadas por área del conocimiento"
+          ]
+        },
+        {
+          "modulo": "Evaluación y uso de fuentes",
+          "temas": [
+            "Criterios de evaluación de fuentes de información",
+            "Estrategias de búsqueda en fuentes especializadas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Administración en Unidades de Información I",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la administración de unidades de información",
+          "temas": [
+            "Planificación estratégica en bibliotecas y archivos",
+            "Estructura organizativa y funciones del personal en unidades de información"
+          ]
+        },
+        {
+          "modulo": "Gestión de recursos",
+          "temas": [
+            "Gestión de recursos humanos, materiales y presupuestarios",
+            "Evaluación de servicios y calidad en unidades de información"
+          ]
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "nombre": "Descripción y Acceso II",
+      "modulos": [
+        {
+          "modulo": "Catalogación avanzada",
+          "temas": [
+            "Descripción de materiales especiales (audiovisuales, cartográficos, electrónicos)",
+            "Control de autoridades de nombres y materias"
+          ]
+        },
+        {
+          "modulo": "Metadatos y catálogos",
+          "temas": [
+            "Metadatos descriptivos y esquemas de metadatos",
+            "Catálogos en línea de acceso público (OPAC) y su evolución"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Organización del Conocimiento II",
+      "modulos": [
+        {
+          "modulo": "Herramientas avanzadas de organización",
+          "temas": [
+            "Elaboración y mantenimiento de tesauros especializados",
+            "Ontologías y esquemas de metadatos para la organización del conocimiento"
+          ]
+        },
+        {
+          "modulo": "Organización del conocimiento en entornos digitales",
+          "temas": [
+            "Web semántica y datos enlazados aplicados a la organización del conocimiento",
+            "Interoperabilidad entre sistemas de organización del conocimiento"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Historia de la Ciencia",
+      "modulos": [
+        {
+          "modulo": "De la ciencia antigua a la revolución científica",
+          "temas": [
+            "El conocimiento científico en la Antigüedad y la Edad Media",
+            "La revolución científica de los siglos XVI y XVII"
+          ]
+        },
+        {
+          "modulo": "Ciencia moderna y contemporánea",
+          "temas": [
+            "Desarrollo de las disciplinas científicas en los siglos XIX y XX",
+            "Comunicación científica y su evolución histórica"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Taller de Fuentes de Información en Ciencias Sociales y Humanidades",
+      "modulos": [
+        {
+          "modulo": "Fuentes en ciencias sociales",
+          "temas": [
+            "Fuentes de información en ciencias sociales: bases de datos y repositorios",
+            "Particularidades de la búsqueda de información en humanidades"
+          ]
+        },
+        {
+          "modulo": "Estrategias de búsqueda especializada",
+          "temas": [
+            "Evaluación de fuentes en ciencias sociales y humanidades",
+            "Elaboración de guías temáticas de recursos en ciencias sociales y humanidades"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Taller de Bibliotecas Universitarias y Especializadas",
+      "modulos": [
+        {
+          "modulo": "La biblioteca universitaria",
+          "temas": [
+            "Funciones y servicios de la biblioteca universitaria",
+            "Gestión de colecciones en apoyo a la docencia y la investigación"
+          ]
+        },
+        {
+          "modulo": "Bibliotecas especializadas",
+          "temas": [
+            "Bibliotecas especializadas y centros de documentación",
+            "Servicios de información especializados para comunidades científicas"
+          ]
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "nombre": "Taller de Elaboración de Tesauros",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de los tesauros documentales",
+          "temas": [
+            "Estructura y relaciones de un tesauro documental",
+            "Normas para la construcción de tesauros (ISO 25964)"
+          ]
+        },
+        {
+          "modulo": "Construcción y mantenimiento",
+          "temas": [
+            "Metodología para la elaboración de un tesauro especializado",
+            "Actualización y validación de tesauros documentales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Taller de Recuperación Electrónica",
+      "modulos": [
+        {
+          "modulo": "Sistemas de recuperación electrónica",
+          "temas": [
+            "Motores de búsqueda y bases de datos electrónicas",
+            "Operadores de búsqueda y estrategias de recuperación electrónica"
+          ]
+        },
+        {
+          "modulo": "Evaluación de la recuperación",
+          "temas": [
+            "Indicadores de precisión y exhaustividad en la recuperación electrónica",
+            "Recuperación de información en repositorios digitales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Formación y Desarrollo de Colecciones",
+      "modulos": [
+        {
+          "modulo": "Políticas de desarrollo de colecciones",
+          "temas": [
+            "Selección y adquisición de materiales bibliográficos",
+            "Políticas de desarrollo de colecciones en bibliotecas"
+          ]
+        },
+        {
+          "modulo": "Gestión de colecciones",
+          "temas": [
+            "Evaluación y expurgo de colecciones",
+            "Desarrollo de colecciones digitales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Bases de Datos",
+      "modulos": [
+        {
+          "modulo": "Modelo relacional y diseño de bases de datos",
+          "temas": [
+            "El modelo relacional: entidades, atributos y relaciones",
+            "Normalización de bases de datos"
+          ]
+        },
+        {
+          "modulo": "Lenguaje SQL y aplicaciones",
+          "temas": [
+            "Consultas SQL para la gestión de datos documentales",
+            "Bases de datos documentales y su aplicación en archivos y bibliotecas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Estudios de Usuarios de Información",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de los estudios de usuarios",
+          "temas": [
+            "Necesidades, búsqueda y uso de información en bibliotecas",
+            "Métodos y técnicas para el estudio de usuarios de bibliotecas"
+          ]
+        },
+        {
+          "modulo": "Aplicación a servicios bibliotecarios",
+          "temas": [
+            "Perfiles de usuarios de bibliotecas públicas, universitarias y especializadas",
+            "Uso de los estudios de usuarios para la mejora de servicios bibliotecarios"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Administración en Unidades de Información II",
+      "modulos": [
+        {
+          "modulo": "Planeamiento y marketing de servicios",
+          "temas": [
+            "Marketing y difusión de servicios de información",
+            "Planificación de proyectos en unidades de información"
+          ]
+        },
+        {
+          "modulo": "Dirección y evaluación",
+          "temas": [
+            "Liderazgo y dirección de equipos en bibliotecas y archivos",
+            "Indicadores de gestión y evaluación de desempeño"
+          ]
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "nombre": "Documentación Audiovisual",
+      "modulos": [
+        {
+          "modulo": "Tratamiento documental de materiales audiovisuales",
+          "temas": [
+            "Características y soportes de los documentos audiovisuales",
+            "Descripción y catalogación de materiales audiovisuales"
+          ]
+        },
+        {
+          "modulo": "Gestión y difusión de archivos audiovisuales",
+          "temas": [
+            "Conservación y digitalización de fondos audiovisuales",
+            "Acceso y difusión de colecciones audiovisuales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Preservación Digital",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la preservación digital",
+          "temas": [
+            "Riesgos de obsolescencia tecnológica y pérdida de información digital",
+            "Estrategias de preservación: migración, emulación y metadatos de preservación"
+          ]
+        },
+        {
+          "modulo": "Modelos y políticas de preservación",
+          "temas": [
+            "El modelo de referencia OAIS",
+            "Políticas institucionales de preservación digital a largo plazo"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Planeamiento en el Área de la Información",
+      "modulos": [
+        {
+          "modulo": "Planificación estratégica en unidades de información",
+          "temas": [
+            "Diagnóstico y planificación estratégica de servicios bibliotecarios",
+            "Formulación de proyectos en bibliotecas y centros de documentación"
+          ]
+        },
+        {
+          "modulo": "Gestión de proyectos",
+          "temas": [
+            "Herramientas de gestión de proyectos aplicadas a bibliotecas",
+            "Evaluación de resultados e impacto de proyectos bibliotecarios"
+          ]
+        }
+      ]
+    }
+  ],
+  "8": [
+    {
+      "nombre": "Redes y Sistemas",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de redes de computadoras",
+          "temas": [
+            "Modelo de capas y protocolos de comunicación en redes",
+            "Internet y arquitectura cliente-servidor aplicada a sistemas de información"
+          ]
+        },
+        {
+          "modulo": "Sistemas de información en unidades de información",
+          "temas": [
+            "Componentes de un sistema integrado de gestión bibliotecaria/archivística",
+            "Seguridad básica y administración de sistemas en unidades de información"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Trabajo Final de Grado",
+      "modulos": []
+    }
+  ]
+}

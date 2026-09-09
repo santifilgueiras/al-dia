@@ -30,6 +30,17 @@ const FAMILIAS = {
   // varias UC adicionales que también comparten código entre pares de
   // carreras -- esa reutilización es intencional, no una colisión a resolver.
   economia: ['contador-publico', 'economia', 'administracion', 'estadistica'],
+  // Facultad de Información y Comunicación (FIC): las 3 carreras cargadas
+  // (Comunicación, Archivología, Bibliotecología) comparten un núcleo real
+  // de hasta 14 UC (Curso Introductorio, Introducción a la Epistemología,
+  // Historia de las Ideas, Metodología de la Investigación en Información y
+  // Comunicación, Fundamentos de Inteligencia Artificial, Diseño Asistido de
+  // Software, Diseño y Análisis, Estadística Básica, Administración en
+  // Unidades de Información I/II, Documentación Audiovisual, Introducción a
+  // la Preservación Digital, Redes y Sistemas, Bases de Datos -- ver
+  // scripts/agregar-catalogo-fic.js) -- esa reutilización es intencional,
+  // no una colisión a resolver.
+  fic: ['comunicacion', 'archivologia', 'bibliotecologia'],
 };
 function familiaDe(facultad) {
   return Object.keys(FAMILIAS).find(fam => FAMILIAS[fam].includes(facultad)) || facultad;

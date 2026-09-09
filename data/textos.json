@@ -8110,5 +8110,1125 @@
   "Modelos ARIMA: identificación, estimación y diagnóstico": {
     "libro": "Brockwell & Davis -- Introduction to Time Series and Forecasting",
     "seccion": "cap. de modelos ARIMA"
+  },
+  "Organización de la Universidad de la República y la vida estudiantil": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Herramientas y estrategias para el estudio universitario": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Panorama de las disciplinas de la información y la comunicación en la FIC": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "La sociedad de la información y el conocimiento": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Criterios de demarcación entre ciencia y no-ciencia": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Corrientes epistemológicas clásicas: positivismo, falsacionismo y paradigmas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Particularidades del conocimiento en las ciencias sociales": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Debates contemporáneos sobre la construcción social del conocimiento": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Ideas filosóficas y políticas de la Antigüedad y el mundo clásico": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "La Ilustración y el pensamiento moderno": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Corrientes del pensamiento social y político de los siglos XIX y XX": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Recepción y circulación de las ideas en América Latina": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "El proceso de investigación: planteamiento del problema y objetivos": {
+    "libro": "Hernández Sampieri -- Metodología de la investigación",
+    "seccion": "cap. de planteamiento del problema"
+  },
+  "Enfoques cuantitativo y cualitativo en información y comunicación": {
+    "libro": "Hernández Sampieri -- Metodología de la investigación",
+    "seccion": "cap. de enfoques de investigación"
+  },
+  "Técnicas de recolección de datos: encuesta, entrevista y análisis documental": {
+    "libro": "Hernández Sampieri -- Metodología de la investigación",
+    "seccion": "cap. de recolección de datos"
+  },
+  "Elaboración del proyecto de investigación y del informe final": {
+    "libro": "Hernández Sampieri -- Metodología de la investigación",
+    "seccion": "cap. de elaboración del reporte de investigación"
+  },
+  "Historia y fundamentos de la inteligencia artificial": {
+    "libro": "Russell & Norvig -- Inteligencia Artificial: un enfoque moderno",
+    "seccion": "cap. de introducción a la IA"
+  },
+  "Aprendizaje automático: conceptos básicos y tipos de aprendizaje": {
+    "libro": "Russell & Norvig -- Inteligencia Artificial: un enfoque moderno",
+    "seccion": "cap. de aprendizaje automático"
+  },
+  "Procesamiento del lenguaje natural y recuperación de información": {
+    "libro": "Russell & Norvig -- Inteligencia Artificial: un enfoque moderno",
+    "seccion": "cap. de procesamiento del lenguaje natural"
+  },
+  "Ética y sesgos en sistemas de inteligencia artificial": {
+    "libro": "Russell & Norvig -- Inteligencia Artificial: un enfoque moderno",
+    "seccion": "cap. de filosofía y ética de la IA"
+  },
+  "Software de diseño gráfico y edición para unidades de información": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Principios de usabilidad y diseño de interfaces": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Modelado de procesos y diagramación con herramientas digitales": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Buenas prácticas de documentación técnica de un proyecto de software": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Elementos y principios de composición visual": {
+    "libro": "Frascara -- Diseño gráfico y comunicación",
+    "seccion": "cap. de elementos del diseño"
+  },
+  "Tipografía, color y retícula en el diseño de piezas gráficas": {
+    "libro": "Frascara -- Diseño gráfico y comunicación",
+    "seccion": "cap. de tipografía y retícula"
+  },
+  "Diseño de información y visualización de datos": {
+    "libro": "Frascara -- Diseño gráfico y comunicación",
+    "seccion": "cap. de diseño de información"
+  },
+  "Análisis crítico de piezas de diseño gráfico y comunicacional": {
+    "libro": "Frascara -- Diseño gráfico y comunicación",
+    "seccion": "cap. de análisis de piezas gráficas"
+  },
+  "Organización y presentación de datos: tablas y gráficos": {
+    "libro": "Walpole, Myers & Myers -- Probabilidad y Estadística para Ingeniería y Ciencias",
+    "seccion": "cap. de estadística descriptiva"
+  },
+  "Medidas de tendencia central y de dispersión aplicadas a estudios de usuarios": {
+    "libro": "Walpole, Myers & Myers -- Probabilidad y Estadística para Ingeniería y Ciencias",
+    "seccion": "cap. de estadística descriptiva"
+  },
+  "Nociones básicas de probabilidad y variables aleatorias": {
+    "libro": "Walpole, Myers & Myers -- Probabilidad y Estadística para Ingeniería y Ciencias",
+    "seccion": "cap. de probabilidad básica"
+  },
+  "Diseño de muestras para estudios de usuarios y bibliotecas": {
+    "libro": "Walpole, Myers & Myers -- Probabilidad y Estadística para Ingeniería y Ciencias",
+    "seccion": "cap. de muestreo"
+  },
+  "Planificación estratégica en bibliotecas y archivos": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de planificación estratégica"
+  },
+  "Estructura organizativa y funciones del personal en unidades de información": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de organización y personal"
+  },
+  "Gestión de recursos humanos, materiales y presupuestarios": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de gestión de recursos"
+  },
+  "Evaluación de servicios y calidad en unidades de información": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de evaluación de servicios"
+  },
+  "Marketing y difusión de servicios de información": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de marketing de servicios"
+  },
+  "Planificación de proyectos en unidades de información": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de planificación de proyectos"
+  },
+  "Liderazgo y dirección de equipos en bibliotecas y archivos": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de dirección de equipos"
+  },
+  "Indicadores de gestión y evaluación de desempeño": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de indicadores de gestión"
+  },
+  "Características y soportes de los documentos audiovisuales": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de documentos especiales"
+  },
+  "Descripción y catalogación de materiales audiovisuales": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de descripción de fondos audiovisuales"
+  },
+  "Conservación y digitalización de fondos audiovisuales": {
+    "libro": "Ogden -- Preservación de materiales bibliotecarios y de archivo",
+    "seccion": "cap. de conservación de materiales audiovisuales"
+  },
+  "Acceso y difusión de colecciones audiovisuales": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de difusión de fondos audiovisuales"
+  },
+  "Riesgos de obsolescencia tecnológica y pérdida de información digital": {
+    "libro": "Ogden -- Preservación de materiales bibliotecarios y de archivo",
+    "seccion": "cap. de riesgos de la información digital"
+  },
+  "Estrategias de preservación: migración, emulación y metadatos de preservación": {
+    "libro": "Ogden -- Preservación de materiales bibliotecarios y de archivo",
+    "seccion": "cap. de estrategias de preservación digital"
+  },
+  "El modelo de referencia OAIS": {
+    "libro": "Ogden -- Preservación de materiales bibliotecarios y de archivo",
+    "seccion": "cap. del modelo OAIS"
+  },
+  "Políticas institucionales de preservación digital a largo plazo": {
+    "libro": "Ogden -- Preservación de materiales bibliotecarios y de archivo",
+    "seccion": "cap. de políticas de preservación"
+  },
+  "Modelo de capas y protocolos de comunicación en redes": {
+    "libro": "Tanenbaum -- Redes de computadoras",
+    "seccion": "cap. introductorio de redes"
+  },
+  "Internet y arquitectura cliente-servidor aplicada a sistemas de información": {
+    "libro": "Tanenbaum -- Redes de computadoras",
+    "seccion": "cap. de aplicaciones e Internet"
+  },
+  "Componentes de un sistema integrado de gestión bibliotecaria/archivística": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Seguridad básica y administración de sistemas en unidades de información": {
+    "libro": "Tanenbaum -- Redes de computadoras",
+    "seccion": "cap. de seguridad en redes"
+  },
+  "El modelo relacional: entidades, atributos y relaciones": {
+    "libro": "Silberschatz, Korth & Sudarshan -- Fundamentos de bases de datos",
+    "seccion": "cap. del modelo relacional"
+  },
+  "Normalización de bases de datos": {
+    "libro": "Silberschatz, Korth & Sudarshan -- Fundamentos de bases de datos",
+    "seccion": "cap. de diseño de bases de datos relacionales"
+  },
+  "Consultas SQL para la gestión de datos documentales": {
+    "libro": "Silberschatz, Korth & Sudarshan -- Fundamentos de bases de datos",
+    "seccion": "cap. de SQL"
+  },
+  "Bases de datos documentales y su aplicación en archivos y bibliotecas": {
+    "libro": "Silberschatz, Korth & Sudarshan -- Fundamentos de bases de datos",
+    "seccion": "cap. de aplicaciones de bases de datos"
+  },
+  "Plano, encuadre y composición de la imagen en movimiento": {
+    "libro": "Aumont -- Estética del cine",
+    "seccion": "cap. de la imagen cinematográfica"
+  },
+  "Montaje y narración audiovisual": {
+    "libro": "Bordwell & Thompson -- El arte cinematográfico",
+    "seccion": "cap. de montaje"
+  },
+  "Hitos históricos del cine y la televisión": {
+    "libro": "Bordwell & Thompson -- El arte cinematográfico",
+    "seccion": "cap. de historia del cine"
+  },
+  "Géneros y formatos audiovisuales": {
+    "libro": "Bordwell & Thompson -- El arte cinematográfico",
+    "seccion": "cap. de géneros cinematográficos"
+  },
+  "El modelo informacional y las teorías funcionalistas de la comunicación": {
+    "libro": "Mattelart & Mattelart -- Historia de las teorías de la comunicación",
+    "seccion": "cap. de los orígenes de la investigación en comunicación"
+  },
+  "La Escuela de Frankfurt y la crítica a la industria cultural": {
+    "libro": "Mattelart & Mattelart -- Historia de las teorías de la comunicación",
+    "seccion": "cap. de la Escuela de Frankfurt"
+  },
+  "Estudios culturales y recepción activa de las audiencias": {
+    "libro": "Wolf -- La investigación de la comunicación de masas",
+    "seccion": "cap. de estudios culturales y recepción"
+  },
+  "La comunicación mediada y la esfera pública": {
+    "libro": "Wolf -- La investigación de la comunicación de masas",
+    "seccion": "cap. de esfera pública y opinión"
+  },
+  "Los fundadores de la sociología: Durkheim, Weber y Marx": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Estructura, acción y cambio social": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Modernidad, posmodernidad y sociedad de la información": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Pensamiento social latinoamericano": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Revoluciones, industrialización y formación de los Estados-nación": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Los conflictos mundiales del siglo XX": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Procesos políticos y sociales de Uruguay en el siglo XX": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Uruguay y América Latina en el contexto global contemporáneo": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "El discurso como práctica social y su análisis": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Retórica y argumentación en los discursos mediáticos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Las tecnologías de la comunicación y su impacto en la producción de sentido": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Cultura digital y nuevas formas de mediatización": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Conceptos básicos de organización económica y mercados": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Economía política de los medios de comunicación": {
+    "libro": "Mattelart & Mattelart -- Historia de las teorías de la comunicación",
+    "seccion": "cap. de economía política de la comunicación"
+  },
+  "Instituciones políticas y toma de decisiones públicas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Comunicación política y opinión pública": {
+    "libro": "Wolf -- La investigación de la comunicación de masas",
+    "seccion": "cap. de comunicación política"
+  },
+  "Perfiles y ámbitos de inserción laboral del comunicador": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Ética y responsabilidad profesional en comunicación": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Las orientaciones de la carrera y sus campos de especialización": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Mercado de trabajo y nuevas figuras profesionales en comunicación": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Relación entre lenguaje, pensamiento y cultura": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Lenguaje verbal y no verbal en la comunicación humana": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Cultura, identidad y diversidad cultural": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Interculturalidad y comunicación": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "El sonido como materia prima: voz, música y efectos sonoros": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Narrativa y montaje sonoro": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Géneros y formatos de la radio y el podcast": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Técnicas básicas de grabación y edición de audio": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Debates ontológicos sobre qué es la comunicación": {
+    "libro": "Wolf -- La investigación de la comunicación de masas",
+    "seccion": "cap. de teorías contemporáneas de la comunicación"
+  },
+  "La comunicación en la era digital y las redes": {
+    "libro": "Wolf -- La investigación de la comunicación de masas",
+    "seccion": "cap. de comunicación digital"
+  },
+  "Cultura de la convergencia y sociedad red": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Nuevas materialidades de la comunicación: plataformas y algoritmos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Principales corrientes teóricas del cine: realismo, formalismo y semiótica fílmica": {
+    "libro": "Aumont -- Estética del cine",
+    "seccion": "cap. de teorías del cine"
+  },
+  "Autor, industria y estética cinematográfica": {
+    "libro": "Aumont -- Estética del cine",
+    "seccion": "cap. de estética del cine"
+  },
+  "Televisión, streaming y nuevas plataformas audiovisuales": {
+    "libro": "Bordwell & Thompson -- El arte cinematográfico",
+    "seccion": "cap. de nuevas tecnologías audiovisuales"
+  },
+  "Convergencia entre cine, televisión y medios digitales": {
+    "libro": "Bordwell & Thompson -- El arte cinematográfico",
+    "seccion": "cap. de convergencia de medios"
+  },
+  "Concepto, funciones y valores del periodismo": {
+    "libro": "Kovach & Rosenstiel -- Los elementos del periodismo",
+    "seccion": "cap. de los elementos del periodismo"
+  },
+  "Géneros periodísticos informativos, interpretativos y de opinión": {
+    "libro": "Martínez Albertos -- Curso general de redacción periodística",
+    "seccion": "cap. de géneros periodísticos"
+  },
+  "La organización de una redacción y el proceso de producción de noticias": {
+    "libro": "Martínez Albertos -- Curso general de redacción periodística",
+    "seccion": "cap. de organización de la redacción"
+  },
+  "Desafíos del periodismo en la era digital": {
+    "libro": "Kovach & Rosenstiel -- Los elementos del periodismo",
+    "seccion": "cap. del periodismo en la era digital"
+  },
+  "Variación lingüística: dialectos, sociolectos y registros": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Norma, prestigio y actitudes lingüísticas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "El español del Uruguay y el Río de la Plata": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Uso del lenguaje en los medios de comunicación": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Signo, significante y significado": {
+    "libro": "Eco -- Tratado de semiótica general",
+    "seccion": "cap. de la teoría del signo"
+  },
+  "Connotación y denotación": {
+    "libro": "Eco -- Tratado de semiótica general",
+    "seccion": "cap. de connotación y denotación"
+  },
+  "Semiótica de la imagen": {
+    "libro": "Eco -- Tratado de semiótica general",
+    "seccion": "cap. de semiótica de la imagen"
+  },
+  "Análisis semiótico de textos mediáticos y publicitarios": {
+    "libro": "Eco -- Tratado de semiótica general",
+    "seccion": "cap. de semiótica aplicada"
+  },
+  "Códigos y lenguaje de la radio": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Géneros y formatos radiofónicos informativos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Guion y locución para radio": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Edición y realización de piezas radiofónicas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Criterios de noticiabilidad y valores-noticia": {
+    "libro": "Martínez Albertos -- Curso general de redacción periodística",
+    "seccion": "cap. de valores-noticia"
+  },
+  "Estructura de la noticia: pirámide invertida y lead": {
+    "libro": "Martínez Albertos -- Curso general de redacción periodística",
+    "seccion": "cap. de estructura de la noticia"
+  },
+  "Técnicas de redacción periodística informativa": {
+    "libro": "Martínez Albertos -- Curso general de redacción periodística",
+    "seccion": "cap. de redacción informativa"
+  },
+  "Fuentes de información y verificación periodística": {
+    "libro": "Kovach & Rosenstiel -- Los elementos del periodismo",
+    "seccion": "cap. de verificación y disciplina de la verificación"
+  },
+  "Recursos narrativos y literarios aplicados al periodismo": {
+    "libro": "Kovach & Rosenstiel -- Los elementos del periodismo",
+    "seccion": "cap. de periodismo narrativo"
+  },
+  "La crónica y el reportaje en profundidad": {
+    "libro": "Martínez Albertos -- Curso general de redacción periodística",
+    "seccion": "cap. de géneros interpretativos"
+  },
+  "Investigación y documentación para relatos periodísticos extensos": {
+    "libro": "Kovach & Rosenstiel -- Los elementos del periodismo",
+    "seccion": "cap. de investigación periodística"
+  },
+  "Voz, punto de vista y estructura narrativa en el periodismo": {
+    "libro": "Kovach & Rosenstiel -- Los elementos del periodismo",
+    "seccion": "cap. de narrativa periodística"
+  },
+  "Programas periodísticos de radio: entrevista y debate": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "El periodismo radial en vivo y la cobertura de actualidad": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "El podcast periodístico como formato emergente": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Estrategias de distribución y audiencia en medios sonoros digitales": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Libertad de expresión y derecho a la información": {
+    "libro": "Kovach & Rosenstiel -- Los elementos del periodismo",
+    "seccion": "cap. de libertad de prensa"
+  },
+  "Regulación de los medios de comunicación en Uruguay": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Códigos de ética periodística y autorregulación": {
+    "libro": "Kovach & Rosenstiel -- Los elementos del periodismo",
+    "seccion": "cap. de ética periodística"
+  },
+  "Difamación, derecho de réplica y responsabilidad ulterior": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Organización y flujo de trabajo de una redacción periodística": {
+    "libro": "Martínez Albertos -- Curso general de redacción periodística",
+    "seccion": "cap. de organización de la redacción"
+  },
+  "Edición y control de calidad de contenidos periodísticos": {
+    "libro": "Martínez Albertos -- Curso general de redacción periodística",
+    "seccion": "cap. de edición periodística"
+  },
+  "Producción periodística para múltiples plataformas y soportes": {
+    "libro": "Kovach & Rosenstiel -- Los elementos del periodismo",
+    "seccion": "cap. de periodismo multiplataforma"
+  },
+  "Trabajo en equipo y coordinación editorial en la redacción": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Objeto de estudio y evolución histórica de la archivología": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. introductorio"
+  },
+  "La archivología en el marco de las ciencias de la información": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. introductorio"
+  },
+  "Concepto de documento y de archivo": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. del concepto de documento y archivo"
+  },
+  "Funciones y valor del archivo en las organizaciones y la sociedad": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de las funciones del archivo"
+  },
+  "Organización institucional del Uruguay desde la independencia": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Evolución de la administración pública uruguaya": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Principales instituciones generadoras de documentos en Uruguay": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Los archivos como fuente para la historia institucional": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Tipos de servicios de información y sus usuarios": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Atención y orientación al usuario en unidades de información": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Marco normativo del derecho de acceso a la información pública en Uruguay": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Transparencia, datos abiertos y gestión documental en el Estado": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Ciclo de vida del documento y edades del archivo": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. del ciclo vital del documento"
+  },
+  "Producción y trámite documental": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de producción documental"
+  },
+  "Tablas de plazos de conservación y disposición documental": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de valoración y disposición"
+  },
+  "Normalización de la gestión documental en las organizaciones": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de normalización de la gestión documental"
+  },
+  "Gestión de documentos electrónicos y sistemas de gestión documental": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de documentos electrónicos"
+  },
+  "Interoperabilidad y metadatos en la gestión documental": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de metadatos de gestión documental"
+  },
+  "Auditoría de sistemas de gestión documental": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de auditoría de sistemas de gestión documental"
+  },
+  "Indicadores de calidad en la gestión de documentos": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de calidad en la gestión documental"
+  },
+  "Principio de procedencia y de orden original": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de principios archivísticos"
+  },
+  "Cuadros de clasificación de fondos documentales": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de clasificación de fondos"
+  },
+  "Sistemas de ordenación de series documentales": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de ordenación documental"
+  },
+  "Instrumentos de control y ubicación topográfica": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de control topográfico"
+  },
+  "Legislación archivística nacional e internacional": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "El Sistema Nacional de Archivos en Uruguay": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Régimen jurídico del patrimonio documental": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Responsabilidades legales en la gestión y custodia de archivos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Criterios funcionales y orgánicos para clasificar documentos": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de criterios de clasificación"
+  },
+  "Metodología para la elaboración de cuadros de clasificación": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de elaboración de cuadros de clasificación"
+  },
+  "Elaboración de cuadros de clasificación para instituciones reales": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de aplicación práctica de la clasificación"
+  },
+  "Validación y actualización de cuadros de clasificación": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de mantenimiento de cuadros de clasificación"
+  },
+  "Normas internacionales de descripción archivística (ISAD-G)": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de descripción archivística"
+  },
+  "Niveles de descripción: fondo, sección, serie y unidad documental": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de niveles de descripción"
+  },
+  "Elaboración de inventarios, guías y catálogos de archivo": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de instrumentos de descripción"
+  },
+  "Puntos de acceso y descripción de productores (ISAAR-CPF)": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de descripción de productores"
+  },
+  "Agentes de deterioro de los documentos": {
+    "libro": "Ogden -- Preservación de materiales bibliotecarios y de archivo",
+    "seccion": "cap. de agentes de deterioro"
+  },
+  "Condiciones ambientales y de almacenamiento para la conservación": {
+    "libro": "Ogden -- Preservación de materiales bibliotecarios y de archivo",
+    "seccion": "cap. de condiciones ambientales"
+  },
+  "Identificación y evaluación de riesgos en archivos": {
+    "libro": "Ogden -- Preservación de materiales bibliotecarios y de archivo",
+    "seccion": "cap. de gestión de riesgos"
+  },
+  "Planes de emergencia y gestión de desastres en unidades de información": {
+    "libro": "Ogden -- Preservación de materiales bibliotecarios y de archivo",
+    "seccion": "cap. de planes de emergencia"
+  },
+  "Valores primarios y secundarios de los documentos": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de valoración documental"
+  },
+  "Criterios y metodologías de valoración documental": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de metodologías de valoración"
+  },
+  "Procesos de selección y expurgo documental": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de selección y expurgo"
+  },
+  "Comités de evaluación documental y su rol institucional": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de comités de evaluación"
+  },
+  "Estrategias de difusión y extensión cultural de los archivos": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de difusión archivística"
+  },
+  "Exposiciones y actividades educativas con fondos documentales": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de extensión educativa"
+  },
+  "Archivos, memoria social y derechos humanos": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de archivos y memoria"
+  },
+  "Uso educativo y ciudadano de los archivos": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de uso social de los archivos"
+  },
+  "Lenguajes documentales: tesauros, clasificaciones y listas de encabezamientos": {
+    "libro": "Gil Urdiciain -- Manual de lenguajes documentales",
+    "seccion": "cap. de lenguajes documentales"
+  },
+  "Indización y representación temática de la información": {
+    "libro": "Gil Urdiciain -- Manual de lenguajes documentales",
+    "seccion": "cap. de indización"
+  },
+  "Sistemas de recuperación de información y estrategias de búsqueda": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de recuperación de información"
+  },
+  "Evaluación de la recuperación de información: precisión y exhaustividad": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de evaluación de la recuperación"
+  },
+  "Necesidades, búsqueda y uso de información en el contexto archivístico": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Métodos y técnicas para el estudio de usuarios de archivos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Perfiles de usuarios de archivos históricos y administrativos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Uso de los estudios de usuarios para la mejora de servicios archivísticos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Concepto y función del archivo histórico": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de archivos históricos"
+  },
+  "Fondos documentales históricos y su valor patrimonial": {
+    "libro": "Cruz Mundet -- Manual de Archivística",
+    "seccion": "cap. de valor patrimonial de los fondos"
+  },
+  "Investigación histórica a partir de fuentes archivísticas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Digitalización y acceso a archivos históricos": {
+    "libro": "Ogden -- Preservación de materiales bibliotecarios y de archivo",
+    "seccion": "cap. de digitalización de fondos históricos"
+  },
+  "Diagnóstico y planificación estratégica de servicios de información": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de planificación estratégica"
+  },
+  "Formulación de proyectos en unidades de información": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de formulación de proyectos"
+  },
+  "Herramientas de gestión de proyectos aplicadas a archivos y bibliotecas": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de gestión de proyectos"
+  },
+  "Evaluación de resultados e impacto de proyectos de información": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de evaluación de proyectos"
+  },
+  "Fundamentos y técnicas de microfilmación de documentos": {
+    "libro": "Ogden -- Preservación de materiales bibliotecarios y de archivo",
+    "seccion": "cap. de micrografía"
+  },
+  "Normas de calidad para la reproducción documental": {
+    "libro": "Ogden -- Preservación de materiales bibliotecarios y de archivo",
+    "seccion": "cap. de normas de reproducción"
+  },
+  "Procesos y estándares de digitalización de fondos documentales": {
+    "libro": "Ogden -- Preservación de materiales bibliotecarios y de archivo",
+    "seccion": "cap. de digitalización de fondos"
+  },
+  "Gestión de metadatos y formatos de conservación digital": {
+    "libro": "Ogden -- Preservación de materiales bibliotecarios y de archivo",
+    "seccion": "cap. de metadatos de preservación"
+  },
+  "Objeto de estudio y evolución histórica de la bibliotecología": {
+    "libro": "Gil Urdiciain -- Manual de lenguajes documentales",
+    "seccion": "cap. introductorio de bibliotecología"
+  },
+  "La bibliotecología en el marco de las ciencias de la información": {
+    "libro": "Gil Urdiciain -- Manual de lenguajes documentales",
+    "seccion": "cap. introductorio de bibliotecología"
+  },
+  "Tipología de bibliotecas y su función social": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Bibliotecas y sociedad de la información": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Historia del libro manuscrito y la escritura": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "La imprenta y la transformación de la circulación del conocimiento": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Evolución de los soportes documentales en los siglos XIX y XX": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "El documento digital y sus transformaciones recientes": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "La biblioteca pública y su rol en la comunidad": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Extensión bibliotecaria y programas de fomento a la lectura": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Articulación de la biblioteca con instituciones educativas y sociales": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Inclusión social y accesibilidad en bibliotecas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Elaboración de bibliografías y repertorios bibliográficos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Normas de citación y referencia bibliográfica": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Control bibliográfico universal y nacional": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Bases de datos bibliográficas y su uso en la investigación": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "La entrevista de referencia y el proceso de búsqueda de información": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Tipología de servicios de referencia presenciales y virtuales": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Alfabetización informacional de usuarios": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Evaluación de la calidad de los servicios de referencia": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Lenguajes documentales: clasificación, tesauros y encabezamientos de materia": {
+    "libro": "Gil Urdiciain -- Manual de lenguajes documentales",
+    "seccion": "cap. de lenguajes documentales"
+  },
+  "Sistemas de clasificación bibliográfica (CDU, LCC, Dewey)": {
+    "libro": "Gil Urdiciain -- Manual de lenguajes documentales",
+    "seccion": "cap. de sistemas de clasificación"
+  },
+  "Principios de indización de documentos": {
+    "libro": "Gil Urdiciain -- Manual de lenguajes documentales",
+    "seccion": "cap. de indización"
+  },
+  "Representación temática y análisis de contenido documental": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de análisis de contenido"
+  },
+  "Principios de la descripción bibliográfica": {
+    "libro": "ISBD/RDA -- Apuntes de cátedra (normativa técnica)",
+    "seccion": "sección de principios de descripción"
+  },
+  "Normas de catalogación (ISBD, RDA)": {
+    "libro": "ISBD/RDA -- Apuntes de cátedra (normativa técnica)",
+    "seccion": "sección de normas ISBD/RDA"
+  },
+  "Puntos de acceso: autor, título y materia": {
+    "libro": "ISBD/RDA -- Apuntes de cátedra (normativa técnica)",
+    "seccion": "sección de puntos de acceso"
+  },
+  "Catálogos y su función en la recuperación de información": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de catálogos y recuperación"
+  },
+  "Análisis formal y de contenido de distintos tipos documentales": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de análisis documental"
+  },
+  "Integración de procesos técnicos en la cadena documental": {
+    "libro": "Gil Urdiciain -- Manual de lenguajes documentales",
+    "seccion": "cap. de procesos técnicos documentales"
+  },
+  "Elaboración de productos documentales integrados (resúmenes, índices)": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de productos documentales"
+  },
+  "Evaluación de la calidad del análisis documental": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de evaluación del análisis documental"
+  },
+  "Fuentes primarias, secundarias y terciarias de información": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Fuentes de información especializadas por área del conocimiento": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Criterios de evaluación de fuentes de información": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Estrategias de búsqueda en fuentes especializadas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Descripción de materiales especiales (audiovisuales, cartográficos, electrónicos)": {
+    "libro": "ISBD/RDA -- Apuntes de cátedra (normativa técnica)",
+    "seccion": "sección de materiales especiales"
+  },
+  "Control de autoridades de nombres y materias": {
+    "libro": "ISBD/RDA -- Apuntes de cátedra (normativa técnica)",
+    "seccion": "sección de control de autoridades"
+  },
+  "Metadatos descriptivos y esquemas de metadatos": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de metadatos descriptivos"
+  },
+  "Catálogos en línea de acceso público (OPAC) y su evolución": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de catálogos en línea"
+  },
+  "Elaboración y mantenimiento de tesauros especializados": {
+    "libro": "Gil Urdiciain -- Manual de lenguajes documentales",
+    "seccion": "cap. de construcción de tesauros"
+  },
+  "Ontologías y esquemas de metadatos para la organización del conocimiento": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de ontologías documentales"
+  },
+  "Web semántica y datos enlazados aplicados a la organización del conocimiento": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de web semántica"
+  },
+  "Interoperabilidad entre sistemas de organización del conocimiento": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de interoperabilidad"
+  },
+  "El conocimiento científico en la Antigüedad y la Edad Media": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "La revolución científica de los siglos XVI y XVII": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Desarrollo de las disciplinas científicas en los siglos XIX y XX": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Comunicación científica y su evolución histórica": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Fuentes de información en ciencias sociales: bases de datos y repositorios": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Particularidades de la búsqueda de información en humanidades": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Evaluación de fuentes en ciencias sociales y humanidades": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Elaboración de guías temáticas de recursos en ciencias sociales y humanidades": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Funciones y servicios de la biblioteca universitaria": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Gestión de colecciones en apoyo a la docencia y la investigación": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Bibliotecas especializadas y centros de documentación": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Servicios de información especializados para comunidades científicas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Estructura y relaciones de un tesauro documental": {
+    "libro": "Gil Urdiciain -- Manual de lenguajes documentales",
+    "seccion": "cap. de estructura de tesauros"
+  },
+  "Normas para la construcción de tesauros (ISO 25964)": {
+    "libro": "Gil Urdiciain -- Manual de lenguajes documentales",
+    "seccion": "cap. de normas de construcción de tesauros"
+  },
+  "Metodología para la elaboración de un tesauro especializado": {
+    "libro": "Gil Urdiciain -- Manual de lenguajes documentales",
+    "seccion": "cap. de metodología de elaboración de tesauros"
+  },
+  "Actualización y validación de tesauros documentales": {
+    "libro": "Gil Urdiciain -- Manual de lenguajes documentales",
+    "seccion": "cap. de mantenimiento de tesauros"
+  },
+  "Motores de búsqueda y bases de datos electrónicas": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de motores de búsqueda"
+  },
+  "Operadores de búsqueda y estrategias de recuperación electrónica": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de operadores de búsqueda"
+  },
+  "Indicadores de precisión y exhaustividad en la recuperación electrónica": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de evaluación de la recuperación"
+  },
+  "Recuperación de información en repositorios digitales": {
+    "libro": "Chaumier -- Análisis y lenguajes documentales",
+    "seccion": "cap. de repositorios digitales"
+  },
+  "Selección y adquisición de materiales bibliográficos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Políticas de desarrollo de colecciones en bibliotecas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Evaluación y expurgo de colecciones": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Desarrollo de colecciones digitales": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Necesidades, búsqueda y uso de información en bibliotecas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Métodos y técnicas para el estudio de usuarios de bibliotecas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Perfiles de usuarios de bibliotecas públicas, universitarias y especializadas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Uso de los estudios de usuarios para la mejora de servicios bibliotecarios": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "material de curso (sin libro de texto clásico único)"
+  },
+  "Diagnóstico y planificación estratégica de servicios bibliotecarios": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de planificación estratégica"
+  },
+  "Formulación de proyectos en bibliotecas y centros de documentación": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de formulación de proyectos"
+  },
+  "Herramientas de gestión de proyectos aplicadas a bibliotecas": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de gestión de proyectos"
+  },
+  "Evaluación de resultados e impacto de proyectos bibliotecarios": {
+    "libro": "Gómez Hernández -- Gestión de bibliotecas",
+    "seccion": "cap. de evaluación de proyectos"
   }
 }

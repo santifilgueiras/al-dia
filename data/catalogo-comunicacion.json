@@ -1,0 +1,501 @@
+{
+  "1": [
+    {
+      "nombre": "Curso Introductorio",
+      "modulos": [
+        {
+          "modulo": "La universidad y la vida académica",
+          "temas": [
+            "Organización de la Universidad de la República y la vida estudiantil",
+            "Herramientas y estrategias para el estudio universitario"
+          ]
+        },
+        {
+          "modulo": "Introducción al campo de la información y la comunicación",
+          "temas": [
+            "Panorama de las disciplinas de la información y la comunicación en la FIC",
+            "La sociedad de la información y el conocimiento"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción al Estudio del Audiovisual",
+      "modulos": [
+        {
+          "modulo": "Elementos del lenguaje audiovisual",
+          "temas": [
+            "Plano, encuadre y composición de la imagen en movimiento",
+            "Montaje y narración audiovisual"
+          ]
+        },
+        {
+          "modulo": "Historia y géneros audiovisuales",
+          "temas": [
+            "Hitos históricos del cine y la televisión",
+            "Géneros y formatos audiovisuales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Teoría de la Comunicación I",
+      "modulos": [
+        {
+          "modulo": "Modelos clásicos de la comunicación",
+          "temas": [
+            "El modelo informacional y las teorías funcionalistas de la comunicación",
+            "La Escuela de Frankfurt y la crítica a la industria cultural"
+          ]
+        },
+        {
+          "modulo": "Comunicación y sociedad de masas",
+          "temas": [
+            "Estudios culturales y recepción activa de las audiencias",
+            "La comunicación mediada y la esfera pública"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Pensamiento Social",
+      "modulos": [
+        {
+          "modulo": "Clásicos de la teoría social",
+          "temas": [
+            "Los fundadores de la sociología: Durkheim, Weber y Marx",
+            "Estructura, acción y cambio social"
+          ]
+        },
+        {
+          "modulo": "Pensamiento social contemporáneo",
+          "temas": [
+            "Modernidad, posmodernidad y sociedad de la información",
+            "Pensamiento social latinoamericano"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Historia Contemporánea",
+      "modulos": [
+        {
+          "modulo": "El mundo desde el siglo XIX",
+          "temas": [
+            "Revoluciones, industrialización y formación de los Estados-nación",
+            "Los conflictos mundiales del siglo XX"
+          ]
+        },
+        {
+          "modulo": "Uruguay y América Latina contemporáneos",
+          "temas": [
+            "Procesos políticos y sociales de Uruguay en el siglo XX",
+            "Uruguay y América Latina en el contexto global contemporáneo"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Epistemología",
+      "modulos": [
+        {
+          "modulo": "Qué es la ciencia y el conocimiento científico",
+          "temas": [
+            "Criterios de demarcación entre ciencia y no-ciencia",
+            "Corrientes epistemológicas clásicas: positivismo, falsacionismo y paradigmas"
+          ]
+        },
+        {
+          "modulo": "Epistemología de las ciencias sociales y humanas",
+          "temas": [
+            "Particularidades del conocimiento en las ciencias sociales",
+            "Debates contemporáneos sobre la construcción social del conocimiento"
+          ]
+        }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "nombre": "Discurso, Técnica y Comunicación",
+      "modulos": [
+        {
+          "modulo": "Discurso y sentido",
+          "temas": [
+            "El discurso como práctica social y su análisis",
+            "Retórica y argumentación en los discursos mediáticos"
+          ]
+        },
+        {
+          "modulo": "Técnica y mediatización",
+          "temas": [
+            "Las tecnologías de la comunicación y su impacto en la producción de sentido",
+            "Cultura digital y nuevas formas de mediatización"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Economía y Política",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de economía política",
+          "temas": [
+            "Conceptos básicos de organización económica y mercados",
+            "Economía política de los medios de comunicación"
+          ]
+        },
+        {
+          "modulo": "Sistema político y comunicación",
+          "temas": [
+            "Instituciones políticas y toma de decisiones públicas",
+            "Comunicación política y opinión pública"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Metodología de la Investigación en Información y Comunicación",
+      "modulos": [
+        {
+          "modulo": "Diseño de la investigación",
+          "temas": [
+            "El proceso de investigación: planteamiento del problema y objetivos",
+            "Enfoques cuantitativo y cualitativo en información y comunicación"
+          ]
+        },
+        {
+          "modulo": "Técnicas de recolección y análisis",
+          "temas": [
+            "Técnicas de recolección de datos: encuesta, entrevista y análisis documental",
+            "Elaboración del proyecto de investigación y del informe final"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a las Profesiones de la Comunicación",
+      "modulos": [
+        {
+          "modulo": "El campo profesional de la comunicación",
+          "temas": [
+            "Perfiles y ámbitos de inserción laboral del comunicador",
+            "Ética y responsabilidad profesional en comunicación"
+          ]
+        },
+        {
+          "modulo": "Orientaciones de la Licenciatura en Comunicación",
+          "temas": [
+            "Las orientaciones de la carrera y sus campos de especialización",
+            "Mercado de trabajo y nuevas figuras profesionales en comunicación"
+          ]
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "nombre": "Lenguaje, Cultura y Pensamiento",
+      "modulos": [
+        {
+          "modulo": "Lenguaje y cognición",
+          "temas": [
+            "Relación entre lenguaje, pensamiento y cultura",
+            "Lenguaje verbal y no verbal en la comunicación humana"
+          ]
+        },
+        {
+          "modulo": "Cultura y diversidad",
+          "temas": [
+            "Cultura, identidad y diversidad cultural",
+            "Interculturalidad y comunicación"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Comunicación Sonora",
+      "modulos": [
+        {
+          "modulo": "Elementos del lenguaje sonoro",
+          "temas": [
+            "El sonido como materia prima: voz, música y efectos sonoros",
+            "Narrativa y montaje sonoro"
+          ]
+        },
+        {
+          "modulo": "Producción sonora",
+          "temas": [
+            "Géneros y formatos de la radio y el podcast",
+            "Técnicas básicas de grabación y edición de audio"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Ontologías de la Comunicación Contemporánea",
+      "modulos": [
+        {
+          "modulo": "Perspectivas teóricas contemporáneas",
+          "temas": [
+            "Debates ontológicos sobre qué es la comunicación",
+            "La comunicación en la era digital y las redes"
+          ]
+        },
+        {
+          "modulo": "Comunicación, tecnología y sociedad red",
+          "temas": [
+            "Cultura de la convergencia y sociedad red",
+            "Nuevas materialidades de la comunicación: plataformas y algoritmos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Estadística Básica",
+      "modulos": [
+        {
+          "modulo": "Estadística descriptiva aplicada a información y comunicación",
+          "temas": [
+            "Organización y presentación de datos: tablas y gráficos",
+            "Medidas de tendencia central y de dispersión aplicadas a estudios de usuarios"
+          ]
+        },
+        {
+          "modulo": "Nociones de probabilidad y muestreo",
+          "temas": [
+            "Nociones básicas de probabilidad y variables aleatorias",
+            "Diseño de muestras para estudios de usuarios y bibliotecas"
+          ]
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "nombre": "Teoría del Cine y Medios Audiovisuales",
+      "modulos": [
+        {
+          "modulo": "Teorías del cine",
+          "temas": [
+            "Principales corrientes teóricas del cine: realismo, formalismo y semiótica fílmica",
+            "Autor, industria y estética cinematográfica"
+          ]
+        },
+        {
+          "modulo": "Medios audiovisuales contemporáneos",
+          "temas": [
+            "Televisión, streaming y nuevas plataformas audiovisuales",
+            "Convergencia entre cine, televisión y medios digitales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Diseño y Análisis",
+      "modulos": [
+        {
+          "modulo": "Fundamentos del diseño gráfico",
+          "temas": [
+            "Elementos y principios de composición visual",
+            "Tipografía, color y retícula en el diseño de piezas gráficas"
+          ]
+        },
+        {
+          "modulo": "Diseño para la comunicación de información",
+          "temas": [
+            "Diseño de información y visualización de datos",
+            "Análisis crítico de piezas de diseño gráfico y comunicacional"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción al Periodismo",
+      "modulos": [
+        {
+          "modulo": "Fundamentos del periodismo",
+          "temas": [
+            "Concepto, funciones y valores del periodismo",
+            "Géneros periodísticos informativos, interpretativos y de opinión"
+          ]
+        },
+        {
+          "modulo": "El campo periodístico contemporáneo",
+          "temas": [
+            "La organización de una redacción y el proceso de producción de noticias",
+            "Desafíos del periodismo en la era digital"
+          ]
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "nombre": "Lengua, Sociedad y Variación",
+      "modulos": [
+        {
+          "modulo": "Lengua y variación social",
+          "temas": [
+            "Variación lingüística: dialectos, sociolectos y registros",
+            "Norma, prestigio y actitudes lingüísticas"
+          ]
+        },
+        {
+          "modulo": "Lengua y comunicación mediática",
+          "temas": [
+            "El español del Uruguay y el Río de la Plata",
+            "Uso del lenguaje en los medios de comunicación"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Semiótica",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la semiótica",
+          "temas": [
+            "Signo, significante y significado",
+            "Connotación y denotación"
+          ]
+        },
+        {
+          "modulo": "Semiótica aplicada",
+          "temas": [
+            "Semiótica de la imagen",
+            "Análisis semiótico de textos mediáticos y publicitarios"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Periodismo Radial I",
+      "modulos": [
+        {
+          "modulo": "El lenguaje radiofónico",
+          "temas": [
+            "Códigos y lenguaje de la radio",
+            "Géneros y formatos radiofónicos informativos"
+          ]
+        },
+        {
+          "modulo": "Producción radiofónica",
+          "temas": [
+            "Guion y locución para radio",
+            "Edición y realización de piezas radiofónicas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Periodismo Informativo",
+      "modulos": [
+        {
+          "modulo": "La noticia y su construcción",
+          "temas": [
+            "Criterios de noticiabilidad y valores-noticia",
+            "Estructura de la noticia: pirámide invertida y lead"
+          ]
+        },
+        {
+          "modulo": "Redacción informativa",
+          "temas": [
+            "Técnicas de redacción periodística informativa",
+            "Fuentes de información y verificación periodística"
+          ]
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "nombre": "Periodismo Narrativo",
+      "modulos": [
+        {
+          "modulo": "Fundamentos del periodismo narrativo",
+          "temas": [
+            "Recursos narrativos y literarios aplicados al periodismo",
+            "La crónica y el reportaje en profundidad"
+          ]
+        },
+        {
+          "modulo": "Construcción de relatos periodísticos",
+          "temas": [
+            "Investigación y documentación para relatos periodísticos extensos",
+            "Voz, punto de vista y estructura narrativa en el periodismo"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Periodismo Radial II",
+      "modulos": [
+        {
+          "modulo": "Formatos avanzados de radio",
+          "temas": [
+            "Programas periodísticos de radio: entrevista y debate",
+            "El periodismo radial en vivo y la cobertura de actualidad"
+          ]
+        },
+        {
+          "modulo": "Nuevos formatos sonoros",
+          "temas": [
+            "El podcast periodístico como formato emergente",
+            "Estrategias de distribución y audiencia en medios sonoros digitales"
+          ]
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "nombre": "Libertades Informativas y Regulación del Periodismo",
+      "modulos": [
+        {
+          "modulo": "Marco normativo de la comunicación",
+          "temas": [
+            "Libertad de expresión y derecho a la información",
+            "Regulación de los medios de comunicación en Uruguay"
+          ]
+        },
+        {
+          "modulo": "Ética y responsabilidad periodística",
+          "temas": [
+            "Códigos de ética periodística y autorregulación",
+            "Difamación, derecho de réplica y responsabilidad ulterior"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Sala de Redacción",
+      "modulos": [
+        {
+          "modulo": "Organización y rutinas de producción",
+          "temas": [
+            "Organización y flujo de trabajo de una redacción periodística",
+            "Edición y control de calidad de contenidos periodísticos"
+          ]
+        },
+        {
+          "modulo": "Producción integrada multiplataforma",
+          "temas": [
+            "Producción periodística para múltiples plataformas y soportes",
+            "Trabajo en equipo y coordinación editorial en la redacción"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Seminario Trabajo de Grado por Orientación",
+      "modulos": []
+    }
+  ],
+  "8": [
+    {
+      "nombre": "Trabajo Final de Grado",
+      "modulos": []
+    }
+  ]
+}

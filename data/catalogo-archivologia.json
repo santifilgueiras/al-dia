@@ -1,0 +1,611 @@
+{
+  "1": [
+    {
+      "nombre": "Introducción a la Archivología y Ciencia de la Información",
+      "modulos": [
+        {
+          "modulo": "El campo disciplinar de la archivología",
+          "temas": [
+            "Objeto de estudio y evolución histórica de la archivología",
+            "La archivología en el marco de las ciencias de la información"
+          ]
+        },
+        {
+          "modulo": "El documento y el archivo",
+          "temas": [
+            "Concepto de documento y de archivo",
+            "Funciones y valor del archivo en las organizaciones y la sociedad"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Epistemología",
+      "modulos": [
+        {
+          "modulo": "Qué es la ciencia y el conocimiento científico",
+          "temas": [
+            "Criterios de demarcación entre ciencia y no-ciencia",
+            "Corrientes epistemológicas clásicas: positivismo, falsacionismo y paradigmas"
+          ]
+        },
+        {
+          "modulo": "Epistemología de las ciencias sociales y humanas",
+          "temas": [
+            "Particularidades del conocimiento en las ciencias sociales",
+            "Debates contemporáneos sobre la construcción social del conocimiento"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Historia Institucional del Uruguay",
+      "modulos": [
+        {
+          "modulo": "Formación del Estado uruguayo",
+          "temas": [
+            "Organización institucional del Uruguay desde la independencia",
+            "Evolución de la administración pública uruguaya"
+          ]
+        },
+        {
+          "modulo": "Instituciones y fuentes documentales",
+          "temas": [
+            "Principales instituciones generadoras de documentos en Uruguay",
+            "Los archivos como fuente para la historia institucional"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Curso Introductorio",
+      "modulos": [
+        {
+          "modulo": "La universidad y la vida académica",
+          "temas": [
+            "Organización de la Universidad de la República y la vida estudiantil",
+            "Herramientas y estrategias para el estudio universitario"
+          ]
+        },
+        {
+          "modulo": "Introducción al campo de la información y la comunicación",
+          "temas": [
+            "Panorama de las disciplinas de la información y la comunicación en la FIC",
+            "La sociedad de la información y el conocimiento"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Historia de las Ideas",
+      "modulos": [
+        {
+          "modulo": "Del pensamiento clásico a la modernidad",
+          "temas": [
+            "Ideas filosóficas y políticas de la Antigüedad y el mundo clásico",
+            "La Ilustración y el pensamiento moderno"
+          ]
+        },
+        {
+          "modulo": "Pensamiento contemporáneo",
+          "temas": [
+            "Corrientes del pensamiento social y político de los siglos XIX y XX",
+            "Recepción y circulación de las ideas en América Latina"
+          ]
+        }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "nombre": "Fundamentos de Inteligencia Artificial",
+      "modulos": [
+        {
+          "modulo": "Fundamentos y técnicas de IA",
+          "temas": [
+            "Historia y fundamentos de la inteligencia artificial",
+            "Aprendizaje automático: conceptos básicos y tipos de aprendizaje"
+          ]
+        },
+        {
+          "modulo": "IA aplicada a la información y la sociedad",
+          "temas": [
+            "Procesamiento del lenguaje natural y recuperación de información",
+            "Ética y sesgos en sistemas de inteligencia artificial"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Metodología de la Investigación en Información y Comunicación",
+      "modulos": [
+        {
+          "modulo": "Diseño de la investigación",
+          "temas": [
+            "El proceso de investigación: planteamiento del problema y objetivos",
+            "Enfoques cuantitativo y cualitativo en información y comunicación"
+          ]
+        },
+        {
+          "modulo": "Técnicas de recolección y análisis",
+          "temas": [
+            "Técnicas de recolección de datos: encuesta, entrevista y análisis documental",
+            "Elaboración del proyecto de investigación y del informe final"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Taller Servicios de Información y Acceso a la Información Pública",
+      "modulos": [
+        {
+          "modulo": "Servicios de información",
+          "temas": [
+            "Tipos de servicios de información y sus usuarios",
+            "Atención y orientación al usuario en unidades de información"
+          ]
+        },
+        {
+          "modulo": "Acceso a la información pública",
+          "temas": [
+            "Marco normativo del derecho de acceso a la información pública en Uruguay",
+            "Transparencia, datos abiertos y gestión documental en el Estado"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Gestión Documental I",
+      "modulos": [
+        {
+          "modulo": "El ciclo de vida del documento",
+          "temas": [
+            "Ciclo de vida del documento y edades del archivo",
+            "Producción y trámite documental"
+          ]
+        },
+        {
+          "modulo": "Instrumentos de gestión documental",
+          "temas": [
+            "Tablas de plazos de conservación y disposición documental",
+            "Normalización de la gestión documental en las organizaciones"
+          ]
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "nombre": "Diseño Asistido de Software",
+      "modulos": [
+        {
+          "modulo": "Herramientas de diseño asistido por computadora",
+          "temas": [
+            "Software de diseño gráfico y edición para unidades de información",
+            "Principios de usabilidad y diseño de interfaces"
+          ]
+        },
+        {
+          "modulo": "Diseño de flujos y procesos con software",
+          "temas": [
+            "Modelado de procesos y diagramación con herramientas digitales",
+            "Buenas prácticas de documentación técnica de un proyecto de software"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Estadística Básica",
+      "modulos": [
+        {
+          "modulo": "Estadística descriptiva aplicada a información y comunicación",
+          "temas": [
+            "Organización y presentación de datos: tablas y gráficos",
+            "Medidas de tendencia central y de dispersión aplicadas a estudios de usuarios"
+          ]
+        },
+        {
+          "modulo": "Nociones de probabilidad y muestreo",
+          "temas": [
+            "Nociones básicas de probabilidad y variables aleatorias",
+            "Diseño de muestras para estudios de usuarios y bibliotecas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Gestión Documental II",
+      "modulos": [
+        {
+          "modulo": "Gestión documental avanzada",
+          "temas": [
+            "Gestión de documentos electrónicos y sistemas de gestión documental",
+            "Interoperabilidad y metadatos en la gestión documental"
+          ]
+        },
+        {
+          "modulo": "Auditoría y control de la gestión documental",
+          "temas": [
+            "Auditoría de sistemas de gestión documental",
+            "Indicadores de calidad en la gestión de documentos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Organización Documental",
+      "modulos": [
+        {
+          "modulo": "Principios de organización de fondos",
+          "temas": [
+            "Principio de procedencia y de orden original",
+            "Cuadros de clasificación de fondos documentales"
+          ]
+        },
+        {
+          "modulo": "Ordenación y control",
+          "temas": [
+            "Sistemas de ordenación de series documentales",
+            "Instrumentos de control y ubicación topográfica"
+          ]
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "nombre": "Administración en Unidades de Información I",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la administración de unidades de información",
+          "temas": [
+            "Planificación estratégica en bibliotecas y archivos",
+            "Estructura organizativa y funciones del personal en unidades de información"
+          ]
+        },
+        {
+          "modulo": "Gestión de recursos",
+          "temas": [
+            "Gestión de recursos humanos, materiales y presupuestarios",
+            "Evaluación de servicios y calidad en unidades de información"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Diseño y Análisis",
+      "modulos": [
+        {
+          "modulo": "Fundamentos del diseño gráfico",
+          "temas": [
+            "Elementos y principios de composición visual",
+            "Tipografía, color y retícula en el diseño de piezas gráficas"
+          ]
+        },
+        {
+          "modulo": "Diseño para la comunicación de información",
+          "temas": [
+            "Diseño de información y visualización de datos",
+            "Análisis crítico de piezas de diseño gráfico y comunicacional"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Taller de Legislación Archivística",
+      "modulos": [
+        {
+          "modulo": "Marco legal de los archivos",
+          "temas": [
+            "Legislación archivística nacional e internacional",
+            "El Sistema Nacional de Archivos en Uruguay"
+          ]
+        },
+        {
+          "modulo": "Responsabilidad y patrimonio documental",
+          "temas": [
+            "Régimen jurídico del patrimonio documental",
+            "Responsabilidades legales en la gestión y custodia de archivos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Taller de Elaboración de Cuadros de Clasificación",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la clasificación archivística",
+          "temas": [
+            "Criterios funcionales y orgánicos para clasificar documentos",
+            "Metodología para la elaboración de cuadros de clasificación"
+          ]
+        },
+        {
+          "modulo": "Aplicación práctica",
+          "temas": [
+            "Elaboración de cuadros de clasificación para instituciones reales",
+            "Validación y actualización de cuadros de clasificación"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Descripción Documental",
+      "modulos": [
+        {
+          "modulo": "Principios de la descripción archivística",
+          "temas": [
+            "Normas internacionales de descripción archivística (ISAD-G)",
+            "Niveles de descripción: fondo, sección, serie y unidad documental"
+          ]
+        },
+        {
+          "modulo": "Instrumentos descriptivos",
+          "temas": [
+            "Elaboración de inventarios, guías y catálogos de archivo",
+            "Puntos de acceso y descripción de productores (ISAAR-CPF)"
+          ]
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "nombre": "Conservación I: Conservación Preventiva y Gestión de Riesgos",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la conservación documental",
+          "temas": [
+            "Agentes de deterioro de los documentos",
+            "Condiciones ambientales y de almacenamiento para la conservación"
+          ]
+        },
+        {
+          "modulo": "Gestión de riesgos",
+          "temas": [
+            "Identificación y evaluación de riesgos en archivos",
+            "Planes de emergencia y gestión de desastres en unidades de información"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Evaluación Documental",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la valoración documental",
+          "temas": [
+            "Valores primarios y secundarios de los documentos",
+            "Criterios y metodologías de valoración documental"
+          ]
+        },
+        {
+          "modulo": "Selección y eliminación",
+          "temas": [
+            "Procesos de selección y expurgo documental",
+            "Comités de evaluación documental y su rol institucional"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Difusión Archivística",
+      "modulos": [
+        {
+          "modulo": "Extensión y difusión del patrimonio archivístico",
+          "temas": [
+            "Estrategias de difusión y extensión cultural de los archivos",
+            "Exposiciones y actividades educativas con fondos documentales"
+          ]
+        },
+        {
+          "modulo": "Archivos y comunidad",
+          "temas": [
+            "Archivos, memoria social y derechos humanos",
+            "Uso educativo y ciudadano de los archivos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Organización del Conocimiento y Recuperación de la Información",
+      "modulos": [
+        {
+          "modulo": "Organización del conocimiento",
+          "temas": [
+            "Lenguajes documentales: tesauros, clasificaciones y listas de encabezamientos",
+            "Indización y representación temática de la información"
+          ]
+        },
+        {
+          "modulo": "Recuperación de la información",
+          "temas": [
+            "Sistemas de recuperación de información y estrategias de búsqueda",
+            "Evaluación de la recuperación de información: precisión y exhaustividad"
+          ]
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "nombre": "Administración en Unidades de Información II",
+      "modulos": [
+        {
+          "modulo": "Planeamiento y marketing de servicios",
+          "temas": [
+            "Marketing y difusión de servicios de información",
+            "Planificación de proyectos en unidades de información"
+          ]
+        },
+        {
+          "modulo": "Dirección y evaluación",
+          "temas": [
+            "Liderazgo y dirección de equipos en bibliotecas y archivos",
+            "Indicadores de gestión y evaluación de desempeño"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Estudios de Usuarios de Información",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de los estudios de usuarios",
+          "temas": [
+            "Necesidades, búsqueda y uso de información en el contexto archivístico",
+            "Métodos y técnicas para el estudio de usuarios de archivos"
+          ]
+        },
+        {
+          "modulo": "Aplicación a servicios archivísticos",
+          "temas": [
+            "Perfiles de usuarios de archivos históricos y administrativos",
+            "Uso de los estudios de usuarios para la mejora de servicios archivísticos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Archivos Históricos",
+      "modulos": [
+        {
+          "modulo": "El archivo histórico",
+          "temas": [
+            "Concepto y función del archivo histórico",
+            "Fondos documentales históricos y su valor patrimonial"
+          ]
+        },
+        {
+          "modulo": "Tratamiento de fondos históricos",
+          "temas": [
+            "Investigación histórica a partir de fuentes archivísticas",
+            "Digitalización y acceso a archivos históricos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Bases de Datos",
+      "modulos": [
+        {
+          "modulo": "Modelo relacional y diseño de bases de datos",
+          "temas": [
+            "El modelo relacional: entidades, atributos y relaciones",
+            "Normalización de bases de datos"
+          ]
+        },
+        {
+          "modulo": "Lenguaje SQL y aplicaciones",
+          "temas": [
+            "Consultas SQL para la gestión de datos documentales",
+            "Bases de datos documentales y su aplicación en archivos y bibliotecas"
+          ]
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "nombre": "Planeamiento en el Área de la Información",
+      "modulos": [
+        {
+          "modulo": "Planificación estratégica",
+          "temas": [
+            "Diagnóstico y planificación estratégica de servicios de información",
+            "Formulación de proyectos en unidades de información"
+          ]
+        },
+        {
+          "modulo": "Gestión de proyectos",
+          "temas": [
+            "Herramientas de gestión de proyectos aplicadas a archivos y bibliotecas",
+            "Evaluación de resultados e impacto de proyectos de información"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Documentación Audiovisual",
+      "modulos": [
+        {
+          "modulo": "Tratamiento documental de materiales audiovisuales",
+          "temas": [
+            "Características y soportes de los documentos audiovisuales",
+            "Descripción y catalogación de materiales audiovisuales"
+          ]
+        },
+        {
+          "modulo": "Gestión y difusión de archivos audiovisuales",
+          "temas": [
+            "Conservación y digitalización de fondos audiovisuales",
+            "Acceso y difusión de colecciones audiovisuales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Preservación Digital",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la preservación digital",
+          "temas": [
+            "Riesgos de obsolescencia tecnológica y pérdida de información digital",
+            "Estrategias de preservación: migración, emulación y metadatos de preservación"
+          ]
+        },
+        {
+          "modulo": "Modelos y políticas de preservación",
+          "temas": [
+            "El modelo de referencia OAIS",
+            "Políticas institucionales de preservación digital a largo plazo"
+          ]
+        }
+      ]
+    }
+  ],
+  "8": [
+    {
+      "nombre": "Micrografía y Digitalización",
+      "modulos": [
+        {
+          "modulo": "Micrografía documental",
+          "temas": [
+            "Fundamentos y técnicas de microfilmación de documentos",
+            "Normas de calidad para la reproducción documental"
+          ]
+        },
+        {
+          "modulo": "Digitalización de documentos",
+          "temas": [
+            "Procesos y estándares de digitalización de fondos documentales",
+            "Gestión de metadatos y formatos de conservación digital"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Redes y Sistemas",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de redes de computadoras",
+          "temas": [
+            "Modelo de capas y protocolos de comunicación en redes",
+            "Internet y arquitectura cliente-servidor aplicada a sistemas de información"
+          ]
+        },
+        {
+          "modulo": "Sistemas de información en unidades de información",
+          "temas": [
+            "Componentes de un sistema integrado de gestión bibliotecaria/archivística",
+            "Seguridad básica y administración de sistemas en unidades de información"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Trabajo Final de Grado",
+      "modulos": []
+    }
+  ]
+}
