@@ -1,0 +1,372 @@
+{
+  "1": [
+    {
+      "nombre": "Introducción a la Microeconomía",
+      "modulos": [
+        {
+          "modulo": "Mercado, oferta y demanda",
+          "temas": [
+            "Curvas de oferta y demanda y determinación del precio de equilibrio",
+            "Elasticidades de la demanda y de la oferta"
+          ]
+        },
+        {
+          "modulo": "Teoría del consumidor y de la empresa",
+          "temas": [
+            "Teoría del consumidor: preferencias y elección óptima",
+            "Teoría de la empresa: producción y costos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Cálculo I",
+      "modulos": [
+        {
+          "modulo": "Límites y derivadas",
+          "temas": [
+            "Límites, continuidad y su aplicación a funciones económicas",
+            "Derivadas y su interpretación económica: costo e ingreso marginal"
+          ]
+        },
+        {
+          "modulo": "Optimización e integrales",
+          "temas": [
+            "Optimización de funciones de una variable",
+            "Integrales y su aplicación al cálculo de excedentes"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Conceptos Contables",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la partida doble",
+          "temas": [
+            "Partida doble y ecuación patrimonial",
+            "Registro contable de operaciones básicas"
+          ]
+        },
+        {
+          "modulo": "Estados contables y ciclo contable",
+          "temas": [
+            "Ciclo contable: apertura, ajustes y cierre",
+            "Estados contables básicos: Estado de Situación Patrimonial y Estado de Resultados"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Administración y Gestión de las Organizaciones I",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de administración",
+          "temas": [
+            "Evolución del pensamiento administrativo",
+            "El proceso administrativo: planificación, organización, dirección y control"
+          ]
+        },
+        {
+          "modulo": "La organización como sistema",
+          "temas": [
+            "La organización como sistema abierto y su entorno",
+            "Estructura organizativa y diseño de la organización"
+          ]
+        }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "nombre": "Álgebra Lineal",
+      "modulos": [
+        {
+          "modulo": "Vectores y matrices",
+          "temas": [
+            "Vectores, matrices y operaciones matriciales",
+            "Determinantes y matriz inversa"
+          ]
+        },
+        {
+          "modulo": "Sistemas de ecuaciones lineales",
+          "temas": [
+            "Sistemas de ecuaciones lineales y método de Gauss",
+            "Aplicaciones del álgebra lineal a modelos económicos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Macroeconomía",
+      "modulos": [
+        {
+          "modulo": "Variables macroeconómicas fundamentales",
+          "temas": [
+            "Producto Bruto Interno y cuentas nacionales",
+            "Inflación, desempleo y sus indicadores"
+          ]
+        },
+        {
+          "modulo": "Mercados agregados",
+          "temas": [
+            "Mercado de bienes y mercado monetario: un primer enfoque",
+            "Política fiscal y monetaria: introducción"
+          ]
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "nombre": "Macroeconomía I",
+      "modulos": [
+        {
+          "modulo": "Modelo de ingreso-gasto",
+          "temas": [
+            "Modelo de determinación del ingreso: enfoque keynesiano",
+            "Multiplicador del gasto y política fiscal"
+          ]
+        },
+        {
+          "modulo": "Mercado monetario",
+          "temas": [
+            "Oferta y demanda de dinero",
+            "Modelo IS-LM"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Cálculo II",
+      "modulos": [
+        {
+          "modulo": "Cálculo en varias variables",
+          "temas": [
+            "Funciones de varias variables y optimización aplicada a economía",
+            "Derivadas parciales y multiplicadores de Lagrange"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Historia Económica Mundial",
+      "modulos": [
+        {
+          "modulo": "Procesos económicos históricos",
+          "temas": [
+            "Revolución industrial y expansión del capitalismo",
+            "Crisis económicas mundiales del siglo XX"
+          ]
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "nombre": "Microeconomía I",
+      "modulos": [
+        {
+          "modulo": "Teoría del consumidor avanzada",
+          "temas": [
+            "Elección del consumidor bajo incertidumbre",
+            "Efecto sustitución y efecto ingreso"
+          ]
+        },
+        {
+          "modulo": "Estructuras de mercado",
+          "temas": [
+            "Competencia perfecta y monopolio",
+            "Competencia monopolística y oligopolio"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Macroeconomía II",
+      "modulos": [
+        {
+          "modulo": "Crecimiento económico",
+          "temas": [
+            "Modelos de crecimiento económico: el modelo de Solow",
+            "Determinantes de la productividad y el crecimiento de largo plazo"
+          ]
+        },
+        {
+          "modulo": "Ciclos económicos",
+          "temas": [
+            "Fluctuaciones económicas y modelos de ciclo"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Estadística I",
+      "modulos": [
+        {
+          "modulo": "Inferencia estadística",
+          "temas": [
+            "Estimación puntual e intervalos de confianza",
+            "Contraste de hipótesis en el análisis económico"
+          ]
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "nombre": "Microeconomía II",
+      "modulos": [
+        {
+          "modulo": "Bienestar y fallas de mercado",
+          "temas": [
+            "Externalidades y bienes públicos",
+            "Economía del bienestar y eficiencia de Pareto"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Economía de América Latina",
+      "modulos": [
+        {
+          "modulo": "Desarrollo económico latinoamericano",
+          "temas": [
+            "Modelos de industrialización por sustitución de importaciones",
+            "Reformas estructurales y apertura económica en América Latina"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Macroeconomía III",
+      "modulos": [
+        {
+          "modulo": "Economía abierta",
+          "temas": [
+            "Balanza de pagos y tipo de cambio",
+            "Modelo Mundell-Fleming en economía abierta"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Estadística II",
+      "modulos": [
+        {
+          "modulo": "Modelos de regresión",
+          "temas": [
+            "Regresión lineal simple y múltiple aplicada a datos económicos",
+            "Series de tiempo: nociones básicas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Metodología",
+      "modulos": [
+        {
+          "modulo": "Metodología de la investigación económica",
+          "temas": [
+            "Diseño de investigación y formulación de hipótesis en economía",
+            "Fuentes de datos económicos y su análisis"
+          ]
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "nombre": "Economía del Uruguay",
+      "modulos": [
+        {
+          "modulo": "Estructura económica uruguaya",
+          "temas": [
+            "Evolución macroeconómica de Uruguay",
+            "Estructura productiva y comercio exterior de Uruguay"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Microeconomía III",
+      "modulos": [
+        {
+          "modulo": "Teoría de juegos",
+          "temas": [
+            "Juegos estáticos y equilibrio de Nash",
+            "Juegos dinámicos e información asimétrica"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Econometría I",
+      "modulos": [
+        {
+          "modulo": "Modelo de regresión lineal",
+          "temas": [
+            "Estimación por mínimos cuadrados ordinarios",
+            "Supuestos del modelo clásico y violaciones (heterocedasticidad, autocorrelación)"
+          ]
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "nombre": "Economía Internacional",
+      "modulos": [
+        {
+          "modulo": "Comercio internacional",
+          "temas": [
+            "Teorías del comercio internacional: ventaja comparativa y modelos modernos",
+            "Política comercial: aranceles y barreras no arancelarias"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Teorías del Desarrollo Económico",
+      "modulos": [
+        {
+          "modulo": "Enfoques del desarrollo",
+          "temas": [
+            "Teorías clásicas y estructuralistas del desarrollo",
+            "Desarrollo humano y enfoque de capacidades"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Econometría II",
+      "modulos": [
+        {
+          "modulo": "Modelos avanzados de econometría",
+          "temas": [
+            "Modelos de variable dependiente cualitativa",
+            "Datos de panel"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Historia del Pensamiento Económico",
+      "modulos": [
+        {
+          "modulo": "Escuelas del pensamiento económico",
+          "temas": [
+            "Clásicos y neoclásicos: de Smith a Marshall",
+            "Keynes y las escuelas heterodoxas del siglo XX"
+          ]
+        }
+      ]
+    }
+  ],
+  "8": [
+    {
+      "nombre": "Trabajo de Iniciación a la Investigación",
+      "modulos": []
+    }
+  ]
+}

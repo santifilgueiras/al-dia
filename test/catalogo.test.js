@@ -24,6 +24,12 @@ const FAMILIAS = {
     'ingenieria-quimica', 'ingenieria-naval', 'ingenieria-alimentos',
     'ingenieria-produccion', 'agrimensura',
   ],
+  // Facultad de Ciencias Económicas y de Administración (FCEA): las 3
+  // carreras comparten un núcleo común real (mismo código de UC -- ver
+  // scripts/agregar-catalogo-fcea.js) más varias UC adicionales que también
+  // comparten código entre pares de carreras -- esa reutilización es
+  // intencional, no una colisión a resolver.
+  economia: ['contador-publico', 'economia', 'administracion'],
 };
 function familiaDe(facultad) {
   return Object.keys(FAMILIAS).find(fam => FAMILIAS[fam].includes(facultad)) || facultad;

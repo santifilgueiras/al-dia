@@ -2915,6 +2915,7 @@ let CATALOGO_POR_ANIO, CATALOGO_POR_CICLO_PSICOLOGIA, CATALOGO_POR_CICLO_INGENIE
     CATALOGO_POR_CICLO_INGENIERIA_NAVAL, CATALOGO_POR_CICLO_INGENIERIA_ALIMENTOS,
     CATALOGO_POR_CICLO_INGENIERIA_PRODUCCION, CATALOGO_POR_CICLO_AGRIMENSURA,
     CATALOGO_POR_CICLO_AGRONOMIA,
+    CATALOGO_POR_CICLO_CONTADOR_PUBLICO, CATALOGO_POR_CICLO_ECONOMIA, CATALOGO_POR_CICLO_ADMINISTRACION,
     MODULO_ICONS, TEXTOS, DURACIONES, FACULTADES;
 // Los catálogos, la bibliografía y las duraciones de arriba viven ahora en
 // data/*.json (ver scripts/extraer-datos.js) -- se cargan con fetch en
@@ -3167,6 +3168,57 @@ let CATALOGO_POR_ANIO, CATALOGO_POR_CICLO_PSICOLOGIA, CATALOGO_POR_CICLO_INGENIE
 // clásico obvio), mismo criterio ya usado en Medicina/Ingeniería.
 
 
+// Catálogo de la Facultad de Ciencias Económicas y de Administración (FCEA,
+// UDELAR) -- 3 carreras, cada una facultad propia en FACULTADES pero
+// agrupadas bajo el mismo `grupo` (ver FACULTADES.contador_publico/economia/
+// administracion): Contador Público (Plan 2024, ciclo común obligatorio de
+// 260 créditos), Licenciatura en Economía (Plan 2012) y Licenciatura en
+// Administración (Plan 2012), las 3 de 8 semestres. Fuente: páginas
+// oficiales de fcea.udelar.edu.uy de cada carrera (ensenanza/las-carreras-de-
+// fcea, ensenanza-dpto-economia, depto-adm-ensenanza) -- la malla de
+// Administración se re-verificó con un WebFetch adicional a su página
+// oficial porque la primera extracción había dejado ambiguos los semestres
+// 2, 4, 6 y 7 (mezclaba obligatorias con "opcionales incluyen..."); la
+// re-verificación CONFIRMÓ la cantidad de obligatorias reales por semestre
+// tal como se había estimado (3, 2, 2 y 2 respectivamente), así que no hizo
+// falta corregir ninguna materia. Las 4 UC del núcleo común real (mismo
+// código en las 3 carreras: C10 Conceptos Contables, A10 Administración y
+// Gestión de las Organizaciones I, E10 Introducción a la Microeconomía, MC10
+// Cálculo I, todas de 1º semestre) están cargadas con contenido IDÉNTICO en
+// los 3 catálogos -- mismo criterio que el núcleo común de Cálculo 1/GAL 1/
+// Física 1 compartido entre las 9 carreras de Ingeniería. Además, 8 UC más
+// también comparten código real entre pares de estas 3 carreras (Contabilidad
+// General I, Álgebra Lineal, Introducción a la Macroeconomía, Introducción a
+// la Estadística, Matemática Financiera, Macroeconomía I, Contabilidad
+// Gerencial, Finanzas Corporativas) y se cargaron igual de idénticas por el
+// mismo motivo. test/catalogo.test.js tiene una familia `economia` nueva
+// (contador-publico/economia/administracion) para que esta reutilización
+// intencional no se marque como colisión entre dominios sin relación. Los
+// programas de FCEA no publican temario detallado por UC (solo nombre y
+// créditos) -- los 2-4 temas por materia se destilaron con currícula
+// universitaria estándar internacionalmente reconocida para cada asignatura
+// y bibliografía clásica por área (Horngren para contabilidad/costos, Pindyck
+// & Rubinfeld para microeconomía, Blanchard/Amighini/Giavazzi para
+// macroeconomía, Stewart para cálculo, Grossman para álgebra lineal, Walpole/
+// Myers para estadística, Ayres & Hass para matemática financiera, Wooldridge
+// para econometría, Arens/Elder/Beasley para auditoría, Ross/Westerfield/
+// Jaffe para finanzas corporativas, Kotler & Armstrong para marketing,
+// Robbins para administración/comportamiento organizacional; ver
+// scripts/agregar-catalogo-fcea.js) y "Apuntes de cátedra" para derecho
+// (empresarial/tributario/laboral/digital), ética/responsabilidad social,
+// historia económica/del pensamiento económico y las materias de contexto
+// uruguayo específico (Economía del Uruguay, Economía de América Latina),
+// mismo criterio ya usado en Medicina/Ingeniería/Agronomía. Solo se cargó la
+// trayectoria OBLIGATORIA real de cada carrera -- las larguísimas listas de
+// optativas por área (los 5 "perfiles" de Contador Público, las optativas
+// por área de Economía, las optativas de cada semestre de Administración) NO
+// se cargan como materias, mismo criterio del resto de la app. El semestre 8
+// real de Economía no tiene obligatorias (solo optativas + un trabajo de
+// cierre) -- se cargó "Trabajo de Iniciación a la Investigación" con
+// modulos:[], mismo patrón que los demás trabajos/proyectos finales de
+// carrera.
+
+
 // Multi-facultad: cada facultad define su propio catálogo (por año o por
 // semestre, según cómo organice sus ciclos) y cómo nombrar/etiquetar ese
 // ciclo -- el resto de la app (S1/S9/S10) lee de acá en vez de asumir
@@ -3333,9 +3385,51 @@ function construirFacultades() {
     cicloLabel: (n) => `${n}º semestre`,
     iconoMateria: '🌾',
   },
+  // Facultad de Ciencias Económicas y de Administración (FCEA) tiene MÁS DE
+  // UNA carrera cargada (mismo patrón que Facultad de Ingeniería) -- las 3
+  // comparten `grupo` para que renderFacultades() las agrupe en un acordeón.
+  contador_publico: {
+    key: 'contador_publico',
+    label: 'Facultad de Ciencias Económicas y de Administración',
+    nombreCorto: 'Contador Público',
+    grupo: 'Facultad de Ciencias Económicas y de Administración',
+    carrera: 'Contador Público',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_CONTADOR_PUBLICO,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '🧾',
+  },
+  economia: {
+    key: 'economia',
+    label: 'Facultad de Ciencias Económicas y de Administración',
+    nombreCorto: 'Economía',
+    grupo: 'Facultad de Ciencias Económicas y de Administración',
+    carrera: 'Licenciatura en Economía',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_ECONOMIA,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '📈',
+  },
+  administracion: {
+    key: 'administracion',
+    label: 'Facultad de Ciencias Económicas y de Administración',
+    nombreCorto: 'Administración',
+    grupo: 'Facultad de Ciencias Económicas y de Administración',
+    carrera: 'Licenciatura en Administración',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5, 6, 7, 8],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_ADMINISTRACION,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '💼',
+  },
 };
 }
-const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica', 'ingenieria_naval', 'ingenieria_alimentos', 'ingenieria_produccion', 'agrimensura', 'agronomia'];
+const FACULTADES_ORDEN = ['medicina', 'psicologia', 'ingenieria', 'ingenieria_civil', 'ingenieria_electrica', 'ingenieria_mecanica', 'ingenieria_quimica', 'ingenieria_naval', 'ingenieria_alimentos', 'ingenieria_produccion', 'agrimensura', 'agronomia', 'contador_publico', 'economia', 'administracion'];
 
 // Exámenes guardados antes de este cambio no tienen `facultad` -- todos
 // eran de Medicina (la única que existía), así que ese es el default.
@@ -8441,6 +8535,7 @@ async function cargarDatosEstaticos() {
     'catalogo-ingenieria-civil', 'catalogo-ingenieria-electrica', 'catalogo-ingenieria-mecanica',
     'catalogo-ingenieria-quimica', 'catalogo-ingenieria-naval', 'catalogo-ingenieria-alimentos',
     'catalogo-ingenieria-produccion', 'catalogo-agrimensura', 'catalogo-agronomia',
+    'catalogo-contador-publico', 'catalogo-economia', 'catalogo-administracion',
     'modulo-icons', 'textos', 'duraciones',
   ];
   const resultados = await Promise.all(archivos.map(a => fetch(`/data/${a}.json`).then(r => r.json())));
@@ -8451,6 +8546,7 @@ async function cargarDatosEstaticos() {
     CATALOGO_POR_CICLO_INGENIERIA_NAVAL, CATALOGO_POR_CICLO_INGENIERIA_ALIMENTOS,
     CATALOGO_POR_CICLO_INGENIERIA_PRODUCCION, CATALOGO_POR_CICLO_AGRIMENSURA,
     CATALOGO_POR_CICLO_AGRONOMIA,
+    CATALOGO_POR_CICLO_CONTADOR_PUBLICO, CATALOGO_POR_CICLO_ECONOMIA, CATALOGO_POR_CICLO_ADMINISTRACION,
     MODULO_ICONS, TEXTOS, DURACIONES,
   ] = resultados;
   construirFacultades();

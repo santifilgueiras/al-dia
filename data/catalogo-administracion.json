@@ -1,0 +1,388 @@
+{
+  "1": [
+    {
+      "nombre": "Administración y Gestión de las Organizaciones I",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de administración",
+          "temas": [
+            "Evolución del pensamiento administrativo",
+            "El proceso administrativo: planificación, organización, dirección y control"
+          ]
+        },
+        {
+          "modulo": "La organización como sistema",
+          "temas": [
+            "La organización como sistema abierto y su entorno",
+            "Estructura organizativa y diseño de la organización"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Conceptos Contables",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la partida doble",
+          "temas": [
+            "Partida doble y ecuación patrimonial",
+            "Registro contable de operaciones básicas"
+          ]
+        },
+        {
+          "modulo": "Estados contables y ciclo contable",
+          "temas": [
+            "Ciclo contable: apertura, ajustes y cierre",
+            "Estados contables básicos: Estado de Situación Patrimonial y Estado de Resultados"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Cálculo I",
+      "modulos": [
+        {
+          "modulo": "Límites y derivadas",
+          "temas": [
+            "Límites, continuidad y su aplicación a funciones económicas",
+            "Derivadas y su interpretación económica: costo e ingreso marginal"
+          ]
+        },
+        {
+          "modulo": "Optimización e integrales",
+          "temas": [
+            "Optimización de funciones de una variable",
+            "Integrales y su aplicación al cálculo de excedentes"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Microeconomía",
+      "modulos": [
+        {
+          "modulo": "Mercado, oferta y demanda",
+          "temas": [
+            "Curvas de oferta y demanda y determinación del precio de equilibrio",
+            "Elasticidades de la demanda y de la oferta"
+          ]
+        },
+        {
+          "modulo": "Teoría del consumidor y de la empresa",
+          "temas": [
+            "Teoría del consumidor: preferencias y elección óptima",
+            "Teoría de la empresa: producción y costos"
+          ]
+        }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "nombre": "Administración y Gestión de las Organizaciones II",
+      "modulos": [
+        {
+          "modulo": "Procesos de dirección",
+          "temas": [
+            "Toma de decisiones y liderazgo en las organizaciones",
+            "Motivación y trabajo en equipo"
+          ]
+        },
+        {
+          "modulo": "Cambio y cultura organizacional",
+          "temas": [
+            "Cultura organizacional y su gestión"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Contabilidad General I",
+      "modulos": [
+        {
+          "modulo": "Registro de operaciones comerciales",
+          "temas": [
+            "Registro contable de compraventa de mercaderías",
+            "Documentación comercial y su registración"
+          ]
+        },
+        {
+          "modulo": "Ajustes y cierre del ejercicio",
+          "temas": [
+            "Ajustes contables de fin de ejercicio",
+            "Cierre de ejercicio y determinación del resultado"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Economía Descriptiva",
+      "modulos": [
+        {
+          "modulo": "Indicadores económicos",
+          "temas": [
+            "Sistema de cuentas nacionales e indicadores macroeconómicos descriptivos",
+            "Indicadores de comercio exterior y precios"
+          ]
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "nombre": "Procesos y Sistemas de Información",
+      "modulos": [
+        {
+          "modulo": "Sistemas de información en la organización",
+          "temas": [
+            "Sistemas de información para la gestión organizacional",
+            "Modelado y mejora de procesos de negocio"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Macroeconomía I",
+      "modulos": [
+        {
+          "modulo": "Modelo de ingreso-gasto",
+          "temas": [
+            "Modelo de determinación del ingreso: enfoque keynesiano",
+            "Multiplicador del gasto y política fiscal"
+          ]
+        },
+        {
+          "modulo": "Mercado monetario",
+          "temas": [
+            "Oferta y demanda de dinero",
+            "Modelo IS-LM"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Estadística",
+      "modulos": [
+        {
+          "modulo": "Estadística descriptiva",
+          "temas": [
+            "Organización y descripción de datos: medidas de tendencia central y dispersión",
+            "Representación gráfica de datos"
+          ]
+        },
+        {
+          "modulo": "Nociones de probabilidad",
+          "temas": [
+            "Probabilidad básica y variables aleatorias",
+            "Distribuciones de probabilidad discretas y continuas más usadas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Derecho del Empresario",
+      "modulos": [
+        {
+          "modulo": "Régimen jurídico del empresario",
+          "temas": [
+            "Estatuto del comerciante y actos de comercio",
+            "Formas jurídicas de organización de la empresa"
+          ]
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "nombre": "Administración de Recursos Humanos",
+      "modulos": [
+        {
+          "modulo": "Gestión del capital humano",
+          "temas": [
+            "Reclutamiento, selección e inducción de personal",
+            "Evaluación de desempeño y desarrollo del personal"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Matemática Financiera",
+      "modulos": [
+        {
+          "modulo": "Interés y valor del dinero en el tiempo",
+          "temas": [
+            "Interés simple y compuesto",
+            "Valor actual y valor futuro de capitales"
+          ]
+        },
+        {
+          "modulo": "Rentas y sistemas de amortización",
+          "temas": [
+            "Rentas: cálculo de valor actual y valor final",
+            "Sistemas de amortización de préstamos"
+          ]
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "nombre": "Marketing Básico",
+      "modulos": [
+        {
+          "modulo": "Fundamentos del marketing",
+          "temas": [
+            "El proceso de marketing y comportamiento del consumidor",
+            "Marketing mix: producto, precio, plaza y promoción"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Costos para la Gestión",
+      "modulos": [
+        {
+          "modulo": "Costos para la toma de decisiones gerenciales",
+          "temas": [
+            "Clasificación de costos y su uso gerencial",
+            "Punto de equilibrio y análisis marginal"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Economía de las Decisiones Empresariales",
+      "modulos": [
+        {
+          "modulo": "Análisis económico de decisiones empresariales",
+          "temas": [
+            "Análisis de mercado y decisiones de precio de la empresa",
+            "Decisiones de producción bajo incertidumbre"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Taller de Ética y Responsabilidad Social",
+      "modulos": [
+        {
+          "modulo": "Ética y responsabilidad social empresarial",
+          "temas": [
+            "Responsabilidad social empresarial y sus dimensiones",
+            "Dilemas éticos en la gestión de las organizaciones"
+          ]
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "nombre": "Contabilidad Gerencial",
+      "modulos": [
+        {
+          "modulo": "Información contable para la toma de decisiones",
+          "temas": [
+            "Costos relevantes para la toma de decisiones",
+            "Análisis costo-volumen-utilidad"
+          ]
+        },
+        {
+          "modulo": "Presupuestos y control de gestión",
+          "temas": [
+            "Presupuestos operativos y financieros",
+            "Indicadores de gestión y cuadro de mando"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Administración de las Relaciones de Trabajo",
+      "modulos": [
+        {
+          "modulo": "Relaciones laborales colectivas",
+          "temas": [
+            "Negociación colectiva y sindicalismo",
+            "Conflictos laborales y su resolución"
+          ]
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "nombre": "Comportamiento Organizacional",
+      "modulos": [
+        {
+          "modulo": "Comportamiento individual y grupal",
+          "temas": [
+            "Percepción, actitudes y personalidad en el trabajo",
+            "Dinámica de grupos y equipos de trabajo"
+          ]
+        },
+        {
+          "modulo": "Poder y cambio organizacional",
+          "temas": [
+            "Poder, política y conflicto organizacional"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Finanzas Corporativas",
+      "modulos": [
+        {
+          "modulo": "Valor y decisiones de inversión",
+          "temas": [
+            "Valor del dinero en el tiempo aplicado a decisiones financieras",
+            "Evaluación de proyectos de inversión: VAN y TIR"
+          ]
+        },
+        {
+          "modulo": "Estructura de capital y riesgo",
+          "temas": [
+            "Estructura de capital y costo de capital",
+            "Riesgo, rendimiento y política de dividendos"
+          ]
+        }
+      ]
+    }
+  ],
+  "8": [
+    {
+      "nombre": "Dirección Estratégica de las Organizaciones",
+      "modulos": [
+        {
+          "modulo": "Formulación e implementación estratégica",
+          "temas": [
+            "Análisis estratégico del entorno y la organización",
+            "Formulación e implementación de la estrategia competitiva"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Cambio Organizacional",
+      "modulos": [
+        {
+          "modulo": "Gestión del cambio",
+          "temas": [
+            "Modelos de gestión del cambio organizacional",
+            "Resistencia al cambio y estrategias de superación"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Proyectos de Inversión",
+      "modulos": [
+        {
+          "modulo": "Evaluación de proyectos de inversión",
+          "temas": [
+            "Formulación y evaluación de proyectos de inversión",
+            "Análisis de sensibilidad y riesgo en proyectos"
+          ]
+        }
+      ]
+    }
+  ]
+}

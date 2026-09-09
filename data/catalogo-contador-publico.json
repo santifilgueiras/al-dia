@@ -1,0 +1,483 @@
+{
+  "1": [
+    {
+      "nombre": "Conceptos Contables",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de la partida doble",
+          "temas": [
+            "Partida doble y ecuación patrimonial",
+            "Registro contable de operaciones básicas"
+          ]
+        },
+        {
+          "modulo": "Estados contables y ciclo contable",
+          "temas": [
+            "Ciclo contable: apertura, ajustes y cierre",
+            "Estados contables básicos: Estado de Situación Patrimonial y Estado de Resultados"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Administración y Gestión de las Organizaciones I",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de administración",
+          "temas": [
+            "Evolución del pensamiento administrativo",
+            "El proceso administrativo: planificación, organización, dirección y control"
+          ]
+        },
+        {
+          "modulo": "La organización como sistema",
+          "temas": [
+            "La organización como sistema abierto y su entorno",
+            "Estructura organizativa y diseño de la organización"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Microeconomía",
+      "modulos": [
+        {
+          "modulo": "Mercado, oferta y demanda",
+          "temas": [
+            "Curvas de oferta y demanda y determinación del precio de equilibrio",
+            "Elasticidades de la demanda y de la oferta"
+          ]
+        },
+        {
+          "modulo": "Teoría del consumidor y de la empresa",
+          "temas": [
+            "Teoría del consumidor: preferencias y elección óptima",
+            "Teoría de la empresa: producción y costos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Cálculo I",
+      "modulos": [
+        {
+          "modulo": "Límites y derivadas",
+          "temas": [
+            "Límites, continuidad y su aplicación a funciones económicas",
+            "Derivadas y su interpretación económica: costo e ingreso marginal"
+          ]
+        },
+        {
+          "modulo": "Optimización e integrales",
+          "temas": [
+            "Optimización de funciones de una variable",
+            "Integrales y su aplicación al cálculo de excedentes"
+          ]
+        }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "nombre": "Contabilidad General I",
+      "modulos": [
+        {
+          "modulo": "Registro de operaciones comerciales",
+          "temas": [
+            "Registro contable de compraventa de mercaderías",
+            "Documentación comercial y su registración"
+          ]
+        },
+        {
+          "modulo": "Ajustes y cierre del ejercicio",
+          "temas": [
+            "Ajustes contables de fin de ejercicio",
+            "Cierre de ejercicio y determinación del resultado"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Derecho y Actividad Empresarial I",
+      "modulos": [
+        {
+          "modulo": "Marco jurídico de la empresa",
+          "temas": [
+            "Sujetos de derecho y formas jurídicas de organización empresarial",
+            "Sociedades comerciales: constitución y tipos societarios"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Macroeconomía",
+      "modulos": [
+        {
+          "modulo": "Variables macroeconómicas fundamentales",
+          "temas": [
+            "Producto Bruto Interno y cuentas nacionales",
+            "Inflación, desempleo y sus indicadores"
+          ]
+        },
+        {
+          "modulo": "Mercados agregados",
+          "temas": [
+            "Mercado de bienes y mercado monetario: un primer enfoque",
+            "Política fiscal y monetaria: introducción"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Álgebra Lineal",
+      "modulos": [
+        {
+          "modulo": "Vectores y matrices",
+          "temas": [
+            "Vectores, matrices y operaciones matriciales",
+            "Determinantes y matriz inversa"
+          ]
+        },
+        {
+          "modulo": "Sistemas de ecuaciones lineales",
+          "temas": [
+            "Sistemas de ecuaciones lineales y método de Gauss",
+            "Aplicaciones del álgebra lineal a modelos económicos"
+          ]
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "nombre": "Contabilidad General II",
+      "modulos": [
+        {
+          "modulo": "Contabilización de sociedades y operaciones especiales",
+          "temas": [
+            "Constitución y funcionamiento contable de sociedades comerciales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Derecho y Actividad Empresarial II",
+      "modulos": [
+        {
+          "modulo": "Contratos comerciales",
+          "temas": [
+            "Contratos comerciales típicos: compraventa, mandato, agencia",
+            "Títulos valores y su circulación"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Introducción a la Estadística",
+      "modulos": [
+        {
+          "modulo": "Estadística descriptiva",
+          "temas": [
+            "Organización y descripción de datos: medidas de tendencia central y dispersión",
+            "Representación gráfica de datos"
+          ]
+        },
+        {
+          "modulo": "Nociones de probabilidad",
+          "temas": [
+            "Probabilidad básica y variables aleatorias",
+            "Distribuciones de probabilidad discretas y continuas más usadas"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Procesos Contables",
+      "modulos": [
+        {
+          "modulo": "Sistemas y procesos de información contable",
+          "temas": [
+            "Diseño de sistemas de información contable",
+            "Control interno de los procesos contables"
+          ]
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "nombre": "Contabilidad General III",
+      "modulos": [
+        {
+          "modulo": "Contabilización de sociedades y operaciones especiales",
+          "temas": [
+            "Operaciones de fusión, escisión y transformación societaria"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Matemática Financiera",
+      "modulos": [
+        {
+          "modulo": "Interés y valor del dinero en el tiempo",
+          "temas": [
+            "Interés simple y compuesto",
+            "Valor actual y valor futuro de capitales"
+          ]
+        },
+        {
+          "modulo": "Rentas y sistemas de amortización",
+          "temas": [
+            "Rentas: cálculo de valor actual y valor final",
+            "Sistemas de amortización de préstamos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Derecho Digital",
+      "modulos": [
+        {
+          "modulo": "Regulación jurídica de las tecnologías digitales",
+          "temas": [
+            "Documento y firma electrónica",
+            "Protección de datos personales y comercio electrónico"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Legislación Laboral y Seguridad Social",
+      "modulos": [
+        {
+          "modulo": "Régimen laboral individual",
+          "temas": [
+            "Contrato de trabajo y remuneraciones",
+            "Jornada laboral, licencias y despido"
+          ]
+        },
+        {
+          "modulo": "Seguridad social",
+          "temas": [
+            "Sistema de seguridad social uruguayo y aportes"
+          ]
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "nombre": "Modelos y Sistemas de Costos",
+      "modulos": [
+        {
+          "modulo": "Sistemas de costeo",
+          "temas": [
+            "Costeo por órdenes y por procesos",
+            "Costeo variable y costeo por absorción"
+          ]
+        },
+        {
+          "modulo": "Modelos de costos para la gestión",
+          "temas": [
+            "Costeo basado en actividades (ABC)"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Derecho Tributario",
+      "modulos": [
+        {
+          "modulo": "Teoría general del tributo",
+          "temas": [
+            "Relación jurídico-tributaria y clasificación de tributos",
+            "Principios constitucionales tributarios"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Contabilidad Social y Ambiental",
+      "modulos": [
+        {
+          "modulo": "Reportes no financieros",
+          "temas": [
+            "Reportes de sostenibilidad y responsabilidad social empresarial",
+            "Contabilidad ambiental y su medición"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Ética y Ejercicio Profesional",
+      "modulos": [
+        {
+          "modulo": "Ética profesional del contador",
+          "temas": [
+            "Principios éticos y normas de conducta del Contador Público",
+            "Independencia y responsabilidad profesional"
+          ]
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "nombre": "Contabilidad Superior I",
+      "modulos": [
+        {
+          "modulo": "Normas contables adecuadas",
+          "temas": [
+            "Normas Internacionales de Información Financiera (NIIF)",
+            "Valuación de activos y pasivos según normativa contable"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Contabilidad Gerencial",
+      "modulos": [
+        {
+          "modulo": "Información contable para la toma de decisiones",
+          "temas": [
+            "Costos relevantes para la toma de decisiones",
+            "Análisis costo-volumen-utilidad"
+          ]
+        },
+        {
+          "modulo": "Presupuestos y control de gestión",
+          "temas": [
+            "Presupuestos operativos y financieros",
+            "Indicadores de gestión y cuadro de mando"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Tributaria I",
+      "modulos": [
+        {
+          "modulo": "Impuestos a la renta y al patrimonio",
+          "temas": [
+            "Impuesto a las Rentas de las Actividades Económicas (IRAE)",
+            "Impuesto al Patrimonio"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Administración y Planificación Financiera",
+      "modulos": [
+        {
+          "modulo": "Planificación financiera de la empresa",
+          "temas": [
+            "Presupuesto financiero y flujo de caja proyectado",
+            "Planificación financiera de corto y largo plazo"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Control Interno",
+      "modulos": [
+        {
+          "modulo": "Sistema de control interno",
+          "temas": [
+            "Componentes del control interno (marco COSO)",
+            "Evaluación de riesgos y actividades de control"
+          ]
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "nombre": "Auditoría I",
+      "modulos": [
+        {
+          "modulo": "Fundamentos de auditoría",
+          "temas": [
+            "Normas de auditoría y responsabilidad del auditor",
+            "Planificación de la auditoría y evaluación de riesgos"
+          ]
+        },
+        {
+          "modulo": "Evidencia y procedimientos de auditoría",
+          "temas": [
+            "Evidencia de auditoría y procedimientos sustantivos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Tributaria II",
+      "modulos": [
+        {
+          "modulo": "Impuesto al valor agregado y otros tributos",
+          "temas": [
+            "Impuesto al Valor Agregado (IVA)",
+            "Otros tributos: comercio exterior y tributos municipales"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Finanzas Corporativas",
+      "modulos": [
+        {
+          "modulo": "Valor y decisiones de inversión",
+          "temas": [
+            "Valor del dinero en el tiempo aplicado a decisiones financieras",
+            "Evaluación de proyectos de inversión: VAN y TIR"
+          ]
+        },
+        {
+          "modulo": "Estructura de capital y riesgo",
+          "temas": [
+            "Estructura de capital y costo de capital",
+            "Riesgo, rendimiento y política de dividendos"
+          ]
+        }
+      ]
+    }
+  ],
+  "8": [
+    {
+      "nombre": "Auditoría Interna",
+      "modulos": [
+        {
+          "modulo": "La función de auditoría interna",
+          "temas": [
+            "Rol y alcance de la auditoría interna en la organización",
+            "Planificación y ejecución de trabajos de auditoría interna"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Informes Profesionales del Contador Público",
+      "modulos": [
+        {
+          "modulo": "Informes y dictámenes profesionales",
+          "temas": [
+            "Informe de auditoría y tipos de opinión",
+            "Otros informes profesionales del Contador Público"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Contabilidad en Sistemas Integrados de Gestión/ERP",
+      "modulos": [
+        {
+          "modulo": "Contabilidad en entornos ERP",
+          "temas": [
+            "Sistemas ERP y su módulo contable-financiero",
+            "Control y auditoría de la información contable en sistemas integrados"
+          ]
+        }
+      ]
+    }
+  ]
+}
