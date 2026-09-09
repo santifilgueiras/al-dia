@@ -361,6 +361,11 @@
      un vistazo qué quedó afuera. */
   .tema-row.destildado { opacity: .5; text-decoration: line-through; }
   .tema-row label { flex: 1; display: flex; align-items: center; gap: 10px; }
+  /* Checklist de temas de Fichas (multi-selección) -- mismas filas .tema-row
+     que ya usaba el alta de examen, adentro de un contenedor con scroll para
+     materias con muchos temas (ej. Clínica Médica, 64 temas). */
+  .tema-checklist { border: 1px solid var(--line); border-radius: 12px; padding: 4px 12px; max-height: 240px; overflow-y: auto; }
+  .ficha-tema-tag { font-size: 11px; color: var(--muted); letter-spacing: .03em; margin-bottom: 6px; }
   .lupa { border: none; background: none; cursor: pointer; font-size: 14px; padding: 2px 4px; opacity: .6; flex-shrink: 0; }
   .lupa:hover { opacity: 1; }
   .ref-link {
@@ -2696,7 +2701,8 @@
           <select id="fichasMateriaSelect" onchange="onFichasMateriaChange()"></select>
         </div>
         <div class="field">
-          <select id="fichasTemaSelect" onchange="renderEstudiarRail()"></select>
+          <label>Temas (elegí uno o más)</label>
+          <div class="tema-checklist" id="fichasTemaCheckList"></div>
         </div>
         <div class="field">
           <label>📎 Opcional: subí tu propio apunte (en vez de la bibliografía general)</label>
@@ -6527,6 +6533,10 @@ initDropzone('correctorDropzone', 'correctorArchivoInput', 'correctorArchivoBorr
 // un examen nuevo (S1/S9/S2) -- así se puede pedir fichas de CUALQUIER tema
 // del catálogo de las 25 materias, no solo de las que ya tenés en curso.
 let fichasTemasDisponibles = []; // temas de la materia elegida ahora mismo
+// Índices (dentro de fichasTemasDisponibles) de los temas tildados en el
+// checklist -- se puede elegir más de uno, la tanda mezcla preguntas de
+// todos los elegidos (ver generarFichas()).
+let fichasTemasSeleccionados = [];
 let fichasActuales = [];
 let fichaIndexActual = 0;
 let fichaFlipped = false;
@@ -6600,7 +6610,11 @@ function renderFichasSelect() {
     document.getElementById('fichasMateriaSelect').value = materiaIdx;
     onFichasMateriaChange();
     const temaIdx = fichasTemasDisponibles.findIndex(it => it.tema === foco.tema);
-    if (temaIdx >= 0) document.getElementById('fichasTemaSelect').value = temaIdx;
+    if (temaIdx >= 0) {
+      fichasTemasSeleccionados = [temaIdx];
+      const cb = document.querySelectorAll('#fichasTemaCheckList input[type=checkbox]')[temaIdx];
+      if (cb) cb.checked = true;
+    }
   } else {
     onFichasFacultadChange();
   }
@@ -6630,22 +6644,48 @@ function onFichasMateriaChange() {
   const anio = +document.getElementById('fichasAnioSelect').value;
   const materiaIdx = document.getElementById('fichasMateriaSelect').value;
   const materia = (f.catalogoPorCiclo[anio] || [])[materiaIdx];
-  const temaSel = document.getElementById('fichasTemaSelect');
   fichasTemasDisponibles = [];
-  if (!materia || !materia.modulos.length) {
-    temaSel.innerHTML = '<option value="">Sin temas digitalizados todavía para esta materia</option>';
-  } else {
+  fichasTemasSeleccionados = [];
+  if (materia && materia.modulos.length) {
     materia.modulos.forEach(mod => mod.temas.forEach(t => fichasTemasDisponibles.push({ tema: t, materiaNombre: materia.nombre })));
-    temaSel.innerHTML = fichasTemasDisponibles.map((it, i) => `<option value="${i}">${it.tema}</option>`).join('');
   }
+  renderFichasTemaChecklist();
+  renderEstudiarRail();
+}
+
+function renderFichasTemaChecklist() {
+  const box = document.getElementById('fichasTemaCheckList');
+  if (!box) return;
+  if (!fichasTemasDisponibles.length) {
+    box.innerHTML = '<p class="sub" style="margin:6px 0;">Sin temas digitalizados todavía para esta materia -- agregala como materia propia para cargar tus propios temas.</p>';
+    return;
+  }
+  box.innerHTML = `
+    <span class="modulo-select-all" tabindex="0" role="button" onclick="seleccionarTodosFichasTemas()">Seleccionar todos</span>
+    ${fichasTemasDisponibles.map((it, i) => `
+      <label class="tema-row">
+        <input type="checkbox" onchange="toggleFichaTema(${i}, this.checked)">
+        ${it.tema}
+      </label>`).join('')}`;
+}
+
+function toggleFichaTema(i, checked) {
+  if (checked) { if (!fichasTemasSeleccionados.includes(i)) fichasTemasSeleccionados.push(i); }
+  else { fichasTemasSeleccionados = fichasTemasSeleccionados.filter(x => x !== i); }
+  renderEstudiarRail();
+}
+
+function seleccionarTodosFichasTemas() {
+  fichasTemasSeleccionados = fichasTemasDisponibles.map((_, i) => i);
+  const box = document.getElementById('fichasTemaCheckList');
+  if (box) box.querySelectorAll('input[type=checkbox]').forEach(cb => { cb.checked = true; });
   renderEstudiarRail();
 }
 
 async function generarFichas() {
-  const sel = document.getElementById('fichasTemaSelect');
-  if (!sel.value) { showToast('Elegí un tema primero'); return; }
-  const item = fichasTemasDisponibles[sel.value];
-  const t = TEXTOS[item.tema];
+  if (!fichasTemasSeleccionados.length) { showToast('Elegí al menos un tema'); return; }
+  const items = fichasTemasSeleccionados.map(i => fichasTemasDisponibles[i]).filter(Boolean);
+  const materiaNombre = items[0].materiaNombre;
   const cantidad = +document.getElementById('fichasCantidadSelect').value;
   const carrera = facultadDe(document.getElementById('fichasFacultadSelect').value).carrera;
   const archivo = document.getElementById('fichasArchivoInput').files[0];
@@ -6661,11 +6701,16 @@ async function generarFichas() {
   box.innerHTML = '';
   try {
     const form = new FormData();
-    form.append('tema', item.tema);
-    form.append('materiaNombre', item.materiaNombre);
+    if (items.length === 1) {
+      const t = TEXTOS[items[0].tema];
+      form.append('tema', items[0].tema);
+      if (t && t.libro) form.append('libro', t.libro);
+      if (t && t.seccion) form.append('seccion', t.seccion);
+    } else {
+      form.append('temas', JSON.stringify(items.map(it => it.tema)));
+    }
+    form.append('materiaNombre', materiaNombre);
     form.append('carrera', carrera);
-    if (t && t.libro) form.append('libro', t.libro);
-    if (t && t.seccion) form.append('seccion', t.seccion);
     form.append('tipo', fichasTipo);
     form.append('cantidad', cantidad);
     form.append('conBusqueda', conBusqueda);
@@ -6691,7 +6736,11 @@ async function generarFichas() {
     fichaFeedback = [];
     fichaAjusteObjetivo = null;
     fichaEvaluacionAplicada = false;
-    fichasContexto = { tema: item.tema, materiaNombre: item.materiaNombre };
+    // Con un solo tema elegido, fichasContexto.tema es la fuente de verdad
+    // (como siempre). Con varios, cada ficha ya viene etiquetada con su
+    // propio `tema` real desde el server -- fichasContexto.tema queda sin
+    // definir a propósito, y el resto del código cae a f.tema por ficha.
+    fichasContexto = { tema: items.length === 1 ? items[0].tema : null, materiaNombre };
     renderFichaActual();
   } catch (e) {
     const msg = e.message === 'Failed to fetch'
@@ -6723,8 +6772,13 @@ function renderFichaEscritorio() {
   const elegida = fichaRespuestas[fichaIndexActual];
   const yaContestada = elegida !== undefined;
   const esUltima = fichaIndexActual === fichasActuales.length - 1;
+  // Con varios temas elegidos, cada ficha trae su propio `tema` (ver
+  // /api/fichas) -- se muestra arriba de la tarjeta para saber de cuál es
+  // cada pregunta. Con un solo tema no viene tag (no hace falta, ya se sabe).
+  const temaTag = f.tema ? `<div class="ficha-tema-tag mono">${f.tema}</div>` : '';
   const cardHTML = esMultiple ? `
     <div class="ficha-card mc">
+      ${temaTag}
       <div class="ficha-count mono">PREGUNTA ${fichaIndexActual + 1}</div>
       <div class="ficha-texto" style="margin-bottom:10px;">${f.pregunta}</div>
       <div class="ficha-opciones">
@@ -6739,6 +6793,7 @@ function renderFichaEscritorio() {
       </div>
     </div>` : `
     <div class="ficha-card ${fichaFlipped ? 'flipped' : ''}" tabindex="0" role="button" onclick="toggleFicha()">
+      ${temaTag}
       <div class="ficha-count">${fichaIndexActual + 1} / ${fichasActuales.length}</div>
       <div class="ficha-texto">${fichaFlipped ? f.respuesta : f.pregunta}</div>
       <div class="ficha-hint">${fichaFlipped ? '↺ Tocá para ver la pregunta' : '🔎 Tocá para ver la respuesta'}</div>
@@ -6808,7 +6863,7 @@ function renderFichaFullscreen(fsBox) {
   const esMultiple = Array.isArray(f.opciones);
   const elegida = fichaRespuestas[fichaIndexActual];
   const yaContestada = elegida !== undefined;
-  const tema = fichasContexto ? fichasContexto.tema : '';
+  const tema = f.tema || (fichasContexto ? fichasContexto.tema : '') || '';
   const t = tema ? TEXTOS[tema] : null;
   const biblio = t ? `<div class="ficha-fs-biblio">📄 ${t.libro} — ${t.seccion}</div>` : '';
   // En la última ficha (de cualquier tipo) "Siguiente"/"Confirmar" ya no
@@ -6890,13 +6945,33 @@ function elegirOpcionFicha(i) {
 function evaluarTandaFichas() {
   if (fichaEvaluacionAplicada) return;
   if (!fichasActuales.length || !Array.isArray(fichasActuales[0].opciones)) return;
-  const total = fichaRespuestas.filter(r => r !== undefined).length;
-  if (!total) return;
-  const examen = fichasContexto && examenParaTema(fichasContexto.materiaNombre, fichasContexto.tema);
-  if (!examen) return;
-  const aciertos = fichaRespuestas.reduce((s, r, i) => s + (r !== undefined && r === fichasActuales[i].correcta ? 1 : 0), 0);
+  if (!fichasContexto) return;
+  // Con varios temas elegidos, cada ficha viene etiquetada con su propio
+  // `tema` real (ver /api/fichas) -- se agrupan aciertos/total POR tema para
+  // que el ajuste de firme/flojo de cada uno sea el correcto, no uno solo
+  // mezclado. Con un único tema (el caso de siempre), esto da exactamente
+  // un grupo -- mismo resultado que antes.
+  const porTema = new Map();
+  fichaRespuestas.forEach((r, i) => {
+    if (r === undefined) return;
+    const f = fichasActuales[i];
+    const tema = f.tema || fichasContexto.tema;
+    if (!tema) return;
+    const acc = porTema.get(tema) || { aciertos: 0, total: 0 };
+    acc.total++;
+    if (r === f.correcta) acc.aciertos++;
+    porTema.set(tema, acc);
+  });
+  if (!porTema.size) return;
   fichaEvaluacionAplicada = true;
-  fichaAjusteObjetivo = registrarEvaluacion(examen, fichasContexto.tema, aciertos, total, 'fichas', hoy0());
+  let ultimoAjuste = null;
+  for (const [tema, { aciertos, total }] of porTema) {
+    const examen = examenParaTema(fichasContexto.materiaNombre, tema);
+    if (!examen) continue;
+    const ajuste = registrarEvaluacion(examen, tema, aciertos, total, 'fichas', hoy0());
+    if (ajuste) ultimoAjuste = ajuste;
+  }
+  fichaAjusteObjetivo = ultimoAjuste;
   if (fichaAjusteObjetivo) updateBadges();
 }
 
@@ -6925,7 +7000,7 @@ function darFeedbackFicha(valor) {
   if (!f) return;
   fichaFeedback[fichaIndexActual] = valor;
   const tipoContenido = Array.isArray(f.opciones) ? 'ficha_multiple' : 'ficha';
-  const tema = fichasContexto ? fichasContexto.tema : '';
+  const tema = f.tema || (fichasContexto ? fichasContexto.tema : '') || '';
   const materiaNombre = fichasContexto ? fichasContexto.materiaNombre : '';
   darFeedback(tipoContenido, tema, materiaNombre, f.pregunta, valor);
   renderFichaActual();
@@ -7757,16 +7832,17 @@ function temaEnFocoEstudiar() {
     return (sel && sel.value && correctorTemasDisponibles[sel.value]) ? { tema: correctorTemasDisponibles[sel.value].tema, materiaNombre: correctorTemasDisponibles[sel.value].materiaNombre } : null;
   }
   if (activo === 'fichas') {
-    const sel = document.getElementById('fichasTemaSelect');
-    return (sel && sel.value && fichasTemasDisponibles[sel.value]) ? { tema: fichasTemasDisponibles[sel.value].tema, materiaNombre: fichasTemasDisponibles[sel.value].materiaNombre } : null;
+    // Con varios temas tildados, se usa el primero como "foco" para la
+    // bibliografía/firme-flojo del riel -- la tanda entera igual cubre todos
+    // los elegidos (ver generarFichas()).
+    const item = fichasTemasDisponibles[fichasTemasSeleccionados[0]];
+    return item ? { tema: item.tema, materiaNombre: item.materiaNombre } : null;
   }
   return null; // Tiempo/Simulacro/Resumen/Explícamelo no tienen un tema único que mostrar acá.
 }
 
 function examenDelTemaFichasActual() {
-  const sel = document.getElementById('fichasTemaSelect');
-  if (!sel || !sel.value) return null;
-  const item = fichasTemasDisponibles[sel.value];
+  const item = fichasTemasDisponibles[fichasTemasSeleccionados[0]];
   if (!item) return null;
   const e = examenes.find(x => !esRendido(x) && x.selected && x.selected.includes(item.tema));
   return e ? { exam: e, tema: item.tema, materiaNombre: item.materiaNombre } : null;
@@ -7791,7 +7867,7 @@ function marcarDesdeEstudiar(estado) {
 // visible y le pone el foco, no duplica la lógica de selección.
 function cambiarTemaEstudiar() {
   const activo = document.querySelector('.study-panel.active')?.dataset.sec;
-  const selId = activo === 'corrector' ? 'correctorTemaSelect' : 'fichasTemaSelect';
+  const selId = activo === 'corrector' ? 'correctorTemaSelect' : 'fichasTemaCheckList';
   const sel = document.getElementById(selId);
   if (sel) { sel.scrollIntoView({ block: 'center', behavior: 'smooth' }); sel.focus(); }
 }

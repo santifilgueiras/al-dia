@@ -266,7 +266,26 @@ app.post('/api/fichas', requireAuth, rateLimitIA, topeDiarioIA, upload.single('a
     return res.status(500).json({ error: 'Falta configurar ANTHROPIC_API_KEY en el archivo .env del server (ver .env.example).' });
   }
   const { tema, materiaNombre, carrera, libro, seccion, tipo, cantidad } = req.body || {};
-  if (!tema) return res.status(400).json({ error: 'Falta el tema.' });
+  // El front manda `tema` (un solo tema, de siempre) o `temas` (JSON de un
+  // array, cuando el estudiante tilda más de uno en el checklist de Fichas)
+  // -- nunca los dos a la vez. Con exactamente un tema en `temas`, se trata
+  // igual que el caso de un solo `tema` (mismo camino de cache de siempre).
+  let temasMultiples = null;
+  let temaEfectivo = tema;
+  if (req.body.temas) {
+    let parseado;
+    try {
+      parseado = JSON.parse(req.body.temas);
+    } catch (e) {
+      return res.status(400).json({ error: 'Lista de temas inválida.' });
+    }
+    if (!Array.isArray(parseado) || !parseado.length) {
+      return res.status(400).json({ error: 'Lista de temas inválida.' });
+    }
+    if (parseado.length > 1) temasMultiples = parseado;
+    else temaEfectivo = parseado[0];
+  }
+  if (!temaEfectivo && !temasMultiples) return res.status(400).json({ error: 'Falta el tema.' });
   // La clave de cache incluye la materia (ver fichas_cache en
   // supabase_schema.sql) -- sin esto, dos carreras que comparten un tema con
   // el mismo nombre (ej. "Cálculo I" en varias Ingenierías) podían recibir
@@ -285,6 +304,46 @@ app.post('/api/fichas', requireAuth, rateLimitIA, topeDiarioIA, upload.single('a
 
   const esMultiple = tipo === 'multiple';
   const n = Math.max(4, Math.min(30, parseInt(cantidad, 10) || 15)); // clamp defensivo -- el front ya limita a 6-30
+
+  // Varios temas a la vez: se arma un solo pedido a la IA repartido entre
+  // todos, cada ficha etiquetada con su `tema` real (mismo criterio que
+  // /api/simulacro, que ya reparte preguntas entre una lista de temas). No
+  // se cachea -- la combinación de temas elegidos varía por estudiante, no
+  // tiene el mismo valor de reuso que una ficha de un tema puntual.
+  if (temasMultiples) {
+    const contextoBiblioMulti = apuntePropio
+      ? `El estudiante subió su propio apunte que cubre estos temas -- basate PRINCIPALMENTE en su contenido (no en un libro genérico) para armar las preguntas, pero igual etiquetá cada una con el tema exacto de la lista al que corresponde. Apunte del estudiante:\n"""\n${apuntePropio}\n"""`
+      : 'No hay una referencia bibliográfica específica cargada para esta combinación -- usá el contenido estándar de cada tema.';
+    const consignaMulti = esMultiple
+      ? `Cada una con 4 opciones (una correcta, tres distractores plausibles pero incorrectos, no absurdos).\n\nRespondé ÚNICAMENTE con un JSON válido, sin texto antes ni después, con este formato exacto:\n[{"pregunta": "...", "opciones": ["...", "...", "...", "..."], "correcta": 0, "tema": "..."}, ...]\nDonde "correcta" es el índice (0 a 3, como NÚMERO, nunca como string entre comillas) de la opción correcta.`
+      : `Con respuesta concisa (2-4 líneas) y precisa.\n\nRespondé ÚNICAMENTE con un JSON válido, sin texto antes ni después, con este formato exacto:\n[{"pregunta": "...", "respuesta": "...", "tema": "..."}, ...]`;
+    const promptMulti = `Sos un tutor para un estudiante de la carrera de ${carrera || 'grado'} (UDELAR) que está repasando varios temas de la materia "${materiaNombre}".
+
+Estos son los temas elegidos:
+${temasMultiples.map(t => `- ${t}`).join('\n')}
+
+${contextoBiblioMulti}
+
+Generá ${n} fichas de estudio de nivel de examen de grado (ni trivial ni de sub-especialidad), repartidas de forma pareja entre los temas de la lista (no te concentres en uno solo). No repitas la misma pregunta de dos formas distintas.
+
+${consignaMulti}
+Donde "tema" es EXACTAMENTE uno de los nombres de tema de la lista de arriba (copiado tal cual, sin modificarlo).`;
+
+    try {
+      const texto = await llamarClaude(promptMulti, Math.max(3000, n * 220 + 1500), undefined, FICHAS_MODEL);
+      const crudas = extraerJSON(texto);
+      const fichas = crudas && validarFichas(crudas, esMultiple);
+      if (!fichas) {
+        console.error('Fichas inválidas o sin JSON reconocible (multi-tema):', texto.slice(0, 800));
+        return res.status(502).json({ error: 'No se pudo interpretar la respuesta de la IA. Probá de nuevo.' });
+      }
+      const paraServir = fichas.slice(0, n);
+      return res.json({ fichas: esMultiple ? mezclarOpcionesMultiple(paraServir) : paraServir });
+    } catch (e) {
+      return res.status(e.status || 500).json({ error: e.message || 'Error de conexión con la API de Claude.' });
+    }
+  }
+
   const tipoCache = esMultiple ? 'multiple' : 'normal';
   // Solo se cachea (ni se lee la cache) cuando hay un apunte propio subido
   // -- ese contenido es único de esa persona, no tiene sentido compartirlo.
@@ -301,7 +360,7 @@ app.post('/api/fichas', requireAuth, rateLimitIA, topeDiarioIA, upload.single('a
         .from('fichas_cache')
         .select('fichas')
         .eq('materia_nombre', materiaNombre)
-        .eq('tema', tema)
+        .eq('tema', temaEfectivo)
         .eq('tipo', tipoCache)
         .eq('cantidad', CACHE_TANDA)
         .eq('con_busqueda', conBusqueda)
@@ -346,10 +405,10 @@ Respondé ÚNICAMENTE con un JSON válido, sin texto antes ni después, con este
 [{"pregunta": "...", "respuesta": "..."}, ...]`;
 
   const busquedaParciales = conBusqueda
-    ? `\n\nAntes de armar las fichas, buscá en internet parciales o exámenes anteriores reales de "${materiaNombre || tema}" (o de la materia equivalente) en la Universidad de la República (UDELAR). Usalos SOLO para calibrar el estilo, el nivel de dificultad y el tipo de pregunta que se toma habitualmente en esta materia -- nunca para copiar textualmente una pregunta de un examen real.`
+    ? `\n\nAntes de armar las fichas, buscá en internet parciales o exámenes anteriores reales de "${materiaNombre || temaEfectivo}" (o de la materia equivalente) en la Universidad de la República (UDELAR). Usalos SOLO para calibrar el estilo, el nivel de dificultad y el tipo de pregunta que se toma habitualmente en esta materia -- nunca para copiar textualmente una pregunta de un examen real.`
     : '';
 
-  const prompt = `Sos un tutor para un estudiante de la carrera de ${carrera || 'grado'} (UDELAR) que está repasando el tema "${tema}" de la materia "${materiaNombre || ''}".
+  const prompt = `Sos un tutor para un estudiante de la carrera de ${carrera || 'grado'} (UDELAR) que está repasando el tema "${temaEfectivo}" de la materia "${materiaNombre || ''}".
 ${contextoBiblio}${busquedaParciales}
 
 ${consigna}`;
@@ -379,7 +438,7 @@ ${consigna}`;
     // tanda chica bajo la clave de la tanda grande.
     if (vaACache && fichas.length >= CACHE_TANDA * 0.8) {
       supabaseAdmin.from('fichas_cache').upsert({
-        tema, materia_nombre: materiaNombre, tipo: tipoCache, cantidad: CACHE_TANDA, con_busqueda: conBusqueda, fichas,
+        tema: temaEfectivo, materia_nombre: materiaNombre, tipo: tipoCache, cantidad: CACHE_TANDA, con_busqueda: conBusqueda, fichas,
       }, { onConflict: 'materia_nombre,tema,tipo,cantidad,con_busqueda' }).then(({ error }) => {
         if (error) console.error('Error guardando fichas_cache', error);
       }).catch(e => console.error('Error guardando fichas_cache', e));
