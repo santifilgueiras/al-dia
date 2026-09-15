@@ -11590,5 +11590,125 @@
   "Innovación en procesos agropecuarios": {
     "libro": "Bianco - La Innovación en los Estudios Sociales de Procesos Agropecuarios",
     "seccion": "artículo en Agrociencia Uruguay"
+  },
+  "Variabilidad, fenotipo, genotipo y ambiente: origen de la variabilidad, ADN, mutaciones, genes y alelos": {
+    "libro": "Klug y Cummings - Conceptos de Genética",
+    "seccion": "capítulo introductorio de variabilidad genética"
+  },
+  "Implicancias genéticas de los sistemas de reproducción: mitosis y meiosis": {
+    "libro": "Klug y Cummings - Conceptos de Genética",
+    "seccion": "capítulo de división celular y reproducción"
+  },
+  "Cariotipo y variaciones en estructura y número de cromosomas: reestructuras y poliploidía": {
+    "libro": "Klug y Cummings - Conceptos de Genética",
+    "seccion": "capítulo de citogenética"
+  },
+  "El modelo mendeliano: leyes de Mendel, genealogías y herencia ligada al sexo": {
+    "libro": "Klug y Cummings - Conceptos de Genética",
+    "seccion": "capítulo de herencia mendeliana"
+  },
+  "Genes ligados: entrecruzamiento, recombinación y mapas genéticos": {
+    "libro": "Klug y Cummings - Conceptos de Genética",
+    "seccion": "capítulo de ligamiento génico"
+  },
+  "Interacción génica: epistasis y herencia multifactorial": {
+    "libro": "Griffiths et al. - Genética",
+    "seccion": "capítulo de interacción génica"
+  },
+  "Estructura del gen eucariótico y regulación de la expresión génica": {
+    "libro": "Klug y Cummings - Conceptos de Genética",
+    "seccion": "capítulo de expresión génica"
+  },
+  "Genómica estructural y funcional: organización del genoma eucariótico": {
+    "libro": "Pierce - Genetics: A Conceptual Approach",
+    "seccion": "capítulo de genómica"
+  },
+  "Análisis y manipulación del genoma: ingeniería genética y edición génica": {
+    "libro": "Pierce - Genetics: A Conceptual Approach",
+    "seccion": "capítulo de ingeniería genética"
+  },
+  "Repaso de conceptos básicos: población, muestra y método científico": {
+    "libro": "Di Rienzo et al. - Estadística para las Ciencias Agropecuarias",
+    "seccion": "capítulo introductorio de diseño experimental"
+  },
+  "El diseño de experimentos: diseños clásicos DCA y DBCA": {
+    "libro": "Montgomery - Design and Analysis of Experiments",
+    "seccion": "capítulo de diseños experimentales clásicos"
+  },
+  "El modelo lineal de clasificación: definiciones y supuestos": {
+    "libro": "Montgomery - Design and Analysis of Experiments",
+    "seccion": "capítulo del modelo lineal"
+  },
+  "La técnica del análisis de la varianza: partición de la variación y prueba de hipótesis": {
+    "libro": "Montgomery - Design and Analysis of Experiments",
+    "seccion": "capítulo de análisis de varianza"
+  },
+  "Pruebas de comparación de medias: DMS y Tukey": {
+    "libro": "Steel y Torrie - Bioestadística: Principios y Procedimientos",
+    "seccion": "capítulo de comparaciones múltiples"
+  },
+  "Arreglo factorial de tratamientos: efectos principales e interacción": {
+    "libro": "Montgomery - Design and Analysis of Experiments",
+    "seccion": "capítulo de diseños factoriales"
+  },
+  "Asociación y dependencia de variables: correlación de Pearson y Spearman": {
+    "libro": "Di Rienzo et al. - Estadística para las Ciencias Agropecuarias",
+    "seccion": "capítulo de correlación"
+  },
+  "Regresión lineal: el modelo, notación y estimación de parámetros": {
+    "libro": "Di Rienzo et al. - Estadística para las Ciencias Agropecuarias",
+    "seccion": "capítulo de regresión lineal"
+  },
+  "Prueba de hipótesis en regresión: análisis de varianza del modelo": {
+    "libro": "Di Rienzo et al. - Estadística para las Ciencias Agropecuarias",
+    "seccion": "capítulo de inferencia en regresión"
+  },
+  "Ajuste del modelo: coeficiente de determinación y análisis de residuales": {
+    "libro": "Di Rienzo et al. - Estadística para las Ciencias Agropecuarias",
+    "seccion": "capítulo de diagnóstico del modelo"
+  },
+  "Predicciones: intervalos de confianza para valores puntuales y medias": {
+    "libro": "Di Rienzo et al. - Estadística para las Ciencias Agropecuarias",
+    "seccion": "capítulo de predicción en regresión"
+  },
+  "Modelos de regresión múltiple y análisis de residuos parciales": {
+    "libro": "Montgomery - Design and Analysis of Experiments",
+    "seccion": "capítulo de regresión múltiple"
+  },
+  "Ecología y agricultura: los agroecosistemas como objeto de estudio": {
+    "libro": "Smith y Smith - Ecología",
+    "seccion": "capítulo introductorio de ecología"
+  },
+  "Evolución, selección natural y adaptación": {
+    "libro": "Smith y Smith - Ecología",
+    "seccion": "capítulo de evolución y selección natural"
+  },
+  "Ecología de poblaciones: dinámica poblacional y modelos de crecimiento": {
+    "libro": "Begon, Harper y Townsend - Ecology",
+    "seccion": "capítulo de ecología de poblaciones"
+  },
+  "Interacciones entre organismos: competencia, mutualismo y depredación": {
+    "libro": "Begon, Harper y Townsend - Ecology",
+    "seccion": "capítulo de interacciones bióticas"
+  },
+  "Las comunidades bióticas: mecanismos de coexistencia y redes tróficas": {
+    "libro": "Smith y Smith - Ecología",
+    "seccion": "capítulo de ecología de comunidades"
+  },
+  "Flujo de energía en los ecosistemas: niveles tróficos y eficiencia energética": {
+    "libro": "Smith y Smith - Ecología",
+    "seccion": "capítulo de flujo de energía"
+  },
+  "Ciclos biogeoquímicos: carbono, nitrógeno, agua y fósforo": {
+    "libro": "Smith y Smith - Ecología",
+    "seccion": "capítulo de ciclos biogeoquímicos"
+  },
+  "Sucesión ecológica: integración de niveles población-comunidad-ecosistema": {
+    "libro": "Begon, Harper y Townsend - Ecology",
+    "seccion": "capítulo de sucesión ecológica"
+  },
+  "Aplicación de la teoría ecológica: servicios ecosistémicos y sustentabilidad": {
+    "libro": "Smith y Smith - Ecología",
+    "seccion": "capítulo de servicios ecosistémicos"
   }
 }

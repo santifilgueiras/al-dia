@@ -521,17 +521,27 @@
       "nombre": "Genética I (Agronomía)",
       "modulos": [
         {
-          "modulo": "Bases de la herencia en plantas y animales",
+          "modulo": "Fundamentos de la variabilidad genética",
           "temas": [
-            "Mecanismos físico-químicos de la diversidad en plantas y animales",
-            "Patrones de herencia en plantas y animales"
+            "Variabilidad, fenotipo, genotipo y ambiente: origen de la variabilidad, ADN, mutaciones, genes y alelos",
+            "Implicancias genéticas de los sistemas de reproducción: mitosis y meiosis"
           ]
         },
         {
-          "modulo": "Genoma y herramientas moleculares",
+          "modulo": "Cromosomas y herencia mendeliana",
           "temas": [
-            "Organización del genoma en células eucarióticas",
-            "Herramientas moleculares aplicadas al mejoramiento genético"
+            "Cariotipo y variaciones en estructura y número de cromosomas: reestructuras y poliploidía",
+            "El modelo mendeliano: leyes de Mendel, genealogías y herencia ligada al sexo",
+            "Genes ligados: entrecruzamiento, recombinación y mapas genéticos",
+            "Interacción génica: epistasis y herencia multifactorial"
+          ]
+        },
+        {
+          "modulo": "Genómica y biotecnología",
+          "temas": [
+            "Estructura del gen eucariótico y regulación de la expresión génica",
+            "Genómica estructural y funcional: organización del genoma eucariótico",
+            "Análisis y manipulación del genoma: ingeniería genética y edición génica"
           ]
         }
       ]
@@ -540,16 +550,30 @@
       "nombre": "Estadística II: Diseño y Regresión",
       "modulos": [
         {
-          "modulo": "Diseño experimental agronómico",
+          "modulo": "Diseño experimental",
           "temas": [
-            "Diseño experimental en ensayos agronómicos"
+            "Repaso de conceptos básicos: población, muestra y método científico",
+            "El diseño de experimentos: diseños clásicos DCA y DBCA",
+            "El modelo lineal de clasificación: definiciones y supuestos",
+            "La técnica del análisis de la varianza: partición de la variación y prueba de hipótesis",
+            "Pruebas de comparación de medias: DMS y Tukey",
+            "Arreglo factorial de tratamientos: efectos principales e interacción"
           ]
         },
         {
-          "modulo": "Modelos de regresión agronómicos",
+          "modulo": "Correlación",
           "temas": [
-            "Modelos lineales de regresión y clasificación",
-            "Análisis de datos experimentales con software estadístico"
+            "Asociación y dependencia de variables: correlación de Pearson y Spearman"
+          ]
+        },
+        {
+          "modulo": "Análisis de regresión",
+          "temas": [
+            "Regresión lineal: el modelo, notación y estimación de parámetros",
+            "Prueba de hipótesis en regresión: análisis de varianza del modelo",
+            "Ajuste del modelo: coeficiente de determinación y análisis de residuales",
+            "Predicciones: intervalos de confianza para valores puntuales y medias",
+            "Modelos de regresión múltiple y análisis de residuos parciales"
           ]
         }
       ]
@@ -625,16 +649,32 @@
       "nombre": "Ecología de Agroecosistemas",
       "modulos": [
         {
-          "modulo": "Estructura y funcionamiento de agroecosistemas",
+          "modulo": "Fundamentos de ecología aplicada",
           "temas": [
-            "Componentes físico-biológicos de agroecosistemas e interacciones bióticas",
-            "Flujo energético y ciclos biogeoquímicos en agroecosistemas"
+            "Ecología y agricultura: los agroecosistemas como objeto de estudio",
+            "Evolución, selección natural y adaptación"
           ]
         },
         {
-          "modulo": "Manejo y sustentabilidad de agroecosistemas",
+          "modulo": "Ecología de poblaciones y comunidades",
           "temas": [
-            "Efectos del manejo agronómico sobre el agroecosistema"
+            "Ecología de poblaciones: dinámica poblacional y modelos de crecimiento",
+            "Interacciones entre organismos: competencia, mutualismo y depredación",
+            "Las comunidades bióticas: mecanismos de coexistencia y redes tróficas"
+          ]
+        },
+        {
+          "modulo": "Ecosistemas y su manejo",
+          "temas": [
+            "Flujo de energía en los ecosistemas: niveles tróficos y eficiencia energética",
+            "Ciclos biogeoquímicos: carbono, nitrógeno, agua y fósforo",
+            "Sucesión ecológica: integración de niveles población-comunidad-ecosistema"
+          ]
+        },
+        {
+          "modulo": "Aplicación a problemas agronómicos",
+          "temas": [
+            "Aplicación de la teoría ecológica: servicios ecosistémicos y sustentabilidad"
           ]
         }
       ]
