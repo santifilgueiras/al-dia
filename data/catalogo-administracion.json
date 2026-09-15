@@ -42,17 +42,37 @@
       "nombre": "Cálculo I",
       "modulos": [
         {
-          "modulo": "Límites y derivadas",
+          "modulo": "Derivada y aplicaciones",
           "temas": [
-            "Límites, continuidad y su aplicación a funciones económicas",
-            "Derivadas y su interpretación económica: costo e ingreso marginal"
+            "Funciones lineales, cuadrática, exponencial y logarítmica",
+            "Cálculo de derivadas y regla de la cadena",
+            "Teorema del valor medio y estudio de crecimiento/decrecimiento",
+            "Aplicaciones económicas: costo, ingreso, utilidad marginal y elasticidad"
           ]
         },
         {
-          "modulo": "Optimización e integrales",
+          "modulo": "Función inversa",
           "temas": [
-            "Optimización de funciones de una variable",
-            "Integrales y su aplicación al cálculo de excedentes"
+            "Inyectividad, sobreyectividad y biyectividad",
+            "Continuidad y derivabilidad de la función inversa",
+            "Funciones trigonométricas y sus inversas"
+          ]
+        },
+        {
+          "modulo": "Aproximación polinómica (Taylor)",
+          "temas": [
+            "Teorema de Taylor: resto de Lagrange e infinitesimal",
+            "Desarrollos de funciones elementales y aplicación a límites",
+            "Serie geométrica y sus derivadas"
+          ]
+        },
+        {
+          "modulo": "Integración",
+          "temas": [
+            "Primitivas, teorema fundamental del cálculo y regla de Barrow",
+            "Métodos de integración: partes, sustitución, cocientes de polinomios",
+            "Cálculo de áreas y aplicaciones económicas (excedentes)",
+            "Integrales impropias y criterio del equivalente"
           ]
         }
       ]
@@ -119,10 +139,33 @@
       "nombre": "Economía Descriptiva",
       "modulos": [
         {
-          "modulo": "Indicadores económicos",
+          "modulo": "Sistema de Cuentas Nacionales",
           "temas": [
-            "Sistema de cuentas nacionales e indicadores macroeconómicos descriptivos",
-            "Indicadores de comercio exterior y precios"
+            "Objetivos y características generales de la economía descriptiva",
+            "Elementos básicos y Cuadro de Oferta y Utilización",
+            "Las Cuentas Nacionales: Revisión 1993 y Revisión 2008"
+          ]
+        },
+        {
+          "modulo": "Balanza de pagos",
+          "temas": [
+            "Funcionamiento descriptivo, análisis e interpretación",
+            "La Balanza de Pagos en Uruguay"
+          ]
+        },
+        {
+          "modulo": "Números índice y precios constantes",
+          "temas": [
+            "Concepto, tipos y criterios de construcción de números índice",
+            "Descripción económica a precios constantes",
+            "Índices del Sistema Estadístico Nacional"
+          ]
+        },
+        {
+          "modulo": "Mercado de trabajo",
+          "temas": [
+            "Clasificación económica de la población",
+            "Indicadores de actividad, empleo y desempleo en Uruguay"
           ]
         }
       ]
@@ -166,15 +209,49 @@
         {
           "modulo": "Estadística descriptiva",
           "temas": [
-            "Organización y descripción de datos: medidas de tendencia central y dispersión",
-            "Representación gráfica de datos"
+            "Naturaleza de la estadística: estadística descriptiva e inferencial",
+            "Clasificación de variables y distribución de frecuencias",
+            "Medidas de resumen: posición y dispersión",
+            "Representación gráfica de un conjunto de datos",
+            "Tabulación cruzada, asociación, correlación y recta de regresión"
           ]
         },
         {
-          "modulo": "Nociones de probabilidad",
+          "modulo": "Probabilidad",
           "temas": [
-            "Probabilidad básica y variables aleatorias",
-            "Distribuciones de probabilidad discretas y continuas más usadas"
+            "Experimento aleatorio, espacio muestral y sucesos",
+            "Concepto de probabilidad: axiomas y propiedades",
+            "Probabilidad condicionada e independencia de eventos"
+          ]
+        },
+        {
+          "modulo": "Variable aleatoria",
+          "temas": [
+            "Tipos de variables aleatorias y su distribución",
+            "Momentos de una variable aleatoria",
+            "Modelo Binomial e Hipergeométrico",
+            "Modelo Normal"
+          ]
+        },
+        {
+          "modulo": "Muestreo",
+          "temas": [
+            "Población, parámetro y muestra aleatoria",
+            "Estimador y sus propiedades",
+            "Distribución de la media muestral y teorema central del límite"
+          ]
+        },
+        {
+          "modulo": "Estimación",
+          "temas": [
+            "Estimación puntual y por intervalos",
+            "Aplicación a la estimación de medias y proporciones"
+          ]
+        },
+        {
+          "modulo": "Contraste de hipótesis",
+          "temas": [
+            "Aplicación del contraste de hipótesis a medias y proporciones"
           ]
         }
       ]

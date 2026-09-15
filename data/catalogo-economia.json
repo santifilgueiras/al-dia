@@ -23,17 +23,37 @@
       "nombre": "Cálculo I",
       "modulos": [
         {
-          "modulo": "Límites y derivadas",
+          "modulo": "Derivada y aplicaciones",
           "temas": [
-            "Límites, continuidad y su aplicación a funciones económicas",
-            "Derivadas y su interpretación económica: costo e ingreso marginal"
+            "Funciones lineales, cuadrática, exponencial y logarítmica",
+            "Cálculo de derivadas y regla de la cadena",
+            "Teorema del valor medio y estudio de crecimiento/decrecimiento",
+            "Aplicaciones económicas: costo, ingreso, utilidad marginal y elasticidad"
           ]
         },
         {
-          "modulo": "Optimización e integrales",
+          "modulo": "Función inversa",
           "temas": [
-            "Optimización de funciones de una variable",
-            "Integrales y su aplicación al cálculo de excedentes"
+            "Inyectividad, sobreyectividad y biyectividad",
+            "Continuidad y derivabilidad de la función inversa",
+            "Funciones trigonométricas y sus inversas"
+          ]
+        },
+        {
+          "modulo": "Aproximación polinómica (Taylor)",
+          "temas": [
+            "Teorema de Taylor: resto de Lagrange e infinitesimal",
+            "Desarrollos de funciones elementales y aplicación a límites",
+            "Serie geométrica y sus derivadas"
+          ]
+        },
+        {
+          "modulo": "Integración",
+          "temas": [
+            "Primitivas, teorema fundamental del cálculo y regla de Barrow",
+            "Métodos de integración: partes, sustitución, cocientes de polinomios",
+            "Cálculo de áreas y aplicaciones económicas (excedentes)",
+            "Integrales impropias y criterio del equivalente"
           ]
         }
       ]
@@ -82,17 +102,44 @@
       "nombre": "Álgebra Lineal",
       "modulos": [
         {
-          "modulo": "Vectores y matrices",
+          "modulo": "Sistemas de ecuaciones lineales y matrices",
           "temas": [
-            "Vectores, matrices y operaciones matriciales",
-            "Determinantes y matriz inversa"
+            "Matriz asociada a un sistema de ecuaciones y operaciones con matrices",
+            "Método de escalerización y rango de una matriz",
+            "Sistemas cuadrados y matrices invertibles"
           ]
         },
         {
-          "modulo": "Sistemas de ecuaciones lineales",
+          "modulo": "El espacio vectorial Rⁿ",
           "temas": [
-            "Sistemas de ecuaciones lineales y método de Gauss",
-            "Aplicaciones del álgebra lineal a modelos económicos"
+            "Operaciones básicas e interpretación geométrica en R² y R³",
+            "Rectas y planos en R³",
+            "Combinaciones lineales y dependencia/independencia lineal"
+          ]
+        },
+        {
+          "modulo": "Subespacios de Rⁿ",
+          "temas": [
+            "Generador de un subespacio, bases y dimensión",
+            "Rango y núcleo de una matriz; relación nulidad-rango"
+          ]
+        },
+        {
+          "modulo": "El espacio euclidiano Rⁿ",
+          "temas": [
+            "Producto interno, norma, distancia y ángulos",
+            "Desigualdad de Cauchy-Schwarz",
+            "Conjuntos ortogonales/ortonormales y proyección ortogonal",
+            "Mínimos cuadrados"
+          ]
+        },
+        {
+          "modulo": "Diagonalización",
+          "temas": [
+            "Determinantes, valores y vectores propios",
+            "Matrices diagonalizables: condiciones necesarias y suficientes",
+            "Diagonalización de matrices simétricas",
+            "Descomposición en valores singulares (SVD) y aplicaciones"
           ]
         }
       ]
@@ -141,10 +188,36 @@
       "nombre": "Cálculo II",
       "modulos": [
         {
-          "modulo": "Cálculo en varias variables",
+          "modulo": "Topología y funciones de varias variables",
           "temas": [
-            "Funciones de varias variables y optimización aplicada a economía",
-            "Derivadas parciales y multiplicadores de Lagrange"
+            "Conjuntos abiertos, cerrados, acotados y puntos de acumulación",
+            "Dominio, gráfico y conjuntos de nivel",
+            "Límites, continuidad y derivadas parciales"
+          ]
+        },
+        {
+          "modulo": "Diferenciabilidad",
+          "temas": [
+            "Condiciones de diferenciabilidad y desarrollo de Taylor de segundo orden",
+            "Función compuesta y regla de la cadena en varias variables"
+          ]
+        },
+        {
+          "modulo": "Integrales dobles",
+          "temas": [
+            "Integrales dobles en rectángulos y regiones típicas",
+            "Cálculo por integrales iteradas",
+            "Cambio de variable: transformación lineal y coordenadas polares",
+            "Integrales dobles impropias"
+          ]
+        },
+        {
+          "modulo": "Optimización",
+          "temas": [
+            "Extremos relativos y absolutos; condición de Hess",
+            "Conjuntos y funciones convexas",
+            "Multiplicadores de Lagrange (restricciones de igualdad)",
+            "Condiciones de Kuhn-Tucker (restricciones de desigualdad)"
           ]
         }
       ]
@@ -304,10 +377,41 @@
       "nombre": "Econometría I",
       "modulos": [
         {
-          "modulo": "Modelo de regresión lineal",
+          "modulo": "Fundamentos del modelo de regresión",
           "temas": [
-            "Estimación por mínimos cuadrados ordinarios",
-            "Supuestos del modelo clásico y violaciones (heterocedasticidad, autocorrelación)"
+            "La naturaleza de la econometría y los datos económicos",
+            "El modelo de regresión simple y estimadores MCO",
+            "Regresión múltiple: mecánica, interpretación y teorema Gauss-Markov"
+          ]
+        },
+        {
+          "modulo": "Inferencia y análisis asintótico",
+          "temas": [
+            "Distribución muestral, prueba t e intervalos de confianza",
+            "Pruebas F para restricciones lineales múltiples",
+            "Consistencia y normalidad asintótica de los MCO"
+          ]
+        },
+        {
+          "modulo": "Forma funcional e información cualitativa",
+          "temas": [
+            "Forma funcional, bondad de ajuste y mala especificación",
+            "Variables binarias (dummy) e interacciones",
+            "Regresión con variable dependiente binaria: logit y probit"
+          ]
+        },
+        {
+          "modulo": "Heterocedasticidad",
+          "temas": [
+            "Consecuencias e inferencia robusta a la heterocedasticidad",
+            "Pruebas de heterocedasticidad y mínimos cuadrados ponderados"
+          ]
+        },
+        {
+          "modulo": "Evaluación y endogeneidad",
+          "temas": [
+            "Validez interna y externa de estudios basados en regresión",
+            "Variables instrumentales y sesgo por variables omitidas"
           ]
         }
       ]

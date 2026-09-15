@@ -4,17 +4,37 @@
       "nombre": "Cálculo I",
       "modulos": [
         {
-          "modulo": "Límites y derivadas",
+          "modulo": "Derivada y aplicaciones",
           "temas": [
-            "Límites, continuidad y su aplicación a funciones económicas",
-            "Derivadas y su interpretación económica: costo e ingreso marginal"
+            "Funciones lineales, cuadrática, exponencial y logarítmica",
+            "Cálculo de derivadas y regla de la cadena",
+            "Teorema del valor medio y estudio de crecimiento/decrecimiento",
+            "Aplicaciones económicas: costo, ingreso, utilidad marginal y elasticidad"
           ]
         },
         {
-          "modulo": "Optimización e integrales",
+          "modulo": "Función inversa",
           "temas": [
-            "Optimización de funciones de una variable",
-            "Integrales y su aplicación al cálculo de excedentes"
+            "Inyectividad, sobreyectividad y biyectividad",
+            "Continuidad y derivabilidad de la función inversa",
+            "Funciones trigonométricas y sus inversas"
+          ]
+        },
+        {
+          "modulo": "Aproximación polinómica (Taylor)",
+          "temas": [
+            "Teorema de Taylor: resto de Lagrange e infinitesimal",
+            "Desarrollos de funciones elementales y aplicación a límites",
+            "Serie geométrica y sus derivadas"
+          ]
+        },
+        {
+          "modulo": "Integración",
+          "temas": [
+            "Primitivas, teorema fundamental del cálculo y regla de Barrow",
+            "Métodos de integración: partes, sustitución, cocientes de polinomios",
+            "Cálculo de áreas y aplicaciones económicas (excedentes)",
+            "Integrales impropias y criterio del equivalente"
           ]
         }
       ]
@@ -23,17 +43,44 @@
       "nombre": "Álgebra Lineal",
       "modulos": [
         {
-          "modulo": "Vectores y matrices",
+          "modulo": "Sistemas de ecuaciones lineales y matrices",
           "temas": [
-            "Vectores, matrices y operaciones matriciales",
-            "Determinantes y matriz inversa"
+            "Matriz asociada a un sistema de ecuaciones y operaciones con matrices",
+            "Método de escalerización y rango de una matriz",
+            "Sistemas cuadrados y matrices invertibles"
           ]
         },
         {
-          "modulo": "Sistemas de ecuaciones lineales",
+          "modulo": "El espacio vectorial Rⁿ",
           "temas": [
-            "Sistemas de ecuaciones lineales y método de Gauss",
-            "Aplicaciones del álgebra lineal a modelos económicos"
+            "Operaciones básicas e interpretación geométrica en R² y R³",
+            "Rectas y planos en R³",
+            "Combinaciones lineales y dependencia/independencia lineal"
+          ]
+        },
+        {
+          "modulo": "Subespacios de Rⁿ",
+          "temas": [
+            "Generador de un subespacio, bases y dimensión",
+            "Rango y núcleo de una matriz; relación nulidad-rango"
+          ]
+        },
+        {
+          "modulo": "El espacio euclidiano Rⁿ",
+          "temas": [
+            "Producto interno, norma, distancia y ángulos",
+            "Desigualdad de Cauchy-Schwarz",
+            "Conjuntos ortogonales/ortonormales y proyección ortogonal",
+            "Mínimos cuadrados"
+          ]
+        },
+        {
+          "modulo": "Diagonalización",
+          "temas": [
+            "Determinantes, valores y vectores propios",
+            "Matrices diagonalizables: condiciones necesarias y suficientes",
+            "Diagonalización de matrices simétricas",
+            "Descomposición en valores singulares (SVD) y aplicaciones"
           ]
         }
       ]
@@ -42,17 +89,47 @@
       "nombre": "Estadística Descriptiva",
       "modulos": [
         {
-          "modulo": "Organización y resumen de datos",
+          "modulo": "Introducción a la estadística",
           "temas": [
-            "Tablas de frecuencia y representaciones gráficas de datos",
-            "Medidas de tendencia central: media, mediana y moda"
+            "Estadística descriptiva vs. inferencial"
           ]
         },
         {
-          "modulo": "Dispersión y relación entre variables",
+          "modulo": "Descripción univariada de datos",
           "temas": [
-            "Medidas de dispersión: varianza, desvío estándar y coeficiente de variación",
-            "Correlación y coeficiente de determinación (enfoque descriptivo)"
+            "Tipos de variables y distribuciones de frecuencias",
+            "Medidas de resumen y representaciones gráficas"
+          ]
+        },
+        {
+          "modulo": "Introducción al lenguaje R",
+          "temas": [
+            "Instalación, uso inicial y operaciones básicas en R",
+            "Descripción numérica y gráfica de datos en R"
+          ]
+        },
+        {
+          "modulo": "Exploración bivariada y multivariada",
+          "temas": [
+            "Tablas de contingencia y medidas de asociación y correlación",
+            "Gráficos para variables categóricas y numéricas; diagramas de dispersión",
+            "Álgebra lineal aplicada a estructuras de datos y visualización multivariada"
+          ]
+        },
+        {
+          "modulo": "Indicadores, índices y desigualdad",
+          "temas": [
+            "Curva de Lorenz e Índice de Gini",
+            "Medidas de desigualdad basadas en teoría de la información",
+            "Tasas, razones, proporciones y tasas de variación",
+            "Números índice: Laspeyres, Paasche y cambio de base"
+          ]
+        },
+        {
+          "modulo": "Detección de outliers",
+          "temas": [
+            "Métodos gráficos: boxplot y violin plot",
+            "Criterios univariados y multivariados de detección"
           ]
         }
       ]
@@ -63,29 +140,113 @@
       "nombre": "Cálculo II",
       "modulos": [
         {
-          "modulo": "Cálculo en varias variables",
+          "modulo": "Topología y funciones de varias variables",
           "temas": [
-            "Funciones de varias variables y optimización aplicada a economía",
-            "Derivadas parciales y multiplicadores de Lagrange"
+            "Conjuntos abiertos, cerrados, acotados y puntos de acumulación",
+            "Dominio, gráfico y conjuntos de nivel",
+            "Límites, continuidad y derivadas parciales"
+          ]
+        },
+        {
+          "modulo": "Diferenciabilidad",
+          "temas": [
+            "Condiciones de diferenciabilidad y desarrollo de Taylor de segundo orden",
+            "Función compuesta y regla de la cadena en varias variables"
+          ]
+        },
+        {
+          "modulo": "Integrales dobles",
+          "temas": [
+            "Integrales dobles en rectángulos y regiones típicas",
+            "Cálculo por integrales iteradas",
+            "Cambio de variable: transformación lineal y coordenadas polares",
+            "Integrales dobles impropias"
+          ]
+        },
+        {
+          "modulo": "Optimización",
+          "temas": [
+            "Extremos relativos y absolutos; condición de Hess",
+            "Conjuntos y funciones convexas",
+            "Multiplicadores de Lagrange (restricciones de igualdad)",
+            "Condiciones de Kuhn-Tucker (restricciones de desigualdad)"
           ]
         }
       ]
     },
     {
-      "nombre": "Programación I",
+      "nombre": "Programación Imperativa",
       "modulos": [
         {
-          "modulo": "Fundamentos de programación imperativa",
+          "modulo": "Introducción a la computación y al lenguaje",
           "temas": [
-            "Variables, tipos de datos y estructuras de control",
-            "Funciones y estructuras de datos básicas (listas, diccionarios)"
+            "Modelo de computación, algoritmo y estructura de un programa",
+            "Sintaxis, semántica, compilación y tipos de errores",
+            "Identificadores, variables, expresiones y asignación"
           ]
         },
         {
-          "modulo": "Programación aplicada a datos",
+          "modulo": "Estructuras de control",
           "temas": [
-            "Lectura y manipulación de datos con librerías estadísticas",
-            "Buenas prácticas de código y control de versiones básico"
+            "Secuencia, selección e iteración",
+            "Recursión: diseño e implementación de algoritmos recursivos"
+          ]
+        },
+        {
+          "modulo": "Tipos de datos",
+          "temas": [
+            "Tipos elementales",
+            "Tipos estructurados: arreglos y registros"
+          ]
+        },
+        {
+          "modulo": "Subprogramas",
+          "temas": [
+            "Procedimientos y funciones; pre y post condiciones",
+            "Pasaje de parámetros (valor/referencia) y reglas de alcance"
+          ]
+        },
+        {
+          "modulo": "Algoritmos básicos",
+          "temas": [
+            "Búsqueda lineal y búsqueda binaria",
+            "Algoritmos de ordenación",
+            "Nociones elementales de eficiencia de algoritmos"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Economía Descriptiva",
+      "modulos": [
+        {
+          "modulo": "Sistema de Cuentas Nacionales",
+          "temas": [
+            "Objetivos y características generales de la economía descriptiva",
+            "Elementos básicos y Cuadro de Oferta y Utilización",
+            "Las Cuentas Nacionales: Revisión 1993 y Revisión 2008"
+          ]
+        },
+        {
+          "modulo": "Balanza de pagos",
+          "temas": [
+            "Funcionamiento descriptivo, análisis e interpretación",
+            "La Balanza de Pagos en Uruguay"
+          ]
+        },
+        {
+          "modulo": "Números índice y precios constantes",
+          "temas": [
+            "Concepto, tipos y criterios de construcción de números índice",
+            "Descripción económica a precios constantes",
+            "Índices del Sistema Estadístico Nacional"
+          ]
+        },
+        {
+          "modulo": "Mercado de trabajo",
+          "temas": [
+            "Clasificación económica de la población",
+            "Indicadores de actividad, empleo y desempleo en Uruguay"
           ]
         }
       ]
@@ -96,17 +257,50 @@
       "nombre": "Probabilidad I",
       "modulos": [
         {
-          "modulo": "Fundamentos de probabilidad",
+          "modulo": "Fundamentos y espacio de probabilidad",
           "temas": [
-            "Espacios de probabilidad, axiomas y probabilidad condicional",
-            "Independencia de eventos y teorema de Bayes"
+            "Espacio muestral, sucesos, álgebras y sigma-álgebras",
+            "Definición axiomática de Kolmogorov y consecuencias",
+            "Interpretaciones de la probabilidad y métodos de conteo"
+          ]
+        },
+        {
+          "modulo": "Probabilidad condicional e independencia",
+          "temas": [
+            "Independencia estocástica",
+            "Teorema de la probabilidad total y teorema de Bayes"
           ]
         },
         {
           "modulo": "Variables aleatorias",
           "temas": [
-            "Variables aleatorias discretas y sus distribuciones (Binomial, Poisson)",
-            "Variables aleatorias continuas y sus distribuciones (Normal, Exponencial)"
+            "Función medible, variable aleatoria y función de distribución",
+            "Variables discretas (función de cuantía) y continuas (densidad)",
+            "Transformaciones medibles y función cuantil"
+          ]
+        },
+        {
+          "modulo": "Vectores aleatorios",
+          "temas": [
+            "Distribución conjunta, marginales e independencia",
+            "Vectores discretos y continuos: cuantía/densidad conjunta y condicional",
+            "Transformaciones medibles de vectores aleatorios"
+          ]
+        },
+        {
+          "modulo": "Características y desigualdades",
+          "temas": [
+            "Esperanza, momentos y varianza",
+            "Desigualdades de Markov, Chebyshev, Jensen, Hölder y Minkowski",
+            "Funciones generatrices y características; esperanza condicional",
+            "Covarianza y matriz de varianzas-covarianzas"
+          ]
+        },
+        {
+          "modulo": "Modelos de distribución especiales",
+          "temas": [
+            "Distribuciones discretas univariadas y multivariadas",
+            "Distribuciones absolutamente continuas univariadas y multivariadas"
           ]
         }
       ]
@@ -117,17 +311,45 @@
       "nombre": "Cálculo III",
       "modulos": [
         {
-          "modulo": "Cálculo vectorial",
+          "modulo": "Sucesiones y series",
           "temas": [
-            "Campos vectoriales, gradiente, divergencia y rotor",
-            "Integrales de línea y de superficie"
+            "Conjuntos abiertos/cerrados, ínfimo, supremo y numerabilidad",
+            "Sucesiones, subsucesiones y sucesiones por recurrencia",
+            "Sucesiones de Cauchy y completitud",
+            "Criterios de convergencia para series de términos positivos"
           ]
         },
         {
-          "modulo": "Series y ecuaciones diferenciales",
+          "modulo": "Ecuaciones diferenciales",
           "temas": [
-            "Series numéricas y series de potencias",
-            "Ecuaciones diferenciales ordinarias de primer orden"
+            "Ecuaciones diferenciales lineales de primer y segundo orden",
+            "Ecuaciones de variables separables",
+            "Diagrama de fase, análisis cualitativo y estabilidad lineal"
+          ]
+        },
+        {
+          "modulo": "Teoría de la medida",
+          "temas": [
+            "Sigma-álgebras, medidas y extensión de pre-medidas",
+            "Conjuntos no medibles y conjuntos borelianos",
+            "Lema de Borel-Cantelli",
+            "Funciones medibles y aproximación por funciones simples"
+          ]
+        },
+        {
+          "modulo": "Integración y convergencia",
+          "temas": [
+            "Integral de Lebesgue",
+            "Teoremas de convergencia monótona y dominada",
+            "Modos de convergencia: puntual, en medida, c.t.p. y en Lp"
+          ]
+        },
+        {
+          "modulo": "Diferenciación avanzada y Fubini",
+          "temas": [
+            "Teorema de diferenciación de Lebesgue",
+            "Versión simple del teorema de Radon-Nikodym",
+            "Teorema de Tonelli-Fubini"
           ]
         }
       ]
@@ -136,17 +358,52 @@
       "nombre": "Inferencia I",
       "modulos": [
         {
-          "modulo": "Estimación puntual",
+          "modulo": "Fundamentos de la inferencia",
           "temas": [
-            "Estimadores puntuales: sesgo, varianza y error cuadrático medio",
-            "Métodos de estimación: máxima verosimilitud y momentos"
+            "Población, modelo poblacional, parámetro y espacio paramétrico",
+            "Familia exponencial y familia de posición y escala",
+            "Muestra, experimento estadístico, estadístico y estimador"
           ]
         },
         {
-          "modulo": "Estimación por intervalos y contraste",
+          "modulo": "Distribución en el muestreo",
           "temas": [
-            "Intervalos de confianza para media y proporción",
-            "Contraste de hipótesis: errores tipo I y tipo II, valor p"
+            "Muestreo aleatorio simple con reemplazo",
+            "Distribución de la suma y la media muestral",
+            "Distribuciones especiales: chi-cuadrado, t y F",
+            "Estadísticos de orden"
+          ]
+        },
+        {
+          "modulo": "Estimación puntual",
+          "temas": [
+            "Método de los momentos",
+            "Función de verosimilitud y estimadores máximo-verosímiles",
+            "Error cuadrático medio, insesgamiento y suficiencia"
+          ]
+        },
+        {
+          "modulo": "Contraste de hipótesis",
+          "temas": [
+            "Tipos de error, nivel de significación y región de rechazo",
+            "Lema de Neyman-Pearson (hipótesis simples y compuestas)",
+            "Contrastes de razón de verosimilitudes y valor-p"
+          ]
+        },
+        {
+          "modulo": "Estimación por intervalos",
+          "temas": [
+            "Intervalos de confianza e interpretación del coeficiente de confianza",
+            "Inversión de un contraste y cantidades pivotales",
+            "Optimalidad: intervalos de mínima amplitud"
+          ]
+        },
+        {
+          "modulo": "Inferencia en muestras grandes",
+          "temas": [
+            "Convergencia en probabilidad, media cuadrática y distribución",
+            "Teorema Central del Límite y método delta",
+            "Estimadores consistentes, intervalos/contrastes asintóticos y bootstrap"
           ]
         }
       ]
@@ -157,17 +414,36 @@
       "nombre": "Muestreo y Planificación de Encuestas I",
       "modulos": [
         {
-          "modulo": "Diseño muestral",
+          "modulo": "Fundamentos de inferencia basada en el diseño",
           "temas": [
-            "Muestreo aleatorio simple y estimación de parámetros poblacionales",
-            "Muestreo estratificado y por conglomerados"
+            "Población objetivo y marcos muestrales",
+            "Errores de cobertura, muestrales y no muestrales"
           ]
         },
         {
-          "modulo": "Planificación de encuestas",
+          "modulo": "Muestreo aleatorio y estimación",
           "temas": [
-            "Diseño de cuestionarios y fuentes de error no muestral",
-            "Estimación del tamaño de muestra y cálculo de precisión"
+            "Distribución en el muestreo, varianza y error estándar",
+            "Diseño muestral y probabilidad de inclusión",
+            "Estimador de Horvitz-Thompson y ponderadores",
+            "Efecto de diseño"
+          ]
+        },
+        {
+          "modulo": "Métodos de muestreo",
+          "temas": [
+            "Muestreo aleatorio simple y sistemático",
+            "Muestreo con probabilidad proporcional al tamaño",
+            "Muestreo estratificado: construcción de estratos y asignación",
+            "Muestreo por conglomerados (una o varias etapas)"
+          ]
+        },
+        {
+          "modulo": "Estimación avanzada y aplicación",
+          "temas": [
+            "Métodos de estimación de varianza y estimación en dominios",
+            "Principales encuestas oficiales sociodemográficas de Uruguay",
+            "Uso de librerías R para encuestas: sampling, survey, srvyr"
           ]
         }
       ]
@@ -176,17 +452,46 @@
       "nombre": "Modelos Lineales",
       "modulos": [
         {
-          "modulo": "Regresión lineal múltiple",
+          "modulo": "Tipos de estudio y comparación de medias",
           "temas": [
-            "Estimación por mínimos cuadrados en regresión múltiple",
-            "Diagnóstico del modelo: residuos, multicolinealidad y heterocedasticidad"
+            "Estudios observacionales vs. experimentales",
+            "Estimación de la media normal y prueba t"
           ]
         },
         {
-          "modulo": "Modelo lineal general",
+          "modulo": "Análisis de Varianza (ANOVA)",
           "temas": [
-            "Análisis de varianza (ANOVA) como caso particular del modelo lineal",
-            "Selección de modelos y criterios de bondad de ajuste"
+            "Comparación de más de 2 medias y estimación por mínimos cuadrados",
+            "Teorema de Gauss-Markov y contrastes lineales"
+          ]
+        },
+        {
+          "modulo": "Regresión simple",
+          "temas": [
+            "Modelo continuo para la media condicional",
+            "Estimación por mínimos cuadrados y máxima verosimilitud",
+            "Predicción de nuevos valores"
+          ]
+        },
+        {
+          "modulo": "Regresión múltiple",
+          "temas": [
+            "Estimación del modelo y propiedades de los estimadores",
+            "Inferencia, predicción, diagnóstico y selección de modelos"
+          ]
+        },
+        {
+          "modulo": "Regresión logística",
+          "temas": [
+            "Modelos para variable de respuesta binaria",
+            "Estimación por máxima verosimilitud y aplicaciones"
+          ]
+        },
+        {
+          "modulo": "Extensiones del modelo lineal",
+          "temas": [
+            "Modelos lineales generalizados y modelos mixtos",
+            "Regresión no lineal y métodos computacionales"
           ]
         }
       ]
@@ -197,17 +502,86 @@
       "nombre": "Inferencia II",
       "modulos": [
         {
-          "modulo": "Inferencia no paramétrica",
+          "modulo": "Fundamentos de la inferencia bayesiana",
           "temas": [
-            "Pruebas de bondad de ajuste (Chi-cuadrado, Kolmogorov-Smirnov)",
-            "Pruebas no paramétricas de comparación de grupos"
+            "Pensamiento bayesiano vs. frecuentista",
+            "Modelo binomial y distribución posterior",
+            "Distribuciones previas informativas",
+            "Estimación puntual y por intervalo bayesiana (uno y varios parámetros)"
           ]
         },
         {
-          "modulo": "Inferencia bayesiana introductoria",
+          "modulo": "Métodos de simulación clásicos",
           "temas": [
-            "Distribución a priori y a posteriori",
-            "Estimación bayesiana y su comparación con el enfoque frecuentista"
+            "Muestreo de aceptación/rechazo",
+            "Muestreo por importancia (con y sin re-muestreo)"
+          ]
+        },
+        {
+          "modulo": "MCMC",
+          "temas": [
+            "Cadenas de Markov discretas",
+            "Algoritmos de Metropolis y Metropolis-Hastings",
+            "Muestreo de Gibbs",
+            "Diagnóstico y monitoreo de convergencia"
+          ]
+        },
+        {
+          "modulo": "Modelación jerárquica y comparación de modelos",
+          "temas": [
+            "Simulación desde la posterior y análisis de sensibilidad bayesiano",
+            "Comparación de modelos bayesianos"
+          ]
+        },
+        {
+          "modulo": "Regresión bayesiana",
+          "temas": [
+            "Análisis bayesiano del modelo lineal clásico",
+            "Selección de variables",
+            "Modelos lineales generalizados (enfoque bayesiano)"
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Econometría I",
+      "modulos": [
+        {
+          "modulo": "Fundamentos del modelo de regresión",
+          "temas": [
+            "La naturaleza de la econometría y los datos económicos",
+            "El modelo de regresión simple y estimadores MCO",
+            "Regresión múltiple: mecánica, interpretación y teorema Gauss-Markov"
+          ]
+        },
+        {
+          "modulo": "Inferencia y análisis asintótico",
+          "temas": [
+            "Distribución muestral, prueba t e intervalos de confianza",
+            "Pruebas F para restricciones lineales múltiples",
+            "Consistencia y normalidad asintótica de los MCO"
+          ]
+        },
+        {
+          "modulo": "Forma funcional e información cualitativa",
+          "temas": [
+            "Forma funcional, bondad de ajuste y mala especificación",
+            "Variables binarias (dummy) e interacciones",
+            "Regresión con variable dependiente binaria: logit y probit"
+          ]
+        },
+        {
+          "modulo": "Heterocedasticidad",
+          "temas": [
+            "Consecuencias e inferencia robusta a la heterocedasticidad",
+            "Pruebas de heterocedasticidad y mínimos cuadrados ponderados"
+          ]
+        },
+        {
+          "modulo": "Evaluación y endogeneidad",
+          "temas": [
+            "Validez interna y externa de estudios basados en regresión",
+            "Variables instrumentales y sesgo por variables omitidas"
           ]
         }
       ]
@@ -218,17 +592,39 @@
       "nombre": "Análisis Multivariado I",
       "modulos": [
         {
-          "modulo": "Reducción de dimensión",
+          "modulo": "Introducción y fundamentos",
           "temas": [
-            "Análisis de componentes principales",
-            "Análisis factorial exploratorio"
+            "Repaso de álgebra matricial aplicada a datos multivariantes",
+            "Aprendizaje supervisado vs. no supervisado"
           ]
         },
         {
-          "modulo": "Clasificación y agrupamiento",
+          "modulo": "Reducción de dimensionalidad",
           "temas": [
-            "Análisis de conglomerados (cluster analysis)",
-            "Análisis discriminante"
+            "Análisis de Componentes Principales",
+            "Análisis de correspondencias simples y múltiples",
+            "Análisis Factorial de datos mixtos"
+          ]
+        },
+        {
+          "modulo": "Análisis de conglomerados (cluster)",
+          "temas": [
+            "Métodos jerárquicos y no jerárquicos",
+            "Métodos probabilísticos y mapas de Kohonen (SOM)"
+          ]
+        },
+        {
+          "modulo": "Distribuciones multivariantes e inferencia",
+          "temas": [
+            "Introducción a la inferencia con datos multivariantes"
+          ]
+        },
+        {
+          "modulo": "Análisis supervisado / clasificación",
+          "temas": [
+            "Análisis discriminante lineal, cuadrático y logístico",
+            "Análisis discriminante no probabilístico",
+            "Introducción a árboles de clasificación"
           ]
         }
       ]
@@ -237,17 +633,49 @@
       "nombre": "Series Cronológicas I",
       "modulos": [
         {
-          "modulo": "Componentes de una serie temporal",
+          "modulo": "Procesos estocásticos estacionarios",
           "temas": [
-            "Tendencia, estacionalidad y componente cíclico",
-            "Suavizamiento exponencial y medias móviles"
+            "Series de tiempo y ruido blanco",
+            "Procesos AR, MA y ARMA",
+            "Teorema de Wold"
           ]
         },
         {
-          "modulo": "Modelos ARIMA",
+          "modulo": "Predicción",
           "temas": [
-            "Procesos estacionarios, autocorrelación y autocorrelación parcial",
-            "Modelos ARIMA: identificación, estimación y diagnóstico"
+            "Predicción óptima, puntual y por intervalos",
+            "Incertidumbre de las predicciones y transformación logarítmica"
+          ]
+        },
+        {
+          "modulo": "Estimación",
+          "temas": [
+            "Estimación de media, autocorrelación y autocorrelación parcial",
+            "Estimación por máxima verosimilitud (AR, MA, ARMA)",
+            "Contrastes e intervalos de confianza"
+          ]
+        },
+        {
+          "modulo": "Análisis espectral",
+          "temas": [
+            "Función generatriz de autocovarianzas y espectro poblacional",
+            "Filtros y función de transferencia"
+          ]
+        },
+        {
+          "modulo": "Construcción de modelos y no estacionariedad",
+          "temas": [
+            "Identificación, diagnóstico y validación del modelo",
+            "Análisis de intervención y puntos anómalos",
+            "Procesos no estacionarios y modelos ARIMA",
+            "Tendencias, raíces unitarias, estacionalidad y modelos SARIMA"
+          ]
+        },
+        {
+          "modulo": "Otros tópicos",
+          "temas": [
+            "Contrastes de raíces unitarias estacionales",
+            "Modelización automática y extracción de señales (X12-ARIMA)"
           ]
         }
       ]

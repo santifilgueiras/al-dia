@@ -478,16 +478,49 @@
       "nombre": "Procesos Sociales y Herramientas de Intervención en el Territorio",
       "modulos": [
         {
-          "modulo": "Sociología rural",
+          "modulo": "Abordajes conceptuales para el estudio de la sociedad rural",
           "temas": [
-            "Sociología rural y configuraciones sociales del agro"
+            "Objeto de estudio de la sociología rural y dicotomía rural-urbano",
+            "El continuo rural-urbano y la definición compuesta de ruralidad de Sorokin y Zimmerman",
+            "Institucionalización de la sociología rural académica en Uruguay"
           ]
         },
         {
-          "modulo": "Intervención en territorios rurales",
+          "modulo": "El agro uruguayo en el capitalismo mundial: una mirada de largo plazo",
           "temas": [
-            "Actores sociales del medio rural",
-            "Herramientas de intervención profesional en territorios rurales"
+            "Teoría de los regímenes alimentarios internacionales (Friedmann y McMichael)",
+            "Del cultivo a la agricultura: formación del sector agrícola en el capitalismo industrial",
+            "Historia agraria uruguaya y su inserción en los sucesivos regímenes alimentarios",
+            "Globalización neoliberal y expansión del agronegocio en el agro uruguayo reciente",
+            "Cambios en el mercado de tierras: concentración y extranjerización"
+          ]
+        },
+        {
+          "modulo": "Dinámicas poblacionales y de empleo en el medio rural",
+          "temas": [
+            "Definiciones alternativas de población rural en Uruguay: enfoque de unión vs. intersección",
+            "Evolución histórica de la población rural uruguaya",
+            "Caracterización de hogares rurales según definiciones alternativas",
+            "Tendencias recientes del empleo y el mercado de trabajo rural"
+          ]
+        },
+        {
+          "modulo": "Desarrollo Rural y Territorio",
+          "temas": [
+            "Desarrollo agropecuario, desarrollo agrario y desarrollo rural: distinción conceptual",
+            "La pobreza rural como fundamento del concepto de desarrollo rural",
+            "El enfoque territorial del desarrollo rural: territorio, economía territorial y competitividad territorial",
+            "Cohesión social y cohesión territorial como metas del desarrollo rural"
+          ]
+        },
+        {
+          "modulo": "El enfoque de género y juventudes en el medio rural",
+          "temas": [
+            "Sexo y género: distinción conceptual y división sexual del trabajo",
+            "Vulnerabilidad laboral de las mujeres en áreas rurales de Uruguay",
+            "Brechas de género en el acceso a la tierra, el empleo y la sucesión de la explotación",
+            "Heterogeneidad de las juventudes rurales",
+            "Asincronía de género en las transiciones a la adultez en el medio rural"
           ]
         }
       ]

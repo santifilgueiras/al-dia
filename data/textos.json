@@ -3868,11 +3868,11 @@
     "seccion": "capítulo de subprogramas: especificación y alcance"
   },
   "Búsqueda lineal y búsqueda binaria": {
-    "libro": "Konvalina & Wileman -- Programación con Pascal",
+    "libro": "Konvalina y Wileman - Programación con Pascal",
     "seccion": "capítulo de algoritmos de búsqueda"
   },
   "Algoritmos de ordenación": {
-    "libro": "Konvalina & Wileman -- Programación con Pascal",
+    "libro": "Konvalina y Wileman - Programación con Pascal",
     "seccion": "capítulo de algoritmos de ordenación"
   },
   "Nociones elementales de análisis de algoritmos": {
@@ -7459,22 +7459,6 @@
     "libro": "Apuntes de cátedra",
     "seccion": "Derecho y Actividad Empresarial II: títulos valores"
   },
-  "Organización y descripción de datos: medidas de tendencia central y dispersión": {
-    "libro": "Walpole, Myers & Myers - Probabilidad y Estadística para Ingeniería y Ciencias",
-    "seccion": "Estadística descriptiva"
-  },
-  "Representación gráfica de datos": {
-    "libro": "Walpole, Myers & Myers - Probabilidad y Estadística para Ingeniería y Ciencias",
-    "seccion": "Representación gráfica de datos"
-  },
-  "Probabilidad básica y variables aleatorias": {
-    "libro": "Walpole, Myers & Myers - Probabilidad y Estadística para Ingeniería y Ciencias",
-    "seccion": "Probabilidad y variables aleatorias"
-  },
-  "Distribuciones de probabilidad discretas y continuas más usadas": {
-    "libro": "Walpole, Myers & Myers - Probabilidad y Estadística para Ingeniería y Ciencias",
-    "seccion": "Distribuciones de probabilidad usuales"
-  },
   "Diseño de sistemas de información contable": {
     "libro": "Horngren, Sundem & Elliott - Introducción a la Contabilidad Financiera",
     "seccion": "Sistemas de información contable"
@@ -9230,5 +9214,1173 @@
   "Evaluación de resultados e impacto de proyectos bibliotecarios": {
     "libro": "Gómez Hernández -- Gestión de bibliotecas",
     "seccion": "cap. de evaluación de proyectos"
+  },
+  "Naturaleza de la estadística: estadística descriptiva e inferencial": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo introductorio: qué es la estadística descriptiva y la inferencial"
+  },
+  "Clasificación de variables y distribución de frecuencias": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de organización de datos: tipos de variables y tablas de frecuencia"
+  },
+  "Medidas de resumen: posición y dispersión": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de medidas de tendencia central, posición y dispersión"
+  },
+  "Representación gráfica de un conjunto de datos": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de representación gráfica de datos"
+  },
+  "Tabulación cruzada, asociación, correlación y recta de regresión": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de tabulación cruzada, correlación y regresión lineal simple"
+  },
+  "Experimento aleatorio, espacio muestral y sucesos": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de probabilidad: experimentos aleatorios y espacio muestral"
+  },
+  "Concepto de probabilidad: axiomas y propiedades": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de probabilidad: axiomas y propiedades básicas"
+  },
+  "Probabilidad condicionada e independencia de eventos": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de probabilidad condicional e independencia de sucesos"
+  },
+  "Tipos de variables aleatorias y su distribución": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de variables aleatorias discretas y continuas"
+  },
+  "Momentos de una variable aleatoria": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de esperanza, varianza y momentos de una variable aleatoria"
+  },
+  "Modelo Binomial e Hipergeométrico": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de distribuciones discretas: Binomial e Hipergeométrica"
+  },
+  "Modelo Normal": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de la distribución Normal"
+  },
+  "Población, parámetro y muestra aleatoria": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de muestreo: población, parámetro y muestra aleatoria"
+  },
+  "Estimador y sus propiedades": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de propiedades de los estimadores"
+  },
+  "Distribución de la media muestral y teorema central del límite": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de distribuciones muestrales y teorema central del límite"
+  },
+  "Estimación puntual y por intervalos": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de estimación puntual y por intervalos de confianza"
+  },
+  "Aplicación a la estimación de medias y proporciones": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de intervalos de confianza para medias y proporciones"
+  },
+  "Aplicación del contraste de hipótesis a medias y proporciones": {
+    "libro": "Hildebrand y Ott - Estadística Aplicada a la Administración y la Economía",
+    "seccion": "capítulo de contrastes de hipótesis para medias y proporciones"
+  },
+  "Funciones lineales, cuadrática, exponencial y logarítmica": {
+    "libro": "Peláez - Introducción al Cálculo",
+    "seccion": "capítulo de funciones elementales"
+  },
+  "Cálculo de derivadas y regla de la cadena": {
+    "libro": "Peláez - Introducción al Cálculo",
+    "seccion": "capítulo de derivación"
+  },
+  "Teorema del valor medio y estudio de crecimiento/decrecimiento": {
+    "libro": "Peláez - Introducción al Cálculo",
+    "seccion": "capítulo de aplicaciones de la derivada"
+  },
+  "Aplicaciones económicas: costo, ingreso, utilidad marginal y elasticidad": {
+    "libro": "Peláez - Introducción al Cálculo",
+    "seccion": "capítulo de aplicaciones económicas de la derivada"
+  },
+  "Inyectividad, sobreyectividad y biyectividad": {
+    "libro": "Peláez - Introducción al Cálculo",
+    "seccion": "capítulo de funciones inversas"
+  },
+  "Continuidad y derivabilidad de la función inversa": {
+    "libro": "Peláez - Introducción al Cálculo",
+    "seccion": "capítulo de funciones inversas"
+  },
+  "Funciones trigonométricas y sus inversas": {
+    "libro": "Peláez - Introducción al Cálculo",
+    "seccion": "capítulo de funciones trigonométricas"
+  },
+  "Teorema de Taylor: resto de Lagrange e infinitesimal": {
+    "libro": "Peláez - Introducción al Cálculo",
+    "seccion": "capítulo de polinomio de Taylor"
+  },
+  "Desarrollos de funciones elementales y aplicación a límites": {
+    "libro": "Peláez - Introducción al Cálculo",
+    "seccion": "capítulo de polinomio de Taylor"
+  },
+  "Serie geométrica y sus derivadas": {
+    "libro": "Peláez - Introducción al Cálculo",
+    "seccion": "capítulo de series"
+  },
+  "Primitivas, teorema fundamental del cálculo y regla de Barrow": {
+    "libro": "Peláez - Introducción al Cálculo",
+    "seccion": "capítulo de integración"
+  },
+  "Métodos de integración: partes, sustitución, cocientes de polinomios": {
+    "libro": "Peláez - Introducción al Cálculo",
+    "seccion": "capítulo de métodos de integración"
+  },
+  "Cálculo de áreas y aplicaciones económicas (excedentes)": {
+    "libro": "Peláez - Introducción al Cálculo",
+    "seccion": "capítulo de aplicaciones de la integral"
+  },
+  "Integrales impropias y criterio del equivalente": {
+    "libro": "Peláez - Introducción al Cálculo",
+    "seccion": "capítulo de integrales impropias"
+  },
+  "Conjuntos abiertos, cerrados, acotados y puntos de acumulación": {
+    "libro": "Apostol - Calculus, Vol. 2",
+    "seccion": "capítulo de topología en Rⁿ"
+  },
+  "Dominio, gráfico y conjuntos de nivel": {
+    "libro": "Apostol - Calculus, Vol. 2",
+    "seccion": "capítulo de funciones de varias variables"
+  },
+  "Límites, continuidad y derivadas parciales": {
+    "libro": "Apostol - Calculus, Vol. 2",
+    "seccion": "capítulo de derivadas parciales"
+  },
+  "Condiciones de diferenciabilidad y desarrollo de Taylor de segundo orden": {
+    "libro": "Apostol - Calculus, Vol. 2",
+    "seccion": "capítulo de diferenciabilidad"
+  },
+  "Función compuesta y regla de la cadena en varias variables": {
+    "libro": "Apostol - Calculus, Vol. 2",
+    "seccion": "capítulo de la regla de la cadena"
+  },
+  "Integrales dobles en rectángulos y regiones típicas": {
+    "libro": "Apostol - Calculus, Vol. 2",
+    "seccion": "capítulo de integrales dobles"
+  },
+  "Cálculo por integrales iteradas": {
+    "libro": "Apostol - Calculus, Vol. 2",
+    "seccion": "capítulo de integrales iteradas"
+  },
+  "Cambio de variable: transformación lineal y coordenadas polares": {
+    "libro": "Apostol - Calculus, Vol. 2",
+    "seccion": "capítulo de cambio de variable"
+  },
+  "Integrales dobles impropias": {
+    "libro": "Apostol - Calculus, Vol. 2",
+    "seccion": "capítulo de integrales impropias"
+  },
+  "Extremos relativos y absolutos; condición de Hess": {
+    "libro": "Apostol - Calculus, Vol. 2",
+    "seccion": "capítulo de extremos de funciones de varias variables"
+  },
+  "Conjuntos y funciones convexas": {
+    "libro": "Apostol - Calculus, Vol. 2",
+    "seccion": "capítulo de convexidad"
+  },
+  "Multiplicadores de Lagrange (restricciones de igualdad)": {
+    "libro": "Apostol - Calculus, Vol. 2",
+    "seccion": "capítulo de multiplicadores de Lagrange"
+  },
+  "Condiciones de Kuhn-Tucker (restricciones de desigualdad)": {
+    "libro": "Apostol - Calculus, Vol. 2",
+    "seccion": "capítulo de optimización con restricciones de desigualdad"
+  },
+  "Conjuntos abiertos/cerrados, ínfimo, supremo y numerabilidad": {
+    "libro": "Peláez - Notas para el curso de Cálculo 3",
+    "seccion": "capítulo de sucesiones y conjuntos"
+  },
+  "Sucesiones, subsucesiones y sucesiones por recurrencia": {
+    "libro": "Peláez - Notas para el curso de Cálculo 3",
+    "seccion": "capítulo de sucesiones"
+  },
+  "Sucesiones de Cauchy y completitud": {
+    "libro": "Peláez - Notas para el curso de Cálculo 3",
+    "seccion": "capítulo de completitud"
+  },
+  "Criterios de convergencia para series de términos positivos": {
+    "libro": "Peláez - Notas para el curso de Cálculo 3",
+    "seccion": "capítulo de series"
+  },
+  "Ecuaciones diferenciales lineales de primer y segundo orden": {
+    "libro": "Peláez - Notas para el curso de Cálculo 3",
+    "seccion": "capítulo de ecuaciones diferenciales lineales"
+  },
+  "Ecuaciones de variables separables": {
+    "libro": "Peláez - Notas para el curso de Cálculo 3",
+    "seccion": "capítulo de ecuaciones de variables separables"
+  },
+  "Diagrama de fase, análisis cualitativo y estabilidad lineal": {
+    "libro": "Peláez - Notas para el curso de Cálculo 3",
+    "seccion": "capítulo de estabilidad"
+  },
+  "Sigma-álgebras, medidas y extensión de pre-medidas": {
+    "libro": "Stein y Shakarchi - Real Analysis",
+    "seccion": "capítulo de teoría de la medida"
+  },
+  "Conjuntos no medibles y conjuntos borelianos": {
+    "libro": "Stein y Shakarchi - Real Analysis",
+    "seccion": "capítulo de medida de Lebesgue"
+  },
+  "Lema de Borel-Cantelli": {
+    "libro": "Stein y Shakarchi - Real Analysis",
+    "seccion": "capítulo de teoría de la medida"
+  },
+  "Funciones medibles y aproximación por funciones simples": {
+    "libro": "Stein y Shakarchi - Real Analysis",
+    "seccion": "capítulo de funciones medibles"
+  },
+  "Integral de Lebesgue": {
+    "libro": "Stein y Shakarchi - Real Analysis",
+    "seccion": "capítulo de integración de Lebesgue"
+  },
+  "Teoremas de convergencia monótona y dominada": {
+    "libro": "Stein y Shakarchi - Real Analysis",
+    "seccion": "capítulo de teoremas de convergencia"
+  },
+  "Modos de convergencia: puntual, en medida, c.t.p. y en Lp": {
+    "libro": "Stein y Shakarchi - Real Analysis",
+    "seccion": "capítulo de espacios Lp"
+  },
+  "Teorema de diferenciación de Lebesgue": {
+    "libro": "Stein y Shakarchi - Real Analysis",
+    "seccion": "capítulo de diferenciación"
+  },
+  "Versión simple del teorema de Radon-Nikodym": {
+    "libro": "Stein y Shakarchi - Real Analysis",
+    "seccion": "capítulo de diferenciación de medidas"
+  },
+  "Teorema de Tonelli-Fubini": {
+    "libro": "Stein y Shakarchi - Real Analysis",
+    "seccion": "capítulo de integración en producto de medidas"
+  },
+  "Matriz asociada a un sistema de ecuaciones y operaciones con matrices": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de sistemas lineales"
+  },
+  "Método de escalerización y rango de una matriz": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de escalerización"
+  },
+  "Sistemas cuadrados y matrices invertibles": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de matrices invertibles"
+  },
+  "Operaciones básicas e interpretación geométrica en R² y R³": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de vectores en Rⁿ"
+  },
+  "Rectas y planos en R³": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de geometría vectorial"
+  },
+  "Combinaciones lineales y dependencia/independencia lineal": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de independencia lineal"
+  },
+  "Generador de un subespacio, bases y dimensión": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de espacios vectoriales"
+  },
+  "Rango y núcleo de una matriz; relación nulidad-rango": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de rango y núcleo"
+  },
+  "Producto interno, norma, distancia y ángulos": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de producto interno"
+  },
+  "Desigualdad de Cauchy-Schwarz": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de producto interno"
+  },
+  "Conjuntos ortogonales/ortonormales y proyección ortogonal": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de ortogonalidad"
+  },
+  "Mínimos cuadrados": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de mínimos cuadrados"
+  },
+  "Determinantes, valores y vectores propios": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de valores propios"
+  },
+  "Matrices diagonalizables: condiciones necesarias y suficientes": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de diagonalización"
+  },
+  "Diagonalización de matrices simétricas": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de matrices simétricas"
+  },
+  "Descomposición en valores singulares (SVD) y aplicaciones": {
+    "libro": "Lay - Álgebra Lineal y sus Aplicaciones",
+    "seccion": "capítulo de descomposición SVD"
+  },
+  "Estadística descriptiva vs. inferencial": {
+    "libro": "Espejo Miranda et al. - Estadística Descriptiva y Probabilidad",
+    "seccion": "capítulo introductorio"
+  },
+  "Tipos de variables y distribuciones de frecuencias": {
+    "libro": "Espejo Miranda et al. - Estadística Descriptiva y Probabilidad",
+    "seccion": "capítulo de distribución de frecuencias"
+  },
+  "Medidas de resumen y representaciones gráficas": {
+    "libro": "Espejo Miranda et al. - Estadística Descriptiva y Probabilidad",
+    "seccion": "capítulo de medidas de resumen"
+  },
+  "Instalación, uso inicial y operaciones básicas en R": {
+    "libro": "Irizarry - Introducción a la Ciencia de Datos",
+    "seccion": "capítulo de introducción a R"
+  },
+  "Descripción numérica y gráfica de datos en R": {
+    "libro": "Irizarry - Introducción a la Ciencia de Datos",
+    "seccion": "capítulo de visualización de datos"
+  },
+  "Tablas de contingencia y medidas de asociación y correlación": {
+    "libro": "Espejo Miranda et al. - Estadística Descriptiva y Probabilidad",
+    "seccion": "capítulo de asociación entre variables"
+  },
+  "Gráficos para variables categóricas y numéricas; diagramas de dispersión": {
+    "libro": "Espejo Miranda et al. - Estadística Descriptiva y Probabilidad",
+    "seccion": "capítulo de representación gráfica bivariada"
+  },
+  "Álgebra lineal aplicada a estructuras de datos y visualización multivariada": {
+    "libro": "Irizarry - Introducción a la Ciencia de Datos",
+    "seccion": "capítulo de álgebra lineal aplicada"
+  },
+  "Curva de Lorenz e Índice de Gini": {
+    "libro": "Espejo Miranda et al. - Estadística Descriptiva y Probabilidad",
+    "seccion": "capítulo de medidas de desigualdad"
+  },
+  "Medidas de desigualdad basadas en teoría de la información": {
+    "libro": "Espejo Miranda et al. - Estadística Descriptiva y Probabilidad",
+    "seccion": "capítulo de medidas de desigualdad"
+  },
+  "Tasas, razones, proporciones y tasas de variación": {
+    "libro": "Espejo Miranda et al. - Estadística Descriptiva y Probabilidad",
+    "seccion": "capítulo de indicadores"
+  },
+  "Números índice: Laspeyres, Paasche y cambio de base": {
+    "libro": "Espejo Miranda et al. - Estadística Descriptiva y Probabilidad",
+    "seccion": "capítulo de números índice"
+  },
+  "Métodos gráficos: boxplot y violin plot": {
+    "libro": "Espejo Miranda et al. - Estadística Descriptiva y Probabilidad",
+    "seccion": "capítulo de detección de valores atípicos"
+  },
+  "Criterios univariados y multivariados de detección": {
+    "libro": "Espejo Miranda et al. - Estadística Descriptiva y Probabilidad",
+    "seccion": "capítulo de detección de valores atípicos"
+  },
+  "Espacio muestral, sucesos, álgebras y sigma-álgebras": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de espacios de probabilidad"
+  },
+  "Definición axiomática de Kolmogorov y consecuencias": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de axiomas de probabilidad"
+  },
+  "Interpretaciones de la probabilidad y métodos de conteo": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de combinatoria"
+  },
+  "Independencia estocástica": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de independencia"
+  },
+  "Teorema de la probabilidad total y teorema de Bayes": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de probabilidad condicional"
+  },
+  "Función medible, variable aleatoria y función de distribución": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de variables aleatorias"
+  },
+  "Variables discretas (función de cuantía) y continuas (densidad)": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de distribuciones discretas y continuas"
+  },
+  "Transformaciones medibles y función cuantil": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de transformación de variables"
+  },
+  "Distribución conjunta, marginales e independencia": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de distribuciones conjuntas"
+  },
+  "Vectores discretos y continuos: cuantía/densidad conjunta y condicional": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de distribuciones condicionales"
+  },
+  "Transformaciones medibles de vectores aleatorios": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de transformación de vectores"
+  },
+  "Esperanza, momentos y varianza": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de esperanza y momentos"
+  },
+  "Desigualdades de Markov, Chebyshev, Jensen, Hölder y Minkowski": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de desigualdades"
+  },
+  "Funciones generatrices y características; esperanza condicional": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de funciones generatrices"
+  },
+  "Covarianza y matriz de varianzas-covarianzas": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de covarianza"
+  },
+  "Distribuciones discretas univariadas y multivariadas": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de modelos discretos"
+  },
+  "Distribuciones absolutamente continuas univariadas y multivariadas": {
+    "libro": "Blitzstein y Hwang - Introduction to Probability",
+    "seccion": "capítulo de modelos continuos"
+  },
+  "Población, modelo poblacional, parámetro y espacio paramétrico": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de fundamentos de la inferencia"
+  },
+  "Familia exponencial y familia de posición y escala": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de familias de distribuciones"
+  },
+  "Muestra, experimento estadístico, estadístico y estimador": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de estadísticos y estimadores"
+  },
+  "Muestreo aleatorio simple con reemplazo": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de muestreo"
+  },
+  "Distribución de la suma y la media muestral": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de distribuciones muestrales"
+  },
+  "Distribuciones especiales: chi-cuadrado, t y F": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de distribuciones derivadas de la normal"
+  },
+  "Estadísticos de orden": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de estadísticos de orden"
+  },
+  "Método de los momentos": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de estimación puntual"
+  },
+  "Función de verosimilitud y estimadores máximo-verosímiles": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de máxima verosimilitud"
+  },
+  "Error cuadrático medio, insesgamiento y suficiencia": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de propiedades de estimadores"
+  },
+  "Tipos de error, nivel de significación y región de rechazo": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de contraste de hipótesis"
+  },
+  "Lema de Neyman-Pearson (hipótesis simples y compuestas)": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de contrastes óptimos"
+  },
+  "Contrastes de razón de verosimilitudes y valor-p": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de razón de verosimilitudes"
+  },
+  "Intervalos de confianza e interpretación del coeficiente de confianza": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de estimación por intervalos"
+  },
+  "Inversión de un contraste y cantidades pivotales": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de cantidades pivotales"
+  },
+  "Optimalidad: intervalos de mínima amplitud": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de optimalidad de intervalos"
+  },
+  "Convergencia en probabilidad, media cuadrática y distribución": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de convergencia"
+  },
+  "Teorema Central del Límite y método delta": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de teoría asintótica"
+  },
+  "Estimadores consistentes, intervalos/contrastes asintóticos y bootstrap": {
+    "libro": "Casella y Berger - Statistical Inference",
+    "seccion": "capítulo de inferencia asintótica"
+  },
+  "Pensamiento bayesiano vs. frecuentista": {
+    "libro": "Johnson, Ott y Dogucu - Bayes Rules!",
+    "seccion": "capítulo introductorio al pensamiento bayesiano"
+  },
+  "Modelo binomial y distribución posterior": {
+    "libro": "Johnson, Ott y Dogucu - Bayes Rules!",
+    "seccion": "capítulo del modelo Beta-Binomial"
+  },
+  "Distribuciones previas informativas": {
+    "libro": "Johnson, Ott y Dogucu - Bayes Rules!",
+    "seccion": "capítulo de distribuciones previas"
+  },
+  "Estimación puntual y por intervalo bayesiana (uno y varios parámetros)": {
+    "libro": "Johnson, Ott y Dogucu - Bayes Rules!",
+    "seccion": "capítulo de estimación bayesiana"
+  },
+  "Muestreo de aceptación/rechazo": {
+    "libro": "Albert - Bayesian Computation with R",
+    "seccion": "capítulo de métodos de simulación"
+  },
+  "Muestreo por importancia (con y sin re-muestreo)": {
+    "libro": "Albert - Bayesian Computation with R",
+    "seccion": "capítulo de muestreo por importancia"
+  },
+  "Cadenas de Markov discretas": {
+    "libro": "Johnson, Ott y Dogucu - Bayes Rules!",
+    "seccion": "capítulo de cadenas de Markov"
+  },
+  "Algoritmos de Metropolis y Metropolis-Hastings": {
+    "libro": "Johnson, Ott y Dogucu - Bayes Rules!",
+    "seccion": "capítulo de MCMC"
+  },
+  "Muestreo de Gibbs": {
+    "libro": "Johnson, Ott y Dogucu - Bayes Rules!",
+    "seccion": "capítulo de muestreo de Gibbs"
+  },
+  "Diagnóstico y monitoreo de convergencia": {
+    "libro": "Johnson, Ott y Dogucu - Bayes Rules!",
+    "seccion": "capítulo de diagnóstico de MCMC"
+  },
+  "Simulación desde la posterior y análisis de sensibilidad bayesiano": {
+    "libro": "Johnson, Ott y Dogucu - Bayes Rules!",
+    "seccion": "capítulo de modelos jerárquicos"
+  },
+  "Comparación de modelos bayesianos": {
+    "libro": "Johnson, Ott y Dogucu - Bayes Rules!",
+    "seccion": "capítulo de comparación de modelos"
+  },
+  "Análisis bayesiano del modelo lineal clásico": {
+    "libro": "Johnson, Ott y Dogucu - Bayes Rules!",
+    "seccion": "capítulo de regresión bayesiana"
+  },
+  "Selección de variables": {
+    "libro": "Johnson, Ott y Dogucu - Bayes Rules!",
+    "seccion": "capítulo de selección de variables"
+  },
+  "Modelos lineales generalizados (enfoque bayesiano)": {
+    "libro": "Johnson, Ott y Dogucu - Bayes Rules!",
+    "seccion": "capítulo de modelos lineales generalizados bayesianos"
+  },
+  "Población objetivo y marcos muestrales": {
+    "libro": "Gutiérrez Rojas - Estrategias de Muestreo",
+    "seccion": "capítulo de fundamentos del muestreo"
+  },
+  "Errores de cobertura, muestrales y no muestrales": {
+    "libro": "Gutiérrez Rojas - Estrategias de Muestreo",
+    "seccion": "capítulo de errores en encuestas"
+  },
+  "Distribución en el muestreo, varianza y error estándar": {
+    "libro": "Gutiérrez Rojas - Estrategias de Muestreo",
+    "seccion": "capítulo de estimación en muestreo"
+  },
+  "Diseño muestral y probabilidad de inclusión": {
+    "libro": "Gutiérrez Rojas - Estrategias de Muestreo",
+    "seccion": "capítulo de diseño muestral"
+  },
+  "Estimador de Horvitz-Thompson y ponderadores": {
+    "libro": "Gutiérrez Rojas - Estrategias de Muestreo",
+    "seccion": "capítulo del estimador Horvitz-Thompson"
+  },
+  "Efecto de diseño": {
+    "libro": "Gutiérrez Rojas - Estrategias de Muestreo",
+    "seccion": "capítulo de efecto de diseño"
+  },
+  "Muestreo aleatorio simple y sistemático": {
+    "libro": "Gutiérrez Rojas - Estrategias de Muestreo",
+    "seccion": "capítulo de muestreo simple y sistemático"
+  },
+  "Muestreo con probabilidad proporcional al tamaño": {
+    "libro": "Gutiérrez Rojas - Estrategias de Muestreo",
+    "seccion": "capítulo de muestreo PPT"
+  },
+  "Muestreo estratificado: construcción de estratos y asignación": {
+    "libro": "Gutiérrez Rojas - Estrategias de Muestreo",
+    "seccion": "capítulo de muestreo estratificado"
+  },
+  "Muestreo por conglomerados (una o varias etapas)": {
+    "libro": "Gutiérrez Rojas - Estrategias de Muestreo",
+    "seccion": "capítulo de muestreo por conglomerados"
+  },
+  "Métodos de estimación de varianza y estimación en dominios": {
+    "libro": "Gutiérrez Rojas - Estrategias de Muestreo",
+    "seccion": "capítulo de estimación de varianza"
+  },
+  "Principales encuestas oficiales sociodemográficas de Uruguay": {
+    "libro": "Gutiérrez Rojas - Estrategias de Muestreo",
+    "seccion": "capítulo de aplicaciones a encuestas oficiales"
+  },
+  "Uso de librerías R para encuestas: sampling, survey, srvyr": {
+    "libro": "Gutiérrez Rojas - Estrategias de Muestreo",
+    "seccion": "capítulo de implementación en R"
+  },
+  "Estudios observacionales vs. experimentales": {
+    "libro": "Faraway - Linear Models with R",
+    "seccion": "capítulo introductorio de diseño de estudios"
+  },
+  "Estimación de la media normal y prueba t": {
+    "libro": "Faraway - Linear Models with R",
+    "seccion": "capítulo de comparación de medias"
+  },
+  "Comparación de más de 2 medias y estimación por mínimos cuadrados": {
+    "libro": "Faraway - Linear Models with R",
+    "seccion": "capítulo de ANOVA"
+  },
+  "Teorema de Gauss-Markov y contrastes lineales": {
+    "libro": "Faraway - Linear Models with R",
+    "seccion": "capítulo de Gauss-Markov"
+  },
+  "Modelo continuo para la media condicional": {
+    "libro": "Faraway - Linear Models with R",
+    "seccion": "capítulo de regresión simple"
+  },
+  "Estimación por mínimos cuadrados y máxima verosimilitud": {
+    "libro": "Faraway - Linear Models with R",
+    "seccion": "capítulo de estimación"
+  },
+  "Predicción de nuevos valores": {
+    "libro": "Faraway - Linear Models with R",
+    "seccion": "capítulo de predicción"
+  },
+  "Estimación del modelo y propiedades de los estimadores": {
+    "libro": "Faraway - Linear Models with R",
+    "seccion": "capítulo de regresión múltiple"
+  },
+  "Inferencia, predicción, diagnóstico y selección de modelos": {
+    "libro": "Faraway - Linear Models with R",
+    "seccion": "capítulo de diagnóstico y selección de modelos"
+  },
+  "Modelos para variable de respuesta binaria": {
+    "libro": "Faraway - Linear Models with R",
+    "seccion": "capítulo de regresión logística"
+  },
+  "Estimación por máxima verosimilitud y aplicaciones": {
+    "libro": "Faraway - Linear Models with R",
+    "seccion": "capítulo de estimación en regresión logística"
+  },
+  "Modelos lineales generalizados y modelos mixtos": {
+    "libro": "Faraway - Linear Models with R",
+    "seccion": "capítulo de modelos lineales generalizados"
+  },
+  "Regresión no lineal y métodos computacionales": {
+    "libro": "Faraway - Linear Models with R",
+    "seccion": "capítulo de regresión no lineal"
+  },
+  "Repaso de álgebra matricial aplicada a datos multivariantes": {
+    "libro": "Blanco - Introducción al Análisis Multivariado",
+    "seccion": "capítulo introductorio"
+  },
+  "Aprendizaje supervisado vs. no supervisado": {
+    "libro": "Blanco - Introducción al Análisis Multivariado",
+    "seccion": "capítulo introductorio"
+  },
+  "Análisis de Componentes Principales": {
+    "libro": "Blanco - Introducción al Análisis Multivariado",
+    "seccion": "capítulo de Componentes Principales"
+  },
+  "Análisis de correspondencias simples y múltiples": {
+    "libro": "Blanco - Introducción al Análisis Multivariado",
+    "seccion": "capítulo de análisis de correspondencias"
+  },
+  "Análisis Factorial de datos mixtos": {
+    "libro": "Blanco - Introducción al Análisis Multivariado",
+    "seccion": "capítulo de análisis factorial"
+  },
+  "Métodos jerárquicos y no jerárquicos": {
+    "libro": "Blanco - Introducción al Análisis Multivariado",
+    "seccion": "capítulo de análisis de cluster"
+  },
+  "Métodos probabilísticos y mapas de Kohonen (SOM)": {
+    "libro": "Blanco - Introducción al Análisis Multivariado",
+    "seccion": "capítulo de cluster probabilístico"
+  },
+  "Introducción a la inferencia con datos multivariantes": {
+    "libro": "Blanco - Introducción al Análisis Multivariado",
+    "seccion": "capítulo de inferencia multivariante"
+  },
+  "Análisis discriminante lineal, cuadrático y logístico": {
+    "libro": "Blanco - Introducción al Análisis Multivariado",
+    "seccion": "capítulo de análisis discriminante"
+  },
+  "Análisis discriminante no probabilístico": {
+    "libro": "Blanco - Introducción al Análisis Multivariado",
+    "seccion": "capítulo de análisis discriminante"
+  },
+  "Introducción a árboles de clasificación": {
+    "libro": "Blanco - Introducción al Análisis Multivariado",
+    "seccion": "capítulo de árboles de clasificación"
+  },
+  "Series de tiempo y ruido blanco": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo introductorio"
+  },
+  "Procesos AR, MA y ARMA": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de procesos estacionarios"
+  },
+  "Teorema de Wold": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de representación de Wold"
+  },
+  "Predicción óptima, puntual y por intervalos": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de predicción"
+  },
+  "Incertidumbre de las predicciones y transformación logarítmica": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de predicción"
+  },
+  "Estimación de media, autocorrelación y autocorrelación parcial": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de estimación"
+  },
+  "Estimación por máxima verosimilitud (AR, MA, ARMA)": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de estimación por máxima verosimilitud"
+  },
+  "Contrastes e intervalos de confianza": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de inferencia"
+  },
+  "Función generatriz de autocovarianzas y espectro poblacional": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de análisis espectral"
+  },
+  "Filtros y función de transferencia": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de filtros lineales"
+  },
+  "Identificación, diagnóstico y validación del modelo": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de construcción de modelos"
+  },
+  "Análisis de intervención y puntos anómalos": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de análisis de intervención"
+  },
+  "Procesos no estacionarios y modelos ARIMA": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de modelos ARIMA"
+  },
+  "Tendencias, raíces unitarias, estacionalidad y modelos SARIMA": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de modelos SARIMA"
+  },
+  "Contrastes de raíces unitarias estacionales": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de raíces unitarias estacionales"
+  },
+  "Modelización automática y extracción de señales (X12-ARIMA)": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulo de extracción de señales"
+  },
+  "Modelo de computación, algoritmo y estructura de un programa": {
+    "libro": "Konvalina y Wileman - Programación con Pascal",
+    "seccion": "capítulo introductorio"
+  },
+  "Sintaxis, semántica, compilación y tipos de errores": {
+    "libro": "Konvalina y Wileman - Programación con Pascal",
+    "seccion": "capítulo de fundamentos del lenguaje"
+  },
+  "Identificadores, variables, expresiones y asignación": {
+    "libro": "Konvalina y Wileman - Programación con Pascal",
+    "seccion": "capítulo de variables y expresiones"
+  },
+  "Secuencia, selección e iteración": {
+    "libro": "Konvalina y Wileman - Programación con Pascal",
+    "seccion": "capítulo de estructuras de control"
+  },
+  "Recursión: diseño e implementación de algoritmos recursivos": {
+    "libro": "Konvalina y Wileman - Programación con Pascal",
+    "seccion": "capítulo de recursión"
+  },
+  "Tipos elementales": {
+    "libro": "Konvalina y Wileman - Programación con Pascal",
+    "seccion": "capítulo de tipos de datos"
+  },
+  "Tipos estructurados: arreglos y registros": {
+    "libro": "Konvalina y Wileman - Programación con Pascal",
+    "seccion": "capítulo de tipos estructurados"
+  },
+  "Procedimientos y funciones; pre y post condiciones": {
+    "libro": "Konvalina y Wileman - Programación con Pascal",
+    "seccion": "capítulo de subprogramas"
+  },
+  "Pasaje de parámetros (valor/referencia) y reglas de alcance": {
+    "libro": "Konvalina y Wileman - Programación con Pascal",
+    "seccion": "capítulo de parámetros y alcance"
+  },
+  "Nociones elementales de eficiencia de algoritmos": {
+    "libro": "Konvalina y Wileman - Programación con Pascal",
+    "seccion": "capítulo de análisis de eficiencia"
+  },
+  "Objetivos y características generales de la economía descriptiva": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Economía Descriptiva: introducción al Sistema de Cuentas Nacionales"
+  },
+  "Elementos básicos y Cuadro de Oferta y Utilización": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Economía Descriptiva: introducción al Sistema de Cuentas Nacionales"
+  },
+  "Las Cuentas Nacionales: Revisión 1993 y Revisión 2008": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Economía Descriptiva: introducción al Sistema de Cuentas Nacionales"
+  },
+  "Funcionamiento descriptivo, análisis e interpretación": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Economía Descriptiva: Balanza de Pagos"
+  },
+  "La Balanza de Pagos en Uruguay": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Economía Descriptiva: Balanza de Pagos"
+  },
+  "Concepto, tipos y criterios de construcción de números índice": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Economía Descriptiva: Números Índices y Precios Constantes"
+  },
+  "Descripción económica a precios constantes": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Economía Descriptiva: Números Índices y Precios Constantes"
+  },
+  "Índices del Sistema Estadístico Nacional": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Economía Descriptiva: Números Índices y Precios Constantes"
+  },
+  "Clasificación económica de la población": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Economía Descriptiva: Mercado de Trabajo"
+  },
+  "Indicadores de actividad, empleo y desempleo en Uruguay": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Economía Descriptiva: Mercado de Trabajo"
+  },
+  "La naturaleza de la econometría y los datos económicos": {
+    "libro": "Wooldridge - Introducción a la Econometría: Un Enfoque Moderno",
+    "seccion": "capítulo introductorio"
+  },
+  "El modelo de regresión simple y estimadores MCO": {
+    "libro": "Wooldridge - Introducción a la Econometría: Un Enfoque Moderno",
+    "seccion": "capítulo del modelo de regresión simple"
+  },
+  "Regresión múltiple: mecánica, interpretación y teorema Gauss-Markov": {
+    "libro": "Wooldridge - Introducción a la Econometría: Un Enfoque Moderno",
+    "seccion": "capítulo de regresión múltiple: estimación"
+  },
+  "Distribución muestral, prueba t e intervalos de confianza": {
+    "libro": "Wooldridge - Introducción a la Econometría: Un Enfoque Moderno",
+    "seccion": "capítulo de regresión múltiple: inferencia"
+  },
+  "Pruebas F para restricciones lineales múltiples": {
+    "libro": "Wooldridge - Introducción a la Econometría: Un Enfoque Moderno",
+    "seccion": "capítulo de regresión múltiple: inferencia"
+  },
+  "Consistencia y normalidad asintótica de los MCO": {
+    "libro": "Wooldridge - Introducción a la Econometría: Un Enfoque Moderno",
+    "seccion": "capítulo de MCO asintóticos"
+  },
+  "Forma funcional, bondad de ajuste y mala especificación": {
+    "libro": "Wooldridge - Introducción a la Econometría: Un Enfoque Moderno",
+    "seccion": "capítulo de temas adicionales de regresión múltiple"
+  },
+  "Variables binarias (dummy) e interacciones": {
+    "libro": "Wooldridge - Introducción a la Econometría: Un Enfoque Moderno",
+    "seccion": "capítulo de información cualitativa"
+  },
+  "Regresión con variable dependiente binaria: logit y probit": {
+    "libro": "Wooldridge - Introducción a la Econometría: Un Enfoque Moderno",
+    "seccion": "capítulo de variable dependiente binaria"
+  },
+  "Consecuencias e inferencia robusta a la heterocedasticidad": {
+    "libro": "Wooldridge - Introducción a la Econometría: Un Enfoque Moderno",
+    "seccion": "capítulo de heterocedasticidad"
+  },
+  "Pruebas de heterocedasticidad y mínimos cuadrados ponderados": {
+    "libro": "Wooldridge - Introducción a la Econometría: Un Enfoque Moderno",
+    "seccion": "capítulo de heterocedasticidad"
+  },
+  "Validez interna y externa de estudios basados en regresión": {
+    "libro": "Wooldridge - Introducción a la Econometría: Un Enfoque Moderno",
+    "seccion": "capítulo de evaluación de estudios"
+  },
+  "Variables instrumentales y sesgo por variables omitidas": {
+    "libro": "Wooldridge - Introducción a la Econometría: Un Enfoque Moderno",
+    "seccion": "capítulo de variables instrumentales"
+  },
+  "Personas físicas y jurídicas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Derecho Civil: Parte general del derecho civil"
+  },
+  "Obligaciones y contratos civiles": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Derecho Civil: Parte general del derecho civil"
+  },
+  "Gestión de personas en contexto internacional": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Investigación Colaborativa Internacional en Gestión de Personas: Proyecto de investigación colaborativa"
+  },
+  "Trabajo colaborativo en equipos interdisciplinarios": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Investigación Colaborativa Internacional en Gestión de Personas: Proyecto de investigación colaborativa"
+  },
+  "Sociedades comerciales y estatuto del comerciante": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Derecho Comercial: Régimen jurídico comercial"
+  },
+  "Contratos comerciales y títulos valores": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Derecho Comercial: Régimen jurídico comercial"
+  },
+  "Modelos de estructura organizativa": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Diseño Organizacional: Diseño de estructuras organizativas"
+  },
+  "Diseño de puestos y procesos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Diseño Organizacional: Diseño de estructuras organizativas"
+  },
+  "Marco normativo de las compras estatales": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Compras Públicas para el Desarrollo: Compras públicas"
+  },
+  "Compras públicas como herramienta de desarrollo": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Compras Públicas para el Desarrollo: Compras públicas"
+  },
+  "Métodos de prospectiva y escenarios futuros": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Prospectiva Estratégica: Con la Mirada en el Futuro: Prospectiva estratégica"
+  },
+  "Planificación estratégica de largo plazo": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Prospectiva Estratégica: Con la Mirada en el Futuro: Prospectiva estratégica"
+  },
+  "Principios de la economía circular": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Economía Circular: Economía circular"
+  },
+  "Modelos de negocio circulares": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Economía Circular: Economía circular"
+  },
+  "Extensión universitaria en contabilidad escolar": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "EFI: Contabilidad en las Escuelas: Espacio de Formación Integral"
+  },
+  "Enseñanza de nociones contables en el medio": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "EFI: Contabilidad en las Escuelas: Espacio de Formación Integral"
+  },
+  "Costos aplicados a emprendimientos sociales": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "EFI: Costos para la Gestión de Emprendimientos Sociales y Comunitarios: Espacio de Formación Integral"
+  },
+  "Gestión económica de proyectos comunitarios": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "EFI: Costos para la Gestión de Emprendimientos Sociales y Comunitarios: Espacio de Formación Integral"
+  },
+  "Organización del Estado y función pública": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Derecho Público: Derecho público"
+  },
+  "Actos y contratos administrativos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Derecho Público: Derecho público"
+  },
+  "Presupuesto público y ejecución financiera": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Gestión Financiera del Estado: Finanzas públicas"
+  },
+  "Gestión financiera de organismos estatales": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Gestión Financiera del Estado: Finanzas públicas"
+  },
+  "Análisis estratégico de mercado": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Marketing Estratégico: Marketing estratégico"
+  },
+  "Formulación de estrategias de marketing": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Marketing Estratégico: Marketing estratégico"
+  },
+  "Diagnóstico de la cultura organizacional": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Transformación Cultural: Cultura organizacional"
+  },
+  "Procesos de transformación cultural": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Transformación Cultural: Cultura organizacional"
+  },
+  "Gestión de cooperativas de trabajo": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "EFI Cooperativas de Trabajo y Colectivos Autogestionados: Espacio de Formación Integral"
+  },
+  "Colectivos autogestionados y economía social": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "EFI Cooperativas de Trabajo y Colectivos Autogestionados: Espacio de Formación Integral"
+  },
+  "Valoración de cargos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Taller de Gestión de Cargos y Remuneraciones: Gestión de cargos y remuneraciones"
+  },
+  "Diseño de estructuras salariales": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Taller de Gestión de Cargos y Remuneraciones: Gestión de cargos y remuneraciones"
+  },
+  "Asesoramiento a micro y pequeñas empresas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "EFI: MicroCECEA: Espacio de Formación Integral"
+  },
+  "Práctica de extensión en gestión de emprendimientos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "EFI: MicroCECEA: Espacio de Formación Integral"
+  },
+  "Principios éticos del ejercicio profesional": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Ética y Ejercicio Profesional: Ética profesional"
+  },
+  "Casos de ética aplicada a la gestión": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Ética y Ejercicio Profesional: Ética profesional"
+  },
+  "Análisis institucional de organismos públicos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Análisis Institucional y Planificación en el Sector Público: Gestión pública"
+  },
+  "Planificación estratégica en el sector público": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Análisis Institucional y Planificación en el Sector Público: Gestión pública"
+  },
+  "Particularidades del marketing de servicios": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Marketing de Servicios: Marketing de servicios"
+  },
+  "Calidad y experiencia del servicio": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Marketing de Servicios: Marketing de servicios"
+  },
+  "Canales y herramientas digitales de marketing": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Marketing Digital: Marketing digital"
+  },
+  "Métricas y campañas en medios digitales": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Marketing Digital: Marketing digital"
+  },
+  "Liderazgo aplicado a proyectos de impacto social": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Liderazgo para la Innovación Social: Liderazgo e innovación social"
+  },
+  "Innovación social: metodologías y casos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Liderazgo para la Innovación Social: Liderazgo e innovación social"
+  },
+  "Objeto de estudio de la sociología rural y dicotomía rural-urbano": {
+    "libro": "Bianco y Chiappe - La Sociología Rural: Una Introducción",
+    "seccion": "capítulo introductorio"
+  },
+  "El continuo rural-urbano y la definición compuesta de ruralidad de Sorokin y Zimmerman": {
+    "libro": "Bianco y Chiappe - La Sociología Rural: Una Introducción",
+    "seccion": "capítulo introductorio"
+  },
+  "Institucionalización de la sociología rural académica en Uruguay": {
+    "libro": "Bianco y Chiappe - La Sociología Rural: Una Introducción",
+    "seccion": "capítulo introductorio"
+  },
+  "Teoría de los regímenes alimentarios internacionales (Friedmann y McMichael)": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Teórico: el agro uruguayo en el capitalismo global"
+  },
+  "Del cultivo a la agricultura: formación del sector agrícola en el capitalismo industrial": {
+    "libro": "Bernstein - Class Dynamics of Agrarian Change",
+    "seccion": "capítulo de producción agrícola y agricultura local y global"
+  },
+  "Historia agraria uruguaya y su inserción en los sucesivos regímenes alimentarios": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Teórico: el agro uruguayo en el capitalismo global"
+  },
+  "Globalización neoliberal y expansión del agronegocio en el agro uruguayo reciente": {
+    "libro": "Oyhantçabal, Ceroni y Carámbula - El Espacio Agrario Uruguayo en el Siglo XXI",
+    "seccion": "capítulo de transformaciones recientes del agro uruguayo"
+  },
+  "Cambios en el mercado de tierras: concentración y extranjerización": {
+    "libro": "Oyhantçabal, Ceroni y Carámbula - El Espacio Agrario Uruguayo en el Siglo XXI",
+    "seccion": "capítulo de mercado de tierras"
+  },
+  "Definiciones alternativas de población rural en Uruguay: enfoque de unión vs. intersección": {
+    "libro": "Suárez - Caracterización de Población y Hogares Rurales según Definiciones Alternativas",
+    "seccion": "capítulo de definiciones de población rural"
+  },
+  "Evolución histórica de la población rural uruguaya": {
+    "libro": "Piñeiro y Cardeillac - Población Rural en Uruguay",
+    "seccion": "capítulo de evolución de la población rural"
+  },
+  "Caracterización de hogares rurales según definiciones alternativas": {
+    "libro": "Suárez - Caracterización de Población y Hogares Rurales según Definiciones Alternativas",
+    "seccion": "capítulo de caracterización de hogares rurales"
+  },
+  "Tendencias recientes del empleo y el mercado de trabajo rural": {
+    "libro": "Cabella y Pardo - Población en Uruguay",
+    "seccion": "capítulo de dinámica poblacional reciente"
+  },
+  "Desarrollo agropecuario, desarrollo agrario y desarrollo rural: distinción conceptual": {
+    "libro": "Vassallo - Desarrollo Rural: Teorías, Enfoques y Problemas Nacionales",
+    "seccion": "capítulo de desarrollo agrario y desarrollo rural"
+  },
+  "La pobreza rural como fundamento del concepto de desarrollo rural": {
+    "libro": "Vassallo - Desarrollo Rural: Teorías, Enfoques y Problemas Nacionales",
+    "seccion": "capítulo de desarrollo agrario y desarrollo rural"
+  },
+  "El enfoque territorial del desarrollo rural: territorio, economía territorial y competitividad territorial": {
+    "libro": "Sepúlveda, Rodríguez, Echeverri y Portilla - El Enfoque Territorial del Desarrollo Rural",
+    "seccion": "capítulo de la propuesta del IICA sobre enfoque territorial"
+  },
+  "Cohesión social y cohesión territorial como metas del desarrollo rural": {
+    "libro": "Sepúlveda, Rodríguez, Echeverri y Portilla - El Enfoque Territorial del Desarrollo Rural",
+    "seccion": "capítulo de la propuesta del IICA sobre enfoque territorial"
+  },
+  "Sexo y género: distinción conceptual y división sexual del trabajo": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Clase: género, juventud y ruralidad"
+  },
+  "Vulnerabilidad laboral de las mujeres en áreas rurales de Uruguay": {
+    "libro": "Mascheroni y Riella - La Vulnerabilidad Laboral de las Mujeres en Áreas Rurales",
+    "seccion": "artículo completo"
+  },
+  "Brechas de género en el acceso a la tierra, el empleo y la sucesión de la explotación": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Clase: género, juventud y ruralidad"
+  },
+  "Heterogeneidad de las juventudes rurales": {
+    "libro": "Cardeillac, Krapovickas y Juncal - Ruralidad y Asincronía: Transiciones a la Adultez en Uruguay",
+    "seccion": "capítulo de juventudes en la ruralidad uruguaya"
+  },
+  "Asincronía de género en las transiciones a la adultez en el medio rural": {
+    "libro": "Cardeillac, Krapovickas y Juncal - Ruralidad y Asincronía: Transiciones a la Adultez en Uruguay",
+    "seccion": "capítulo de desigualdad de género y asincronía en la transición"
   }
 }

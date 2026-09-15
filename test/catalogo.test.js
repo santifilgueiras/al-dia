@@ -24,12 +24,15 @@ const FAMILIAS = {
     'ingenieria-quimica', 'ingenieria-naval', 'ingenieria-alimentos',
     'ingenieria-produccion', 'agrimensura',
   ],
-  // Facultad de Ciencias Económicas y de Administración (FCEA): las 4
+  // Facultad de Ciencias Económicas y de Administración (FCEA): las 5
   // carreras comparten un núcleo común real (mismo código de UC -- ver
-  // scripts/agregar-catalogo-fcea.js y agregar-catalogo-estadistica.js) más
-  // varias UC adicionales que también comparten código entre pares de
-  // carreras -- esa reutilización es intencional, no una colisión a resolver.
-  economia: ['contador-publico', 'economia', 'administracion', 'estadistica'],
+  // scripts/agregar-catalogo-fcea.js, agregar-catalogo-estadistica.js y
+  // crear-catalogo-tecnico-administracion.js) más varias UC adicionales que
+  // también comparten código entre pares de carreras -- esa reutilización es
+  // intencional, no una colisión a resolver. "tecnico-administracion" es la
+  // Tecnicatura corta (5 semestres); reusa UC de "administracion" (la
+  // Licenciatura larga) y "contador-publico" a propósito.
+  economia: ['contador-publico', 'economia', 'administracion', 'estadistica', 'tecnico-administracion'],
   // Facultad de Información y Comunicación (FIC): las 3 carreras cargadas
   // (Comunicación, Archivología, Bibliotecología) comparten un núcleo real
   // de hasta 14 UC (Curso Introductorio, Introducción a la Epistemología,
@@ -45,6 +48,19 @@ const FAMILIAS = {
 function familiaDe(facultad) {
   return Object.keys(FAMILIAS).find(fam => FAMILIAS[fam].includes(facultad)) || facultad;
 }
+
+// Excepción puntual (no una familia entera): "Programación Imperativa" de la
+// Licenciatura en Estadística (FCEA, familia "economia") es LITERALMENTE la
+// misma UC que "Programación 1"/"Programación Imperativa" de varias
+// ingenierías (familia "tecnica") -- la dicta el Instituto de Computación de
+// FING para las dos facultades, confirmado contra la ficha oficial real
+// (fcea.udelar.edu.uy, agosto 2026). No amerita fusionar las familias
+// "economia" y "tecnica" enteras (el resto de sus materias no se relaciona),
+// así que se permite esta coincidencia puntual en vez de la familia completa.
+const TEMAS_COMPARTIDOS_CONOCIDOS = new Set([
+  'Búsqueda lineal y búsqueda binaria',
+  'Algoritmos de ordenación',
+]);
 
 // Lista plana de nombres de tema de un catálogo -- misma forma que usan los
 // datos reales: { [anio_o_semestre]: [{ nombre, modulos: [{ modulo, temas: [...] }] }] }.
@@ -75,7 +91,8 @@ test('ningún nombre de tema queda ambiguo entre dominios distintos (salud vs. t
     });
   }
 
-  const ambiguosEntreDominios = [...duenos].filter(([, facultades]) => {
+  const ambiguosEntreDominios = [...duenos].filter(([t, facultades]) => {
+    if (TEMAS_COMPARTIDOS_CONOCIDOS.has(t)) return false;
     const familias = new Set([...facultades].map(familiaDe));
     return familias.size > 1;
   }).map(([t]) => t);

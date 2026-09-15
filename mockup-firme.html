@@ -2922,7 +2922,7 @@ let CATALOGO_POR_ANIO, CATALOGO_POR_CICLO_PSICOLOGIA, CATALOGO_POR_CICLO_INGENIE
     CATALOGO_POR_CICLO_INGENIERIA_PRODUCCION, CATALOGO_POR_CICLO_AGRIMENSURA,
     CATALOGO_POR_CICLO_AGRONOMIA,
     CATALOGO_POR_CICLO_CONTADOR_PUBLICO, CATALOGO_POR_CICLO_ECONOMIA, CATALOGO_POR_CICLO_ADMINISTRACION,
-    CATALOGO_POR_CICLO_ESTADISTICA,
+    CATALOGO_POR_CICLO_ESTADISTICA, CATALOGO_POR_CICLO_TECNICO_ADMINISTRACION,
     CATALOGO_POR_CICLO_COMUNICACION, CATALOGO_POR_CICLO_ARCHIVOLOGIA, CATALOGO_POR_CICLO_BIBLIOTECOLOGIA,
     MODULO_ICONS, TEXTOS, DURACIONES, FACULTADES;
 // Los catálogos, la bibliografía y las duraciones de arriba viven ahora en
@@ -3501,6 +3501,19 @@ function construirFacultades() {
     catalogoPorCiclo: CATALOGO_POR_CICLO_ESTADISTICA,
     cicloLabel: (n) => `${n}º semestre`,
     iconoMateria: '🎲',
+  },
+  tecnico_administracion: {
+    key: 'tecnico_administracion',
+    label: 'Facultad de Ciencias Económicas y de Administración',
+    nombreCorto: 'Técnico en Administración',
+    grupo: 'Facultad de Ciencias Económicas y de Administración',
+    carrera: 'Técnico en Administración',
+    universidad: 'UDELAR',
+    cicloNombre: 'semestre',
+    ciclos: [1, 2, 3, 4, 5],
+    catalogoPorCiclo: CATALOGO_POR_CICLO_TECNICO_ADMINISTRACION,
+    cicloLabel: (n) => `${n}º semestre`,
+    iconoMateria: '📋',
   },
   // Facultad de Información y Comunicación (FIC) tiene MÁS DE UNA carrera
   // cargada (mismo patrón que Facultad de Ingeniería y FCEA) -- las 3
@@ -8725,6 +8738,7 @@ async function cargarDatosEstaticos() {
     'catalogo-ingenieria-quimica', 'catalogo-ingenieria-naval', 'catalogo-ingenieria-alimentos',
     'catalogo-ingenieria-produccion', 'catalogo-agrimensura', 'catalogo-agronomia',
     'catalogo-contador-publico', 'catalogo-economia', 'catalogo-administracion', 'catalogo-estadistica',
+    'catalogo-tecnico-administracion',
     'catalogo-comunicacion', 'catalogo-archivologia', 'catalogo-bibliotecologia',
     'modulo-icons', 'textos', 'duraciones',
   ];
@@ -8737,7 +8751,7 @@ async function cargarDatosEstaticos() {
     CATALOGO_POR_CICLO_INGENIERIA_PRODUCCION, CATALOGO_POR_CICLO_AGRIMENSURA,
     CATALOGO_POR_CICLO_AGRONOMIA,
     CATALOGO_POR_CICLO_CONTADOR_PUBLICO, CATALOGO_POR_CICLO_ECONOMIA, CATALOGO_POR_CICLO_ADMINISTRACION,
-    CATALOGO_POR_CICLO_ESTADISTICA,
+    CATALOGO_POR_CICLO_ESTADISTICA, CATALOGO_POR_CICLO_TECNICO_ADMINISTRACION,
     CATALOGO_POR_CICLO_COMUNICACION, CATALOGO_POR_CICLO_ARCHIVOLOGIA, CATALOGO_POR_CICLO_BIBLIOTECOLOGIA,
     MODULO_ICONS, TEXTOS, DURACIONES,
   ] = resultados;
