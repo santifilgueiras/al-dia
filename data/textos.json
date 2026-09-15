@@ -6913,7 +6913,7 @@
   },
   "Tipos de conocimiento y método científico": {
     "libro": "Apuntes de cátedra",
-    "seccion": "AFO I: tipos de conocimiento y método científico"
+    "seccion": "AFO I: sesiones plenarias sobre conocimiento científico"
   },
   "Búsqueda de información académica, integridad y citación": {
     "libro": "Apuntes de cátedra",
@@ -6925,7 +6925,7 @@
   },
   "Sistema estadístico agropecuario de Uruguay": {
     "libro": "Apuntes de cátedra",
-    "seccion": "AFO I: sistema estadístico agropecuario uruguayo"
+    "seccion": "AFO I: sesión sobre censos y encuestas agropecuarias"
   },
   "Inserción profesional del Ingeniero Agrónomo": {
     "libro": "Apuntes de cátedra",
@@ -10382,5 +10382,601 @@
   "Asincronía de género en las transiciones a la adultez en el medio rural": {
     "libro": "Cardeillac, Krapovickas y Juncal - Ruralidad y Asincronía: Transiciones a la Adultez en Uruguay",
     "seccion": "capítulo de desigualdad de género y asincronía en la transición"
+  },
+  "Introducción a la célula y su organización": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de introducción a la célula"
+  },
+  "El agua y sus propiedades biológicas": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de propiedades del agua"
+  },
+  "Glúcidos: características químicas y polisacáridos de reserva y estructurales": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de macromoléculas: glúcidos"
+  },
+  "Lípidos y la membrana celular": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de macromoléculas: lípidos y membranas"
+  },
+  "Nucleótidos y estructura del ADN y ARN (modelo de Watson y Crick)": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de ácidos nucleicos"
+  },
+  "Proteínas: estructura, conformación y función enzimática": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de macromoléculas: proteínas y enzimas"
+  },
+  "Membranas biológicas y transporte": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de membranas celulares"
+  },
+  "Fotosíntesis": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de fotosíntesis"
+  },
+  "Energía de la vida: metabolismo energético celular": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de respiración celular"
+  },
+  "Ciclo celular": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo del ciclo celular"
+  },
+  "Reproducción celular: meiosis y ciclos sexuales de la vida": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de meiosis y reproducción sexual"
+  },
+  "Principios básicos de la herencia: genes, alelos, genotipo y fenotipo": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de herencia mendeliana"
+  },
+  "Historia evolutiva y diversidad biológica": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de evolución y árbol de la vida"
+  },
+  "Virus, bacterias, archaea y hongos": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de diversidad de microorganismos"
+  },
+  "Relación entre microorganismos y organismos pluricelulares": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de interacciones microbianas"
+  },
+  "Estructura y función en plantas": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de estructura vegetal"
+  },
+  "Reproducción sexual y asexual en plantas (Angiospermas)": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de reproducción vegetal"
+  },
+  "Estructura y función en animales": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de estructura animal"
+  },
+  "Nutrición animal y producción animal aplicada a la biología": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de nutrición animal"
+  },
+  "Restauración de ecosistemas y especies invasoras en Uruguay": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de ecología y conservación"
+  },
+  "Revisión de álgebra elemental, ecuaciones e inecuaciones": {
+    "libro": "Eulacio y Ortiz - Análisis Matemático de Modelos Aplicados en las Ciencias Agrarias",
+    "seccion": "capítulo de revisión de conceptos"
+  },
+  "Concepto de modelo matemático, niveles y criterios de validación": {
+    "libro": "Eulacio y Ortiz - Análisis Matemático de Modelos Aplicados en las Ciencias Agrarias",
+    "seccion": "capítulo de introducción a la modelación"
+  },
+  "Elementos de los modelos matemáticos en ciencias agrarias: funciones de producción y curvas de respuesta": {
+    "libro": "Eulacio y Ortiz - Análisis Matemático de Modelos Aplicados en las Ciencias Agrarias",
+    "seccion": "capítulo de caracterización de modelos matemáticos"
+  },
+  "Funciones reales de una variable: polinómicas, exponenciales y logarítmicas": {
+    "libro": "Eulacio y Ortiz - Análisis Matemático de Modelos Aplicados en las Ciencias Agrarias",
+    "seccion": "capítulo de estudio de modelos matemáticos"
+  },
+  "Modelos de crecimiento: función logística y Mitscherlich-Spillman": {
+    "libro": "Eulacio y Ortiz - Análisis Matemático de Modelos Aplicados en las Ciencias Agrarias",
+    "seccion": "capítulo de funciones trascendentes aplicadas"
+  },
+  "Cálculo integral: integral definida e indefinida, cálculo de áreas": {
+    "libro": "Eulacio y Ortiz - Análisis Matemático de Modelos Aplicados en las Ciencias Agrarias",
+    "seccion": "capítulo de cálculo integral"
+  },
+  "Funciones de varias variables: extremos y superficies de respuesta": {
+    "libro": "Eulacio y Ortiz - Análisis Matemático de Modelos Aplicados en las Ciencias Agrarias",
+    "seccion": "capítulo de funciones de varias variables"
+  },
+  "Álgebra lineal: matrices y resolución de sistemas lineales": {
+    "libro": "Dorf - Introducción al Álgebra de Matrices",
+    "seccion": "capítulo de álgebra lineal"
+  },
+  "Conceptos matemáticos básicos: magnitudes, vectores, derivadas e integrales": {
+    "libro": "Serway - Física para Ciencias e Ingeniería",
+    "seccion": "capítulo introductorio de magnitudes y vectores"
+  },
+  "Cinemática lineal y rotacional de la partícula y el rígido": {
+    "libro": "Serway - Física para Ciencias e Ingeniería",
+    "seccion": "capítulo de cinemática"
+  },
+  "Dinámica de la partícula: fuerzas y leyes de Newton": {
+    "libro": "Serway - Física para Ciencias e Ingeniería",
+    "seccion": "capítulo de leyes de Newton"
+  },
+  "Dinámica del rígido: torque y segunda cardinal": {
+    "libro": "Serway - Física para Ciencias e Ingeniería",
+    "seccion": "capítulo de dinámica de rotación"
+  },
+  "Trabajo, energía y potencia": {
+    "libro": "Serway - Física para Ciencias e Ingeniería",
+    "seccion": "capítulo de trabajo y energía"
+  },
+  "Mecánica de fluidos: régimen laminar y turbulento": {
+    "libro": "Serway - Física para Ciencias e Ingeniería",
+    "seccion": "capítulo de mecánica de fluidos"
+  },
+  "Cálculos estequiométricos, soluciones y electrolitos": {
+    "libro": "Brown, LeMay y Bursten - Química: La Ciencia Central",
+    "seccion": "capítulo de estequiometría y soluciones"
+  },
+  "Reacciones de oxidación-reducción": {
+    "libro": "Brown, LeMay y Bursten - Química: La Ciencia Central",
+    "seccion": "capítulo de reacciones redox"
+  },
+  "Normalidad y masa equivalente": {
+    "libro": "Brown, LeMay y Bursten - Química: La Ciencia Central",
+    "seccion": "capítulo de normalidad y equivalentes"
+  },
+  "Equilibrio químico general y autoionización del agua": {
+    "libro": "Brown, LeMay y Bursten - Química: La Ciencia Central",
+    "seccion": "capítulo de equilibrio químico"
+  },
+  "pH de ácidos y bases fuertes y débiles": {
+    "libro": "Brown, LeMay y Bursten - Química: La Ciencia Central",
+    "seccion": "capítulo de equilibrio ácido-base"
+  },
+  "Soluciones amortiguadoras y efecto del ion común": {
+    "libro": "Brown, LeMay y Bursten - Química: La Ciencia Central",
+    "seccion": "capítulo de soluciones amortiguadoras"
+  },
+  "Hidrólisis de sales y equilibrio de sólidos poco solubles": {
+    "libro": "Brown, LeMay y Bursten - Química: La Ciencia Central",
+    "seccion": "capítulo de equilibrio de solubilidad"
+  },
+  "Termoquímica: entalpía y calor de reacción": {
+    "libro": "Brown, LeMay y Bursten - Química: La Ciencia Central",
+    "seccion": "capítulo de termoquímica"
+  },
+  "Entropía y energía libre": {
+    "libro": "Brown, LeMay y Bursten - Química: La Ciencia Central",
+    "seccion": "capítulo de entropía y energía libre"
+  },
+  "Potencial químico y cambios de fase": {
+    "libro": "Castellan - Fisicoquímica",
+    "seccion": "capítulo de potencial químico y diagramas de fase"
+  },
+  "Propiedades coligativas de las soluciones": {
+    "libro": "Brown, LeMay y Bursten - Química: La Ciencia Central",
+    "seccion": "capítulo de propiedades coligativas"
+  },
+  "El papel de la Universidad y la integralidad (enseñanza, investigación, extensión)": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO I: sesiones plenarias sobre integralidad"
+  },
+  "Búsqueda de información académica, integridad académica y citación": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO I: seminarios de búsqueda de información"
+  },
+  "Dimensiones de las situaciones agrarias": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO I: ciclo de mesas redondas"
+  },
+  "Inserción laboral de la Ingeniería Agronómica": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO I: sesión sobre inserción profesional"
+  },
+  "Anatomía vegetal: tejidos, meristemas y ontogenia del cuerpo de la planta": {
+    "libro": "Esau - Anatomy of Seed Plants",
+    "seccion": "capítulo de anatomía de órganos vegetativos"
+  },
+  "Morfología de órganos vegetativos y reproductivos en las principales familias botánicas": {
+    "libro": "Izco (coord.) - Botánica",
+    "seccion": "capítulo de morfología y organología"
+  },
+  "Reconocimiento de especies mediante herramientas de identificación": {
+    "libro": "Font Quer - Diccionario de Botánica",
+    "seccion": "uso de claves y herramientas de identificación"
+  },
+  "Ciclo biológico y reproducción de Angiospermas: sexual y asexual": {
+    "libro": "Izaguirre - Ciclo Biológico de las Fanerógamas",
+    "seccion": "publicación AEA sobre ciclo biológico"
+  },
+  "Sistemática vegetal: taxones, concepto de especie y nomenclatura botánica": {
+    "libro": "Judd et al. - Plant Systematics: A Phylogenetic Approach",
+    "seccion": "capítulo de principios de sistemática vegetal"
+  },
+  "Organización celular y biomoléculas estructurales y metabólicas": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo de fundamentos celulares y moleculares"
+  },
+  "Membrana celular: modelo del mosaico fluido y transporte": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo de membranas biológicas y transporte"
+  },
+  "Cadena respiratoria y fosforilación oxidativa en el metabolismo animal y vegetal": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo de fosforilación oxidativa"
+  },
+  "Enzimas: cinética de Michaelis-Menten y regulación de la actividad enzimática": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo de enzimas"
+  },
+  "Glucólisis y vía de las pentosas fosfato en el metabolismo de plantas y animales de producción": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo de glucólisis"
+  },
+  "Gluconeogénesis y particularidades del metabolismo de la glucosa en rumiantes": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo de gluconeogénesis"
+  },
+  "Ciclo de Krebs: reacciones, balance y regulación": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo del ciclo del ácido cítrico"
+  },
+  "Degradación y síntesis de ácidos grasos": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo de metabolismo de lípidos"
+  },
+  "Fotosíntesis: fase luminosa y fijación de CO2 en plantas C3, C4 y CAM": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo de fotosíntesis"
+  },
+  "Metabolismo de compuestos nitrogenados: fijación, transaminación y ciclo de la urea": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo de metabolismo de aminoácidos y nitrógeno"
+  },
+  "Integración y regulación metabólica": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo de integración del metabolismo"
+  },
+  "Duplicación del ADN: horquilla de replicación y ADN polimerasa": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo de replicación del ADN"
+  },
+  "Síntesis de ARN y regulación de la transcripción": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo de transcripción"
+  },
+  "Síntesis proteica: traducción y modificaciones postraduccionales": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo de traducción"
+  },
+  "Mutaciones y mecanismos de reparación del ADN": {
+    "libro": "Nelson y Cox - Lehninger Principios de Bioquímica",
+    "seccion": "capítulo de mutación y reparación del ADN"
+  },
+  "Sistema biológico animal: interrelaciones y recursos zoogenéticos": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de sistemas biológicos animales"
+  },
+  "Diversidad de la fauna edáfica e introducción a los artrópodos": {
+    "libro": "Campbell y Reece - Biología",
+    "seccion": "capítulo de diversidad de invertebrados"
+  },
+  "Características generales de los vertebrados: ciclo biológico de aves y mamíferos": {
+    "libro": "Cunningham - Fisiología Veterinaria",
+    "seccion": "capítulo de características de los vertebrados"
+  },
+  "Etapas del crecimiento y desarrollo: gestación, parto, lactación y pubertad": {
+    "libro": "Cunningham - Fisiología Veterinaria",
+    "seccion": "capítulo de desarrollo y ciclos productivos"
+  },
+  "Homeostasis y equilibrio del medio interno": {
+    "libro": "Cunningham - Fisiología Veterinaria",
+    "seccion": "capítulo de homeostasis"
+  },
+  "Sistema nervioso y sistema endócrino: regulación e integración": {
+    "libro": "Cunningham - Fisiología Veterinaria",
+    "seccion": "capítulo de sistema nervioso y endócrino"
+  },
+  "Captación de estímulos externos: visión, olfato y sistema tegumentario": {
+    "libro": "Cunningham - Fisiología Veterinaria",
+    "seccion": "capítulo de órganos de los sentidos"
+  },
+  "Sistema óseo: estructura, plasticidad y homeostasis del calcio": {
+    "libro": "Tortora y Derrickson - Principios de Anatomía y Fisiología",
+    "seccion": "capítulo de sistema óseo"
+  },
+  "Sistema muscular: estructura, función y transformación en carne": {
+    "libro": "Tortora y Derrickson - Principios de Anatomía y Fisiología",
+    "seccion": "capítulo de sistema muscular"
+  },
+  "Sistema circulatorio y linfático": {
+    "libro": "García Sacristán (coord.) - Fisiología Veterinaria",
+    "seccion": "capítulo de sistema circulatorio"
+  },
+  "Sistema respiratorio y su vinculación con el sistema cardiovascular": {
+    "libro": "García Sacristán (coord.) - Fisiología Veterinaria",
+    "seccion": "capítulo de sistema respiratorio"
+  },
+  "Sistema inmunológico y sistema excretor": {
+    "libro": "García Sacristán (coord.) - Fisiología Veterinaria",
+    "seccion": "capítulo de sistema inmunitario y excretor"
+  },
+  "Sistema digestivo: procesos digestivos en rumiantes y no rumiantes": {
+    "libro": "Cunningham - Fisiología Veterinaria",
+    "seccion": "capítulo de fisiología digestiva"
+  },
+  "Estrategias reproductivas y reproducción comparada de hembras y machos": {
+    "libro": "Cunningham - Fisiología Veterinaria",
+    "seccion": "capítulo de fisiología de la reproducción"
+  },
+  "Lactación e integración de los procesos fisiológicos": {
+    "libro": "Cunningham - Fisiología Veterinaria",
+    "seccion": "capítulo de lactación"
+  },
+  "Sistema climático: composición atmosférica, componentes del clima y diagramas ombrotérmicos": {
+    "libro": "Barry y Chorley - Atmósfera, Tiempo y Clima",
+    "seccion": "capítulo de sistema climático"
+  },
+  "Introducción a la geología y minerales primarios": {
+    "libro": "Bossi, Ortíz, Caggiano y Olveira - Manual Didáctico de Geología para Estudiantes de Agronomía",
+    "seccion": "capítulo de introducción a la geología y minerales"
+  },
+  "Tipos de rocas de Uruguay: ígneas, metamórficas y sedimentarias": {
+    "libro": "Bossi, Ortíz, Caggiano y Olveira - Manual Didáctico de Geología para Estudiantes de Agronomía",
+    "seccion": "capítulo de tipos de rocas"
+  },
+  "Meteorización y minerales secundarios": {
+    "libro": "Bossi, Ortíz, Caggiano y Olveira - Manual Didáctico de Geología para Estudiantes de Agronomía",
+    "seccion": "capítulo de meteorización"
+  },
+  "Materiales parentales y su relación con la formación de suelos": {
+    "libro": "Bossi, Ortíz, Caggiano y Olveira - Manual Didáctico de Geología para Estudiantes de Agronomía",
+    "seccion": "capítulo de materiales parentales"
+  },
+  "Hidrología superficial: ciclo hidrológico y cuencas hidrográficas": {
+    "libro": "Chow, Maidment y Mays - Hidrología Aplicada",
+    "seccion": "capítulo de hidrología superficial y cuencas"
+  },
+  "Hidrología subterránea: acuíferos y unidades hidrogeológicas": {
+    "libro": "Chow, Maidment y Mays - Hidrología Aplicada",
+    "seccion": "capítulo de aguas subterráneas"
+  },
+  "Historia del clima y cambio climático actual": {
+    "libro": "Barros - El Cambio Climático Global",
+    "seccion": "capítulo de historia del clima y cambio climático"
+  },
+  "Ecorregiones del Uruguay y uso agrario del territorio": {
+    "libro": "Achkar, Domínguez y Pesce - Ecorregiones del Uruguay",
+    "seccion": "capítulo de caracterización de ecorregiones"
+  },
+  "Relaciones hídricas: potencial hídrico, absorción, transpiración y estrés hídrico": {
+    "libro": "Azcón-Bieto y Talón - Fundamentos de Fisiología Vegetal",
+    "seccion": "capítulo de relaciones hídricas"
+  },
+  "Nutrición mineral: macro y micronutrientes, mecanismos de incorporación y transporte de iones": {
+    "libro": "Azcón-Bieto y Talón - Fundamentos de Fisiología Vegetal",
+    "seccion": "capítulo de nutrición mineral"
+  },
+  "Asimilación del carbono: fases de la fotosíntesis y metabolismo C3, C4 y CAM": {
+    "libro": "Taiz y Zeiger - Plant Physiology",
+    "seccion": "capítulo de fotosíntesis"
+  },
+  "Translocación de fotoasimilados: transporte floemático y partición fuente-fosa": {
+    "libro": "Azcón-Bieto y Talón - Fundamentos de Fisiología Vegetal",
+    "seccion": "capítulo de transporte floemático"
+  },
+  "Fitohormonas: biosíntesis, transporte y modo de acción": {
+    "libro": "Taiz y Zeiger - Plant Physiology",
+    "seccion": "capítulo de hormonas vegetales"
+  },
+  "Regulación del desarrollo vegetal por factores externos: luz y temperatura": {
+    "libro": "Taiz y Zeiger - Plant Physiology",
+    "seccion": "capítulo de fotomorfogénesis y fotoperiodismo"
+  },
+  "Floración, fructificación y senescencia": {
+    "libro": "Azcón-Bieto y Talón - Fundamentos de Fisiología Vegetal",
+    "seccion": "capítulo de desarrollo reproductivo"
+  },
+  "Fisiología de semillas: maduración, germinación y dormición": {
+    "libro": "Azcón-Bieto y Talón - Fundamentos de Fisiología Vegetal",
+    "seccion": "capítulo de fisiología de semillas"
+  },
+  "Introducción a la microbiología: dominios Archaea, Bacteria y Eukarya, hongos y virus": {
+    "libro": "Madigan et al. - Biología de los Microorganismos",
+    "seccion": "capítulo introductorio de microbiología"
+  },
+  "Nutrición y metabolismo microbiano: respiración, fermentación y fotosíntesis": {
+    "libro": "Madigan et al. - Biología de los Microorganismos",
+    "seccion": "capítulo de metabolismo microbiano"
+  },
+  "Crecimiento microbiano: cultivo, esterilización y métodos de evaluación": {
+    "libro": "Madigan et al. - Biología de los Microorganismos",
+    "seccion": "capítulo de crecimiento microbiano"
+  },
+  "Genética bacteriana: plásmidos, fagos y transferencia horizontal de genes": {
+    "libro": "Madigan et al. - Biología de los Microorganismos",
+    "seccion": "capítulo de genética microbiana"
+  },
+  "Identificación de microorganismos: caracteres morfológicos, bioquímicos y moleculares": {
+    "libro": "Prescott, Harley y Klein - Microbiología",
+    "seccion": "capítulo de identificación de microorganismos"
+  },
+  "Interacciones entre microorganismos y control biológico de fitopatógenos": {
+    "libro": "Madigan et al. - Biología de los Microorganismos",
+    "seccion": "capítulo de interacciones microbianas"
+  },
+  "El suelo como ambiente: rizósfera y ciclos biogeoquímicos": {
+    "libro": "Madigan et al. - Biología de los Microorganismos",
+    "seccion": "capítulo de microbiología del suelo"
+  },
+  "Interacciones microorganismo-planta: fijación biológica de nitrógeno y micorrizas": {
+    "libro": "Madigan et al. - Biología de los Microorganismos",
+    "seccion": "capítulo de simbiosis planta-microorganismo"
+  },
+  "Microbiología de otros ambientes agropecuarios: rumen, silo, compost y efluentes": {
+    "libro": "Prescott, Harley y Klein - Microbiología",
+    "seccion": "capítulo de microbiología aplicada"
+  },
+  "Estadística descriptiva e introducción a la inferencia: población, muestra y estimador": {
+    "libro": "Di Rienzo et al. - Estadística para las Ciencias Agropecuarias",
+    "seccion": "capítulo de estadística descriptiva"
+  },
+  "Nociones elementales de probabilidad: experimento aleatorio y axiomas de probabilidad": {
+    "libro": "Di Rienzo et al. - Estadística para las Ciencias Agropecuarias",
+    "seccion": "capítulo de probabilidad"
+  },
+  "Variables aleatorias: funciones de distribución y densidad, momentos, esperanza y varianza": {
+    "libro": "Di Rienzo et al. - Estadística para las Ciencias Agropecuarias",
+    "seccion": "capítulo de variables aleatorias"
+  },
+  "Modelos teóricos de probabilidad: variables discretas y continuas": {
+    "libro": "Steel y Torrie - Bioestadística: Principios y Procedimientos",
+    "seccion": "capítulo de distribuciones de probabilidad"
+  },
+  "Muestreo de una población infinita: distribución de la media y la varianza muestrales": {
+    "libro": "Di Rienzo et al. - Estadística para las Ciencias Agropecuarias",
+    "seccion": "capítulo de muestreo"
+  },
+  "Estimación puntual y por intervalo de confianza": {
+    "libro": "Di Rienzo et al. - Estadística para las Ciencias Agropecuarias",
+    "seccion": "capítulo de estimación"
+  },
+  "Prueba de hipótesis: errores tipo I y II, hipótesis sobre medias y proporciones": {
+    "libro": "Steel y Torrie - Bioestadística: Principios y Procedimientos",
+    "seccion": "capítulo de prueba de hipótesis"
+  },
+  "Sistema climático: tiempo, clima y clasificaciones climáticas globales": {
+    "libro": "Elías Castillo y Castellví Sentis - Agrometeorología",
+    "seccion": "capítulo de sistema climático"
+  },
+  "Radiación solar y balance de energía": {
+    "libro": "Elías Castillo y Castellví Sentis - Agrometeorología",
+    "seccion": "capítulo de radiación y balance de energía"
+  },
+  "Temperatura del suelo: régimen térmico diario y estacional": {
+    "libro": "Elías Castillo y Castellví Sentis - Agrometeorología",
+    "seccion": "capítulo de temperatura del suelo"
+  },
+  "Temperatura del aire: evolución e indicadores climáticos en Uruguay": {
+    "libro": "Elías Castillo y Castellví Sentis - Agrometeorología",
+    "seccion": "capítulo de temperatura del aire"
+  },
+  "Heladas: factores, régimen agroclimático y métodos de control": {
+    "libro": "Burgos - Las Heladas en la República Argentina",
+    "seccion": "capítulo de heladas agrometeorológicas"
+  },
+  "Fenología: índices agrometeorológicos y efectos del cambio climático": {
+    "libro": "De Fina y Ravelo - Climatología y Fenología Agrícolas",
+    "seccion": "capítulo de fenología"
+  },
+  "Circulación general de la atmósfera: masas de aire y tipos de frentes": {
+    "libro": "Barry y Chorley - Atmósfera, Tiempo y Clima",
+    "seccion": "capítulo de circulación atmosférica"
+  },
+  "Cambio climático y sus efectos en la temperatura del aire": {
+    "libro": "Elías Castillo y Castellví Sentis - Agrometeorología",
+    "seccion": "capítulo de cambio climático"
+  },
+  "Ciclo hidrológico y régimen de precipitaciones de Uruguay": {
+    "libro": "Elías Castillo y Castellví Sentis - Agrometeorología",
+    "seccion": "capítulo de ciclo hidrológico"
+  },
+  "Relaciones hídricas suelo-planta-atmósfera: evapotranspiración y balance hídrico": {
+    "libro": "Allen, Pereira, Raes y Smith - Evapotranspiración del Cultivo (FAO Riego y Drenaje 56)",
+    "seccion": "guía de evapotranspiración de referencia"
+  },
+  "Aplicaciones del balance hídrico: sequías agronómicas y evapotranspiración de cultivos": {
+    "libro": "Allen, Pereira, Raes y Smith - Evapotranspiración del Cultivo (FAO Riego y Drenaje 56)",
+    "seccion": "guía de requerimientos de agua de los cultivos"
+  },
+  "Influencia del clima en la adaptación y producción animal: estrés térmico": {
+    "libro": "Elías Castillo y Castellví Sentis - Agrometeorología",
+    "seccion": "capítulo de clima y producción animal"
+  },
+  "Aspectos agrometeorológicos del control de plagas y enfermedades": {
+    "libro": "Elías Castillo y Castellví Sentis - Agrometeorología",
+    "seccion": "capítulo de agrometeorología fitosanitaria"
+  },
+  "Viento y barreras protectoras": {
+    "libro": "Elías Castillo y Castellví Sentis - Agrometeorología",
+    "seccion": "capítulo de viento y barreras protectoras"
+  },
+  "Sustentabilidad, variabilidad y cambio climático en sistemas agropecuarios": {
+    "libro": "Elías Castillo y Castellví Sentis - Agrometeorología",
+    "seccion": "capítulo de sustentabilidad y cambio climático"
+  },
+  "Morfología del suelo: fases sólida, líquida y gaseosa, horizontes y perfil": {
+    "libro": "Durán - Los Suelos del Uruguay",
+    "seccion": "capítulo de morfología del suelo"
+  },
+  "Componentes minerales, materia orgánica y biota del suelo": {
+    "libro": "Durán - Los Suelos del Uruguay",
+    "seccion": "capítulo de composición del suelo"
+  },
+  "Propiedades fisicoquímicas: intercambio catiónico, pH, salinidad y potencial redox": {
+    "libro": "García Préchac y Durán - Suelos del Uruguay, Tomo I",
+    "seccion": "capítulo de propiedades fisicoquímicas"
+  },
+  "Propiedades físicas: textura, estructura, densidad, consistencia y color": {
+    "libro": "García Préchac y Durán - Suelos del Uruguay, Tomo I",
+    "seccion": "capítulo de propiedades físicas"
+  },
+  "Propiedades hídricas: retención, potencial y movimiento del agua en el suelo": {
+    "libro": "García Préchac y Durán - Suelos del Uruguay, Tomo I",
+    "seccion": "capítulo de propiedades hídricas"
+  },
+  "Factores y procesos de formación del suelo": {
+    "libro": "Durán - Los Suelos del Uruguay",
+    "seccion": "capítulo de génesis del suelo"
+  },
+  "Taxonomía de suelos: horizontes diagnósticos y órdenes de suelos del Uruguay": {
+    "libro": "García Préchac y Durán - Suelos del Uruguay, Tomo II",
+    "seccion": "capítulo de taxonomía de suelos"
+  },
+  "Capacidad de uso, degradación, erosión e índices CONEAT": {
+    "libro": "Altamirano - Carta de Reconocimiento de Suelos del Uruguay, Tomo I",
+    "seccion": "capítulo de capacidad de uso e índices CONEAT"
+  },
+  "Oferta y demanda: equilibrio de mercado y sus desplazamientos": {
+    "libro": "Varian - Microeconomía Intermedia",
+    "seccion": "capítulo de oferta y demanda"
+  },
+  "Teoría de la firma: producción, costos y optimización": {
+    "libro": "Varian - Microeconomía Intermedia",
+    "seccion": "capítulo de teoría de la firma"
+  },
+  "Teoría del consumidor: preferencias, restricción presupuestaria y elasticidades": {
+    "libro": "Nicholson - Microeconomía Intermedia y sus Aplicaciones",
+    "seccion": "capítulo de teoría del consumidor"
+  },
+  "Estructuras de mercado: monopolio, oligopolio y competencia monopolística": {
+    "libro": "Varian - Microeconomía Intermedia",
+    "seccion": "capítulo de estructuras de mercado"
+  },
+  "Riesgo e incertidumbre en la toma de decisiones": {
+    "libro": "Varian - Microeconomía Intermedia",
+    "seccion": "capítulo de riesgo e incertidumbre"
+  },
+  "Externalidades, bienes públicos y derechos de propiedad ambiental": {
+    "libro": "Tietenberg y Lewis - Environmental & Natural Resource Economics",
+    "seccion": "capítulo de externalidades y bienes públicos"
+  },
+  "Uso múltiple de la tierra y el agua como recursos naturales": {
+    "libro": "Tietenberg y Lewis - Environmental & Natural Resource Economics",
+    "seccion": "capítulo de recursos naturales renovables"
+  },
+  "Contabilidad nacional, balanza de pagos e inflación en Uruguay": {
+    "libro": "Blanchard - Macroeconomía",
+    "seccion": "capítulo de contabilidad nacional"
+  },
+  "El modelo IS-LM: equilibrio en los mercados de bienes y financiero": {
+    "libro": "Blanchard - Macroeconomía",
+    "seccion": "capítulo del modelo IS-LM"
   }
 }

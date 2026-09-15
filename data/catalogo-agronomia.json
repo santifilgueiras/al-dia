@@ -4,17 +4,43 @@
       "nombre": "Biología General",
       "modulos": [
         {
-          "modulo": "Organización celular",
+          "modulo": "Química de la vida",
           "temas": [
-            "Estructura y organización celular",
-            "Procesos biológicos que mantienen y perpetúan la vida"
+            "Introducción a la célula y su organización",
+            "El agua y sus propiedades biológicas",
+            "Glúcidos: características químicas y polisacáridos de reserva y estructurales",
+            "Lípidos y la membrana celular",
+            "Nucleótidos y estructura del ADN y ARN (modelo de Watson y Crick)",
+            "Proteínas: estructura, conformación y función enzimática"
           ]
         },
         {
-          "modulo": "Biología aplicada y método científico",
+          "modulo": "Célula",
           "temas": [
-            "Biología aplicada a sistemas de producción agropecuaria",
-            "Método científico en las ciencias biológicas"
+            "Membranas biológicas y transporte",
+            "Fotosíntesis",
+            "Energía de la vida: metabolismo energético celular",
+            "Ciclo celular",
+            "Reproducción celular: meiosis y ciclos sexuales de la vida"
+          ]
+        },
+        {
+          "modulo": "Bases de la herencia y evolución",
+          "temas": [
+            "Principios básicos de la herencia: genes, alelos, genotipo y fenotipo",
+            "Historia evolutiva y diversidad biológica",
+            "Virus, bacterias, archaea y hongos",
+            "Relación entre microorganismos y organismos pluricelulares"
+          ]
+        },
+        {
+          "modulo": "Reproducción y nutrición de plantas y animales",
+          "temas": [
+            "Estructura y función en plantas",
+            "Reproducción sexual y asexual en plantas (Angiospermas)",
+            "Estructura y función en animales",
+            "Nutrición animal y producción animal aplicada a la biología",
+            "Restauración de ecosistemas y especies invasoras en Uruguay"
           ]
         }
       ]
@@ -23,16 +49,26 @@
       "nombre": "Matemáticas",
       "modulos": [
         {
-          "modulo": "Cálculo aplicado a fenómenos biológicos",
+          "modulo": "Revisión y modelación matemática",
           "temas": [
-            "Funciones de varias variables aplicadas a modelos biológicos",
-            "Cálculo integral aplicado a modelos biológicos"
+            "Revisión de álgebra elemental, ecuaciones e inecuaciones",
+            "Concepto de modelo matemático, niveles y criterios de validación",
+            "Elementos de los modelos matemáticos en ciencias agrarias: funciones de producción y curvas de respuesta"
           ]
         },
         {
-          "modulo": "Álgebra lineal aplicada a la agronomía",
+          "modulo": "Funciones y cálculo aplicados a la agronomía",
           "temas": [
-            "Álgebra lineal: vectores, matrices y sistemas de ecuaciones aplicados a la agronomía"
+            "Funciones reales de una variable: polinómicas, exponenciales y logarítmicas",
+            "Modelos de crecimiento: función logística y Mitscherlich-Spillman",
+            "Cálculo integral: integral definida e indefinida, cálculo de áreas"
+          ]
+        },
+        {
+          "modulo": "Funciones de varias variables y álgebra lineal",
+          "temas": [
+            "Funciones de varias variables: extremos y superficies de respuesta",
+            "Álgebra lineal: matrices y resolución de sistemas lineales"
           ]
         }
       ]
@@ -41,18 +77,24 @@
       "nombre": "AFO I: Competencias para el Abordaje de Situaciones Agrarias",
       "modulos": [
         {
-          "modulo": "Herramientas para el trabajo académico",
+          "modulo": "Universidad, conocimiento y método científico",
           "temas": [
-            "Tipos de conocimiento y método científico",
-            "Búsqueda de información académica, integridad y citación"
+            "El papel de la Universidad y la integralidad (enseñanza, investigación, extensión)",
+            "Tipos de conocimiento y método científico"
           ]
         },
         {
-          "modulo": "El agrónomo y el sistema agropecuario uruguayo",
+          "modulo": "Herramientas para el trabajo académico",
           "temas": [
-            "Rol de la universidad y la profesión en los problemas agrarios nacionales",
-            "Sistema estadístico agropecuario de Uruguay",
-            "Inserción profesional del Ingeniero Agrónomo"
+            "Búsqueda de información académica, integridad académica y citación",
+            "Sistema estadístico agropecuario de Uruguay"
+          ]
+        },
+        {
+          "modulo": "Situaciones agrarias y perfil profesional",
+          "temas": [
+            "Dimensiones de las situaciones agrarias",
+            "Inserción laboral de la Ingeniería Agronómica"
           ]
         }
       ]
@@ -61,16 +103,24 @@
       "nombre": "Física (Agronomía)",
       "modulos": [
         {
-          "modulo": "Mecánica clásica aplicada a la agronomía",
+          "modulo": "Fundamentos y cinemática",
           "temas": [
-            "Cinemática y dinámica aplicadas a sistemas agronómicos",
-            "Trabajo, energía y potencia en sistemas mecánicos agrícolas"
+            "Conceptos matemáticos básicos: magnitudes, vectores, derivadas e integrales",
+            "Cinemática lineal y rotacional de la partícula y el rígido"
           ]
         },
         {
-          "modulo": "Mecánica de fluidos aplicada",
+          "modulo": "Dinámica y energía",
           "temas": [
-            "Hidrostática e hidrodinámica aplicadas al manejo del agua"
+            "Dinámica de la partícula: fuerzas y leyes de Newton",
+            "Dinámica del rígido: torque y segunda cardinal",
+            "Trabajo, energía y potencia"
+          ]
+        },
+        {
+          "modulo": "Mecánica de fluidos",
+          "temas": [
+            "Mecánica de fluidos: régimen laminar y turbulento"
           ]
         }
       ]
@@ -79,16 +129,29 @@
       "nombre": "Química (Agronomía)",
       "modulos": [
         {
-          "modulo": "Fundamentos físico-químicos aplicados a la agronomía",
+          "modulo": "Estequiometría y reacciones",
           "temas": [
-            "Cálculos estequiométricos y concentración de soluciones",
-            "Equilibrio ácido-base y reacciones redox en sistemas naturales"
+            "Cálculos estequiométricos, soluciones y electrolitos",
+            "Reacciones de oxidación-reducción",
+            "Normalidad y masa equivalente"
           ]
         },
         {
-          "modulo": "Termodinámica de procesos naturales",
+          "modulo": "Equilibrio químico",
           "temas": [
-            "Termodinámica de reacciones químicas naturales"
+            "Equilibrio químico general y autoionización del agua",
+            "pH de ácidos y bases fuertes y débiles",
+            "Soluciones amortiguadoras y efecto del ion común",
+            "Hidrólisis de sales y equilibrio de sólidos poco solubles"
+          ]
+        },
+        {
+          "modulo": "Termodinámica química",
+          "temas": [
+            "Termoquímica: entalpía y calor de reacción",
+            "Entropía y energía libre",
+            "Potencial químico y cambios de fase",
+            "Propiedades coligativas de las soluciones"
           ]
         }
       ]
@@ -99,17 +162,18 @@
       "nombre": "Botánica",
       "modulos": [
         {
-          "modulo": "Morfología y clasificación vegetal",
+          "modulo": "Anatomía y morfología vegetal",
           "temas": [
-            "Morfología externa e interna de las plantas",
-            "Terminología botánica y clasificación taxonómica",
-            "Nomenclatura botánica"
+            "Anatomía vegetal: tejidos, meristemas y ontogenia del cuerpo de la planta",
+            "Morfología de órganos vegetativos y reproductivos en las principales familias botánicas",
+            "Reconocimiento de especies mediante herramientas de identificación"
           ]
         },
         {
-          "modulo": "Reproducción vegetal",
+          "modulo": "Reproducción y sistemática vegetal",
           "temas": [
-            "Reproducción sexual y asexual en plantas"
+            "Ciclo biológico y reproducción de Angiospermas: sexual y asexual",
+            "Sistemática vegetal: taxones, concepto de especie y nomenclatura botánica"
           ]
         }
       ]
@@ -118,17 +182,48 @@
       "nombre": "Bioquímica (Agronomía)",
       "modulos": [
         {
-          "modulo": "Biomoléculas de interés agronómico",
+          "modulo": "Célula y membranas",
           "temas": [
-            "Estructura y función de proteínas y enzimas",
-            "Estructura y función de lípidos y ácidos nucleicos"
+            "Organización celular y biomoléculas estructurales y metabólicas",
+            "Membrana celular: modelo del mosaico fluido y transporte"
           ]
         },
         {
-          "modulo": "Metabolismo y genética molecular",
+          "modulo": "Bioenergética y enzimas",
           "temas": [
-            "Vías metabólicas: catabolismo y anabolismo en vegetales y animales",
-            "Herencia, expresión y traducción de la información genética"
+            "Cadena respiratoria y fosforilación oxidativa en el metabolismo animal y vegetal",
+            "Enzimas: cinética de Michaelis-Menten y regulación de la actividad enzimática"
+          ]
+        },
+        {
+          "modulo": "Metabolismo de glúcidos",
+          "temas": [
+            "Glucólisis y vía de las pentosas fosfato en el metabolismo de plantas y animales de producción",
+            "Gluconeogénesis y particularidades del metabolismo de la glucosa en rumiantes",
+            "Ciclo de Krebs: reacciones, balance y regulación"
+          ]
+        },
+        {
+          "modulo": "Metabolismo de lípidos y fotosíntesis",
+          "temas": [
+            "Degradación y síntesis de ácidos grasos",
+            "Fotosíntesis: fase luminosa y fijación de CO2 en plantas C3, C4 y CAM"
+          ]
+        },
+        {
+          "modulo": "Metabolismo del nitrógeno e integración metabólica",
+          "temas": [
+            "Metabolismo de compuestos nitrogenados: fijación, transaminación y ciclo de la urea",
+            "Integración y regulación metabólica"
+          ]
+        },
+        {
+          "modulo": "Biología molecular",
+          "temas": [
+            "Duplicación del ADN: horquilla de replicación y ADN polimerasa",
+            "Síntesis de ARN y regulación de la transcripción",
+            "Síntesis proteica: traducción y modificaciones postraduccionales",
+            "Mutaciones y mecanismos de reparación del ADN"
           ]
         }
       ]
@@ -137,17 +232,48 @@
       "nombre": "Biología Animal",
       "modulos": [
         {
-          "modulo": "Anatomía y fisiología de animales productivos",
+          "modulo": "Sistemas biológicos e introducción a la fauna",
           "temas": [
-            "Organización anatómica de animales de producción",
-            "Digestión en animales productivos"
+            "Sistema biológico animal: interrelaciones y recursos zoogenéticos",
+            "Diversidad de la fauna edáfica e introducción a los artrópodos"
           ]
         },
         {
-          "modulo": "Reproducción y homeostasis animal",
+          "modulo": "Vertebrados y ciclos biológicos",
           "temas": [
-            "Reproducción en animales de producción",
-            "Homeostasis frente a perturbaciones ambientales"
+            "Características generales de los vertebrados: ciclo biológico de aves y mamíferos",
+            "Etapas del crecimiento y desarrollo: gestación, parto, lactación y pubertad"
+          ]
+        },
+        {
+          "modulo": "Homeostasis y regulación",
+          "temas": [
+            "Homeostasis y equilibrio del medio interno",
+            "Sistema nervioso y sistema endócrino: regulación e integración",
+            "Captación de estímulos externos: visión, olfato y sistema tegumentario"
+          ]
+        },
+        {
+          "modulo": "Soporte y desplazamiento",
+          "temas": [
+            "Sistema óseo: estructura, plasticidad y homeostasis del calcio",
+            "Sistema muscular: estructura, función y transformación en carne"
+          ]
+        },
+        {
+          "modulo": "Mantenimiento del medio interno",
+          "temas": [
+            "Sistema circulatorio y linfático",
+            "Sistema respiratorio y su vinculación con el sistema cardiovascular",
+            "Sistema inmunológico y sistema excretor"
+          ]
+        },
+        {
+          "modulo": "Digestión y reproducción",
+          "temas": [
+            "Sistema digestivo: procesos digestivos en rumiantes y no rumiantes",
+            "Estrategias reproductivas y reproducción comparada de hembras y machos",
+            "Lactación e integración de los procesos fisiológicos"
           ]
         }
       ]
@@ -156,17 +282,37 @@
       "nombre": "Introducción a las Geociencias",
       "modulos": [
         {
-          "modulo": "Sistema climático y geología",
+          "modulo": "Sistema climático",
           "temas": [
-            "Sistema climático y variabilidad climática",
-            "Geología general y geomorfología"
+            "Sistema climático: composición atmosférica, componentes del clima y diagramas ombrotérmicos"
           ]
         },
         {
-          "modulo": "Hidrología y edafología general",
+          "modulo": "Bases geológicas",
           "temas": [
-            "Hidrología superficial y subterránea y cuencas hidrográficas",
-            "Edafología general y ecorregiones de Uruguay"
+            "Introducción a la geología y minerales primarios",
+            "Tipos de rocas de Uruguay: ígneas, metamórficas y sedimentarias",
+            "Meteorización y minerales secundarios",
+            "Materiales parentales y su relación con la formación de suelos"
+          ]
+        },
+        {
+          "modulo": "Hidrología",
+          "temas": [
+            "Hidrología superficial: ciclo hidrológico y cuencas hidrográficas",
+            "Hidrología subterránea: acuíferos y unidades hidrogeológicas"
+          ]
+        },
+        {
+          "modulo": "Historia y cambio climático",
+          "temas": [
+            "Historia del clima y cambio climático actual"
+          ]
+        },
+        {
+          "modulo": "Ecorregiones",
+          "temas": [
+            "Ecorregiones del Uruguay y uso agrario del territorio"
           ]
         }
       ]
@@ -177,10 +323,31 @@
       "nombre": "Fisiología Vegetal",
       "modulos": [
         {
-          "modulo": "Ciclo biológico y desarrollo vegetal",
+          "modulo": "Relaciones hídricas y nutrición mineral",
           "temas": [
-            "Crecimiento y desarrollo vegetal a lo largo del ciclo biológico",
-            "Interacción planta-ambiente"
+            "Relaciones hídricas: potencial hídrico, absorción, transpiración y estrés hídrico",
+            "Nutrición mineral: macro y micronutrientes, mecanismos de incorporación y transporte de iones"
+          ]
+        },
+        {
+          "modulo": "Fotosíntesis y transporte de fotoasimilados",
+          "temas": [
+            "Asimilación del carbono: fases de la fotosíntesis y metabolismo C3, C4 y CAM",
+            "Translocación de fotoasimilados: transporte floemático y partición fuente-fosa"
+          ]
+        },
+        {
+          "modulo": "Regulación del desarrollo vegetal",
+          "temas": [
+            "Fitohormonas: biosíntesis, transporte y modo de acción",
+            "Regulación del desarrollo vegetal por factores externos: luz y temperatura"
+          ]
+        },
+        {
+          "modulo": "Reproducción y semillas",
+          "temas": [
+            "Floración, fructificación y senescencia",
+            "Fisiología de semillas: maduración, germinación y dormición"
           ]
         }
       ]
@@ -189,10 +356,27 @@
       "nombre": "Microbiología General (Agronomía)",
       "modulos": [
         {
-          "modulo": "Microorganismos y ambientes agropecuarios",
+          "modulo": "Fundamentos de microbiología",
           "temas": [
-            "Características estructurales y funcionales de los microorganismos",
-            "Rol de los microorganismos en el sistema suelo-planta"
+            "Introducción a la microbiología: dominios Archaea, Bacteria y Eukarya, hongos y virus",
+            "Nutrición y metabolismo microbiano: respiración, fermentación y fotosíntesis",
+            "Crecimiento microbiano: cultivo, esterilización y métodos de evaluación"
+          ]
+        },
+        {
+          "modulo": "Genética e identificación de microorganismos",
+          "temas": [
+            "Genética bacteriana: plásmidos, fagos y transferencia horizontal de genes",
+            "Identificación de microorganismos: caracteres morfológicos, bioquímicos y moleculares"
+          ]
+        },
+        {
+          "modulo": "Microorganismos en sistemas agropecuarios",
+          "temas": [
+            "Interacciones entre microorganismos y control biológico de fitopatógenos",
+            "El suelo como ambiente: rizósfera y ciclos biogeoquímicos",
+            "Interacciones microorganismo-planta: fijación biológica de nitrógeno y micorrizas",
+            "Microbiología de otros ambientes agropecuarios: rumen, silo, compost y efluentes"
           ]
         }
       ]
@@ -201,16 +385,25 @@
       "nombre": "Estadística I: Probabilidad e Inferencia (Agronomía)",
       "modulos": [
         {
-          "modulo": "Probabilidad aplicada a la agronomía",
+          "modulo": "Estadística descriptiva y probabilidad",
           "temas": [
-            "Probabilidad y variables aleatorias en problemas agronómicos",
-            "Distribuciones de probabilidad y modelos teóricos"
+            "Estadística descriptiva e introducción a la inferencia: población, muestra y estimador",
+            "Nociones elementales de probabilidad: experimento aleatorio y axiomas de probabilidad"
           ]
         },
         {
-          "modulo": "Inferencia estadística agronómica",
+          "modulo": "Variables aleatorias y modelos de probabilidad",
           "temas": [
-            "Inferencia estadística aplicada a problemas agronómicos"
+            "Variables aleatorias: funciones de distribución y densidad, momentos, esperanza y varianza",
+            "Modelos teóricos de probabilidad: variables discretas y continuas"
+          ]
+        },
+        {
+          "modulo": "Muestreo e inferencia estadística",
+          "temas": [
+            "Muestreo de una población infinita: distribución de la media y la varianza muestrales",
+            "Estimación puntual y por intervalo de confianza",
+            "Prueba de hipótesis: errores tipo I y II, hipótesis sobre medias y proporciones"
           ]
         }
       ]
@@ -219,15 +412,32 @@
       "nombre": "Teoría Económica",
       "modulos": [
         {
-          "modulo": "Microeconomía aplicada a la producción agropecuaria",
+          "modulo": "Microeconomía: mercado y producción",
           "temas": [
-            "Microeconomía aplicada a problemas productivos agropecuarios"
+            "Oferta y demanda: equilibrio de mercado y sus desplazamientos",
+            "Teoría de la firma: producción, costos y optimización"
           ]
         },
         {
-          "modulo": "Contexto macroeconómico agropecuario",
+          "modulo": "Consumidor y estructuras de mercado",
           "temas": [
-            "Contexto macroeconómico y comportamiento de empresas agropecuarias"
+            "Teoría del consumidor: preferencias, restricción presupuestaria y elasticidades",
+            "Estructuras de mercado: monopolio, oligopolio y competencia monopolística",
+            "Riesgo e incertidumbre en la toma de decisiones"
+          ]
+        },
+        {
+          "modulo": "Economía ambiental y de los recursos naturales",
+          "temas": [
+            "Externalidades, bienes públicos y derechos de propiedad ambiental",
+            "Uso múltiple de la tierra y el agua como recursos naturales"
+          ]
+        },
+        {
+          "modulo": "Macroeconomía aplicada",
+          "temas": [
+            "Contabilidad nacional, balanza de pagos e inflación en Uruguay",
+            "El modelo IS-LM: equilibrio en los mercados de bienes y financiero"
           ]
         }
       ]
@@ -236,16 +446,43 @@
       "nombre": "Agrometeorología",
       "modulos": [
         {
-          "modulo": "Clima y producción agropecuaria",
+          "modulo": "Sistema climático y radiación",
           "temas": [
-            "Interdependencias entre el clima y las actividades agropecuarias",
-            "Variabilidad climática y regionalización agroclimática de Uruguay"
+            "Sistema climático: tiempo, clima y clasificaciones climáticas globales",
+            "Radiación solar y balance de energía"
           ]
         },
         {
-          "modulo": "Riesgo climático agropecuario",
+          "modulo": "Temperatura",
           "temas": [
-            "Eventos meteorológicos extremos y cambio climático"
+            "Temperatura del suelo: régimen térmico diario y estacional",
+            "Temperatura del aire: evolución e indicadores climáticos en Uruguay",
+            "Heladas: factores, régimen agroclimático y métodos de control"
+          ]
+        },
+        {
+          "modulo": "Fenología y circulación atmosférica",
+          "temas": [
+            "Fenología: índices agrometeorológicos y efectos del cambio climático",
+            "Circulación general de la atmósfera: masas de aire y tipos de frentes",
+            "Cambio climático y sus efectos en la temperatura del aire"
+          ]
+        },
+        {
+          "modulo": "Ciclo hidrológico y balance hídrico",
+          "temas": [
+            "Ciclo hidrológico y régimen de precipitaciones de Uruguay",
+            "Relaciones hídricas suelo-planta-atmósfera: evapotranspiración y balance hídrico",
+            "Aplicaciones del balance hídrico: sequías agronómicas y evapotranspiración de cultivos"
+          ]
+        },
+        {
+          "modulo": "Aplicaciones agropecuarias del clima",
+          "temas": [
+            "Influencia del clima en la adaptación y producción animal: estrés térmico",
+            "Aspectos agrometeorológicos del control de plagas y enfermedades",
+            "Viento y barreras protectoras",
+            "Sustentabilidad, variabilidad y cambio climático en sistemas agropecuarios"
           ]
         }
       ]
@@ -254,10 +491,26 @@
       "nombre": "Edafología",
       "modulos": [
         {
-          "modulo": "Ciencia del suelo",
+          "modulo": "Morfología y componentes del suelo",
           "temas": [
-            "Descripción y clasificación de suelos",
-            "Propiedades agronómicas del suelo y capacidad de uso"
+            "Morfología del suelo: fases sólida, líquida y gaseosa, horizontes y perfil",
+            "Componentes minerales, materia orgánica y biota del suelo"
+          ]
+        },
+        {
+          "modulo": "Propiedades del suelo",
+          "temas": [
+            "Propiedades fisicoquímicas: intercambio catiónico, pH, salinidad y potencial redox",
+            "Propiedades físicas: textura, estructura, densidad, consistencia y color",
+            "Propiedades hídricas: retención, potencial y movimiento del agua en el suelo"
+          ]
+        },
+        {
+          "modulo": "Génesis, taxonomía y capacidad de uso",
+          "temas": [
+            "Factores y procesos de formación del suelo",
+            "Taxonomía de suelos: horizontes diagnósticos y órdenes de suelos del Uruguay",
+            "Capacidad de uso, degradación, erosión e índices CONEAT"
           ]
         }
       ]
