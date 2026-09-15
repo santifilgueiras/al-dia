@@ -11418,5 +11418,177 @@
   "Principales enfermedades de los cultivos de invierno: prevención y control": {
     "libro": "Guía SATA - Guía Uruguaya para la Protección y Fertilización Vegetal",
     "seccion": "sección de enfermedades de cultivos de invierno"
+  },
+  "Renta de la tierra: teorías, conceptos y precio de la tierra en Uruguay": {
+    "libro": "Vassallo (ed.) - Dinámica y Competencia Intrasectorial en el Agro Uruguay 2000-2010",
+    "seccion": "capítulo de renta y precio de la tierra"
+  },
+  "Esquemas de abordaje del sector agropecuario: cadenas, complejos y cadenas de valor": {
+    "libro": "Buxedas - Enfoque para el Análisis del Sistema Agropecuario y los Complejos Agroindustriales",
+    "seccion": "selección de lecturas de la cátedra de Economía Agraria"
+  },
+  "El proceso tecnológico y la innovación en el agro": {
+    "libro": "Vassallo (ed.) - Dinámica y Competencia Intrasectorial en el Agro Uruguay 2000-2010",
+    "seccion": "capítulo de proceso tecnológico e innovación"
+  },
+  "Políticas agrarias y económicas en Uruguay": {
+    "libro": "Vassallo (ed.) - Dinámica y Competencia Intrasectorial en el Agro Uruguay 2000-2010",
+    "seccion": "capítulo de políticas agrarias"
+  },
+  "El mercado mundial y los impactos del comercio en la agricultura": {
+    "libro": "Vassallo (ed.) - Dinámica y Competencia Intrasectorial en el Agro Uruguay 2000-2010",
+    "seccion": "capítulo de mercado mundial y comercio agrario"
+  },
+  "La evolución del sector y la dinámica agropecuaria uruguaya": {
+    "libro": "Vassallo (ed.) - Dinámica y Competencia Intrasectorial en el Agro Uruguay 2000-2010",
+    "seccion": "capítulo de dinámica y competencia intrasectorial"
+  },
+  "La cadena de carne vacuna: estructura, productores y mercado": {
+    "libro": "Vassallo (ed.) - Dinámica y Competencia Intrasectorial en el Agro Uruguay 2000-2010",
+    "seccion": "capítulo de la cadena de carne vacuna"
+  },
+  "El complejo lechero: estructura, cambio técnico y competitividad": {
+    "libro": "Vassallo (ed.) - Dinámica y Competencia Intrasectorial en el Agro Uruguay 2000-2010",
+    "seccion": "capítulo del complejo lechero"
+  },
+  "La agricultura de secano: cultivos e innovaciones tecnológicas": {
+    "libro": "Vassallo (ed.) - Dinámica y Competencia Intrasectorial en el Agro Uruguay 2000-2010",
+    "seccion": "capítulo de agricultura de secano"
+  },
+  "El complejo arrocero: estructura, política y perspectivas": {
+    "libro": "Vassallo (ed.) - Dinámica y Competencia Intrasectorial en el Agro Uruguay 2000-2010",
+    "seccion": "capítulo del complejo arrocero"
+  },
+  "El complejo forestal: evolución e inversiones": {
+    "libro": "Vassallo (ed.) - Dinámica y Competencia Intrasectorial en el Agro Uruguay 2000-2010",
+    "seccion": "capítulo del complejo forestal"
+  },
+  "Cadenas y complejos del sector granjero: hortícola y citrícola": {
+    "libro": "Vassallo (ed.) - Dinámica y Competencia Intrasectorial en el Agro Uruguay 2000-2010",
+    "seccion": "capítulo del sector granjero"
+  },
+  "Adaptación evolutiva y análisis comparativo del sistema digestivo": {
+    "libro": "Van Soest - Nutritional Ecology of the Ruminant",
+    "seccion": "capítulo de anatomía comparada del sistema digestivo"
+  },
+  "Consumo y su regulación: valor nutritivo de los alimentos y factores que lo afectan": {
+    "libro": "Church - Fisiología Digestiva y Nutrición",
+    "seccion": "capítulo de regulación del consumo"
+  },
+  "Digestión y absorción de nutrientes en monogástricos y rumiantes": {
+    "libro": "Church - Fisiología Digestiva y Nutrición",
+    "seccion": "capítulo de digestión y absorción"
+  },
+  "Transporte de nutrientes y metabolismo energético y del nitrógeno": {
+    "libro": "Van Soest - Nutritional Ecology of the Ruminant",
+    "seccion": "capítulo de metabolismo de nutrientes"
+  },
+  "Modelos de integración de consumo, digestión y metabolismo intermediario": {
+    "libro": "McDonald et al. - Nutrición Animal",
+    "seccion": "capítulo de integración metabólica"
+  },
+  "Sustentabilidad y sistemas: indicadores sociales, económicos y productivos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO II: enfoque de la sustentabilidad"
+  },
+  "Caracterización socioeconómica y de recursos naturales: SIG, vegetación y suelos": {
+    "libro": "García Préchac y Durán - Suelos del Uruguay, Tomo II",
+    "seccion": "capítulo de caracterización de recursos naturales"
+  },
+  "Indicadores ambientales, económicos y productivos de sustentabilidad": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO II: definición y cálculo de indicadores"
+  },
+  "Síntesis de la sustentabilidad de un sistema agrario y elaboración del informe final": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO II: discusión y síntesis de la información"
+  },
+  "Introducción a la gestión agraria: ciclos biológicos y formas de organización": {
+    "libro": "Álvarez, Arbeletche, Correa, Molina, Pedemonte y Tamosiunas - Manual de Gestión de Empresas Agropecuarias",
+    "seccion": "capítulo introductorio a la gestión agraria"
+  },
+  "Contabilidad e información en la unidad de producción: registros e indicadores": {
+    "libro": "Álvarez, Arbeletche, Correa, Molina, Pedemonte y Tamosiunas - Manual de Gestión de Empresas Agropecuarias",
+    "seccion": "capítulo de contabilidad e información"
+  },
+  "Comercialización y mercados agrarios: precios, tarifas y formas de pago": {
+    "libro": "Álvarez, Arbeletche, Correa, Molina, Pedemonte y Tamosiunas - Manual de Gestión de Empresas Agropecuarias",
+    "seccion": "capítulo de comercialización y mercados agrarios"
+  },
+  "Costos: clasificación, tratamiento contable, margen y punto de equilibrio": {
+    "libro": "Barnard y Nix - Planeamiento y Control Agropecuarios",
+    "seccion": "capítulo de costos agropecuarios"
+  },
+  "Diagnóstico en la empresa agraria: árbol de indicadores y árbol de problemas": {
+    "libro": "Álvarez, Arbeletche, Correa, Molina, Pedemonte y Tamosiunas - Manual de Gestión de Empresas Agropecuarias",
+    "seccion": "capítulo de diagnóstico de la empresa agraria"
+  },
+  "Planificación: presupuesto parcial y total, incertidumbre y riesgo": {
+    "libro": "Barnard y Nix - Planeamiento y Control Agropecuarios",
+    "seccion": "capítulo de planificación y presupuestación"
+  },
+  "Matemáticas financieras: fuentes de financiamiento e indicadores financieros": {
+    "libro": "Pascale - Decisiones Financieras",
+    "seccion": "capítulo de matemáticas financieras"
+  },
+  "Decisiones de inversión de mediano y largo plazo: flujo de fondos y evaluación de conveniencia": {
+    "libro": "Mokate - Evaluación Financiera de Proyectos de Inversión",
+    "seccion": "capítulo de evaluación de proyectos de inversión"
+  },
+  "Enfoque global de la explotación agropecuaria (EGEA)": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO III: enfoque global de la explotación agropecuaria"
+  },
+  "Entrenamiento en QGis: fotointerpretación y relevamiento de recursos forrajeros": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO III: herramientas de información geográfica"
+  },
+  "Organización del trabajo en la empresa agropecuaria: metodología del balance de trabajo": {
+    "libro": "Álvarez, Arbeletche, Correa, Molina, Pedemonte y Tamosiunas - Manual de Gestión de Empresas Agropecuarias",
+    "seccion": "capítulo de balance de trabajo"
+  },
+  "Indicadores de sustentabilidad en empresas ganaderas y agrícola-ganaderas": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO III: indicadores de sustentabilidad"
+  },
+  "Diagnóstico global de la explotación agropecuaria (DGEA): informes contables y análisis FODA": {
+    "libro": "Álvarez, Arbeletche, Correa, Molina, Pedemonte y Tamosiunas - Manual de Gestión de Empresas Agropecuarias",
+    "seccion": "capítulo de diagnóstico de empresas agropecuarias"
+  },
+  "Presupuestación forrajera": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "AFO III: presupuestación forrajera"
+  },
+  "Proyección del sistema de producción: selección de alternativas y análisis de riesgos": {
+    "libro": "Barry, Hopkin y Baker - Riesgo e Incertidumbre",
+    "seccion": "material de la cátedra sobre riesgo e incertidumbre"
+  },
+  "Trayectorias conceptuales y prácticas de extensión rural (ATER)": {
+    "libro": "Alemany y Sevilla-Guzmán - ¿Vuelve la Extensión Rural?",
+    "seccion": "artículo sobre extensión rural en Latinoamérica"
+  },
+  "Empresarios/as y terratenientes: heterogeneidad social de las empresas agrícolas": {
+    "libro": "Oyhantçabal Benelli - Los Terratenientes Agrarios en el Uruguay Contemporáneo",
+    "seccion": "capítulo de El Cambio Agrario en el Uruguay Contemporáneo"
+  },
+  "Productores/as familiares: caracterización y transformaciones recientes": {
+    "libro": "Cardeillac Gulla - La Producción (Cada Vez Menos) Familiar Uruguaya en los Albores del Siglo XXI",
+    "seccion": "capítulo de El Cambio Agrario en el Uruguay Contemporáneo"
+  },
+  "Asalariados/as rurales: proletarización del agro uruguayo": {
+    "libro": "Carámbula y Oyhantçabal Benelli - Proletarización del Agro Uruguayo a Comienzos del Siglo XXI",
+    "seccion": "artículo de la revista Eutopía"
+  },
+  "Organizaciones agrarias y procesos colectivos": {
+    "libro": "Piñeiro y Fernández - Organizaciones Rurales",
+    "seccion": "capítulo de El Campo Uruguayo: Una Mirada desde la Sociología Rural"
+  },
+  "Estado y políticas públicas dirigidas al sector agropecuario": {
+    "libro": "Riella y Mascheroni - Las Políticas Públicas y las Organizaciones Agrarias en el Uruguay Progresista",
+    "seccion": "capítulos 2, 3 y 5"
+  },
+  "Innovación en procesos agropecuarios": {
+    "libro": "Bianco - La Innovación en los Estudios Sociales de Procesos Agropecuarios",
+    "seccion": "artículo en Agrociencia Uruguay"
   }
 }

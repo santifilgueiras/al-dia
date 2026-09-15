@@ -558,16 +558,35 @@
       "nombre": "Economía Agraria",
       "modulos": [
         {
-          "modulo": "Competitividad agroindustrial uruguaya",
+          "modulo": "Renta de la tierra y esquemas de abordaje",
           "temas": [
-            "Competitividad de la agricultura y agroindustria uruguaya",
-            "Cadenas agroindustriales y desarrollo tecnológico"
+            "Renta de la tierra: teorías, conceptos y precio de la tierra en Uruguay",
+            "Esquemas de abordaje del sector agropecuario: cadenas, complejos y cadenas de valor"
           ]
         },
         {
-          "modulo": "Mercado agropecuario mundial",
+          "modulo": "Innovación, políticas y mercado mundial",
           "temas": [
-            "Competitividad en el mercado agropecuario mundial"
+            "El proceso tecnológico y la innovación en el agro",
+            "Políticas agrarias y económicas en Uruguay",
+            "El mercado mundial y los impactos del comercio en la agricultura"
+          ]
+        },
+        {
+          "modulo": "Dinámica sectorial agropecuaria",
+          "temas": [
+            "La evolución del sector y la dinámica agropecuaria uruguaya"
+          ]
+        },
+        {
+          "modulo": "Cadenas y complejos agroindustriales",
+          "temas": [
+            "La cadena de carne vacuna: estructura, productores y mercado",
+            "El complejo lechero: estructura, cambio técnico y competitividad",
+            "La agricultura de secano: cultivos e innovaciones tecnológicas",
+            "El complejo arrocero: estructura, política y perspectivas",
+            "El complejo forestal: evolución e inversiones",
+            "Cadenas y complejos del sector granjero: hortícola y citrícola"
           ]
         }
       ]
@@ -576,10 +595,28 @@
       "nombre": "Fisiología y Metabolismo Animal",
       "modulos": [
         {
-          "modulo": "Digestión y metabolismo de animales productivos",
+          "modulo": "Evolución, ambiente y funcionalidad digestiva",
           "temas": [
-            "Ingestión, digestión y metabolismo de animales productivos",
-            "Consumo y eficiencia digestiva y metabólica"
+            "Adaptación evolutiva y análisis comparativo del sistema digestivo"
+          ]
+        },
+        {
+          "modulo": "Ingestión, digestión y absorción",
+          "temas": [
+            "Consumo y su regulación: valor nutritivo de los alimentos y factores que lo afectan",
+            "Digestión y absorción de nutrientes en monogástricos y rumiantes"
+          ]
+        },
+        {
+          "modulo": "Transporte y metabolismo",
+          "temas": [
+            "Transporte de nutrientes y metabolismo energético y del nitrógeno"
+          ]
+        },
+        {
+          "modulo": "Integración y regulación",
+          "temas": [
+            "Modelos de integración de consumo, digestión y metabolismo intermediario"
           ]
         }
       ]
@@ -804,10 +841,27 @@
       "nombre": "AFO II: Sustentabilidad de Sistemas Agrarios",
       "modulos": [
         {
-          "modulo": "Sustentabilidad de sistemas agrarios",
+          "modulo": "Enfoque de la sustentabilidad",
           "temas": [
-            "Dimensiones de la sustentabilidad de sistemas agrarios",
-            "Diagnóstico de sustentabilidad de un sistema agrario mediante indicadores"
+            "Sustentabilidad y sistemas: indicadores sociales, económicos y productivos"
+          ]
+        },
+        {
+          "modulo": "Caracterización del área de estudio",
+          "temas": [
+            "Caracterización socioeconómica y de recursos naturales: SIG, vegetación y suelos"
+          ]
+        },
+        {
+          "modulo": "Definición y cálculo de indicadores",
+          "temas": [
+            "Indicadores ambientales, económicos y productivos de sustentabilidad"
+          ]
+        },
+        {
+          "modulo": "Discusión y síntesis",
+          "temas": [
+            "Síntesis de la sustentabilidad de un sistema agrario y elaboración del informe final"
           ]
         }
       ]
@@ -886,7 +940,8 @@
             "Desarrollo agropecuario, desarrollo agrario y desarrollo rural: distinción conceptual",
             "La pobreza rural como fundamento del concepto de desarrollo rural",
             "El enfoque territorial del desarrollo rural: territorio, economía territorial y competitividad territorial",
-            "Cohesión social y cohesión territorial como metas del desarrollo rural"
+            "Cohesión social y cohesión territorial como metas del desarrollo rural",
+            "Trayectorias conceptuales y prácticas de extensión rural (ATER)"
           ]
         },
         {
@@ -897,6 +952,22 @@
             "Brechas de género en el acceso a la tierra, el empleo y la sucesión de la explotación",
             "Heterogeneidad de las juventudes rurales",
             "Asincronía de género en las transiciones a la adultez en el medio rural"
+          ]
+        },
+        {
+          "modulo": "Estratificación social en el agro uruguayo",
+          "temas": [
+            "Empresarios/as y terratenientes: heterogeneidad social de las empresas agrícolas",
+            "Productores/as familiares: caracterización y transformaciones recientes",
+            "Asalariados/as rurales: proletarización del agro uruguayo"
+          ]
+        },
+        {
+          "modulo": "Organizaciones, políticas públicas e innovación",
+          "temas": [
+            "Organizaciones agrarias y procesos colectivos",
+            "Estado y políticas públicas dirigidas al sector agropecuario",
+            "Innovación en procesos agropecuarios"
           ]
         }
       ]
@@ -1058,17 +1129,31 @@
       "nombre": "Gestión de Empresas Agrarias",
       "modulos": [
         {
-          "modulo": "Análisis económico-financiero de la empresa agraria",
+          "modulo": "Introducción y contabilidad",
           "temas": [
-            "Resultados económico-financieros y patrimoniales de sistemas productivos agrarios",
-            "Indicadores técnicos, económicos y financieros de la empresa agraria"
+            "Introducción a la gestión agraria: ciclos biológicos y formas de organización",
+            "Contabilidad e información en la unidad de producción: registros e indicadores"
           ]
         },
         {
-          "modulo": "Planificación y organización de la empresa agraria",
+          "modulo": "Comercialización y costos",
           "temas": [
-            "Niveles de planificación de la empresa agraria",
-            "Formas de organización empresarial agraria"
+            "Comercialización y mercados agrarios: precios, tarifas y formas de pago",
+            "Costos: clasificación, tratamiento contable, margen y punto de equilibrio"
+          ]
+        },
+        {
+          "modulo": "Diagnóstico y planificación",
+          "temas": [
+            "Diagnóstico en la empresa agraria: árbol de indicadores y árbol de problemas",
+            "Planificación: presupuesto parcial y total, incertidumbre y riesgo"
+          ]
+        },
+        {
+          "modulo": "Finanzas de la empresa agraria",
+          "temas": [
+            "Matemáticas financieras: fuentes de financiamiento e indicadores financieros",
+            "Decisiones de inversión de mediano y largo plazo: flujo de fondos y evaluación de conveniencia"
           ]
         }
       ]
@@ -1077,18 +1162,30 @@
       "nombre": "AFO III: Agrícola-ganadero",
       "modulos": [
         {
-          "modulo": "Diagnóstico predial agrícola-ganadero",
+          "modulo": "Enfoque global y herramientas de relevamiento",
           "temas": [
-            "Diagnóstico de sistemas de producción de pasto y grano a escala predial",
-            "Caracterización de los recursos naturales del predio"
+            "Enfoque global de la explotación agropecuaria (EGEA)",
+            "Entrenamiento en QGis: fotointerpretación y relevamiento de recursos forrajeros"
           ]
         },
         {
-          "modulo": "Clínica agronómica agrícola-ganadera",
+          "modulo": "Organización y sustentabilidad",
           "temas": [
-            "Clínica agronómica: producción animal, agricultura en rotación con pasturas y campo natural",
-            "Análisis de resultados productivos, socioeconómicos y ambientales",
-            "Propuesta de cambio del sistema de producción"
+            "Organización del trabajo en la empresa agropecuaria: metodología del balance de trabajo",
+            "Indicadores de sustentabilidad en empresas ganaderas y agrícola-ganaderas"
+          ]
+        },
+        {
+          "modulo": "Diagnóstico global de la explotación",
+          "temas": [
+            "Diagnóstico global de la explotación agropecuaria (DGEA): informes contables y análisis FODA"
+          ]
+        },
+        {
+          "modulo": "Presupuestación y proyección",
+          "temas": [
+            "Presupuestación forrajera",
+            "Proyección del sistema de producción: selección de alternativas y análisis de riesgos"
           ]
         }
       ]
