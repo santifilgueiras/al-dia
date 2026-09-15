@@ -10978,5 +10978,445 @@
   "El modelo IS-LM: equilibrio en los mercados de bienes y financiero": {
     "libro": "Blanchard - Macroeconomía",
     "seccion": "capítulo del modelo IS-LM"
+  },
+  "Fertilidad del suelo: definición y su rol como factor de producción vegetal": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 1: introducción a la fertilidad del suelo"
+  },
+  "Nutrientes minerales: absorción de iones y efectos del suelo sobre la raíz": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 1: nutrición mineral de las plantas"
+  },
+  "Potasio, calcio y magnesio: formas en el suelo, disponibilidad y fertilizantes": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 1: nutrición catiónica"
+  },
+  "Acidez y alcalinidad del suelo: efectos en el crecimiento vegetal y encalado": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 1: acidez y encalado"
+  },
+  "Nitrógeno: ciclo, mineralización, fijación simbiótica y fertilizantes nitrogenados": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 1: nitrógeno"
+  },
+  "Fósforo: formas en el suelo, dinámica y fertilizantes fosfatados": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 1: fósforo"
+  },
+  "Azufre: reacciones, disponibilidad y fertilizantes azufrados": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 1: azufre"
+  },
+  "Micronutrientes: disponibilidad, deficiencias y toxicidad en Uruguay": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 1: micronutrientes"
+  },
+  "Enmiendas orgánicas y abonos verdes como fuente de nitrógeno y materia orgánica": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 2: enmiendas orgánicas"
+  },
+  "Muestreo de suelos: criterios, profundidad e instrumentos": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 2: muestreo de suelos"
+  },
+  "Tecnología de fertilizantes: producción y mezclas fertilizantes": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 2: tecnología de fertilizantes"
+  },
+  "Respuesta vegetal al suministro de nutrientes: curvas de respuesta y dosis óptima": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 2: respuesta vegetal a la fertilización"
+  },
+  "Análisis de suelo: selección, calibración y metodología de evaluación de la fertilidad": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 2: análisis de suelo"
+  },
+  "Análisis foliar: interpretación, niveles críticos y metodología DRIS": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 2: análisis foliar"
+  },
+  "Aplicación de fertilizantes: momento, forma, fertirrigación y fertilización foliar": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 2: aplicación de fertilizantes"
+  },
+  "Consideraciones ambientales de la fertilización nitrogenada y fosfatada": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 2: fertilización y ambiente"
+  },
+  "Recomendación de dosis de fertilización y manejo de nutrientes por agricultura de precisión": {
+    "libro": "Rabuffetti - La Fertilidad del Suelo y su Manejo",
+    "seccion": "volumen 2: recomendación de dosis y agricultura de precisión"
+  },
+  "Introducción a la genómica: dogma central, alelos, haplotipos y marcadores moleculares": {
+    "libro": "Hartl - A Primer of Population Genetics and Genomics",
+    "seccion": "capítulo introductorio de genómica"
+  },
+  "Variación genética y equilibrio de Hardy-Weinberg": {
+    "libro": "Hartl - A Primer of Population Genetics and Genomics",
+    "seccion": "capítulo de equilibrio de Hardy-Weinberg"
+  },
+  "Deriva genética: modelo de Wright-Fisher y tamaño efectivo poblacional": {
+    "libro": "Hartl - A Primer of Population Genetics and Genomics",
+    "seccion": "capítulo de deriva genética"
+  },
+  "Selección natural: modelo de un locus con dos alelos y sobredominancia": {
+    "libro": "Hartl - A Primer of Population Genetics and Genomics",
+    "seccion": "capítulo de selección natural"
+  },
+  "Dinámica de dos loci: desequilibrio de ligamiento y arrastre genético": {
+    "libro": "Hartl - A Primer of Population Genetics and Genomics",
+    "seccion": "capítulo de dinámica de dos loci"
+  },
+  "Apareamientos no aleatorios: endocría, identidad por descendencia y efecto Wahlund": {
+    "libro": "Hartl - A Primer of Population Genetics and Genomics",
+    "seccion": "capítulo de apareamientos no aleatorios"
+  },
+  "Genética de poblaciones microbianas: transferencia horizontal y genómica poblacional": {
+    "libro": "Hartl - A Primer of Population Genetics and Genomics",
+    "seccion": "capítulo de genética de poblaciones microbianas"
+  },
+  "El modelo genético básico: varianza genotípica y ambiental": {
+    "libro": "Falconer y Mackay - Introduction to Quantitative Genetics",
+    "seccion": "capítulo del modelo genético básico"
+  },
+  "Heredabilidad y repetibilidad": {
+    "libro": "Falconer y Mackay - Introduction to Quantitative Genetics",
+    "seccion": "capítulo de heredabilidad"
+  },
+  "Parentesco y semejanza entre parientes: modelos mixtos lineales": {
+    "libro": "Falconer y Mackay - Introduction to Quantitative Genetics",
+    "seccion": "capítulo de parentesco y covarianza genética"
+  },
+  "Selección artificial I: respuesta a la selección y ecuación del criador": {
+    "libro": "Cardellino y Rovira - Mejoramiento Genético Animal",
+    "seccion": "capítulo de respuesta a la selección"
+  },
+  "Respuesta correlacionada: correlaciones genéticas y ambientales": {
+    "libro": "Falconer y Mackay - Introduction to Quantitative Genetics",
+    "seccion": "capítulo de respuesta correlacionada"
+  },
+  "Selección artificial II: índices de selección y selección genómica": {
+    "libro": "Cardellino y Rovira - Mejoramiento Genético Animal",
+    "seccion": "capítulo de métodos de selección"
+  },
+  "Endocría, exocría, consanguinidad y depresión endogámica": {
+    "libro": "Falconer y Mackay - Introduction to Quantitative Genetics",
+    "seccion": "capítulo de consanguinidad"
+  },
+  "Normas de reacción e interacción genotipo × ambiente": {
+    "libro": "Falconer y Mackay - Introduction to Quantitative Genetics",
+    "seccion": "capítulo de interacción genotipo-ambiente"
+  },
+  "Sistemas de producción y ciclo productivo de animales de interés productivo": {
+    "libro": "Cunningham - Fisiología Veterinaria",
+    "seccion": "capítulo de sistemas de producción animal"
+  },
+  "Requerimientos y aportes de nutrientes en animales adultos": {
+    "libro": "McDonald et al. - Nutrición Animal",
+    "seccion": "capítulo de requerimientos nutricionales"
+  },
+  "Endocrinología de la reproducción: gametogénesis y ciclo estral": {
+    "libro": "Hafez - Reproducción e Inseminación Artificial en Animales",
+    "seccion": "capítulo de endocrinología reproductiva"
+  },
+  "Transporte de gametos, fecundación y reconocimiento materno de la preñez": {
+    "libro": "Senger - Pathways to Pregnancy and Parturition",
+    "seccion": "capítulo de fecundación y reconocimiento de la preñez"
+  },
+  "Crecimiento y metabolismo embrionario, fetal y placentario: programación fetal": {
+    "libro": "Senger - Pathways to Pregnancy and Parturition",
+    "seccion": "capítulo de desarrollo placentario y fetal"
+  },
+  "Regulación de la partición de nutrientes durante la gestación": {
+    "libro": "McDonald et al. - Nutrición Animal",
+    "seccion": "capítulo de nutrición en la gestación"
+  },
+  "Período de transición: fisiología y control endócrino del parto": {
+    "libro": "Senger - Pathways to Pregnancy and Parturition",
+    "seccion": "capítulo del parto"
+  },
+  "Lactación y glándula mamaria: síntesis de calostro y leche": {
+    "libro": "Cunningham - Fisiología Veterinaria",
+    "seccion": "capítulo de fisiología de la lactación"
+  },
+  "Curvas de lactancia y destete": {
+    "libro": "McDonald et al. - Nutrición Animal",
+    "seccion": "capítulo de nutrición en la lactancia"
+  },
+  "Crecimiento y desarrollo posdestete: deposición de tejido muscular y graso": {
+    "libro": "McDonald et al. - Nutrición Animal",
+    "seccion": "capítulo de crecimiento y composición corporal"
+  },
+  "Bases fisiológicas de la pubertad": {
+    "libro": "Hafez - Reproducción e Inseminación Artificial en Animales",
+    "seccion": "capítulo de pubertad"
+  },
+  "Indicadores de eficiencia reproductiva, alimenticia y ambiental": {
+    "libro": "McDonald et al. - Nutrición Animal",
+    "seccion": "capítulo de eficiencia alimenticia y ambiental"
+  },
+  "Introducción a la ecofisiología: niveles de organización y escalas de los cultivos": {
+    "libro": "Dogliotti, Mazzilli y Gambetta - Ecofisiología de Cultivos (guía del curso)",
+    "seccion": "unidad introductoria"
+  },
+  "Intercepción de radiación, asimilación de carbono y respiración": {
+    "libro": "Sadras y Calderini - Crop Physiology",
+    "seccion": "capítulo de intercepción de radiación y fotosíntesis"
+  },
+  "Regulación del desarrollo de los cultivos: efecto de la temperatura y el fotoperíodo": {
+    "libro": "Sadras y Calderini - Crop Physiology",
+    "seccion": "capítulo de desarrollo de cultivos"
+  },
+  "Partición de asimilados, crecimiento y estimación del rendimiento potencial": {
+    "libro": "Dogliotti, Mazzilli y Gambetta - Ecofisiología de Cultivos (guía del curso)",
+    "seccion": "unidad de producción potencial"
+  },
+  "Sistema suelo-planta-atmósfera y efectos del déficit hídrico en el rendimiento": {
+    "libro": "Sadras y Calderini - Crop Physiology",
+    "seccion": "capítulo de relaciones hídricas del cultivo"
+  },
+  "Estimación de la demanda de agua y eficiencia de su uso": {
+    "libro": "Dogliotti, Mazzilli y Gambetta - Ecofisiología de Cultivos (guía del curso)",
+    "seccion": "unidad de producción limitada por agua"
+  },
+  "Función de los nutrientes y estimación de la demanda y respuesta a su disponibilidad": {
+    "libro": "Dogliotti, Mazzilli y Gambetta - Ecofisiología de Cultivos (guía del curso)",
+    "seccion": "unidad de producción limitada por nutrientes"
+  },
+  "Productividad y eficiencia de uso de los nutrientes": {
+    "libro": "Hay y Porter - The Physiology of Crop Yield",
+    "seccion": "capítulo de eficiencia de uso de nutrientes"
+  },
+  "Integración de factores que explican el rendimiento actual y brechas de rendimiento": {
+    "libro": "Dogliotti, Mazzilli y Gambetta - Ecofisiología de Cultivos (guía del curso)",
+    "seccion": "unidad de brechas de rendimiento"
+  },
+  "Conservación y degradación de suelos: conceptos generales": {
+    "libro": "Durán y García Préchac - Suelos del Uruguay, Tomo II",
+    "seccion": "capítulo de degradación de suelos"
+  },
+  "Elementos para la planificación del uso de la tierra a nivel predial": {
+    "libro": "Durán y García Préchac - Suelos del Uruguay, Tomo II",
+    "seccion": "capítulo de planificación del uso de la tierra"
+  },
+  "Compactación de suelos y desarrollo de la tracción: relación maquinaria-suelo": {
+    "libro": "Botta - Tractores: Eficiencia de Uso",
+    "seccion": "capítulo de tracción y compactación"
+  },
+  "Sistemas de laboreo: laboreo conservacionista, cero laboreo y siembra directa": {
+    "libro": "Balbuena et al. - Herramientas de Labranza para la Descompactación del Suelo Agrícola",
+    "seccion": "capítulo de sistemas de laboreo"
+  },
+  "Factores y proceso de erosión": {
+    "libro": "Durán y García Préchac - Suelos del Uruguay, Tomo II",
+    "seccion": "capítulo de erosión de suelos"
+  },
+  "Ecuación Universal de Pérdida de Suelo (USLE)": {
+    "libro": "Durán y García Préchac - Suelos del Uruguay, Tomo II",
+    "seccion": "capítulo de estimación de pérdida de suelo"
+  },
+  "Medidas de manejo de suelos para reducir erosión y compactación": {
+    "libro": "Durán y García Préchac - Suelos del Uruguay, Tomo II",
+    "seccion": "capítulo de manejo y conservación de suelos"
+  },
+  "Marco legal de conservación de suelos en Uruguay": {
+    "libro": "Durán y García Préchac - Suelos del Uruguay, Tomo II",
+    "seccion": "capítulo de normativa de conservación de suelos"
+  },
+  "Introducción al mejoramiento genético vegetal": {
+    "libro": "Poehlman y Sleper - Mejoramiento Genético de las Cosechas",
+    "seccion": "capítulo introductorio"
+  },
+  "Multiplicación y calidad de semillas: sistemas de semillas y normativas": {
+    "libro": "Poehlman y Sleper - Mejoramiento Genético de las Cosechas",
+    "seccion": "capítulo de producción de semillas"
+  },
+  "Interacción genotipo-ambiente: estabilidad de cultivares y evaluación": {
+    "libro": "Poehlman y Sleper - Mejoramiento Genético de las Cosechas",
+    "seccion": "capítulo de interacción genotipo-ambiente"
+  },
+  "Diversidad y estructura genética de poblaciones vegetales": {
+    "libro": "Poehlman y Sleper - Mejoramiento Genético de las Cosechas",
+    "seccion": "capítulo de diversidad genética"
+  },
+  "Recursos fitogenéticos: conservación, legislación y acervo genético": {
+    "libro": "Poehlman y Sleper - Mejoramiento Genético de las Cosechas",
+    "seccion": "capítulo de recursos fitogenéticos"
+  },
+  "Creación de variabilidad y selección de progenitores": {
+    "libro": "Poehlman y Sleper - Mejoramiento Genético de las Cosechas",
+    "seccion": "capítulo de creación de variabilidad"
+  },
+  "Mejoramiento de especies autógamas": {
+    "libro": "Poehlman y Sleper - Mejoramiento Genético de las Cosechas",
+    "seccion": "capítulo de mejoramiento en autógamas"
+  },
+  "Mejoramiento de especies alógamas": {
+    "libro": "Poehlman y Sleper - Mejoramiento Genético de las Cosechas",
+    "seccion": "capítulo de mejoramiento en alógamas"
+  },
+  "Mejoramiento de especies clonales": {
+    "libro": "Poehlman y Sleper - Mejoramiento Genético de las Cosechas",
+    "seccion": "capítulo de mejoramiento en especies clonales"
+  },
+  "Poliploidía y utilización del acervo genético secundario de los cultivos": {
+    "libro": "Poehlman y Sleper - Mejoramiento Genético de las Cosechas",
+    "seccion": "capítulo de poliploidía"
+  },
+  "Herramientas biotecnológicas: marcadores moleculares y edición genómica": {
+    "libro": "Poehlman y Sleper - Mejoramiento Genético de las Cosechas",
+    "seccion": "capítulo de biotecnología aplicada al mejoramiento"
+  },
+  "Introducción y anatomía general de los insectos": {
+    "libro": "Bentancourt - Manual de Entomología",
+    "seccion": "capítulo de anatomía de insectos"
+  },
+  "Tegumento, sistemas internos y biología del desarrollo de los insectos": {
+    "libro": "Bentancourt - Manual de Entomología",
+    "seccion": "capítulo de biología del desarrollo"
+  },
+  "Ecología de poblaciones de insectos y manejo integrado de plagas": {
+    "libro": "Metcalf y Luckmann - Introducción al Manejo de Plagas de Insectos",
+    "seccion": "capítulo de ecología de poblaciones y manejo de plagas"
+  },
+  "Control biológico: parasitoides, depredadores y microorganismos entomopatógenos": {
+    "libro": "Basso - Control Biológico de Insectos",
+    "seccion": "capítulo de control biológico"
+  },
+  "Control etológico y cultural: feromonas y técnica del insecto estéril": {
+    "libro": "Bentancourt - Manual de Entomología",
+    "seccion": "capítulo de control etológico y cultural"
+  },
+  "Variedades resistentes a insectos": {
+    "libro": "Bentancourt - Manual de Entomología",
+    "seccion": "capítulo de resistencia varietal"
+  },
+  "Control químico: clasificación de insecticidas, modo de acción y resistencia": {
+    "libro": "Bentancourt - Manual de Entomología",
+    "seccion": "capítulo de control químico"
+  },
+  "Ecotoxicología: impacto ambiental de los insecticidas": {
+    "libro": "Bentancourt - Manual de Entomología",
+    "seccion": "capítulo de ecotoxicología"
+  },
+  "Introducción a la fitopatología: concepto de enfermedad y patogénesis": {
+    "libro": "Agrios - Fitopatología",
+    "seccion": "capítulo introductorio"
+  },
+  "Sintomatología: síntomas, signos y agentes patogénicos bióticos y abióticos": {
+    "libro": "Agrios - Fitopatología",
+    "seccion": "capítulo de sintomatología"
+  },
+  "Hongos y cromistas fitopatógenos: Ascomycota, Zigomycota, Basidiomycota y Oomycetes": {
+    "libro": "Agrios - Fitopatología",
+    "seccion": "capítulo de hongos fitopatógenos"
+  },
+  "Virus fitopatógenos": {
+    "libro": "Gepp - Virus y Viroides Fitopatógenos",
+    "seccion": "publicación de la cátedra de Fitopatología"
+  },
+  "Bacterias fitopatógenas": {
+    "libro": "Agrios - Fitopatología",
+    "seccion": "capítulo de bacterias fitopatógenas"
+  },
+  "Nematodos fitopatógenos": {
+    "libro": "Agrios - Fitopatología",
+    "seccion": "capítulo de nematodos fitopatógenos"
+  },
+  "Diagnóstico de enfermedades: postulados de Koch": {
+    "libro": "Agrios - Fitopatología",
+    "seccion": "capítulo de diagnóstico"
+  },
+  "Epidemiología: cuantificación y modelos matemáticos de enfermedades": {
+    "libro": "Gepp - Apuntes sobre Epidemiología",
+    "seccion": "material de la cátedra de Fitopatología"
+  },
+  "Mecanismos de defensa y resistencia genética: teoría gen por gen": {
+    "libro": "Agrios - Fitopatología",
+    "seccion": "capítulo de resistencia genética"
+  },
+  "Control químico: fungicidas, bactericidas y resistencia a fungicidas": {
+    "libro": "Agrios - Fitopatología",
+    "seccion": "capítulo de control químico"
+  },
+  "Control cultural y biológico de enfermedades vegetales": {
+    "libro": "Mondino y Vero - Control Biológico de Patógenos en Plantas",
+    "seccion": "capítulo de control biológico"
+  },
+  "Manejo integrado de enfermedades vegetales": {
+    "libro": "Agrios - Fitopatología",
+    "seccion": "capítulo de manejo integrado"
+  },
+  "Introducción a la producción ganadera en Uruguay y el mundo": {
+    "libro": "Peyrou - La Cadena de la Carne Vacuna",
+    "seccion": "capítulo de caracterización del complejo cárnico"
+  },
+  "Estado nutricional y eficiencia reproductiva en vacas de cría": {
+    "libro": "Rovira - Manejo Nutritivo de los Rodeos de Cría en Pastoreo",
+    "seccion": "capítulo de estado nutricional y reproducción"
+  },
+  "Manejo general del rodeo de cría y herramienta genética: selección y cruzamientos": {
+    "libro": "González - Cruzamientos en Bovinos de Carne",
+    "seccion": "serie técnica de cruzamientos en ganado de carne"
+  },
+  "Factores que afectan el crecimiento y manejo de la invernada en pastoreo": {
+    "libro": "Di Marco - Crecimiento de Vacunos para Ganado de Carne",
+    "seccion": "capítulo de crecimiento y manejo de invernada"
+  },
+  "Manejo de la invernada en confinamiento y calidad de canal y carne": {
+    "libro": "Franco - Importancia de los Factores Productivos, Tecnológicos y de Manejo en la Calidad de la Canal y de la Carne Vacuna",
+    "seccion": "capítulo de calidad de canal y carne"
+  },
+  "El rol profesional del Ingeniero Agrónomo en la producción ganadera": {
+    "libro": "Peyrou - La Cadena de la Carne Vacuna",
+    "seccion": "capítulo de asistencia técnica en sistemas ganaderos"
+  },
+  "Preparación de suelos para cultivos de verano: laboreo, barbecho y manejo de malezas": {
+    "libro": "Ernst - Criterios Generales a Considerar en el Laboreo de Suelos para Cultivos de Verano",
+    "seccion": "artículo de la revista Cangüé"
+  },
+  "Ecofisiología y manejo de maíz, soja, sorgo y girasol": {
+    "libro": "Andrade - Ecofisiología de Maíz, Girasol y Soja",
+    "seccion": "capítulos de ecofisiología por cultivo"
+  },
+  "Manejo de malezas en cultivos de verano": {
+    "libro": "García-Torres y Fernández Quintanilla - Fundamentos sobre Malas Hierbas y Herbicidas",
+    "seccion": "capítulo de manejo de malezas en cultivos de verano"
+  },
+  "Principales enfermedades de los cultivos de verano: prevención y control": {
+    "libro": "Guía SATA - Guía Uruguaya para la Protección y Fertilización Vegetal",
+    "seccion": "sección de enfermedades de cultivos de verano"
+  },
+  "Manejo de plagas: reconocimiento, umbral de daño económico y control": {
+    "libro": "Guía SATA - Guía Uruguaya para la Protección y Fertilización Vegetal",
+    "seccion": "sección de plagas de cultivos de invierno"
+  },
+  "Manejo de la fertilización en cultivos de verano: nitrógeno y fósforo": {
+    "libro": "Hoffman, Siri y Ernst - Cultivos de Verano: Posibles Manejos para Minimizar Pérdidas de Nitrógeno",
+    "seccion": "artículo de la revista Cangüé"
+  },
+  "Preparación de suelos para cultivos de invierno: laboreo, barbecho y manejo de malezas": {
+    "libro": "Facultad de Agronomía - Sistemas de Laboreo para Trigo (Documento Nº2)",
+    "seccion": "documento de la cátedra sobre laboreo"
+  },
+  "Ecofisiología y manejo de trigo, cebada y colza": {
+    "libro": "Facultad de Agronomía - Revista Cangüé (fisiología, rendimiento, densidad y época de siembra de trigo y cebada)",
+    "seccion": "artículos de ecofisiología de cultivos de invierno"
+  },
+  "Nutrición de cultivos y criterios de fertilización: nitrógeno, fósforo y potasio": {
+    "libro": "Guía SATA - Guía Uruguaya para la Protección y Fertilización Vegetal",
+    "seccion": "sección de fertilización de cultivos de invierno"
+  },
+  "Elección de cultivares: marco legal, criterios y calidad de granos": {
+    "libro": "Facultad de Agronomía - Revista Cangüé (elección de cultivares)",
+    "seccion": "artículos de elección de cultivares de invierno"
+  },
+  "Manejo de malezas en cultivos de invierno": {
+    "libro": "Guía SATA - Guía Uruguaya para la Protección y Fertilización Vegetal",
+    "seccion": "sección de manejo de malezas en cultivos de invierno"
+  },
+  "Principales enfermedades de los cultivos de invierno: prevención y control": {
+    "libro": "Guía SATA - Guía Uruguaya para la Protección y Fertilización Vegetal",
+    "seccion": "sección de enfermedades de cultivos de invierno"
   }
 }

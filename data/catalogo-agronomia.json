@@ -606,16 +606,45 @@
       "nombre": "Fertilidad de Suelos y Fertilizantes",
       "modulos": [
         {
-          "modulo": "Nutrientes en el sistema suelo-planta",
+          "modulo": "Fundamentos de la fertilidad y nutrientes minerales",
           "temas": [
-            "Dinámica de nutrientes en el sistema suelo-planta",
-            "Diagnóstico del nivel de fertilidad del suelo"
+            "Fertilidad del suelo: definición y su rol como factor de producción vegetal",
+            "Nutrientes minerales: absorción de iones y efectos del suelo sobre la raíz"
           ]
         },
         {
-          "modulo": "Corrección tecnológica de la fertilidad",
+          "modulo": "Cationes, acidez y nitrógeno",
           "temas": [
-            "Medidas tecnológicas de corrección de la fertilidad: fertilizantes y enmiendas"
+            "Potasio, calcio y magnesio: formas en el suelo, disponibilidad y fertilizantes",
+            "Acidez y alcalinidad del suelo: efectos en el crecimiento vegetal y encalado",
+            "Nitrógeno: ciclo, mineralización, fijación simbiótica y fertilizantes nitrogenados"
+          ]
+        },
+        {
+          "modulo": "Fósforo, azufre y micronutrientes",
+          "temas": [
+            "Fósforo: formas en el suelo, dinámica y fertilizantes fosfatados",
+            "Azufre: reacciones, disponibilidad y fertilizantes azufrados",
+            "Micronutrientes: disponibilidad, deficiencias y toxicidad en Uruguay"
+          ]
+        },
+        {
+          "modulo": "Manejo de la fertilidad y muestreo",
+          "temas": [
+            "Enmiendas orgánicas y abonos verdes como fuente de nitrógeno y materia orgánica",
+            "Muestreo de suelos: criterios, profundidad e instrumentos",
+            "Tecnología de fertilizantes: producción y mezclas fertilizantes"
+          ]
+        },
+        {
+          "modulo": "Diagnóstico y recomendación de fertilización",
+          "temas": [
+            "Respuesta vegetal al suministro de nutrientes: curvas de respuesta y dosis óptima",
+            "Análisis de suelo: selección, calibración y metodología de evaluación de la fertilidad",
+            "Análisis foliar: interpretación, niveles críticos y metodología DRIS",
+            "Aplicación de fertilizantes: momento, forma, fertirrigación y fertilización foliar",
+            "Consideraciones ambientales de la fertilización nitrogenada y fosfatada",
+            "Recomendación de dosis de fertilización y manejo de nutrientes por agricultura de precisión"
           ]
         }
       ]
@@ -626,16 +655,38 @@
       "nombre": "Genética de Poblaciones y Genética Cuantitativa",
       "modulos": [
         {
-          "modulo": "Genética de poblaciones",
+          "modulo": "Introducción a la genómica",
           "temas": [
-            "Base genética de la variación de caracteres a nivel poblacional"
+            "Introducción a la genómica: dogma central, alelos, haplotipos y marcadores moleculares"
           ]
         },
         {
-          "modulo": "Genética cuantitativa y mejoramiento",
+          "modulo": "Genética de poblaciones",
           "temas": [
-            "Enfoque genómico de la variación cuantitativa",
-            "Bases genéticas del mejoramiento animal y vegetal"
+            "Variación genética y equilibrio de Hardy-Weinberg",
+            "Deriva genética: modelo de Wright-Fisher y tamaño efectivo poblacional",
+            "Selección natural: modelo de un locus con dos alelos y sobredominancia",
+            "Dinámica de dos loci: desequilibrio de ligamiento y arrastre genético",
+            "Apareamientos no aleatorios: endocría, identidad por descendencia y efecto Wahlund",
+            "Genética de poblaciones microbianas: transferencia horizontal y genómica poblacional"
+          ]
+        },
+        {
+          "modulo": "Genética cuantitativa",
+          "temas": [
+            "El modelo genético básico: varianza genotípica y ambiental",
+            "Heredabilidad y repetibilidad",
+            "Parentesco y semejanza entre parientes: modelos mixtos lineales"
+          ]
+        },
+        {
+          "modulo": "Selección artificial",
+          "temas": [
+            "Selección artificial I: respuesta a la selección y ecuación del criador",
+            "Respuesta correlacionada: correlaciones genéticas y ambientales",
+            "Selección artificial II: índices de selección y selección genómica",
+            "Endocría, exocría, consanguinidad y depresión endogámica",
+            "Normas de reacción e interacción genotipo × ambiente"
           ]
         }
       ]
@@ -644,15 +695,40 @@
       "nombre": "Reproducción y Nutrición Animal",
       "modulos": [
         {
-          "modulo": "Ciclo reproductivo de especies productivas",
+          "modulo": "Nutrición y fisiología reproductiva del animal adulto",
           "temas": [
-            "Ciclo reproductivo en especies de interés productivo"
+            "Sistemas de producción y ciclo productivo de animales de interés productivo",
+            "Requerimientos y aportes de nutrientes en animales adultos",
+            "Endocrinología de la reproducción: gametogénesis y ciclo estral"
           ]
         },
         {
-          "modulo": "Interrelación nutricional y ambiental",
+          "modulo": "Fecundación, gestación y parto",
           "temas": [
-            "Interrelación entre sistemas biológicos, nutricionales y ambientales"
+            "Transporte de gametos, fecundación y reconocimiento materno de la preñez",
+            "Crecimiento y metabolismo embrionario, fetal y placentario: programación fetal",
+            "Regulación de la partición de nutrientes durante la gestación"
+          ]
+        },
+        {
+          "modulo": "Transición, posparto y lactación",
+          "temas": [
+            "Período de transición: fisiología y control endócrino del parto",
+            "Lactación y glándula mamaria: síntesis de calostro y leche",
+            "Curvas de lactancia y destete"
+          ]
+        },
+        {
+          "modulo": "Crecimiento, desarrollo y pubertad",
+          "temas": [
+            "Crecimiento y desarrollo posdestete: deposición de tejido muscular y graso",
+            "Bases fisiológicas de la pubertad"
+          ]
+        },
+        {
+          "modulo": "Eficiencia alimenticia, reproductiva y ambiental",
+          "temas": [
+            "Indicadores de eficiencia reproductiva, alimenticia y ambiental"
           ]
         }
       ]
@@ -661,17 +737,37 @@
       "nombre": "Ecofisiología de Cultivos",
       "modulos": [
         {
-          "modulo": "Bases fisiológicas del rendimiento de cultivos",
+          "modulo": "Introducción",
           "temas": [
-            "Bases fisiológicas y ecológicas del crecimiento y desarrollo de cultivos",
-            "Determinación ecofisiológica del rendimiento"
+            "Introducción a la ecofisiología: niveles de organización y escalas de los cultivos"
           ]
         },
         {
-          "modulo": "Respuesta de los cultivos a factores ambientales",
+          "modulo": "Producción potencial",
           "temas": [
-            "Respuesta de los cultivos a la radiación, la temperatura y el agua",
-            "Respuesta de los cultivos al manejo de nutrientes"
+            "Intercepción de radiación, asimilación de carbono y respiración",
+            "Regulación del desarrollo de los cultivos: efecto de la temperatura y el fotoperíodo",
+            "Partición de asimilados, crecimiento y estimación del rendimiento potencial"
+          ]
+        },
+        {
+          "modulo": "Producción limitada por agua",
+          "temas": [
+            "Sistema suelo-planta-atmósfera y efectos del déficit hídrico en el rendimiento",
+            "Estimación de la demanda de agua y eficiencia de su uso"
+          ]
+        },
+        {
+          "modulo": "Producción limitada por nutrientes",
+          "temas": [
+            "Función de los nutrientes y estimación de la demanda y respuesta a su disponibilidad",
+            "Productividad y eficiencia de uso de los nutrientes"
+          ]
+        },
+        {
+          "modulo": "Análisis de brechas de rendimiento",
+          "temas": [
+            "Integración de factores que explican el rendimiento actual y brechas de rendimiento"
           ]
         }
       ]
@@ -680,16 +776,26 @@
       "nombre": "Manejo y Conservación de Suelos",
       "modulos": [
         {
-          "modulo": "Degradación y conservación de suelos",
+          "modulo": "Conservación y degradación de suelos",
           "temas": [
-            "Procesos de degradación de suelos y estrategias de mitigación",
-            "Herramientas de manejo de suelos, aguas y vegetación"
+            "Conservación y degradación de suelos: conceptos generales",
+            "Elementos para la planificación del uso de la tierra a nivel predial"
           ]
         },
         {
           "modulo": "Manejo mecanizado de suelos",
           "temas": [
-            "Manejo mecanizado de suelos"
+            "Compactación de suelos y desarrollo de la tracción: relación maquinaria-suelo",
+            "Sistemas de laboreo: laboreo conservacionista, cero laboreo y siembra directa"
+          ]
+        },
+        {
+          "modulo": "Erosión de suelos",
+          "temas": [
+            "Factores y proceso de erosión",
+            "Ecuación Universal de Pérdida de Suelo (USLE)",
+            "Medidas de manejo de suelos para reducir erosión y compactación",
+            "Marco legal de conservación de suelos en Uruguay"
           ]
         }
       ]
@@ -712,17 +818,34 @@
       "nombre": "Fitotecnia",
       "modulos": [
         {
-          "modulo": "Mejoramiento genético vegetal",
+          "modulo": "Introducción al mejoramiento genético",
           "temas": [
-            "Mejoramiento genético de especies cultivadas",
-            "Recursos genéticos vegetales"
+            "Introducción al mejoramiento genético vegetal",
+            "Multiplicación y calidad de semillas: sistemas de semillas y normativas"
           ]
         },
         {
-          "modulo": "Producción de semilla y cultivares",
+          "modulo": "Interacción genotipo-ambiente y recursos genéticos",
           "temas": [
-            "Producción de semilla de calidad",
-            "Obtención de cultivares y multiplicación comercial"
+            "Interacción genotipo-ambiente: estabilidad de cultivares y evaluación",
+            "Diversidad y estructura genética de poblaciones vegetales",
+            "Recursos fitogenéticos: conservación, legislación y acervo genético"
+          ]
+        },
+        {
+          "modulo": "Creación de variabilidad y métodos de mejoramiento",
+          "temas": [
+            "Creación de variabilidad y selección de progenitores",
+            "Mejoramiento de especies autógamas",
+            "Mejoramiento de especies alógamas",
+            "Mejoramiento de especies clonales",
+            "Poliploidía y utilización del acervo genético secundario de los cultivos"
+          ]
+        },
+        {
+          "modulo": "Herramientas biotecnológicas",
+          "temas": [
+            "Herramientas biotecnológicas: marcadores moleculares y edición genómica"
           ]
         }
       ]
@@ -782,16 +905,26 @@
       "nombre": "Entomología",
       "modulos": [
         {
-          "modulo": "Biología de insectos",
+          "modulo": "Anatomía y biología de los insectos",
           "temas": [
-            "Morfología, fisiología y hábitos de los insectos",
-            "Ciclos de vida de los insectos e interacción con el ambiente"
+            "Introducción y anatomía general de los insectos",
+            "Tegumento, sistemas internos y biología del desarrollo de los insectos"
           ]
         },
         {
-          "modulo": "Manejo de plagas",
+          "modulo": "Ecología y manejo de plagas",
           "temas": [
-            "Manejo integrado de plagas de importancia agronómica"
+            "Ecología de poblaciones de insectos y manejo integrado de plagas",
+            "Control biológico: parasitoides, depredadores y microorganismos entomopatógenos",
+            "Control etológico y cultural: feromonas y técnica del insecto estéril",
+            "Variedades resistentes a insectos"
+          ]
+        },
+        {
+          "modulo": "Control químico y ecotoxicología",
+          "temas": [
+            "Control químico: clasificación de insecticidas, modo de acción y resistencia",
+            "Ecotoxicología: impacto ambiental de los insecticidas"
           ]
         }
       ]
@@ -800,16 +933,35 @@
       "nombre": "Fitopatología",
       "modulos": [
         {
-          "modulo": "Patología vegetal",
+          "modulo": "Introducción y sintomatología",
           "temas": [
-            "Diagnóstico de enfermedades de las plantas",
-            "Ciclos de las enfermedades vegetales"
+            "Introducción a la fitopatología: concepto de enfermedad y patogénesis",
+            "Sintomatología: síntomas, signos y agentes patogénicos bióticos y abióticos"
           ]
         },
         {
-          "modulo": "Manejo de enfermedades vegetales",
+          "modulo": "Agentes causales de enfermedades",
           "temas": [
-            "Manejo integrado y gestión sustentable de enfermedades vegetales"
+            "Hongos y cromistas fitopatógenos: Ascomycota, Zigomycota, Basidiomycota y Oomycetes",
+            "Virus fitopatógenos",
+            "Bacterias fitopatógenas",
+            "Nematodos fitopatógenos"
+          ]
+        },
+        {
+          "modulo": "Diagnóstico y epidemiología",
+          "temas": [
+            "Diagnóstico de enfermedades: postulados de Koch",
+            "Epidemiología: cuantificación y modelos matemáticos de enfermedades"
+          ]
+        },
+        {
+          "modulo": "Resistencia y manejo de enfermedades",
+          "temas": [
+            "Mecanismos de defensa y resistencia genética: teoría gen por gen",
+            "Control químico: fungicidas, bactericidas y resistencia a fungicidas",
+            "Control cultural y biológico de enfermedades vegetales",
+            "Manejo integrado de enfermedades vegetales"
           ]
         }
       ]
@@ -820,16 +972,29 @@
       "nombre": "Bovinos de Carne",
       "modulos": [
         {
-          "modulo": "Producción de bovinos de carne",
+          "modulo": "Introducción a la producción ganadera",
           "temas": [
-            "Sistemas de producción y manejo de bovinos para carne",
-            "Tecnologías de producción de carne bovina"
+            "Introducción a la producción ganadera en Uruguay y el mundo"
           ]
         },
         {
-          "modulo": "Impacto económico de la ganadería de carne",
+          "modulo": "Cría vacuna",
           "temas": [
-            "Impacto económico de la producción de carne a nivel de empresa ganadera"
+            "Estado nutricional y eficiencia reproductiva en vacas de cría",
+            "Manejo general del rodeo de cría y herramienta genética: selección y cruzamientos"
+          ]
+        },
+        {
+          "modulo": "Recría y engorde",
+          "temas": [
+            "Factores que afectan el crecimiento y manejo de la invernada en pastoreo",
+            "Manejo de la invernada en confinamiento y calidad de canal y carne"
+          ]
+        },
+        {
+          "modulo": "Rol profesional",
+          "temas": [
+            "El rol profesional del Ingeniero Agrónomo en la producción ganadera"
           ]
         }
       ]
@@ -838,16 +1003,24 @@
       "nombre": "Producción de Granos: Cultivos de Verano",
       "modulos": [
         {
-          "modulo": "Bases fisiológicas de cultivos de verano",
+          "modulo": "Preparación de suelos y ecofisiología",
           "temas": [
-            "Bases fisiológicas de la respuesta de los cultivos de verano al manejo"
+            "Preparación de suelos para cultivos de verano: laboreo, barbecho y manejo de malezas",
+            "Ecofisiología y manejo de maíz, soja, sorgo y girasol"
           ]
         },
         {
-          "modulo": "Manejo de cultivos de verano",
+          "modulo": "Malezas, enfermedades y plagas",
           "temas": [
-            "Manejo de cultivos de verano en secano",
-            "Manejo de malezas, enfermedades y plagas en cultivos de verano"
+            "Manejo de malezas en cultivos de verano",
+            "Principales enfermedades de los cultivos de verano: prevención y control",
+            "Manejo de plagas: reconocimiento, umbral de daño económico y control"
+          ]
+        },
+        {
+          "modulo": "Fertilización",
+          "temas": [
+            "Manejo de la fertilización en cultivos de verano: nitrógeno y fósforo"
           ]
         }
       ]
@@ -858,16 +1031,25 @@
       "nombre": "Producción de Granos: Cultivos de Invierno",
       "modulos": [
         {
-          "modulo": "Ecofisiología y manejo de cultivos de invierno",
+          "modulo": "Preparación de suelos y ecofisiología",
           "temas": [
-            "Ecofisiología de cultivos de invierno",
-            "Manejo agronómico de cultivos de invierno"
+            "Preparación de suelos para cultivos de invierno: laboreo, barbecho y manejo de malezas",
+            "Ecofisiología y manejo de trigo, cebada y colza"
           ]
         },
         {
-          "modulo": "Paquetes tecnológicos de invierno",
+          "modulo": "Nutrición y elección de cultivares",
           "temas": [
-            "Formulación de paquetes tecnológicos para cultivos de invierno"
+            "Nutrición de cultivos y criterios de fertilización: nitrógeno, fósforo y potasio",
+            "Elección de cultivares: marco legal, criterios y calidad de granos"
+          ]
+        },
+        {
+          "modulo": "Malezas, enfermedades y plagas",
+          "temas": [
+            "Manejo de malezas en cultivos de invierno",
+            "Principales enfermedades de los cultivos de invierno: prevención y control",
+            "Manejo de plagas: reconocimiento, umbral de daño económico y control"
           ]
         }
       ]
