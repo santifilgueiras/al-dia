@@ -12734,5 +12734,881 @@
   "Desarrollo económico territorial": {
     "libro": "Bertoni et al. - Manual de Problemas del Desarrollo",
     "seccion": "capítulo de desarrollo territorial"
+  },
+  "Introducción al análisis de series de tiempo: fundamentos estadísticos y modelos dinámicos": {
+    "libro": "Hamilton - Time Series Analysis",
+    "seccion": "capítulo introductorio"
+  },
+  "Análisis de series de tiempo estacionarias: FAC, FACP y modelos ARMA": {
+    "libro": "Box, Jenkins y Reinsel - Time Series Analysis: Forecasting and Control",
+    "seccion": "capítulos de procesos estocásticos estacionarios"
+  },
+  "Modelización de series no estacionarias: raíces unitarias y modelos ARIMA": {
+    "libro": "Peña - Análisis de Series Temporales",
+    "seccion": "capítulos 3, 4 y 5"
+  },
+  "Predicción con modelos univariantes de series de tiempo": {
+    "libro": "Peña - Análisis de Series Temporales",
+    "seccion": "capítulo 7"
+  },
+  "Análisis de intervención y acontecimientos atípicos": {
+    "libro": "Peña - Análisis de Series Temporales",
+    "seccion": "capítulo 8"
+  },
+  "Modelos multivariantes con series estacionarias: causalidad de Granger y modelos VAR": {
+    "libro": "Peña - Análisis de Series Temporales",
+    "seccion": "capítulo 11"
+  },
+  "Raíces unitarias y cointegración: el enfoque de Engle y Granger": {
+    "libro": "Hamilton - Time Series Analysis",
+    "seccion": "capítulo de cointegración"
+  },
+  "Modelos de variable dependiente limitada: Tobit y Heckman": {
+    "libro": "Wooldridge - Introducción a la Econometría: un Enfoque Moderno",
+    "seccion": "capítulo 17"
+  },
+  "Método de los Momentos y Método Generalizado de los Momentos": {
+    "libro": "Hansen - Econometrics",
+    "seccion": "capítulo 13"
+  },
+  "Modelos lineales para datos de panel": {
+    "libro": "Wooldridge - Introducción a la Econometría: un Enfoque Moderno",
+    "seccion": "capítulos 13 y 14"
+  },
+  "Panorama de la historia del pensamiento económico": {
+    "libro": "Backhouse - The Penguin History of Economics",
+    "seccion": "capítulo introductorio"
+  },
+  "Adam Smith y el nacimiento de la economía política clásica": {
+    "libro": "Barber - Historia del Pensamiento Económico",
+    "seccion": "capítulo de Adam Smith"
+  },
+  "Economía clásica: Ricardo, Malthus y John Stuart Mill": {
+    "libro": "Barber - Historia del Pensamiento Económico",
+    "seccion": "capítulo de la escuela clásica"
+  },
+  "Fundamentos de la economía política: el marxismo": {
+    "libro": "Sweezy - Teoría del Desarrollo Capitalista",
+    "seccion": "capítulo del marxismo"
+  },
+  "La revolución marginalista: Jevons, Walras, Menger y Marshall": {
+    "libro": "Screpanti y Zamagni - Panorama de la Historia del Pensamiento Económico",
+    "seccion": "capítulo de la revolución marginalista"
+  },
+  "Escuela austríaca y nacimiento de la econometría": {
+    "libro": "Ekelund y Hébert - Historia de la Teoría Económica y de su Método",
+    "seccion": "capítulo 17"
+  },
+  "Keynes y el nacimiento de la macroeconomía": {
+    "libro": "Snowdon y Vane - Modern Macroeconomics: its Origins, Development and Current State",
+    "seccion": "capítulo de Keynes"
+  },
+  "La síntesis neoclásico-keynesiana y la crisis del keynesianismo": {
+    "libro": "Landreth y Colander - Historia del Pensamiento Económico",
+    "seccion": "capítulo de la síntesis neoclásica"
+  },
+  "De Kuhn a la injusticia epistémica: paradigmas y metodología económica": {
+    "libro": "Blaug - La Metodología de la Economía",
+    "seccion": "capítulo de metodología"
+  },
+  "Desarrollos recientes: economía comportamental y la revolución de la credibilidad": {
+    "libro": "Backhouse y Cherrier - The Age of the Applied Economist",
+    "seccion": "artículo en History of Political Economy"
+  },
+  "Función gerencial y sus límites: ambiente y cultura": {
+    "libro": "Daft - Teoría y Diseño Organizacional",
+    "seccion": "capítulo de la función gerencial"
+  },
+  "Flujos y configuraciones organizacionales (Mintzberg)": {
+    "libro": "Daft - Teoría y Diseño Organizacional",
+    "seccion": "capítulo de configuraciones estructurales"
+  },
+  "Estrategia, proceso estratégico y planificación estratégica": {
+    "libro": "Thompson y Strickland - Administración Estratégica",
+    "seccion": "capítulo de proceso estratégico"
+  },
+  "Implementación de la estrategia": {
+    "libro": "Thompson y Strickland - Administración Estratégica",
+    "seccion": "capítulo de implementación estratégica"
+  },
+  "Toma de decisiones gerenciales": {
+    "libro": "Daft - Teoría y Diseño Organizacional",
+    "seccion": "capítulo de toma de decisiones"
+  },
+  "Administración de micro, pequeñas y medianas empresas": {
+    "libro": "Longenecker et al. - Administración de Pequeñas Empresas",
+    "seccion": "capítulo de PYMEs"
+  },
+  "Administración de empresas familiares": {
+    "libro": "Gersick, Davis, Hampton y Lansberg - Empresas Familiares, Generación a Generación",
+    "seccion": "capítulo de empresas familiares"
+  },
+  "Administración de cooperativas": {
+    "libro": "Dávila et al. - Éxito e Innovación en la Gestión: las Cooperativas como Agentes del Desarrollo Local",
+    "seccion": "artículo sobre cooperativas"
+  },
+  "Administración de asociaciones sin fines de lucro": {
+    "libro": "Guía Básica para la Gestión Económico-Financiera en Organizaciones no Lucrativas",
+    "seccion": "guía del Observatorio del Tercer Sector de Bizkaia"
+  },
+  "Reseña histórica de la administración: de Fayol a Mintzberg": {
+    "libro": "Daft - Teoría y Diseño Organizacional",
+    "seccion": "capítulo de evolución del pensamiento administrativo"
+  },
+  "Temas actuales: organización que aprende, gobierno corporativo e inteligencia artificial": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "tomos teóricos de la unidad curricular"
+  },
+  "Creación de la organización: propuesta de valor, estrategia y arquitectura organizacional": {
+    "libro": "Messina - El Camino Emprendedor",
+    "seccion": "capítulo de creación de la organización"
+  },
+  "Conceptos básicos de procesos de negocio, procedimientos y sistemas de información": {
+    "libro": "Stair y Reynolds - Principios de Sistemas de Información: un Enfoque Administrativo",
+    "seccion": "capítulo de procesos y sistemas"
+  },
+  "Categorización e instrumentos de graficación de procesos": {
+    "libro": "González - Análisis de Procesos",
+    "seccion": "capítulo de graficación de procesos"
+  },
+  "Cambio organizacional y su vinculación con el mejoramiento de procesos": {
+    "libro": "Rodríguez y Guerrero - Gestión Estratégica de y por Procesos",
+    "seccion": "capítulo de cambio organizacional y procesos"
+  },
+  "Metodologías para el diseño y mejoramiento de procesos y sistemas de información": {
+    "libro": "Penengo - Metodología de los Procesos de Mejoramiento Administrativo",
+    "seccion": "capítulo de metodologías de mejoramiento"
+  },
+  "Origen y desarrollo de la disciplina de Recursos Humanos": {
+    "libro": "Chiavenato - Gestión del Talento Humano",
+    "seccion": "capítulo introductorio"
+  },
+  "El soporte de la función en la organización y la planificación de Recursos Humanos": {
+    "libro": "Dessler - Administración de Personal",
+    "seccion": "capítulo de planificación de RRHH"
+  },
+  "Clasificación, análisis, descripción, evaluación y valoración de cargos": {
+    "libro": "Dessler - Administración de Personal",
+    "seccion": "capítulo de análisis y valoración de cargos"
+  },
+  "Los servicios de apoyo al personal": {
+    "libro": "Chiavenato - Gestión del Talento Humano",
+    "seccion": "capítulo de servicios al personal"
+  },
+  "Reclutamiento y selección técnica de personal": {
+    "libro": "Chiavenato - Gestión del Talento Humano",
+    "seccion": "capítulo de reclutamiento y selección"
+  },
+  "Inducción, capacitación y gestión del conocimiento": {
+    "libro": "Chiavenato - Gestión del Talento Humano",
+    "seccion": "capítulo de capacitación y desarrollo"
+  },
+  "Evaluación del desempeño y desplazamientos del personal": {
+    "libro": "Dessler - Administración de Personal",
+    "seccion": "capítulo de evaluación del desempeño"
+  },
+  "Relaciones con los empleados y sistema de información de Recursos Humanos": {
+    "libro": "Chiavenato - Gestión del Talento Humano",
+    "seccion": "capítulo de relaciones laborales y SIRH"
+  },
+  "Auditoría de personal y responsabilidad social de las organizaciones": {
+    "libro": "Nevado Peña - Control de Gestión Social: la Auditoría de los Recursos Humanos",
+    "seccion": "capítulo de auditoría de RRHH"
+  },
+  "Introducción: mercados, organizaciones y decisiones empresariales": {
+    "libro": "Brickley, Smith y Zimmerman - Economía Empresarial y Arquitectura de la Organización",
+    "seccion": "capítulo introductorio"
+  },
+  "Fundamentos de microeconomía: demanda, producción y costos": {
+    "libro": "Krugman y Wells - Introducción a la Economía: Microeconomía",
+    "seccion": "capítulo de fundamentos de microeconomía"
+  },
+  "Economía del comportamiento: aversión al riesgo y racionalidad": {
+    "libro": "Thaler y Sunstein - Un Pequeño Empujón (Nudge)",
+    "seccion": "capítulo de economía del comportamiento"
+  },
+  "Organización interna: conflictos de intereses e información asimétrica": {
+    "libro": "Brickley, Smith y Zimmerman - Economía Empresarial y Arquitectura de la Organización",
+    "seccion": "capítulo de organización interna"
+  },
+  "La estrategia empresarial: captura y creación de valor": {
+    "libro": "Brickley, Smith y Zimmerman - Economía Empresarial y Arquitectura de la Organización",
+    "seccion": "capítulo de estrategia empresarial"
+  },
+  "La estrategia empresarial: teoría de juegos": {
+    "libro": "Brickley, Smith y Zimmerman - Economía Empresarial y Arquitectura de la Organización",
+    "seccion": "capítulo de teoría de juegos"
+  },
+  "Poder de mercado y fijación de precios": {
+    "libro": "Pepall, Richards y Norman - Organización Industrial: Teoría y Prácticas Contemporáneas",
+    "seccion": "capítulo de fijación de precios"
+  },
+  "Relaciones entre empresas: integración vertical": {
+    "libro": "Brickley, Smith y Zimmerman - Economía Empresarial y Arquitectura de la Organización",
+    "seccion": "capítulo de integración vertical"
+  },
+  "Economía de los bienes de información": {
+    "libro": "Brickley, Smith y Zimmerman - Economía Empresarial y Arquitectura de la Organización",
+    "seccion": "capítulo de bienes de información"
+  },
+  "La empresa y el Estado: motivos económicos para la intervención": {
+    "libro": "Domingo, Ponce y Zipitría - Regulación Económica para Economías en Desarrollo",
+    "seccion": "capítulo de intervención del Estado"
+  },
+  "Concepto de Responsabilidad Social de las Empresas: stakeholders y esfera de influencia": {
+    "libro": "Vives y Peinado-Vara (eds.) - RSE: la Responsabilidad Social de la Empresa en América Latina",
+    "seccion": "capítulo introductorio a la RSE"
+  },
+  "La naturaleza de la ética en los negocios y dilemas éticos en la toma de decisiones": {
+    "libro": "Velásquez - Ética en los Negocios: Conceptos y Casos",
+    "seccion": "capítulo de ética en los negocios"
+  },
+  "Gobierno corporativo y código de conducta": {
+    "libro": "IFC (Grupo Banco Mundial) - Guía de Gobierno Corporativo para las PYMES",
+    "seccion": "capítulo de gobierno corporativo"
+  },
+  "Gestión de la RSE: indicadores de gestión y relaciones con los stakeholders": {
+    "libro": "Licandro - Responsabilidad Social Empresaria: Reflexiones, Investigaciones y Casos",
+    "seccion": "capítulo de gestión estratégica de la RSE"
+  },
+  "Reportes y memorias de sustentabilidad: elaboración y verificación externa": {
+    "libro": "Global Reporting Initiative (GRI) - Guías para la Elaboración de Memorias de Sostenibilidad",
+    "seccion": "guía de reportes de sostenibilidad"
+  },
+  "De la RSE a la sustentabilidad: los Objetivos de Desarrollo Sostenible": {
+    "libro": "Naciones Unidas - Objetivos de Desarrollo Sostenible",
+    "seccion": "guía de los ODS"
+  },
+  "Introducción al comportamiento organizacional: variables y modelos": {
+    "libro": "Robbins - Comportamiento Organizacional",
+    "seccion": "capítulo introductorio"
+  },
+  "Características biográficas, habilidades y percepción": {
+    "libro": "Robbins - Comportamiento Organizacional",
+    "seccion": "capítulo de fundamentos del comportamiento individual"
+  },
+  "Actitudes, satisfacción en el trabajo y emociones": {
+    "libro": "Robbins - Comportamiento Organizacional",
+    "seccion": "capítulo de actitudes y emociones"
+  },
+  "Personalidad y valores": {
+    "libro": "Robbins - Comportamiento Organizacional",
+    "seccion": "capítulo de personalidad y valores"
+  },
+  "Motivación: teorías de necesidades y de proceso": {
+    "libro": "Robbins - Comportamiento Organizacional",
+    "seccion": "capítulo de motivación"
+  },
+  "Comportamiento de grupo y equipos de trabajo": {
+    "libro": "Robbins - Comportamiento Organizacional",
+    "seccion": "capítulo de fundamentos del comportamiento grupal"
+  },
+  "Comunicación organizacional": {
+    "libro": "Robbins - Comportamiento Organizacional",
+    "seccion": "capítulo de comunicación"
+  },
+  "Poder y política en las organizaciones": {
+    "libro": "Robbins - Comportamiento Organizacional",
+    "seccion": "capítulo de poder y política"
+  },
+  "Liderazgo: teorías y enfoques contemporáneos": {
+    "libro": "Robbins - Comportamiento Organizacional",
+    "seccion": "capítulo de liderazgo"
+  },
+  "El conflicto organizacional y la negociación": {
+    "libro": "Fisher, Ury y Patton - Sí ¡de Acuerdo!",
+    "seccion": "capítulo de negociación"
+  },
+  "Cultura organizacional: funciones y tipología": {
+    "libro": "Robbins - Comportamiento Organizacional",
+    "seccion": "capítulo de cultura organizacional"
+  },
+  "Cambio organizacional: resistencia y transformación cultural": {
+    "libro": "Bridges y Bridges - Managing Transitions: Making the Most of Change",
+    "seccion": "capítulo de gestión del cambio"
+  },
+  "Aspectos éticos de la dirección estratégica y gobierno corporativo": {
+    "libro": "Guerras Martín y Navas López - Fundamentos de Dirección Estratégica de la Empresa",
+    "seccion": "capítulo de ética y gobierno corporativo"
+  },
+  "Introducción a la dirección estratégica: escuelas y proceso estratégico": {
+    "libro": "Guerras Martín y Navas López - Fundamentos de Dirección Estratégica de la Empresa",
+    "seccion": "capítulo introductorio"
+  },
+  "Empresa y entorno: competitividad sistémica": {
+    "libro": "Esser, Hillebrand, Messner y Meyer-Stamer - Competitividad Sistémica: Nuevo Desafío para las Empresas y la Política",
+    "seccion": "artículo en Revista de la CEPAL"
+  },
+  "Dirección estratégica de mercado: análisis externo e interno": {
+    "libro": "Guerras Martín y Navas López - La Dirección Estratégica de la Empresa: Teoría y Aplicaciones",
+    "seccion": "capítulo de análisis estratégico"
+  },
+  "Evaluación y toma de decisiones estratégicas: estrategia corporativa": {
+    "libro": "Bueno Campos - Fundamentos Teóricos de la Dirección Estratégica",
+    "seccion": "capítulo de decisiones estratégicas"
+  },
+  "Estrategias internacionales": {
+    "libro": "Guerras Martín y Navas López - Fundamentos de Dirección Estratégica de la Empresa",
+    "seccion": "capítulo de estrategias internacionales"
+  },
+  "Implementación y control de la gestión estratégica: cuadro de mando integral": {
+    "libro": "Bueno Campos, Salmador Sánchez, Merino Moreno y Martín Castilla - Dirección Estratégica: Desarrollo de la Estrategia y Análisis de Casos",
+    "seccion": "capítulo de control de gestión estratégica"
+  },
+  "Transformación digital e inteligencia artificial en la estrategia": {
+    "libro": "Arias-Abelaira, Pache-Durán, Rodríguez-Ariza y Calderón-Macías - Transformación Digital y Digitalización: Estudio Bibliométrico",
+    "seccion": "artículo en Transinformação"
+  },
+  "La dirección en entornos organizacionales diversos: liderazgo inclusivo": {
+    "libro": "Bueno Campos, Salmador Sánchez y Morcillo Ortega - Dirección Estratégica: Nuevas Perspectivas Teóricas",
+    "seccion": "capítulo de liderazgo en entornos diversos"
+  },
+  "Transformación y cambio organizacional: factores y tipos de cambio": {
+    "libro": "García - Gestión de Cambios Organizacionales: Modelo Integrado",
+    "seccion": "capítulo introductorio"
+  },
+  "El proceso de cambio organizacional": {
+    "libro": "Kotter - La Organización del Futuro: un Nuevo Modelo para un Mundo de Cambio Acelerado",
+    "seccion": "capítulo del proceso de cambio"
+  },
+  "Modelos de gestión y diagnóstico organizacional": {
+    "libro": "García - Gestión de Cambios Organizacionales: Modelo Integrado",
+    "seccion": "capítulo de diagnóstico organizacional"
+  },
+  "Metodologías para el cambio, clima y plan de cambio": {
+    "libro": "Senge, Roberts, Ross, Roth y Smith - La Danza del Cambio",
+    "seccion": "capítulo de metodologías de cambio"
+  },
+  "Estructura de incentivos, liderazgo y comunicación en el cambio": {
+    "libro": "Muñoz - Comunicación para el Cambio Organizacional",
+    "seccion": "material de la unidad curricular"
+  },
+  "Gestión de la resistencia, el conflicto y la tecnología en el cambio": {
+    "libro": "Duck - El Monstruo del Cambio",
+    "seccion": "capítulo de resistencia al cambio"
+  },
+  "La inversión: parámetros estructurales y tipos de inversiones": {
+    "libro": "Porteiro - Evaluación de Proyectos de Inversión: Perspectiva Empresarial",
+    "seccion": "capítulo introductorio"
+  },
+  "El proyecto de inversión y su visión estratégica": {
+    "libro": "Sapag Chain y Sapag Chain - Preparación y Evaluación de Proyectos",
+    "seccion": "capítulo de proyectos y planeamiento estratégico"
+  },
+  "Justificación comercial: demanda, oferta y precios": {
+    "libro": "Sapag Chain y Sapag Chain - Preparación y Evaluación de Proyectos",
+    "seccion": "capítulo de estudio de mercado"
+  },
+  "Justificación técnica: tamaño, proceso y localización": {
+    "libro": "Sapag Chain y Sapag Chain - Preparación y Evaluación de Proyectos",
+    "seccion": "capítulo de estudio técnico"
+  },
+  "Estudios económicos y financieros del proyecto": {
+    "libro": "Porteiro - Evaluación de Proyectos de Inversión: Perspectiva Empresarial",
+    "seccion": "capítulo de estudios económico-financieros"
+  },
+  "Planeamiento de la ejecución": {
+    "libro": "Sapag Chain y Sapag Chain - Preparación y Evaluación de Proyectos",
+    "seccion": "capítulo de implementación"
+  },
+  "Evaluación microeconómica: flujo de fondos e indicadores de rentabilidad": {
+    "libro": "Porteiro - Evaluación de Proyectos de Inversión: Perspectiva Empresarial",
+    "seccion": "capítulo de evaluación microeconómica"
+  },
+  "Evaluación socioeconómica y multicriterio": {
+    "libro": "Sapag - Proyectos de Inversión: Formulación y Evaluación",
+    "seccion": "capítulo de evaluación social"
+  },
+  "La promoción de inversiones en Uruguay": {
+    "libro": "Lemes, Comas, Danza y Porteiro - Proyectos de Inversión, Formulación y Evaluación: Perspectiva Empresarial",
+    "seccion": "capítulo de promoción de inversiones"
+  },
+  "Valuación de empresas": {
+    "libro": "Porteiro - Evaluación de Proyectos de Inversión: Perspectiva Empresarial",
+    "seccion": "capítulo de valuación de empresas"
+  },
+  "Proyectos agropecuarios, turísticos, de servicios y nuevos emprendimientos": {
+    "libro": "Price Gittinger - Análisis Económico de Proyectos Agrícolas",
+    "seccion": "capítulo de proyectos agropecuarios"
+  },
+  "Proyectos de participación público-privada y Project Finance": {
+    "libro": "Lemes, Comas, Danza y Porteiro - Proyectos de Inversión, Formulación y Evaluación: Perspectiva Empresarial",
+    "seccion": "capítulo de PPP y Project Finance"
+  },
+  "Concepto de derecho, norma jurídica y fuentes del derecho": {
+    "libro": "Manual de Derecho Civil (CSIC-UDELAR, FCEA)",
+    "seccion": "capítulo introductorio"
+  },
+  "Hechos y actos jurídicos: forma, prueba e ineficacia": {
+    "libro": "Manual de Derecho Civil (CSIC-UDELAR, FCEA)",
+    "seccion": "capítulo de actos jurídicos"
+  },
+  "La persona física y las personas jurídicas: capacidad e incapacidades": {
+    "libro": "Manual de Derecho Civil (CSIC-UDELAR, FCEA)",
+    "seccion": "capítulo de personas"
+  },
+  "Ley de violencia basada en género y ley de derechos de las personas trans": {
+    "libro": "Manual de Derecho Civil (CSIC-UDELAR, FCEA)",
+    "seccion": "capítulo de situación jurídica de personas"
+  },
+  "Patrimonio, clasificación de bienes y derecho de propiedad": {
+    "libro": "Manual de Derecho Civil (CSIC-UDELAR, FCEA)",
+    "seccion": "capítulo de bienes"
+  },
+  "Propiedad horizontal, usufructo, servidumbre y posesión": {
+    "libro": "Manual de Derecho Civil (CSIC-UDELAR, FCEA)",
+    "seccion": "capítulo de modos de adquirir"
+  },
+  "Definición, elementos y fuentes de las obligaciones": {
+    "libro": "Manual de Derecho Civil (CSIC-UDELAR, FCEA)",
+    "seccion": "capítulo de obligaciones"
+  },
+  "El contrato: formación, requisitos y efectos jurídicos": {
+    "libro": "Manual de Derecho Civil (CSIC-UDELAR, FCEA)",
+    "seccion": "capítulo del contrato"
+  },
+  "Incumplimiento, transmisión y extinción de las obligaciones": {
+    "libro": "Manual de Derecho Civil (CSIC-UDELAR, FCEA)",
+    "seccion": "capítulo de extinción de obligaciones"
+  },
+  "Compraventa, permuta, arrendamiento y sociedad conyugal": {
+    "libro": "Manual de Derecho Civil (CSIC-UDELAR, FCEA)",
+    "seccion": "capítulo de contratos clásicos"
+  },
+  "Mandato, préstamo, fianza, prenda e hipoteca": {
+    "libro": "Manual de Derecho Civil (CSIC-UDELAR, FCEA)",
+    "seccion": "capítulo de contratos de garantía"
+  },
+  "Metodología COIL y gestión de personas en América Latina": {
+    "libro": "Armstrong - Strategic Human Resource Management: a Guide to Action",
+    "seccion": "capítulo de gestión estratégica de personas"
+  },
+  "Formación de equipos internacionales y competencias interculturales": {
+    "libro": "Backhaus y Tikoo - Conceptualizing and Researching Employer Branding",
+    "seccion": "artículo en Career Development International"
+  },
+  "Diagnóstico de problemáticas y construcción del problema de investigación": {
+    "libro": "Ambler y Barrow - The Employer Brand",
+    "seccion": "artículo en Journal of Brand Management"
+  },
+  "Diseño metodológico: construcción y validación de instrumentos": {
+    "libro": "Berthon, Ewing y Hah - Captivating Company: Dimensions of Attractiveness in Employer Branding",
+    "seccion": "artículo en International Journal of Advertising"
+  },
+  "Aplicación de entrevistas y cuestionarios, registro de información": {
+    "libro": "Barrow y Mosley - The Employer Brand: Bringing the Best of Brand Management to People at Work",
+    "seccion": "capítulo de trabajo de campo"
+  },
+  "Codificación, comparación internacional y elaboración de recomendaciones": {
+    "libro": "Knox y Freeman - Measuring and Managing Employer Brand Image in the Service Industry",
+    "seccion": "artículo en Journal of Marketing Management"
+  },
+  "Introducción: origen, evolución, acto de comercio y empresa": {
+    "libro": "AA.VV. - Curso de Derecho Comercial",
+    "seccion": "capítulo introductorio"
+  },
+  "Mercado, empresas y consumidores: competencia desleal y defensa del consumidor": {
+    "libro": "AA.VV. - Curso de Derecho Comercial",
+    "seccion": "capítulo de defensa de la competencia y del consumidor"
+  },
+  "Bienes: establecimiento comercial y propiedad industrial": {
+    "libro": "AA.VV. - Curso de Derecho Comercial",
+    "seccion": "capítulo de bienes comerciales"
+  },
+  "Títulos valores: letras de cambio, vales y cheques": {
+    "libro": "AA.VV. - Curso de Derecho Comercial",
+    "seccion": "capítulo de títulos valores"
+  },
+  "Contratos comerciales: clásicos, codificados y modernos": {
+    "libro": "AA.VV. - Curso de Derecho Comercial",
+    "seccion": "capítulo de contratación comercial"
+  },
+  "Crisis empresariales: fundamentos de la regulación y ley 18.387": {
+    "libro": "AA.VV. - Curso de Derecho Comercial",
+    "seccion": "capítulo de crisis empresariales"
+  },
+  "Las organizaciones y sus variables clave: la organización como sistema": {
+    "libro": "Daft - Teoría y Diseño Organizacional",
+    "seccion": "capítulo introductorio"
+  },
+  "Propósito organizacional y diseño: misión, metas y ventaja competitiva": {
+    "libro": "Daft - Teoría y Diseño Organizacional",
+    "seccion": "capítulo de propósito organizacional"
+  },
+  "Configuraciones típicas: estructura simple, funcional, divisional y matricial": {
+    "libro": "Daft - Teoría y Diseño Organizacional",
+    "seccion": "capítulo de configuraciones estructurales"
+  },
+  "Metodología de diseño: el proceso y las herramientas": {
+    "libro": "Kubr - La Consultoría de Empresas: Guía para la Profesión",
+    "seccion": "capítulo de metodología de diseño"
+  },
+  "Representación de la estructura: organigramas": {
+    "libro": "Garbarino y Pintos - Análisis y Diseño de Estructuras Organizacionales",
+    "seccion": "capítulo de representación estructural"
+  },
+  "Elementos clave del diseño: división del trabajo, autoridad, ámbito de control y coordinación": {
+    "libro": "González y Rivas - Ámbito de Control, Delegación y Descentralización",
+    "seccion": "capítulo de elementos del diseño estructural"
+  },
+  "La importancia de la gestión del cambio en el diseño organizacional": {
+    "libro": "Robbins y Judge - Comportamiento Organizacional",
+    "seccion": "capítulo de gestión del cambio"
+  },
+  "Cadena de suministro, abastecimiento estratégico y planificación de compras públicas": {
+    "libro": "Mendoza y Ceballos - El Abastecimiento Estratégico y su Aplicación en las Empresas",
+    "seccion": "capítulo de abastecimiento estratégico"
+  },
+  "Sistemas de información de compras públicas: SICE, RUPE, PAC, Portal de Compras y Observatorio": {
+    "libro": "Zuleta - Hacia una Política de Datos Abiertos del Sistema de Compra Pública",
+    "seccion": "documento de la RICG"
+  },
+  "Objetivos de Desarrollo Sostenible, Compras Públicas Sostenibles e informes de sostenibilidad": {
+    "libro": "Oviedo - Compras Públicas Sostenibles en América Latina y el Caribe",
+    "seccion": "capítulo de compras públicas sostenibles"
+  },
+  "Transparencia, datos abiertos y evaluación de sistemas de compras públicas: metodología MAPS": {
+    "libro": "Galvis, Marin y Garnica - Guía para la Identificación de Riesgos de Corrupción en Contratación Pública",
+    "seccion": "guía sobre ciencia de datos y contratación pública"
+  },
+  "Concepto de economía circular: definiciones, principios y vinculación con la economía social": {
+    "libro": "Rieradevall y Gasol - Economía Circular: el Camino hacia la Sostenibilidad",
+    "seccion": "capítulo introductorio"
+  },
+  "Objetivos de Desarrollo Sostenible y economía circular": {
+    "libro": "CEPAL - Economía Circular en América Latina y el Caribe: Oportunidades para una Recuperación Transformadora",
+    "seccion": "capítulo de ODS y economía circular"
+  },
+  "Impacto económico de la economía circular: dimensiones de la sostenibilidad": {
+    "libro": "Ministerio de Industria, Energía y Minería et al. - Estrategia Nacional de Economía Circular del Uruguay",
+    "seccion": "capítulo de impacto económico"
+  },
+  "Transformación empresarial y social hacia la economía circular": {
+    "libro": "Rieradevall y Gasol - Economía Circular: el Camino hacia la Sostenibilidad",
+    "seccion": "capítulo de transformación empresarial"
+  },
+  "Modelos estratégicos para la economía circular: logística inversa y servitización": {
+    "libro": "Van Hoof, Núñez y de Miguel - Metodología para la Evaluación de Avances en la Economía Circular",
+    "seccion": "documento de la CEPAL"
+  },
+  "Medición y reporte: estructura de los reportes y cuadro de mando circular": {
+    "libro": "La Medición de la Economía Circular - Grupo de Acción de Economía Circular y Forética",
+    "seccion": "guía de medición de la economía circular"
+  },
+  "Experiencia latinoamericana y uruguaya de economía circular: incentivos y políticas públicas": {
+    "libro": "Ministerio de Industria, Energía y Minería et al. - Estrategia Nacional de Economía Circular del Uruguay",
+    "seccion": "capítulo de experiencia uruguaya"
+  },
+  "Introducción: derecho público, el Estado y la Constitución uruguaya": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte I: introducción"
+  },
+  "Organización estatal uruguaya: poderes y personas estatales": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte II: organización estatal uruguaya"
+  },
+  "El orden jurídico uruguayo: actos constitucionales, legislativos y administrativos": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte III: el orden jurídico uruguayo"
+  },
+  "La Constitución uruguaya: reformas y régimen constitucional vigente": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte IV: la Constitución uruguaya"
+  },
+  "Los actos legislativos: procedimiento de formación de las leyes": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte V: los actos legislativos"
+  },
+  "Los actos administrativos: potestad reglamentaria": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte VI: los actos administrativos"
+  },
+  "Régimen político y social uruguayo: derechos fundamentales": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte VII: régimen político y social uruguayo"
+  },
+  "Nacionalidad, ciudadanía, sufragio y partidos políticos": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte X: nacionalidad, ciudadanía y sufragio"
+  },
+  "Poder Legislativo: organización y procedimiento parlamentario": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte XI: Poder Legislativo"
+  },
+  "El Poder Ejecutivo: estatuto del Presidente y de los Ministros": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte XII: el Poder Ejecutivo"
+  },
+  "Descentralización administrativa por servicios: entes autónomos": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte XIII: descentralización administrativa"
+  },
+  "Hacienda pública: el Tribunal de Cuentas y el régimen presupuestario": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte XIV: hacienda pública"
+  },
+  "Economía nacional: el Consejo de Economía Nacional": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte XV: economía nacional"
+  },
+  "Poder Judicial: organización y declaración de inconstitucionalidad": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte XVI: Poder Judicial"
+  },
+  "Descentralización territorial: gobiernos departamentales": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte XVII: descentralización territorial"
+  },
+  "Lo contencioso administrativo: acción de nulidad y de reparación": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte XVIII: lo contencioso administrativo"
+  },
+  "Justicia electoral: la Corte Electoral": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte XIX: justicia electoral"
+  },
+  "La Administración Pública: contratos administrativos y licitación": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte XX: la administración pública"
+  },
+  "Los funcionarios públicos: estatuto y carrera administrativa": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte XXI: los funcionarios públicos"
+  },
+  "Las medidas prontas de seguridad": {
+    "libro": "Casinelli Muñoz - Derecho Público",
+    "seccion": "parte XXII: las medidas prontas de seguridad"
+  },
+  "Características del sector público y sus sistemas de información": {
+    "libro": "Texto Ordenado de Contabilidad y Administración Financiera del Estado (TOCAF)",
+    "seccion": "capítulo introductorio"
+  },
+  "El presupuesto público: principios y técnicas presupuestarias": {
+    "libro": "Texto Ordenado de Contabilidad y Administración Financiera del Estado (TOCAF)",
+    "seccion": "capítulo del presupuesto público"
+  },
+  "La ejecución del presupuesto: el proceso del gasto": {
+    "libro": "Texto Ordenado de Contabilidad y Administración Financiera del Estado (TOCAF)",
+    "seccion": "capítulo de ejecución presupuestal"
+  },
+  "Los procedimientos de contratación: licitación pública y compras sustentables": {
+    "libro": "Texto Ordenado de Contabilidad y Administración Financiera del Estado (TOCAF)",
+    "seccion": "capítulo de contrataciones del Estado"
+  },
+  "El control y la evaluación de la gestión: TOCAF y Normas Internacionales de Contabilidad del Sector Público": {
+    "libro": "Texto Ordenado de Contabilidad y Administración Financiera del Estado (TOCAF)",
+    "seccion": "capítulo de control y evaluación"
+  },
+  "Organismos de control: Contaduría General de la Nación, AIN y Tribunal de Cuentas": {
+    "libro": "Texto Ordenado de Contabilidad y Administración Financiera del Estado (TOCAF)",
+    "seccion": "capítulo de organismos de control"
+  },
+  "Introducción al concepto de cultura organizacional": {
+    "libro": "Groysberg, Lee, Price y Cheng - The Leader's Guide to Corporate Culture",
+    "seccion": "capítulo introductorio"
+  },
+  "Tipos de cultura según la industria o sector de la organización": {
+    "libro": "Fernández-Ríos - Eficacia Organizacional: Concepto, Desarrollo y Evaluación",
+    "seccion": "capítulo 1"
+  },
+  "Diagnóstico cultural: identificación de subculturas": {
+    "libro": "Rodríguez - Diagnóstico Organizacional",
+    "seccion": "capítulo 8: diagnóstico de la cultura organizacional"
+  },
+  "Visión de la cultura organizacional deseada en línea con la estrategia": {
+    "libro": "Melián - La Cultura como Clave para Gestionar Exitosamente la Estrategia... y Todo lo Demás",
+    "seccion": "documento de la cátedra"
+  },
+  "Habilitadores y barreras para el cambio cultural": {
+    "libro": "Groysberg, Lee, Price y Cheng - The Leader's Guide to Corporate Culture",
+    "seccion": "capítulo de cambio cultural"
+  },
+  "Transición de la cultura actual a la cultura deseada": {
+    "libro": "How Leaders Can Create a Purpose-Driven Culture - Harvard Business Review",
+    "seccion": "artículo de Harvard Business Review"
+  },
+  "Transformación digital, cultura basada en datos, brechas generacionales y multiculturalidad": {
+    "libro": "10 Steps to Creating a Data-Driven Culture - Harvard Business Review",
+    "seccion": "artículo de Harvard Business Review"
+  },
+  "Monitoreo y medición del proceso de cambio cultural": {
+    "libro": "Informe Anual de Tendencias Globales en Capital Humano de Deloitte",
+    "seccion": "informe anual de Deloitte"
+  },
+  "Fundamentos de la extensión universitaria y los Espacios de Formación Integral": {
+    "libro": "Arocena - Integralidad, Tensiones y Perspectivas",
+    "seccion": "Cuaderno de Extensión 1"
+  },
+  "Economía Social y Solidaria y Economía Feminista: articulaciones de teoría y praxis": {
+    "libro": "Andrade, Veras Iglesias y Rieiro - Miradas Feministas sobre la Economía Social y Solidaria en Uruguay",
+    "seccion": "artículo en Revista Idelcoop"
+  },
+  "Construcción de viabilidad social, productiva y económica en emprendimientos colectivos": {
+    "libro": "Arizaga, García y Planchesteiner - Gestión y Sostenibilidad Cooperativa",
+    "seccion": "documento sobre pistas feministas para cooperativas"
+  },
+  "Autogestión y gestión colectiva: organización interna y gobernanza": {
+    "libro": "Bertullo et al. - El Cooperativismo en Uruguay",
+    "seccion": "documento de trabajo del Rectorado UdelaR"
+  },
+  "Marco normativo, aspectos tributarios y contables de cooperativas de trabajo y sociales": {
+    "libro": "Bertullo et al. - El Cooperativismo en Uruguay",
+    "seccion": "capítulo de marco normativo"
+  },
+  "La extensión universitaria y los Espacios de Formación Integral en la Udelar": {
+    "libro": "Arocena, Tommasino, Rodríguez, Sutz, Alvarez Pedrosian y Romano - Cuadernos de Extensión N°1: Integralidad, Tensiones y Perspectivas",
+    "seccion": "cuaderno de extensión"
+  },
+  "Dimensiones de la sostenibilidad y aporte de los microemprendimientos al desarrollo humano": {
+    "libro": "Rodriguez Miranda, Fernandez Pavlovich, Sbrocca y Assandri - Desarrollo de Capacidades para Emprender",
+    "seccion": "manual para equipos técnicos e instituciones"
+  },
+  "Desafíos de los microemprendimientos: brechas, sesgos y políticas públicas de apoyo": {
+    "libro": "Maca-Urbano - Emprendimiento, Subjetividad y Gubernamentalidad",
+    "seccion": "artículo en Revista Brasileira de Estudos Organizacionais"
+  },
+  "Influencia del entorno y planificación prospectiva para microemprendimientos": {
+    "libro": "Rodriguez Miranda, Fernandez Pavlovich, Sbrocca y Assandri - Desarrollo de Capacidades para Emprender",
+    "seccion": "capítulo de gestión estratégica"
+  },
+  "Metodologías ágiles para la formulación del negocio: metodología CANVA": {
+    "libro": "Rodriguez Miranda, Fernandez Pavlovich, Sbrocca y Assandri - Desarrollo de Capacidades para Emprender",
+    "seccion": "capítulo de metodologías ágiles"
+  },
+  "Comercialización, comercio electrónico, comunicación y redes sociales": {
+    "libro": "Freira, Di Giovanni, Tuimil y Vázquez - Limitaciones Tecnológicas en la Comercialización Digital de Emprendimientos",
+    "seccion": "ponencia en Jornadas Académicas FCEA"
+  },
+  "Planificación financiera y viabilidad económica de microemprendimientos": {
+    "libro": "Rodriguez Miranda, Fernandez Pavlovich, Sbrocca y Assandri - Desarrollo de Capacidades para Emprender",
+    "seccion": "capítulo de viabilidad económica"
+  },
+  "Estado y régimen democrático: conceptos básicos para el análisis de la política pública": {
+    "libro": "Dahl - La Democracia: una Guía para los Ciudadanos",
+    "seccion": "capítulo introductorio (selección)"
+  },
+  "Evolución de los paradigmas de la Administración Pública y el sector público uruguayo": {
+    "libro": "Weber - Qué es la Burocracia",
+    "seccion": "capítulo sobre burocracia y administración pública"
+  },
+  "El ciclo de la política pública, toma de decisiones y burocracia": {
+    "libro": "Lindblom - El Proceso de Elaboración de Políticas Públicas",
+    "seccion": "selección de la Municipal Administration Publications"
+  },
+  "Planificación estratégica: niveles, actores y herramientas": {
+    "libro": "OPP - Guía Metodológica de Planificación Estratégica",
+    "seccion": "guía metodológica"
+  },
+  "Introducción al marketing de servicios: características y triángulo del marketing de servicios": {
+    "libro": "Zeithaml, Bitner y Gremler - Marketing de Servicios",
+    "seccion": "capítulo introductorio"
+  },
+  "Ambiente del servicio: tipos de ambientes y evidencia física": {
+    "libro": "Zeithaml, Bitner y Gremler - Marketing de Servicios",
+    "seccion": "capítulo de ambiente del servicio"
+  },
+  "El cliente y su comportamiento en los servicios: proceso de decisión y expectativas": {
+    "libro": "Zeithaml, Bitner y Gremler - Marketing de Servicios",
+    "seccion": "capítulo del comportamiento del cliente"
+  },
+  "Construcción de relaciones con el cliente: valor del cliente y segmentación": {
+    "libro": "Zeithaml, Bitner y Gremler - Marketing de Servicios",
+    "seccion": "capítulo de marketing de relaciones"
+  },
+  "Demanda del servicio: patrones de demanda y estrategias de capacidad": {
+    "libro": "Zeithaml, Bitner y Gremler - Marketing de Servicios",
+    "seccion": "capítulo de administración de la demanda"
+  },
+  "Estrategias para el diseño del servicio: desarrollo, estándares y recuperación del servicio": {
+    "libro": "Zeithaml, Bitner y Gremler - Marketing de Servicios",
+    "seccion": "capítulo de diseño del servicio"
+  },
+  "Prestación y desempeño del servicio: papel de empleados y clientes": {
+    "libro": "Zeithaml, Bitner y Gremler - Marketing de Servicios",
+    "seccion": "capítulo de prestación del servicio"
+  },
+  "Fijación del precio en los servicios": {
+    "libro": "Cobra - Marketing de Servicios",
+    "seccion": "capítulo de fijación de precios"
+  },
+  "Sistema de distribución de los servicios": {
+    "libro": "Zeithaml, Bitner y Gremler - Marketing de Servicios",
+    "seccion": "capítulo de distribución de servicios"
+  },
+  "Comunicación integral en el marketing de servicios": {
+    "libro": "Zeithaml, Bitner y Gremler - Marketing de Servicios",
+    "seccion": "capítulo de comunicación integral"
+  },
+  "Introducción al marketing digital: entorno digital y comportamiento del nuevo consumidor": {
+    "libro": "Estrade Nieto, Soro y Hernández - Marketing Digital: Marketing Móvil, SEO y Analítica Web",
+    "seccion": "capítulo introductorio"
+  },
+  "Objetivos y métricas del marketing digital: analítica web": {
+    "libro": "Estrade Nieto, Soro y Hernández - Marketing Digital: Marketing Móvil, SEO y Analítica Web",
+    "seccion": "capítulo de métricas y analítica web"
+  },
+  "Presencia online: tipos de sitios web, usabilidad y accesibilidad": {
+    "libro": "Somalo Peciña - El Comercio Electrónico: una Guía Completa para Gestionar la Venta Online",
+    "seccion": "capítulo de presencia online"
+  },
+  "Estrategias de captación de clientes en internet": {
+    "libro": "Fonseca - Fundamentos del E-commerce",
+    "seccion": "capítulo de captación de clientes"
+  },
+  "SEO: posicionamiento orgánico en buscadores": {
+    "libro": "Estrade Nieto, Soro y Hernández - Marketing Digital: Marketing Móvil, SEO y Analítica Web",
+    "seccion": "capítulo de SEO"
+  },
+  "SEM: campañas de enlaces patrocinados": {
+    "libro": "Estrade Nieto, Soro y Hernández - Marketing Digital: Marketing Móvil, SEO y Analítica Web",
+    "seccion": "capítulo de SEM"
+  },
+  "Email marketing: estrategias de campañas y permission marketing": {
+    "libro": "Godin - El Marketing del Permiso",
+    "seccion": "capítulo de permission marketing"
+  },
+  "Social media y community management": {
+    "libro": "Kotler, Kartajaya y Setiawan - Marketing 4.0: Moving from Traditional to Digital",
+    "seccion": "capítulo de social media"
+  },
+  "E-commerce: modalidades, tecnología de pagos y tienda online": {
+    "libro": "Fonseca - Fundamentos del E-commerce",
+    "seccion": "capítulo de comercio electrónico"
+  },
+  "Plan de marketing digital: componentes y armado": {
+    "libro": "Estrade Nieto, Soro y Hernández - Marketing Digital: Marketing Móvil, SEO y Analítica Web",
+    "seccion": "capítulo de plan de marketing digital"
+  },
+  "Transformaciones en curso: cambio social y brechas": {
+    "libro": "Hernández-Ascanio, Tirado-Valencia y Ariza-Montes - El Concepto de Innovación Social: Ámbitos, Definiciones y Alcances Teóricos",
+    "seccion": "artículo en CIRIEC-España"
+  },
+  "Objetivos de Desarrollo Sostenible e innovación social": {
+    "libro": "De la Mata - Manual de Innovación Social",
+    "seccion": "capítulo introductorio"
+  },
+  "Modelos de innovación social y oportunidades en Uruguay": {
+    "libro": "López, Blanco y Guerra - Evolución de los Modelos de la Gestión de Innovación",
+    "seccion": "artículo sobre modelos de innovación"
+  },
+  "Liderazgo: conceptos introductorios y liderazgo distribuido": {
+    "libro": "Contreras Torres y Barbosa Ramírez - Del Liderazgo Transaccional al Liderazgo Transformacional",
+    "seccion": "capítulo de liderazgo transformacional"
+  },
+  "Construcción de una visión compartida y trabajo en equipo": {
+    "libro": "De Bono - El Pensamiento Lateral: Manual de Creatividad",
+    "seccion": "capítulo de creatividad en equipos"
+  },
+  "Exploración de la problemática y mapeo de actores clave": {
+    "libro": "Hernández-Ascanio, Valle, López y Viruel - Medir la Capacidad de Innovación Social en Organizaciones Complejas del Tercer Sector",
+    "seccion": "artículo en Empiria"
+  },
+  "Diseño centrado en las personas: el CANVA aplicado a la innovación social": {
+    "libro": "IDEO.org - Field Guide to Human-Centered Design",
+    "seccion": "guía de diseño centrado en las personas"
+  },
+  "Del prototipo a la validación, financiamiento y medición de impactos": {
+    "libro": "Espínola Verdín y Torres González - Análisis Cualitativo de Modelos de Negocio para el Emprendimiento Social",
+    "seccion": "artículo en Entreciencias"
   }
 }

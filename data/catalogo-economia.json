@@ -753,10 +753,33 @@
       "nombre": "Econometría II",
       "modulos": [
         {
-          "modulo": "Modelos avanzados de econometría",
+          "modulo": "Series de tiempo estacionarias",
           "temas": [
-            "Modelos de variable dependiente cualitativa",
-            "Datos de panel"
+            "Introducción al análisis de series de tiempo: fundamentos estadísticos y modelos dinámicos",
+            "Análisis de series de tiempo estacionarias: FAC, FACP y modelos ARMA"
+          ]
+        },
+        {
+          "modulo": "Series de tiempo no estacionarias y predicción",
+          "temas": [
+            "Modelización de series no estacionarias: raíces unitarias y modelos ARIMA",
+            "Predicción con modelos univariantes de series de tiempo",
+            "Análisis de intervención y acontecimientos atípicos"
+          ]
+        },
+        {
+          "modulo": "Modelos multivariantes y cointegración",
+          "temas": [
+            "Modelos multivariantes con series estacionarias: causalidad de Granger y modelos VAR",
+            "Raíces unitarias y cointegración: el enfoque de Engle y Granger"
+          ]
+        },
+        {
+          "modulo": "Modelos avanzados",
+          "temas": [
+            "Modelos de variable dependiente limitada: Tobit y Heckman",
+            "Método de los Momentos y Método Generalizado de los Momentos",
+            "Modelos lineales para datos de panel"
           ]
         }
       ]
@@ -765,10 +788,33 @@
       "nombre": "Historia del Pensamiento Económico",
       "modulos": [
         {
-          "modulo": "Escuelas del pensamiento económico",
+          "modulo": "Introducción y economía política clásica",
           "temas": [
-            "Clásicos y neoclásicos: de Smith a Marshall",
-            "Keynes y las escuelas heterodoxas del siglo XX"
+            "Panorama de la historia del pensamiento económico",
+            "Adam Smith y el nacimiento de la economía política clásica",
+            "Economía clásica: Ricardo, Malthus y John Stuart Mill"
+          ]
+        },
+        {
+          "modulo": "Marxismo y revolución marginalista",
+          "temas": [
+            "Fundamentos de la economía política: el marxismo",
+            "La revolución marginalista: Jevons, Walras, Menger y Marshall"
+          ]
+        },
+        {
+          "modulo": "Primera mitad del siglo XX",
+          "temas": [
+            "Escuela austríaca y nacimiento de la econometría",
+            "Keynes y el nacimiento de la macroeconomía"
+          ]
+        },
+        {
+          "modulo": "Síntesis y debates contemporáneos",
+          "temas": [
+            "La síntesis neoclásico-keynesiana y la crisis del keynesianismo",
+            "De Kuhn a la injusticia epistémica: paradigmas y metodología económica",
+            "Desarrollos recientes: economía comportamental y la revolución de la credibilidad"
           ]
         }
       ]

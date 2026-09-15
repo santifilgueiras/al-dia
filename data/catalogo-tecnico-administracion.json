@@ -168,16 +168,29 @@
       "nombre": "Administración y Gestión de las Organizaciones II",
       "modulos": [
         {
-          "modulo": "Procesos de dirección",
+          "modulo": "Profundización de funciones gerenciales",
           "temas": [
-            "Toma de decisiones y liderazgo en las organizaciones",
-            "Motivación y trabajo en equipo"
+            "Función gerencial y sus límites: ambiente y cultura",
+            "Flujos y configuraciones organizacionales (Mintzberg)",
+            "Estrategia, proceso estratégico y planificación estratégica",
+            "Implementación de la estrategia",
+            "Toma de decisiones gerenciales"
           ]
         },
         {
-          "modulo": "Cambio y cultura organizacional",
+          "modulo": "Administración de organizaciones particulares",
           "temas": [
-            "Cultura organizacional y su gestión"
+            "Administración de micro, pequeñas y medianas empresas",
+            "Administración de empresas familiares",
+            "Administración de cooperativas",
+            "Administración de asociaciones sin fines de lucro"
+          ]
+        },
+        {
+          "modulo": "Administración: pasado, presente y futuro",
+          "temas": [
+            "Reseña histórica de la administración: de Fayol a Mintzberg",
+            "Temas actuales: organización que aprende, gobierno corporativo e inteligencia artificial"
           ]
         }
       ]
@@ -205,10 +218,39 @@
       "nombre": "Derecho Civil",
       "modulos": [
         {
-          "modulo": "Parte general del derecho civil",
+          "modulo": "Introducción al derecho privado",
           "temas": [
-            "Personas físicas y jurídicas",
-            "Obligaciones y contratos civiles"
+            "Concepto de derecho, norma jurídica y fuentes del derecho",
+            "Hechos y actos jurídicos: forma, prueba e ineficacia"
+          ]
+        },
+        {
+          "modulo": "Personas",
+          "temas": [
+            "La persona física y las personas jurídicas: capacidad e incapacidades",
+            "Ley de violencia basada en género y ley de derechos de las personas trans"
+          ]
+        },
+        {
+          "modulo": "Bienes y modos de adquirir",
+          "temas": [
+            "Patrimonio, clasificación de bienes y derecho de propiedad",
+            "Propiedad horizontal, usufructo, servidumbre y posesión"
+          ]
+        },
+        {
+          "modulo": "Obligaciones",
+          "temas": [
+            "Definición, elementos y fuentes de las obligaciones",
+            "El contrato: formación, requisitos y efectos jurídicos",
+            "Incumplimiento, transmisión y extinción de las obligaciones"
+          ]
+        },
+        {
+          "modulo": "Contratos",
+          "temas": [
+            "Compraventa, permuta, arrendamiento y sociedad conyugal",
+            "Mandato, préstamo, fianza, prenda e hipoteca"
           ]
         }
       ]
@@ -217,10 +259,29 @@
       "nombre": "Investigación Colaborativa Internacional en Gestión de Personas",
       "modulos": [
         {
-          "modulo": "Proyecto de investigación colaborativa",
+          "modulo": "Internacionalización e investigación colaborativa",
           "temas": [
-            "Gestión de personas en contexto internacional",
-            "Trabajo colaborativo en equipos interdisciplinarios"
+            "Metodología COIL y gestión de personas en América Latina",
+            "Formación de equipos internacionales y competencias interculturales"
+          ]
+        },
+        {
+          "modulo": "Diseño de la investigación comparada",
+          "temas": [
+            "Diagnóstico de problemáticas y construcción del problema de investigación",
+            "Diseño metodológico: construcción y validación de instrumentos"
+          ]
+        },
+        {
+          "modulo": "Trabajo de campo internacional",
+          "temas": [
+            "Aplicación de entrevistas y cuestionarios, registro de información"
+          ]
+        },
+        {
+          "modulo": "Análisis comparado",
+          "temas": [
+            "Codificación, comparación internacional y elaboración de recomendaciones"
           ]
         }
       ]
@@ -231,10 +292,23 @@
       "nombre": "Procesos y Sistemas de Información",
       "modulos": [
         {
-          "modulo": "Sistemas de información en la organización",
+          "modulo": "Creación de la organización",
           "temas": [
-            "Sistemas de información para la gestión organizacional",
-            "Modelado y mejora de procesos de negocio"
+            "Creación de la organización: propuesta de valor, estrategia y arquitectura organizacional"
+          ]
+        },
+        {
+          "modulo": "Procesos, procedimientos y sistemas de información",
+          "temas": [
+            "Conceptos básicos de procesos de negocio, procedimientos y sistemas de información",
+            "Categorización e instrumentos de graficación de procesos"
+          ]
+        },
+        {
+          "modulo": "Mejoramiento de procesos",
+          "temas": [
+            "Cambio organizacional y su vinculación con el mejoramiento de procesos",
+            "Metodologías para el diseño y mejoramiento de procesos y sistemas de información"
           ]
         }
       ]
@@ -285,10 +359,24 @@
       "nombre": "Derecho Comercial",
       "modulos": [
         {
-          "modulo": "Régimen jurídico comercial",
+          "modulo": "Introducción y mercado",
           "temas": [
-            "Sociedades comerciales y estatuto del comerciante",
-            "Contratos comerciales y títulos valores"
+            "Introducción: origen, evolución, acto de comercio y empresa",
+            "Mercado, empresas y consumidores: competencia desleal y defensa del consumidor"
+          ]
+        },
+        {
+          "modulo": "Bienes y títulos valores",
+          "temas": [
+            "Bienes: establecimiento comercial y propiedad industrial",
+            "Títulos valores: letras de cambio, vales y cheques"
+          ]
+        },
+        {
+          "modulo": "Contratos y crisis empresariales",
+          "temas": [
+            "Contratos comerciales: clásicos, codificados y modernos",
+            "Crisis empresariales: fundamentos de la regulación y ley 18.387"
           ]
         }
       ]
@@ -364,10 +452,42 @@
       "nombre": "Administración de Recursos Humanos",
       "modulos": [
         {
-          "modulo": "Gestión del capital humano",
+          "modulo": "Conceptos generales y básicos",
           "temas": [
-            "Reclutamiento, selección e inducción de personal",
-            "Evaluación de desempeño y desarrollo del personal"
+            "Origen y desarrollo de la disciplina de Recursos Humanos",
+            "El soporte de la función en la organización y la planificación de Recursos Humanos"
+          ]
+        },
+        {
+          "modulo": "Sistemas de retención de personal",
+          "temas": [
+            "Clasificación, análisis, descripción, evaluación y valoración de cargos",
+            "Los servicios de apoyo al personal"
+          ]
+        },
+        {
+          "modulo": "Sistemas de obtención de personal",
+          "temas": [
+            "Reclutamiento y selección técnica de personal",
+            "Inducción, capacitación y gestión del conocimiento"
+          ]
+        },
+        {
+          "modulo": "Sistemas de desarrollo de personal",
+          "temas": [
+            "Evaluación del desempeño y desplazamientos del personal"
+          ]
+        },
+        {
+          "modulo": "Sistemas de control de personal",
+          "temas": [
+            "Relaciones con los empleados y sistema de información de Recursos Humanos"
+          ]
+        },
+        {
+          "modulo": "Evaluación de la gestión de personal",
+          "temas": [
+            "Auditoría de personal y responsabilidad social de las organizaciones"
           ]
         }
       ]
@@ -376,10 +496,30 @@
       "nombre": "Diseño Organizacional",
       "modulos": [
         {
-          "modulo": "Diseño de estructuras organizativas",
+          "modulo": "Introducción al diseño organizacional",
           "temas": [
-            "Modelos de estructura organizativa",
-            "Diseño de puestos y procesos"
+            "Las organizaciones y sus variables clave: la organización como sistema",
+            "Propósito organizacional y diseño: misión, metas y ventaja competitiva"
+          ]
+        },
+        {
+          "modulo": "Formas de organización",
+          "temas": [
+            "Configuraciones típicas: estructura simple, funcional, divisional y matricial"
+          ]
+        },
+        {
+          "modulo": "Metodología de diseño",
+          "temas": [
+            "Metodología de diseño: el proceso y las herramientas",
+            "Representación de la estructura: organigramas"
+          ]
+        },
+        {
+          "modulo": "Elementos del diseño y gestión del cambio",
+          "temas": [
+            "Elementos clave del diseño: división del trabajo, autoridad, ámbito de control y coordinación",
+            "La importancia de la gestión del cambio en el diseño organizacional"
           ]
         }
       ]
@@ -485,10 +625,27 @@
       "nombre": "Compras Públicas para el Desarrollo",
       "modulos": [
         {
-          "modulo": "Compras públicas",
+          "modulo": "Introducción a la contratación pública",
           "temas": [
-            "Marco normativo de las compras estatales",
-            "Compras públicas como herramienta de desarrollo"
+            "Cadena de suministro, abastecimiento estratégico y planificación de compras públicas"
+          ]
+        },
+        {
+          "modulo": "Sistemas de información",
+          "temas": [
+            "Sistemas de información de compras públicas: SICE, RUPE, PAC, Portal de Compras y Observatorio"
+          ]
+        },
+        {
+          "modulo": "Compras Públicas Sostenibles",
+          "temas": [
+            "Objetivos de Desarrollo Sostenible, Compras Públicas Sostenibles e informes de sostenibilidad"
+          ]
+        },
+        {
+          "modulo": "Transparencia y rendición de cuentas",
+          "temas": [
+            "Transparencia, datos abiertos y evaluación de sistemas de compras públicas: metodología MAPS"
           ]
         }
       ]
@@ -509,10 +666,30 @@
       "nombre": "Economía Circular",
       "modulos": [
         {
-          "modulo": "Economía circular",
+          "modulo": "Fundamentos de la economía circular",
           "temas": [
-            "Principios de la economía circular",
-            "Modelos de negocio circulares"
+            "Concepto de economía circular: definiciones, principios y vinculación con la economía social",
+            "Objetivos de Desarrollo Sostenible y economía circular"
+          ]
+        },
+        {
+          "modulo": "Impacto y transformación",
+          "temas": [
+            "Impacto económico de la economía circular: dimensiones de la sostenibilidad",
+            "Transformación empresarial y social hacia la economía circular"
+          ]
+        },
+        {
+          "modulo": "Modelos y medición",
+          "temas": [
+            "Modelos estratégicos para la economía circular: logística inversa y servitización",
+            "Medición y reporte: estructura de los reportes y cuadro de mando circular"
+          ]
+        },
+        {
+          "modulo": "Experiencia latinoamericana y uruguaya",
+          "temas": [
+            "Experiencia latinoamericana y uruguaya de economía circular: incentivos y políticas públicas"
           ]
         }
       ]
@@ -545,10 +722,63 @@
       "nombre": "Derecho Público",
       "modulos": [
         {
-          "modulo": "Derecho público",
+          "modulo": "Fundamentos del derecho público",
           "temas": [
-            "Organización del Estado y función pública",
-            "Actos y contratos administrativos"
+            "Introducción: derecho público, el Estado y la Constitución uruguaya",
+            "Organización estatal uruguaya: poderes y personas estatales"
+          ]
+        },
+        {
+          "modulo": "Orden jurídico y Constitución",
+          "temas": [
+            "El orden jurídico uruguayo: actos constitucionales, legislativos y administrativos",
+            "La Constitución uruguaya: reformas y régimen constitucional vigente"
+          ]
+        },
+        {
+          "modulo": "Actos legislativos y administrativos",
+          "temas": [
+            "Los actos legislativos: procedimiento de formación de las leyes",
+            "Los actos administrativos: potestad reglamentaria"
+          ]
+        },
+        {
+          "modulo": "Régimen político y derechos fundamentales",
+          "temas": [
+            "Régimen político y social uruguayo: derechos fundamentales",
+            "Nacionalidad, ciudadanía, sufragio y partidos políticos"
+          ]
+        },
+        {
+          "modulo": "Los poderes del Estado",
+          "temas": [
+            "Poder Legislativo: organización y procedimiento parlamentario",
+            "El Poder Ejecutivo: estatuto del Presidente y de los Ministros",
+            "Descentralización administrativa por servicios: entes autónomos"
+          ]
+        },
+        {
+          "modulo": "Hacienda y economía nacional",
+          "temas": [
+            "Hacienda pública: el Tribunal de Cuentas y el régimen presupuestario",
+            "Economía nacional: el Consejo de Economía Nacional"
+          ]
+        },
+        {
+          "modulo": "Poder Judicial y descentralización territorial",
+          "temas": [
+            "Poder Judicial: organización y declaración de inconstitucionalidad",
+            "Descentralización territorial: gobiernos departamentales"
+          ]
+        },
+        {
+          "modulo": "Contencioso administrativo y función pública",
+          "temas": [
+            "Lo contencioso administrativo: acción de nulidad y de reparación",
+            "Justicia electoral: la Corte Electoral",
+            "La Administración Pública: contratos administrativos y licitación",
+            "Los funcionarios públicos: estatuto y carrera administrativa",
+            "Las medidas prontas de seguridad"
           ]
         }
       ]
@@ -557,10 +787,24 @@
       "nombre": "Gestión Financiera del Estado",
       "modulos": [
         {
-          "modulo": "Finanzas públicas",
+          "modulo": "Sector público y presupuesto",
           "temas": [
-            "Presupuesto público y ejecución financiera",
-            "Gestión financiera de organismos estatales"
+            "Características del sector público y sus sistemas de información",
+            "El presupuesto público: principios y técnicas presupuestarias"
+          ]
+        },
+        {
+          "modulo": "Ejecución del gasto",
+          "temas": [
+            "La ejecución del presupuesto: el proceso del gasto",
+            "Los procedimientos de contratación: licitación pública y compras sustentables"
+          ]
+        },
+        {
+          "modulo": "Control y evaluación de la gestión",
+          "temas": [
+            "El control y la evaluación de la gestión: TOCAF y Normas Internacionales de Contabilidad del Sector Público",
+            "Organismos de control: Contaduría General de la Nación, AIN y Tribunal de Cuentas"
           ]
         }
       ]
@@ -569,10 +813,24 @@
       "nombre": "Cambio Organizacional",
       "modulos": [
         {
-          "modulo": "Gestión del cambio",
+          "modulo": "Aspectos conceptuales del cambio",
           "temas": [
-            "Modelos de gestión del cambio organizacional",
-            "Resistencia al cambio y estrategias de superación"
+            "Transformación y cambio organizacional: factores y tipos de cambio",
+            "El proceso de cambio organizacional"
+          ]
+        },
+        {
+          "modulo": "Gestión del cambio organizacional",
+          "temas": [
+            "Modelos de gestión y diagnóstico organizacional",
+            "Metodologías para el cambio, clima y plan de cambio"
+          ]
+        },
+        {
+          "modulo": "Componentes del cambio",
+          "temas": [
+            "Estructura de incentivos, liderazgo y comunicación en el cambio",
+            "Gestión de la resistencia, el conflicto y la tecnología en el cambio"
           ]
         }
       ]
@@ -595,16 +853,35 @@
       "nombre": "Comportamiento Organizacional",
       "modulos": [
         {
-          "modulo": "Comportamiento individual y grupal",
+          "modulo": "Introducción al comportamiento organizacional",
           "temas": [
-            "Percepción, actitudes y personalidad en el trabajo",
-            "Dinámica de grupos y equipos de trabajo"
+            "Introducción al comportamiento organizacional: variables y modelos"
           ]
         },
         {
-          "modulo": "Poder y cambio organizacional",
+          "modulo": "Comportamiento individual",
           "temas": [
-            "Poder, política y conflicto organizacional"
+            "Características biográficas, habilidades y percepción",
+            "Actitudes, satisfacción en el trabajo y emociones",
+            "Personalidad y valores",
+            "Motivación: teorías de necesidades y de proceso"
+          ]
+        },
+        {
+          "modulo": "Comportamiento grupal",
+          "temas": [
+            "Comportamiento de grupo y equipos de trabajo",
+            "Comunicación organizacional",
+            "Poder y política en las organizaciones",
+            "Liderazgo: teorías y enfoques contemporáneos",
+            "El conflicto organizacional y la negociación"
+          ]
+        },
+        {
+          "modulo": "Sistemas organizacionales",
+          "temas": [
+            "Cultura organizacional: funciones y tipología",
+            "Cambio organizacional: resistencia y transformación cultural"
           ]
         }
       ]
@@ -613,10 +890,31 @@
       "nombre": "Transformación Cultural",
       "modulos": [
         {
-          "modulo": "Cultura organizacional",
+          "modulo": "Fundamentos de la cultura organizacional",
           "temas": [
-            "Diagnóstico de la cultura organizacional",
-            "Procesos de transformación cultural"
+            "Introducción al concepto de cultura organizacional",
+            "Tipos de cultura según la industria o sector de la organización"
+          ]
+        },
+        {
+          "modulo": "Diagnóstico y visión de la cultura",
+          "temas": [
+            "Diagnóstico cultural: identificación de subculturas",
+            "Visión de la cultura organizacional deseada en línea con la estrategia"
+          ]
+        },
+        {
+          "modulo": "Cambio cultural",
+          "temas": [
+            "Habilitadores y barreras para el cambio cultural",
+            "Transición de la cultura actual a la cultura deseada"
+          ]
+        },
+        {
+          "modulo": "Desafíos actuales de la transformación cultural",
+          "temas": [
+            "Transformación digital, cultura basada en datos, brechas generacionales y multiculturalidad",
+            "Monitoreo y medición del proceso de cambio cultural"
           ]
         }
       ]
@@ -625,10 +923,33 @@
       "nombre": "EFI Cooperativas de Trabajo y Colectivos Autogestionados",
       "modulos": [
         {
-          "modulo": "Espacio de Formación Integral",
+          "modulo": "Extensión e integralidad",
           "temas": [
-            "Gestión de cooperativas de trabajo",
-            "Colectivos autogestionados y economía social"
+            "Fundamentos de la extensión universitaria y los Espacios de Formación Integral"
+          ]
+        },
+        {
+          "modulo": "Economía social, solidaria y feminista",
+          "temas": [
+            "Economía Social y Solidaria y Economía Feminista: articulaciones de teoría y praxis"
+          ]
+        },
+        {
+          "modulo": "Sostenibilidad en la Economía Social y Solidaria",
+          "temas": [
+            "Construcción de viabilidad social, productiva y económica en emprendimientos colectivos"
+          ]
+        },
+        {
+          "modulo": "Autogestión y cooperativismo",
+          "temas": [
+            "Autogestión y gestión colectiva: organización interna y gobernanza"
+          ]
+        },
+        {
+          "modulo": "Cooperativas de trabajo y sociales",
+          "temas": [
+            "Marco normativo, aspectos tributarios y contables de cooperativas de trabajo y sociales"
           ]
         }
       ]
@@ -649,10 +970,30 @@
       "nombre": "EFI: MicroCECEA",
       "modulos": [
         {
-          "modulo": "Espacio de Formación Integral",
+          "modulo": "Extensión universitaria e integralidad",
           "temas": [
-            "Asesoramiento a micro y pequeñas empresas",
-            "Práctica de extensión en gestión de emprendimientos"
+            "La extensión universitaria y los Espacios de Formación Integral en la Udelar"
+          ]
+        },
+        {
+          "modulo": "Sostenibilidad de emprendimientos productivos",
+          "temas": [
+            "Dimensiones de la sostenibilidad y aporte de los microemprendimientos al desarrollo humano",
+            "Desafíos de los microemprendimientos: brechas, sesgos y políticas públicas de apoyo"
+          ]
+        },
+        {
+          "modulo": "Gestión estratégica",
+          "temas": [
+            "Influencia del entorno y planificación prospectiva para microemprendimientos",
+            "Metodologías ágiles para la formulación del negocio: metodología CANVA"
+          ]
+        },
+        {
+          "modulo": "Acompañamiento a microemprendimientos",
+          "temas": [
+            "Comercialización, comercio electrónico, comunicación y redes sociales",
+            "Planificación financiera y viabilidad económica de microemprendimientos"
           ]
         }
       ]
@@ -673,10 +1014,27 @@
       "nombre": "Análisis Institucional y Planificación en el Sector Público",
       "modulos": [
         {
-          "modulo": "Gestión pública",
+          "modulo": "Estado y democracia",
           "temas": [
-            "Análisis institucional de organismos públicos",
-            "Planificación estratégica en el sector público"
+            "Estado y régimen democrático: conceptos básicos para el análisis de la política pública"
+          ]
+        },
+        {
+          "modulo": "Paradigmas de la Administración Pública",
+          "temas": [
+            "Evolución de los paradigmas de la Administración Pública y el sector público uruguayo"
+          ]
+        },
+        {
+          "modulo": "Análisis de la política pública",
+          "temas": [
+            "El ciclo de la política pública, toma de decisiones y burocracia"
+          ]
+        },
+        {
+          "modulo": "Planificación en el Sector Público",
+          "temas": [
+            "Planificación estratégica: niveles, actores y herramientas"
           ]
         }
       ]
@@ -685,10 +1043,33 @@
       "nombre": "Marketing de Servicios",
       "modulos": [
         {
-          "modulo": "Marketing de servicios",
+          "modulo": "Introducción y ambiente del servicio",
           "temas": [
-            "Particularidades del marketing de servicios",
-            "Calidad y experiencia del servicio"
+            "Introducción al marketing de servicios: características y triángulo del marketing de servicios",
+            "Ambiente del servicio: tipos de ambientes y evidencia física"
+          ]
+        },
+        {
+          "modulo": "El cliente y sus relaciones",
+          "temas": [
+            "El cliente y su comportamiento en los servicios: proceso de decisión y expectativas",
+            "Construcción de relaciones con el cliente: valor del cliente y segmentación"
+          ]
+        },
+        {
+          "modulo": "Demanda y diseño del servicio",
+          "temas": [
+            "Demanda del servicio: patrones de demanda y estrategias de capacidad",
+            "Estrategias para el diseño del servicio: desarrollo, estándares y recuperación del servicio"
+          ]
+        },
+        {
+          "modulo": "Prestación y comercialización del servicio",
+          "temas": [
+            "Prestación y desempeño del servicio: papel de empleados y clientes",
+            "Fijación del precio en los servicios",
+            "Sistema de distribución de los servicios",
+            "Comunicación integral en el marketing de servicios"
           ]
         }
       ]
@@ -697,10 +1078,38 @@
       "nombre": "Marketing Digital",
       "modulos": [
         {
-          "modulo": "Marketing digital",
+          "modulo": "Introducción y objetivos",
           "temas": [
-            "Canales y herramientas digitales de marketing",
-            "Métricas y campañas en medios digitales"
+            "Introducción al marketing digital: entorno digital y comportamiento del nuevo consumidor",
+            "Objetivos y métricas del marketing digital: analítica web"
+          ]
+        },
+        {
+          "modulo": "Presencia online y captación de clientes",
+          "temas": [
+            "Presencia online: tipos de sitios web, usabilidad y accesibilidad",
+            "Estrategias de captación de clientes en internet"
+          ]
+        },
+        {
+          "modulo": "SEO y SEM",
+          "temas": [
+            "SEO: posicionamiento orgánico en buscadores",
+            "SEM: campañas de enlaces patrocinados"
+          ]
+        },
+        {
+          "modulo": "Canales digitales",
+          "temas": [
+            "Email marketing: estrategias de campañas y permission marketing",
+            "Social media y community management",
+            "E-commerce: modalidades, tecnología de pagos y tienda online"
+          ]
+        },
+        {
+          "modulo": "Plan de marketing digital",
+          "temas": [
+            "Plan de marketing digital: componentes y armado"
           ]
         }
       ]
@@ -709,10 +1118,26 @@
       "nombre": "Liderazgo para la Innovación Social",
       "modulos": [
         {
-          "modulo": "Liderazgo e innovación social",
+          "modulo": "Conceptos introductorios",
           "temas": [
-            "Liderazgo aplicado a proyectos de impacto social",
-            "Innovación social: metodologías y casos"
+            "Transformaciones en curso: cambio social y brechas",
+            "Objetivos de Desarrollo Sostenible e innovación social",
+            "Modelos de innovación social y oportunidades en Uruguay"
+          ]
+        },
+        {
+          "modulo": "Liderar proyectos de innovación social",
+          "temas": [
+            "Liderazgo: conceptos introductorios y liderazgo distribuido",
+            "Construcción de una visión compartida y trabajo en equipo"
+          ]
+        },
+        {
+          "modulo": "Innovación social",
+          "temas": [
+            "Exploración de la problemática y mapeo de actores clave",
+            "Diseño centrado en las personas: el CANVA aplicado a la innovación social",
+            "Del prototipo a la validación, financiamiento y medición de impactos"
           ]
         }
       ]

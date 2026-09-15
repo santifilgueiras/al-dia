@@ -168,16 +168,29 @@
       "nombre": "Administración y Gestión de las Organizaciones II",
       "modulos": [
         {
-          "modulo": "Procesos de dirección",
+          "modulo": "Profundización de funciones gerenciales",
           "temas": [
-            "Toma de decisiones y liderazgo en las organizaciones",
-            "Motivación y trabajo en equipo"
+            "Función gerencial y sus límites: ambiente y cultura",
+            "Flujos y configuraciones organizacionales (Mintzberg)",
+            "Estrategia, proceso estratégico y planificación estratégica",
+            "Implementación de la estrategia",
+            "Toma de decisiones gerenciales"
           ]
         },
         {
-          "modulo": "Cambio y cultura organizacional",
+          "modulo": "Administración de organizaciones particulares",
           "temas": [
-            "Cultura organizacional y su gestión"
+            "Administración de micro, pequeñas y medianas empresas",
+            "Administración de empresas familiares",
+            "Administración de cooperativas",
+            "Administración de asociaciones sin fines de lucro"
+          ]
+        },
+        {
+          "modulo": "Administración: pasado, presente y futuro",
+          "temas": [
+            "Reseña histórica de la administración: de Fayol a Mintzberg",
+            "Temas actuales: organización que aprende, gobierno corporativo e inteligencia artificial"
           ]
         }
       ]
@@ -242,10 +255,23 @@
       "nombre": "Procesos y Sistemas de Información",
       "modulos": [
         {
-          "modulo": "Sistemas de información en la organización",
+          "modulo": "Creación de la organización",
           "temas": [
-            "Sistemas de información para la gestión organizacional",
-            "Modelado y mejora de procesos de negocio"
+            "Creación de la organización: propuesta de valor, estrategia y arquitectura organizacional"
+          ]
+        },
+        {
+          "modulo": "Procesos, procedimientos y sistemas de información",
+          "temas": [
+            "Conceptos básicos de procesos de negocio, procedimientos y sistemas de información",
+            "Categorización e instrumentos de graficación de procesos"
+          ]
+        },
+        {
+          "modulo": "Mejoramiento de procesos",
+          "temas": [
+            "Cambio organizacional y su vinculación con el mejoramiento de procesos",
+            "Metodologías para el diseño y mejoramiento de procesos y sistemas de información"
           ]
         }
       ]
@@ -356,10 +382,42 @@
       "nombre": "Administración de Recursos Humanos",
       "modulos": [
         {
-          "modulo": "Gestión del capital humano",
+          "modulo": "Conceptos generales y básicos",
           "temas": [
-            "Reclutamiento, selección e inducción de personal",
-            "Evaluación de desempeño y desarrollo del personal"
+            "Origen y desarrollo de la disciplina de Recursos Humanos",
+            "El soporte de la función en la organización y la planificación de Recursos Humanos"
+          ]
+        },
+        {
+          "modulo": "Sistemas de retención de personal",
+          "temas": [
+            "Clasificación, análisis, descripción, evaluación y valoración de cargos",
+            "Los servicios de apoyo al personal"
+          ]
+        },
+        {
+          "modulo": "Sistemas de obtención de personal",
+          "temas": [
+            "Reclutamiento y selección técnica de personal",
+            "Inducción, capacitación y gestión del conocimiento"
+          ]
+        },
+        {
+          "modulo": "Sistemas de desarrollo de personal",
+          "temas": [
+            "Evaluación del desempeño y desplazamientos del personal"
+          ]
+        },
+        {
+          "modulo": "Sistemas de control de personal",
+          "temas": [
+            "Relaciones con los empleados y sistema de información de Recursos Humanos"
+          ]
+        },
+        {
+          "modulo": "Evaluación de la gestión de personal",
+          "temas": [
+            "Auditoría de personal y responsabilidad social de las organizaciones"
           ]
         }
       ]
@@ -426,10 +484,33 @@
       "nombre": "Economía de las Decisiones Empresariales",
       "modulos": [
         {
-          "modulo": "Análisis económico de decisiones empresariales",
+          "modulo": "Mercados, organizaciones y microeconomía",
           "temas": [
-            "Análisis de mercado y decisiones de precio de la empresa",
-            "Decisiones de producción bajo incertidumbre"
+            "Introducción: mercados, organizaciones y decisiones empresariales",
+            "Fundamentos de microeconomía: demanda, producción y costos"
+          ]
+        },
+        {
+          "modulo": "Comportamiento y organización interna",
+          "temas": [
+            "Economía del comportamiento: aversión al riesgo y racionalidad",
+            "Organización interna: conflictos de intereses e información asimétrica"
+          ]
+        },
+        {
+          "modulo": "Estrategia empresarial",
+          "temas": [
+            "La estrategia empresarial: captura y creación de valor",
+            "La estrategia empresarial: teoría de juegos",
+            "Poder de mercado y fijación de precios"
+          ]
+        },
+        {
+          "modulo": "Relaciones entre empresas y con el Estado",
+          "temas": [
+            "Relaciones entre empresas: integración vertical",
+            "Economía de los bienes de información",
+            "La empresa y el Estado: motivos económicos para la intervención"
           ]
         }
       ]
@@ -438,10 +519,34 @@
       "nombre": "Taller de Ética y Responsabilidad Social",
       "modulos": [
         {
-          "modulo": "Ética y responsabilidad social empresarial",
+          "modulo": "Administración y Responsabilidad Social de las Empresas",
           "temas": [
-            "Responsabilidad social empresarial y sus dimensiones",
-            "Dilemas éticos en la gestión de las organizaciones"
+            "Concepto de Responsabilidad Social de las Empresas: stakeholders y esfera de influencia"
+          ]
+        },
+        {
+          "modulo": "Ética en los negocios",
+          "temas": [
+            "La naturaleza de la ética en los negocios y dilemas éticos en la toma de decisiones",
+            "Gobierno corporativo y código de conducta"
+          ]
+        },
+        {
+          "modulo": "La RSE como modelo estratégico de gestión",
+          "temas": [
+            "Gestión de la RSE: indicadores de gestión y relaciones con los stakeholders"
+          ]
+        },
+        {
+          "modulo": "Medición y comunicación de la RSE",
+          "temas": [
+            "Reportes y memorias de sustentabilidad: elaboración y verificación externa"
+          ]
+        },
+        {
+          "modulo": "Evolución, desarrollo y tendencias",
+          "temas": [
+            "De la RSE a la sustentabilidad: los Objetivos de Desarrollo Sostenible"
           ]
         }
       ]
@@ -485,16 +590,35 @@
       "nombre": "Comportamiento Organizacional",
       "modulos": [
         {
-          "modulo": "Comportamiento individual y grupal",
+          "modulo": "Introducción al comportamiento organizacional",
           "temas": [
-            "Percepción, actitudes y personalidad en el trabajo",
-            "Dinámica de grupos y equipos de trabajo"
+            "Introducción al comportamiento organizacional: variables y modelos"
           ]
         },
         {
-          "modulo": "Poder y cambio organizacional",
+          "modulo": "Comportamiento individual",
           "temas": [
-            "Poder, política y conflicto organizacional"
+            "Características biográficas, habilidades y percepción",
+            "Actitudes, satisfacción en el trabajo y emociones",
+            "Personalidad y valores",
+            "Motivación: teorías de necesidades y de proceso"
+          ]
+        },
+        {
+          "modulo": "Comportamiento grupal",
+          "temas": [
+            "Comportamiento de grupo y equipos de trabajo",
+            "Comunicación organizacional",
+            "Poder y política en las organizaciones",
+            "Liderazgo: teorías y enfoques contemporáneos",
+            "El conflicto organizacional y la negociación"
+          ]
+        },
+        {
+          "modulo": "Sistemas organizacionales",
+          "temas": [
+            "Cultura organizacional: funciones y tipología",
+            "Cambio organizacional: resistencia y transformación cultural"
           ]
         }
       ]
@@ -524,10 +648,32 @@
       "nombre": "Dirección Estratégica de las Organizaciones",
       "modulos": [
         {
-          "modulo": "Formulación e implementación estratégica",
+          "modulo": "Ética y fundamentos estratégicos",
           "temas": [
-            "Análisis estratégico del entorno y la organización",
-            "Formulación e implementación de la estrategia competitiva"
+            "Aspectos éticos de la dirección estratégica y gobierno corporativo",
+            "Introducción a la dirección estratégica: escuelas y proceso estratégico"
+          ]
+        },
+        {
+          "modulo": "Empresa y entorno",
+          "temas": [
+            "Empresa y entorno: competitividad sistémica",
+            "Dirección estratégica de mercado: análisis externo e interno"
+          ]
+        },
+        {
+          "modulo": "Decisiones estratégicas",
+          "temas": [
+            "Evaluación y toma de decisiones estratégicas: estrategia corporativa",
+            "Estrategias internacionales"
+          ]
+        },
+        {
+          "modulo": "Implementación y transformación",
+          "temas": [
+            "Implementación y control de la gestión estratégica: cuadro de mando integral",
+            "Transformación digital e inteligencia artificial en la estrategia",
+            "La dirección en entornos organizacionales diversos: liderazgo inclusivo"
           ]
         }
       ]
@@ -536,10 +682,24 @@
       "nombre": "Cambio Organizacional",
       "modulos": [
         {
-          "modulo": "Gestión del cambio",
+          "modulo": "Aspectos conceptuales del cambio",
           "temas": [
-            "Modelos de gestión del cambio organizacional",
-            "Resistencia al cambio y estrategias de superación"
+            "Transformación y cambio organizacional: factores y tipos de cambio",
+            "El proceso de cambio organizacional"
+          ]
+        },
+        {
+          "modulo": "Gestión del cambio organizacional",
+          "temas": [
+            "Modelos de gestión y diagnóstico organizacional",
+            "Metodologías para el cambio, clima y plan de cambio"
+          ]
+        },
+        {
+          "modulo": "Componentes del cambio",
+          "temas": [
+            "Estructura de incentivos, liderazgo y comunicación en el cambio",
+            "Gestión de la resistencia, el conflicto y la tecnología en el cambio"
           ]
         }
       ]
@@ -548,10 +708,35 @@
       "nombre": "Proyectos de Inversión",
       "modulos": [
         {
-          "modulo": "Evaluación de proyectos de inversión",
+          "modulo": "Concepto de proyecto de inversión",
           "temas": [
-            "Formulación y evaluación de proyectos de inversión",
-            "Análisis de sensibilidad y riesgo en proyectos"
+            "La inversión: parámetros estructurales y tipos de inversiones",
+            "El proyecto de inversión y su visión estratégica"
+          ]
+        },
+        {
+          "modulo": "Formulación de proyectos",
+          "temas": [
+            "Justificación comercial: demanda, oferta y precios",
+            "Justificación técnica: tamaño, proceso y localización",
+            "Estudios económicos y financieros del proyecto",
+            "Planeamiento de la ejecución"
+          ]
+        },
+        {
+          "modulo": "Evaluación de proyectos",
+          "temas": [
+            "Evaluación microeconómica: flujo de fondos e indicadores de rentabilidad",
+            "Evaluación socioeconómica y multicriterio",
+            "La promoción de inversiones en Uruguay",
+            "Valuación de empresas"
+          ]
+        },
+        {
+          "modulo": "Particularidades de tipos de proyectos",
+          "temas": [
+            "Proyectos agropecuarios, turísticos, de servicios y nuevos emprendimientos",
+            "Proyectos de participación público-privada y Project Finance"
           ]
         }
       ]
