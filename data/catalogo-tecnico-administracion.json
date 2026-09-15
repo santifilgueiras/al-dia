@@ -4,17 +4,36 @@
       "nombre": "Administración y Gestión de las Organizaciones I",
       "modulos": [
         {
-          "modulo": "Fundamentos de administración",
+          "modulo": "Organizaciones y administradores",
           "temas": [
-            "Evolución del pensamiento administrativo",
-            "El proceso administrativo: planificación, organización, dirección y control"
+            "Las organizaciones: características, clasificación y entorno",
+            "Administración y administradores: concepto, escuelas clásicas y rol gerencial"
           ]
         },
         {
-          "modulo": "La organización como sistema",
+          "modulo": "El proceso administrativo",
           "temas": [
-            "La organización como sistema abierto y su entorno",
-            "Estructura organizativa y diseño de la organización"
+            "Planificación: fijación de objetivos y planeamiento estratégico y operativo",
+            "Organización: diseño organizacional, departamentalización y mecanismos de coordinación",
+            "Dirección: autoridad, poder y liderazgo",
+            "Control: proceso y principios"
+          ]
+        },
+        {
+          "modulo": "Las funciones internas básicas de la empresa",
+          "temas": [
+            "Gerencia comercial: mezcla comercial y segmentación de mercado",
+            "Gerencia de producción u operaciones",
+            "Gerencia de finanzas: solvencia, rentabilidad y valor tiempo del dinero",
+            "Gerencia de recursos humanos",
+            "Gerencia de tecnología y sistemas de información"
+          ]
+        },
+        {
+          "modulo": "Creación y crecimiento de empresas",
+          "temas": [
+            "Creación de empresas: idea de negocio, estudios y formas jurídicas",
+            "Crecimiento de las empresas: fusiones, matriz de Ansoff y alianzas"
           ]
         }
       ]
@@ -23,17 +42,38 @@
       "nombre": "Conceptos Contables",
       "modulos": [
         {
-          "modulo": "Fundamentos de la partida doble",
+          "modulo": "La contabilidad y sus objetivos",
           "temas": [
-            "Partida doble y ecuación patrimonial",
-            "Registro contable de operaciones básicas"
+            "Las organizaciones, el patrimonio y el proceso decisorio",
+            "La contabilidad: concepto, funciones y el proceso contable"
           ]
         },
         {
-          "modulo": "Estados contables y ciclo contable",
+          "modulo": "La información contable",
           "temas": [
-            "Ciclo contable: apertura, ajustes y cierre",
-            "Estados contables básicos: Estado de Situación Patrimonial y Estado de Resultados"
+            "Características y requisitos de la información contable",
+            "Estados financieros: situación financiera, resultados integral, cambios en el patrimonio y flujo de efectivo"
+          ]
+        },
+        {
+          "modulo": "Reconocimiento contable de variaciones patrimoniales",
+          "temas": [
+            "Actos administrativos, hechos económicos y ecuación contable fundamental",
+            "Documentación respaldatoria de las operaciones"
+          ]
+        },
+        {
+          "modulo": "Las cuentas y el procesamiento de datos",
+          "temas": [
+            "El sistema contable: plan y manuales de cuentas",
+            "Registros contables básicos: diario, mayor, principales y auxiliares"
+          ]
+        },
+        {
+          "modulo": "Ciclo contable y ajustes",
+          "temas": [
+            "Ciclo contable elemental: apertura, gestión, resultados, cierre y reapertura",
+            "Ajustes por balance"
           ]
         }
       ]
@@ -42,17 +82,43 @@
       "nombre": "Introducción a la Microeconomía",
       "modulos": [
         {
-          "modulo": "Mercado, oferta y demanda",
+          "modulo": "Modelos y análisis en economía",
           "temas": [
-            "Curvas de oferta y demanda y determinación del precio de equilibrio",
-            "Elasticidades de la demanda y de la oferta"
+            "Problemas de la economía: producto, crecimiento y desigualdad",
+            "Modelos económicos: equilibrio, incentivos y renta económica",
+            "Precios relativos, tecnología y función de producción"
           ]
         },
         {
-          "modulo": "Teoría del consumidor y de la empresa",
+          "modulo": "Escasez, trabajo y elección",
           "temas": [
-            "Teoría del consumidor: preferencias y elección óptima",
-            "Teoría de la empresa: producción y costos"
+            "Preferencias y utilidad: curva de indiferencia y tasa marginal de sustitución",
+            "Frontera de posibilidades de producción y productividad",
+            "Efecto ingreso y efecto sustitución en el mercado de trabajo"
+          ]
+        },
+        {
+          "modulo": "Conflictos de interés y reglas de juego",
+          "temas": [
+            "Teoría de juegos: interacciones, estrategias y equilibrio de Nash",
+            "Asignación eficiente y óptimo de Pareto"
+          ]
+        },
+        {
+          "modulo": "La firma y sus clientes",
+          "temas": [
+            "Demanda de mercado, costos y función de beneficios de la firma",
+            "Fijación de precios y equilibrio de mercado",
+            "Ganancias del intercambio: excedente del consumidor y del productor",
+            "Elasticidad de demanda y políticas públicas"
+          ]
+        },
+        {
+          "modulo": "La firma: propietarios, administradores y empleados",
+          "temas": [
+            "Firma, división del trabajo y coordinación",
+            "Renta del empleo, esfuerzo y salarios de eficiencia",
+            "Mercado de trabajo bajo competencia perfecta"
           ]
         }
       ]
@@ -177,9 +243,40 @@
       "nombre": "Contabilidad General II",
       "modulos": [
         {
-          "modulo": "Contabilización de sociedades y operaciones especiales",
+          "modulo": "Sistemas contables",
           "temas": [
-            "Constitución y funcionamiento contable de sociedades comerciales"
+            "Sistemas contables: elementos e informes contables financieros y de sostenibilidad"
+          ]
+        },
+        {
+          "modulo": "Normas contables",
+          "temas": [
+            "Normas contables: concepto, situación internacional y normativa uruguaya"
+          ]
+        },
+        {
+          "modulo": "Componentes de los estados financieros",
+          "temas": [
+            "Instrumentos financieros básicos: reconocimiento y medición",
+            "Inventarios: costo, valuación y sistemas de registración",
+            "Propiedades, planta y equipo: reconocimiento, costo y depreciación",
+            "Propiedades de inversión",
+            "Intangibles: reconocimiento, medición y depreciación",
+            "Cuentas en moneda extranjera",
+            "Pasivos y activos contingentes"
+          ]
+        },
+        {
+          "modulo": "Hechos económicos de sociedades comerciales",
+          "temas": [
+            "Sociedades comerciales: tipos y registración de hechos económicos y actos administrativos",
+            "Estado de Cambio en el Patrimonio"
+          ]
+        },
+        {
+          "modulo": "Ingresos y gastos",
+          "temas": [
+            "Ingresos y gastos: concepto, clasificación y otros resultados integrales"
           ]
         }
       ]
@@ -291,9 +388,33 @@
       "nombre": "Contabilidad General III",
       "modulos": [
         {
-          "modulo": "Contabilización de sociedades y operaciones especiales",
+          "modulo": "La contabilidad y los informes",
           "temas": [
-            "Operaciones de fusión, escisión y transformación societaria"
+            "Objetivo informativo de la contabilidad: informes financieros y de sostenibilidad"
+          ]
+        },
+        {
+          "modulo": "Preparación de informes contables",
+          "temas": [
+            "Control interno: objetivo, requisitos y componentes del sistema",
+            "Tareas de preparación: arqueos, conciliaciones y recuento de inventarios",
+            "Ajustes para el reconocimiento de activos, pasivos, ingresos y gastos"
+          ]
+        },
+        {
+          "modulo": "Presentación de estados financieros",
+          "temas": [
+            "Estados financieros: definición, tipos y características de la información",
+            "Estado de Situación Financiera y Estado de Resultados",
+            "Estado de Cambio en el Patrimonio y Estado de Flujo de Efectivo",
+            "Notas a los estados financieros",
+            "Presentación de estados financieros en la Central de Balances Electrónica (CBE)"
+          ]
+        },
+        {
+          "modulo": "Informes internos",
+          "temas": [
+            "Informes financieros mensuales internos: tipos y balance mensual de resultados"
           ]
         }
       ]
@@ -302,17 +423,30 @@
       "nombre": "Matemática Financiera",
       "modulos": [
         {
-          "modulo": "Interés y valor del dinero en el tiempo",
+          "modulo": "Valor tiempo del dinero",
           "temas": [
-            "Interés simple y compuesto",
-            "Valor actual y valor futuro de capitales"
+            "Interés simple, interés compuesto y descuento de documentos",
+            "Tasa efectiva, tasa nominal y tasa real"
           ]
         },
         {
-          "modulo": "Rentas y sistemas de amortización",
+          "modulo": "Rentas y amortización de deudas",
           "temas": [
-            "Rentas: cálculo de valor actual y valor final",
-            "Sistemas de amortización de préstamos"
+            "Rentas: valuación con cuotas variables, constantes y perpetuas",
+            "Amortización de deudas y saldo de una deuda"
+          ]
+        },
+        {
+          "modulo": "Evaluación de inversiones",
+          "temas": [
+            "Inversiones: clasificación, componentes y criterios de evaluación (TIR y VAN)",
+            "Variables aleatorias aplicadas a los ingresos de una inversión"
+          ]
+        },
+        {
+          "modulo": "Seguros",
+          "temas": [
+            "Conceptos de demografía y costo puro de seguros"
           ]
         }
       ]
@@ -321,16 +455,28 @@
       "nombre": "Legislación Laboral y Seguridad Social",
       "modulos": [
         {
-          "modulo": "Régimen laboral individual",
+          "modulo": "Derecho individual y contrato de trabajo",
           "temas": [
-            "Contrato de trabajo y remuneraciones",
-            "Jornada laboral, licencias y despido"
+            "Derecho laboral: concepto, fuentes y principios",
+            "Contrato de trabajo: modalidades, derechos, obligaciones y extinción",
+            "Jornada de trabajo: régimen general y descansos"
           ]
         },
         {
-          "modulo": "Seguridad social",
+          "modulo": "Remuneraciones y beneficios",
           "temas": [
-            "Sistema de seguridad social uruguayo y aportes"
+            "Salarios, aguinaldo y salario vacacional",
+            "Feriados, horas extras y licencias",
+            "Despido: indemnizaciones y casos especiales"
+          ]
+        },
+        {
+          "modulo": "Seguridad social y tributación",
+          "temas": [
+            "Seguridad social: régimen mixto y prestaciones de actividad",
+            "Tributación a la seguridad social: materia gravada y aportes",
+            "Sistema Nacional Integrado de Salud: aportes personales y patronales",
+            "Impuesto a la Renta de las Personas Físicas, Categoría II (dependientes)"
           ]
         }
       ]

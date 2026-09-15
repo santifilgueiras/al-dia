@@ -4,17 +4,38 @@
       "nombre": "Conceptos Contables",
       "modulos": [
         {
-          "modulo": "Fundamentos de la partida doble",
+          "modulo": "La contabilidad y sus objetivos",
           "temas": [
-            "Partida doble y ecuación patrimonial",
-            "Registro contable de operaciones básicas"
+            "Las organizaciones, el patrimonio y el proceso decisorio",
+            "La contabilidad: concepto, funciones y el proceso contable"
           ]
         },
         {
-          "modulo": "Estados contables y ciclo contable",
+          "modulo": "La información contable",
           "temas": [
-            "Ciclo contable: apertura, ajustes y cierre",
-            "Estados contables básicos: Estado de Situación Patrimonial y Estado de Resultados"
+            "Características y requisitos de la información contable",
+            "Estados financieros: situación financiera, resultados integral, cambios en el patrimonio y flujo de efectivo"
+          ]
+        },
+        {
+          "modulo": "Reconocimiento contable de variaciones patrimoniales",
+          "temas": [
+            "Actos administrativos, hechos económicos y ecuación contable fundamental",
+            "Documentación respaldatoria de las operaciones"
+          ]
+        },
+        {
+          "modulo": "Las cuentas y el procesamiento de datos",
+          "temas": [
+            "El sistema contable: plan y manuales de cuentas",
+            "Registros contables básicos: diario, mayor, principales y auxiliares"
+          ]
+        },
+        {
+          "modulo": "Ciclo contable y ajustes",
+          "temas": [
+            "Ciclo contable elemental: apertura, gestión, resultados, cierre y reapertura",
+            "Ajustes por balance"
           ]
         }
       ]
@@ -23,17 +44,36 @@
       "nombre": "Administración y Gestión de las Organizaciones I",
       "modulos": [
         {
-          "modulo": "Fundamentos de administración",
+          "modulo": "Organizaciones y administradores",
           "temas": [
-            "Evolución del pensamiento administrativo",
-            "El proceso administrativo: planificación, organización, dirección y control"
+            "Las organizaciones: características, clasificación y entorno",
+            "Administración y administradores: concepto, escuelas clásicas y rol gerencial"
           ]
         },
         {
-          "modulo": "La organización como sistema",
+          "modulo": "El proceso administrativo",
           "temas": [
-            "La organización como sistema abierto y su entorno",
-            "Estructura organizativa y diseño de la organización"
+            "Planificación: fijación de objetivos y planeamiento estratégico y operativo",
+            "Organización: diseño organizacional, departamentalización y mecanismos de coordinación",
+            "Dirección: autoridad, poder y liderazgo",
+            "Control: proceso y principios"
+          ]
+        },
+        {
+          "modulo": "Las funciones internas básicas de la empresa",
+          "temas": [
+            "Gerencia comercial: mezcla comercial y segmentación de mercado",
+            "Gerencia de producción u operaciones",
+            "Gerencia de finanzas: solvencia, rentabilidad y valor tiempo del dinero",
+            "Gerencia de recursos humanos",
+            "Gerencia de tecnología y sistemas de información"
+          ]
+        },
+        {
+          "modulo": "Creación y crecimiento de empresas",
+          "temas": [
+            "Creación de empresas: idea de negocio, estudios y formas jurídicas",
+            "Crecimiento de las empresas: fusiones, matriz de Ansoff y alianzas"
           ]
         }
       ]
@@ -42,17 +82,43 @@
       "nombre": "Introducción a la Microeconomía",
       "modulos": [
         {
-          "modulo": "Mercado, oferta y demanda",
+          "modulo": "Modelos y análisis en economía",
           "temas": [
-            "Curvas de oferta y demanda y determinación del precio de equilibrio",
-            "Elasticidades de la demanda y de la oferta"
+            "Problemas de la economía: producto, crecimiento y desigualdad",
+            "Modelos económicos: equilibrio, incentivos y renta económica",
+            "Precios relativos, tecnología y función de producción"
           ]
         },
         {
-          "modulo": "Teoría del consumidor y de la empresa",
+          "modulo": "Escasez, trabajo y elección",
           "temas": [
-            "Teoría del consumidor: preferencias y elección óptima",
-            "Teoría de la empresa: producción y costos"
+            "Preferencias y utilidad: curva de indiferencia y tasa marginal de sustitución",
+            "Frontera de posibilidades de producción y productividad",
+            "Efecto ingreso y efecto sustitución en el mercado de trabajo"
+          ]
+        },
+        {
+          "modulo": "Conflictos de interés y reglas de juego",
+          "temas": [
+            "Teoría de juegos: interacciones, estrategias y equilibrio de Nash",
+            "Asignación eficiente y óptimo de Pareto"
+          ]
+        },
+        {
+          "modulo": "La firma y sus clientes",
+          "temas": [
+            "Demanda de mercado, costos y función de beneficios de la firma",
+            "Fijación de precios y equilibrio de mercado",
+            "Ganancias del intercambio: excedente del consumidor y del productor",
+            "Elasticidad de demanda y políticas públicas"
+          ]
+        },
+        {
+          "modulo": "La firma: propietarios, administradores y empleados",
+          "temas": [
+            "Firma, división del trabajo y coordinación",
+            "Renta del empleo, esfuerzo y salarios de eficiencia",
+            "Mercado de trabajo bajo competencia perfecta"
           ]
         }
       ]
@@ -121,10 +187,25 @@
       "nombre": "Derecho y Actividad Empresarial I",
       "modulos": [
         {
-          "modulo": "Marco jurídico de la empresa",
+          "modulo": "Introducción al derecho privado",
           "temas": [
-            "Sujetos de derecho y formas jurídicas de organización empresarial",
-            "Sociedades comerciales: constitución y tipos societarios"
+            "Introducción al derecho privado: principios e instituciones",
+            "Concepto de empresario y empresario societario: tipología social"
+          ]
+        },
+        {
+          "modulo": "Bienes y actuación externa del empresario",
+          "temas": [
+            "Bienes con regulación especial: establecimiento comercial y propiedad industrial",
+            "Derecho de la competencia y derecho del consumidor",
+            "Contratos comerciales",
+            "Títulos valores"
+          ]
+        },
+        {
+          "modulo": "Crisis empresariales",
+          "temas": [
+            "Crisis empresariales: principios de derecho concursal"
           ]
         }
       ]
@@ -133,17 +214,31 @@
       "nombre": "Introducción a la Macroeconomía",
       "modulos": [
         {
-          "modulo": "Variables macroeconómicas fundamentales",
+          "modulo": "Fundamentos macroeconómicos",
           "temas": [
-            "Producto Bruto Interno y cuentas nacionales",
-            "Inflación, desempleo y sus indicadores"
+            "El flujo circular de la renta, la medición del PIB y la demanda agregada",
+            "El mercado de trabajo: medición, salarios nominales y reales"
           ]
         },
         {
-          "modulo": "Mercados agregados",
+          "modulo": "Inflación y política macroeconómica",
           "temas": [
-            "Mercado de bienes y mercado monetario: un primer enfoque",
-            "Política fiscal y monetaria: introducción"
+            "La inflación y su vinculación con el desempleo: curva de Phillips",
+            "Política macroeconómica: política fiscal y política monetaria"
+          ]
+        },
+        {
+          "modulo": "Sector financiero y economía abierta",
+          "temas": [
+            "El sector financiero: deuda, dinero y mercados financieros",
+            "La economía abierta: balanza de pagos y movimientos de capitales",
+            "Política macroeconómica en economía abierta: regímenes cambiarios"
+          ]
+        },
+        {
+          "modulo": "Crecimiento y desarrollo",
+          "temas": [
+            "Crecimiento y desarrollo: contabilidad del crecimiento y convergencia"
           ]
         }
       ]
@@ -200,9 +295,40 @@
       "nombre": "Contabilidad General II",
       "modulos": [
         {
-          "modulo": "Contabilización de sociedades y operaciones especiales",
+          "modulo": "Sistemas contables",
           "temas": [
-            "Constitución y funcionamiento contable de sociedades comerciales"
+            "Sistemas contables: elementos e informes contables financieros y de sostenibilidad"
+          ]
+        },
+        {
+          "modulo": "Normas contables",
+          "temas": [
+            "Normas contables: concepto, situación internacional y normativa uruguaya"
+          ]
+        },
+        {
+          "modulo": "Componentes de los estados financieros",
+          "temas": [
+            "Instrumentos financieros básicos: reconocimiento y medición",
+            "Inventarios: costo, valuación y sistemas de registración",
+            "Propiedades, planta y equipo: reconocimiento, costo y depreciación",
+            "Propiedades de inversión",
+            "Intangibles: reconocimiento, medición y depreciación",
+            "Cuentas en moneda extranjera",
+            "Pasivos y activos contingentes"
+          ]
+        },
+        {
+          "modulo": "Hechos económicos de sociedades comerciales",
+          "temas": [
+            "Sociedades comerciales: tipos y registración de hechos económicos y actos administrativos",
+            "Estado de Cambio en el Patrimonio"
+          ]
+        },
+        {
+          "modulo": "Ingresos y gastos",
+          "temas": [
+            "Ingresos y gastos: concepto, clasificación y otros resultados integrales"
           ]
         }
       ]
@@ -290,9 +416,33 @@
       "nombre": "Contabilidad General III",
       "modulos": [
         {
-          "modulo": "Contabilización de sociedades y operaciones especiales",
+          "modulo": "La contabilidad y los informes",
           "temas": [
-            "Operaciones de fusión, escisión y transformación societaria"
+            "Objetivo informativo de la contabilidad: informes financieros y de sostenibilidad"
+          ]
+        },
+        {
+          "modulo": "Preparación de informes contables",
+          "temas": [
+            "Control interno: objetivo, requisitos y componentes del sistema",
+            "Tareas de preparación: arqueos, conciliaciones y recuento de inventarios",
+            "Ajustes para el reconocimiento de activos, pasivos, ingresos y gastos"
+          ]
+        },
+        {
+          "modulo": "Presentación de estados financieros",
+          "temas": [
+            "Estados financieros: definición, tipos y características de la información",
+            "Estado de Situación Financiera y Estado de Resultados",
+            "Estado de Cambio en el Patrimonio y Estado de Flujo de Efectivo",
+            "Notas a los estados financieros",
+            "Presentación de estados financieros en la Central de Balances Electrónica (CBE)"
+          ]
+        },
+        {
+          "modulo": "Informes internos",
+          "temas": [
+            "Informes financieros mensuales internos: tipos y balance mensual de resultados"
           ]
         }
       ]
@@ -301,17 +451,30 @@
       "nombre": "Matemática Financiera",
       "modulos": [
         {
-          "modulo": "Interés y valor del dinero en el tiempo",
+          "modulo": "Valor tiempo del dinero",
           "temas": [
-            "Interés simple y compuesto",
-            "Valor actual y valor futuro de capitales"
+            "Interés simple, interés compuesto y descuento de documentos",
+            "Tasa efectiva, tasa nominal y tasa real"
           ]
         },
         {
-          "modulo": "Rentas y sistemas de amortización",
+          "modulo": "Rentas y amortización de deudas",
           "temas": [
-            "Rentas: cálculo de valor actual y valor final",
-            "Sistemas de amortización de préstamos"
+            "Rentas: valuación con cuotas variables, constantes y perpetuas",
+            "Amortización de deudas y saldo de una deuda"
+          ]
+        },
+        {
+          "modulo": "Evaluación de inversiones",
+          "temas": [
+            "Inversiones: clasificación, componentes y criterios de evaluación (TIR y VAN)",
+            "Variables aleatorias aplicadas a los ingresos de una inversión"
+          ]
+        },
+        {
+          "modulo": "Seguros",
+          "temas": [
+            "Conceptos de demografía y costo puro de seguros"
           ]
         }
       ]
@@ -320,10 +483,28 @@
       "nombre": "Derecho Digital",
       "modulos": [
         {
-          "modulo": "Regulación jurídica de las tecnologías digitales",
+          "modulo": "Introducción al derecho digital",
           "temas": [
-            "Documento y firma electrónica",
-            "Protección de datos personales y comercio electrónico"
+            "Conceptos de derecho digital y tecnologías de la información",
+            "Inteligencia artificial"
+          ]
+        },
+        {
+          "modulo": "Gobierno electrónico y derechos digitales",
+          "temas": [
+            "Gobierno electrónico: AGESIC y políticas públicas de digitalización",
+            "Derechos digitales: protección de datos y del consumidor",
+            "Documento electrónico, firma electrónica e identificación digital",
+            "Amenazas del sistema: ciberdelito"
+          ]
+        },
+        {
+          "modulo": "Contratación electrónica y digitalización empresarial",
+          "temas": [
+            "Contratación electrónica: formación del contrato y jurisdicción aplicable",
+            "Constitución digital de sociedades y funcionamiento a distancia de órganos sociales",
+            "Sistemas de pago, fintech y crowdfunding",
+            "Derecho digital, inteligencia artificial y concurso de acreedores"
           ]
         }
       ]
@@ -332,16 +513,28 @@
       "nombre": "Legislación Laboral y Seguridad Social",
       "modulos": [
         {
-          "modulo": "Régimen laboral individual",
+          "modulo": "Derecho individual y contrato de trabajo",
           "temas": [
-            "Contrato de trabajo y remuneraciones",
-            "Jornada laboral, licencias y despido"
+            "Derecho laboral: concepto, fuentes y principios",
+            "Contrato de trabajo: modalidades, derechos, obligaciones y extinción",
+            "Jornada de trabajo: régimen general y descansos"
           ]
         },
         {
-          "modulo": "Seguridad social",
+          "modulo": "Remuneraciones y beneficios",
           "temas": [
-            "Sistema de seguridad social uruguayo y aportes"
+            "Salarios, aguinaldo y salario vacacional",
+            "Feriados, horas extras y licencias",
+            "Despido: indemnizaciones y casos especiales"
+          ]
+        },
+        {
+          "modulo": "Seguridad social y tributación",
+          "temas": [
+            "Seguridad social: régimen mixto y prestaciones de actividad",
+            "Tributación a la seguridad social: materia gravada y aportes",
+            "Sistema Nacional Integrado de Salud: aportes personales y patronales",
+            "Impuesto a la Renta de las Personas Físicas, Categoría II (dependientes)"
           ]
         }
       ]
@@ -370,10 +563,45 @@
       "nombre": "Derecho Tributario",
       "modulos": [
         {
-          "modulo": "Teoría general del tributo",
+          "modulo": "Introducción y ingresos estatales",
           "temas": [
-            "Relación jurídico-tributaria y clasificación de tributos",
-            "Principios constitucionales tributarios"
+            "El derecho tributario: concepto y ramas",
+            "Ingresos estatales: precios, tributos y especies tributarias"
+          ]
+        },
+        {
+          "modulo": "La norma tributaria",
+          "temas": [
+            "Fuentes del derecho tributario y principios constitucionales",
+            "Interpretación e integración de normas tributarias"
+          ]
+        },
+        {
+          "modulo": "Derecho tributario material",
+          "temas": [
+            "La relación jurídica tributaria: hecho generador y sujetos",
+            "Exoneraciones y modos de extinción de la obligación tributaria"
+          ]
+        },
+        {
+          "modulo": "Derecho tributario formal y procesal",
+          "temas": [
+            "Procedimiento administrativo: liquidación, determinación y facultades de la administración",
+            "Consulta tributaria, devolución de pago indebido y recursos administrativos",
+            "Medidas cautelares, juicio ejecutivo y acción de nulidad"
+          ]
+        },
+        {
+          "modulo": "Derecho sancionatorio e internacional",
+          "temas": [
+            "Ilícitos tributarios: mora, defraudación y otras infracciones",
+            "Derecho internacional tributario: doble imposición y tratados"
+          ]
+        },
+        {
+          "modulo": "El sistema tributario nacional",
+          "temas": [
+            "Potestad tributaria nacional y departamental"
           ]
         }
       ]
@@ -382,10 +610,19 @@
       "nombre": "Contabilidad Social y Ambiental",
       "modulos": [
         {
-          "modulo": "Reportes no financieros",
+          "modulo": "RSE y estándares de sostenibilidad",
           "temas": [
-            "Reportes de sostenibilidad y responsabilidad social empresarial",
-            "Contabilidad ambiental y su medición"
+            "La contabilidad y la responsabilidad social empresarial",
+            "Estándares internacionales de información no financiera: GRI, ODS, NIIF S",
+            "El reporting en las organizaciones"
+          ]
+        },
+        {
+          "modulo": "Contabilidad ambiental y social",
+          "temas": [
+            "La contabilidad ambiental: gestión ambiental e indicadores",
+            "Los costos ambientales",
+            "La contabilidad social: contabilidad tridimensional"
           ]
         }
       ]
@@ -408,10 +645,37 @@
       "nombre": "Contabilidad Superior I",
       "modulos": [
         {
-          "modulo": "Normas contables adecuadas",
+          "modulo": "Cuestiones contables fundamentales",
           "temas": [
-            "Normas Internacionales de Información Financiera (NIIF)",
-            "Valuación de activos y pasivos según normativa contable"
+            "El Marco Conceptual para la información financiera del IASB",
+            "Los modelos contables, las NIIF y las NIIF para PYMES"
+          ]
+        },
+        {
+          "modulo": "Presentación de estados financieros",
+          "temas": [
+            "Presentación de estados financieros, políticas contables y hechos posteriores"
+          ]
+        },
+        {
+          "modulo": "Reconocimiento y medición de activos y pasivos",
+          "temas": [
+            "Propiedad, planta y equipo, propiedad de inversión e intangibles",
+            "Deterioro de activos e instrumentos financieros",
+            "Provisiones, activos y pasivos contingentes"
+          ]
+        },
+        {
+          "modulo": "Reconocimiento y medición de resultados",
+          "temas": [
+            "Reconocimiento de ingresos y resultados financieros",
+            "Impuesto a la renta"
+          ]
+        },
+        {
+          "modulo": "La unidad de medida",
+          "temas": [
+            "Moneda funcional y conversión de estados financieros a moneda extranjera"
           ]
         }
       ]
@@ -451,10 +715,53 @@
       "nombre": "Administración y Planificación Financiera",
       "modulos": [
         {
-          "modulo": "Planificación financiera de la empresa",
+          "modulo": "Introducción a la administración financiera",
           "temas": [
-            "Presupuesto financiero y flujo de caja proyectado",
-            "Planificación financiera de corto y largo plazo"
+            "Rol de las finanzas en decisiones personales y organizacionales, y áreas de las finanzas"
+          ]
+        },
+        {
+          "modulo": "Valuación",
+          "temas": [
+            "Valor del dinero en el tiempo, inflación y tasa real",
+            "Riesgo y rendimiento"
+          ]
+        },
+        {
+          "modulo": "Herramientas de análisis financiero",
+          "temas": [
+            "Estados financieros, indicadores e interpretación del desempeño financiero"
+          ]
+        },
+        {
+          "modulo": "Administración del capital de trabajo",
+          "temas": [
+            "Gestión del efectivo, inventarios, cuentas a cobrar y a pagar"
+          ]
+        },
+        {
+          "modulo": "Planificación financiera",
+          "temas": [
+            "El proceso de planificación financiera y estados financieros proyectados"
+          ]
+        },
+        {
+          "modulo": "Decisiones de inversión",
+          "temas": [
+            "Flujos de fondos, tasa de retorno requerida e indicadores de inversión"
+          ]
+        },
+        {
+          "modulo": "Decisiones de financiamiento y dividendos",
+          "temas": [
+            "Estructura de capital, apalancamiento y fuentes de financiamiento",
+            "Políticas de dividendos"
+          ]
+        },
+        {
+          "modulo": "Finanzas personales y educación financiera",
+          "temas": [
+            "Presupuesto personal, ahorro, endeudamiento y productos financieros"
           ]
         }
       ]
@@ -463,10 +770,38 @@
       "nombre": "Control Interno",
       "modulos": [
         {
-          "modulo": "Sistema de control interno",
+          "modulo": "Introducción y evolución del control interno",
           "temas": [
-            "Componentes del control interno (marco COSO)",
-            "Evaluación de riesgos y actividades de control"
+            "Origen y evolución del concepto de control interno: AICPA, COSO 1992 y COSO 2013"
+          ]
+        },
+        {
+          "modulo": "Marco Integrado COSO 2013",
+          "temas": [
+            "Definición, objetivos, componentes y principios del control interno",
+            "Componentes: entorno de control, evaluación de riesgos, actividades de control, información y supervisión"
+          ]
+        },
+        {
+          "modulo": "Planificación y gestión del riesgo",
+          "temas": [
+            "Planificación estratégica, objetivos y riesgos relacionados",
+            "Gestión del Riesgo Empresarial (ERM 2017)"
+          ]
+        },
+        {
+          "modulo": "Gobierno corporativo e integración",
+          "temas": [
+            "Gobierno corporativo: conceptos, actores y modelos de buenas prácticas",
+            "Integración entre gobierno corporativo, control interno, gestión de riesgos y planificación estratégica"
+          ]
+        },
+        {
+          "modulo": "Evaluación del control interno",
+          "temas": [
+            "Aplicación del control interno en el contexto de PYME",
+            "Evaluación del control interno por componentes y ciclos operativos",
+            "Otros modelos: COCO y modelos focalizados en tecnología de la información"
           ]
         }
       ]
@@ -479,14 +814,24 @@
         {
           "modulo": "Fundamentos de auditoría",
           "temas": [
-            "Normas de auditoría y responsabilidad del auditor",
-            "Planificación de la auditoría y evaluación de riesgos"
+            "Conceptos generales de auditoría y marco normativo local e internacional",
+            "La auditoría basada en riesgos",
+            "Herramientas de Data Analytics para la auditoría de estados financieros"
           ]
         },
         {
-          "modulo": "Evidencia y procedimientos de auditoría",
+          "modulo": "Auditoría por rubro",
           "temas": [
-            "Evidencia de auditoría y procedimientos sustantivos"
+            "Auditoría de efectivo, deudores comerciales e inventarios",
+            "Auditoría de activos no corrientes y acreedores comerciales",
+            "Auditoría de provisiones, contingencias, patrimonio y resultados"
+          ]
+        },
+        {
+          "modulo": "Finalización de la auditoría",
+          "temas": [
+            "Tareas de finalización: hechos posteriores y empresa en funcionamiento",
+            "Formación de la opinión sobre los estados financieros"
           ]
         }
       ]
@@ -495,10 +840,24 @@
       "nombre": "Tributaria II",
       "modulos": [
         {
-          "modulo": "Impuesto al valor agregado y otros tributos",
+          "modulo": "Imposición a la renta personal",
           "temas": [
-            "Impuesto al Valor Agregado (IVA)",
-            "Otros tributos: comercio exterior y tributos municipales"
+            "IRPF: hecho generador, sujetos pasivos y elementos cuantificantes",
+            "IRPF: deducciones, exoneraciones, liquidación y dividendos fictos",
+            "Imposición a la renta de los no residentes (IRNR)"
+          ]
+        },
+        {
+          "modulo": "Impuesto al patrimonio personal",
+          "temas": [
+            "Impuesto al Patrimonio personal: hecho generador, sujetos y elementos cuantificantes"
+          ]
+        },
+        {
+          "modulo": "Imposición al consumo",
+          "temas": [
+            "IVA: hecho generador, sujetos pasivos, alícuotas y liquidación",
+            "IMESI: hecho generador, sujetos pasivos y liquidación"
           ]
         }
       ]
@@ -528,10 +887,32 @@
       "nombre": "Auditoría Interna",
       "modulos": [
         {
-          "modulo": "La función de auditoría interna",
+          "modulo": "Fundamentos de la función",
           "temas": [
-            "Rol y alcance de la auditoría interna en la organización",
-            "Planificación y ejecución de trabajos de auditoría interna"
+            "Orígenes y esencia de la función de Auditoría Interna",
+            "Marco normativo que regula la actividad de Auditoría Interna"
+          ]
+        },
+        {
+          "modulo": "El proceso de auditoría interna",
+          "temas": [
+            "El proceso de Auditoría Interna",
+            "Auditoría interna y auditoría operativa o de gestión",
+            "Auditoría interna y auditoría de la actividad informática"
+          ]
+        },
+        {
+          "modulo": "Auditoría interna por sector",
+          "temas": [
+            "Auditoría interna en el sector financiero",
+            "Auditoría interna en el sector público"
+          ]
+        },
+        {
+          "modulo": "Riesgos específicos",
+          "temas": [
+            "Auditoría interna y los sistemas de prevención del lavado de activos",
+            "Auditoría interna y fraude"
           ]
         }
       ]

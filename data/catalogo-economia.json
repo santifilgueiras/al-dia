@@ -4,17 +4,43 @@
       "nombre": "Introducción a la Microeconomía",
       "modulos": [
         {
-          "modulo": "Mercado, oferta y demanda",
+          "modulo": "Modelos y análisis en economía",
           "temas": [
-            "Curvas de oferta y demanda y determinación del precio de equilibrio",
-            "Elasticidades de la demanda y de la oferta"
+            "Problemas de la economía: producto, crecimiento y desigualdad",
+            "Modelos económicos: equilibrio, incentivos y renta económica",
+            "Precios relativos, tecnología y función de producción"
           ]
         },
         {
-          "modulo": "Teoría del consumidor y de la empresa",
+          "modulo": "Escasez, trabajo y elección",
           "temas": [
-            "Teoría del consumidor: preferencias y elección óptima",
-            "Teoría de la empresa: producción y costos"
+            "Preferencias y utilidad: curva de indiferencia y tasa marginal de sustitución",
+            "Frontera de posibilidades de producción y productividad",
+            "Efecto ingreso y efecto sustitución en el mercado de trabajo"
+          ]
+        },
+        {
+          "modulo": "Conflictos de interés y reglas de juego",
+          "temas": [
+            "Teoría de juegos: interacciones, estrategias y equilibrio de Nash",
+            "Asignación eficiente y óptimo de Pareto"
+          ]
+        },
+        {
+          "modulo": "La firma y sus clientes",
+          "temas": [
+            "Demanda de mercado, costos y función de beneficios de la firma",
+            "Fijación de precios y equilibrio de mercado",
+            "Ganancias del intercambio: excedente del consumidor y del productor",
+            "Elasticidad de demanda y políticas públicas"
+          ]
+        },
+        {
+          "modulo": "La firma: propietarios, administradores y empleados",
+          "temas": [
+            "Firma, división del trabajo y coordinación",
+            "Renta del empleo, esfuerzo y salarios de eficiencia",
+            "Mercado de trabajo bajo competencia perfecta"
           ]
         }
       ]
@@ -62,17 +88,38 @@
       "nombre": "Conceptos Contables",
       "modulos": [
         {
-          "modulo": "Fundamentos de la partida doble",
+          "modulo": "La contabilidad y sus objetivos",
           "temas": [
-            "Partida doble y ecuación patrimonial",
-            "Registro contable de operaciones básicas"
+            "Las organizaciones, el patrimonio y el proceso decisorio",
+            "La contabilidad: concepto, funciones y el proceso contable"
           ]
         },
         {
-          "modulo": "Estados contables y ciclo contable",
+          "modulo": "La información contable",
           "temas": [
-            "Ciclo contable: apertura, ajustes y cierre",
-            "Estados contables básicos: Estado de Situación Patrimonial y Estado de Resultados"
+            "Características y requisitos de la información contable",
+            "Estados financieros: situación financiera, resultados integral, cambios en el patrimonio y flujo de efectivo"
+          ]
+        },
+        {
+          "modulo": "Reconocimiento contable de variaciones patrimoniales",
+          "temas": [
+            "Actos administrativos, hechos económicos y ecuación contable fundamental",
+            "Documentación respaldatoria de las operaciones"
+          ]
+        },
+        {
+          "modulo": "Las cuentas y el procesamiento de datos",
+          "temas": [
+            "El sistema contable: plan y manuales de cuentas",
+            "Registros contables básicos: diario, mayor, principales y auxiliares"
+          ]
+        },
+        {
+          "modulo": "Ciclo contable y ajustes",
+          "temas": [
+            "Ciclo contable elemental: apertura, gestión, resultados, cierre y reapertura",
+            "Ajustes por balance"
           ]
         }
       ]
@@ -81,17 +128,36 @@
       "nombre": "Administración y Gestión de las Organizaciones I",
       "modulos": [
         {
-          "modulo": "Fundamentos de administración",
+          "modulo": "Organizaciones y administradores",
           "temas": [
-            "Evolución del pensamiento administrativo",
-            "El proceso administrativo: planificación, organización, dirección y control"
+            "Las organizaciones: características, clasificación y entorno",
+            "Administración y administradores: concepto, escuelas clásicas y rol gerencial"
           ]
         },
         {
-          "modulo": "La organización como sistema",
+          "modulo": "El proceso administrativo",
           "temas": [
-            "La organización como sistema abierto y su entorno",
-            "Estructura organizativa y diseño de la organización"
+            "Planificación: fijación de objetivos y planeamiento estratégico y operativo",
+            "Organización: diseño organizacional, departamentalización y mecanismos de coordinación",
+            "Dirección: autoridad, poder y liderazgo",
+            "Control: proceso y principios"
+          ]
+        },
+        {
+          "modulo": "Las funciones internas básicas de la empresa",
+          "temas": [
+            "Gerencia comercial: mezcla comercial y segmentación de mercado",
+            "Gerencia de producción u operaciones",
+            "Gerencia de finanzas: solvencia, rentabilidad y valor tiempo del dinero",
+            "Gerencia de recursos humanos",
+            "Gerencia de tecnología y sistemas de información"
+          ]
+        },
+        {
+          "modulo": "Creación y crecimiento de empresas",
+          "temas": [
+            "Creación de empresas: idea de negocio, estudios y formas jurídicas",
+            "Crecimiento de las empresas: fusiones, matriz de Ansoff y alianzas"
           ]
         }
       ]
@@ -148,17 +214,31 @@
       "nombre": "Introducción a la Macroeconomía",
       "modulos": [
         {
-          "modulo": "Variables macroeconómicas fundamentales",
+          "modulo": "Fundamentos macroeconómicos",
           "temas": [
-            "Producto Bruto Interno y cuentas nacionales",
-            "Inflación, desempleo y sus indicadores"
+            "El flujo circular de la renta, la medición del PIB y la demanda agregada",
+            "El mercado de trabajo: medición, salarios nominales y reales"
           ]
         },
         {
-          "modulo": "Mercados agregados",
+          "modulo": "Inflación y política macroeconómica",
           "temas": [
-            "Mercado de bienes y mercado monetario: un primer enfoque",
-            "Política fiscal y monetaria: introducción"
+            "La inflación y su vinculación con el desempleo: curva de Phillips",
+            "Política macroeconómica: política fiscal y política monetaria"
+          ]
+        },
+        {
+          "modulo": "Sector financiero y economía abierta",
+          "temas": [
+            "El sector financiero: deuda, dinero y mercados financieros",
+            "La economía abierta: balanza de pagos y movimientos de capitales",
+            "Política macroeconómica en economía abierta: regímenes cambiarios"
+          ]
+        },
+        {
+          "modulo": "Crecimiento y desarrollo",
+          "temas": [
+            "Crecimiento y desarrollo: contabilidad del crecimiento y convergencia"
           ]
         }
       ]
@@ -169,17 +249,33 @@
       "nombre": "Macroeconomía I",
       "modulos": [
         {
-          "modulo": "Modelo de ingreso-gasto",
+          "modulo": "Introducción y hechos macroeconómicos",
           "temas": [
-            "Modelo de determinación del ingreso: enfoque keynesiano",
-            "Multiplicador del gasto y política fiscal"
+            "Hechos macroeconómicos básicos: PIB, desempleo e inflación, ley de Okun y curva de Phillips"
           ]
         },
         {
-          "modulo": "Mercado monetario",
+          "modulo": "El corto plazo",
           "temas": [
-            "Oferta y demanda de dinero",
-            "Modelo IS-LM"
+            "El mercado de bienes: composición del PIB y la cruz keynesiana",
+            "Los mercados financieros: demanda de dinero y política monetaria",
+            "El modelo IS-LM: mercados de bienes y financieros"
+          ]
+        },
+        {
+          "modulo": "El medio plazo",
+          "temas": [
+            "El mercado de trabajo: salarios, precios y desempleo",
+            "La curva de Phillips y la tasa natural de desempleo",
+            "Del corto al medio plazo: el modelo IS-LM-PC"
+          ]
+        },
+        {
+          "modulo": "Las expectativas",
+          "temas": [
+            "Los mercados financieros y las expectativas: precios de bonos y acciones",
+            "Las expectativas, el consumo y la inversión",
+            "Las expectativas, la producción y la política macroeconómica"
           ]
         }
       ]
@@ -226,10 +322,46 @@
       "nombre": "Historia Económica Mundial",
       "modulos": [
         {
-          "modulo": "Procesos económicos históricos",
+          "modulo": "Fundamentos y crecimiento moderno",
           "temas": [
-            "Revolución industrial y expansión del capitalismo",
-            "Crisis económicas mundiales del siglo XX"
+            "Etapas en la historia económica mundial",
+            "El crecimiento económico moderno y la Gran Divergencia"
+          ]
+        },
+        {
+          "modulo": "Capitalismo industrial y primera globalización",
+          "temas": [
+            "El surgimiento del capitalismo industrial: la Primera Revolución Industrial",
+            "La primera globalización capitalista, 1870-1914"
+          ]
+        },
+        {
+          "modulo": "Guerras y entreguerras",
+          "temas": [
+            "Guerra y revolución, 1914-1919: economía de guerra y Revolución Rusa",
+            "La economía mundial en los años 20: dilemas monetarios y prosperidad estadounidense",
+            "La economía mundial en los años 30: la Gran Depresión y el ascenso del fascismo"
+          ]
+        },
+        {
+          "modulo": "Segunda Guerra Mundial y edad dorada",
+          "temas": [
+            "La Segunda Guerra Mundial y sus consecuencias económicas",
+            "La edad dorada de la economía mundial, 1945-1973"
+          ]
+        },
+        {
+          "modulo": "Socialismo real y periferia",
+          "temas": [
+            "Auge y crisis del socialismo real: la URSS y China",
+            "La economía de las regiones periféricas: descolonización y Tercer Mundo"
+          ]
+        },
+        {
+          "modulo": "Fin de siglo y economía contemporánea",
+          "temas": [
+            "El final del siglo XX: crisis, derrumbe del socialismo real y segunda globalización",
+            "La economía mundial en el siglo XXI: China, mercados mundiales y crisis de 2008"
           ]
         }
       ]
@@ -291,10 +423,34 @@
       "nombre": "Microeconomía II",
       "modulos": [
         {
-          "modulo": "Bienestar y fallas de mercado",
+          "modulo": "Equilibrio general y bienestar",
           "temas": [
-            "Externalidades y bienes públicos",
-            "Economía del bienestar y eficiencia de Pareto"
+            "Equilibrio general y bienestar: asignaciones eficientes y teoremas del bienestar"
+          ]
+        },
+        {
+          "modulo": "Economía política",
+          "temas": [
+            "Economía política: reglas de elección colectiva y teorema de imposibilidad de Arrow"
+          ]
+        },
+        {
+          "modulo": "Teoría de juegos y oligopolio",
+          "temas": [
+            "Juegos estáticos y dinámicos con información completa: equilibrio de Nash",
+            "Modelos de competencia imperfecta: Cournot, Bertrand y Stackelberg"
+          ]
+        },
+        {
+          "modulo": "Externalidades y bienes públicos",
+          "temas": [
+            "Externalidades y bienes públicos: internalización e impuestos pigouvianos"
+          ]
+        },
+        {
+          "modulo": "Regulación de monopolios naturales",
+          "temas": [
+            "Regulación de monopolios naturales: precios no lineales y precios Ramsey"
           ]
         }
       ]
@@ -315,10 +471,31 @@
       "nombre": "Macroeconomía III",
       "modulos": [
         {
-          "modulo": "Economía abierta",
+          "modulo": "Modelos con tasas constantes",
           "temas": [
-            "Balanza de pagos y tipo de cambio",
-            "Modelo Mundell-Fleming en economía abierta"
+            "El modelo neoclásico de crecimiento de Solow-Swan",
+            "Crecimiento endógeno y otras extensiones del modelo de Solow-Swan"
+          ]
+        },
+        {
+          "modulo": "Modelos neoclásicos de optimización",
+          "temas": [
+            "Crecimiento neoclásico: el modelo de Ramsey",
+            "El crecimiento exógeno de la productividad"
+          ]
+        },
+        {
+          "modulo": "Modelos prototipo de crecimiento endógeno",
+          "temas": [
+            "El modelo AK y el gasto público en el crecimiento",
+            "Aprendizaje por la práctica, capital humano y progreso tecnológico endógeno"
+          ]
+        },
+        {
+          "modulo": "Evidencia empírica y nuevos tópicos",
+          "temas": [
+            "La literatura empírica del crecimiento económico",
+            "Inteligencia artificial y crecimiento económico"
           ]
         }
       ]
@@ -327,10 +504,25 @@
       "nombre": "Estadística II",
       "modulos": [
         {
-          "modulo": "Modelos de regresión",
+          "modulo": "Teoría de la inferencia estadística",
           "temas": [
-            "Regresión lineal simple y múltiple aplicada a datos económicos",
-            "Series de tiempo: nociones básicas"
+            "Introducción a la teoría de la inferencia estadística: población, parámetro y muestra"
+          ]
+        },
+        {
+          "modulo": "Enfoque clásico de la inferencia",
+          "temas": [
+            "Estadísticos y su distribución en el muestreo de poblaciones",
+            "Estimación puntual: método de momentos y máxima verosimilitud",
+            "Estimación por intervalos de confianza",
+            "Contrastes de hipótesis paramétricas",
+            "Convergencia en probabilidad y teorema del límite central"
+          ]
+        },
+        {
+          "modulo": "Muestreo de poblaciones finitas",
+          "temas": [
+            "Muestreo de poblaciones finitas: estimadores de Horvitz-Thompson"
           ]
         }
       ]
@@ -339,10 +531,29 @@
       "nombre": "Introducción a la Metodología",
       "modulos": [
         {
-          "modulo": "Metodología de la investigación económica",
+          "modulo": "La metodología de la economía",
           "temas": [
-            "Diseño de investigación y formulación de hipótesis en economía",
-            "Fuentes de datos económicos y su análisis"
+            "El trabajo profesional del economista como resolución de problemas"
+          ]
+        },
+        {
+          "modulo": "Ética profesional",
+          "temas": [
+            "Ética profesional: bien interno, bien externo, plagio y autoría",
+            "Dilemas del uso de inteligencia artificial en el ejercicio profesional"
+          ]
+        },
+        {
+          "modulo": "Competencias de lectura y escritura",
+          "temas": [
+            "Estructuración de textos, resúmenes y argumentación en economía"
+          ]
+        },
+        {
+          "modulo": "Metodología de la investigación en economía",
+          "temas": [
+            "Problema y pregunta de investigación, marco teórico e hipótesis",
+            "Diseño de investigación y revisión bibliográfica"
           ]
         }
       ]
@@ -353,10 +564,46 @@
       "nombre": "Economía del Uruguay",
       "modulos": [
         {
-          "modulo": "Estructura económica uruguaya",
+          "modulo": "Conceptos básicos introductorios",
           "temas": [
-            "Evolución macroeconómica de Uruguay",
-            "Estructura productiva y comercio exterior de Uruguay"
+            "Conceptos básicos introductorios de la economía uruguaya"
+          ]
+        },
+        {
+          "modulo": "El modelo ganadero-exportador",
+          "temas": [
+            "El surgimiento y la conformación de la economía nacional",
+            "Sectores agropecuario, industrial, servicios, público y mercado de trabajo del modelo ganadero-exportador"
+          ]
+        },
+        {
+          "modulo": "El modelo industrial",
+          "temas": [
+            "El modelo industrial: fundamentos de la industrialización"
+          ]
+        },
+        {
+          "modulo": "Reajuste autoritario y liberalización",
+          "temas": [
+            "El reajuste autoritario e inicio del modelo de liberalización y apertura"
+          ]
+        },
+        {
+          "modulo": "Apertura y liberalización de los 90",
+          "temas": [
+            "El modelo de apertura y liberalización de los 90 y la crisis 1999-2002"
+          ]
+        },
+        {
+          "modulo": "Recuperación económica 2004-2016",
+          "temas": [
+            "La recuperación económica 2004-2016: descripción sectorial"
+          ]
+        },
+        {
+          "modulo": "Trayectoria de los modelos de desarrollo",
+          "temas": [
+            "Visión de la trayectoria de los modelos de desarrollo uruguayo"
           ]
         }
       ]
@@ -365,10 +612,23 @@
       "nombre": "Microeconomía III",
       "modulos": [
         {
-          "modulo": "Teoría de juegos",
+          "modulo": "Decisión bajo incertidumbre",
           "temas": [
-            "Juegos estáticos y equilibrio de Nash",
-            "Juegos dinámicos e información asimétrica"
+            "Teoría de la decisión bajo incertidumbre: riesgo, actitudes frente al riesgo y seguros"
+          ]
+        },
+        {
+          "modulo": "Juegos con información incompleta",
+          "temas": [
+            "Juegos estáticos con información incompleta: equilibrio bayesiano de Nash",
+            "Juegos dinámicos con información incompleta: equilibrio bayesiano perfecto y señalización"
+          ]
+        },
+        {
+          "modulo": "Teoría de contratos y economía del comportamiento",
+          "temas": [
+            "Teoría de contratos: selección adversa, riesgo moral y contratos incompletos",
+            "Economía del comportamiento: sesgos, experimentos y avances en teoría de juegos"
           ]
         }
       ]
@@ -424,8 +684,32 @@
         {
           "modulo": "Comercio internacional",
           "temas": [
-            "Teorías del comercio internacional: ventaja comparativa y modelos modernos",
-            "Política comercial: aranceles y barreras no arancelarias"
+            "Patrón de comercio, cadenas de valor y modelo de gravedad",
+            "La ventaja comparativa de David Ricardo",
+            "La dotación de factores de Heckscher y Ohlin",
+            "Economías de escala y comercio internacional"
+          ]
+        },
+        {
+          "modulo": "Política comercial e integración",
+          "temas": [
+            "Política comercial y procesos de integración económica"
+          ]
+        },
+        {
+          "modulo": "Macroeconomía de economías abiertas",
+          "temas": [
+            "Movimientos financieros internacionales y política monetaria",
+            "El modelo DD-AA de economía abierta",
+            "El modelo de bienes transables y no transables"
+          ]
+        },
+        {
+          "modulo": "Sistema monetario internacional",
+          "temas": [
+            "Los sistemas monetarios internacionales: aproximación histórica",
+            "Globalización financiera: oportunidades y crisis",
+            "Áreas monetarias óptimas"
           ]
         }
       ]
@@ -434,10 +718,33 @@
       "nombre": "Teorías del Desarrollo Económico",
       "modulos": [
         {
-          "modulo": "Enfoques del desarrollo",
+          "modulo": "Evolución de las teorías del desarrollo",
           "temas": [
-            "Teorías clásicas y estructuralistas del desarrollo",
-            "Desarrollo humano y enfoque de capacidades"
+            "Panorámica y evolución de las teorías del desarrollo y la economía política del desarrollo"
+          ]
+        },
+        {
+          "modulo": "Perspectivas sobre acumulación y crecimiento",
+          "temas": [
+            "Perspectivas sobre acumulación, distribución y crecimiento: clásicos, Keynes y Piketty",
+            "Los pioneros de la economía del desarrollo: Hirschman, Rosenstein-Rodan, Prebisch y el modelo de Lewis",
+            "La innovación en las teorías del desarrollo: Schumpeter y los sistemas de innovación"
+          ]
+        },
+        {
+          "modulo": "Instituciones y visión ampliada del desarrollo",
+          "temas": [
+            "Las instituciones y el desarrollo: institucionalismo y autogobierno",
+            "Una visión más amplia: cultura, libertad y justicia en el desarrollo"
+          ]
+        },
+        {
+          "modulo": "Problemas actuales del desarrollo",
+          "temas": [
+            "Desarrollo económico y la inserción en el mercado global: cadenas globales de valor",
+            "Desarrollo y ambiente: desarrollo sostenible y economía ecológica",
+            "Desarrollo y nuevos paradigmas de la innovación",
+            "Desarrollo económico territorial"
           ]
         }
       ]
