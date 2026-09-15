@@ -372,17 +372,30 @@
       "nombre": "Microeconomía I",
       "modulos": [
         {
-          "modulo": "Teoría del consumidor avanzada",
+          "modulo": "Teoría del consumidor y demanda",
           "temas": [
-            "Elección del consumidor bajo incertidumbre",
-            "Efecto sustitución y efecto ingreso"
+            "Preferencia y utilidad: axiomatización y función de utilidad",
+            "Maximización de la utilidad, minimización del gasto y elasticidades"
           ]
         },
         {
-          "modulo": "Estructuras de mercado",
+          "modulo": "Producción y oferta",
           "temas": [
-            "Competencia perfecta y monopolio",
-            "Competencia monopolística y oligopolio"
+            "Función de producción, rendimientos a escala y funciones de costos",
+            "Maximización del beneficio y demanda de factores"
+          ]
+        },
+        {
+          "modulo": "Formación de precios",
+          "temas": [
+            "Formación de precios en mercados competitivos: equilibrio de corto y largo plazo",
+            "Formación de precios en mercados monopólicos: discriminación de precios"
+          ]
+        },
+        {
+          "modulo": "Economía comportamental",
+          "temas": [
+            "Economía comportamental: límites de la racionalidad, heurísticas y sesgos"
           ]
         }
       ]
@@ -391,16 +404,23 @@
       "nombre": "Macroeconomía II",
       "modulos": [
         {
-          "modulo": "Crecimiento económico",
+          "modulo": "El largo plazo",
           "temas": [
-            "Modelos de crecimiento económico: el modelo de Solow",
-            "Determinantes de la productividad y el crecimiento de largo plazo"
+            "El largo plazo: acumulación de capital, progreso tecnológico e instituciones"
           ]
         },
         {
-          "modulo": "Ciclos económicos",
+          "modulo": "La economía abierta",
           "temas": [
-            "Fluctuaciones económicas y modelos de ciclo"
+            "La economía abierta: tipo de cambio y paridad de tasas de interés",
+            "El modelo IS-LM de economía abierta y regímenes cambiarios"
+          ]
+        },
+        {
+          "modulo": "Inflación y política macroeconómica",
+          "temas": [
+            "La inflación: financiación monetaria y teoría de la inflación de costos",
+            "La política fiscal, la deuda y la política monetaria"
           ]
         }
       ]
@@ -409,10 +429,31 @@
       "nombre": "Estadística I",
       "modulos": [
         {
-          "modulo": "Inferencia estadística",
+          "modulo": "Métodos descriptivos y probabilidad",
           "temas": [
-            "Estimación puntual e intervalos de confianza",
-            "Contraste de hipótesis en el análisis económico"
+            "Métodos descriptivos univariados: distribuciones de frecuencias y medidas de resumen",
+            "Probabilidad: experimento aleatorio, sucesos y axiomas de Kolmogoroff"
+          ]
+        },
+        {
+          "modulo": "Probabilidad condicionada y variables aleatorias",
+          "temas": [
+            "Probabilidad condicionada: teorema de la multiplicidad y teorema de Bayes",
+            "Variables aleatorias: función de distribución, discretas y continuas"
+          ]
+        },
+        {
+          "modulo": "Características de variables aleatorias",
+          "temas": [
+            "Esperanza, momentos y medidas de dispersión de una variable aleatoria"
+          ]
+        },
+        {
+          "modulo": "Vectores aleatorios y modelos de probabilidad",
+          "temas": [
+            "Vectores aleatorios: distribuciones marginales y condicionadas",
+            "Características de vectores aleatorios: covarianza y correlación",
+            "Modelos de probabilidad: familias de distribuciones discretas y continuas"
           ]
         }
       ]
@@ -459,10 +500,31 @@
       "nombre": "Economía de América Latina",
       "modulos": [
         {
-          "modulo": "Desarrollo económico latinoamericano",
+          "modulo": "Perspectivas de largo plazo",
           "temas": [
-            "Modelos de industrialización por sustitución de importaciones",
-            "Reformas estructurales y apertura económica en América Latina"
+            "Modelos de desarrollo en América Latina: de la herencia colonial al boom de los commodities",
+            "Desarrollo humano, niveles de vida y desigualdad en el largo plazo"
+          ]
+        },
+        {
+          "modulo": "Estructura productiva y dinámica económica",
+          "temas": [
+            "Cambio estructural y especialización productiva: estructura sectorial y diversificación",
+            "La interpretación neoestructuralista y los desafíos ambientales de la especialización productiva"
+          ]
+        },
+        {
+          "modulo": "Desigualdades en América Latina",
+          "temas": [
+            "Tendencias de largo plazo y cambios recientes: pobreza y concentración del ingreso",
+            "Desigualdad de género y entre generaciones en la región"
+          ]
+        },
+        {
+          "modulo": "Instituciones y economía política",
+          "temas": [
+            "Interpretaciones sobre la economía política de América Latina: la interpretación dependentista",
+            "Grupos de poder, estructura productiva y desigualdad: el debate sobre las estrategias de rent-seeking"
           ]
         }
       ]

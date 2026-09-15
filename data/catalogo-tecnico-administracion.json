@@ -199,17 +199,37 @@
       "nombre": "Contabilidad General I",
       "modulos": [
         {
-          "modulo": "Registro de operaciones comerciales",
+          "modulo": "Normas contables",
           "temas": [
-            "Registro contable de compraventa de mercaderías",
-            "Documentación comercial y su registración"
+            "Normas contables: concepto, utilidad y normas adecuadas en Uruguay"
           ]
         },
         {
-          "modulo": "Ajustes y cierre del ejercicio",
+          "modulo": "Efectivo y créditos por ventas",
           "temas": [
-            "Ajustes contables de fin de ejercicio",
-            "Cierre de ejercicio y determinación del resultado"
+            "Efectivo y equivalentes: sistemas de caja, arqueo y conciliación bancaria",
+            "Créditos por ventas: endoso, descuento y provisión por deudores incobrables"
+          ]
+        },
+        {
+          "modulo": "Inventarios",
+          "temas": [
+            "Inventarios: concepto, costo y tratamiento como gasto",
+            "Sistemas de registración del costo de ventas y valuación de inventarios"
+          ]
+        },
+        {
+          "modulo": "Propiedades, planta y equipo",
+          "temas": [
+            "Propiedades, planta y equipo: reconocimiento, costo y depreciación",
+            "Valuación posterior, deterioro y baja de PPyE"
+          ]
+        },
+        {
+          "modulo": "Asiento de apertura y estados financieros",
+          "temas": [
+            "Asiento de apertura: concepto y diferencia con el asiento de inicio de actividades",
+            "Presentación de estados financieros: situación financiera y resultados"
           ]
         }
       ]
@@ -438,10 +458,34 @@
       "nombre": "Marketing Básico",
       "modulos": [
         {
-          "modulo": "Fundamentos del marketing",
+          "modulo": "Introducción y era digital",
           "temas": [
-            "El proceso de marketing y comportamiento del consumidor",
-            "Marketing mix: producto, precio, plaza y promoción"
+            "Introducción al marketing: conceptos básicos y evolución del concepto",
+            "Marketing en la era digital: relaciones B2C, B2B y comercio online"
+          ]
+        },
+        {
+          "modulo": "Entorno y consumidor",
+          "temas": [
+            "El entorno de la empresa: microambiente y macroambiente",
+            "Comportamiento del consumidor: proceso de decisión de compra"
+          ]
+        },
+        {
+          "modulo": "Mercado y segmentación",
+          "temas": [
+            "Mercado y demanda: medición y pronóstico de la demanda",
+            "Segmentación de mercados y posicionamiento",
+            "Investigación de mercados y sistemas de información de marketing"
+          ]
+        },
+        {
+          "modulo": "Las 4 P del marketing",
+          "temas": [
+            "Producto: clasificación, marca y ciclo de vida",
+            "Precio: fijación de precios y estrategias",
+            "Distribución: canales, comercio detallista y mayorista",
+            "Comunicación: publicidad, promoción de ventas y fuerza de ventas"
           ]
         }
       ]
@@ -654,10 +698,28 @@
       "nombre": "Prospectiva Estratégica: Con la Mirada en el Futuro",
       "modulos": [
         {
-          "modulo": "Prospectiva estratégica",
+          "modulo": "Introducción a la prospectiva",
           "temas": [
-            "Métodos de prospectiva y escenarios futuros",
-            "Planificación estratégica de largo plazo"
+            "La prospectiva como herramienta de planificación estratégica: escuelas y enfoques de análisis"
+          ]
+        },
+        {
+          "modulo": "Metodología de la prospectiva",
+          "temas": [
+            "Procesos y etapas de la prospectiva: exploración, análisis y anticipación",
+            "Métodos de prospectiva: clasificación y utilidad de los enfoques cualitativos, cuantitativos y semicuantitativos"
+          ]
+        },
+        {
+          "modulo": "Aplicaciones a Uruguay y la región",
+          "temas": [
+            "Hacia una estrategia nacional de desarrollo: visión sectorial y prospectiva territorial"
+          ]
+        },
+        {
+          "modulo": "Ejercicio práctico de prospectiva",
+          "temas": [
+            "Diseño de un ejercicio prospectivo: focalizar, diseñar, implementar, analizar y diseminar hipótesis"
           ]
         }
       ]
@@ -698,10 +760,26 @@
       "nombre": "EFI: Contabilidad en las Escuelas",
       "modulos": [
         {
-          "modulo": "Espacio de Formación Integral",
+          "modulo": "Extensión y gestión financiera del Estado",
           "temas": [
-            "Extensión universitaria en contabilidad escolar",
-            "Enseñanza de nociones contables en el medio"
+            "La extensión universitaria en el marco de la Segunda Reforma Universitaria y los Espacios de Formación Integral",
+            "El sector público uruguayo: presupuesto público y etapas del proceso del gasto"
+          ]
+        },
+        {
+          "modulo": "Rendiciones de cuentas en el DGEIP",
+          "temas": [
+            "Responsabilidades de los obligados a rendir cuentas según el TOCAF y la normativa del DGEIP",
+            "Hechos económicos de la Comisión de Fomento: cobro de partidas, comprobantes y requisitos de los comprobantes",
+            "Registración en el Libro de Caja y Banco y controles con el Libro de Comprobantes"
+          ]
+        },
+        {
+          "modulo": "Liquidación de sueldos, RUPE y Libro de Caja Digital",
+          "temas": [
+            "Liquidación de sueldos: aportes patronales y personales y tasas de FONASA",
+            "RUPE: normativa, funcionamiento general y estados de los proveedores",
+            "Libro de Caja Digital de la DGEIP: aspectos normativos y principales funcionalidades"
           ]
         }
       ]
@@ -710,10 +788,22 @@
       "nombre": "EFI: Costos para la Gestión de Emprendimientos Sociales y Comunitarios",
       "modulos": [
         {
-          "modulo": "Espacio de Formación Integral",
+          "modulo": "Extensión universitaria e integralidad",
           "temas": [
-            "Costos aplicados a emprendimientos sociales",
-            "Gestión económica de proyectos comunitarios"
+            "La extensión universitaria y los Espacios de Formación Integral en la Segunda Reforma Universitaria"
+          ]
+        },
+        {
+          "modulo": "Información operativa y contable del emprendimiento",
+          "temas": [
+            "Caracterización del proceso productivo e indicadores de productividad y gestión operativa",
+            "Instrumentos de costos: estados contables, flujo de caja, presupuestos y análisis marginal"
+          ]
+        },
+        {
+          "modulo": "Trabajo de campo con la contraparte",
+          "temas": [
+            "Acompañamiento a emprendimientos sociales y predios rurales en costos y control de gestión"
           ]
         }
       ]
@@ -839,10 +929,42 @@
       "nombre": "Marketing Estratégico",
       "modulos": [
         {
-          "modulo": "Marketing estratégico",
+          "modulo": "Introducción y comportamiento del comprador",
           "temas": [
-            "Análisis estratégico de mercado",
-            "Formulación de estrategias de marketing"
+            "Introducción: funciones del marketing en la empresa y en la economía",
+            "Los comportamientos de respuesta del comprador: cognitiva, afectiva y comportamental"
+          ]
+        },
+        {
+          "modulo": "Atractivo del mercado",
+          "temas": [
+            "Atractivo del mercado: demanda global, ciclo de vida y previsión de la demanda"
+          ]
+        },
+        {
+          "modulo": "Análisis de la competitividad",
+          "temas": [
+            "Análisis de la competitividad: ventaja competitiva y rivalidad ampliada",
+            "La ventaja en costos y el efecto de experiencia"
+          ]
+        },
+        {
+          "modulo": "Estrategias de desarrollo",
+          "temas": [
+            "Análisis de la cartera de negocios: matriz BCG y matriz atractivo-competitividad",
+            "Estrategias de desarrollo y estrategias competitivas"
+          ]
+        },
+        {
+          "modulo": "Modelos de negocio",
+          "temas": [
+            "Modelos de negocio: tipos, patrones y evaluación"
+          ]
+        },
+        {
+          "modulo": "El plan de marketing",
+          "temas": [
+            "El plan de marketing: estructura, auditoría estratégica y análisis de riesgo"
           ]
         }
       ]
@@ -958,10 +1080,19 @@
       "nombre": "Taller de Gestión de Cargos y Remuneraciones",
       "modulos": [
         {
-          "modulo": "Gestión de cargos y remuneraciones",
+          "modulo": "Gestión de cargos",
           "temas": [
-            "Valoración de cargos",
-            "Diseño de estructuras salariales"
+            "Conceptos básicos de tarea, cargo y grupo: clasificación y diseño de cargos",
+            "Análisis, descripción y especificación de cargos clásica y por competencias",
+            "Evaluación de cargos: métodos y asignación por puntos"
+          ]
+        },
+        {
+          "modulo": "Sistema de remuneraciones",
+          "temas": [
+            "Escala y bandas salariales: nube de puntos e intervalos de valoración",
+            "Incentivos salariales y beneficios sociales",
+            "Política de remuneraciones: investigación salarial, equidad interna y competitividad externa"
           ]
         }
       ]
@@ -1002,10 +1133,31 @@
       "nombre": "Ética y Ejercicio Profesional",
       "modulos": [
         {
-          "modulo": "Ética profesional",
+          "modulo": "Ética en la formación y actuación profesional",
           "temas": [
-            "Principios éticos del ejercicio profesional",
-            "Casos de ética aplicada a la gestión"
+            "Ética en la formación y actuación del Contador Público: códigos de ética y corrupción",
+            "Aspectos formales de la actuación del Contador Público: responsabilidad profesional"
+          ]
+        },
+        {
+          "modulo": "Campos de acción profesional",
+          "temas": [
+            "Distintos campos de acción: informes y certificaciones",
+            "Arancel profesional y regulación de honorarios profesionales"
+          ]
+        },
+        {
+          "modulo": "Actuación en situaciones especiales",
+          "temas": [
+            "La actuación del Contador Público en transferencias de establecimientos y concentración empresarial",
+            "La actuación del Contador en situaciones especiales de sociedades comerciales"
+          ]
+        },
+        {
+          "modulo": "Resolución de conflictos y seguros",
+          "temas": [
+            "Métodos no adversariales de resolución de conflictos: mediación y arbitraje",
+            "La actuación del Contador Público en los contratos de seguros"
           ]
         }
       ]
@@ -1146,10 +1298,27 @@
       "nombre": "Costos para la Gestión",
       "modulos": [
         {
-          "modulo": "Costos para la toma de decisiones gerenciales",
+          "modulo": "Teoría general del costo",
           "temas": [
-            "Clasificación de costos y su uso gerencial",
-            "Punto de equilibrio y análisis marginal"
+            "Introducción a la Teoría General del Costo: proceso generador de valor y factores de producción"
+          ]
+        },
+        {
+          "modulo": "Modelos de costos",
+          "temas": [
+            "Modelos de costos: costeo completo, variable, resultante y estándar"
+          ]
+        },
+        {
+          "modulo": "Sistemas de costos",
+          "temas": [
+            "Sistemas de costos: costo estándar, por procesos, por órdenes y ABC"
+          ]
+        },
+        {
+          "modulo": "Herramientas para la mejora operacional",
+          "temas": [
+            "Gestión del costo de actividades, indicadores y cuadro de mando integral"
           ]
         }
       ]

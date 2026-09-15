@@ -168,17 +168,37 @@
       "nombre": "Contabilidad General I",
       "modulos": [
         {
-          "modulo": "Registro de operaciones comerciales",
+          "modulo": "Normas contables",
           "temas": [
-            "Registro contable de compraventa de mercaderías",
-            "Documentación comercial y su registración"
+            "Normas contables: concepto, utilidad y normas adecuadas en Uruguay"
           ]
         },
         {
-          "modulo": "Ajustes y cierre del ejercicio",
+          "modulo": "Efectivo y créditos por ventas",
           "temas": [
-            "Ajustes contables de fin de ejercicio",
-            "Cierre de ejercicio y determinación del resultado"
+            "Efectivo y equivalentes: sistemas de caja, arqueo y conciliación bancaria",
+            "Créditos por ventas: endoso, descuento y provisión por deudores incobrables"
+          ]
+        },
+        {
+          "modulo": "Inventarios",
+          "temas": [
+            "Inventarios: concepto, costo y tratamiento como gasto",
+            "Sistemas de registración del costo de ventas y valuación de inventarios"
+          ]
+        },
+        {
+          "modulo": "Propiedades, planta y equipo",
+          "temas": [
+            "Propiedades, planta y equipo: reconocimiento, costo y depreciación",
+            "Valuación posterior, deterioro y baja de PPyE"
+          ]
+        },
+        {
+          "modulo": "Asiento de apertura y estados financieros",
+          "temas": [
+            "Asiento de apertura: concepto y diferencia con el asiento de inicio de actividades",
+            "Presentación de estados financieros: situación financiera y resultados"
           ]
         }
       ]
@@ -337,10 +357,18 @@
       "nombre": "Derecho y Actividad Empresarial II",
       "modulos": [
         {
-          "modulo": "Contratos comerciales",
+          "modulo": "Sociedades comerciales",
           "temas": [
-            "Contratos comerciales típicos: compraventa, mandato, agencia",
-            "Títulos valores y su circulación"
+            "Tipos sociales (SRL, SA y SAS) y sociedades familiares: funcionamiento orgánico y transferencia de participaciones",
+            "Reorganización societaria: fusión, escisión y aumentos de capital con series de acciones",
+            "Concentración empresarial: participación, control societario y grupos de empresas"
+          ]
+        },
+        {
+          "modulo": "Contratación moderna y concursos",
+          "temas": [
+            "Particularidades de la contratación electrónica en la contratación moderna",
+            "Procedimiento concursal: presupuestos, órganos, síndico e interventor y acuerdos entre deudor y acreedores"
           ]
         }
       ]
@@ -402,10 +430,27 @@
       "nombre": "Procesos Contables",
       "modulos": [
         {
-          "modulo": "Sistemas y procesos de información contable",
+          "modulo": "Introducción a la asignatura",
           "temas": [
-            "Diseño de sistemas de información contable",
-            "Control interno de los procesos contables"
+            "Introducción a la asignatura: terminología básica de procesos y entidades"
+          ]
+        },
+        {
+          "modulo": "Sistema contable y controles",
+          "temas": [
+            "Impacto del sistema contable, los controles internos y el procesamiento de datos"
+          ]
+        },
+        {
+          "modulo": "Estados financieros y procesos",
+          "temas": [
+            "Estados financieros y los procesos de una entidad: ciclos y tareas preparatorias"
+          ]
+        },
+        {
+          "modulo": "Análisis de procesos",
+          "temas": [
+            "Análisis detallado de los procesos: naturaleza, documentación y necesidades de control"
           ]
         }
       ]
@@ -545,16 +590,39 @@
       "nombre": "Modelos y Sistemas de Costos",
       "modulos": [
         {
-          "modulo": "Sistemas de costeo",
+          "modulo": "Teoría general del costo",
           "temas": [
-            "Costeo por órdenes y por procesos",
-            "Costeo variable y costeo por absorción"
+            "Introducción a la Teoría General del Costo: proceso generador de valor y factores de producción"
           ]
         },
         {
-          "modulo": "Modelos de costos para la gestión",
+          "modulo": "Modelos de costos",
           "temas": [
-            "Costeo basado en actividades (ABC)"
+            "Modelos de costos: costeo completo, variable, resultante y eficiente"
+          ]
+        },
+        {
+          "modulo": "Centros de costos",
+          "temas": [
+            "Centros de costos: técnicas de asignación y distribución primaria y secundaria"
+          ]
+        },
+        {
+          "modulo": "El marco temporal",
+          "temas": [
+            "El marco temporal: presupuesto, costos adjudicados y producción equivalente"
+          ]
+        },
+        {
+          "modulo": "Sistemas de costos",
+          "temas": [
+            "Sistemas de costos: técnicas relativas a materiales, factor trabajo y otros factores"
+          ]
+        },
+        {
+          "modulo": "Producción conjunta y contabilidad de costos",
+          "temas": [
+            "Producción conjunta y la contabilidad de costos: registración de la producción industrial"
           ]
         }
       ]
@@ -631,10 +699,31 @@
       "nombre": "Ética y Ejercicio Profesional",
       "modulos": [
         {
-          "modulo": "Ética profesional del contador",
+          "modulo": "Ética en la formación y actuación profesional",
           "temas": [
-            "Principios éticos y normas de conducta del Contador Público",
-            "Independencia y responsabilidad profesional"
+            "Ética en la formación y actuación del Contador Público: códigos de ética y corrupción",
+            "Aspectos formales de la actuación del Contador Público: responsabilidad profesional"
+          ]
+        },
+        {
+          "modulo": "Campos de acción profesional",
+          "temas": [
+            "Distintos campos de acción: informes y certificaciones",
+            "Arancel profesional y regulación de honorarios profesionales"
+          ]
+        },
+        {
+          "modulo": "Actuación en situaciones especiales",
+          "temas": [
+            "La actuación del Contador Público en transferencias de establecimientos y concentración empresarial",
+            "La actuación del Contador en situaciones especiales de sociedades comerciales"
+          ]
+        },
+        {
+          "modulo": "Resolución de conflictos y seguros",
+          "temas": [
+            "Métodos no adversariales de resolución de conflictos: mediación y arbitraje",
+            "La actuación del Contador Público en los contratos de seguros"
           ]
         }
       ]
@@ -684,17 +773,27 @@
       "nombre": "Contabilidad Gerencial",
       "modulos": [
         {
-          "modulo": "Información contable para la toma de decisiones",
+          "modulo": "Introducción a la contabilidad gerencial",
           "temas": [
-            "Costos relevantes para la toma de decisiones",
-            "Análisis costo-volumen-utilidad"
+            "La Contabilidad Gerencial y el rol del Contador y el Licenciado en Administración"
           ]
         },
         {
-          "modulo": "Presupuestos y control de gestión",
+          "modulo": "Modelos de costeo y toma de decisiones",
           "temas": [
-            "Presupuestos operativos y financieros",
-            "Indicadores de gestión y cuadro de mando"
+            "Los modelos de costeo y la toma de decisiones: críticas al costeo completo"
+          ]
+        },
+        {
+          "modulo": "Análisis marginal",
+          "temas": [
+            "Análisis marginal: punto de equilibrio, planeamiento de utilidades y restricciones de producción"
+          ]
+        },
+        {
+          "modulo": "Presupuestación y control",
+          "temas": [
+            "Proceso de planificación, presupuestación y control por resultados"
           ]
         }
       ]
@@ -703,10 +802,18 @@
       "nombre": "Tributaria I",
       "modulos": [
         {
-          "modulo": "Impuestos a la renta y al patrimonio",
+          "modulo": "Imposición a la renta empresarial",
           "temas": [
-            "Impuesto a las Rentas de las Actividades Económicas (IRAE)",
-            "Impuesto al Patrimonio"
+            "IRAE: hecho generador, sujetos pasivos y elementos cuantificantes",
+            "IRAE: exoneraciones y liquidación",
+            "IMEBA como tributo alternativo"
+          ]
+        },
+        {
+          "modulo": "Imposición al patrimonio empresarial",
+          "temas": [
+            "Impuesto al Patrimonio empresarial: hecho generador y elementos cuantificantes",
+            "Impuesto al Patrimonio Agropecuario"
           ]
         }
       ]
@@ -866,17 +973,31 @@
       "nombre": "Finanzas Corporativas",
       "modulos": [
         {
-          "modulo": "Valor y decisiones de inversión",
+          "modulo": "Introducción a las finanzas corporativas",
           "temas": [
-            "Valor del dinero en el tiempo aplicado a decisiones financieras",
-            "Evaluación de proyectos de inversión: VAN y TIR"
+            "Objetivos y alcance de las finanzas: la función financiera en la empresa y su relación con los mercados",
+            "Elementos de valuación: criterios de valuación y el modelo de flujos de fondos"
           ]
         },
         {
-          "modulo": "Estructura de capital y riesgo",
+          "modulo": "Decisiones de inversión y riesgo",
           "temas": [
-            "Estructura de capital y costo de capital",
-            "Riesgo, rendimiento y política de dividendos"
+            "Criterios de análisis de decisiones de inversión: flujos de fondos, tasa de descuento e inflación",
+            "Riesgo y rendimiento: teoría del portafolio, diversificación y Capital Asset Pricing Model"
+          ]
+        },
+        {
+          "modulo": "Decisiones de financiamiento y estructura financiera",
+          "temas": [
+            "Efecto leverage y determinación del costo de los fondos propios y prestados",
+            "Teoría de Modigliani y Miller y modelos de financiamiento de la empresa"
+          ]
+        },
+        {
+          "modulo": "Finanzas de corto plazo e instrumentos derivados",
+          "temas": [
+            "Capital de trabajo, liquidez y gestión de activos y pasivos corrientes",
+            "Instrumentos financieros derivados: opciones, futuros y gestión de riesgos"
           ]
         }
       ]
@@ -921,10 +1042,33 @@
       "nombre": "Informes Profesionales del Contador Público",
       "modulos": [
         {
-          "modulo": "Informes y dictámenes profesionales",
+          "modulo": "Aspectos generales de los informes profesionales",
           "temas": [
-            "Informe de auditoría y tipos de opinión",
-            "Otros informes profesionales del Contador Público"
+            "Tipos de informes profesionales y normativa de referencia: NIAs y pronunciamientos del Colegio de Contadores",
+            "Responsabilidad profesional del auditor: el fraude (NIA 240) y la prevención del lavado de activos"
+          ]
+        },
+        {
+          "modulo": "Informe de auditoría y de revisión limitada",
+          "temas": [
+            "Informe de auditoría: tipos de opinión, texto del dictamen y cuestiones clave de auditoría",
+            "Informe de revisión limitada: contenido, procedimientos y modelos de informe"
+          ]
+        },
+        {
+          "modulo": "Compilación, certificación y atestiguamiento",
+          "temas": [
+            "Informes de compilación y de certificación contable: normativa y modelos",
+            "NITA 3000: informes para atestiguar sobre información histórica y el informe PLAFT-BCU",
+            "NITA 3400: auditoría de proyecciones financieras, objetivos y procedimientos básicos"
+          ]
+        },
+        {
+          "modulo": "Procedimientos acordados, due diligence y sostenibilidad",
+          "temas": [
+            "Informe sobre procedimientos previamente acordados: contenido y modelos",
+            "Informe de due diligence: concepto, objetivo y alcance",
+            "Informes solicitados por el BCU e introducción a los informes sobre reportes de sostenibilidad"
           ]
         }
       ]
@@ -933,10 +1077,30 @@
       "nombre": "Contabilidad en Sistemas Integrados de Gestión/ERP",
       "modulos": [
         {
-          "modulo": "Contabilidad en entornos ERP",
+          "modulo": "Introducción a las TIC y los sistemas de información",
           "temas": [
-            "Sistemas ERP y su módulo contable-financiero",
-            "Control y auditoría de la información contable en sistemas integrados"
+            "Teoría de sistemas y tecnologías de la información: tipos de sistemas y evolución hacia el SIG/ERP",
+            "Competencias y conocimientos en TIC exigidos al contador según las Normas Internacionales de Educación"
+          ]
+        },
+        {
+          "modulo": "Sistemas integrados de gestión (SIG/ERP)",
+          "temas": [
+            "Opciones de SIG/ERP, componentes, módulos de contabilidad y de gestión y su ciclo de vida",
+            "Especificación de requerimientos, contratación e implementación de un SIG"
+          ]
+        },
+        {
+          "modulo": "Tratamiento contable en el ERP",
+          "temas": [
+            "Entrada de mercadería y recepción de facturas, contabilidad en moneda extranjera y diferencia de cambio",
+            "Gestión de stocks, partidas abiertas, devengamientos y presentación de estados contables"
+          ]
+        },
+        {
+          "modulo": "Integración de sistemas",
+          "temas": [
+            "Webservices, facturación electrónica y XBRL: impacto en la contabilidad y el control de gestión"
           ]
         }
       ]

@@ -199,17 +199,37 @@
       "nombre": "Contabilidad General I",
       "modulos": [
         {
-          "modulo": "Registro de operaciones comerciales",
+          "modulo": "Normas contables",
           "temas": [
-            "Registro contable de compraventa de mercaderías",
-            "Documentación comercial y su registración"
+            "Normas contables: concepto, utilidad y normas adecuadas en Uruguay"
           ]
         },
         {
-          "modulo": "Ajustes y cierre del ejercicio",
+          "modulo": "Efectivo y créditos por ventas",
           "temas": [
-            "Ajustes contables de fin de ejercicio",
-            "Cierre de ejercicio y determinación del resultado"
+            "Efectivo y equivalentes: sistemas de caja, arqueo y conciliación bancaria",
+            "Créditos por ventas: endoso, descuento y provisión por deudores incobrables"
+          ]
+        },
+        {
+          "modulo": "Inventarios",
+          "temas": [
+            "Inventarios: concepto, costo y tratamiento como gasto",
+            "Sistemas de registración del costo de ventas y valuación de inventarios"
+          ]
+        },
+        {
+          "modulo": "Propiedades, planta y equipo",
+          "temas": [
+            "Propiedades, planta y equipo: reconocimiento, costo y depreciación",
+            "Valuación posterior, deterioro y baja de PPyE"
+          ]
+        },
+        {
+          "modulo": "Asiento de apertura y estados financieros",
+          "temas": [
+            "Asiento de apertura: concepto y diferencia con el asiento de inicio de actividades",
+            "Presentación de estados financieros: situación financiera y resultados"
           ]
         }
       ]
@@ -368,10 +388,30 @@
       "nombre": "Derecho del Empresario",
       "modulos": [
         {
-          "modulo": "Régimen jurídico del empresario",
+          "modulo": "Introducción y el empresario",
           "temas": [
-            "Estatuto del comerciante y actos de comercio",
-            "Formas jurídicas de organización de la empresa"
+            "Introducción al estudio de derecho del empresario: concepto y clasificación",
+            "El empresario: modalidades de actuación y sociedades comerciales"
+          ]
+        },
+        {
+          "modulo": "Mercado y bienes",
+          "temas": [
+            "Actuación del empresario en el mercado: competencia y defensa del consumidor",
+            "Bienes afectados a la actividad empresarial: establecimiento y propiedad industrial"
+          ]
+        },
+        {
+          "modulo": "Transmisión de empresas y contratos",
+          "temas": [
+            "Transmisión de empresas: compraventa de establecimiento y fusión",
+            "Contratos empresariales: compraventa, distribución y contratos bancarios"
+          ]
+        },
+        {
+          "modulo": "Crisis empresariales",
+          "temas": [
+            "Regulación de las crisis empresariales: concurso, convenio y liquidación"
           ]
         }
       ]
@@ -460,10 +500,34 @@
       "nombre": "Marketing Básico",
       "modulos": [
         {
-          "modulo": "Fundamentos del marketing",
+          "modulo": "Introducción y era digital",
           "temas": [
-            "El proceso de marketing y comportamiento del consumidor",
-            "Marketing mix: producto, precio, plaza y promoción"
+            "Introducción al marketing: conceptos básicos y evolución del concepto",
+            "Marketing en la era digital: relaciones B2C, B2B y comercio online"
+          ]
+        },
+        {
+          "modulo": "Entorno y consumidor",
+          "temas": [
+            "El entorno de la empresa: microambiente y macroambiente",
+            "Comportamiento del consumidor: proceso de decisión de compra"
+          ]
+        },
+        {
+          "modulo": "Mercado y segmentación",
+          "temas": [
+            "Mercado y demanda: medición y pronóstico de la demanda",
+            "Segmentación de mercados y posicionamiento",
+            "Investigación de mercados y sistemas de información de marketing"
+          ]
+        },
+        {
+          "modulo": "Las 4 P del marketing",
+          "temas": [
+            "Producto: clasificación, marca y ciclo de vida",
+            "Precio: fijación de precios y estrategias",
+            "Distribución: canales, comercio detallista y mayorista",
+            "Comunicación: publicidad, promoción de ventas y fuerza de ventas"
           ]
         }
       ]
@@ -472,10 +536,27 @@
       "nombre": "Costos para la Gestión",
       "modulos": [
         {
-          "modulo": "Costos para la toma de decisiones gerenciales",
+          "modulo": "Teoría general del costo",
           "temas": [
-            "Clasificación de costos y su uso gerencial",
-            "Punto de equilibrio y análisis marginal"
+            "Introducción a la Teoría General del Costo: proceso generador de valor y factores de producción"
+          ]
+        },
+        {
+          "modulo": "Modelos de costos",
+          "temas": [
+            "Modelos de costos: costeo completo, variable, resultante y estándar"
+          ]
+        },
+        {
+          "modulo": "Sistemas de costos",
+          "temas": [
+            "Sistemas de costos: costo estándar, por procesos, por órdenes y ABC"
+          ]
+        },
+        {
+          "modulo": "Herramientas para la mejora operacional",
+          "temas": [
+            "Gestión del costo de actividades, indicadores y cuadro de mando integral"
           ]
         }
       ]
@@ -557,17 +638,27 @@
       "nombre": "Contabilidad Gerencial",
       "modulos": [
         {
-          "modulo": "Información contable para la toma de decisiones",
+          "modulo": "Introducción a la contabilidad gerencial",
           "temas": [
-            "Costos relevantes para la toma de decisiones",
-            "Análisis costo-volumen-utilidad"
+            "La Contabilidad Gerencial y el rol del Contador y el Licenciado en Administración"
           ]
         },
         {
-          "modulo": "Presupuestos y control de gestión",
+          "modulo": "Modelos de costeo y toma de decisiones",
           "temas": [
-            "Presupuestos operativos y financieros",
-            "Indicadores de gestión y cuadro de mando"
+            "Los modelos de costeo y la toma de decisiones: críticas al costeo completo"
+          ]
+        },
+        {
+          "modulo": "Análisis marginal",
+          "temas": [
+            "Análisis marginal: punto de equilibrio, planeamiento de utilidades y restricciones de producción"
+          ]
+        },
+        {
+          "modulo": "Presupuestación y control",
+          "temas": [
+            "Proceso de planificación, presupuestación y control por resultados"
           ]
         }
       ]
@@ -627,17 +718,31 @@
       "nombre": "Finanzas Corporativas",
       "modulos": [
         {
-          "modulo": "Valor y decisiones de inversión",
+          "modulo": "Introducción a las finanzas corporativas",
           "temas": [
-            "Valor del dinero en el tiempo aplicado a decisiones financieras",
-            "Evaluación de proyectos de inversión: VAN y TIR"
+            "Objetivos y alcance de las finanzas: la función financiera en la empresa y su relación con los mercados",
+            "Elementos de valuación: criterios de valuación y el modelo de flujos de fondos"
           ]
         },
         {
-          "modulo": "Estructura de capital y riesgo",
+          "modulo": "Decisiones de inversión y riesgo",
           "temas": [
-            "Estructura de capital y costo de capital",
-            "Riesgo, rendimiento y política de dividendos"
+            "Criterios de análisis de decisiones de inversión: flujos de fondos, tasa de descuento e inflación",
+            "Riesgo y rendimiento: teoría del portafolio, diversificación y Capital Asset Pricing Model"
+          ]
+        },
+        {
+          "modulo": "Decisiones de financiamiento y estructura financiera",
+          "temas": [
+            "Efecto leverage y determinación del costo de los fondos propios y prestados",
+            "Teoría de Modigliani y Miller y modelos de financiamiento de la empresa"
+          ]
+        },
+        {
+          "modulo": "Finanzas de corto plazo e instrumentos derivados",
+          "temas": [
+            "Capital de trabajo, liquidez y gestión de activos y pasivos corrientes",
+            "Instrumentos financieros derivados: opciones, futuros y gestión de riesgos"
           ]
         }
       ]

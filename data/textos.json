@@ -13610,5 +13610,589 @@
   "Del prototipo a la validación, financiamiento y medición de impactos": {
     "libro": "Espínola Verdín y Torres González - Análisis Cualitativo de Modelos de Negocio para el Emprendimiento Social",
     "seccion": "artículo en Entreciencias"
+  },
+  "Normas contables: concepto, utilidad y normas adecuadas en Uruguay": {
+    "libro": "NIIF para las PYMES",
+    "seccion": "secciones introductorias"
+  },
+  "Efectivo y equivalentes: sistemas de caja, arqueo y conciliación bancaria": {
+    "libro": "NIIF para las PYMES",
+    "seccion": "sección 7"
+  },
+  "Créditos por ventas: endoso, descuento y provisión por deudores incobrables": {
+    "libro": "NIIF para las PYMES",
+    "seccion": "sección 11"
+  },
+  "Inventarios: concepto, costo y tratamiento como gasto": {
+    "libro": "NIIF para las PYMES",
+    "seccion": "sección 13"
+  },
+  "Sistemas de registración del costo de ventas y valuación de inventarios": {
+    "libro": "Madruga, Núñez y Varela - Temas Contables",
+    "seccion": "capítulo de inventarios"
+  },
+  "Valuación posterior, deterioro y baja de PPyE": {
+    "libro": "NIIF para las PYMES",
+    "seccion": "sección 17"
+  },
+  "Asiento de apertura: concepto y diferencia con el asiento de inicio de actividades": {
+    "libro": "Fowler Newton - Contabilidad Básica",
+    "seccion": "capítulos 8 y 9"
+  },
+  "Presentación de estados financieros: situación financiera y resultados": {
+    "libro": "NIIF para las PYMES",
+    "seccion": "secciones 3 y 4"
+  },
+  "Introducción a la asignatura: terminología básica de procesos y entidades": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "unidad introductoria"
+  },
+  "Impacto del sistema contable, los controles internos y el procesamiento de datos": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "unidad de sistema contable y controles"
+  },
+  "Estados financieros y los procesos de una entidad: ciclos y tareas preparatorias": {
+    "libro": "NIIF para las PYMES",
+    "seccion": "sección de estados financieros"
+  },
+  "Análisis detallado de los procesos: naturaleza, documentación y necesidades de control": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "unidad de análisis de procesos"
+  },
+  "Introducción a la Teoría General del Costo: proceso generador de valor y factores de producción": {
+    "libro": "Horngren, Foster y Datar - Contabilidad de Costos: un Enfoque Gerencial",
+    "seccion": "capítulo introductorio"
+  },
+  "Modelos de costos: costeo completo, variable, resultante y eficiente": {
+    "libro": "Horngren, Foster y Datar - Contabilidad de Costos: un Enfoque Gerencial",
+    "seccion": "capítulo de modelos de costeo"
+  },
+  "Centros de costos: técnicas de asignación y distribución primaria y secundaria": {
+    "libro": "Horngren, Foster y Datar - Contabilidad de Costos: un Enfoque Gerencial",
+    "seccion": "capítulo de centros de costos"
+  },
+  "El marco temporal: presupuesto, costos adjudicados y producción equivalente": {
+    "libro": "Horngren, Foster y Datar - Contabilidad de Costos: un Enfoque Gerencial",
+    "seccion": "capítulo del marco temporal"
+  },
+  "Sistemas de costos: técnicas relativas a materiales, factor trabajo y otros factores": {
+    "libro": "Hansen y Mowen - Administración de Costos: Contabilidad y Control",
+    "seccion": "capítulo de sistemas de costos"
+  },
+  "Producción conjunta y la contabilidad de costos: registración de la producción industrial": {
+    "libro": "Horngren, Foster y Datar - Contabilidad de Costos: un Enfoque Gerencial",
+    "seccion": "capítulo de producción conjunta"
+  },
+  "Ética en la formación y actuación del Contador Público: códigos de ética y corrupción": {
+    "libro": "Montone, Rodríguez y Villarmarzo - Informes de Contador Público: la Actuación Profesional Vinculada a Estados Contables",
+    "seccion": "capítulo de ética profesional"
+  },
+  "Aspectos formales de la actuación del Contador Público: responsabilidad profesional": {
+    "libro": "Montone, Rodríguez y Villarmarzo - Informes de Contador Público: la Actuación Profesional Vinculada a Estados Contables",
+    "seccion": "capítulo de responsabilidad profesional"
+  },
+  "Distintos campos de acción: informes y certificaciones": {
+    "libro": "Montone, Rodríguez y Villarmarzo - Informes de Contador Público: la Actuación Profesional Vinculada a Estados Contables",
+    "seccion": "capítulo de informes y certificaciones"
+  },
+  "Arancel profesional y regulación de honorarios profesionales": {
+    "libro": "Dotta Bardier - Honorarios de Contadores Públicos en el Uruguay",
+    "seccion": "documento del CCEAU"
+  },
+  "La actuación del Contador Público en transferencias de establecimientos y concentración empresarial": {
+    "libro": "Montone, Rodríguez y Villarmarzo - Informes de Contador Público: la Actuación Profesional Vinculada a Estados Contables",
+    "seccion": "capítulo de transferencias empresariales"
+  },
+  "La actuación del Contador en situaciones especiales de sociedades comerciales": {
+    "libro": "Montone, Rodríguez y Villarmarzo - Informes de Contador Público: la Actuación Profesional Vinculada a Estados Contables",
+    "seccion": "capítulo de situaciones societarias especiales"
+  },
+  "Métodos no adversariales de resolución de conflictos: mediación y arbitraje": {
+    "libro": "Henón Risso - Manual de Conciliación y Mediación",
+    "seccion": "capítulo de mediación"
+  },
+  "La actuación del Contador Público en los contratos de seguros": {
+    "libro": "Montone, Rodríguez y Villarmarzo - Informes de Contador Público: la Actuación Profesional Vinculada a Estados Contables",
+    "seccion": "capítulo de contratos de seguros"
+  },
+  "La Contabilidad Gerencial y el rol del Contador y el Licenciado en Administración": {
+    "libro": "Amat - El Control de Gestión: una Perspectiva de Dirección",
+    "seccion": "capítulo 1"
+  },
+  "Los modelos de costeo y la toma de decisiones: críticas al costeo completo": {
+    "libro": "Bimani, Horngren, Datar y Rajan - Management and Cost Accounting",
+    "seccion": "capítulo de modelos de costeo para decisiones"
+  },
+  "Análisis marginal: punto de equilibrio, planeamiento de utilidades y restricciones de producción": {
+    "libro": "Yardin - El Análisis Marginal: la Mejor Herramienta para Tomar Decisiones sobre Precios y Costos",
+    "seccion": "capítulo de análisis marginal"
+  },
+  "Proceso de planificación, presupuestación y control por resultados": {
+    "libro": "Lavolpe, Capasso y Smolje - La Gestión Presupuestaria",
+    "seccion": "capítulos 2 y 3"
+  },
+  "IRAE: hecho generador, sujetos pasivos y elementos cuantificantes": {
+    "libro": "Título 4 del Texto Ordenado 2023",
+    "seccion": "capítulo del IRAE"
+  },
+  "IRAE: exoneraciones y liquidación": {
+    "libro": "Título 4 del Texto Ordenado 2023",
+    "seccion": "capítulo de exoneraciones y liquidación"
+  },
+  "IMEBA como tributo alternativo": {
+    "libro": "Título 4 del Texto Ordenado 2023",
+    "seccion": "capítulo del IMEBA"
+  },
+  "Impuesto al Patrimonio empresarial: hecho generador y elementos cuantificantes": {
+    "libro": "Título 14 del Texto Ordenado 2023",
+    "seccion": "capítulo del Impuesto al Patrimonio empresarial"
+  },
+  "Impuesto al Patrimonio Agropecuario": {
+    "libro": "Título 14 del Texto Ordenado 2023",
+    "seccion": "capítulo del Impuesto al Patrimonio Agropecuario"
+  },
+  "Preferencia y utilidad: axiomatización y función de utilidad": {
+    "libro": "Nicholson - Teoría Microeconómica: Principios Básicos y Aplicaciones",
+    "seccion": "capítulo de teoría del consumidor"
+  },
+  "Maximización de la utilidad, minimización del gasto y elasticidades": {
+    "libro": "Nicholson - Teoría Microeconómica: Principios Básicos y Aplicaciones",
+    "seccion": "capítulo de demanda del consumidor"
+  },
+  "Función de producción, rendimientos a escala y funciones de costos": {
+    "libro": "Nicholson - Teoría Microeconómica: Principios Básicos y Aplicaciones",
+    "seccion": "capítulo de producción"
+  },
+  "Maximización del beneficio y demanda de factores": {
+    "libro": "Nicholson - Teoría Microeconómica: Principios Básicos y Aplicaciones",
+    "seccion": "capítulo de oferta de la empresa"
+  },
+  "Formación de precios en mercados competitivos: equilibrio de corto y largo plazo": {
+    "libro": "Nicholson - Teoría Microeconómica: Principios Básicos y Aplicaciones",
+    "seccion": "capítulo de mercados competitivos"
+  },
+  "Formación de precios en mercados monopólicos: discriminación de precios": {
+    "libro": "Nicholson - Teoría Microeconómica: Principios Básicos y Aplicaciones",
+    "seccion": "capítulo de monopolio"
+  },
+  "Economía comportamental: límites de la racionalidad, heurísticas y sesgos": {
+    "libro": "Nicholson - Teoría Microeconómica: Principios Básicos y Aplicaciones",
+    "seccion": "capítulo de economía comportamental"
+  },
+  "El largo plazo: acumulación de capital, progreso tecnológico e instituciones": {
+    "libro": "Blanchard - Macroeconomía",
+    "seccion": "capítulos 11, 12 y 13"
+  },
+  "La economía abierta: tipo de cambio y paridad de tasas de interés": {
+    "libro": "Blanchard - Macroeconomía",
+    "seccion": "capítulo 17"
+  },
+  "El modelo IS-LM de economía abierta y regímenes cambiarios": {
+    "libro": "Blanchard - Macroeconomía",
+    "seccion": "capítulos 18, 19 y 20"
+  },
+  "La inflación: financiación monetaria y teoría de la inflación de costos": {
+    "libro": "Gagliardi - Macroeconomía de Economías Abiertas, Tomo II",
+    "seccion": "capítulos 16, 17 y 18"
+  },
+  "La política fiscal, la deuda y la política monetaria": {
+    "libro": "Blanchard - Macroeconomía",
+    "seccion": "capítulos 22 y 23"
+  },
+  "Métodos descriptivos univariados: distribuciones de frecuencias y medidas de resumen": {
+    "libro": "Peña - Fundamentos de Estadística",
+    "seccion": "capítulo de estadística descriptiva"
+  },
+  "Probabilidad: experimento aleatorio, sucesos y axiomas de Kolmogoroff": {
+    "libro": "Peña - Fundamentos de Estadística",
+    "seccion": "capítulo de probabilidad"
+  },
+  "Probabilidad condicionada: teorema de la multiplicidad y teorema de Bayes": {
+    "libro": "Peña - Fundamentos de Estadística",
+    "seccion": "capítulo de probabilidad condicionada"
+  },
+  "Variables aleatorias: función de distribución, discretas y continuas": {
+    "libro": "Peña - Fundamentos de Estadística",
+    "seccion": "capítulo de variables aleatorias"
+  },
+  "Esperanza, momentos y medidas de dispersión de una variable aleatoria": {
+    "libro": "Peña - Fundamentos de Estadística",
+    "seccion": "capítulo de características de variables aleatorias"
+  },
+  "Vectores aleatorios: distribuciones marginales y condicionadas": {
+    "libro": "Peña - Fundamentos de Estadística",
+    "seccion": "capítulo de vectores aleatorios"
+  },
+  "Características de vectores aleatorios: covarianza y correlación": {
+    "libro": "Peña - Fundamentos de Estadística",
+    "seccion": "capítulo de covarianza y correlación"
+  },
+  "Modelos de probabilidad: familias de distribuciones discretas y continuas": {
+    "libro": "Peña - Fundamentos de Estadística",
+    "seccion": "capítulo de modelos de probabilidad"
+  },
+  "Introducción al estudio de derecho del empresario: concepto y clasificación": {
+    "libro": "Holz y Poziomek (dirs.) - Curso de Derecho Comercial",
+    "seccion": "capítulo introductorio"
+  },
+  "El empresario: modalidades de actuación y sociedades comerciales": {
+    "libro": "Poziomek y Alfaro - Sociedades Comerciales (Incluye SAS)",
+    "seccion": "capítulo de tipos societarios"
+  },
+  "Actuación del empresario en el mercado: competencia y defensa del consumidor": {
+    "libro": "Martínez Blanco - Curso de Derecho de la Competencia Uruguayo",
+    "seccion": "capítulo de derecho de la competencia"
+  },
+  "Bienes afectados a la actividad empresarial: establecimiento y propiedad industrial": {
+    "libro": "Holz y Poziomek (dirs.) - Curso de Derecho Comercial",
+    "seccion": "capítulo de bienes empresariales"
+  },
+  "Transmisión de empresas: compraventa de establecimiento y fusión": {
+    "libro": "Holz y Poziomek (dirs.) - Curso de Derecho Comercial",
+    "seccion": "capítulo de transmisión de empresas"
+  },
+  "Contratos empresariales: compraventa, distribución y contratos bancarios": {
+    "libro": "Holz y Poziomek (dirs.) - Curso de Derecho Comercial",
+    "seccion": "capítulo de contratos empresariales"
+  },
+  "Regulación de las crisis empresariales: concurso, convenio y liquidación": {
+    "libro": "Holz y Rippe - Reorganización Empresarial y Concursos, Ley 18.387",
+    "seccion": "capítulo de regulación concursal"
+  },
+  "Introducción al marketing: conceptos básicos y evolución del concepto": {
+    "libro": "Kotler - Mercadotecnia",
+    "seccion": "capítulo introductorio"
+  },
+  "Marketing en la era digital: relaciones B2C, B2B y comercio online": {
+    "libro": "Kotler, Kartajaya y Setiawan - Marketing 4.0",
+    "seccion": "capítulo de marketing digital"
+  },
+  "El entorno de la empresa: microambiente y macroambiente": {
+    "libro": "Kotler - Mercadotecnia",
+    "seccion": "capítulo del entorno de la empresa"
+  },
+  "Comportamiento del consumidor: proceso de decisión de compra": {
+    "libro": "Kotler - Mercadotecnia",
+    "seccion": "capítulo de comportamiento del consumidor"
+  },
+  "Mercado y demanda: medición y pronóstico de la demanda": {
+    "libro": "Kotler - Mercadotecnia",
+    "seccion": "capítulo de medición de la demanda"
+  },
+  "Segmentación de mercados y posicionamiento": {
+    "libro": "Ries y Trout - Posicionamiento",
+    "seccion": "capítulo de posicionamiento"
+  },
+  "Investigación de mercados y sistemas de información de marketing": {
+    "libro": "Kotler - Mercadotecnia",
+    "seccion": "capítulo de investigación de mercados"
+  },
+  "Producto: clasificación, marca y ciclo de vida": {
+    "libro": "Kotler - Mercadotecnia",
+    "seccion": "capítulo de producto"
+  },
+  "Precio: fijación de precios y estrategias": {
+    "libro": "Kotler - Mercadotecnia",
+    "seccion": "capítulo de precio"
+  },
+  "Distribución: canales, comercio detallista y mayorista": {
+    "libro": "Kotler - Mercadotecnia",
+    "seccion": "capítulo de distribución"
+  },
+  "Comunicación: publicidad, promoción de ventas y fuerza de ventas": {
+    "libro": "Kotler - Mercadotecnia",
+    "seccion": "capítulo de comunicación"
+  },
+  "Modelos de costos: costeo completo, variable, resultante y estándar": {
+    "libro": "Horngren, Foster y Datar - Contabilidad de Costos: un Enfoque Gerencial",
+    "seccion": "capítulo de modelos de costeo"
+  },
+  "Sistemas de costos: costo estándar, por procesos, por órdenes y ABC": {
+    "libro": "Hansen y Mowen - Administración de Costos: Contabilidad y Control",
+    "seccion": "capítulo de sistemas de costos"
+  },
+  "Gestión del costo de actividades, indicadores y cuadro de mando integral": {
+    "libro": "Hansen y Mowen - Administración de Costos: Contabilidad y Control",
+    "seccion": "capítulo de herramientas de gestión"
+  },
+  "Introducción: funciones del marketing en la empresa y en la economía": {
+    "libro": "Lambin - Marketing Estratégico",
+    "seccion": "capítulo introductorio"
+  },
+  "Los comportamientos de respuesta del comprador: cognitiva, afectiva y comportamental": {
+    "libro": "Lambin - Marketing Estratégico",
+    "seccion": "capítulo de comportamiento del comprador"
+  },
+  "Atractivo del mercado: demanda global, ciclo de vida y previsión de la demanda": {
+    "libro": "Lambin - Marketing Estratégico",
+    "seccion": "capítulo de atractivo del mercado"
+  },
+  "Análisis de la competitividad: ventaja competitiva y rivalidad ampliada": {
+    "libro": "Lambin - Marketing Estratégico",
+    "seccion": "capítulo de análisis de la competitividad"
+  },
+  "La ventaja en costos y el efecto de experiencia": {
+    "libro": "Lambin - Marketing Estratégico",
+    "seccion": "capítulo del efecto de experiencia"
+  },
+  "Análisis de la cartera de negocios: matriz BCG y matriz atractivo-competitividad": {
+    "libro": "Lambin - Marketing Estratégico",
+    "seccion": "capítulo de análisis de cartera"
+  },
+  "Estrategias de desarrollo y estrategias competitivas": {
+    "libro": "Lambin - Marketing Estratégico",
+    "seccion": "capítulo de estrategias competitivas"
+  },
+  "Modelos de negocio: tipos, patrones y evaluación": {
+    "libro": "Osterwalder y Pigneur - Generación de Modelos de Negocios",
+    "seccion": "capítulo de modelos de negocio"
+  },
+  "El plan de marketing: estructura, auditoría estratégica y análisis de riesgo": {
+    "libro": "Abell y Hammond - Planeación Estratégica de Mercado",
+    "seccion": "capítulo del plan de marketing"
+  },
+  "Tipos de informes profesionales y normativa de referencia: NIAs y pronunciamientos del Colegio de Contadores": {
+    "libro": "Pronunciamientos del Colegio de Contadores del Uruguay",
+    "seccion": "informes profesionales"
+  },
+  "Responsabilidad profesional del auditor: el fraude (NIA 240) y la prevención del lavado de activos": {
+    "libro": "Normas Internacionales de Auditoría (IFAC)",
+    "seccion": "NIA 240"
+  },
+  "Informe de auditoría: tipos de opinión, texto del dictamen y cuestiones clave de auditoría": {
+    "libro": "Normas Internacionales de Auditoría (IFAC)",
+    "seccion": "informe del auditor"
+  },
+  "Informe de revisión limitada: contenido, procedimientos y modelos de informe": {
+    "libro": "Normas Internacionales de Auditoría (IFAC)",
+    "seccion": "normas de encargos de revisión"
+  },
+  "Informes de compilación y de certificación contable: normativa y modelos": {
+    "libro": "Normas Internacionales de Auditoría (IFAC)",
+    "seccion": "normas de servicios relacionados"
+  },
+  "NITA 3000: informes para atestiguar sobre información histórica y el informe PLAFT-BCU": {
+    "libro": "Normas Internacionales de Auditoría (IFAC)",
+    "seccion": "NITA 3000"
+  },
+  "NITA 3400: auditoría de proyecciones financieras, objetivos y procedimientos básicos": {
+    "libro": "Normas Internacionales de Auditoría (IFAC)",
+    "seccion": "NITA 3400"
+  },
+  "Informe sobre procedimientos previamente acordados: contenido y modelos": {
+    "libro": "Fowler Newton - Tratado de Auditoría",
+    "seccion": "informes especiales"
+  },
+  "Informe de due diligence: concepto, objetivo y alcance": {
+    "libro": "Fowler Newton - Tratado de Auditoría",
+    "seccion": "due diligence"
+  },
+  "Informes solicitados por el BCU e introducción a los informes sobre reportes de sostenibilidad": {
+    "libro": "Fowler Newton - Tratado de Auditoría",
+    "seccion": "informes a organismos de contralor"
+  },
+  "Teoría de sistemas y tecnologías de la información: tipos de sistemas y evolución hacia el SIG/ERP": {
+    "libro": "Ray - Enterprise Resource Planning",
+    "seccion": "introducción a los ERP"
+  },
+  "Competencias y conocimientos en TIC exigidos al contador según las Normas Internacionales de Educación": {
+    "libro": "Material elaborado por la Unidad Curricular",
+    "seccion": "competencias en TIC"
+  },
+  "Opciones de SIG/ERP, componentes, módulos de contabilidad y de gestión y su ciclo de vida": {
+    "libro": "Ray - Enterprise Resource Planning",
+    "seccion": "componentes y módulos"
+  },
+  "Especificación de requerimientos, contratación e implementación de un SIG": {
+    "libro": "Bradford - Modern ERP: Select, Implement, and Use Today's Advanced Business Systems",
+    "seccion": "implementación"
+  },
+  "Entrada de mercadería y recepción de facturas, contabilidad en moneda extranjera y diferencia de cambio": {
+    "libro": "Material elaborado por la Unidad Curricular",
+    "seccion": "tratamiento contable de casos"
+  },
+  "Gestión de stocks, partidas abiertas, devengamientos y presentación de estados contables": {
+    "libro": "Material elaborado por la Unidad Curricular",
+    "seccion": "tratamiento contable de casos"
+  },
+  "Webservices, facturación electrónica y XBRL: impacto en la contabilidad y el control de gestión": {
+    "libro": "Ray - Enterprise Resource Planning",
+    "seccion": "integración de sistemas"
+  },
+  "La prospectiva como herramienta de planificación estratégica: escuelas y enfoques de análisis": {
+    "libro": "Medina y Ocampo - Manual de Prospectiva y Decisión Estratégica (ILPES-CEPAL)",
+    "seccion": "introducción"
+  },
+  "Procesos y etapas de la prospectiva: exploración, análisis y anticipación": {
+    "libro": "Medina y Ocampo - Manual de Prospectiva y Decisión Estratégica (ILPES-CEPAL)",
+    "seccion": "metodología"
+  },
+  "Métodos de prospectiva: clasificación y utilidad de los enfoques cualitativos, cuantitativos y semicuantitativos": {
+    "libro": "Beinstein - Manual de Prospectiva",
+    "seccion": "métodos"
+  },
+  "Hacia una estrategia nacional de desarrollo: visión sectorial y prospectiva territorial": {
+    "libro": "OPP - Introducción a la Prospectiva: Síntesis Metodológica",
+    "seccion": "aplicaciones a Uruguay"
+  },
+  "Diseño de un ejercicio prospectivo: focalizar, diseñar, implementar, analizar y diseminar hipótesis": {
+    "libro": "Medina y Ocampo - Manual de Prospectiva y Decisión Estratégica (ILPES-CEPAL)",
+    "seccion": "ejercicio práctico"
+  },
+  "La extensión universitaria y los Espacios de Formación Integral en la Segunda Reforma Universitaria": {
+    "libro": "Arocena - Curricularización de la Extensión: ¿Por Qué, Cuál, Cómo?",
+    "seccion": "extensión e integralidad"
+  },
+  "Caracterización del proceso productivo e indicadores de productividad y gestión operativa": {
+    "libro": "Horngren, Foster y Datar - Contabilidad de Costos: un Enfoque Gerencial",
+    "seccion": "indicadores de gestión"
+  },
+  "Instrumentos de costos: estados contables, flujo de caja, presupuestos y análisis marginal": {
+    "libro": "Hansen y Mowen - Administración de Costos: Contabilidad y Control",
+    "seccion": "costos para la toma de decisiones"
+  },
+  "Acompañamiento a emprendimientos sociales y predios rurales en costos y control de gestión": {
+    "libro": "Material del curso de Modelos y Sistemas de Costos y Contabilidad Gerencial",
+    "seccion": "trabajo de campo"
+  },
+  "Conceptos básicos de tarea, cargo y grupo: clasificación y diseño de cargos": {
+    "libro": "Chiavenato - Gestión del Talento Humano",
+    "seccion": "diseño de cargos"
+  },
+  "Análisis, descripción y especificación de cargos clásica y por competencias": {
+    "libro": "Dessler - Administración de Personal",
+    "seccion": "análisis y descripción de cargos"
+  },
+  "Evaluación de cargos: métodos y asignación por puntos": {
+    "libro": "Dessler - Administración de Personal",
+    "seccion": "evaluación de cargos"
+  },
+  "Escala y bandas salariales: nube de puntos e intervalos de valoración": {
+    "libro": "Chiavenato - Gestión del Talento Humano",
+    "seccion": "sistema de remuneraciones"
+  },
+  "Incentivos salariales y beneficios sociales": {
+    "libro": "Chiavenato - Gestión del Talento Humano",
+    "seccion": "incentivos y beneficios"
+  },
+  "Política de remuneraciones: investigación salarial, equidad interna y competitividad externa": {
+    "libro": "Dessler - Administración de Personal",
+    "seccion": "política de remuneraciones"
+  },
+  "Tipos sociales (SRL, SA y SAS) y sociedades familiares: funcionamiento orgánico y transferencia de participaciones": {
+    "libro": "Poziomek y Alfaro Borges - Nociones de Derecho Comercial",
+    "seccion": "sociedades comerciales"
+  },
+  "Reorganización societaria: fusión, escisión y aumentos de capital con series de acciones": {
+    "libro": "Poziomek y Alfaro Borges - Sociedades Comerciales",
+    "seccion": "reorganización societaria"
+  },
+  "Concentración empresarial: participación, control societario y grupos de empresas": {
+    "libro": "Poziomek y Alfaro Borges - Sociedades Comerciales",
+    "seccion": "concentración empresarial"
+  },
+  "Particularidades de la contratación electrónica en la contratación moderna": {
+    "libro": "Bugallo - Manual Básico de Derecho de Empresa",
+    "seccion": "contratación moderna"
+  },
+  "Procedimiento concursal: presupuestos, órganos, síndico e interventor y acuerdos entre deudor y acreedores": {
+    "libro": "Rodríguez Mascardi - Cuadernos de Derecho Concursal",
+    "seccion": "procedimiento concursal"
+  },
+  "Objetivos y alcance de las finanzas: la función financiera en la empresa y su relación con los mercados": {
+    "libro": "Pascale - Decisiones Financieras",
+    "seccion": "la función financiera"
+  },
+  "Elementos de valuación: criterios de valuación y el modelo de flujos de fondos": {
+    "libro": "Ross, Westerfield y Jaffe - Finanzas Corporativas",
+    "seccion": "valuación"
+  },
+  "Criterios de análisis de decisiones de inversión: flujos de fondos, tasa de descuento e inflación": {
+    "libro": "Pascale - Decisiones Financieras",
+    "seccion": "decisiones de inversión"
+  },
+  "Riesgo y rendimiento: teoría del portafolio, diversificación y Capital Asset Pricing Model": {
+    "libro": "Ross, Westerfield y Jaffe - Finanzas Corporativas",
+    "seccion": "riesgo y rendimiento"
+  },
+  "Efecto leverage y determinación del costo de los fondos propios y prestados": {
+    "libro": "Pascale - Decisiones Financieras",
+    "seccion": "decisiones de financiamiento"
+  },
+  "Teoría de Modigliani y Miller y modelos de financiamiento de la empresa": {
+    "libro": "Ross, Westerfield y Jaffe - Finanzas Corporativas",
+    "seccion": "estructura financiera"
+  },
+  "Capital de trabajo, liquidez y gestión de activos y pasivos corrientes": {
+    "libro": "Pascale - Decisiones Financieras",
+    "seccion": "finanzas de corto plazo"
+  },
+  "Instrumentos financieros derivados: opciones, futuros y gestión de riesgos": {
+    "libro": "Ross, Westerfield y Jaffe - Finanzas Corporativas",
+    "seccion": "instrumentos derivados"
+  },
+  "La extensión universitaria en el marco de la Segunda Reforma Universitaria y los Espacios de Formación Integral": {
+    "libro": "Arocena - Curricularización de la Extensión: ¿Por Qué, Cuál, Cómo?",
+    "seccion": "extensión universitaria"
+  },
+  "El sector público uruguayo: presupuesto público y etapas del proceso del gasto": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "gestión financiera del Estado"
+  },
+  "Responsabilidades de los obligados a rendir cuentas según el TOCAF y la normativa del DGEIP": {
+    "libro": "ANEP - CEIP - Reglamento de Comisiones de Fomento",
+    "seccion": "rendición de cuentas"
+  },
+  "Hechos económicos de la Comisión de Fomento: cobro de partidas, comprobantes y requisitos de los comprobantes": {
+    "libro": "ANEP - CEIP - Reglamento de Comisiones de Fomento",
+    "seccion": "hechos económicos"
+  },
+  "Registración en el Libro de Caja y Banco y controles con el Libro de Comprobantes": {
+    "libro": "ANEP - CEIP - Reglamento de Comisiones de Fomento",
+    "seccion": "registración"
+  },
+  "Liquidación de sueldos: aportes patronales y personales y tasas de FONASA": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "liquidación de sueldos"
+  },
+  "RUPE: normativa, funcionamiento general y estados de los proveedores": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "RUPE"
+  },
+  "Libro de Caja Digital de la DGEIP: aspectos normativos y principales funcionalidades": {
+    "libro": "Apuntes de cátedra",
+    "seccion": "Libro de Caja Digital"
+  },
+  "Modelos de desarrollo en América Latina: de la herencia colonial al boom de los commodities": {
+    "libro": "Bértola y Ocampo - El Desarrollo Económico de América Latina desde la Independencia",
+    "seccion": "modelos de desarrollo"
+  },
+  "Desarrollo humano, niveles de vida y desigualdad en el largo plazo": {
+    "libro": "Bértola y Williamson - Has Latin American Inequality Changed Direction?",
+    "seccion": "desigualdad de largo plazo"
+  },
+  "Cambio estructural y especialización productiva: estructura sectorial y diversificación": {
+    "libro": "Barletta y Yoguel - Manufactura y Cambio Estructural",
+    "seccion": "cambio estructural"
+  },
+  "La interpretación neoestructuralista y los desafíos ambientales de la especialización productiva": {
+    "libro": "Cimoli y Porcile - Tecnología, Heterogeneidad y Crecimiento",
+    "seccion": "neoestructuralismo"
+  },
+  "Tendencias de largo plazo y cambios recientes: pobreza y concentración del ingreso": {
+    "libro": "Amarante, Lustig y Vigorito - El Desafío de la Desigualdad de Ingresos en América Latina",
+    "seccion": "pobreza y concentración del ingreso"
+  },
+  "Desigualdad de género y entre generaciones en la región": {
+    "libro": "Berniell, Fernández y Krutikova - Gender Inequality in Latin America",
+    "seccion": "género y generaciones"
+  },
+  "Interpretaciones sobre la economía política de América Latina: la interpretación dependentista": {
+    "libro": "Bértola - Patrones de Desarrollo y Estados de Bienestar en América Latina",
+    "seccion": "economía política"
+  },
+  "Grupos de poder, estructura productiva y desigualdad: el debate sobre las estrategias de rent-seeking": {
+    "libro": "Doner y Schneider - The Middle-Income Trap: More Politics than Economics",
+    "seccion": "rent-seeking e instituciones"
   }
 }
